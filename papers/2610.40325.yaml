@@ -7,6 +7,7 @@ authors: [Chanakya Ekbote, Artidoro Pagnoni, Devendra Singh Sachan, Shruti Bhosa
 links:
   paper: https://arxiv.org/abs/2610.40325
 category: scaling
+focus: core
 facets:
   placement: whole-stack
   depth_train: fixed

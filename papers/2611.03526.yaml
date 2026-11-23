@@ -8,6 +8,7 @@ links:
   paper: https://arxiv.org/abs/2611.03526
   code: https://github.com/arahmani1/library-of-layers
 category: architecture/placement
+focus: core
 facets:
   placement: prelude-core-coda
   depth_train: curriculum

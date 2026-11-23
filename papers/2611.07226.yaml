@@ -8,6 +8,7 @@ links:
   paper: https://arxiv.org/abs/2611.07226
   code: https://github.com/yancyou/Loopback
 category: architecture/state
+focus: core
 facets:
   placement: prelude-core-coda
   depth_train: fixed

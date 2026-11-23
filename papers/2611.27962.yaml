@@ -7,6 +7,7 @@ authors: [Kaden Zheng, Pratyusha Sharma]
 links:
   paper: https://arxiv.org/abs/2611.27962
 category: architecture/placement
+focus: core
 facets:
   placement: whole-stack
   depth_train: fixed

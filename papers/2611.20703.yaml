@@ -7,6 +7,7 @@ authors: [Wei Tan, Kunming Luo, Hongyu Yan, Yu Zhang, Zihao Zhang, Xiatian Zhu, 
 links:
   paper: https://arxiv.org/abs/2611.20703
 category: applications
+focus: related
 facets:
   placement: partial
   depth_train: fixed

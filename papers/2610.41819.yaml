@@ -7,6 +7,7 @@ authors: [Mieszko Komisarczyk, Saurabh Mathur, Maurice Kraus, Sriraam Natarajan,
 links:
   paper: https://arxiv.org/abs/2610.41819
 category: applications
+focus: related
 facets:
   placement: whole-stack
   depth_train: sampled

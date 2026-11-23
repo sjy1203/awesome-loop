@@ -8,6 +8,7 @@ links:
   paper: https://arxiv.org/abs/2602.07845
   code: https://github.com/rd-vla/rd-vla
 category: applications
+focus: related
 facets:
   placement: partial
   depth_train: sampled

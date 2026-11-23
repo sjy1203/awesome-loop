@@ -8,6 +8,7 @@ links:
   paper: https://arxiv.org/abs/2006.08591
   code: https://github.com/locuslab/monotone_op_net
 category: theory
+focus: related
 facets:
   placement: implicit
   depth_train: n/a

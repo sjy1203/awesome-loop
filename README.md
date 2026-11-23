@@ -10,24 +10,13 @@
 
 <p align="center"><b>English</b> · <a href="README.zh-CN.md">简体中文</a></p>
 
-<p align="center"><a href="#top-10-must-read">Top 10</a> · <a href="#trending-in-the-last-30-days">Trending</a> · <a href="#most-cited">Most cited</a> · <a href="#loop-papers-over-time">Papers over time</a> · <a href="#deep-cards">Deep cards</a> · <a href="#all-papers">All papers</a> · <a href="#design-space">Design space</a> · <a href="#open-questions">Open questions</a> · <a href="#open-models">Open models</a></p>
+<p align="center"><a href="#loop-papers-over-time">Papers over time</a> · <a href="#trending-in-the-last-30-days">Trending</a> · <a href="#top-10-must-read">Top 10</a> · <a href="#deep-cards">Deep cards</a> · <a href="#all-papers">All papers</a> · <a href="#design-space">Design space</a> · <a href="#open-questions">Open questions</a> · <a href="#open-models">Open models</a></p>
 
-## Top 10 must-read
+## Loop papers over time
 
-| # | Paper | Score | Citations | Stars | Downloads (30 days) | Likes |
-|---:|---|---:|---:|---:|---:|---:|
-| 1 | **Huginn**: [Scaling up Test-Time Compute with Latent Reasoning: A Recurrent Depth Approach](https://arxiv.org/abs/2502.05171) · **[deep card](docs/en/2502.05171.md)**<br><sub>2025 · Jonas Geiping et al.</sub> | **76** | 590 | 998 | 22,435 | 634 |
-| 2 | [ALBERT: A Lite BERT for Self-supervised Learning of Language Representations](https://arxiv.org/abs/1909.11942)<br><sub>2019 · Zhenzhong Lan et al.</sub> | **62** | 8,430 | 3,276 | - | 8 |
-| 3 | **Ouro (LoopLM)**: [Scaling Latent Reasoning via Looped Language Models](https://arxiv.org/abs/2510.25741) · **[deep card](docs/en/2510.25741.md)**<br><sub>2025 · Rui-Jie Zhu et al.</sub> | **60** | 267 | - | 59,421 | 711 |
-| 4 | [Hierarchical Reasoning Model](https://arxiv.org/abs/2506.21734)<br><sub>2025 · Guan Wang et al.</sub> | **59** | 298 | 12,671 | - | 406 |
-| 5 | [Less is More: Recursive Reasoning with Tiny Networks](https://arxiv.org/abs/2510.04871)<br><sub>2025 · Alexia Jolicoeur-Martineau</sub> | **58** | 271 | 6,546 | - | 562 |
-| 6 | [RAFT: Recurrent All-Pairs Field Transforms for Optical Flow](https://arxiv.org/abs/2003.12039)<br><sub>2020 · Zachary Teed et al.</sub> | **57** | 4,904 | 4,132 | - | 1 |
-| 7 | [Parcae: Scaling Laws For Stable Looped Language Models](https://arxiv.org/abs/2604.12946) · **[deep card](docs/en/2604.12946.md)**<br><sub>2026 · Hayden Prairie et al.</sub> | **52** | 89 | 195 | 1,728 | 29 |
-| 8 | [Teaching Pretrained Language Models to Think Deeper with Retrofitted Recurrence](https://arxiv.org/abs/2511.07384) · **[deep card](docs/en/2511.07384.md)**<br><sub>2025 · Sean McLeish et al.</sub> | **51** | 79 | 72 | 4,351 | 29 |
-| 9 | **MoR**: [Mixture-of-Recursions: Learning Dynamic Recursive Depths for Adaptive Token-Level Computation](https://arxiv.org/abs/2507.10524) · **[deep card](docs/en/2507.10524.md)**<br><sub>2025 · Sangmin Bae et al. · NeurIPS 2025</sub> | **47** | 204 | 652 | - | 79 |
-| 10 | [Deep Equilibrium Models](https://arxiv.org/abs/1909.01377)<br><sub>2019 · Shaojie Bai et al. · NeurIPS 2019</sub> | **47** | 1,104 | 815 | - | 1 |
+<img src="assets/trend.svg" alt="Loop papers on arXiv per quarter" width="100%">
 
-<sub>Ranked by an impact score out of 100: citations 40% (the higher of the Semantic Scholar and OpenAlex counts), GitHub stars of the official code 20%, Hugging Face downloads of the released models in the last 30 days 20%, and likes 20% (Hugging Face paper upvotes and model likes plus Hacker News points). Each count is log-scaled and divided by the largest value in the collection, so the paper that leads on a signal gets that signal's full weight. Adjacent work without loops is not ranked. Counts as of 2026-11-23.</sub>
+Quarterly count of arXiv papers whose title or abstract contains a loop phrase (phrases and counts in [data/trend.json](data/trend.json)); the last quarter is partial. Keyword matches are a proxy for activity in the field, not a curated count.
 
 ## Trending in the last 30 days
 
@@ -35,39 +24,33 @@
 |---:|---|---|---:|---:|---:|
 | 1 | [Introducing Inkling 2 Mini](https://thinkingmachines.ai/news/inkling-2-mini/) · **[deep card](docs/en/tml-inkling-2-mini.md)**<br><sub>Thinking Machines Lab blog</sub> | 2026-11-20 | **2,300** | 6,899 | - |
 | 2 | [GLM-5.4: Toward Generalized Coding with Our First Loop Transformer](https://z.ai/blog/glm-5.4) · **[deep card](docs/en/zai-glm-5-4.md)**<br><sub>Z.ai blog</sub> | 2026-11-23 | **784** | 784 | - |
-| 3 | [Solv3R: 3D Looped Transformer as a Multi-view Solver](https://arxiv.org/abs/2611.02857)<br><sub>Jeong-gi Kwak et al.</sub> | 2026-11-02 | **16.6** | 12 | 337 |
-| 4 | [Classical Energies Learn to Reason 1,000x Faster than Looped Models](https://arxiv.org/abs/2611.17309)<br><sub>Benjamin Hoover et al.</sub> | 2026-11-12 | **6.5** | 23 | 49 |
-| 5 | [Energy-Based Reasoners: Your Recurrent Reasoner Should Be an Energy-Based Model](https://arxiv.org/abs/2611.08977)<br><sub>William Xingxu Chen et al.</sub> | 2026-11-06 | **6.2** | 10 | 95 |
-| 6 | [Latent Feedback Is a Compute and Data Amplifier](https://arxiv.org/abs/2611.20404)<br><sub>Benhao Huang et al.</sub> | 2026-11-16 | **4.6** | 7 | 25 |
-| 7 | [Late Entry in Looped Language Models](https://arxiv.org/abs/2611.24576)<br><sub>Ziqi Jin et al.</sub> | 2026-11-18 | **2.4** | 9 | 3 |
-| 8 | [Loopback Transformer: Towards a Unified View of Residual Looped Transformers](https://arxiv.org/abs/2611.07226)<br><sub>Xuan Ouyang et al.</sub> | 2026-11-04 | **2.4** | 28 | 17 |
-| 9 | [Library of Layers (LoL): Adaptively Ordering Transformer Layers at Runtime](https://arxiv.org/abs/2611.03526)<br><sub>Abdellah Rahmani et al.</sub> | 2026-11-02 | **1.7** | 12 | 23 |
-| 10 | [Dory1.0-4B: A Looped Normalized-GPT](https://arxiv.org/abs/2611.03998)<br><sub>Maxim Fishman et al.</sub> | 2026-11-02 | **0.8** | 16 | - |
+| 3 | [Classical Energies Learn to Reason 1,000x Faster than Looped Models](https://arxiv.org/abs/2611.17309)<br><sub>Benjamin Hoover et al.</sub> | 2026-11-12 | **6.5** | 23 | 49 |
+| 4 | [Energy-Based Reasoners: Your Recurrent Reasoner Should Be an Energy-Based Model](https://arxiv.org/abs/2611.08977)<br><sub>William Xingxu Chen et al.</sub> | 2026-11-06 | **6.2** | 10 | 95 |
+| 5 | [Latent Feedback Is a Compute and Data Amplifier](https://arxiv.org/abs/2611.20404)<br><sub>Benhao Huang et al.</sub> | 2026-11-16 | **4.6** | 7 | 25 |
+| 6 | [Late Entry in Looped Language Models](https://arxiv.org/abs/2611.24576)<br><sub>Ziqi Jin et al.</sub> | 2026-11-18 | **2.4** | 9 | 3 |
+| 7 | [Loopback Transformer: Towards a Unified View of Residual Looped Transformers](https://arxiv.org/abs/2611.07226)<br><sub>Xuan Ouyang et al.</sub> | 2026-11-04 | **2.4** | 28 | 17 |
+| 8 | [Library of Layers (LoL): Adaptively Ordering Transformer Layers at Runtime](https://arxiv.org/abs/2611.03526)<br><sub>Abdellah Rahmani et al.</sub> | 2026-11-02 | **1.7** | 12 | 23 |
+| 9 | [Dory1.0-4B: A Looped Normalized-GPT](https://arxiv.org/abs/2611.03998)<br><sub>Maxim Fishman et al.</sub> | 2026-11-02 | **0.8** | 16 | - |
+| 10 | [LoopVQ: Sub 1-bit KV Cache Quantization for Looped Transformers](https://arxiv.org/abs/2611.05304)<br><sub>Minsoo Cheong et al.</sub> | 2026-11-03 | **0.7** | 10 | 3 |
 
-<sub>Papers released from 2026-10-25 to 2026-11-23, ranked by likes and GitHub stars per day since release. Likes are Hugging Face paper upvotes and model likes plus Hacker News points. Papers this new have almost no citations yet, so this list counts early attention only.</sub>
+<sub>Core papers (looped or recurrent-depth Transformers for language or general reasoning) released from 2026-10-25 to 2026-11-23, ranked by likes and GitHub stars per day since release. Likes are Hugging Face paper upvotes and model likes plus Hacker News points. Papers this new have almost no citations yet, so this list counts early attention only.</sub>
 
-## Most cited
+## Top 10 must-read
 
-| # | Paper | Year | Category | Citations | Links |
-|---:|---|---|---|---:|---|
-| 1 | [ALBERT: A Lite BERT for Self-supervised Learning of Language Representations](https://arxiv.org/abs/1909.11942) | 2019 | Architecture: where to loop, what to share | 8,430 | [paper](https://arxiv.org/abs/1909.11942) · [code](https://github.com/google-research/ALBERT) |
-| 2 | [RAFT: Recurrent All-Pairs Field Transforms for Optical Flow](https://arxiv.org/abs/2003.12039) | 2020 | Applications beyond language modeling | 4,904 | [paper](https://arxiv.org/abs/2003.12039) · [code](https://github.com/princeton-vl/RAFT) |
-| 3 | [Deeply-Recursive Convolutional Network for Image Super-Resolution](https://arxiv.org/abs/1511.04491) | 2015 | Applications beyond language modeling | 3,450 | [paper](https://arxiv.org/abs/1511.04491) |
-| 4 | [Perceiver: General Perception with Iterative Attention](https://arxiv.org/abs/2103.03206) | 2021 | Applications beyond language modeling | 1,811 | [paper](https://arxiv.org/abs/2103.03206) |
-| 5 | [Universal Transformers](https://arxiv.org/abs/1807.03819) | 2018 | Architecture: where to loop, what to share | 1,233 | [paper](https://arxiv.org/abs/1807.03819) |
-| 6 | [Deep Equilibrium Models](https://arxiv.org/abs/1909.01377) | 2019 | Architecture: where to loop, what to share | 1,104 | [paper](https://arxiv.org/abs/1909.01377) · [code](https://github.com/locuslab/deq) |
-| 7 | [Adaptive Computation Time for Recurrent Neural Networks](https://arxiv.org/abs/1603.08983) | 2016 | Depth control | 1,061 | [paper](https://arxiv.org/abs/1603.08983) |
-| 8 | **Huginn**: [Scaling up Test-Time Compute with Latent Reasoning: A Recurrent Depth Approach](https://arxiv.org/abs/2502.05171) · **[deep card](docs/en/2502.05171.md)** | 2025 | Architecture: where to loop, what to share | 590 | [paper](https://arxiv.org/abs/2502.05171) · [code](https://github.com/seal-rg/recurrent-pretraining) · [weights](https://huggingface.co/tomg-group-umd/huginn-0125) |
-| 9 | [Neural GPUs Learn Algorithms](https://arxiv.org/abs/1511.08228) | 2015 | Applications beyond language modeling | 415 | [paper](https://arxiv.org/abs/1511.08228) |
-| 10 | [Reasoning with Latent Thoughts: On the Power of Looped Transformers](https://arxiv.org/abs/2502.17416) | 2025 | Theory and capability | 337 | [paper](https://arxiv.org/abs/2502.17416) |
+| # | Paper | Score | Citations / year | Stars | Downloads (30 days) | Likes |
+|---:|---|---:|---:|---:|---:|---:|
+| 1 | **Huginn**: [Scaling up Test-Time Compute with Latent Reasoning: A Recurrent Depth Approach](https://arxiv.org/abs/2502.05171) · **[deep card](docs/en/2502.05171.md)**<br><sub>2025 · Jonas Geiping et al.</sub> | **87** | 330 | 998 | 22,435 | 634 |
+| 2 | **Ouro (LoopLM)**: [Scaling Latent Reasoning via Looped Language Models](https://arxiv.org/abs/2510.25741) · **[deep card](docs/en/2510.25741.md)**<br><sub>2025 · Rui-Jie Zhu et al.</sub> | **73** | 250 | - | 59,421 | 711 |
+| 3 | [Less is More: Recursive Reasoning with Tiny Networks](https://arxiv.org/abs/2510.04871)<br><sub>2025 · Alexia Jolicoeur-Martineau</sub> | **71** | 240 | 6,546 | - | 562 |
+| 4 | [Hierarchical Reasoning Model](https://arxiv.org/abs/2506.21734)<br><sub>2025 · Guan Wang et al.</sub> | **71** | 211 | 12,671 | - | 406 |
+| 5 | [Parcae: Scaling Laws For Stable Looped Language Models](https://arxiv.org/abs/2604.12946) · **[deep card](docs/en/2604.12946.md)**<br><sub>2026 · Hayden Prairie et al.</sub> | **63** | 89 | 195 | 1,728 | 29 |
+| 6 | [Teaching Pretrained Language Models to Think Deeper with Retrofitted Recurrence](https://arxiv.org/abs/2511.07384) · **[deep card](docs/en/2511.07384.md)**<br><sub>2025 · Sean McLeish et al.</sub> | **62** | 76 | 72 | 4,351 | 29 |
+| 7 | **MoR**: [Mixture-of-Recursions: Learning Dynamic Recursive Depths for Adaptive Token-Level Computation](https://arxiv.org/abs/2507.10524) · **[deep card](docs/en/2507.10524.md)**<br><sub>2025 · Sangmin Bae et al. · NeurIPS 2025</sub> | **58** | 150 | 652 | - | 79 |
+| 8 | [Deep Equilibrium Models](https://arxiv.org/abs/1909.01377)<br><sub>2019 · Shaojie Bai et al. · NeurIPS 2019</sub> | **50** | 153 | 815 | - | 1 |
+| 9 | [LoopFormer: Elastic-Depth Looped Transformers for Latent Reasoning via Shortcut Modulation](https://arxiv.org/abs/2602.11451)<br><sub>2026 · Ahmadreza Jeddi et al. · ICLR 2026</sub> | **47** | 95 | 66 | - | 18 |
+| 10 | [HRM-Text: Efficient Pretraining Beyond Scaling](https://arxiv.org/abs/2605.20613)<br><sub>2026 · Guan Wang et al.</sub> | **46** | 16 | 2,348 | - | 100 |
 
-<sub>The ten most cited papers in the collection, by the higher of the Semantic Scholar and OpenAlex counts as of 2026-11-23. Adjacent work without loops is not ranked.</sub>
-
-## Loop papers over time
-
-<img src="assets/trend.svg" alt="Loop papers on arXiv per quarter" width="100%">
-
-Quarterly count of arXiv papers whose title or abstract contains a loop phrase (phrases and counts in [data/trend.json](data/trend.json)); the last quarter is partial. Keyword matches are a proxy for activity in the field, not a curated count.
+<sub>Core papers of any year, ranked by an impact score out of 100: citations per year since publication 40% (the higher of the Semantic Scholar and OpenAlex counts; a paper younger than a year counts as one year), GitHub stars of the official code 20%, Hugging Face downloads of the released models in the last 30 days 20%, and likes 20% (Hugging Face paper upvotes and model likes plus Hacker News points). Each count is log-scaled and divided by the largest value among core papers, so the paper that leads on a signal gets that signal's full weight. Loops in other domains, RNN- and CNN-era precursors and adjacent work are not ranked; they stay in All papers. Counts as of 2026-11-23.</sub>
 
 ## What this list adds
 

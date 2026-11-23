@@ -7,6 +7,7 @@ authors: [Siqi Zhu, Suozhi Huang, Yi Zhao, Jiaxuan You]
 links:
   paper: https://arxiv.org/abs/2611.19649
 category: systems
+focus: core
 facets:
   placement: whole-stack
   depth_train: adaptive

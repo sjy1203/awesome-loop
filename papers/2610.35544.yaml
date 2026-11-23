@@ -7,6 +7,7 @@ authors: [Feichen Song, Boyi Zeng, He Li, Shixiang Song, Yiqin Hao, Zitong Wang,
 links:
   paper: https://arxiv.org/abs/2610.35544
 category: architecture/state
+focus: core
 facets:
   placement: whole-stack
   depth_train: fixed

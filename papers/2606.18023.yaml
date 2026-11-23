@@ -7,6 +7,7 @@ authors: [Jian Yang, Shawn Guo, Wei Zhang, Tianyu Zheng, Yaxin Du, Haau-Sing Li,
 links:
   paper: https://arxiv.org/abs/2606.18023
 category: understanding
+focus: core
 facets:
   placement: shifted-parallel
   depth_train: fixed

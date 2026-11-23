@@ -21,6 +21,7 @@ links:
   weights:
     - https://huggingface.co/collections/tomg-group-umd/retrofitting-recurrence
 category: training
+focus: core
 facets:
   placement: prelude-core-coda
   sharing: full

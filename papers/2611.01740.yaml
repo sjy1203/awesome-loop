@@ -7,6 +7,7 @@ authors: [Kaito Takanami, Cengiz Pehlevan]
 links:
   paper: https://arxiv.org/abs/2611.01740
 category: theory
+focus: core
 facets:
   placement: whole-stack
   depth_train: fixed

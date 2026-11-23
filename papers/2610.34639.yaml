@@ -8,6 +8,7 @@ links:
   paper: https://arxiv.org/abs/2610.34639
   code: https://github.com/Muuzzziiy/cql-handoff
 category: understanding
+focus: core
 facets:
   placement: whole-stack
   depth_train: adaptive

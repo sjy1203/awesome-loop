@@ -4,7 +4,7 @@
   "title": "awesome-loop paper entry (papers/<id>.yaml)",
   "type": "object",
   "additionalProperties": false,
-  "required": ["id", "tier", "title", "date", "authors", "links", "category", "tldr", "added"],
+  "required": ["id", "tier", "title", "date", "authors", "links", "category", "focus", "tldr", "added"],
   "properties": {
     "id": {
       "description": "arXiv id without version (quote it in YAML), or a lowercase slug for non-arXiv sources. Must equal the file name.",
@@ -34,6 +34,10 @@
     "category": {
       "enum": ["theory", "architecture/placement", "architecture/state", "depth", "training", "scaling", "systems",
                "understanding", "applications", "safety", "adjacent"]
+    },
+    "focus": {
+      "description": "core = about a looped or recurrent-depth Transformer for language or general reasoning: building, training, scaling, analyzing or serving one (multimodal language models count). related = loops in other domains or modalities, RNN/CNN/GNN-era precursors, implicit models outside language, layer sharing used only to save parameters, and adjacent work without loops. Only core papers are ranked in the README.",
+      "enum": ["core", "related"]
     },
     "facets": {
       "type": "object",
@@ -159,11 +163,16 @@
       "then": {
         "required": ["status", "short", "orgs", "facets", "loop", "budget", "results", "quickread", "reproducibility"],
         "properties": {
+          "focus": {"const": "core"},
           "facets": {
             "required": ["placement", "sharing", "depth_train", "depth_test", "injection", "kv", "gradient", "origin", "ffn", "attention"]
           }
         }
       }
+    },
+    {
+      "if": {"properties": {"category": {"const": "adjacent"}}},
+      "then": {"properties": {"focus": {"const": "related"}}}
     }
   ],
   "$defs": {

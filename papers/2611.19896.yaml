@@ -7,6 +7,7 @@ authors: [Muhan Xiao, Shijian Li]
 links:
   paper: https://arxiv.org/abs/2611.19896
 category: systems
+focus: core
 facets:
   placement: n/a
   depth_train: n/a

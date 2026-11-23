@@ -7,6 +7,7 @@ authors: [Yilong Chen, Naibin Gu, Junyuan Shang, Zhenyu Zhang, Yuchen Feng, Jiaw
 links:
   paper: https://arxiv.org/abs/2603.04971
 category: architecture/placement
+focus: core
 facets:
   placement: partial
   depth_train: fixed

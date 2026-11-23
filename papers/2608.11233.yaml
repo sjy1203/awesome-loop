@@ -7,6 +7,7 @@ authors: [Mark Shapiro]
 links:
   paper: https://arxiv.org/abs/2608.11233
 category: training
+focus: core
 facets:
   placement: prelude-core-coda
   depth_train: n/a

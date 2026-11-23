@@ -8,6 +8,7 @@ links:
   paper: https://arxiv.org/abs/2606.31779
   code: https://github.com/yingfan-bot/lotus
 category: training
+focus: core
 facets:
   placement: whole-stack
   depth_train: curriculum

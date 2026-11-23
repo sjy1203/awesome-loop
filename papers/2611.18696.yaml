@@ -7,6 +7,7 @@ authors: [Xiang Zhang, Xiangyu Dong, Yang Lu, Xiaoguang Ma]
 links:
   paper: https://arxiv.org/abs/2611.18696
 category: applications
+focus: related
 facets:
   placement: prelude-core-coda
   depth_train: adaptive

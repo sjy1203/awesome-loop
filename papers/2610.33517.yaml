@@ -7,6 +7,7 @@ authors: [Jiarun Shen, Lei Zhao, Xiao Li]
 links:
   paper: https://arxiv.org/abs/2610.33517
 category: training
+focus: core
 facets:
   placement: prelude-core-coda
   depth_train: fixed

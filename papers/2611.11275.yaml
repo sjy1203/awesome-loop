@@ -7,6 +7,7 @@ authors: [Xuanyu Liu, Keyi Cao, Xiang Cheng]
 links:
   paper: https://arxiv.org/abs/2611.11275
 category: applications
+focus: related
 facets:
   placement: encoder
   depth_train: fixed

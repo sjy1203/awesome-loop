@@ -7,6 +7,7 @@ authors: [Ferdinand Kapl, Emmanouil Angelis, Kaitlin Maile, Johannes von Oswald,
 links:
   paper: https://arxiv.org/abs/2602.16490
 category: understanding
+focus: core
 facets:
   placement: prelude-core-coda
   depth_train: fixed

@@ -7,6 +7,7 @@ authors: [Carlos Boned Riera, David Romero Sanchez, Oriol Ramos Terrades]
 links:
   paper: https://arxiv.org/abs/2611.08236
 category: applications
+focus: related
 facets:
   placement: whole-stack
   depth_train: fixed

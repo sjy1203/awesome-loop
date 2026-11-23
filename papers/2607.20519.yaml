@@ -7,6 +7,7 @@ authors: [Andrei Cristian Popescu, Haitz Sáez de Ocáriz Borde, Pietro Liò]
 links:
   paper: https://arxiv.org/abs/2607.20519
 category: depth
+focus: core
 facets:
   placement: whole-stack
   depth_train: adaptive

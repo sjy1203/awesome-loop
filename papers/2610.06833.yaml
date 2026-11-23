@@ -8,6 +8,7 @@ links:
   paper: https://arxiv.org/abs/2610.06833
   code: https://github.com/ifm-ai/xllm-loop
 category: training
+focus: core
 facets:
   placement: prelude-core-coda
   depth_train: sampled

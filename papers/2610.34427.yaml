@@ -7,6 +7,7 @@ authors: [Dezhen Lu, Zixiang Ni, Runguo Li]
 links:
   paper: https://arxiv.org/abs/2610.34427
 category: systems
+focus: core
 facets:
   placement: whole-stack
   depth_train: adaptive

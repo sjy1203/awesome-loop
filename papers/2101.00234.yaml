@@ -8,6 +8,7 @@ links:
   paper: https://arxiv.org/abs/2101.00234
   code: https://github.com/machelreid/subformer
 category: architecture/placement
+focus: related
 facets:
   placement: prelude-core-coda
   depth_train: fixed

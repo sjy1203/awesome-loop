@@ -19,6 +19,7 @@ links:
     - https://huggingface.co/tomg-group-umd/huginn-0125
     - https://huggingface.co/collections/tomg-group-umd/recurrent-models
 category: architecture/placement
+focus: core
 facets:
   placement: prelude-core-coda
   sharing: full

@@ -8,6 +8,7 @@ links:
   paper: https://arxiv.org/abs/1909.11942
   code: https://github.com/google-research/ALBERT
 category: architecture/placement
+focus: related
 facets:
   placement: whole-stack
   depth_train: fixed

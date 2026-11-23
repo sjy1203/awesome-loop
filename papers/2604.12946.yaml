@@ -17,6 +17,7 @@ links:
     - https://huggingface.co/SandyResearch/parcae-1.3b
   project: https://sandyresearch.github.io/parcae/
 category: scaling
+focus: core
 facets:
   placement: prelude-core-coda
   sharing: full

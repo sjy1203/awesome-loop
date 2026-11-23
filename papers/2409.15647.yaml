@@ -8,6 +8,7 @@ links:
   paper: https://arxiv.org/abs/2409.15647
   code: https://github.com/UW-Madison-Lee-Lab/looped-tf
 category: applications
+focus: core
 facets:
   placement: whole-stack
   depth_train: adaptive

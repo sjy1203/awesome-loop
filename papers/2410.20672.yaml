@@ -7,6 +7,7 @@ authors: [Sangmin Bae, Adam Fisch, Hrayr Harutyunyan, Ziwei Ji, Seungyeon Kim, T
 links:
   paper: https://arxiv.org/abs/2410.20672
 category: training
+focus: core
 facets:
   placement: whole-stack
   depth_train: fixed

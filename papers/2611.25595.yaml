@@ -7,6 +7,7 @@ authors: [Anh Dao, Xinxin Liu, Hang Yu, Jeffrey A Chan Santiago, Yuzhang Shang]
 links:
   paper: https://arxiv.org/abs/2611.25595
 category: applications
+focus: related
 facets:
   placement: prelude-core-coda
   depth_train: fixed

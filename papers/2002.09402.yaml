@@ -7,6 +7,7 @@ authors: [Angela Fan, Thibaut Lavril, Edouard Grave, Armand Joulin, Sainbayar Su
 links:
   paper: https://arxiv.org/abs/2002.09402
 category: architecture/state
+focus: core
 facets:
   placement: shifted-parallel
   depth_train: n/a

@@ -8,6 +8,7 @@ links:
   paper: https://arxiv.org/abs/2602.11451
   code: https://github.com/armenjeddi/loopformer
 category: depth
+focus: core
 facets:
   placement: whole-stack
   depth_train: sampled

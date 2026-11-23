@@ -7,6 +7,7 @@ authors: [Cem Anil, Ashwini Pokle, Kaiqu Liang, Johannes Treutlein, Yuhuai Wu, S
 links:
   paper: https://arxiv.org/abs/2211.09961
 category: applications
+focus: related
 facets:
   placement: implicit
   depth_train: n/a

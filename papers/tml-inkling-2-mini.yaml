@@ -15,6 +15,7 @@ links:
   project: https://thinkingmachines.ai/model-card/inkling-2-mini/
   blog: https://huggingface.co/blog/inkling2mini
 category: architecture/placement
+focus: core
 facets:
   placement: prelude-core-coda
   sharing: full

@@ -10,6 +10,7 @@ orgs: [Z.ai]
 links:
   paper: https://z.ai/blog/glm-5.4
 category: training
+focus: core
 facets:
   placement: prelude-core-coda
   sharing: full

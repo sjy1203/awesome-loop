@@ -27,6 +27,7 @@ links:
     - https://huggingface.co/ByteDance/Ouro-2.6B-Thinking
   project: https://ouro-llm.github.io
 category: depth
+focus: core
 facets:
   placement: whole-stack
   sharing: full

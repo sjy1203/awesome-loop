@@ -8,6 +8,7 @@ links:
   paper: https://arxiv.org/abs/2606.06574
   code: https://github.com/tianyi-lab/PoLar
 category: depth
+focus: core
 facets:
   placement: n/a
   depth_train: adaptive

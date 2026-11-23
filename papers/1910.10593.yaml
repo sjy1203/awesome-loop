@@ -7,6 +7,7 @@ authors: [Petar Veličković, Rex Ying, Matilde Padovano, Raia Hadsell, Charles 
 links:
   paper: https://arxiv.org/abs/1910.10593
 category: applications
+focus: related
 facets:
   placement: whole-stack
   depth_train: adaptive

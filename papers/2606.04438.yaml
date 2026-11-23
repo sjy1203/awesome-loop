@@ -7,6 +7,7 @@ authors: [Wenkai Chen, Tianshu Li, Wenyong Huang, Yichun Yin, Lifeng Shang, Chen
 links:
   paper: https://arxiv.org/abs/2606.04438
 category: architecture/placement
+focus: core
 facets:
   placement: prelude-core-coda
   depth_train: fixed

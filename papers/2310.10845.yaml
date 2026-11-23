@@ -7,6 +7,7 @@ authors: [Amirkeivan Mohtashami, Matteo Pagliardini, Martin Jaggi]
 links:
   paper: https://arxiv.org/abs/2310.10845
 category: architecture/state
+focus: core
 facets:
   placement: prelude-core-coda
   depth_train: adaptive

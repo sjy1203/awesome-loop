@@ -7,6 +7,7 @@ authors: [Yuekun Yao, Yupei Du, Dawei Zhu, Huan Sun]
 links:
   paper: https://arxiv.org/abs/2611.05234
 category: architecture/state
+focus: core
 facets:
   placement: whole-stack
   depth_train: fixed

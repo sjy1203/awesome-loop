@@ -7,6 +7,7 @@ authors: [Ayhan Suleymanzade, Chanhyuk Lee, Floor Eijkelboom, Nicholas M. Boffi,
 links:
   paper: https://arxiv.org/abs/2609.11801
 category: applications
+focus: core
 facets:
   placement: hierarchical
   depth_train: adaptive

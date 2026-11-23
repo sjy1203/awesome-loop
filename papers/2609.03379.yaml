@@ -7,6 +7,7 @@ authors: [Yuxiang Wang, Kunyu Feng, Yingda Shen, Haoning Xu, Junyu Wang, Zhizhen
 links:
   paper: https://arxiv.org/abs/2609.03379
 category: depth
+focus: core
 facets:
   placement: prelude-core-coda
   depth_train: sampled

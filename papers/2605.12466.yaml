@@ -8,6 +8,7 @@ links:
   paper: https://arxiv.org/abs/2605.12466
   code: https://github.com/jacobfa/Attractor
 category: architecture/placement
+focus: core
 facets:
   placement: implicit
   depth_train: adaptive

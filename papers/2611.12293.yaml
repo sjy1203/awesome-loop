@@ -8,6 +8,7 @@ links:
   paper: https://arxiv.org/abs/2611.12293
   code: https://anonymous.4open.science/r/LLM-latent-B7BC/
 category: depth
+focus: core
 facets:
   placement: prelude-core-coda
   depth_train: sampled

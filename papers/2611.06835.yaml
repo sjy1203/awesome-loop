@@ -7,6 +7,7 @@ authors: [Lele Yang, Muxi Diao, Zhonghao Yan, Jiankang Chen, Bin Wen, Tingting G
 links:
   paper: https://arxiv.org/abs/2611.06835
 category: architecture/placement
+focus: core
 facets:
   placement: decoder
   depth_train: sampled

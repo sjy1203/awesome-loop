@@ -7,6 +7,7 @@ authors: [Cheng Liang, Tengfei Zhang, Ya Zhang, Yanfeng Wang, Zhouhan Lin]
 links:
   paper: https://arxiv.org/abs/2610.41720
 category: training
+focus: core
 facets:
   placement: prelude-core-coda
   depth_train: curriculum

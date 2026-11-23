@@ -8,6 +8,7 @@ links:
   paper: https://arxiv.org/abs/2602.02156
   code: https://github.com/WenjieShu/LoopViT
 category: applications
+focus: core
 facets:
   placement: whole-stack
   depth_train: fixed

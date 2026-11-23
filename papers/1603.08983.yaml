@@ -7,6 +7,7 @@ authors: [Alex Graves]
 links:
   paper: https://arxiv.org/abs/1603.08983
 category: depth
+focus: related
 facets:
   placement: whole-stack
   depth_train: adaptive

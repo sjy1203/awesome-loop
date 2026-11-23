@@ -8,6 +8,7 @@ links:
   paper: https://arxiv.org/abs/2611.14947
   code: https://github.com/hym97/LoopMR
 category: applications
+focus: related
 facets:
   placement: whole-stack
   depth_train: fixed

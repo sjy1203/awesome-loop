@@ -8,6 +8,7 @@ links:
   paper: https://arxiv.org/abs/2006.08656
   code: https://github.com/locuslab/mdeq
 category: applications
+focus: related
 facets:
   placement: implicit
   depth_train: n/a

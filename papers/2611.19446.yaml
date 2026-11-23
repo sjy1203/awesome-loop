@@ -7,6 +7,7 @@ authors: [Lucia Licakova, Niklas Schmidinger, Lukas Hauzenberger, Sebastian Böc
 links:
   paper: https://arxiv.org/abs/2611.19446
 category: systems
+focus: core
 facets:
   placement: whole-stack
   depth_train: fixed

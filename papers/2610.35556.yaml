@@ -7,6 +7,7 @@ authors: [Feichen Song, Boyi Zeng, Yiqin Hao, Shixiang Song, He Li, Yizhou Yang,
 links:
   paper: https://arxiv.org/abs/2610.35556
 category: systems
+focus: core
 facets:
   placement: shifted-parallel
   depth_train: fixed

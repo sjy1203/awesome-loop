@@ -8,6 +8,7 @@ links:
   paper: https://arxiv.org/abs/2605.26733
   code: https://github.com/njuyxw/STARS
 category: training
+focus: core
 facets:
   placement: whole-stack
   depth_train: sampled

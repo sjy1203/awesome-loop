@@ -10,6 +10,7 @@ orgs: [Duke University]
 links:
   paper: https://arxiv.org/abs/2611.07211
 category: systems
+focus: core
 facets:
   placement: prelude-core-coda
   sharing: full

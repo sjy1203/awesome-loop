@@ -16,6 +16,7 @@
     "paper": "https://arxiv.org/abs/1511.04491"
    },
    "category": "applications",
+   "focus": "related",
    "facets": {
     "placement": "prelude-core-coda",
     "depth_train": "fixed",
@@ -41,6 +42,7 @@
     "paper": "https://arxiv.org/abs/1511.08228"
    },
    "category": "applications",
+   "focus": "related",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "curriculum",
@@ -65,6 +67,7 @@
     "paper": "https://arxiv.org/abs/1603.08983"
    },
    "category": "depth",
+   "focus": "related",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "adaptive",
@@ -93,6 +96,7 @@
     "paper": "https://arxiv.org/abs/1807.03819"
    },
    "category": "architecture/placement",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "adaptive",
@@ -118,6 +122,7 @@
     "paper": "https://arxiv.org/abs/1807.05353"
    },
    "category": "architecture/placement",
+   "focus": "related",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "fixed",
@@ -145,6 +150,7 @@
     "code": "https://github.com/locuslab/deq"
    },
    "category": "architecture/placement",
+   "focus": "core",
    "facets": {
     "placement": "implicit",
     "depth_train": "n/a",
@@ -175,6 +181,7 @@
     "code": "https://github.com/google-research/ALBERT"
    },
    "category": "architecture/placement",
+   "focus": "related",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "fixed",
@@ -203,6 +210,7 @@
     "paper": "https://arxiv.org/abs/1910.10593"
    },
    "category": "applications",
+   "focus": "related",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "adaptive",
@@ -231,6 +239,7 @@
     "paper": "https://arxiv.org/abs/2002.09402"
    },
    "category": "architecture/state",
+   "focus": "core",
    "facets": {
     "placement": "shifted-parallel",
     "depth_train": "n/a",
@@ -257,6 +266,7 @@
     "code": "https://github.com/princeton-vl/RAFT"
    },
    "category": "applications",
+   "focus": "related",
    "facets": {
     "placement": "partial",
     "depth_train": "fixed",
@@ -283,6 +293,7 @@
     "code": "https://github.com/locuslab/monotone_op_net"
    },
    "category": "theory",
+   "focus": "related",
    "facets": {
     "placement": "implicit",
     "depth_train": "n/a",
@@ -310,6 +321,7 @@
     "code": "https://github.com/locuslab/mdeq"
    },
    "category": "applications",
+   "focus": "related",
    "facets": {
     "placement": "implicit",
     "depth_train": "n/a",
@@ -337,6 +349,7 @@
     "code": "https://github.com/machelreid/subformer"
    },
    "category": "architecture/placement",
+   "focus": "related",
    "facets": {
     "placement": "prelude-core-coda",
     "depth_train": "fixed",
@@ -361,6 +374,7 @@
     "paper": "https://arxiv.org/abs/2102.07346"
    },
    "category": "theory",
+   "focus": "related",
    "facets": {
     "placement": "implicit",
     "depth_train": "n/a",
@@ -390,6 +404,7 @@
     "paper": "https://arxiv.org/abs/2103.03206"
    },
    "category": "applications",
+   "focus": "related",
    "facets": {
     "placement": "prelude-core-coda",
     "depth_train": "fixed",
@@ -421,6 +436,7 @@
     "code": "https://github.com/aks2203/easy-to-hard"
    },
    "category": "applications",
+   "focus": "related",
    "facets": {
     "placement": "prelude-core-coda",
     "depth_train": "fixed",
@@ -447,6 +463,7 @@
     "paper": "https://arxiv.org/abs/2107.05407"
    },
    "category": "depth",
+   "focus": "related",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "adaptive",
@@ -475,6 +492,7 @@
     "paper": "https://arxiv.org/abs/2108.09119"
    },
    "category": "applications",
+   "focus": "related",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "adaptive",
@@ -502,6 +520,7 @@
     "code": "https://github.com/szq0214/SReT"
    },
    "category": "applications",
+   "focus": "related",
    "facets": {
     "placement": "n/a",
     "depth_train": "fixed",
@@ -532,6 +551,7 @@
     "paper": "https://arxiv.org/abs/2202.05826"
    },
    "category": "applications",
+   "focus": "related",
    "facets": {
     "placement": "prelude-core-coda",
     "depth_train": "sampled",
@@ -563,6 +583,7 @@
     "paper": "https://arxiv.org/abs/2211.09961"
    },
    "category": "applications",
+   "focus": "related",
    "facets": {
     "placement": "implicit",
     "depth_train": "n/a",
@@ -592,6 +613,7 @@
     "paper": "https://arxiv.org/abs/2301.13196"
    },
    "category": "theory",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "n/a",
@@ -621,6 +643,7 @@
     "code": "https://github.com/shawntan/SUT"
    },
    "category": "architecture/placement",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "adaptive",
@@ -647,6 +670,7 @@
     "paper": "https://arxiv.org/abs/2310.10845"
    },
    "category": "architecture/state",
+   "focus": "core",
    "facets": {
     "placement": "prelude-core-coda",
     "depth_train": "adaptive",
@@ -675,6 +699,7 @@
     "code": "https://github.com/leiay/looped_transformer"
    },
    "category": "theory",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "curriculum",
@@ -700,6 +725,7 @@
     "paper": "https://arxiv.org/abs/2402.01107"
    },
    "category": "theory",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "n/a",
@@ -729,6 +755,7 @@
     "code": "https://github.com/robertcsordas/moeut"
    },
    "category": "architecture/placement",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "fixed",
@@ -757,6 +784,7 @@
     "code": "https://github.com/UW-Madison-Lee-Lab/looped-tf"
    },
    "category": "applications",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "adaptive",
@@ -782,6 +810,7 @@
     "paper": "https://arxiv.org/abs/2410.01405"
    },
    "category": "theory",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "fixed",
@@ -810,6 +839,7 @@
     "paper": "https://arxiv.org/abs/2410.08292"
    },
    "category": "theory",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "fixed",
@@ -839,6 +869,7 @@
     "paper": "https://arxiv.org/abs/2410.20672"
    },
    "category": "training",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "fixed",
@@ -870,6 +901,7 @@
     "code": "https://github.com/facebookresearch/coconut"
    },
    "category": "adjacent",
+   "focus": "related",
    "facets": {
     "placement": "n/a",
     "depth_train": "n/a",
@@ -916,6 +948,7 @@
     ]
    },
    "category": "architecture/placement",
+   "focus": "core",
    "facets": {
     "placement": "prelude-core-coda",
     "sharing": "full",
@@ -1133,6 +1166,7 @@
     "paper": "https://arxiv.org/abs/2502.17416"
    },
    "category": "theory",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "fixed",
@@ -1163,6 +1197,7 @@
     "code": "https://github.com/zhenyi4/codi"
    },
    "category": "adjacent",
+   "focus": "related",
    "facets": {
     "placement": "n/a",
     "depth_train": "n/a",
@@ -1188,6 +1223,7 @@
     "paper": "https://arxiv.org/abs/2503.03961"
    },
    "category": "theory",
+   "focus": "core",
    "facets": {
     "placement": "prelude-core-coda",
     "depth_train": "n/a",
@@ -1221,6 +1257,7 @@
     "code": "https://github.com/LUMIA-Group/PonderingLM"
    },
    "category": "architecture/state",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "fixed",
@@ -1254,6 +1291,7 @@
     "code": "https://github.com/sapientinc/HRM"
    },
    "category": "applications",
+   "focus": "core",
    "facets": {
     "placement": "hierarchical",
     "depth_train": "adaptive",
@@ -1288,6 +1326,7 @@
     "code": "https://github.com/alexiglad/ebt"
    },
    "category": "adjacent",
+   "focus": "related",
    "facets": {
     "placement": "n/a",
     "depth_train": "n/a",
@@ -1336,6 +1375,7 @@
     ]
    },
    "category": "depth",
+   "focus": "core",
    "facets": {
     "placement": "prelude-core-coda",
     "sharing": "full",
@@ -1574,6 +1614,7 @@
     "code": "https://github.com/SamsungSAILMontreal/TinyRecursiveModels"
    },
    "category": "applications",
+   "focus": "core",
    "facets": {
     "placement": "hierarchical",
     "depth_train": "adaptive",
@@ -1614,6 +1655,7 @@
     "paper": "https://arxiv.org/abs/2510.24824"
    },
    "category": "systems",
+   "focus": "core",
    "facets": {
     "placement": "shifted-parallel",
     "sharing": "full",
@@ -1881,6 +1923,7 @@
     "project": "https://ouro-llm.github.io"
    },
    "category": "depth",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "sharing": "full",
@@ -2143,6 +2186,7 @@
     ]
    },
    "category": "training",
+   "focus": "core",
    "facets": {
     "placement": "prelude-core-coda",
     "sharing": "full",
@@ -2359,6 +2403,7 @@
     "paper": "https://arxiv.org/abs/2601.10242"
    },
    "category": "understanding",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "adaptive",
@@ -2387,6 +2432,7 @@
     "paper": "https://arxiv.org/abs/2601.21582"
    },
    "category": "architecture/state",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "fixed",
@@ -2417,6 +2463,7 @@
     "code": "https://github.com/WenjieShu/LoopViT"
    },
    "category": "applications",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "fixed",
@@ -2448,6 +2495,7 @@
     "code": "https://github.com/rd-vla/rd-vla"
    },
    "category": "applications",
+   "focus": "related",
    "facets": {
     "placement": "partial",
     "depth_train": "sampled",
@@ -2479,6 +2527,7 @@
     "paper": "https://arxiv.org/abs/2602.09080"
    },
    "category": "architecture/state",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "fixed",
@@ -2505,6 +2554,7 @@
     "code": "https://github.com/jonwill8/RLTT"
    },
    "category": "training",
+   "focus": "core",
    "facets": {
     "placement": "n/a",
     "depth_train": "fixed",
@@ -2532,6 +2582,7 @@
     "code": "https://github.com/armenjeddi/loopformer"
    },
    "category": "depth",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "sampled",
@@ -2566,6 +2617,7 @@
     "paper": "https://arxiv.org/abs/2602.11698"
    },
    "category": "architecture/placement",
+   "focus": "core",
    "facets": {
     "placement": "prelude-core-coda",
     "depth_train": "fixed",
@@ -2594,6 +2646,7 @@
     "paper": "https://arxiv.org/abs/2602.16490"
    },
    "category": "understanding",
+   "focus": "core",
    "facets": {
     "placement": "prelude-core-coda",
     "depth_train": "fixed",
@@ -2626,6 +2679,7 @@
     "paper": "https://arxiv.org/abs/2603.01914"
    },
    "category": "depth",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "adaptive",
@@ -2660,6 +2714,7 @@
     "paper": "https://arxiv.org/abs/2603.04971"
    },
    "category": "architecture/placement",
+   "focus": "core",
    "facets": {
     "placement": "partial",
     "depth_train": "fixed",
@@ -2689,6 +2744,7 @@
     "paper": "https://arxiv.org/abs/2603.08391"
    },
    "category": "architecture/placement",
+   "focus": "core",
    "facets": {
     "placement": "n/a",
     "depth_train": "adaptive",
@@ -2724,6 +2780,7 @@
     "paper": "https://arxiv.org/abs/2604.01220"
    },
    "category": "architecture/placement",
+   "focus": "core",
    "facets": {
     "placement": "encoder",
     "sharing": "full",
@@ -2951,6 +3008,7 @@
     "paper": "https://arxiv.org/abs/2604.07822"
    },
    "category": "understanding",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "fixed",
@@ -2980,6 +3038,7 @@
     "paper": "https://arxiv.org/abs/2604.09168"
    },
    "category": "applications",
+   "focus": "related",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "sampled",
@@ -3010,6 +3069,7 @@
     "paper": "https://arxiv.org/abs/2604.11791"
    },
    "category": "understanding",
+   "focus": "core",
    "facets": {
     "placement": "n/a",
     "depth_train": "n/a",
@@ -3051,6 +3111,7 @@
     "project": "https://sandyresearch.github.io/parcae/"
    },
    "category": "scaling",
+   "focus": "core",
    "facets": {
     "placement": "prelude-core-coda",
     "sharing": "full",
@@ -3257,6 +3318,7 @@
     "paper": "https://arxiv.org/abs/2604.15259"
    },
    "category": "theory",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "sampled",
@@ -3284,6 +3346,7 @@
     "code": "https://github.com/kschwethelm/looped-lm-scaling"
    },
    "category": "scaling",
+   "focus": "core",
    "facets": {
     "placement": "prelude-core-coda",
     "depth_train": "fixed",
@@ -3310,6 +3373,7 @@
     "paper": "https://arxiv.org/abs/2604.21254"
    },
    "category": "architecture/state",
+   "focus": "core",
    "facets": {
     "placement": "prelude-core-coda",
     "depth_train": "fixed",
@@ -3335,6 +3399,7 @@
     "code": "https://github.com/che-shr-cat/utm-jax"
    },
    "category": "applications",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "adaptive",
@@ -3364,6 +3429,7 @@
     "paper": "https://arxiv.org/abs/2605.07721"
    },
    "category": "systems",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "fixed",
@@ -3391,6 +3457,7 @@
     "paper": "https://arxiv.org/abs/2605.09165"
    },
    "category": "scaling",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "fixed",
@@ -3419,6 +3486,7 @@
     "code": "https://github.com/Thrillcrazyer/LoopUS"
    },
    "category": "training",
+   "focus": "core",
    "facets": {
     "placement": "prelude-core-coda",
     "depth_train": "adaptive",
@@ -3445,6 +3513,7 @@
     "code": "https://github.com/jacobfa/Attractor"
    },
    "category": "architecture/placement",
+   "focus": "core",
    "facets": {
     "placement": "implicit",
     "depth_train": "adaptive",
@@ -3475,6 +3544,7 @@
     "paper": "https://arxiv.org/abs/2605.18797"
    },
    "category": "architecture/state",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "fixed",
@@ -3504,6 +3574,7 @@
     "paper": "https://arxiv.org/abs/2605.19376"
    },
    "category": "applications",
+   "focus": "core",
    "facets": {
     "placement": "hierarchical",
     "depth_train": "fixed",
@@ -3530,6 +3601,7 @@
     "paper": "https://arxiv.org/abs/2605.19943"
    },
    "category": "applications",
+   "focus": "core",
    "facets": {
     "placement": "hierarchical",
     "depth_train": "adaptive",
@@ -3563,6 +3635,7 @@
     "code": "https://github.com/sapientinc/HRM-Text"
    },
    "category": "training",
+   "focus": "core",
    "facets": {
     "placement": "hierarchical",
     "depth_train": "fixed",
@@ -3593,6 +3666,7 @@
     "paper": "https://arxiv.org/abs/2605.20670"
    },
    "category": "systems",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "fixed",
@@ -3620,6 +3694,7 @@
     "code": "https://github.com/locuslab/eqr"
    },
    "category": "applications",
+   "focus": "core",
    "facets": {
     "placement": "hierarchical",
     "depth_train": "adaptive",
@@ -3648,6 +3723,7 @@
     "paper": "https://arxiv.org/abs/2605.23872"
    },
    "category": "training",
+   "focus": "core",
    "facets": {
     "placement": "prelude-core-coda",
     "depth_train": "n/a",
@@ -3679,6 +3755,7 @@
     "code": "https://github.com/njuyxw/STARS"
    },
    "category": "training",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "sampled",
@@ -3713,6 +3790,7 @@
     "paper": "https://arxiv.org/abs/2605.26797"
    },
    "category": "architecture/state",
+   "focus": "core",
    "facets": {
     "placement": "shifted-parallel",
     "depth_train": "fixed",
@@ -3748,6 +3826,7 @@
     "paper": "https://arxiv.org/abs/2605.30215"
    },
    "category": "applications",
+   "focus": "related",
    "facets": {
     "placement": "prelude-core-coda",
     "depth_train": "sampled",
@@ -3777,6 +3856,7 @@
     "paper": "https://arxiv.org/abs/2606.04438"
    },
    "category": "architecture/placement",
+   "focus": "core",
    "facets": {
     "placement": "prelude-core-coda",
     "depth_train": "fixed",
@@ -3804,6 +3884,7 @@
     "code": "https://github.com/tianyi-lab/PoLar"
    },
    "category": "depth",
+   "focus": "core",
    "facets": {
     "placement": "n/a",
     "depth_train": "adaptive",
@@ -3846,6 +3927,7 @@
     "paper": "https://arxiv.org/abs/2606.18023"
    },
    "category": "understanding",
+   "focus": "core",
    "facets": {
     "placement": "shifted-parallel",
     "depth_train": "fixed",
@@ -3878,6 +3960,7 @@
     "code": "https://github.com/nilskiKonjIzDunava/fprm"
    },
    "category": "applications",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "adaptive",
@@ -3905,6 +3988,7 @@
     "code": "https://github.com/yingfan-bot/lotus"
    },
    "category": "training",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "curriculum",
@@ -3936,6 +4020,7 @@
     "paper": "https://arxiv.org/abs/2607.00341"
    },
    "category": "architecture/state",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "fixed",
@@ -3964,6 +4049,7 @@
     "paper": "https://arxiv.org/abs/2607.13491"
    },
    "category": "training",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "fixed",
@@ -3992,6 +4078,7 @@
     "paper": "https://arxiv.org/abs/2607.15178"
    },
    "category": "architecture/placement",
+   "focus": "core",
    "facets": {
     "placement": "shifted-parallel",
     "depth_train": "fixed",
@@ -4017,6 +4104,7 @@
     "paper": "https://arxiv.org/abs/2607.15456"
    },
    "category": "systems",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "n/a",
@@ -4047,6 +4135,7 @@
     "paper": "https://arxiv.org/abs/2607.16051"
    },
    "category": "scaling",
+   "focus": "core",
    "facets": {
     "placement": "n/a",
     "depth_train": "fixed",
@@ -4073,6 +4162,7 @@
     "paper": "https://arxiv.org/abs/2607.20519"
    },
    "category": "depth",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "adaptive",
@@ -4100,6 +4190,7 @@
     "paper": "https://arxiv.org/abs/2607.20594"
    },
    "category": "understanding",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "n/a",
@@ -4148,6 +4239,7 @@
     "paper": "https://arxiv.org/abs/2607.22083"
    },
    "category": "training",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "fixed",
@@ -4180,6 +4272,7 @@
     "code": "https://github.com/xidulu/Full-bandwidth-transformer"
    },
    "category": "architecture/state",
+   "focus": "core",
    "facets": {
     "placement": "shifted-parallel",
     "depth_train": "curriculum",
@@ -4207,6 +4300,7 @@
     "code": "https://github.com/kschwethelm/continuous-depth-batching"
    },
    "category": "systems",
+   "focus": "core",
    "facets": {
     "placement": "n/a",
     "depth_train": "n/a",
@@ -4231,6 +4325,7 @@
     "paper": "https://arxiv.org/abs/2608.11233"
    },
    "category": "training",
+   "focus": "core",
    "facets": {
     "placement": "prelude-core-coda",
     "depth_train": "n/a",
@@ -4259,6 +4354,7 @@
     "paper": "https://arxiv.org/abs/2608.17981"
    },
    "category": "architecture/state",
+   "focus": "core",
    "facets": {
     "placement": "shifted-parallel",
     "depth_train": "n/a",
@@ -4288,6 +4384,7 @@
     "paper": "https://arxiv.org/abs/2608.18222"
    },
    "category": "applications",
+   "focus": "core",
    "facets": {
     "placement": "n/a",
     "depth_train": "fixed",
@@ -4328,6 +4425,7 @@
     "paper": "https://arxiv.org/abs/2609.01343"
    },
    "category": "scaling",
+   "focus": "core",
    "facets": {
     "placement": "prelude-core-coda",
     "sharing": "full",
@@ -4544,6 +4642,7 @@
     "paper": "https://arxiv.org/abs/2609.01924"
    },
    "category": "understanding",
+   "focus": "core",
    "facets": {
     "placement": "n/a",
     "depth_train": "n/a",
@@ -4573,6 +4672,7 @@
     "paper": "https://arxiv.org/abs/2609.03379"
    },
    "category": "depth",
+   "focus": "core",
    "facets": {
     "placement": "prelude-core-coda",
     "depth_train": "sampled",
@@ -4602,6 +4702,7 @@
     "paper": "https://arxiv.org/abs/2609.11801"
    },
    "category": "applications",
+   "focus": "core",
    "facets": {
     "placement": "hierarchical",
     "depth_train": "adaptive",
@@ -4630,6 +4731,7 @@
     "paper": "https://arxiv.org/abs/2609.17184"
    },
    "category": "systems",
+   "focus": "core",
    "facets": {
     "placement": "n/a",
     "depth_train": "n/a",
@@ -4656,6 +4758,7 @@
     "code": "https://github.com/summerbro-hhj/wavefront-decoding"
    },
    "category": "systems",
+   "focus": "core",
    "facets": {
     "placement": "n/a",
     "depth_train": "n/a",
@@ -4681,6 +4784,7 @@
     "paper": "https://arxiv.org/abs/2609.29812"
    },
    "category": "systems",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "n/a",
@@ -4712,6 +4816,7 @@
     "code": "https://github.com/ifm-ai/xllm-loop"
    },
    "category": "training",
+   "focus": "core",
    "facets": {
     "placement": "prelude-core-coda",
     "depth_train": "sampled",
@@ -4743,6 +4848,7 @@
     "code": "https://github.com/ifm-ai/xllm-loop"
    },
    "category": "architecture/placement",
+   "focus": "core",
    "facets": {
     "placement": "prelude-core-coda",
     "depth_train": "fixed",
@@ -4769,6 +4875,7 @@
     "paper": "https://arxiv.org/abs/2610.33517"
    },
    "category": "training",
+   "focus": "core",
    "facets": {
     "placement": "prelude-core-coda",
     "depth_train": "fixed",
@@ -4797,6 +4904,7 @@
     "paper": "https://arxiv.org/abs/2610.34157"
    },
    "category": "applications",
+   "focus": "related",
    "facets": {
     "placement": "hierarchical",
     "depth_train": "fixed",
@@ -4823,6 +4931,7 @@
     "paper": "https://arxiv.org/abs/2610.34427"
    },
    "category": "systems",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "adaptive",
@@ -4853,6 +4962,7 @@
     "paper": "https://arxiv.org/abs/2610.34436"
    },
    "category": "systems",
+   "focus": "core",
    "facets": {
     "placement": "n/a",
     "depth_train": "n/a",
@@ -4879,6 +4989,7 @@
     "paper": "https://arxiv.org/abs/2610.34563"
    },
    "category": "applications",
+   "focus": "related",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "fixed",
@@ -4905,6 +5016,7 @@
     "code": "https://github.com/Muuzzziiy/cql-handoff"
    },
    "category": "understanding",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "adaptive",
@@ -4938,6 +5050,7 @@
     "paper": "https://arxiv.org/abs/2610.35544"
    },
    "category": "architecture/state",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "fixed",
@@ -4971,6 +5084,7 @@
     "paper": "https://arxiv.org/abs/2610.35556"
    },
    "category": "systems",
+   "focus": "core",
    "facets": {
     "placement": "shifted-parallel",
     "depth_train": "fixed",
@@ -4996,6 +5110,7 @@
     "code": "https://github.com/lernex/dromos"
    },
    "category": "training",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "fixed",
@@ -5023,6 +5138,7 @@
     "code": "https://github.com/creator-xi/SelfMorph"
    },
    "category": "depth",
+   "focus": "core",
    "facets": {
     "placement": "prelude-core-coda",
     "depth_train": "adaptive",
@@ -5048,6 +5164,7 @@
     "paper": "https://arxiv.org/abs/2610.38422"
    },
    "category": "training",
+   "focus": "core",
    "facets": {
     "placement": "prelude-core-coda",
     "depth_train": "sampled",
@@ -5073,6 +5190,7 @@
     "paper": "https://arxiv.org/abs/2610.38822"
    },
    "category": "systems",
+   "focus": "core",
    "facets": {
     "placement": "n/a",
     "depth_train": "n/a",
@@ -5104,6 +5222,7 @@
     "paper": "https://arxiv.org/abs/2610.40325"
    },
    "category": "scaling",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "fixed",
@@ -5132,6 +5251,7 @@
     "paper": "https://arxiv.org/abs/2610.41720"
    },
    "category": "training",
+   "focus": "core",
    "facets": {
     "placement": "prelude-core-coda",
     "depth_train": "curriculum",
@@ -5160,6 +5280,7 @@
     "paper": "https://arxiv.org/abs/2610.41819"
    },
    "category": "applications",
+   "focus": "related",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "sampled",
@@ -5191,6 +5312,7 @@
     "paper": "https://arxiv.org/abs/2610.41825"
    },
    "category": "systems",
+   "focus": "core",
    "facets": {
     "placement": "n/a",
     "depth_train": "n/a",
@@ -5216,6 +5338,7 @@
     "paper": "https://arxiv.org/abs/2610.42030"
    },
    "category": "scaling",
+   "focus": "core",
    "facets": {
     "placement": "partial",
     "depth_train": "fixed",
@@ -5241,6 +5364,7 @@
     "paper": "https://arxiv.org/abs/2611.01740"
    },
    "category": "theory",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "fixed",
@@ -5266,6 +5390,7 @@
     "code": "https://github.com/lonewolf15116/lookahead-halting"
    },
    "category": "depth",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "adaptive",
@@ -5295,6 +5420,7 @@
     "code": "https://github.com/ubc-vision/solv3r"
    },
    "category": "applications",
+   "focus": "related",
    "facets": {
     "placement": "prelude-core-coda",
     "depth_train": "sampled",
@@ -5325,6 +5451,7 @@
     "code": "https://github.com/arahmani1/library-of-layers"
    },
    "category": "architecture/placement",
+   "focus": "core",
    "facets": {
     "placement": "prelude-core-coda",
     "depth_train": "curriculum",
@@ -5357,6 +5484,7 @@
     "paper": "https://arxiv.org/abs/2611.03998"
    },
    "category": "depth",
+   "focus": "core",
    "facets": {
     "placement": "prelude-core-coda",
     "depth_train": "sampled",
@@ -5386,6 +5514,7 @@
     "paper": "https://arxiv.org/abs/2611.04137"
    },
    "category": "systems",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "adaptive",
@@ -5414,6 +5543,7 @@
     "paper": "https://arxiv.org/abs/2611.04663"
    },
    "category": "training",
+   "focus": "core",
    "facets": {
     "placement": "n/a",
     "depth_train": "fixed",
@@ -5445,6 +5575,7 @@
     "paper": "https://arxiv.org/abs/2611.05150"
    },
    "category": "systems",
+   "focus": "core",
    "facets": {
     "placement": "n/a",
     "depth_train": "n/a",
@@ -5472,6 +5603,7 @@
     "paper": "https://arxiv.org/abs/2611.05234"
    },
    "category": "architecture/state",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "fixed",
@@ -5498,6 +5630,7 @@
     "code": "https://github.com/mscheong01/LoopVQ"
    },
    "category": "systems",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "adaptive",
@@ -5530,6 +5663,7 @@
     "paper": "https://arxiv.org/abs/2611.05724"
    },
    "category": "systems",
+   "focus": "core",
    "facets": {
     "placement": "partial",
     "depth_train": "adaptive",
@@ -5558,6 +5692,7 @@
     "paper": "https://arxiv.org/abs/2611.06206"
    },
    "category": "scaling",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "fixed",
@@ -5591,6 +5726,7 @@
     "paper": "https://arxiv.org/abs/2611.06835"
    },
    "category": "architecture/placement",
+   "focus": "core",
    "facets": {
     "placement": "decoder",
     "depth_train": "sampled",
@@ -5623,6 +5759,7 @@
     "paper": "https://arxiv.org/abs/2611.07211"
    },
    "category": "systems",
+   "focus": "core",
    "facets": {
     "placement": "prelude-core-coda",
     "sharing": "full",
@@ -5856,6 +5993,7 @@
     "code": "https://github.com/yancyou/Loopback"
    },
    "category": "architecture/state",
+   "focus": "core",
    "facets": {
     "placement": "prelude-core-coda",
     "depth_train": "fixed",
@@ -5884,6 +6022,7 @@
     "paper": "https://arxiv.org/abs/2611.07425"
    },
    "category": "applications",
+   "focus": "related",
    "facets": {
     "placement": "decoder",
     "depth_train": "fixed",
@@ -5914,6 +6053,7 @@
     "paper": "https://arxiv.org/abs/2611.07736"
    },
    "category": "training",
+   "focus": "core",
    "facets": {
     "placement": "prelude-core-coda",
     "depth_train": "sampled",
@@ -5940,6 +6080,7 @@
     "paper": "https://arxiv.org/abs/2611.08236"
    },
    "category": "applications",
+   "focus": "related",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "fixed",
@@ -5964,6 +6105,7 @@
     "paper": "https://arxiv.org/abs/2611.08741"
    },
    "category": "depth",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "adaptive",
@@ -5993,6 +6135,7 @@
     "code": "https://github.com/wwillchen/ebr"
    },
    "category": "applications",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "adaptive",
@@ -6019,6 +6162,7 @@
     "paper": "https://arxiv.org/abs/2611.11275"
    },
    "category": "applications",
+   "focus": "related",
    "facets": {
     "placement": "encoder",
     "depth_train": "fixed",
@@ -6052,6 +6196,7 @@
     "code": "https://anonymous.4open.science/r/LLM-latent-B7BC/"
    },
    "category": "depth",
+   "focus": "core",
    "facets": {
     "placement": "prelude-core-coda",
     "depth_train": "sampled",
@@ -6088,6 +6233,7 @@
     "paper": "https://arxiv.org/abs/2611.13378"
    },
    "category": "architecture/placement",
+   "focus": "core",
    "facets": {
     "placement": "encoder",
     "sharing": "full",
@@ -6277,6 +6423,7 @@
     "code": "https://github.com/hym97/LoopMR"
    },
    "category": "applications",
+   "focus": "related",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "fixed",
@@ -6304,6 +6451,7 @@
     "paper": "https://arxiv.org/abs/2611.16265"
    },
    "category": "architecture/state",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "fixed",
@@ -6331,6 +6479,7 @@
     "code": "https://github.com/Prefrontal-AI/CRAM"
    },
    "category": "training",
+   "focus": "core",
    "facets": {
     "placement": "implicit",
     "depth_train": "n/a",
@@ -6360,6 +6509,7 @@
     "code": "https://github.com/myboker/concertina"
    },
    "category": "training",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "fixed",
@@ -6387,6 +6537,7 @@
     "paper": "https://arxiv.org/abs/2611.18696"
    },
    "category": "applications",
+   "focus": "related",
    "facets": {
     "placement": "prelude-core-coda",
     "depth_train": "adaptive",
@@ -6412,6 +6563,7 @@
     "paper": "https://arxiv.org/abs/2611.19131"
    },
    "category": "applications",
+   "focus": "related",
    "facets": {
     "placement": "partial",
     "depth_train": "n/a",
@@ -6440,6 +6592,7 @@
     "paper": "https://arxiv.org/abs/2611.19446"
    },
    "category": "systems",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "fixed",
@@ -6467,6 +6620,7 @@
     "paper": "https://arxiv.org/abs/2611.19649"
    },
    "category": "systems",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "adaptive",
@@ -6492,6 +6646,7 @@
     "paper": "https://arxiv.org/abs/2611.19827"
    },
    "category": "understanding",
+   "focus": "related",
    "facets": {
     "placement": "prelude-core-coda",
     "depth_train": "fixed",
@@ -6517,6 +6672,7 @@
     "paper": "https://arxiv.org/abs/2611.19896"
    },
    "category": "systems",
+   "focus": "core",
    "facets": {
     "placement": "n/a",
     "depth_train": "n/a",
@@ -6546,6 +6702,7 @@
     "code": "https://github.com/ifm-ai/LoRM"
    },
    "category": "scaling",
+   "focus": "core",
    "facets": {
     "placement": "shifted-parallel",
     "depth_train": "sampled",
@@ -6576,6 +6733,7 @@
     "paper": "https://arxiv.org/abs/2611.20703"
    },
    "category": "applications",
+   "focus": "related",
    "facets": {
     "placement": "partial",
     "depth_train": "fixed",
@@ -6603,6 +6761,7 @@
     "paper": "https://arxiv.org/abs/2611.21302"
    },
    "category": "applications",
+   "focus": "related",
    "facets": {
     "placement": "prelude-core-coda",
     "depth_train": "sampled",
@@ -6628,6 +6787,7 @@
     "paper": "https://arxiv.org/abs/2611.21921"
    },
    "category": "understanding",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "fixed",
@@ -6660,6 +6820,7 @@
     "paper": "https://arxiv.org/abs/2611.22426"
    },
    "category": "architecture/state",
+   "focus": "core",
    "facets": {
     "placement": "shifted-parallel",
     "depth_train": "fixed",
@@ -6689,6 +6850,7 @@
     "paper": "https://arxiv.org/abs/2611.22728"
    },
    "category": "systems",
+   "focus": "core",
    "facets": {
     "placement": "hierarchical",
     "depth_train": "fixed",
@@ -6713,6 +6875,7 @@
     "paper": "https://arxiv.org/abs/2611.22737"
    },
    "category": "applications",
+   "focus": "core",
    "facets": {
     "placement": "hierarchical",
     "depth_train": "fixed",
@@ -6739,6 +6902,7 @@
     "paper": "https://arxiv.org/abs/2611.23677"
    },
    "category": "architecture/state",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "adaptive",
@@ -6769,6 +6933,7 @@
     "paper": "https://arxiv.org/abs/2611.24301"
    },
    "category": "systems",
+   "focus": "core",
    "facets": {
     "placement": "n/a",
     "depth_train": "n/a",
@@ -6797,6 +6962,7 @@
     "code": "https://github.com/Xalp/LateComer"
    },
    "category": "systems",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "adaptive",
@@ -6825,6 +6991,7 @@
     "paper": "https://arxiv.org/abs/2611.25369"
    },
    "category": "systems",
+   "focus": "core",
    "facets": {
     "placement": "hierarchical",
     "depth_train": "fixed",
@@ -6853,6 +7020,7 @@
     "paper": "https://arxiv.org/abs/2611.25595"
    },
    "category": "applications",
+   "focus": "related",
    "facets": {
     "placement": "prelude-core-coda",
     "depth_train": "fixed",
@@ -6883,6 +7051,7 @@
     "paper": "https://arxiv.org/abs/2611.26275"
    },
    "category": "systems",
+   "focus": "core",
    "facets": {
     "placement": "prelude-core-coda",
     "depth_train": "sampled",
@@ -6911,6 +7080,7 @@
     "paper": "https://arxiv.org/abs/2611.26509"
    },
    "category": "training",
+   "focus": "core",
    "facets": {
     "placement": "prelude-core-coda",
     "depth_train": "n/a",
@@ -6936,6 +7106,7 @@
     "paper": "https://arxiv.org/abs/2611.27962"
    },
    "category": "architecture/placement",
+   "focus": "core",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "fixed",
@@ -6971,6 +7142,7 @@
     "blog": "https://huggingface.co/blog/inkling2mini"
    },
    "category": "architecture/placement",
+   "focus": "core",
    "facets": {
     "placement": "prelude-core-coda",
     "sharing": "full",
@@ -7184,6 +7356,7 @@
     "paper": "https://z.ai/blog/glm-5.4"
    },
    "category": "training",
+   "focus": "core",
    "facets": {
     "placement": "prelude-core-coda",
     "sharing": "full",

@@ -13,6 +13,7 @@ links:
   weights:
     - https://drive.google.com/drive/folders/1pYKJOu2aBGC-jgoWbfP6T_vqEYtUVxa4
 category: depth
+focus: core
 facets:
   placement: prelude-core-coda
   sharing: full

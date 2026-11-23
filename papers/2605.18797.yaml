@@ -7,6 +7,7 @@ authors: [Rao Fu, Zixuan Yang, Jiankun Zhang, Jing Ma, Hechang Chen, Yu Li, Yi C
 links:
   paper: https://arxiv.org/abs/2605.18797
 category: architecture/state
+focus: core
 facets:
   placement: whole-stack
   depth_train: fixed

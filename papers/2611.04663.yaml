@@ -7,6 +7,7 @@ authors: [Shota Takashiro, Takeshi Kojima, Masanori Koyama, Kohei Hayashi, Yusuk
 links:
   paper: https://arxiv.org/abs/2611.04663
 category: training
+focus: core
 facets:
   placement: n/a
   depth_train: fixed

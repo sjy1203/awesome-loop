@@ -8,6 +8,7 @@ links:
   paper: https://arxiv.org/abs/2405.16039
   code: https://github.com/robertcsordas/moeut
 category: architecture/placement
+focus: core
 facets:
   placement: whole-stack
   depth_train: fixed

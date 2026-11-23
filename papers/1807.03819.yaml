@@ -7,6 +7,7 @@ authors: [Mostafa Dehghani, Stephan Gouws, Oriol Vinyals, Jakob Uszkoreit, Łuka
 links:
   paper: https://arxiv.org/abs/1807.03819
 category: architecture/placement
+focus: core
 facets:
   placement: whole-stack
   depth_train: adaptive

@@ -7,6 +7,7 @@ authors: [Andrew Jaegle, Felix Gimeno, Andrew Brock, Andrew Zisserman, Oriol Vin
 links:
   paper: https://arxiv.org/abs/2103.03206
 category: applications
+focus: related
 facets:
   placement: prelude-core-coda
   depth_train: fixed

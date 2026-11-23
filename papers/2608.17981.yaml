@@ -7,6 +7,7 @@ authors: [Michael C. Mozer, Shoaib Ahmed Siddiqui, Danny Sawyer, Sunny Sanyal, R
 links:
   paper: https://arxiv.org/abs/2608.17981
 category: architecture/state
+focus: core
 facets:
   placement: shifted-parallel
   depth_train: n/a

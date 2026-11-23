@@ -7,6 +7,7 @@ authors: [Yatong Xiao, Mingjie Sun, Peng Wang, Wenjin Wu, Peng Jiang]
 links:
   paper: https://arxiv.org/abs/2611.07425
 category: applications
+focus: related
 facets:
   placement: decoder
   depth_train: fixed

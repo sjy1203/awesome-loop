@@ -10,6 +10,7 @@ orgs: [ByteDance Seed]
 links:
   paper: https://arxiv.org/abs/2510.24824
 category: systems
+focus: core
 facets:
   placement: shifted-parallel
   sharing: full

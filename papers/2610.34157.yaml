@@ -7,6 +7,7 @@ authors: [Huizhe Zhang, Yudong Li, Liang Chen, Chengxiang Zhuo, Zang Li]
 links:
   paper: https://arxiv.org/abs/2610.34157
 category: applications
+focus: related
 facets:
   placement: hierarchical
   depth_train: fixed

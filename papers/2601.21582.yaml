@@ -7,6 +7,7 @@ authors: [Jonas Knupp, Jan Hendrik Metzen, Jeremias Bohn, Georg Groh, Kristian K
 links:
   paper: https://arxiv.org/abs/2601.21582
 category: architecture/state
+focus: core
 facets:
   placement: whole-stack
   depth_train: fixed

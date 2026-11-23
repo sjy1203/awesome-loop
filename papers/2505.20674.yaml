@@ -8,6 +8,7 @@ links:
   paper: https://arxiv.org/abs/2505.20674
   code: https://github.com/LUMIA-Group/PonderingLM
 category: architecture/state
+focus: core
 facets:
   placement: whole-stack
   depth_train: fixed

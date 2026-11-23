@@ -10,6 +10,7 @@ orgs: ["University of California, San Diego", Tsinghua University, Nanjing Unive
 links:
   paper: https://arxiv.org/abs/2611.13378
 category: architecture/placement
+focus: core
 facets:
   placement: encoder
   sharing: full

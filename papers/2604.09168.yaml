@@ -7,6 +7,7 @@ authors: [Sahil Goyal, Swayam Agrawal, Gautham Govind Anil, Prateek Jain, Sujoy 
 links:
   paper: https://arxiv.org/abs/2604.09168
 category: applications
+focus: related
 facets:
   placement: whole-stack
   depth_train: sampled

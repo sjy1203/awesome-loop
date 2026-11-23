@@ -7,6 +7,7 @@ authors: [William Merrill, Ashish Sabharwal]
 links:
   paper: https://arxiv.org/abs/2503.03961
 category: theory
+focus: core
 facets:
   placement: prelude-core-coda
   depth_train: n/a

@@ -7,6 +7,7 @@ authors: [Hoang Anh Duy Le, Huibing Dong, Alireza Khadem, Ziteng Sun, Xiang Song
 links:
   paper: https://arxiv.org/abs/2611.05724
 category: systems
+focus: core
 facets:
   placement: partial
   depth_train: adaptive

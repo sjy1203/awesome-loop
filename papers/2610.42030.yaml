@@ -7,6 +7,7 @@ authors: [Rhea Sanjay Sukthanker, Pashmina Cameron]
 links:
   paper: https://arxiv.org/abs/2610.42030
 category: scaling
+focus: core
 facets:
   placement: partial
   depth_train: fixed

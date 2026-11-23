@@ -8,6 +8,7 @@ links:
   paper: https://arxiv.org/abs/2605.11011
   code: https://github.com/Thrillcrazyer/LoopUS
 category: training
+focus: core
 facets:
   placement: prelude-core-coda
   depth_train: adaptive

@@ -7,6 +7,7 @@ authors: [Harsh Kohli, Srinivasan Parthasarathy, Huan Sun, Yuekun Yao]
 links:
   paper: https://arxiv.org/abs/2604.07822
 category: understanding
+focus: core
 facets:
   placement: whole-stack
   depth_train: fixed

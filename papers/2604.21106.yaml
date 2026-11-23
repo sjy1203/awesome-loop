@@ -8,6 +8,7 @@ links:
   paper: https://arxiv.org/abs/2604.21106
   code: https://github.com/kschwethelm/looped-lm-scaling
 category: scaling
+focus: core
 facets:
   placement: prelude-core-coda
   depth_train: fixed

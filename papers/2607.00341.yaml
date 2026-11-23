@@ -7,6 +7,7 @@ authors: [Hengyu Fu, Tianyu Guo, Zixuan Wang, Hanlin Zhu, Jason D. Lee, Jiantao 
 links:
   paper: https://arxiv.org/abs/2607.00341
 category: architecture/state
+focus: core
 facets:
   placement: whole-stack
   depth_train: fixed

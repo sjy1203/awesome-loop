@@ -8,6 +8,7 @@ links:
   paper: https://arxiv.org/abs/2611.02333
   code: https://github.com/lonewolf15116/lookahead-halting
 category: depth
+focus: core
 facets:
   placement: whole-stack
   depth_train: adaptive

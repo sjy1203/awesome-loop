@@ -10,6 +10,7 @@ orgs: [Tsinghua University, ByteDance Seed, M-A-P, TokenWave.AI]
 links:
   paper: https://arxiv.org/abs/2609.01343
 category: scaling
+focus: core
 facets:
   placement: prelude-core-coda
   sharing: full

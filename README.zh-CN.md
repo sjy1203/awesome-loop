@@ -10,24 +10,13 @@
 
 <p align="center"><b>简体中文</b> · <a href="README.md">English</a></p>
 
-<p align="center"><a href="#top-10-必读榜">必读榜</a> · <a href="#最新趋势榜">趋势榜</a> · <a href="#最多引用榜">引用榜</a> · <a href="#论文数量趋势">论文数量</a> · <a href="#精读卡">精读卡</a> · <a href="#全部论文">全部论文</a> · <a href="#设计空间">设计空间</a> · <a href="#开放问题">开放问题</a> · <a href="#开源模型">开源模型</a></p>
+<p align="center"><a href="#论文数量趋势">论文数量</a> · <a href="#最新趋势榜">趋势榜</a> · <a href="#top-10-必读榜">必读榜</a> · <a href="#精读卡">精读卡</a> · <a href="#全部论文">全部论文</a> · <a href="#设计空间">设计空间</a> · <a href="#开放问题">开放问题</a> · <a href="#开源模型">开源模型</a></p>
 
-## TOP-10 必读榜
+## 论文数量趋势
 
-| # | 论文 | 分数 | 引用 | Star | 下载（30 天） | 点赞 |
-|---:|---|---:|---:|---:|---:|---:|
-| 1 | **Huginn**：[Scaling up Test-Time Compute with Latent Reasoning: A Recurrent Depth Approach](https://arxiv.org/abs/2502.05171) · **[精读卡](docs/zh/2502.05171.md)**<br><sub>2025 · Jonas Geiping 等</sub> | **76** | 590 | 998 | 22,435 | 634 |
-| 2 | [ALBERT: A Lite BERT for Self-supervised Learning of Language Representations](https://arxiv.org/abs/1909.11942)<br><sub>2019 · Zhenzhong Lan 等</sub> | **62** | 8,430 | 3,276 | - | 8 |
-| 3 | **Ouro (LoopLM)**：[Scaling Latent Reasoning via Looped Language Models](https://arxiv.org/abs/2510.25741) · **[精读卡](docs/zh/2510.25741.md)**<br><sub>2025 · Rui-Jie Zhu 等</sub> | **60** | 267 | - | 59,421 | 711 |
-| 4 | [Hierarchical Reasoning Model](https://arxiv.org/abs/2506.21734)<br><sub>2025 · Guan Wang 等</sub> | **59** | 298 | 12,671 | - | 406 |
-| 5 | [Less is More: Recursive Reasoning with Tiny Networks](https://arxiv.org/abs/2510.04871)<br><sub>2025 · Alexia Jolicoeur-Martineau</sub> | **58** | 271 | 6,546 | - | 562 |
-| 6 | [RAFT: Recurrent All-Pairs Field Transforms for Optical Flow](https://arxiv.org/abs/2003.12039)<br><sub>2020 · Zachary Teed 等</sub> | **57** | 4,904 | 4,132 | - | 1 |
-| 7 | [Parcae: Scaling Laws For Stable Looped Language Models](https://arxiv.org/abs/2604.12946) · **[精读卡](docs/zh/2604.12946.md)**<br><sub>2026 · Hayden Prairie 等</sub> | **52** | 89 | 195 | 1,728 | 29 |
-| 8 | [Teaching Pretrained Language Models to Think Deeper with Retrofitted Recurrence](https://arxiv.org/abs/2511.07384) · **[精读卡](docs/zh/2511.07384.md)**<br><sub>2025 · Sean McLeish 等</sub> | **51** | 79 | 72 | 4,351 | 29 |
-| 9 | **MoR**：[Mixture-of-Recursions: Learning Dynamic Recursive Depths for Adaptive Token-Level Computation](https://arxiv.org/abs/2507.10524) · **[精读卡](docs/zh/2507.10524.md)**<br><sub>2025 · Sangmin Bae 等 · NeurIPS 2025</sub> | **47** | 204 | 652 | - | 79 |
-| 10 | [Deep Equilibrium Models](https://arxiv.org/abs/1909.01377)<br><sub>2019 · Shaojie Bai 等 · NeurIPS 2019</sub> | **47** | 1,104 | 815 | - | 1 |
+<img src="assets/trend.zh-CN.svg" alt="arXiv 上的 Loop 论文数（按季度）" width="100%">
 
-<sub>按影响力分数（满分 100）排名：引用数占 40%（取 Semantic Scholar 和 OpenAlex 中较高的一个），官方代码的 GitHub star 占 20%，开源模型近 30 天的 Hugging Face 下载量占 20%，点赞占 20%（Hugging Face 论文点赞和模型点赞，加上 Hacker News 得分）。每项先取对数，再除以全库这一项的最大值，单项第一的论文拿满这一项的权重。不含循环的相关工作不参与排名。数据截至 2026-11-23。</sub>
+每季度标题或摘要含 Loop 关键词的 arXiv 论文数（关键词和数据见 [data/trend.json](data/trend.json)），最后一个季度未满。关键词匹配反映领域热度，不是人工筛选后的数量。
 
 ## 最新趋势榜
 
@@ -35,39 +24,33 @@
 |---:|---|---|---:|---:|---:|
 | 1 | [Introducing Inkling 2 Mini](https://thinkingmachines.ai/news/inkling-2-mini/) · **[精读卡](docs/zh/tml-inkling-2-mini.md)**<br><sub>Thinking Machines Lab blog</sub> | 2026-11-20 | **2,300** | 6,899 | - |
 | 2 | [GLM-5.4: Toward Generalized Coding with Our First Loop Transformer](https://z.ai/blog/glm-5.4) · **[精读卡](docs/zh/zai-glm-5-4.md)**<br><sub>Z.ai blog</sub> | 2026-11-23 | **784** | 784 | - |
-| 3 | [Solv3R: 3D Looped Transformer as a Multi-view Solver](https://arxiv.org/abs/2611.02857)<br><sub>Jeong-gi Kwak 等</sub> | 2026-11-02 | **16.6** | 12 | 337 |
-| 4 | [Classical Energies Learn to Reason 1,000x Faster than Looped Models](https://arxiv.org/abs/2611.17309)<br><sub>Benjamin Hoover 等</sub> | 2026-11-12 | **6.5** | 23 | 49 |
-| 5 | [Energy-Based Reasoners: Your Recurrent Reasoner Should Be an Energy-Based Model](https://arxiv.org/abs/2611.08977)<br><sub>William Xingxu Chen 等</sub> | 2026-11-06 | **6.2** | 10 | 95 |
-| 6 | [Latent Feedback Is a Compute and Data Amplifier](https://arxiv.org/abs/2611.20404)<br><sub>Benhao Huang 等</sub> | 2026-11-16 | **4.6** | 7 | 25 |
-| 7 | [Late Entry in Looped Language Models](https://arxiv.org/abs/2611.24576)<br><sub>Ziqi Jin 等</sub> | 2026-11-18 | **2.4** | 9 | 3 |
-| 8 | [Loopback Transformer: Towards a Unified View of Residual Looped Transformers](https://arxiv.org/abs/2611.07226)<br><sub>Xuan Ouyang 等</sub> | 2026-11-04 | **2.4** | 28 | 17 |
-| 9 | [Library of Layers (LoL): Adaptively Ordering Transformer Layers at Runtime](https://arxiv.org/abs/2611.03526)<br><sub>Abdellah Rahmani 等</sub> | 2026-11-02 | **1.7** | 12 | 23 |
-| 10 | [Dory1.0-4B: A Looped Normalized-GPT](https://arxiv.org/abs/2611.03998)<br><sub>Maxim Fishman 等</sub> | 2026-11-02 | **0.8** | 16 | - |
+| 3 | [Classical Energies Learn to Reason 1,000x Faster than Looped Models](https://arxiv.org/abs/2611.17309)<br><sub>Benjamin Hoover 等</sub> | 2026-11-12 | **6.5** | 23 | 49 |
+| 4 | [Energy-Based Reasoners: Your Recurrent Reasoner Should Be an Energy-Based Model](https://arxiv.org/abs/2611.08977)<br><sub>William Xingxu Chen 等</sub> | 2026-11-06 | **6.2** | 10 | 95 |
+| 5 | [Latent Feedback Is a Compute and Data Amplifier](https://arxiv.org/abs/2611.20404)<br><sub>Benhao Huang 等</sub> | 2026-11-16 | **4.6** | 7 | 25 |
+| 6 | [Late Entry in Looped Language Models](https://arxiv.org/abs/2611.24576)<br><sub>Ziqi Jin 等</sub> | 2026-11-18 | **2.4** | 9 | 3 |
+| 7 | [Loopback Transformer: Towards a Unified View of Residual Looped Transformers](https://arxiv.org/abs/2611.07226)<br><sub>Xuan Ouyang 等</sub> | 2026-11-04 | **2.4** | 28 | 17 |
+| 8 | [Library of Layers (LoL): Adaptively Ordering Transformer Layers at Runtime](https://arxiv.org/abs/2611.03526)<br><sub>Abdellah Rahmani 等</sub> | 2026-11-02 | **1.7** | 12 | 23 |
+| 9 | [Dory1.0-4B: A Looped Normalized-GPT](https://arxiv.org/abs/2611.03998)<br><sub>Maxim Fishman 等</sub> | 2026-11-02 | **0.8** | 16 | - |
+| 10 | [LoopVQ: Sub 1-bit KV Cache Quantization for Looped Transformers](https://arxiv.org/abs/2611.05304)<br><sub>Minsoo Cheong 等</sub> | 2026-11-03 | **0.7** | 10 | 3 |
 
-<sub>2026-10-25 至 2026-11-23 发布的论文，按发布以来日均点赞和 GitHub star 排名。点赞包括 Hugging Face 论文点赞和模型点赞，以及 Hacker News 得分。这么新的论文几乎还没有引用，所以这里只看早期关注度。</sub>
+<sub>2026-10-25 至 2026-11-23 发布的核心论文（面向语言或通用推理的循环 Transformer），按发布以来日均点赞和 GitHub star 排名。点赞包括 Hugging Face 论文点赞和模型点赞，以及 Hacker News 得分。这么新的论文几乎还没有引用，所以这里只看早期关注度。</sub>
 
-## 最多引用榜
+## TOP-10 必读榜
 
-| # | 论文 | 年份 | 类别 | 引用 | 链接 |
-|---:|---|---|---|---:|---|
-| 1 | [ALBERT: A Lite BERT for Self-supervised Learning of Language Representations](https://arxiv.org/abs/1909.11942) | 2019 | 结构：放哪循环、共享什么 | 8,430 | [论文](https://arxiv.org/abs/1909.11942) · [代码](https://github.com/google-research/ALBERT) |
-| 2 | [RAFT: Recurrent All-Pairs Field Transforms for Optical Flow](https://arxiv.org/abs/2003.12039) | 2020 | 语言模型以外的应用 | 4,904 | [论文](https://arxiv.org/abs/2003.12039) · [代码](https://github.com/princeton-vl/RAFT) |
-| 3 | [Deeply-Recursive Convolutional Network for Image Super-Resolution](https://arxiv.org/abs/1511.04491) | 2015 | 语言模型以外的应用 | 3,450 | [论文](https://arxiv.org/abs/1511.04491) |
-| 4 | [Perceiver: General Perception with Iterative Attention](https://arxiv.org/abs/2103.03206) | 2021 | 语言模型以外的应用 | 1,811 | [论文](https://arxiv.org/abs/2103.03206) |
-| 5 | [Universal Transformers](https://arxiv.org/abs/1807.03819) | 2018 | 结构：放哪循环、共享什么 | 1,233 | [论文](https://arxiv.org/abs/1807.03819) |
-| 6 | [Deep Equilibrium Models](https://arxiv.org/abs/1909.01377) | 2019 | 结构：放哪循环、共享什么 | 1,104 | [论文](https://arxiv.org/abs/1909.01377) · [代码](https://github.com/locuslab/deq) |
-| 7 | [Adaptive Computation Time for Recurrent Neural Networks](https://arxiv.org/abs/1603.08983) | 2016 | 深度控制 | 1,061 | [论文](https://arxiv.org/abs/1603.08983) |
-| 8 | **Huginn**：[Scaling up Test-Time Compute with Latent Reasoning: A Recurrent Depth Approach](https://arxiv.org/abs/2502.05171) · **[精读卡](docs/zh/2502.05171.md)** | 2025 | 结构：放哪循环、共享什么 | 590 | [论文](https://arxiv.org/abs/2502.05171) · [代码](https://github.com/seal-rg/recurrent-pretraining) · [权重](https://huggingface.co/tomg-group-umd/huginn-0125) |
-| 9 | [Neural GPUs Learn Algorithms](https://arxiv.org/abs/1511.08228) | 2015 | 语言模型以外的应用 | 415 | [论文](https://arxiv.org/abs/1511.08228) |
-| 10 | [Reasoning with Latent Thoughts: On the Power of Looped Transformers](https://arxiv.org/abs/2502.17416) | 2025 | 理论与能力 | 337 | [论文](https://arxiv.org/abs/2502.17416) |
+| # | 论文 | 分数 | 年均引用 | Star | 下载（30 天） | 点赞 |
+|---:|---|---:|---:|---:|---:|---:|
+| 1 | **Huginn**：[Scaling up Test-Time Compute with Latent Reasoning: A Recurrent Depth Approach](https://arxiv.org/abs/2502.05171) · **[精读卡](docs/zh/2502.05171.md)**<br><sub>2025 · Jonas Geiping 等</sub> | **87** | 330 | 998 | 22,435 | 634 |
+| 2 | **Ouro (LoopLM)**：[Scaling Latent Reasoning via Looped Language Models](https://arxiv.org/abs/2510.25741) · **[精读卡](docs/zh/2510.25741.md)**<br><sub>2025 · Rui-Jie Zhu 等</sub> | **73** | 250 | - | 59,421 | 711 |
+| 3 | [Less is More: Recursive Reasoning with Tiny Networks](https://arxiv.org/abs/2510.04871)<br><sub>2025 · Alexia Jolicoeur-Martineau</sub> | **71** | 240 | 6,546 | - | 562 |
+| 4 | [Hierarchical Reasoning Model](https://arxiv.org/abs/2506.21734)<br><sub>2025 · Guan Wang 等</sub> | **71** | 211 | 12,671 | - | 406 |
+| 5 | [Parcae: Scaling Laws For Stable Looped Language Models](https://arxiv.org/abs/2604.12946) · **[精读卡](docs/zh/2604.12946.md)**<br><sub>2026 · Hayden Prairie 等</sub> | **63** | 89 | 195 | 1,728 | 29 |
+| 6 | [Teaching Pretrained Language Models to Think Deeper with Retrofitted Recurrence](https://arxiv.org/abs/2511.07384) · **[精读卡](docs/zh/2511.07384.md)**<br><sub>2025 · Sean McLeish 等</sub> | **62** | 76 | 72 | 4,351 | 29 |
+| 7 | **MoR**：[Mixture-of-Recursions: Learning Dynamic Recursive Depths for Adaptive Token-Level Computation](https://arxiv.org/abs/2507.10524) · **[精读卡](docs/zh/2507.10524.md)**<br><sub>2025 · Sangmin Bae 等 · NeurIPS 2025</sub> | **58** | 150 | 652 | - | 79 |
+| 8 | [Deep Equilibrium Models](https://arxiv.org/abs/1909.01377)<br><sub>2019 · Shaojie Bai 等 · NeurIPS 2019</sub> | **50** | 153 | 815 | - | 1 |
+| 9 | [LoopFormer: Elastic-Depth Looped Transformers for Latent Reasoning via Shortcut Modulation](https://arxiv.org/abs/2602.11451)<br><sub>2026 · Ahmadreza Jeddi 等 · ICLR 2026</sub> | **47** | 95 | 66 | - | 18 |
+| 10 | [HRM-Text: Efficient Pretraining Beyond Scaling](https://arxiv.org/abs/2605.20613)<br><sub>2026 · Guan Wang 等</sub> | **46** | 16 | 2,348 | - | 100 |
 
-<sub>本清单中引用数最高的 10 篇（取 Semantic Scholar 和 OpenAlex 中较高的引用数，截至 2026-11-23）。不含循环的相关工作不参与排名。</sub>
-
-## 论文数量趋势
-
-<img src="assets/trend.zh-CN.svg" alt="arXiv 上的 Loop 论文数（按季度）" width="100%">
-
-每季度标题或摘要含 Loop 关键词的 arXiv 论文数（关键词和数据见 [data/trend.json](data/trend.json)），最后一个季度未满。关键词匹配反映领域热度，不是人工筛选后的数量。
+<sub>不限年份的核心论文，按影响力分数（满分 100）排名：年均引用占 40%（取 Semantic Scholar 和 OpenAlex 中较高的引用数，除以发表至今的年数，不满一年按一年算），官方代码的 GitHub star 占 20%，开源模型近 30 天的 Hugging Face 下载量占 20%，点赞占 20%（Hugging Face 论文点赞和模型点赞，加上 Hacker News 得分）。每项先取对数，再除以核心论文中这一项的最大值，单项第一的论文拿满这一项的权重。其他领域的循环、RNN/CNN 时代的前身工作和相关方向不参与排名，仍收在「全部论文」里。数据截至 2026-11-23。</sub>
 
 ## 这份清单的特点
 

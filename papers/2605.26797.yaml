@@ -7,6 +7,7 @@ authors: [Zeyi Huang, Xuehai He, LiLiang Ren, Yiping Wang, Baolin Peng, Hao Chen
 links:
   paper: https://arxiv.org/abs/2605.26797
 category: architecture/state
+focus: core
 facets:
   placement: shifted-parallel
   depth_train: fixed

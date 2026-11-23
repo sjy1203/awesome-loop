@@ -7,6 +7,7 @@ authors: [Guanxu Chen, Dongrui Liu, Jing Shao]
 links:
   paper: https://arxiv.org/abs/2601.10242
 category: understanding
+focus: core
 facets:
   placement: whole-stack
   depth_train: adaptive

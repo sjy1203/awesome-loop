@@ -7,6 +7,7 @@ authors: [Szymon Mazurek, Alberto Presta, Michał Byra]
 links:
   paper: https://arxiv.org/abs/2610.34563
 category: applications
+focus: related
 facets:
   placement: whole-stack
   depth_train: fixed

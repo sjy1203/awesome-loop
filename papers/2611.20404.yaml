@@ -8,6 +8,7 @@ links:
   paper: https://arxiv.org/abs/2611.20404
   code: https://github.com/ifm-ai/LoRM
 category: scaling
+focus: core
 facets:
   placement: shifted-parallel
   depth_train: sampled

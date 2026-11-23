@@ -7,6 +7,7 @@ authors: [Shuzhen Li, Yifan Zhang, Jiacheng Guo, Quanquan Gu, Mengdi Wang]
 links:
   paper: https://arxiv.org/abs/2607.13491
 category: training
+focus: core
 facets:
   placement: whole-stack
   depth_train: fixed

@@ -8,6 +8,7 @@ links:
   paper: https://arxiv.org/abs/2106.04537
   code: https://github.com/aks2203/easy-to-hard
 category: applications
+focus: related
 facets:
   placement: prelude-core-coda
   depth_train: fixed

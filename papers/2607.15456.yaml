@@ -7,6 +7,7 @@ authors: [James O' Neill, Fergal Reid]
 links:
   paper: https://arxiv.org/abs/2607.15456
 category: systems
+focus: core
 facets:
   placement: whole-stack
   depth_train: n/a

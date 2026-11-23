@@ -7,6 +7,7 @@ authors: [Nanbeige Lab, Chen Yang, Chengrui Huang, Fufeng Lan, Hanhui Chen, Hao 
 links:
   paper: https://arxiv.org/abs/2607.22083
 category: training
+focus: core
 facets:
   placement: whole-stack
   depth_train: fixed

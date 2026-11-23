@@ -8,6 +8,7 @@ links:
   paper: https://arxiv.org/abs/2003.12039
   code: https://github.com/princeton-vl/RAFT
 category: applications
+focus: related
 facets:
   placement: partial
   depth_train: fixed

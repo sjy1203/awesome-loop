@@ -10,6 +10,7 @@ orgs: [Microsoft Research, Tsinghua University]
 links:
   paper: https://arxiv.org/abs/2604.01220
 category: architecture/placement
+focus: core
 facets:
   placement: encoder
   sharing: full

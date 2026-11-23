@@ -8,6 +8,7 @@ links:
   paper: https://arxiv.org/abs/2602.10520
   code: https://github.com/jonwill8/RLTT
 category: training
+focus: core
 facets:
   placement: n/a
   depth_train: fixed

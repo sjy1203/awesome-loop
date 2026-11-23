@@ -7,6 +7,7 @@ authors: [Kun Zhou, Wenmian Yang, Zhensheng Wang, Yanzeng Li, Weijia Jia]
 links:
   paper: https://arxiv.org/abs/2611.25369
 category: systems
+focus: core
 facets:
   placement: hierarchical
   depth_train: fixed

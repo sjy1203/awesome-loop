@@ -8,6 +8,7 @@ links:
   paper: https://arxiv.org/abs/2510.04871
   code: https://github.com/SamsungSAILMontreal/TinyRecursiveModels
 category: applications
+focus: core
 facets:
   placement: hierarchical
   depth_train: adaptive

@@ -7,6 +7,7 @@ authors: [Arpit Bansal, Avi Schwarzschild, Eitan Borgnia, Zeyad Emam, Furong Hua
 links:
   paper: https://arxiv.org/abs/2202.05826
 category: applications
+focus: related
 facets:
   placement: prelude-core-coda
   depth_train: sampled

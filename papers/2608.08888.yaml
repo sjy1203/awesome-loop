@@ -8,6 +8,7 @@ links:
   paper: https://arxiv.org/abs/2608.08888
   code: https://github.com/xidulu/Full-bandwidth-transformer
 category: architecture/state
+focus: core
 facets:
   placement: shifted-parallel
   depth_train: curriculum

@@ -8,6 +8,7 @@ links:
   paper: https://arxiv.org/abs/1909.01377
   code: https://github.com/locuslab/deq
 category: architecture/placement
+focus: core
 facets:
   placement: implicit
   depth_train: n/a

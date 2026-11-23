@@ -8,6 +8,7 @@ links:
   paper: https://arxiv.org/abs/2605.20613
   code: https://github.com/sapientinc/HRM-Text
 category: training
+focus: core
 facets:
   placement: hierarchical
   depth_train: fixed

@@ -8,6 +8,7 @@ links:
   paper: https://arxiv.org/abs/2609.23033
   code: https://github.com/summerbro-hhj/wavefront-decoding
 category: systems
+focus: core
 facets:
   placement: n/a
   depth_train: n/a

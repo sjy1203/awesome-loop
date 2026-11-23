@@ -8,6 +8,7 @@ links:
   paper: https://arxiv.org/abs/2412.06769
   code: https://github.com/facebookresearch/coconut
 category: adjacent
+focus: related
 facets:
   placement: n/a
   depth_train: n/a

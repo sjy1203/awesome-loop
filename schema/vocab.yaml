@@ -14,6 +14,10 @@ category:
   safety: {en: Safety and monitorability, zh: 安全与可监控}
   adjacent: {en: "Adjacent: latent reasoning without loops", zh: 相邻方向：不靠循环的隐式推理}
 
+focus:
+  core: {en: core, zh: 核心}
+  related: {en: related, zh: 相关}
+
 # Facets. "n/a" = not applicable or not stated by the paper.
 placement:
   whole-stack: {en: whole stack, zh: 整栈循环}

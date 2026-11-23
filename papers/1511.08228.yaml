@@ -7,6 +7,7 @@ authors: [Łukasz Kaiser, Ilya Sutskever]
 links:
   paper: https://arxiv.org/abs/1511.08228
 category: applications
+focus: related
 facets:
   placement: whole-stack
   depth_train: curriculum

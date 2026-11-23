@@ -7,6 +7,7 @@ authors: [Zhaofeng Sun, Lanxiang Hu, Yu-Yang Qian, Jiaqi Leng, Yuanbo Yang, Chi 
 links:
   paper: https://arxiv.org/abs/2611.22426
 category: architecture/state
+focus: core
 facets:
   placement: shifted-parallel
   depth_train: fixed

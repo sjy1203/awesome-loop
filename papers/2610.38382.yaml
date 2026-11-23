@@ -8,6 +8,7 @@ links:
   paper: https://arxiv.org/abs/2610.38382
   code: https://github.com/creator-xi/SelfMorph
 category: depth
+focus: core
 facets:
   placement: prelude-core-coda
   depth_train: adaptive

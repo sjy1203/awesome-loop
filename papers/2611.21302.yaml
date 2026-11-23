@@ -7,6 +7,7 @@ authors: [Arda Cinar Demirtas, Pablo Varela Bernal, Marc Pollefeys, Sunghwan Hon
 links:
   paper: https://arxiv.org/abs/2611.21302
 category: applications
+focus: related
 facets:
   placement: prelude-core-coda
   depth_train: sampled

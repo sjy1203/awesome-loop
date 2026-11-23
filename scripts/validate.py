@@ -18,6 +18,7 @@ KINDS = {"papers": "paper", "models": "model", "claims": "claim"}
 # Schema enum locations -> vocab section that must label every value.
 ENUM_VOCAB = {
     ("paper", "category"): "category",
+    ("paper", "focus"): "focus",
     ("paper", "facets", "placement"): "placement",
     ("paper", "facets", "sharing"): "sharing",
     ("paper", "facets", "depth_train"): "depth_train",

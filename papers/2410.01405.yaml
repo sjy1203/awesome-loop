@@ -7,6 +7,7 @@ authors: [Kevin Xu, Issei Sato]
 links:
   paper: https://arxiv.org/abs/2410.01405
 category: theory
+focus: core
 facets:
   placement: whole-stack
   depth_train: fixed

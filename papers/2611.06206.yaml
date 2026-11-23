@@ -7,6 +7,7 @@ authors: [Daichi Hotta, Yohei Kobashi, Takeshi Kojima, Yusuke Iwasawa, Yutaka Ma
 links:
   paper: https://arxiv.org/abs/2611.06206
 category: scaling
+focus: core
 facets:
   placement: whole-stack
   depth_train: fixed

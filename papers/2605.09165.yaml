@@ -7,6 +7,7 @@ authors: [Ryan Lee, Jacob Biloki, Edward J. Hu, Jonathan May]
 links:
   paper: https://arxiv.org/abs/2605.09165
 category: scaling
+focus: core
 facets:
   placement: whole-stack
   depth_train: fixed

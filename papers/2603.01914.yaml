@@ -7,6 +7,7 @@ authors: [Shixiang Song, He Li, Zitong Wang, Boyi Zeng, Feichen Song, Yixuan Wan
 links:
   paper: https://arxiv.org/abs/2603.01914
 category: depth
+focus: core
 facets:
   placement: whole-stack
   depth_train: adaptive

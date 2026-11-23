@@ -8,6 +8,7 @@ links:
   paper: https://arxiv.org/abs/2611.18113
   code: https://github.com/myboker/concertina
 category: training
+focus: core
 facets:
   placement: whole-stack
   depth_train: fixed

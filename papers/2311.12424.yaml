@@ -8,6 +8,7 @@ links:
   paper: https://arxiv.org/abs/2311.12424
   code: https://github.com/leiay/looped_transformer
 category: theory
+focus: core
 facets:
   placement: whole-stack
   depth_train: curriculum

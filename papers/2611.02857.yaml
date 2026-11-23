@@ -8,6 +8,7 @@ links:
   paper: https://arxiv.org/abs/2611.02857
   code: https://github.com/ubc-vision/solv3r
 category: applications
+focus: related
 facets:
   placement: prelude-core-coda
   depth_train: sampled
