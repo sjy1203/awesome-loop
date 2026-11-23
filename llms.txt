@@ -2,6 +2,36 @@
 
 > Looped and recurrent-depth language models. Each deep card records the loop layout, what the main comparison holds fixed, the paper's results with table or figure references, and caveats taken from the paper. All numbers are author-reported; nothing is converted or extrapolated. Comparison keys: params = unique parameters, active-params = active parameters, flops = training FLOPs, kv = KV cache per token, tokens = training tokens, depth = executed layers per token, wallclock = wall-clock time.
 
+## Top 10 must-read (2026-11-23)
+
+Impact score out of 100: citations 40%, stars 20%, downloads 20%, likes 20%; each count log-scaled and divided by the collection maximum. Likes are Hugging Face paper upvotes and model likes plus Hacker News points. Adjacent work without loops is not ranked.
+
+- [Scaling up Test-Time Compute with Latent Reasoning: A Recurrent Depth Approach](https://arxiv.org/abs/2502.05171): score 76; citations 590, stars 998, downloads (30 days) 22435, likes 634.
+- [ALBERT: A Lite BERT for Self-supervised Learning of Language Representations](https://arxiv.org/abs/1909.11942): score 62; citations 8430, stars 3276, downloads (30 days) 0, likes 8.
+- [Scaling Latent Reasoning via Looped Language Models](https://arxiv.org/abs/2510.25741): score 60; citations 267, stars 0, downloads (30 days) 59421, likes 711.
+- [Hierarchical Reasoning Model](https://arxiv.org/abs/2506.21734): score 59; citations 298, stars 12671, downloads (30 days) 0, likes 406.
+- [Less is More: Recursive Reasoning with Tiny Networks](https://arxiv.org/abs/2510.04871): score 58; citations 271, stars 6546, downloads (30 days) 0, likes 562.
+- [RAFT: Recurrent All-Pairs Field Transforms for Optical Flow](https://arxiv.org/abs/2003.12039): score 57; citations 4904, stars 4132, downloads (30 days) 0, likes 1.
+- [Parcae: Scaling Laws For Stable Looped Language Models](https://arxiv.org/abs/2604.12946): score 52; citations 89, stars 195, downloads (30 days) 1728, likes 29.
+- [Teaching Pretrained Language Models to Think Deeper with Retrofitted Recurrence](https://arxiv.org/abs/2511.07384): score 51; citations 79, stars 72, downloads (30 days) 4351, likes 29.
+- [Mixture-of-Recursions: Learning Dynamic Recursive Depths for Adaptive Token-Level Computation](https://arxiv.org/abs/2507.10524): score 47; citations 204, stars 652, downloads (30 days) 0, likes 79.
+- [Deep Equilibrium Models](https://arxiv.org/abs/1909.01377): score 47; citations 1104, stars 815, downloads (30 days) 0, likes 1.
+
+## Trending: released in the last 30 days
+
+Ranked by likes plus GitHub stars per day since release.
+
+- [Introducing Inkling 2 Mini](https://thinkingmachines.ai/news/inkling-2-mini/): 2,300 per day; released 2026-11-20; likes 6899, stars 0.
+- [GLM-5.4: Toward Generalized Coding with Our First Loop Transformer](https://z.ai/blog/glm-5.4): 784 per day; released 2026-11-23; likes 784, stars 0.
+- [Solv3R: 3D Looped Transformer as a Multi-view Solver](https://arxiv.org/abs/2611.02857): 16.6 per day; released 2026-11-02; likes 12, stars 337.
+- [Classical Energies Learn to Reason 1,000x Faster than Looped Models](https://arxiv.org/abs/2611.17309): 6.5 per day; released 2026-11-12; likes 23, stars 49.
+- [Energy-Based Reasoners: Your Recurrent Reasoner Should Be an Energy-Based Model](https://arxiv.org/abs/2611.08977): 6.2 per day; released 2026-11-06; likes 10, stars 95.
+- [Latent Feedback Is a Compute and Data Amplifier](https://arxiv.org/abs/2611.20404): 4.6 per day; released 2026-11-16; likes 7, stars 25.
+- [Late Entry in Looped Language Models](https://arxiv.org/abs/2611.24576): 2.4 per day; released 2026-11-18; likes 9, stars 3.
+- [Loopback Transformer: Towards a Unified View of Residual Looped Transformers](https://arxiv.org/abs/2611.07226): 2.4 per day; released 2026-11-04; likes 28, stars 17.
+- [Library of Layers (LoL): Adaptively Ordering Transformer Layers at Runtime](https://arxiv.org/abs/2611.03526): 1.7 per day; released 2026-11-02; likes 12, stars 23.
+- [Dory1.0-4B: A Looped Normalized-GPT](https://arxiv.org/abs/2611.03998): 0.8 per day; released 2026-11-02; likes 16, stars 0.
+
 ## Deep cards
 
 - [GLM-5.4](https://raw.githubusercontent.com/sjy1203/awesome-loop/main/docs/en/zai-glm-5-4.md): Z.ai turns 28 layers of its pre-trained GLM-5 base into a two-pass loop through continued training at the 750B scale, with per-token gates, a shared-plus-sliding-window KV cache and reused sparse-attention indices. Layout: earlier layers (layer count not stated) -> [28 shared layers (28 layers)] x 2 -> later layers (layer count not stated); injection gated; KV first-pass. Held fixed: params; differs: flops.

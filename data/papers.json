@@ -417,7 +417,8 @@
     "Tom Goldstein"
    ],
    "links": {
-    "paper": "https://arxiv.org/abs/2106.04537"
+    "paper": "https://arxiv.org/abs/2106.04537",
+    "code": "https://github.com/aks2203/easy-to-hard"
    },
    "category": "applications",
    "facets": {
@@ -865,7 +866,8 @@
     "Yuandong Tian"
    ],
    "links": {
-    "paper": "https://arxiv.org/abs/2412.06769"
+    "paper": "https://arxiv.org/abs/2412.06769",
+    "code": "https://github.com/facebookresearch/coconut"
    },
    "category": "adjacent",
    "facets": {
@@ -1248,7 +1250,8 @@
     "Yasin Abbasi Yadkori"
    ],
    "links": {
-    "paper": "https://arxiv.org/abs/2506.21734"
+    "paper": "https://arxiv.org/abs/2506.21734",
+    "code": "https://github.com/sapientinc/HRM"
    },
    "category": "applications",
    "facets": {
@@ -6324,7 +6327,8 @@
     "James C. R. Whittington"
    ],
    "links": {
-    "paper": "https://arxiv.org/abs/2611.17309"
+    "paper": "https://arxiv.org/abs/2611.17309",
+    "code": "https://github.com/Prefrontal-AI/CRAM"
    },
    "category": "training",
    "facets": {

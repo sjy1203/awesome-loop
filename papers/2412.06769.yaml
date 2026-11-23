@@ -6,6 +6,7 @@ venue: COLM 2025
 authors: [Shibo Hao, Sainbayar Sukhbaatar, DiJia Su, Xian Li, Zhiting Hu, Jason Weston, Yuandong Tian]
 links:
   paper: https://arxiv.org/abs/2412.06769
+  code: https://github.com/facebookresearch/coconut
 category: adjacent
 facets:
   placement: n/a

@@ -11,6 +11,7 @@ import argparse
 import datetime
 import html
 import json
+import math
 import os
 import sys
 import urllib.parse
@@ -29,6 +30,10 @@ FACETS = ("placement", "sharing", "depth_train", "depth_test", "injection", "kv"
 STANCE_MARK = {"supports": "+", "against": "-", "partial": "~"}
 MILESTONES = [("1807.03819", "Universal Transformers"), ("2502.05171", "Huginn"), ("2510.25741", "Ouro"),
               ("tml-inkling-2-mini", "Inkling 2 Mini"), ("zai-glm-5-4", "GLM-5.4")]
+# Impact score weights for the top-10 list; likes = HF paper upvotes + HF model likes + Hacker News points.
+SCORE_WEIGHTS = (("citations", 0.4), ("stars", 0.2), ("downloads", 0.2), ("likes", 0.2))
+TREND_DAYS = 30  # the trending list covers papers released this many days before the metrics date
+UNRANKED = ("adjacent",)  # categories left out of the rankings: latent reasoning without loops
 RELATED = [("Awesome Loop Models (huskydoge)", "https://github.com/huskydoge/Awesome-Loop-Models"),
            ("Awesome Loop Transformers (Mrkkew)", "https://github.com/Mrkkew/Awesome-Loop-Transformers"),
            ("Awesome Loop Transformer (asimfish)", "https://github.com/asimfish/awesome_loop_transformer")]
@@ -44,9 +49,23 @@ UI = {
         "readme": "README.md",
         "tagline": ("Looped and recurrent-depth language models: papers, open models, and the evidence behind their "
                     "claims, recorded the same way for every paper so that results can be compared."),
-        "nav": [("Trend", "loop-papers-over-time"), ("Most cited", "most-cited"), ("Deep cards", "deep-cards"),
-                ("All papers", "all-papers"), ("Design space", "design-space"), ("Open questions", "open-questions"),
-                ("Open models", "open-models")],
+        "nav": [("Top 10", "top-10-must-read"), ("Trending", "trending-in-the-last-30-days"),
+                ("Most cited", "most-cited"), ("Papers over time", "loop-papers-over-time"),
+                ("Deep cards", "deep-cards"), ("All papers", "all-papers"), ("Design space", "design-space"),
+                ("Open questions", "open-questions"), ("Open models", "open-models")],
+        "must_head": "Top 10 must-read",
+        "must_note": ("Ranked by an impact score out of 100: citations 40% (the higher of the Semantic Scholar and "
+                      "OpenAlex counts), GitHub stars of the official code 20%, Hugging Face downloads of the released "
+                      "models in the last 30 days 20%, and likes 20% (Hugging Face paper upvotes and model likes plus "
+                      "Hacker News points). Each count is log-scaled and divided by the largest value in the "
+                      "collection, so the paper that leads on a signal gets that signal's full weight. Adjacent work "
+                      "without loops is not ranked. Counts as of {date}."),
+        "cols_must": ["#", "Paper", "Score", "Citations", "Stars", "Downloads (30 days)", "Likes"],
+        "hot_head": "Trending in the last 30 days",
+        "hot_note": ("Papers released from {start} to {date}, ranked by likes and GitHub stars per day since release. "
+                     "Likes are Hugging Face paper upvotes and model likes plus Hacker News points. Papers this new "
+                     "have almost no citations yet, so this list counts early attention only."),
+        "cols_hot": ["#", "Paper", "Released", "Per day", "Likes", "Stars"],
         "trend_head": "Loop papers over time",
         "trend_title": "Loop papers on arXiv per quarter",
         "trend_sub": ("Title or abstract matches \u201clooped transformer\u201d, \u201crecurrent depth\u201d and "
@@ -55,8 +74,9 @@ UI = {
                           "counts in [data/trend.json](data/trend.json)); the last quarter is partial. Keyword "
                           "matches are a proxy for activity in the field, not a curated count."),
         "cited_head": "Most cited",
-        "cited_note": "The ten most cited papers in this collection, by Semantic Scholar citation count.",
-        "cols_cited": ["Paper", "Year", "Category", "Citations", "Links"],
+        "cited_note": ("The ten most cited papers in the collection, by the higher of the Semantic Scholar and "
+                       "OpenAlex counts as of {date}. Adjacent work without loops is not ranked."),
+        "cols_cited": ["#", "Paper", "Year", "Category", "Citations", "Links"],
         "ds_more": "{n} papers",
         "ds_title": "Design space",
         "ds_note": "Every paper with a stated loop placement and training depth, grouped by cell.",
@@ -118,7 +138,8 @@ UI = {
         "cite_head": "Citation",
         "cite_note": ("If this collection helps your research, please cite it. GitHub can also export the reference "
                       "from [CITATION.cff](CITATION.cff)."),
-        "cites": "cites", "stars": "stars", "hf": "HF upvotes", "downloads": "downloads", "likes": "likes",
+        "cites": "cites", "stars": "stars", "hf": "HF upvotes", "hn": "HN points", "downloads": "downloads",
+        "likes": "likes",
         "link": {"paper": "paper", "code": "code", "weights": "weights", "project": "project", "blog": "blog"},
         "h_problem": "Problem", "h_method": "Method", "h_layout": "Loop layout", "h_results": "Results",
         "h_findings": "Other findings", "h_budget": "Comparison", "h_caveats": "Caveats",
@@ -143,16 +164,28 @@ UI = {
         "readme": "README.zh-CN.md",
         "tagline": ("循环（looped / recurrent-depth）语言模型的论文、开源模型，以及结论背后的证据。"
                     "每篇论文按同一套字段记录，方便跨论文比较。"),
-        "nav": [("趋势", "论文数量趋势"), ("高引用", "高引用论文"), ("精读卡", "精读卡"), ("全部论文", "全部论文"),
-                ("设计空间", "设计空间"), ("开放问题", "开放问题"), ("开源模型", "开源模型")],
+        "nav": [("必读榜", "top-10-必读榜"), ("趋势榜", "最新趋势榜"), ("引用榜", "最多引用榜"), ("论文数量", "论文数量趋势"),
+                ("精读卡", "精读卡"), ("全部论文", "全部论文"), ("设计空间", "设计空间"), ("开放问题", "开放问题"),
+                ("开源模型", "开源模型")],
+        "must_head": "TOP-10 必读榜",
+        "must_note": ("按影响力分数（满分 100）排名：引用数占 40%（取 Semantic Scholar 和 OpenAlex 中较高的一个），"
+                      "官方代码的 GitHub star 占 20%，开源模型近 30 天的 Hugging Face 下载量占 20%，点赞占 20%"
+                      "（Hugging Face 论文点赞和模型点赞，加上 Hacker News 得分）。每项先取对数，再除以全库这一项的最大值，"
+                      "单项第一的论文拿满这一项的权重。不含循环的相关工作不参与排名。数据截至 {date}。"),
+        "cols_must": ["#", "论文", "分数", "引用", "Star", "下载（30 天）", "点赞"],
+        "hot_head": "最新趋势榜",
+        "hot_note": ("{start} 至 {date} 发布的论文，按发布以来日均点赞和 GitHub star 排名。点赞包括 Hugging Face "
+                     "论文点赞和模型点赞，以及 Hacker News 得分。这么新的论文几乎还没有引用，所以这里只看早期关注度。"),
+        "cols_hot": ["#", "论文", "发布", "日均", "点赞", "Star"],
         "trend_head": "论文数量趋势",
         "trend_title": "arXiv 上的 Loop 论文数（按季度）",
         "trend_sub": "标题或摘要含 looped transformer、recurrent depth 等关键词 · 最后一个季度未满",
         "trend_caption": ("每季度标题或摘要含 Loop 关键词的 arXiv 论文数（关键词和数据见 [data/trend.json](data/trend.json)），"
                           "最后一个季度未满。关键词匹配反映领域热度，不是人工筛选后的数量。"),
-        "cited_head": "高引用论文",
-        "cited_note": "本清单中引用数最高的 10 篇（Semantic Scholar 引用数）。",
-        "cols_cited": ["论文", "年份", "类别", "引用", "链接"],
+        "cited_head": "最多引用榜",
+        "cited_note": ("本清单中引用数最高的 10 篇（取 Semantic Scholar 和 OpenAlex 中较高的引用数，截至 {date}）。"
+                       "不含循环的相关工作不参与排名。"),
+        "cols_cited": ["#", "论文", "年份", "类别", "引用", "链接"],
         "ds_more": "{n} 篇",
         "ds_title": "设计空间",
         "ds_note": "所有写明了循环位置和训练遍数的论文，按格子分组。",
@@ -206,7 +239,7 @@ UI = {
                     "所链接的论文、模型和图片仍遵循各自的许可。"),
         "cite_head": "引用",
         "cite_note": "如果这份清单对你的研究有帮助，欢迎引用。GitHub 页面也可以根据 [CITATION.cff](CITATION.cff) 直接导出引用格式。",
-        "cites": "引用", "stars": "star", "hf": "HF 点赞", "downloads": "下载", "likes": "点赞",
+        "cites": "引用", "stars": "star", "hf": "HF 点赞", "hn": "HN 得分", "downloads": "下载", "likes": "点赞",
         "link": {"paper": "论文", "code": "代码", "weights": "权重", "project": "项目页", "blog": "博客"},
         "h_problem": "问题", "h_method": "做法", "h_layout": "循环结构", "h_results": "结果",
         "h_findings": "其他发现", "h_budget": "对照", "h_caveats": "保留意见",
@@ -287,6 +320,17 @@ def gh_repo(url):
     return None
 
 
+def hf_model_repo(url):
+    """owner/name for a huggingface.co model URL (not datasets, spaces or collections), else None."""
+    prefix = "https://huggingface.co/"
+    if not url.startswith(prefix):
+        return None
+    parts = url[len(prefix):].strip("/").split("/")
+    if len(parts) < 2 or parts[0] in ("datasets", "spaces", "collections", "papers"):
+        return None
+    return f"{parts[0]}/{parts[1]}"
+
+
 def fmt_count(new, old):
     s = f"{new:,}"
     if isinstance(old, int) and new != old:
@@ -307,6 +351,8 @@ def paper_metrics(ctx, p, lang):
         parts.append(f"{ui['stars']} {fmt_count(stars, ctx.old.get('repos', {}).get(repo, {}).get('stars'))}")
     if cur.get("hf_upvotes") is not None:
         parts.append(f"{ui['hf']} {fmt_count(cur['hf_upvotes'], old.get('hf_upvotes'))}")
+    if cur.get("hn_points"):
+        parts.append(f"{ui['hn']} {fmt_count(cur['hn_points'], old.get('hn_points'))}")
     return " · ".join(parts) or "-"
 
 
@@ -336,8 +382,9 @@ def row(cells):
     return "| " + " | ".join(cell(c) for c in cells) + " |"
 
 
-def table_head(cols):
-    return [row(cols), "|" + "---|" * len(cols)]
+def table_head(cols, right=()):
+    """Header row and separator; columns whose index is in `right` are right-aligned (numbers)."""
+    return [row(cols), "|" + "".join("---:|" if i in right else "---|" for i in range(len(cols)))]
 
 
 def n_blocks(layers):
@@ -460,11 +507,11 @@ def budget_items(ctx, keys, lang):
 
 def readme(ctx, lang):
     ui = UI[lang]
-    out = [HEADER] + header(ctx, lang)
+    out = [HEADER] + header(ctx, lang) + must_read(ctx, lang) + trending(ctx, lang) + most_cited(ctx, lang)
     if ctx.trend:
         out += [f"## {ui['trend_head']}", "", f'<img src="assets/{trend_name(lang)}" alt="{esc(ui["trend_title"])}" '
                 f'width="100%">', "", ui["trend_caption"], ""]
-    out += [f"## {ui['diff_head']}", ""] + [f"- {b}" for b in ui["diff"]] + [""] + most_cited(ctx, lang)
+    out += [f"## {ui['diff_head']}", ""] + [f"- {b}" for b in ui["diff"]] + [""]
     out += [f"## {ui['deep_head']}", "", ui["deep_note"], ""]
     for cat in ctx.vocab["category"]:
         group = sorted((p for p in ctx.deep if p["category"] == cat), key=lambda p: p["date"], reverse=True)
@@ -564,21 +611,107 @@ def design_space_md(ctx, lang):
     return "\n".join(out)
 
 
+def byline(p, lang):
+    """First author (et al.) and venue, as shown under a title in the paper tables."""
+    who = p["authors"][0] + (f" {UI[lang]['et_al']}" if len(p["authors"]) > 1 else "")
+    venue = p.get("venue", "arXiv")
+    return venue if p["authors"][0] in venue else who + ("" if venue == "arXiv" else f" · {venue}")
+
+
+def paper_cell(p, lang, sub=""):
+    """Linked title (after the short name if the title lacks it), the deep card link if any, and a small second line."""
+    title = f"[{p['title']}]({p['links']['paper']})"
+    if p.get("short") and p["short"].lower() not in p["title"].lower():
+        title = f"**{p['short']}**{UI[lang]['colon']}{title}"
+    if p["tier"] == "deep":
+        title += f" · **[{UI[lang]['deep_tag']}](docs/{lang}/{p['id']}.md)**"
+    return f"{title}<br><sub>{sub}</sub>" if sub else title
+
+
+def count(n):
+    return f"{n:,}" if n else "-"
+
+
+def per_day(rate):
+    return f"{rate:,.0f}" if rate >= 100 else f"{rate:.1f}"
+
+
+def signals(ctx, p):
+    """Counts behind the rankings. likes = HF paper upvotes + HF model likes + Hacker News points."""
+    pid, links = p["id"], p["links"]
+    cur = ctx.metrics.get("papers", {}).get(pid, {})
+    repo = gh_repo(links.get("code"))
+    stars = ctx.metrics.get("repos", {}).get(repo, {}).get("stars") if repo else None
+    hf = {r for m in ctx.models if m["paper"] == pid for r in m["hf"]}
+    hf |= {r for u in links.get("weights", []) for r in [hf_model_repo(u)] if r}
+    models = [ctx.metrics.get("models", {}).get(r) or {} for r in sorted(hf)]
+    likes = (cur.get("hf_upvotes") or 0) + sum(m.get("likes", 0) for m in models) + (cur.get("hn_points") or 0)
+    return {"citations": cur.get("citations") or 0, "stars": stars or 0,
+            "downloads": sum(m.get("downloads", 0) for m in models), "likes": likes}
+
+
+def impact_ranking(ctx):
+    """[(score, paper, signals)] with score > 0, best first.
+
+    score = 100 * sum over signals of weight * log(1 + count) / log(1 + largest count in the collection).
+    """
+    sig = [(p, signals(ctx, p)) for p in ctx.papers if p["category"] not in UNRANKED]
+    top = {k: max(math.log1p(s[k]) for _, s in sig) for k, _ in SCORE_WEIGHTS}
+    ranked = [(100 * sum(w * math.log1p(s[k]) / top[k] for k, w in SCORE_WEIGHTS if top[k]), p, s) for p, s in sig]
+    return sorted((r for r in ranked if r[0] > 0), key=lambda r: (-r[0], r[1]["id"]))
+
+
+def hot_ranking(ctx):
+    """[(per day, paper, signals)] for papers released in the TREND_DAYS days up to the metrics date, best first."""
+    ref = datetime.date.fromisoformat(ctx.metrics["date"])
+    hot = []
+    for p in ctx.papers:
+        age = (ref - datetime.date.fromisoformat(p["date"])).days
+        if 0 <= age < TREND_DAYS and p["category"] not in UNRANKED:
+            s = signals(ctx, p)
+            if s["likes"] + s["stars"]:
+                hot.append(((s["likes"] + s["stars"]) / max(age, 1), p, s))
+    return sorted(hot, key=lambda r: (-r[0], r[1]["id"]))
+
+
+def must_read(ctx, lang, n=10):
+    ui = UI[lang]
+    ranked = impact_ranking(ctx)[:n] if ctx.metrics.get("date") else []
+    if not ranked:
+        return []
+    out = [f"## {ui['must_head']}", ""] + table_head(ui["cols_must"], right={0, 2, 3, 4, 5, 6})
+    for i, (score, p, s) in enumerate(ranked, 1):
+        out.append(row([i, paper_cell(p, lang, f"{p['date'][:4]} · {byline(p, lang)}"), f"**{score:.0f}**",
+                        count(s["citations"]), count(s["stars"]), count(s["downloads"]), count(s["likes"])]))
+    return out + ["", f"<sub>{ui['must_note'].format(date=ctx.metrics['date'])}</sub>", ""]
+
+
+def trending(ctx, lang, n=10):
+    ui = UI[lang]
+    hot = hot_ranking(ctx)[:n] if ctx.metrics.get("date") else []
+    if not hot:
+        return []
+    ref = datetime.date.fromisoformat(ctx.metrics["date"])
+    start = (ref - datetime.timedelta(days=TREND_DAYS - 1)).isoformat()
+    out = [f"## {ui['hot_head']}", ""] + table_head(ui["cols_hot"], right={0, 3, 4, 5})
+    for i, (rate, p, s) in enumerate(hot, 1):
+        out.append(row([i, paper_cell(p, lang, byline(p, lang)), p["date"], f"**{per_day(rate)}**",
+                        count(s["likes"]), count(s["stars"])]))
+    return out + ["", f"<sub>{ui['hot_note'].format(start=start, date=ref.isoformat())}</sub>", ""]
+
+
 def most_cited(ctx, lang, n=10):
     ui = UI[lang]
     cites = ctx.metrics.get("papers", {})
-    ranked = sorted((p for p in ctx.papers if cites.get(p["id"], {}).get("citations")),
-                    key=lambda p: cites[p["id"]]["citations"], reverse=True)[:n]
+    pool = [p for p in ctx.papers if cites.get(p["id"], {}).get("citations") and p["category"] not in UNRANKED]
+    ranked = sorted(pool, key=lambda p: (-cites[p["id"]]["citations"], p["id"]))[:n]
     if not ranked:
         return []
-    out = [f"## {ui['cited_head']}", "", ui["cited_note"], ""] + table_head(ui["cols_cited"])
-    for p in ranked:
-        title = f"[{p['title']}]({p['links']['paper']})"
-        if p["tier"] == "deep":
-            title += f" · **[{ui['deep_tag']}](docs/{lang}/{p['id']}.md)**"
-        out.append(row([title, p["date"][:4], ctx.label("category", p["category"], lang),
+    out = [f"## {ui['cited_head']}", ""] + table_head(ui["cols_cited"], right={0, 4})
+    for i, p in enumerate(ranked, 1):
+        out.append(row([i, paper_cell(p, lang), p["date"][:4], ctx.label("category", p["category"], lang),
                         f"{cites[p['id']]['citations']:,}", links_md(p, lang)]))
-    return out + [""]
+    return out + ["", f"<sub>{ui['cited_note'].format(date=ctx.metrics['date'])}</sub>", ""]
 
 
 def trend_name(lang):
@@ -639,13 +772,7 @@ def all_papers(ctx, lang):
             continue
         out += [f"### {ctx.label('category', cat, lang)} ({len(group)})", ""] + table_head(ui["cols_all"])
         for p in group:
-            title = f"[{p['title']}]({p['links']['paper']})"
-            if p["tier"] == "deep":
-                title += f" · **[{ui['deep_tag']}](docs/{lang}/{p['id']}.md)**"
-            who = p["authors"][0] + (f" {ui['et_al']}" if len(p["authors"]) > 1 else "")
-            venue = p.get("venue", "arXiv")
-            sub = venue if p["authors"][0] in venue else who + ("" if venue == "arXiv" else f" · {venue}")
-            out.append(row([p["date"], f"{title}<br><sub>{sub}</sub>", p["tldr"][lang], links_md(p, lang),
+            out.append(row([p["date"], paper_cell(p, lang, byline(p, lang)), p["tldr"][lang], links_md(p, lang),
                             paper_metrics(ctx, p, lang)]))
         out.append("")
     return out
@@ -748,7 +875,21 @@ def llms(ctx, cards_en, questions_en):
            "comparison holds fixed, the paper's results with table or figure references, and caveats taken from the "
            "paper. All numbers are author-reported; nothing is converted or extrapolated. Comparison keys: " + legend +
            ".",
-           "", "## Deep cards", ""]
+           ""]
+    if ctx.metrics.get("date"):
+        out += [f"## Top 10 must-read ({ctx.metrics['date']})", "",
+                "Impact score out of 100: " + ", ".join(f"{k} {w:.0%}" for k, w in SCORE_WEIGHTS) +
+                "; each count log-scaled and divided by the collection maximum. Likes are Hugging Face paper upvotes "
+                "and model likes plus Hacker News points. Adjacent work without loops is not ranked.", ""]
+        out += [f"- [{p['title']}]({p['links']['paper']}): score {score:.0f}; citations {s['citations']}, "
+                f"stars {s['stars']}, downloads (30 days) {s['downloads']}, likes {s['likes']}."
+                for score, p, s in impact_ranking(ctx)[:10]]
+        out += ["", f"## Trending: released in the last {TREND_DAYS} days", "",
+                "Ranked by likes plus GitHub stars per day since release.", ""]
+        out += [f"- [{p['title']}]({p['links']['paper']}): {per_day(rate)} per day; released {p['date']}; "
+                f"likes {s['likes']}, stars {s['stars']}." for rate, p, s in hot_ranking(ctx)[:10]]
+        out.append("")
+    out += ["## Deep cards", ""]
     for p in sorted(ctx.deep, key=lambda p: p["date"], reverse=True):
         b = p["budget"]
         out.append(f"- [{p['short']}]({RAW}docs/en/{p['id']}.md): {p['tldr']['en']} Layout: {glyph_text(p)}. "

@@ -6,6 +6,7 @@ venue: arXiv
 authors: [Guan Wang, Jin Li, Yuhao Sun, Xing Chen, Changling Liu, Yue Wu, Meng Lu, Sen Song, Yasin Abbasi Yadkori]
 links:
   paper: https://arxiv.org/abs/2506.21734
+  code: https://github.com/sapientinc/HRM
 category: applications
 facets:
   placement: hierarchical

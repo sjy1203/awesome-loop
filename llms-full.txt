@@ -10,7 +10,7 @@ English · [简体中文](../zh/zai-glm-5-4.md) · [Back to the list](../../READ
 
 > Z.ai turns 28 layers of its pre-trained GLM-5 base into a two-pass loop through continued training at the 750B scale, with per-token gates, a shared-plus-sliding-window KV cache and reused sparse-attention indices.
 
-**Category**: Training and retrofitting · **Status**: draft (numbers not yet re-checked) · **Impact**: -
+**Category**: Training and retrofitting · **Status**: draft (numbers not yet re-checked) · **Impact**: HN points 784
 
 [paper](https://z.ai/blog/glm-5.4)
 
@@ -119,7 +119,7 @@ English · [简体中文](../zh/tml-inkling-2-mini.md) · [Back to the list](../
 
 > Open-weight MoE (26.4B total, 3.4B active) that runs the middle 12 of its 24 layers three times with shared weights, released with a variable-loop research twin used to measure how pass count affects capability and CoT monitorability.
 
-**Category**: Architecture: where to loop, what to share · **Status**: draft (numbers not yet re-checked) · **Impact**: -
+**Category**: Architecture: where to loop, what to share · **Status**: draft (numbers not yet re-checked) · **Impact**: HN points 1,470
 
 [paper](https://thinkingmachines.ai/news/inkling-2-mini/) · [project](https://thinkingmachines.ai/model-card/inkling-2-mini/) · [blog](https://huggingface.co/blog/inkling2mini) · [weights](https://huggingface.co/thinkingmachines/Inkling-2-Mini)
 
@@ -639,7 +639,7 @@ English · [简体中文](../zh/2604.12946.md) · [Back to the list](../../READM
 
 > Constrain the loop's injection to a stable negative-diagonal form, sample depth per sequence, and fit training and test-time scaling laws for looping at fixed parameter count.
 
-**Category**: Scaling and budget · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 89 · stars 194 · HF upvotes 11
+**Category**: Scaling and budget · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 89 · stars 195 · HF upvotes 11
 
 [paper](https://arxiv.org/abs/2604.12946) · [code](https://github.com/sandyresearch/parcae) · [project](https://sandyresearch.github.io/parcae/) · [weights](https://huggingface.co/SandyResearch/parcae-140m)
 
@@ -772,7 +772,7 @@ English · [简体中文](../zh/2604.01220.md) · [Back to the list](../../READM
 
 > Loop only YOCO's self-decoder, whose layers use sliding-window attention, so extra depth costs compute while the cross-decoder's global KV is still computed once.
 
-**Category**: Architecture: where to loop, what to share · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 3 · HF upvotes 18
+**Category**: Architecture: where to loop, what to share · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 4 · HF upvotes 18
 
 [paper](https://arxiv.org/abs/2604.01220)
 
@@ -1049,7 +1049,7 @@ English · [简体中文](../zh/2510.25741.md) · [Back to the list](../../READM
 
 > Pre-train a weight-tied layer stack that repeats 4 times, with a learned exit gate, on 7.7T tokens; the authors report that the 1.4B and 2.6B models match dense models of up to 12B parameters.
 
-**Category**: Depth control · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 245 · HF upvotes 146
+**Category**: Depth control · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 267 · HF upvotes 146 · HN points 84
 
 [paper](https://arxiv.org/abs/2510.25741) · [project](https://ouro-llm.github.io) · [weights](https://huggingface.co/ByteDance/Ouro-1.4B)
 
@@ -1211,7 +1211,7 @@ English · [简体中文](../zh/2510.24824.md) · [Back to the list](../../READM
 
 > Run loop l of token i in the same forward pass as loop l+1 of token i-1, let later loops reuse the first loop's KV plus a gated SWA, and a looped model decodes at close to unlooped latency and KV.
 
-**Category**: Systems and inference · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 34 · HF upvotes 18
+**Category**: Systems and inference · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 36 · HF upvotes 18 · HN points 3
 
 [paper](https://arxiv.org/abs/2510.24824)
 
@@ -1347,7 +1347,7 @@ English · [简体中文](../zh/2507.10524.md) · [Back to the list](../../READM
 
 > Routers give each token its own number of passes through a shared middle block, and each pass caches KV only for its active tokens; at equal training FLOPs MoR beats fixed-depth recursive baselines and often vanilla, with fewer parameters.
 
-**Category**: Depth control · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 204 · stars 652 · HF upvotes 74
+**Category**: Depth control · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 204 · stars 652 · HF upvotes 74 · HN points 5
 
 [paper](https://arxiv.org/abs/2507.10524) · [code](https://github.com/raymin0223/mixture_of_recursions) · [weights](https://drive.google.com/drive/folders/1pYKJOu2aBGC-jgoWbfP6T_vqEYtUVxa4)
 
@@ -1492,7 +1492,7 @@ English · [简体中文](../zh/2502.05171.md) · [Back to the list](../../READM
 
 > Pretrain a 3.5B prelude-core-coda transformer with a randomly sampled number of core iterations, so test-time compute scales by iterating the core more.
 
-**Category**: Architecture: where to loop, what to share · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 578 · stars 998 · HF upvotes 162
+**Category**: Architecture: where to loop, what to share · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 590 · stars 998 · HF upvotes 162 · HN points 150
 
 [paper](https://arxiv.org/abs/2502.05171) · [code](https://github.com/seal-rg/recurrent-pretraining) · [weights](https://huggingface.co/tomg-group-umd/huginn-0125)
 

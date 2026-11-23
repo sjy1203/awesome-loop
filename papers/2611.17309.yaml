@@ -6,6 +6,7 @@ venue: arXiv
 authors: [Benjamin Hoover, Hugh Blayney, James C. R. Whittington]
 links:
   paper: https://arxiv.org/abs/2611.17309
+  code: https://github.com/Prefrontal-AI/CRAM
 category: training
 facets:
   placement: implicit
