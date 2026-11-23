@@ -1,0 +1,13 @@
+id: "2610.34563"
+tier: radar
+title: "Recursive CLIP: Vision-Language Distillation with Looped Transformer Blocks"
+date: "2026-10-25"
+venue: arXiv
+authors: [Szymon Mazurek, Alberto Presta, Michał Byra]
+links:
+  paper: https://arxiv.org/abs/2610.34563
+category: applications
+tldr:
+  en: Trains and distills CLIP models with recursive encoders that apply N transformer blocks M times at fixed ViT-B depth; CLIP tolerates substantial recurrent block reuse, though the effect depends on the encoder and downstream task.
+  zh: 训练并蒸馏编码器为递归结构的 CLIP 模型，用 N 个 transformer 块重复 M 次并保持 ViT-B 的深度；CLIP 能承受大量递归块复用，但效果取决于编码器和下游任务。
+added: "2026-11-23"

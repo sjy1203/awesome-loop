@@ -1,0 +1,13 @@
+id: "2611.05234"
+tier: radar
+title: "ARLoop: Fully-Open Pre-trained Looped Transformers with Attention Residuals"
+date: "2026-11-03"
+venue: arXiv
+authors: [Yuekun Yao, Yupei Du, Dawei Zhu, Huan Sun]
+links:
+  paper: https://arxiv.org/abs/2611.05234
+category: architecture/state
+tldr:
+  en: ARLoop gives each layer of a looped transformer attention over earlier outputs across depth; sliding-window depth attention matches full history, and a 1.2B model trained on 0.5T tokens beats Huginn-3.5B on all evaluated tasks.
+  zh: ARLoop 让循环 Transformer 的每一层对深度方向上更早的输出做注意力；滑窗深度注意力与完整历史效果相当，在 0.5T token 上训练的 1.2B 模型在所有评测任务上都超过 Huginn-3.5B。
+added: "2026-11-23"

@@ -1,0 +1,13 @@
+id: "2611.26509"
+tier: radar
+title: "GLiDE: A Fast, Calibrated Decision Model Distilled from Reasoning Teachers"
+date: "2026-11-19"
+venue: arXiv
+authors: [Sahibzada Allahyar, Julia White, Dhruv Atreja, George Hurn-Maloney, Urchade Zaratiana]
+links:
+  paper: https://arxiv.org/abs/2611.26509
+category: training
+tldr:
+  en: Converts Qwen hybrid LMs into single-pass decision models via bidirectional full attention and multi-teacher distillation; checkpoint averaging plus parameter-free recurrent depth (reapplying middle layers) raises the 27B hidden-set score from 71.52 to 73.37.
+  zh: 把 Qwen 混合架构语言模型改造成单次前向的决策模型，做法是让全注意力层变为双向并做多教师蒸馏；再加上 checkpoint 平均和无参数的循环深度（重复执行中间层），27B 模型的隐藏集得分从 71.52 提高到 73.37。
+added: "2026-11-23"

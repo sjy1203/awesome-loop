@@ -1,0 +1,13 @@
+id: "2611.24301"
+tier: radar
+title: "LoopCache: Accelerating Long-Context Self-Speculative Decoding for Looped Transformers"
+date: "2026-11-18"
+venue: arXiv
+authors: [Zizhuo Fu, Haochen Huang, Shengxuan Qiu, Linye Wei, Ziyu Tang, Runsheng Wang, Meng Li]
+links:
+  paper: https://arxiv.org/abs/2611.24301
+category: systems
+tldr:
+  en: Proposes LoopCache, self-speculative decoding for long-context looped Transformers that updates drafts across intermediate loops by confidence and rotates loop-specific KV caches; reports average 10.25x and 14.56x speedup over WFD and LoopSpec.
+  zh: 提出 LoopCache，一种面向长上下文循环 Transformer 的自推测解码方法，按置信度在各中间循环更新草稿，并轮流使用各循环的 KV cache；相对 WFD 和 LoopSpec 平均加速 10.25x 和 14.56x。
+added: "2026-11-23"

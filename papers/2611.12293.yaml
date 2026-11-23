@@ -1,0 +1,14 @@
+id: "2611.12293"
+tier: radar
+title: "Depth as a Candidate Source: Portfolio Allocation for Recurrent Test-Time Scaling in Large Language Models"
+date: "2026-11-09"
+venue: arXiv
+authors: [Chaoyuan Hao, Wentao Yue, Yanyan Wu, Boyuan Gao, Tianyou Lai, Maolin Wang, Yongxin Ni, Hanwen Du, Youhua Li]
+links:
+  paper: https://arxiv.org/abs/2611.12293
+  code: https://anonymous.4open.science/r/LLM-latent-B7BC/
+category: depth
+tldr:
+  en: Shows deeper recurrence in a frozen Huginn can lose correct answers found at shallower depths, and proposes Depth Portfolio Allocation, which spreads a test-time budget across depths and expands oracle coverage at matched candidate counts.
+  zh: 发现在冻结的 Huginn 上加深循环可能丢掉较浅深度已找到的正确解，并提出 Depth Portfolio Allocation，把测试时预算分配到多个深度上，在候选数相同时扩大 oracle 覆盖率。
+added: "2026-11-23"

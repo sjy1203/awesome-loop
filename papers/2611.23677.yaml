@@ -1,0 +1,13 @@
+id: "2611.23677"
+tier: radar
+title: "Simpler Tiny Recursive Models"
+date: "2026-11-18"
+venue: arXiv
+authors: [Torben Glass, Zhengxi Zhang, Paul Swoboda]
+links:
+  paper: https://arxiv.org/abs/2611.23677
+category: architecture/state
+tldr:
+  en: STRM simplifies TRM to a single uniformly updated state, using jittered-rate exponential moving updates and slow-channel readout; under TRM's data, parameters and compute it gains 3.8 points on Sudoku-Extreme and matches TRM on Maze-Hard.
+  zh: STRM 把 TRM 简化为单一状态和统一更新，状态采用训练时速率抖动的指数滑动更新，只从慢速更新的通道读出解；在与 TRM 相同的数据、参数和算力下，Sudoku-Extreme 提高 3.8 分，Maze-Hard 与 TRM 持平。
+added: "2026-11-23"

@@ -1,0 +1,13 @@
+id: "2611.03998"
+tier: radar
+title: "Dory1.0-4B: A Looped Normalized-GPT"
+date: "2026-11-02"
+venue: arXiv
+authors: [Maxim Fishman, Simeng Sun, Shantanu Acharya, Faisal Ladhak, Brian Chmiel, Santiago Akle Serano, Ron Banner, Boris Ginsburg, Krishna C. Puvvada]
+links:
+  paper: https://arxiv.org/abs/2611.03998
+category: depth
+tldr:
+  en: Dory1.0-4B is a looped nGPT language model with elastic depth, pre-trained on 6 trillion tokens; more loops raise accuracy, and caching only last-loop KV keeps most gains at a non-looped KV footprint.
+  zh: Dory1.0-4B 是基于 nGPT 的弹性深度循环语言模型，预训练 6 万亿 token；循环次数越多准确率越高，只缓存最后一遍的 KV 时，KV 占用与不循环模型相同，并保留大部分收益。
+added: "2026-11-23"

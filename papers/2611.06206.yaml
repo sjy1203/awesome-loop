@@ -1,0 +1,13 @@
+id: "2611.06206"
+tier: radar
+title: "Loop Before You Leap: What Recurrent Depth Can and Cannot Buy in Data-Limited Pretraining"
+date: "2026-11-04"
+venue: BabyLM Challenge 2026
+authors: [Daichi Hotta, Yohei Kobashi, Takeshi Kojima, Yusuke Iwasawa, Yutaka Matsuo]
+links:
+  paper: https://arxiv.org/abs/2611.06206
+category: scaling
+tldr:
+  en: Compares standard and looped Transformers under a 100M-word budget; text-only, a 12-layer stack repeated four times beats a 48-layer Transformer by 5.4 BLiMP points, but recurrence does not clearly mitigate the multimodal-training drop.
+  zh: 在 100M 词的预算下比较标准与循环 Transformer；纯文本时，12 层堆叠重复四次比 48 层 Transformer 高 5.4 个 BLiMP 点，但循环没有明显缓解多模态训练带来的下降。
+added: "2026-11-23"

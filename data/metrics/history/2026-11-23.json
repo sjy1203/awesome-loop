@@ -102,12 +102,12 @@
    "likes": 0
   },
   "thinkingmachines/Inkling-2-Mini": {
-   "downloads": 23543,
-   "likes": 5198
+   "downloads": 41888,
+   "likes": 5274
   },
   "thinkingmachines/TML-d24-varloop-research": {
-   "downloads": 1200,
-   "likes": 55
+   "downloads": 1755,
+   "likes": 57
   },
   "tomg-group-umd/huginn-0125": {
    "downloads": 22199,
@@ -247,9 +247,297 @@
   "2609.01343": {
    "citations": 31,
    "citations_source": "semanticscholar",
-   "hf_upvotes": 92,
+   "hf_upvotes": 91,
    "influential": 2,
    "openalex_citations": 31
+  },
+  "2610.33517": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "institutions": [
+    "Chinese University of Hong Kong, Shenzhen",
+    "Shanghai Jiao Tong University"
+   ],
+   "openalex_citations": 0
+  },
+  "2610.34157": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "institutions": [
+    "Sun Yat-sen University",
+    "Tencent (China)"
+   ],
+   "openalex_citations": 0
+  },
+  "2610.34427": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "institutions": [
+    "University of Tübingen",
+    "Xi'an Jiaotong University",
+    "University of Illinois Urbana-Champaign"
+   ],
+   "openalex_citations": 1
+  },
+  "2610.34436": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "openalex_citations": 0
+  },
+  "2610.34563": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "institutions": [
+    "Samsung (Poland)",
+    "Institute of Fundamental Technological Research",
+    "Polish Academy of Sciences"
+   ],
+   "openalex_citations": 0
+  },
+  "2610.34639": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "hf_upvotes": 1,
+   "influential": 0,
+   "institutions": [
+    "University of British Columbia"
+   ],
+   "openalex_citations": 0
+  },
+  "2610.35544": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "institutions": [
+    "Shanghai Jiao Tong University",
+    "Shanghai Innovation Institute"
+   ],
+   "openalex_citations": 0
+  },
+  "2610.35556": {
+   "citations": 2,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "institutions": [
+    "Shanghai Jiao Tong University",
+    "Shanghai Innovation Institute"
+   ],
+   "openalex_citations": 2
+  },
+  "2610.37903": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "hf_upvotes": 5,
+   "influential": 0,
+   "openalex_citations": 0
+  },
+  "2610.38382": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "institutions": [
+    "Nankai University",
+    "Tsinghua Shenzhen International Graduate School",
+    "Tsinghua University"
+   ],
+   "openalex_citations": 0
+  },
+  "2610.38422": {
+   "citations": 1,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "institutions": [
+    "Chinese University of Hong Kong, Shenzhen"
+   ],
+   "openalex_citations": 1
+  },
+  "2610.38822": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "openalex_citations": 1
+  },
+  "2610.40325": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "institutions": [
+    "Massachusetts Institute of Technology"
+   ],
+   "openalex_citations": 0
+  },
+  "2610.41720": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "institutions": [
+    "Shanghai Jiao Tong University",
+    "University of Science and Technology of China"
+   ],
+   "openalex_citations": 0
+  },
+  "2610.41819": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "institutions": [
+    "Technische Universität Darmstadt",
+    "The University of Texas at Dallas"
+   ],
+   "openalex_citations": 0
+  },
+  "2610.41825": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "institutions": [
+    "University of Tübingen",
+    "University of Illinois Urbana-Champaign",
+    "Xi'an Jiaotong University",
+    "Zhejiang Sci-Tech University",
+    "Southwest Petroleum University",
+    "Fudan University",
+    "Nankai University"
+   ],
+   "openalex_citations": 0
+  },
+  "2610.42030": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "institutions": [
+    "Microsoft (United States)"
+   ],
+   "openalex_citations": 0
+  },
+  "2611.01740": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "institutions": [
+    "The University of Tokyo",
+    "Harvard University"
+   ],
+   "openalex_citations": 0
+  },
+  "2611.02333": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "institutions": [
+    "Aston University"
+   ],
+   "openalex_citations": 0
+  },
+  "2611.02857": {
+   "citations": 1,
+   "citations_source": "semanticscholar",
+   "hf_upvotes": 12,
+   "influential": 0,
+   "openalex_citations": 1
+  },
+  "2611.03526": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "hf_upvotes": 12,
+   "influential": 0,
+   "institutions": [
+    "École Polytechnique Fédérale de Lausanne",
+    "University of Maryland, College Park",
+    "New York University",
+    "Columbia University"
+   ],
+   "openalex_citations": 0
+  },
+  "2611.03998": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "hf_upvotes": 15,
+   "influential": 0,
+   "openalex_citations": 0
+  },
+  "2611.04137": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "hf_upvotes": 0,
+   "influential": 0,
+   "institutions": [
+    "Harvard University",
+    "University of California San Diego",
+    "University of Chicago"
+   ],
+   "openalex_citations": 0
+  },
+  "2611.04663": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "institutions": [
+    "The University of Tokyo"
+   ],
+   "openalex_citations": 0
+  },
+  "2611.05150": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "openalex_citations": 0
+  },
+  "2611.05234": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "hf_upvotes": 4,
+   "influential": 0,
+   "institutions": [
+    "The Ohio State University",
+    "Saarland University"
+   ],
+   "openalex_citations": 0
+  },
+  "2611.05304": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "hf_upvotes": 10,
+   "influential": 0,
+   "institutions": [
+    "Seoul National University"
+   ],
+   "openalex_citations": 0
+  },
+  "2611.05724": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "institutions": [
+    "Google (United States)",
+    "Rice University"
+   ],
+   "openalex_citations": 0
+  },
+  "2611.06206": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "institutions": [
+    "Aoyama Gakuin University",
+    "The University of Tokyo"
+   ],
+   "openalex_citations": 0
+  },
+  "2611.06835": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "institutions": [
+    "Beijing University of Posts and Telecommunications",
+    "Peking University"
+   ],
+   "openalex_citations": 0
   },
   "2611.07211": {
    "citations": 0,
@@ -260,17 +548,344 @@
    ],
    "openalex_citations": 0
   },
+  "2611.07226": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "hf_upvotes": 28,
+   "influential": 0,
+   "institutions": [
+    "University of Wisconsin–Madison",
+    "University of California, Santa Barbara",
+    "California Institute of Technology"
+   ],
+   "openalex_citations": 0
+  },
+  "2611.07425": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "institutions": [
+    "Kuaishou (China)"
+   ],
+   "openalex_citations": 0
+  },
+  "2611.07736": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "institutions": [
+    "Fraunhofer Institute for Intelligent Analysis and Information Systems",
+    "Lamarr Institute for Machine Learning and Artificial Intelligence",
+    "École Polytechnique Fédérale de Lausanne",
+    "University of Bonn"
+   ],
+   "openalex_citations": 0
+  },
+  "2611.08236": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "institutions": [
+    "Universitat Autònoma de Barcelona",
+    "Computer Vision Center",
+    "Centre de Recerca Matemàtica"
+   ],
+   "openalex_citations": 0
+  },
+  "2611.08741": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "openalex_citations": 0
+  },
+  "2611.08977": {
+   "citations": 1,
+   "citations_source": "semanticscholar",
+   "hf_upvotes": 10,
+   "influential": 1,
+   "institutions": [
+    "Duke University",
+    "University of Illinois Urbana-Champaign",
+    "Harvard University"
+   ],
+   "openalex_citations": 1
+  },
+  "2611.11275": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "institutions": [
+    "Peking University",
+    "Nanjing University"
+   ],
+   "openalex_citations": 0
+  },
+  "2611.12293": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "openalex_citations": 0
+  },
   "2611.13378": {
    "citations": 0,
    "citations_source": "semanticscholar",
    "influential": 0,
    "openalex_citations": 0
-  }
+  },
+  "2611.14947": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "institutions": [
+    "Cedars-Sinai Medical Center"
+   ],
+   "openalex_citations": 0
+  },
+  "2611.16265": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "institutions": [
+    "Tsinghua University"
+   ],
+   "openalex_citations": 0
+  },
+  "2611.17309": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "hf_upvotes": 0,
+   "influential": 0,
+   "openalex_citations": 0
+  },
+  "2611.18113": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "hf_upvotes": 0,
+   "influential": 0,
+   "institutions": [
+    "Peking University",
+    "Georgia Institute of Technology",
+    "Tsinghua University"
+   ],
+   "openalex_citations": 0
+  },
+  "2611.18696": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "institutions": [
+    "Henan University"
+   ],
+   "openalex_citations": 0
+  },
+  "2611.19131": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "institutions": [
+    "University of Ottawa"
+   ],
+   "openalex_citations": 0
+  },
+  "2611.19446": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "institutions": [
+    "Johannes Kepler University of Linz"
+   ],
+   "openalex_citations": 0
+  },
+  "2611.19649": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "hf_upvotes": 5,
+   "influential": 0,
+   "openalex_citations": 0
+  },
+  "2611.19827": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "institutions": [
+    "University of California, Merced"
+   ],
+   "openalex_citations": 0
+  },
+  "2611.19896": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "institutions": [
+    "Zhejiang University"
+   ],
+   "openalex_citations": 0
+  },
+  "2611.20404": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "hf_upvotes": 7,
+   "influential": 0,
+   "institutions": [
+    "Carnegie Mellon University",
+    "University of Southern California"
+   ],
+   "openalex_citations": 0
+  },
+  "2611.20703": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "institutions": [
+    "Southeast University"
+   ],
+   "openalex_citations": 0
+  },
+  "2611.21302": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "institutions": [
+    "ETH Zurich",
+    "Delft University of Technology"
+   ],
+   "openalex_citations": 0
+  },
+  "2611.21921": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "openalex_citations": 0
+  },
+  "2611.22426": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "institutions": [
+    "Tsinghua University",
+    "University of California San Diego",
+    "Nanjing University"
+   ],
+   "openalex_citations": 0
+  },
+  "2611.22728": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "institutions": [
+    "Xiamen University"
+   ],
+   "openalex_citations": 0
+  },
+  "2611.22737": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "openalex_citations": 0
+  },
+  "2611.23677": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "institutions": [
+    "Heinrich Heine University Düsseldorf"
+   ],
+   "openalex_citations": 0
+  },
+  "2611.24301": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "hf_upvotes": 1,
+   "influential": 0,
+   "institutions": [
+    "Peking University"
+   ],
+   "openalex_citations": 0
+  },
+  "2611.24576": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "hf_upvotes": 9,
+   "influential": 0,
+   "institutions": [
+    "Nanyang Technological University",
+    "Singapore University of Technology and Design",
+    "Chinese University of Hong Kong"
+   ],
+   "openalex_citations": 0
+  },
+  "2611.25369": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "openalex_citations": 0
+  },
+  "2611.25595": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "hf_upvotes": 0,
+   "influential": 0,
+   "openalex_citations": 0
+  },
+  "2611.26275": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "openalex_citations": 0
+  },
+  "2611.26509": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "hf_upvotes": 1,
+   "influential": 0,
+   "openalex_citations": 0
+  },
+  "2611.27962": {}
  },
  "repos": {
+  "Muuzzziiy/cql-handoff": {
+   "pushed_at": "2026-10-28T22:50:38Z",
+   "stars": 1
+  },
+  "Xalp/LateComer": {
+   "pushed_at": "2026-11-19T09:38:49Z",
+   "stars": 3
+  },
+  "arahmani1/library-of-layers": {
+   "pushed_at": "2026-11-03T12:44:33Z",
+   "stars": 23
+  },
+  "creator-xi/SelfMorph": {
+   "pushed_at": "2026-11-03T09:07:32Z",
+   "stars": 2
+  },
+  "hym97/LoopMR": {
+   "pushed_at": "2026-11-13T02:04:36Z",
+   "stars": 0
+  },
+  "ifm-ai/LoRM": {
+   "pushed_at": "2026-11-23T04:07:02Z",
+   "stars": 25
+  },
+  "lernex/dromos": {
+   "pushed_at": "2026-11-22T02:07:06Z",
+   "stars": 0
+  },
+  "lonewolf15116/lookahead-halting": {
+   "pushed_at": "2026-10-29T14:11:32Z",
+   "stars": 0
+  },
   "mcleish7/retrofitting-recurrence": {
    "pushed_at": "2025-11-11T13:06:45Z",
    "stars": 72
+  },
+  "mscheong01/LoopVQ": {
+   "pushed_at": "2026-11-11T05:42:13Z",
+   "stars": 3
+  },
+  "myboker/concertina": {
+   "pushed_at": "2026-11-16T07:52:24Z",
+   "stars": 6
   },
   "raymin0223/mixture_of_recursions": {
    "pushed_at": "2026-09-19T16:40:15Z",
@@ -283,6 +898,18 @@
   "seal-rg/recurrent-pretraining": {
    "pushed_at": "2025-12-29T10:31:27Z",
    "stars": 998
+  },
+  "ubc-vision/solv3r": {
+   "pushed_at": "2026-11-11T04:20:38Z",
+   "stars": 337
+  },
+  "wwillchen/ebr": {
+   "pushed_at": "2026-11-19T01:43:06Z",
+   "stars": 94
+  },
+  "yancyou/Loopback": {
+   "pushed_at": "2026-11-13T02:46:05Z",
+   "stars": 17
   }
  }
 }

@@ -1,0 +1,13 @@
+id: "2611.26275"
+tier: radar
+title: "dLoop: Looped Diffusion Language Models via Recurrent Latent Refinement"
+date: "2026-11-19"
+venue: arXiv
+authors: [Handa Li, Pengxiang Li, Mingyu Cao, Xilu Wang, Li Shen, Da Li, Lu Yin]
+links:
+  paper: https://arxiv.org/abs/2611.26275
+category: systems
+tldr:
+  en: Restructures a pretrained diffusion language model into a Prelude-Loop-Coda design that reapplies a shared middle block before tokens are committed, reaching the highest or tied-highest accuracy on GSM8K, MATH, MBPP and HumanEval.
+  zh: 将预训练扩散语言模型改造为 Prelude-Loop-Coda 结构，在提交 token 之前重复执行共享的中间块，在 GSM8K、MATH、MBPP 和 HumanEval 上均取得最高或并列最高的准确率。
+added: "2026-11-23"

@@ -1,0 +1,13 @@
+id: "2610.41720"
+tier: radar
+title: "UpLoop: Training Looped Transformers via Upcycling at No Extra Pretraining Compute"
+date: "2026-10-30"
+venue: arXiv
+authors: [Cheng Liang, Tengfei Zhang, Ya Zhang, Yanfeng Wang, Zhouhan Lin]
+links:
+  paper: https://arxiv.org/abs/2610.41720
+category: training
+tldr:
+  en: Grows a shallow Transformer by copying layers and spends the saved compute on looping a shared middle block, at matched parameters, tokens and FLOPs; the 1.3B model's 22-task average rises from 22.99 to 27.52.
+  zh: 通过复制已学到的层把浅层 Transformer 逐步加深，并把早期省下的算力用于反复执行共享的中间块，参数量、训练 token 数和训练 FLOPs 均与稠密基线一致；1.3B 模型在 22 个下游任务上的平均分从 22.99 提升到 27.52。
+added: "2026-11-23"

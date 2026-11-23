@@ -1,0 +1,14 @@
+id: "2611.02333"
+tier: radar
+title: "When Does Adaptive Halting Win? Selection Rules Matter in Looped Language Models"
+date: "2026-11-02"
+venue: arXiv
+authors: [Mahesh Reddy Pagadala]
+links:
+  paper: https://arxiv.org/abs/2611.02333
+  code: https://github.com/lonewolf15116/lookahead-halting
+category: depth
+tldr:
+  en: On a frozen Ouro-1.4B, pre-registered tests show the winner between a trained stability probe and Ouro's exit gate flips with the operating-point selection rule; the probe shows no demonstrated advantage over an untrained KL baseline.
+  zh: 在冻结的 Ouro-1.4B 上，预注册实验显示，训练的稳定性探针与 Ouro 原生退出门控孰优孰劣会随工作点选择规则而反转；该探针相对未训练的 KL 基线没有显示出优势。
+added: "2026-11-23"

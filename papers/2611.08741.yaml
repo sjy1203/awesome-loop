@@ -1,0 +1,13 @@
+id: "2611.08741"
+tier: radar
+title: "AlterNet: Adaptive-Depth Mixture-of-Experts with Learned Halting for Elastic Inference"
+date: "2026-11-05"
+venue: arXiv
+authors: [Alexander Kastius]
+links:
+  paper: https://arxiv.org/abs/2611.08741
+category: depth
+tldr:
+  en: AlterNet loops over a shared pool of shallow MoE experts, picked by a depth-aware router, with per-expert halt heads for early stopping, so depth adapts and can be cut without retraining; results are preliminary.
+  zh: AlterNet 在共享的浅层 MoE 专家池上循环计算，由感知深度的路由器挑选专家，用每个专家的停止头提前结束，使深度可自适应，且无需重新训练即可降低；结果仍是初步的。
+added: "2026-11-23"

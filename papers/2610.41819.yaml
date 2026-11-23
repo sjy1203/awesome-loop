@@ -1,0 +1,13 @@
+id: "2610.41819"
+tier: radar
+title: "ElTab: Elastically Looped Tabular Transformers"
+date: "2026-10-30"
+venue: arXiv
+authors: [Mieszko Komisarczyk, Saurabh Mathur, Maurice Kraus, Sriraam Natarajan, Kristian Kersting]
+links:
+  paper: https://arxiv.org/abs/2610.41819
+category: applications
+tldr:
+  en: ElTab trains one looped tabular transformer with supervision at randomly sampled early exits; on 30 OpenML datasets it matches six depth-specific looped models and a 12-layer TabPFN-style baseline with 25% fewer inference FLOPs.
+  zh: ElTab 在随机采样的 early exit 处加监督，训练出单个循环表格 Transformer；在 30 个 OpenML 数据集上，它与六个按深度单独训练的循环模型相当，并以少 25% 的推理 FLOPs 追平 12 层 TabPFN 式基线。
+added: "2026-11-23"

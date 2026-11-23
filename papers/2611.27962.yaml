@@ -1,0 +1,13 @@
+id: "2611.27962"
+tier: radar
+title: "Model Carving: Training Transformers That Optimize Their Own Topology"
+date: "2026-11-20"
+venue: arXiv
+authors: [Kaden Zheng, Pratyusha Sharma]
+links:
+  paper: https://arxiv.org/abs/2611.27962
+category: architecture/placement
+tldr:
+  en: Puts learnable scalar gates on every sublayer of standard and looped Transformers so training removes the unneeded ones; carved models reach lower validation loss than dense models trained with up to 1.7 times more compute.
+  zh: 在标准与循环 Transformer 的每个子层上加可学习的标量门控，让训练自行删去不需要的子层；裁出的模型验证损失低于用多至 1.7 倍算力训练的稠密模型。
+added: "2026-11-23"

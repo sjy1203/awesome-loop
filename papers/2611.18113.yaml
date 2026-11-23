@@ -1,0 +1,14 @@
+id: "2611.18113"
+tier: radar
+title: "Folding Language Models into Themselves"
+date: "2026-11-13"
+venue: arXiv
+authors: [Ziyang Zhang, Yubin Jing, Yuyao Li, Haofan Wang, Yichen Gong]
+links:
+  paper: https://arxiv.org/abs/2611.18113
+  code: https://github.com/myboker/concertina
+category: training
+tldr:
+  en: Concertina folds every N adjacent teacher layers into one shared block run N times with low-rank corrections; distilled from Qwen3-4B on 22B tokens, a 2.27B model retains 84% of the teacher averaged over eight benchmarks.
+  zh: Concertina 把教师模型每 N 个相邻层折叠成一个执行 N 次的共享块，并加低秩修正；从 Qwen3-4B 用 22B token 蒸馏出的 2.27B 模型在八个基准上平均保留教师 84% 的能力。
+added: "2026-11-23"

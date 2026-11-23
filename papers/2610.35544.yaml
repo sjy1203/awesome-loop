@@ -1,0 +1,13 @@
+id: "2610.35544"
+tier: radar
+title: "StateLoop: Persistent State for Looped Transformers"
+date: "2026-10-26"
+venue: arXiv
+authors: [Feichen Song, Boyi Zeng, He Li, Shixiang Song, Yiqin Hao, Zitong Wang, Yizhou Yang, Yifan Liu, Ziwei He, Zhouhan Lin]
+links:
+  paper: https://arxiv.org/abs/2610.35544
+category: architecture/state
+tldr:
+  en: StateLoop gives each token a gated persistent state carried across looped-Transformer iterations and projected back into the backbone output; it lowers Pile perplexity versus vanilla looping, with a gap that grows with trained loop depth.
+  zh: StateLoop 为每个 token 维护一个门控的持久状态，跨循环迭代保留信息并投影回加到 backbone 输出上；相比普通循环模型 Pile 困惑度更低，且优势随训练时的循环深度增大。
+added: "2026-11-23"

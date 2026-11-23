@@ -1,0 +1,13 @@
+id: "2610.42030"
+tier: radar
+title: "There Is No Free Loop: When Does Looping a Trained Model Pay for Its Inference Compute?"
+date: "2026-10-30"
+venue: arXiv
+authors: [Rhea Sanjay Sukthanker, Pashmina Cameron]
+links:
+  paper: https://arxiv.org/abs/2610.42030
+category: scaling
+tldr:
+  en: Adds loops to pretrained Qwen3 and Qwen3.5 models (0.8B to 9B) and compares them with equal-parameter and equal-FLOPs unlooped baselines; only the looped 0.8B model beats both, so post-pretraining loops pay only for small models.
+  zh: 在 0.8B 到 9B 的预训练 Qwen3 和 Qwen3.5 模型中加入循环，并与等参数、等 FLOPs 的不循环基线比较；只有循环后的 0.8B 模型同时胜过两者，说明预训练后再加循环只对小模型划算。
+added: "2026-11-23"

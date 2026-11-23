@@ -1,0 +1,14 @@
+id: "2611.05304"
+tier: radar
+title: "LoopVQ: Sub 1-bit KV Cache Quantization for Looped Transformers"
+date: "2026-11-03"
+venue: arXiv
+authors: [Minsoo Cheong, Sungjoo Yoo]
+links:
+  paper: https://arxiv.org/abs/2611.05304
+  code: https://github.com/mscheong01/LoopVQ
+category: systems
+tldr:
+  en: LoopVQ vector-quantizes the KV cache of looped transformers, coding channels of several loop steps jointly; with Ouro and Huginn at 0.5 bits per element, it outperforms KV vector quantization methods built for standard LLMs.
+  zh: LoopVQ 对循环 Transformer 的 KV cache 做向量量化，把多个循环步的通道联合编码；在 Ouro 和 Huginn 上、每元素 0.5 bit 时，它优于为标准 LLM 设计的 KV 向量量化方法。
+added: "2026-11-23"

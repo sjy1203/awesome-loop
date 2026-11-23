@@ -1,0 +1,14 @@
+id: "2611.24576"
+tier: radar
+title: "Late Entry in Looped Language Models"
+date: "2026-11-18"
+venue: arXiv
+authors: [Ziqi Jin, Jiaxi Li, Weiwen Xu, Aixin Sun]
+links:
+  paper: https://arxiv.org/abs/2611.24576
+  code: https://github.com/Xalp/LateComer
+category: systems
+tldr:
+  en: Late entry lets new tokens in looped language models skip early passes and run only the final passes over a deep context cache, outperforming matched early exit; Wake verification reaches 5.2x greedy-exact speedup on Ouro-2.6B.
+  zh: Late entry 让循环语言模型中的新 token 跳过前几遍、只在深层上下文缓存上运行最后几遍，优于匹配的 early exit；Wake 验证在 Ouro-2.6B 上达到 5.2x 的 greedy-exact 加速。
+added: "2026-11-23"

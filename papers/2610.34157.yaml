@@ -1,0 +1,13 @@
+id: "2610.34157"
+tier: radar
+title: "LoopGR: Parameter-Efficient Scaling for Generative Recommendation via Recurrent Depth"
+date: "2026-10-25"
+venue: arXiv
+authors: [Huizhe Zhang, Yudong Li, Liang Chen, Chengxiang Zhuo, Zang Li]
+links:
+  paper: https://arxiv.org/abs/2610.34157
+category: applications
+tldr:
+  en: For generative recommendation, LoopGR alternates a shared generative decoder with a lightweight context updater over recurrent depth and self-distills a low-budget student; it beats an encoder-decoder baseline while reducing model size by up to 52%.
+  zh: LoopGR 面向生成式推荐，在循环深度上交替使用共享的生成式 decoder 和轻量的上下文更新器，并自蒸馏出低预算的学生模型；相比编码器-解码器基线效果更好，同时模型规模最多减少 52%。
+added: "2026-11-23"

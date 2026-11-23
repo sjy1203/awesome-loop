@@ -1,3 +1,24 @@
 # arXiv ids that were triaged out of scope; scripts/discover.py skips them.
 # One id per line, optional reason after "#", for example:
 # 2601.00001  # agent loop, no reused layers
+2611.21250  # multi-agent loop over a frozen LLM; no layer reused within a forward pass
+2611.15815  # pure mathematics (integer recurrences), not a neural network
+2611.09006  # recommendation with thought tokens in one prefill; nothing is looped
+2611.02463  # generative recommendation with residual adapters; no layer reuse across depth
+2611.25916  # search order in ordinary LMs; looped models only cited
+2611.19800  # parallel branches with separate parameters; no layer reuse
+2611.18088  # token-clustering theory for causal attention; weight tying is only a special case
+2610.36574  # streaming safety guard on a frozen LLM; no LLM layer reused
+2611.26752  # appended tokens in one pass with linear recurrence over outputs; no layer reused across depth
+2611.24001  # latent CoT on standard Transformers; no looped block
+2611.17495  # CoT-monitorability metric; no looped model studied
+2611.13873  # policy paper on CoT-monitorability disclosures; no looped model
+2610.41598  # flow-matching sampler with self-conditioning; the network is not looped
+2611.26437  # DiT token sparsification; no shared blocks
+2611.25210  # recurrence over time (frame groups), not across depth
+2610.39182  # SAE interpretability of ordinary RL-trained LMs; no looped model
+2610.38255  # parallel solver for the token-wise recurrence of TTT layers; sequence recurrence
+2610.34018  # recurrent state carried across tokens; no per-token depth recurrence reported
+2611.21608  # per-layer latent streams recurrent across tokens; no layer reused across depth
+2611.20377  # EOS halting in RNNs and SSMs; ordinary sequence recurrence
+2610.38277  # loss spikes and quantization in standard LM pretraining; no looped model

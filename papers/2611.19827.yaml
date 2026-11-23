@@ -1,0 +1,13 @@
+id: "2611.19827"
+tier: radar
+title: "When Does Reusing Layers Help Multimodal Embeddings?"
+date: "2026-11-15"
+venue: arXiv
+authors: [Zhizhang Hu, Yue Zhang]
+links:
+  paper: https://arxiv.org/abs/2611.19827
+category: understanding
+tldr:
+  en: Tests eleven loop designs for multimodal embeddings, proving that under forward-only attention repeated layers cannot make earlier image states query-dependent; on MMEB-V2 an added loop loses 0.46 points, while native recurrence gains +4.23 points.
+  zh: 在多模态 embedding 上测试十一种循环设计，证明在只向前传递信息的注意力下，重复层无法让排在 query 之前的图像状态依赖 query；在 MMEB-V2 上，新增循环下降 0.46 分，原生循环提升 +4.23 分。
+added: "2026-11-23"

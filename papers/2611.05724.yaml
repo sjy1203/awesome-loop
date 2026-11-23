@@ -1,0 +1,13 @@
+id: "2611.05724"
+tier: radar
+title: "Give the Drafter a Second Chance to Guess: Parallel Reconsideration for Speculative Decoding"
+date: "2026-11-03"
+venue: arXiv
+authors: [Hoang Anh Duy Le, Huibing Dong, Alireza Khadem, Ziteng Sun, Xiang Song, Yizheng Huang, Soroush Radpour, Anshumali Shrivastava, Ye He]
+links:
+  paper: https://arxiv.org/abs/2611.05724
+category: systems
+tldr:
+  en: Lets a speculative-decoding drafter deepen uncertain guesses with extra passes of its shared block, run in parallel with the one-pass draft; this improves acceptance length by 5.3% to 10.2% and speedup by 3.5% to 9.2%.
+  zh: 让推测解码的 drafter 对没把握的猜测用共享块多跑几遍以加深特征，并与单遍草稿并行执行；接受长度提升 5.3% 到 10.2%，加速比提升 3.5% 到 9.2%。
+added: "2026-11-23"

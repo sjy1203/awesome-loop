@@ -1,0 +1,14 @@
+id: "2611.03526"
+tier: radar
+title: "Library of Layers (LoL): Adaptively Ordering Transformer Layers at Runtime"
+date: "2026-11-02"
+venue: arXiv
+authors: [Abdellah Rahmani, Sean McLeish, Ang Li, Sanae Lotfi, Pascal Frossard, Micah Goldblum]
+links:
+  paper: https://arxiv.org/abs/2611.03526
+  code: https://github.com/arahmani1/library-of-layers
+category: architecture/placement
+tldr:
+  en: Library of Layers uses a router to choose and order blocks from a global library at inference, covering dense, depth-recurrent and MoE designs; it is competitive with all three when pretrained on text.
+  zh: Library of Layers 用路由器在推理时从全局块库中选择并排列要执行的 Transformer 块，涵盖 dense、深度循环和 MoE 架构；在文本上预训练时与这三类基线表现相当。
+added: "2026-11-23"

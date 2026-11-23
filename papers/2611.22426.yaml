@@ -1,0 +1,13 @@
+id: "2611.22426"
+tier: radar
+title: "InfuseLoop: Cross-Trajectory Latent Injection for Scalable Parallel Looped Transformers"
+date: "2026-11-17"
+venue: arXiv
+authors: [Zhaofeng Sun, Lanxiang Hu, Yu-Yang Qian, Jiaqi Leng, Yuanbo Yang, Chi Zhang, Youyou Lu, Peng Zhao, Hao Zhang]
+links:
+  paper: https://arxiv.org/abs/2611.22426
+category: architecture/state
+tldr:
+  en: Adds cross-trajectory latent injection to Parallel Looped Transformers, so each loop aggregates causally available hidden states from later trajectories via attention residuals; this eliminates training-loss spikes and improves validation-loss scaling up to eight loops.
+  zh: 为并行循环 Transformer（PLT）加入跨轨迹隐状态注入，让每个循环通过注意力残差汇聚后续轨迹中因果可用的隐状态；该方法消除了训练损失尖峰，并改善了最多八个循环时验证损失的 scaling。
+added: "2026-11-23"

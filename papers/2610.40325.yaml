@@ -1,0 +1,13 @@
+id: "2610.40325"
+tier: radar
+title: "How to Loop Your Transformer: Loop Scaling, Specialization, and Parallel Inference"
+date: "2026-10-29"
+venue: arXiv
+authors: [Chanakya Ekbote, Artidoro Pagnoni, Devendra Singh Sachan, Shruti Bhosale, Mike Lewis, Maryam Fazel-Zarandi, Shashank Rajput, Sujan Kumar Gonugondla]
+links:
+  paper: https://arxiv.org/abs/2610.40325
+category: scaling
+tldr:
+  en: In looped decoders up to 1B parameters, full-stack looping is best at fixed parameters and middle-block looping at fixed training FLOPs; per-loop low-rank adapters help, and a normalization fix recovers Parallel Loop Transformer quality.
+  zh: 在最多 1B 参数的循环 decoder 上，固定参数量时循环整栈最好，固定训练 FLOPs 时循环中间块更好；每遍的低秩 adapter 有帮助，一个归一化上的改动能恢复 Parallel Loop Transformer 的质量。
+added: "2026-11-23"

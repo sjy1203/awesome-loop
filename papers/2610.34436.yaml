@@ -1,0 +1,13 @@
+id: "2610.34436"
+tier: radar
+title: "Recency Is the Wrong Axis: A Negative Result on Windowed Deepest-Plane KV Caching in Looped Language Models"
+date: "2026-10-25"
+venue: arXiv
+authors: [Dezhen Lu, Runguo Li, Zixiang Ni, Yuchen Tang, Xingquan Kong, Jiaxing Yang, Jiarui Guo]
+links:
+  paper: https://arxiv.org/abs/2610.34436
+category: systems
+tldr:
+  en: Tests a KV policy for looped models that keeps every loop's plane for recent positions and shares the deepest plane elsewhere; across three models, sharing cost depends on late-loop convergence and position, not recency.
+  zh: 检验一种循环模型 KV 缓存策略：最近位置保留每个循环的 KV 平面，其余位置共享最深一遍的平面；在三个模型上，共享代价取决于后期循环平面的收敛程度和共享的位置，而非是否最近。
+added: "2026-11-23"

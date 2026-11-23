@@ -1,0 +1,13 @@
+id: "2611.19896"
+tier: radar
+title: "LoopSkim: Lossless Multi-Depth Speculative Decoding for Looped Language Models"
+date: "2026-11-15"
+venue: arXiv
+authors: [Muhan Xiao, Shijian Li]
+links:
+  paper: https://arxiv.org/abs/2611.19896
+category: systems
+tldr:
+  en: Proposes lossless speculative decoding for looped LMs in which each loop's readout checks draft tokens copied from the context and only full-depth readouts commit; without training, its speedup averages 1.73x that of LoopSpec.
+  zh: 为循环语言模型提出无损投机解码：从上下文复制的草稿 token 在每一遍循环的读出处接受检查，只有完整深度的读出才提交 token；无需训练时，其加速平均为 LoopSpec 的 1.73x。
+added: "2026-11-23"

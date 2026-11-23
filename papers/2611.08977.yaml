@@ -1,0 +1,14 @@
+id: "2611.08977"
+tier: radar
+title: "Energy-Based Reasoners: Your Recurrent Reasoner Should Be an Energy-Based Model"
+date: "2026-11-06"
+venue: arXiv
+authors: [William Xingxu Chen, Alexi Gladstone, Zeyu Michael Li, Heng Ji, Yilun Du]
+links:
+  paper: https://arxiv.org/abs/2611.08977
+  code: https://github.com/wwillchen/ebr
+category: applications
+tldr:
+  en: Learns an energy over latent reasoning states and makes each loop a gradient step on it, giving a stopping signal; reaches 99.9% accuracy on Sudoku-Extreme with 345× less inference compute than the next-best model.
+  zh: 学习潜在推理状态上的能量函数，把每次循环写成对该能量的一步梯度下降，并由此得到停止信号；在 Sudoku-Extreme 上达到 99.9% 准确率，推理算力比次优模型少 345×。
+added: "2026-11-23"

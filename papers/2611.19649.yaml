@@ -1,0 +1,13 @@
+id: "2611.19649"
+tier: radar
+title: "LoopFill: Pipelined Multi-Token Speculative Decoding for Looped Transformers"
+date: "2026-11-14"
+venue: arXiv
+authors: [Siqi Zhu, Suozhi Huang, Yi Zhao, Jiaxuan You]
+links:
+  paper: https://arxiv.org/abs/2611.19649
+category: systems
+tldr:
+  en: A training-free speculative decoding method for looped LLMs that puts multi-token suffix drafts and shallow-loop predictions in one draft tree; average speedup over greedy decoding is 5.85x on Ouro-2.6B and 5.13x on Huginn-3.5B.
+  zh: 面向循环 LLM 的免训练投机解码方法，把多 token 后缀草稿和浅层循环预测放进同一棵草稿树；相对贪心解码的平均加速在 Ouro-2.6B 上为 5.85x，在 Huginn-3.5B 上为 5.13x。
+added: "2026-11-23"

@@ -1,0 +1,13 @@
+id: "2611.19446"
+tier: radar
+title: "Architectures and KV Replay for Depth-Recurrent Language Models"
+date: "2026-11-14"
+venue: NeurIPS 2026 LIGHT Workshop
+authors: [Lucia Licakova, Niklas Schmidinger, Lukas Hauzenberger, Sebastian Böck, Sepp Hochreiter]
+links:
+  paper: https://arxiv.org/abs/2611.19446
+category: systems
+tldr:
+  en: "Studies how to cut decoding KV memory in depth-recurrent LMs: looped hybrids need frequent attention anchors, and training with recurrent KV replay lets iterations share KV states with performance close to separate per-iteration caches."
+  zh: 研究如何降低深度循环语言模型 decode 时的 KV 显存：looped hybrid 需要足够频繁的注意力锚点；用 recurrent KV replay 训练后，多个迭代可共享 KV 状态，性能接近每个迭代单独存 KV 的做法。
+added: "2026-11-23"

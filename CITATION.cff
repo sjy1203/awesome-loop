@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If this collection helps your research, please cite it as below."
+title: "Awesome Loop: Papers, Open Models and Evidence on Looped Language Models"
+type: dataset
+authors:
+  - name: "Awesome Loop contributors"
+url: "https://github.com/sjy1203/awesome-loop"
+repository-code: "https://github.com/sjy1203/awesome-loop"
+date-released: 2026-11-23
+keywords:
+  - looped transformer
+  - recurrent depth
+  - latent reasoning
+  - language models

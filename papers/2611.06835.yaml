@@ -1,0 +1,13 @@
+id: "2611.06835"
+tier: radar
+title: "LooM: Loop-Invariant Memory for Causal Encoder-Decoder Language Models"
+date: "2026-11-04"
+venue: arXiv
+authors: [Lele Yang, Muxi Diao, Zhonghao Yan, Jiankang Chen, Bin Wen, Tingting Gao, Wentao Zhang, Kongming Liang, Zhanyu Ma, Weiran Xu]
+links:
+  paper: https://arxiv.org/abs/2611.06835
+category: architecture/placement
+tldr:
+  en: Loops the decoder layers of a causal encoder-decoder, storing each token's KV only on its first visit; one model covers 3 to 21 layer executions per token and, with enough loops, beats a single-pass baseline.
+  zh: 在因果 encoder-decoder 中循环 decoder 层，每个 token 的 KV 只在首次经过时写入；一个模型覆盖每 token 3 到 21 次层执行，循环足够多时优于单遍基线。
+added: "2026-11-23"

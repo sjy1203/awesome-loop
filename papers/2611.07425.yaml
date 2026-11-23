@@ -1,0 +1,13 @@
+id: "2611.07425"
+tier: radar
+title: "BRIDGE: Bridging the Semantic Quantization Gap for Generative Recommendation"
+date: "2026-11-05"
+venue: WSDM 2027
+authors: [Yatong Xiao, Mingjie Sun, Peng Wang, Wenjin Wu, Peng Jiang]
+links:
+  paper: https://arxiv.org/abs/2611.07425
+category: applications
+tldr:
+  en: For generative recommendation, BRIDGE adds latent reasoning, self-distillation and effort-aware recurrence, which runs a shared loop decoder more times at early Semantic ID levels; it improves Recall@10 and NDCG@10 on three Amazon benchmarks.
+  zh: 面向生成式推荐，BRIDGE 加入隐式推理、自蒸馏和按难度分配的循环，后者在靠前的 Semantic ID 层级上让共享的循环解码器执行更多次；在三个 Amazon 基准上提升了 Recall@10 和 NDCG@10。
+added: "2026-11-23"

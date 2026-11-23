@@ -1,0 +1,13 @@
+id: "2610.33517"
+tier: radar
+title: "One Model, Two Paths: Balancing Single-Pass and Looped Performance in Language Models"
+date: "2026-10-24"
+venue: arXiv
+authors: [Jiarun Shen, Lei Zhao, Xiao Li]
+links:
+  paper: https://arxiv.org/abs/2610.33517
+category: training
+tldr:
+  en: Adapts a pretrained model to support both single-pass and looped inference by reusing middle-layer weights, and shows joint weighted losses with frozen-model guidance reduce single-pass degradation while keeping looped gains over continued training.
+  zh: 通过复用中间层权重让预训练模型同时支持单遍和循环推理，并表明在两个输出上加权联合训练、配合冻结原模型的引导，可减少单遍性能下降，同时保留循环相对普通继续训练的收益。
+added: "2026-11-23"

@@ -10,7 +10,7 @@ English · [简体中文](../zh/tml-inkling-2-mini.md) · [Back to the list](../
 
 > Open-weight MoE (26.4B total, 3.4B active) that runs the middle 12 of its 24 layers three times with shared weights, released with a variable-loop research twin used to measure how pass count affects capability and CoT monitorability.
 
-**Category**: Architecture: where to loop, what to share · **Status**: draft (numbers not yet re-checked) · **Metrics**: -
+**Category**: Architecture: where to loop, what to share · **Status**: draft (numbers not yet re-checked) · **Impact**: -
 
 [paper](https://thinkingmachines.ai/news/inkling-2-mini/) · [project](https://thinkingmachines.ai/model-card/inkling-2-mini/) · [blog](https://huggingface.co/blog/inkling2mini) · [weights](https://huggingface.co/thinkingmachines/Inkling-2-Mini)
 
@@ -146,7 +146,7 @@ English · [简体中文](../zh/2611.13378.md) · [Back to the list](../../READM
 
 > Loop the CED encoder layers that produce global KV, train with random depth, and keep only the last round's KV.
 
-**Category**: Architecture: where to loop, what to share · **Status**: draft (numbers not yet re-checked) · **Metrics**: cites 0
+**Category**: Architecture: where to loop, what to share · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 0
 
 [paper](https://arxiv.org/abs/2611.13378)
 
@@ -261,7 +261,7 @@ English · [简体中文](../zh/2611.07211.md) · [Back to the list](../../READM
 
 > Serve looped Transformers with fewer core loops for ordinary prompt tokens than for the last prompt token and the decoded tokens, run the deep tail as a compact batch in vLLM, and lower prefilling depth when the queue grows.
 
-**Category**: Systems and inference · **Status**: draft (numbers not yet re-checked) · **Metrics**: cites 0
+**Category**: Systems and inference · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 0
 
 [paper](https://arxiv.org/abs/2611.07211)
 
@@ -402,7 +402,7 @@ English · [简体中文](../zh/2609.01343.md) · [Back to the list](../../READM
 
 > With per-token FLOPs, total parameters and KV cache matched, looping the middle half of an MoE Transformer twice lowers loss at four scales up to 54B non-embedding parameters and saves 6.8-18.0% of training FLOPs on the fitted frontier.
 
-**Category**: Scaling and budget · **Status**: draft (numbers not yet re-checked) · **Metrics**: cites 31 · HF upvotes 92
+**Category**: Scaling and budget · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 31 · HF upvotes 91
 
 [paper](https://arxiv.org/abs/2609.01343)
 
@@ -530,7 +530,7 @@ English · [简体中文](../zh/2604.12946.md) · [Back to the list](../../READM
 
 > Constrain the loop's injection to a stable negative-diagonal form, sample depth per sequence, and fit training and test-time scaling laws for looping at fixed parameter count.
 
-**Category**: Scaling and budget · **Status**: draft (numbers not yet re-checked) · **Metrics**: cites 89 · stars 194 · HF upvotes 11
+**Category**: Scaling and budget · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 89 · stars 194 · HF upvotes 11
 
 [paper](https://arxiv.org/abs/2604.12946) · [code](https://github.com/sandyresearch/parcae) · [project](https://sandyresearch.github.io/parcae/) · [weights](https://huggingface.co/SandyResearch/parcae-140m)
 
@@ -663,7 +663,7 @@ English · [简体中文](../zh/2604.01220.md) · [Back to the list](../../READM
 
 > Loop only YOCO's self-decoder, whose layers use sliding-window attention, so extra depth costs compute while the cross-decoder's global KV is still computed once.
 
-**Category**: Architecture: where to loop, what to share · **Status**: draft (numbers not yet re-checked) · **Metrics**: cites 3 · HF upvotes 18
+**Category**: Architecture: where to loop, what to share · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 3 · HF upvotes 18
 
 [paper](https://arxiv.org/abs/2604.01220)
 
@@ -800,7 +800,7 @@ English · [简体中文](../zh/2511.07384.md) · [Back to the list](../../READM
 
 > Turn pretrained 1B models into prelude-core-coda recurrent models by dropping middle layers and looping a block, then keep training while a curriculum raises the mean recurrence.
 
-**Category**: Training and retrofitting · **Status**: draft (numbers not yet re-checked) · **Metrics**: cites 79 · stars 72 · HF upvotes 21
+**Category**: Training and retrofitting · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 79 · stars 72 · HF upvotes 21
 
 [paper](https://arxiv.org/abs/2511.07384) · [code](https://github.com/mcleish7/retrofitting-recurrence) · [weights](https://huggingface.co/collections/tomg-group-umd/retrofitting-recurrence)
 
@@ -940,7 +940,7 @@ English · [简体中文](../zh/2510.25741.md) · [Back to the list](../../READM
 
 > Pre-train a weight-tied layer stack that repeats 4 times, with a learned exit gate, on 7.7T tokens; the authors report that the 1.4B and 2.6B models match dense models of up to 12B parameters.
 
-**Category**: Depth control · **Status**: draft (numbers not yet re-checked) · **Metrics**: cites 245 · HF upvotes 146
+**Category**: Depth control · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 245 · HF upvotes 146
 
 [paper](https://arxiv.org/abs/2510.25741) · [project](https://ouro-llm.github.io) · [weights](https://huggingface.co/ByteDance/Ouro-1.4B)
 
@@ -1102,7 +1102,7 @@ English · [简体中文](../zh/2510.24824.md) · [Back to the list](../../READM
 
 > Run loop l of token i in the same forward pass as loop l+1 of token i-1, let later loops reuse the first loop's KV plus a gated SWA, and a looped model decodes at close to unlooped latency and KV.
 
-**Category**: Systems and inference · **Status**: draft (numbers not yet re-checked) · **Metrics**: cites 34 · HF upvotes 18
+**Category**: Systems and inference · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 34 · HF upvotes 18
 
 [paper](https://arxiv.org/abs/2510.24824)
 
@@ -1238,7 +1238,7 @@ English · [简体中文](../zh/2507.10524.md) · [Back to the list](../../READM
 
 > Routers give each token its own number of passes through a shared middle block, and each pass caches KV only for its active tokens; at equal training FLOPs MoR beats fixed-depth recursive baselines and often vanilla, with fewer parameters.
 
-**Category**: Depth control · **Status**: draft (numbers not yet re-checked) · **Metrics**: cites 204 · stars 652 · HF upvotes 74
+**Category**: Depth control · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 204 · stars 652 · HF upvotes 74
 
 [paper](https://arxiv.org/abs/2507.10524) · [code](https://github.com/raymin0223/mixture_of_recursions) · [weights](https://drive.google.com/drive/folders/1pYKJOu2aBGC-jgoWbfP6T_vqEYtUVxa4)
 
@@ -1383,7 +1383,7 @@ English · [简体中文](../zh/2502.05171.md) · [Back to the list](../../READM
 
 > Pretrain a 3.5B prelude-core-coda transformer with a randomly sampled number of core iterations, so test-time compute scales by iterating the core more.
 
-**Category**: Architecture: where to loop, what to share · **Status**: draft (numbers not yet re-checked) · **Metrics**: cites 578 · stars 998 · HF upvotes 162
+**Category**: Architecture: where to loop, what to share · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 578 · stars 998 · HF upvotes 162
 
 [paper](https://arxiv.org/abs/2502.05171) · [code](https://github.com/seal-rg/recurrent-pretraining) · [weights](https://huggingface.co/tomg-group-umd/huginn-0125)
 

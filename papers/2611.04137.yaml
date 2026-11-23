@@ -1,0 +1,13 @@
+id: "2611.04137"
+tier: radar
+title: "LoopKV: Loop-Aware KV Cache Compression for Serving Looped Transformers"
+date: "2026-11-03"
+venue: arXiv
+authors: [Tianle Zhou, Yang Zhang, Tianyu Wu, Zhuohan Wang, William Nixon, Juncheng Yang]
+links:
+  paper: https://arxiv.org/abs/2611.04137
+category: systems
+tldr:
+  en: Chooses 4-bit, 2-bit or final-loop KV reuse for each (loop, layer) cell of Ouro from an offline profile; serving Ouro-1.4B, the LoopKV-M plan stores 35% less KV than KIVI-4 and sustains 1.7-2.2x its goodput.
+  zh: 依据离线 profile 为 Ouro 的每个（循环，层）KV 单元选择 4-bit、2-bit 存储或复用末遍 KV；服务 Ouro-1.4B 时，LoopKV-M 方案比 KIVI-4 少存 35% 的 KV，goodput 为其 1.7-2.2x。
+added: "2026-11-23"

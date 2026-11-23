@@ -1,0 +1,13 @@
+id: "2610.34427"
+tier: radar
+title: "ScaleRLT: Exact Log-Probabilities and Fast Deferred Rollouts for Reinforcement Learning on Looped Transformers"
+date: "2026-10-25"
+venue: arXiv
+authors: [Dezhen Lu, Zixiang Ni, Runguo Li]
+links:
+  paper: https://arxiv.org/abs/2610.34427
+category: systems
+tldr:
+  en: ScaleRLT removes the log-probability mismatch between deferred rollouts and the learner's dense pass in RL on looped transformers, using a stop-gradient hybrid that replays the rollout schedule bit for bit and keeps the dense gradient.
+  zh: "ScaleRLT 针对循环 Transformer 的 RL，消除延迟 rollout 与学习器 dense 前向之间的 log-probability 不一致：用一个 stop-gradient 混合项，数值上逐位重放 rollout 的调度，梯度仍取 dense 前向的梯度。"
+added: "2026-11-23"

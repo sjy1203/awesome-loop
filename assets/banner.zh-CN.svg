@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="400" viewBox="0 0 1280 400" role="img" aria-label="The Era of Loop. 循环结构正进入预训练架构，成为增强推理能力的新路径； 如何构建更科学、更高效的循环结构，仍有广阔的探索空间。">
+<title>The Era of Loop</title>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#060a16"/><stop offset="0.55" stop-color="#0c1530"/><stop offset="1" stop-color="#080d1f"/></linearGradient>
+<radialGradient id="glow" cx="0.74" cy="0.52" r="0.42"><stop offset="0" stop-color="#4f7cff" stop-opacity="0.30"/><stop offset="1" stop-color="#4f7cff" stop-opacity="0"/></radialGradient>
+<linearGradient id="core" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#60a5fa"/><stop offset="0.6" stop-color="#818cf8"/><stop offset="1" stop-color="#a78bfa"/></linearGradient>
+<linearGradient id="ribbon" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#22d3ee"/><stop offset="0.5" stop-color="#818cf8"/><stop offset="1" stop-color="#c084fc"/></linearGradient>
+<linearGradient id="title" gradientUnits="userSpaceOnUse" x1="405" y1="0" x2="575" y2="0"><stop offset="0" stop-color="#67e8f9"/><stop offset="1" stop-color="#c4b5fd"/></linearGradient>
+<linearGradient id="rule" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#67e8f9"/><stop offset="1" stop-color="#c4b5fd"/></linearGradient>
+<pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="1.1" fill="#ffffff" fill-opacity="0.07"/></pattern>
+<filter id="blur" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="7"/></filter>
+</defs>
+<style>.pulse{stroke-dasharray:18 640;animation:flow 3.6s linear infinite}@keyframes flow{from{stroke-dashoffset:0}to{stroke-dashoffset:-658}}@media (prefers-reduced-motion:reduce){.pulse{animation:none;stroke-opacity:0}}</style>
+<rect width="1280" height="400" fill="url(#bg)"/>
+<rect width="1280" height="400" fill="url(#dots)"/>
+<rect width="1280" height="400" fill="url(#glow)"/>
+<path d="M1059,156 C1209,122 1209,298 1063,264" fill="none" stroke="url(#ribbon)" stroke-width="10" stroke-opacity="0.55" filter="url(#blur)"/>
+<polygon points="817,336 935,369 935,377 817,344" fill="#111a2e"/><polygon points="935,369 1053,336 1053,344 935,377" fill="#0e1628"/><polygon points="817,336 935,303 1053,336 935,369" fill="#1b2540" stroke="#3b4a6e" stroke-width="1"/>
+<polygon points="817,300 935,333 935,341 817,308" fill="#111a2e"/><polygon points="935,333 1053,300 1053,308 935,341" fill="#0e1628"/><polygon points="817,300 935,267 1053,300 935,333" fill="#1b2540" stroke="#3b4a6e" stroke-width="1"/>
+<polygon points="817,264 935,297 935,305 817,272" fill="#1e3a8a"/><polygon points="935,297 1053,264 1053,272 935,305" fill="#312e81"/><polygon points="817,264 935,231 1053,264 935,297" fill="url(#core)" fill-opacity="0.92" stroke="#bfdbfe" stroke-opacity="0.55" stroke-width="1"/>
+<polygon points="817,228 935,261 935,269 817,236" fill="#1e3a8a"/><polygon points="935,261 1053,228 1053,236 935,269" fill="#312e81"/><polygon points="817,228 935,195 1053,228 935,261" fill="url(#core)" fill-opacity="0.92" stroke="#bfdbfe" stroke-opacity="0.55" stroke-width="1"/>
+<polygon points="817,192 935,225 935,233 817,200" fill="#1e3a8a"/><polygon points="935,225 1053,192 1053,200 935,233" fill="#312e81"/><polygon points="817,192 935,159 1053,192 935,225" fill="url(#core)" fill-opacity="0.92" stroke="#bfdbfe" stroke-opacity="0.55" stroke-width="1"/>
+<polygon points="817,156 935,189 935,197 817,164" fill="#1e3a8a"/><polygon points="935,189 1053,156 1053,164 935,197" fill="#312e81"/><polygon points="817,156 935,123 1053,156 935,189" fill="url(#core)" fill-opacity="0.92" stroke="#bfdbfe" stroke-opacity="0.55" stroke-width="1"/>
+<polygon points="817,120 935,153 935,161 817,128" fill="#111a2e"/><polygon points="935,153 1053,120 1053,128 935,161" fill="#0e1628"/><polygon points="817,120 935,87 1053,120 935,153" fill="#1b2540" stroke="#3b4a6e" stroke-width="1"/>
+<polygon points="817,84 935,117 935,125 817,92" fill="#111a2e"/><polygon points="935,117 1053,84 1053,92 935,125" fill="#0e1628"/><polygon points="817,84 935,51 1053,84 935,117" fill="#1b2540" stroke="#3b4a6e" stroke-width="1"/>
+<path d="M1059,156 C1249,108.66666666666667 1249,311.3333333333333 1063,264" fill="none" stroke="url(#ribbon)" stroke-opacity="0.16" stroke-width="1.5"/>
+<path d="M1059,156 C1229,115.33333333333333 1229,304.6666666666667 1063,264" fill="none" stroke="url(#ribbon)" stroke-opacity="0.32" stroke-width="1.8"/>
+<path d="M1059,156 C1209,122 1209,298 1063,264" fill="none" stroke="url(#ribbon)" stroke-width="3" stroke-linecap="round"/>
+<path class="pulse" d="M1059,156 C1209,122 1209,298 1063,264" fill="none" stroke="#ecfeff" stroke-width="4" stroke-linecap="round"/>
+<path d="M1057,264 L1070,256 L1068,271 Z" fill="#c084fc"/>
+<text x="1187" y="217" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="24" fill="#c4b5fd">×T</text>
+<text x="88" y="112" font-family="Inter, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="600" letter-spacing="4.5" fill="#7aa2ff">AWESOME LOOP</text>
+<text x="86" y="190" font-family="Inter, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="66" font-weight="700" letter-spacing="-1.2" fill="#f4f6ff">The Era of <tspan fill="url(#title)">Loop</tspan></text>
+<text x="88" y="246" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Source Han Sans SC', sans-serif" font-size="19" fill="#b9c5dd">循环结构正进入预训练架构，成为增强推理能力的新路径；</text>
+<text x="88" y="276" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Source Han Sans SC', sans-serif" font-size="19" fill="#b9c5dd">如何构建更科学、更高效的循环结构，仍有广阔的探索空间。</text>
+<rect x="88" y="308" width="44" height="2" fill="url(#rule)"/>
+<text x="146" y="314" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Source Han Sans SC', sans-serif" font-size="12" letter-spacing="4" fill="#6f7fa3">论文 · 开源模型 · 证据</text>
+</svg>

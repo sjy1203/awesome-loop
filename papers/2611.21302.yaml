@@ -1,0 +1,13 @@
+id: "2611.21302"
+tier: radar
+title: "Déjà-Events: Multi-view 3D Geometry with Event Cameras via Sparsity-Aware Adaptive Gating"
+date: "2026-11-16"
+venue: arXiv
+authors: [Arda Cinar Demirtas, Pablo Varela Bernal, Marc Pollefeys, Sunghwan Hong]
+links:
+  paper: https://arxiv.org/abs/2611.21302
+category: applications
+tldr:
+  en: Distils an event-camera 3D model from the RGB teacher Déjà View, which repeatedly applies one shared transformer block, and gates that block by event density; it has the lowest pointmap error among evaluated event-based methods.
+  zh: 从 RGB 教师模型 Déjà View（反复应用同一个共享 transformer block）蒸馏出事件相机 3D 模型，并按事件密度调整该 block 的门控；在所评测的事件相机方法中点图误差最低。
+added: "2026-11-23"
