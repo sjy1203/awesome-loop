@@ -7,6 +7,10 @@ authors: [Feichen Song, Boyi Zeng, Yiqin Hao, Shixiang Song, He Li, Yizhou Yang,
 links:
   paper: https://arxiv.org/abs/2610.35556
 category: systems
+facets:
+  placement: shifted-parallel
+  depth_train: fixed
+  kv: per-pass
 tldr:
   en: LoopFold runs several recurrent depths of a looped Transformer in parallel batches, using a predictor for later-loop inputs and a corrector for their outputs; versus a nine-loop vanilla model it cuts decoding latency by 46%.
   zh: LoopFold 把循环 Transformer 多个循环深度的计算折叠进并行批次，用预测器估计后续循环的输入、用校正器修正其输出；与九遍循环的普通模型相比，解码延迟降低 46%。

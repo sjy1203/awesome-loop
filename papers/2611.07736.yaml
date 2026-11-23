@@ -7,6 +7,10 @@ authors: [David Berghaus, Arber Zela, Behzad Shomali, Markus Frey, Mehdi Ali, Ra
 links:
   paper: https://arxiv.org/abs/2611.07736
 category: training
+facets:
+  placement: prelude-core-coda
+  depth_train: sampled
+  kv: n/a
 tldr:
   en: RELOAD fine-tunes pretrained encoders or decoders with a damped loop over their middle block; looping improves accuracy and calibration, mostly on reasoning chains longer than in training, where encoders gain up to 23 points.
   zh: RELOAD 在预训练 encoder 或 decoder 的中间块上加阻尼循环并微调；循环提升了准确率和校准，主要体现在比训练中更长的推理链上，encoder 最多提升 23 个点。

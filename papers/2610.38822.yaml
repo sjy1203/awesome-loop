@@ -7,6 +7,10 @@ authors: [Wenyu Du, Stephen Chung]
 links:
   paper: https://arxiv.org/abs/2610.38822
 category: systems
+facets:
+  placement: n/a
+  depth_train: n/a
+  kv: per-pass
 tldr:
   en: CopyLoop, a training-free decoding algorithm for looped Transformers, proposes multi-token suffixes from repeated context, screens them at shallow recurrent depth and verifies at full depth, reaching 2.98x--10.70x speedups on Base models.
   zh: CopyLoop 是面向循环 Transformer 的免训练解码算法，从重复上下文中提出多 token 后缀，先在浅层循环深度筛选、再在完整深度验证，在 Base 模型上取得 2.98x--10.70x 的加速。

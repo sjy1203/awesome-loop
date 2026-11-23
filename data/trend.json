@@ -1,0 +1,281 @@
+{
+ "source": "arXiv API, phrase search in titles and abstracts",
+ "phrases": [
+  "looped transformer",
+  "looped transformers",
+  "loop transformer",
+  "loop transformers",
+  "looped llm",
+  "looped llms",
+  "looped language model",
+  "looped language models",
+  "looped model",
+  "looped models",
+  "recurrent depth",
+  "recurrent-depth",
+  "depth recurrence",
+  "depth-recurrent",
+  "recursive transformer",
+  "recursive transformers",
+  "universal transformer",
+  "universal transformers",
+  "layer looping",
+  "weight-tied layers",
+  "latent recurrence"
+ ],
+ "generated": "2026-11-23",
+ "bins": [
+  {
+   "period": "2018Q1",
+   "start": "2018-01-01",
+   "end": "2018-03-31",
+   "count": 0,
+   "partial": false
+  },
+  {
+   "period": "2018Q2",
+   "start": "2018-04-01",
+   "end": "2018-06-30",
+   "count": 0,
+   "partial": false
+  },
+  {
+   "period": "2018Q3",
+   "start": "2018-07-01",
+   "end": "2018-09-30",
+   "count": 1,
+   "partial": false
+  },
+  {
+   "period": "2018Q4",
+   "start": "2018-10-01",
+   "end": "2018-12-31",
+   "count": 1,
+   "partial": false
+  },
+  {
+   "period": "2019Q1",
+   "start": "2019-01-01",
+   "end": "2019-03-31",
+   "count": 1,
+   "partial": false
+  },
+  {
+   "period": "2019Q2",
+   "start": "2019-04-01",
+   "end": "2019-06-30",
+   "count": 3,
+   "partial": false
+  },
+  {
+   "period": "2019Q3",
+   "start": "2019-07-01",
+   "end": "2019-09-30",
+   "count": 1,
+   "partial": false
+  },
+  {
+   "period": "2019Q4",
+   "start": "2019-10-01",
+   "end": "2019-12-31",
+   "count": 2,
+   "partial": false
+  },
+  {
+   "period": "2020Q1",
+   "start": "2020-01-01",
+   "end": "2020-03-31",
+   "count": 3,
+   "partial": false
+  },
+  {
+   "period": "2020Q2",
+   "start": "2020-04-01",
+   "end": "2020-06-30",
+   "count": 1,
+   "partial": false
+  },
+  {
+   "period": "2020Q3",
+   "start": "2020-07-01",
+   "end": "2020-09-30",
+   "count": 0,
+   "partial": false
+  },
+  {
+   "period": "2020Q4",
+   "start": "2020-10-01",
+   "end": "2020-12-31",
+   "count": 0,
+   "partial": false
+  },
+  {
+   "period": "2021Q1",
+   "start": "2021-01-01",
+   "end": "2021-03-31",
+   "count": 0,
+   "partial": false
+  },
+  {
+   "period": "2021Q2",
+   "start": "2021-04-01",
+   "end": "2021-06-30",
+   "count": 1,
+   "partial": false
+  },
+  {
+   "period": "2021Q3",
+   "start": "2021-07-01",
+   "end": "2021-09-30",
+   "count": 4,
+   "partial": false
+  },
+  {
+   "period": "2021Q4",
+   "start": "2021-10-01",
+   "end": "2021-12-31",
+   "count": 2,
+   "partial": false
+  },
+  {
+   "period": "2022Q1",
+   "start": "2022-01-01",
+   "end": "2022-03-31",
+   "count": 1,
+   "partial": false
+  },
+  {
+   "period": "2022Q2",
+   "start": "2022-04-01",
+   "end": "2022-06-30",
+   "count": 3,
+   "partial": false
+  },
+  {
+   "period": "2022Q3",
+   "start": "2022-07-01",
+   "end": "2022-09-30",
+   "count": 2,
+   "partial": false
+  },
+  {
+   "period": "2022Q4",
+   "start": "2022-10-01",
+   "end": "2022-12-31",
+   "count": 1,
+   "partial": false
+  },
+  {
+   "period": "2023Q1",
+   "start": "2023-01-01",
+   "end": "2023-03-31",
+   "count": 4,
+   "partial": false
+  },
+  {
+   "period": "2023Q2",
+   "start": "2023-04-01",
+   "end": "2023-06-30",
+   "count": 1,
+   "partial": false
+  },
+  {
+   "period": "2023Q3",
+   "start": "2023-07-01",
+   "end": "2023-09-30",
+   "count": 1,
+   "partial": false
+  },
+  {
+   "period": "2023Q4",
+   "start": "2023-10-01",
+   "end": "2023-12-31",
+   "count": 5,
+   "partial": false
+  },
+  {
+   "period": "2024Q1",
+   "start": "2024-01-01",
+   "end": "2024-03-31",
+   "count": 3,
+   "partial": false
+  },
+  {
+   "period": "2024Q2",
+   "start": "2024-04-01",
+   "end": "2024-06-30",
+   "count": 3,
+   "partial": false
+  },
+  {
+   "period": "2024Q3",
+   "start": "2024-07-01",
+   "end": "2024-09-30",
+   "count": 2,
+   "partial": false
+  },
+  {
+   "period": "2024Q4",
+   "start": "2024-10-01",
+   "end": "2024-12-31",
+   "count": 9,
+   "partial": false
+  },
+  {
+   "period": "2025Q1",
+   "start": "2025-01-01",
+   "end": "2025-03-31",
+   "count": 6,
+   "partial": false
+  },
+  {
+   "period": "2025Q2",
+   "start": "2025-04-01",
+   "end": "2025-06-30",
+   "count": 4,
+   "partial": false
+  },
+  {
+   "period": "2025Q3",
+   "start": "2025-07-01",
+   "end": "2025-09-30",
+   "count": 3,
+   "partial": false
+  },
+  {
+   "period": "2025Q4",
+   "start": "2025-10-01",
+   "end": "2025-12-31",
+   "count": 14,
+   "partial": false
+  },
+  {
+   "period": "2026Q1",
+   "start": "2026-01-01",
+   "end": "2026-03-31",
+   "count": 20,
+   "partial": false
+  },
+  {
+   "period": "2026Q2",
+   "start": "2026-04-01",
+   "end": "2026-06-30",
+   "count": 50,
+   "partial": false
+  },
+  {
+   "period": "2026Q3",
+   "start": "2026-07-01",
+   "end": "2026-09-30",
+   "count": 81,
+   "partial": false
+  },
+  {
+   "period": "2026Q4",
+   "start": "2026-10-01",
+   "end": "2026-12-31",
+   "count": 108,
+   "partial": true
+  }
+ ]
+}

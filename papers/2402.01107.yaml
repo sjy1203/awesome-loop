@@ -1,0 +1,17 @@
+id: "2402.01107"
+tier: radar
+title: "Simulation of Graph Algorithms with Looped Transformers"
+date: "2024-02-02"
+venue: arXiv
+authors: [Artur Back de Luca, Kimon Fountoulakis]
+links:
+  paper: https://arxiv.org/abs/2402.01107
+category: theory
+facets:
+  placement: whole-stack
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: Proves by construction that a looped transformer with extra graph-reading attention heads simulates BFS, DFS, Dijkstra and Kosaraju's algorithm with parameters independent of graph size, within finite-precision limits, and is Turing complete at constant width.
+  zh: 通过构造证明，带额外读图注意力头的循环 Transformer 能以与图大小无关的参数量模拟 BFS、DFS、Dijkstra 和 Kosaraju 算法，但受有限精度限制，并且在常数宽度下图灵完备。
+added: "2026-11-23"

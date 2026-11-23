@@ -1,0 +1,17 @@
+id: "2609.11801"
+tier: radar
+title: "Thinking with Looped Flows"
+date: "2026-09-10"
+venue: arXiv
+authors: [Ayhan Suleymanzade, Chanhyuk Lee, Floor Eijkelboom, Nicholas M. Boffi, İsmail İlkan Ceylan, Jinwoo Kim]
+links:
+  paper: https://arxiv.org/abs/2609.11801
+category: applications
+facets:
+  placement: hierarchical
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: Trains looped models with local denoising objectives at decreasing noise levels and infers by integrating a probability flow; across six reasoning benchmarks it outperforms prior looped models overall, reaching 58.8% test accuracy on ARC-AGI-1.
+  zh: 用噪声水平逐步降低的局部去噪目标训练循环模型，并把推理写成对概率流的积分；在六个推理基准上总体优于此前的循环模型，ARC-AGI-1 测试准确率达到 58.8%。
+added: "2026-11-23"

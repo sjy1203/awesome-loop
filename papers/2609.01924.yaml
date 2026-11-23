@@ -1,0 +1,17 @@
+id: "2609.01924"
+tier: radar
+title: "Looped Transformers under the Jacobian Lens: Does the Global Workspace Survive Recurrence?"
+date: "2026-09-01"
+venue: arXiv
+authors: [Wenlong Wang, Fergal Reid]
+links:
+  paper: https://arxiv.org/abs/2609.01924
+category: understanding
+facets:
+  placement: n/a
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: "Applies an extended Jacobian lens to Ouro-2.6B and Huginn-0125: both form a workspace in their iterated part, but Ouro rebuilds content every loop, while Huginn carries it forward and interventions act within about two recurrences."
+  zh: 把扩展后的 Jacobian lens 用于 Ouro-2.6B 和 Huginn-0125：两者都在迭代部分形成工作空间，但 Ouro 在每个 loop 中重建其内容，Huginn 则把内容向后续递归传递，而干预只在大约两次递归的窗口内起作用。
+added: "2026-11-23"

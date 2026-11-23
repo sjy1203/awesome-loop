@@ -7,6 +7,10 @@ authors: [Wei Tan, Kunming Luo, Hongyu Yan, Yu Zhang, Zihao Zhang, Xiatian Zhu, 
 links:
   paper: https://arxiv.org/abs/2611.20703
 category: applications
+facets:
+  placement: partial
+  depth_train: fixed
+  kv: n/a
 tldr:
   en: GLPA sends cross-view information in multi-view diffusion through compact proxies and refines them by reusing the same attention parameters within a denoising step; on FLUX, attention runs 2.65× faster than dense attention and reconstruction improves.
   zh: GLPA 在多视角扩散中通过紧凑的代理 token 交换跨视角信息，并在单个去噪步内复用同一组注意力参数迭代细化代理；在 FLUX 上，注意力计算比稠密注意力快 2.65×，重建质量也有提升。

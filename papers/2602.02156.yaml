@@ -1,0 +1,18 @@
+id: "2602.02156"
+tier: radar
+title: "LoopViT: Scaling Visual ARC with Looped Transformers"
+date: "2026-02-02"
+venue: arXiv
+authors: [Wen-Jie Shu, Xuerui Qiu, Rui-Jie Zhu, Harold Haodong Chen, Yexin Liu, Harry Yang]
+links:
+  paper: https://arxiv.org/abs/2602.02156
+  code: https://github.com/WenjieShu/LoopViT
+category: applications
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Loop-ViT iterates a weight-tied hybrid convolution-attention block on ARC-AGI grids and at inference halts once predictive entropy is low; the 18M model reaches 65.8% on ARC-AGI-1, above 73M-parameter ensembles.
+  zh: Loop-ViT 在 ARC-AGI 网格上反复迭代一个权重共享的卷积加注意力混合块，推理时在预测熵足够低时停止；18M 模型在 ARC-AGI-1 上达到 65.8%，超过 73M 参数的集成模型。
+added: "2026-11-23"

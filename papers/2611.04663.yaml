@@ -7,6 +7,10 @@ authors: [Shota Takashiro, Takeshi Kojima, Masanori Koyama, Kohei Hayashi, Yusuk
 links:
   paper: https://arxiv.org/abs/2611.04663
 category: training
+facets:
+  placement: n/a
+  depth_train: fixed
+  kv: n/a
 tldr:
   en: Best-of-Depth trains a looped Transformer's recurrent trajectory as a candidate set by minimizing prediction loss across depths; on N-Queens, coverage reaches 91.03% versus 45.75% for final-depth training.
   zh: Best-of-Depth 通过在各个深度上最小化预测损失，把循环 Transformer 的递归轨迹当作候选集来训练；在 N-Queens 上覆盖率达到 91.03%，而只训练最终深度为 45.75%。

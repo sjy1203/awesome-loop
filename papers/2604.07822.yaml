@@ -1,0 +1,17 @@
+id: "2604.07822"
+tier: radar
+title: "Loop, Think, & Generalize: Implicit Reasoning in Recurrent-Depth Transformers"
+date: "2026-04-09"
+venue: COLM 2026
+authors: [Harsh Kohli, Srinivasan Parthasarathy, Huan Sun, Yuekun Yao]
+links:
+  paper: https://arxiv.org/abs/2604.07822
+category: understanding
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Trains recurrent-depth Transformers from scratch on implicit multi-hop knowledge composition; unlike vanilla Transformers they generalize systematically through a three-stage grokking process and extrapolate to deeper compositions with more inference-time iterations, until overthinking degrades predictions.
+  zh: 在隐式多跳知识组合任务上从头训练循环深度 Transformer；与普通 Transformer 不同，它们经过三阶段 grokking 实现系统性泛化，并能随推理时迭代次数增加外推到更深的组合，但过度迭代（overthinking）会使预测变差。
+added: "2026-11-23"

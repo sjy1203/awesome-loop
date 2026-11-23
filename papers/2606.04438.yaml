@@ -1,0 +1,17 @@
+id: "2606.04438"
+tier: radar
+title: "LoopMoE: Unifying Iterative Computation with Mixture-of-Experts for Language Modeling"
+date: "2026-06-03"
+venue: EMNLP 2026
+authors: [Wenkai Chen, Tianshu Li, Wenyong Huang, Yichun Yin, Lifeng Shang, Chengwei Qin]
+links:
+  paper: https://arxiv.org/abs/2606.04438
+category: architecture/placement
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: LoopMoE loops an MoE block with iteration- and token-conditioned normalization (IterAdaLN); over a vanilla MoE with identical parameters and FLOPs, its average gain grows from over 1 point at 3B to approximately 3 at 9B.
+  zh: LoopMoE 循环复用一个 MoE 块，并用同时以迭代序号和每个 token 隐状态为条件的归一化（IterAdaLN）区分各次迭代；与总参数和每 token FLOPs 相同的 vanilla MoE 相比，平均提升从 3B 规模的 1 分以上增至 9B 规模的约 3 分。
+added: "2026-11-23"

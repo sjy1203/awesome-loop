@@ -8,6 +8,10 @@ links:
   paper: https://arxiv.org/abs/2611.02857
   code: https://github.com/ubc-vision/solv3r
 category: applications
+facets:
+  placement: prelude-core-coda
+  depth_train: sampled
+  kv: last-pass
 tldr:
   en: Trains a looped transformer whose update operator, independent of the iteration count, keeps refining multi-view geometry from its current state, so one solver handles offline and incremental reconstruction, relocalization and streaming without task-specific training.
   zh: 训练一个与迭代次数无关的循环 transformer 更新算子，从当前状态继续求解多视角几何，使同一个求解器无需针对任务训练即可用于离线重建、增量重建、重定位和流式处理。

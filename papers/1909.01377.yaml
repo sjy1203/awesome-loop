@@ -1,0 +1,18 @@
+id: "1909.01377"
+tier: radar
+title: "Deep Equilibrium Models"
+date: "2019-09-03"
+venue: NeurIPS 2019
+authors: [Shaojie Bai, J. Zico Kolter, Vladlen Koltun]
+links:
+  paper: https://arxiv.org/abs/1909.01377
+  code: https://github.com/locuslab/deq
+category: architecture/placement
+facets:
+  placement: implicit
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: DEQ finds the fixed point of a weight-tied layer by root-finding and backpropagates through it implicitly; on language modeling such as WikiText-103 it often beats similar-size models while cutting memory by up to 88%.
+  zh: DEQ 通过求根直接求出权重共享层的不动点，并用隐式微分反传；在 WikiText-103 等语言建模任务上，它常常优于参数量相近的模型，内存最多减少 88%。
+added: "2026-11-23"

@@ -8,6 +8,7 @@ Optional env: S2_API_KEY, GITHUB_TOKEN, OPENALEX_MAILTO (raise rate limits); htt
 Usage: python3 scripts/fetch_metrics.py [--date YYYY-MM-DD]
 """
 import argparse
+import concurrent.futures
 import datetime
 import json
 import os
@@ -26,7 +27,7 @@ S2_BATCH = "https://api.semanticscholar.org/graph/v1/paper/batch?fields=citation
 METRICS = os.path.join(V.ROOT, "data", "metrics")
 
 
-def get_json(url, data=None, headers=None, tries=5):
+def get_json(url, data=None, headers=None, tries=4):
     """GET, or POST JSON when data is given. Retries 429/5xx and network errors with backoff; None on failure."""
     hdrs = {"User-Agent": UA, "Accept": "application/json", **(headers or {})}
     body = None
@@ -34,7 +35,7 @@ def get_json(url, data=None, headers=None, tries=5):
         body, hdrs["Content-Type"] = json.dumps(data).encode(), "application/json"
     for i in range(tries):
         try:
-            with urllib.request.urlopen(urllib.request.Request(url, data=body, headers=hdrs), timeout=60) as r:
+            with urllib.request.urlopen(urllib.request.Request(url, data=body, headers=hdrs), timeout=30) as r:
                 return json.load(r)
         except urllib.error.HTTPError as e:
             if e.code == 404 or e.code not in (429, 500, 502, 503, 504) or i == tries - 1:
@@ -88,10 +89,16 @@ def main():
                                         citations_source="semanticscholar")
 
     mailto = os.environ.get("OPENALEX_MAILTO")
-    for a in arxiv:
-        m = out["papers"][a]
+
+    def paper_extras(a):
         oa = get_json(f"https://api.openalex.org/works/doi:10.48550/arXiv.{a}" +
                       (f"?mailto={urllib.parse.quote(mailto)}" if mailto else ""))
+        return a, oa, get_json(f"https://huggingface.co/api/papers/{a}")
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:
+        extras = list(pool.map(paper_extras, arxiv))
+    for a, oa, hf in extras:
+        m = out["papers"][a]
         if oa:
             m["openalex_citations"] = oa.get("cited_by_count")
             if m.get("citations_source") != "semanticscholar" and oa.get("cited_by_count") is not None:
@@ -103,20 +110,19 @@ def main():
                         insts.append(inst["display_name"])
             if insts:
                 m["institutions"] = insts
-        hf = get_json(f"https://huggingface.co/api/papers/{a}")
         if hf and hf.get("upvotes") is not None:
             m["hf_upvotes"] = hf["upvotes"]
-        time.sleep(0.3)
 
     gh_headers = {"Accept": "application/vnd.github+json"}
     if os.environ.get("GITHUB_TOKEN"):
         gh_headers["Authorization"] = f"Bearer {os.environ['GITHUB_TOKEN']}"
-    for r in repos:
-        res = get_json(f"https://api.github.com/repos/{r}", headers=gh_headers)
+    with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:
+        gh = list(pool.map(lambda r: (r, get_json(f"https://api.github.com/repos/{r}", headers=gh_headers)), repos))
+        hfm = list(pool.map(lambda r: (r, get_json(f"https://huggingface.co/api/models/{r}")), sorted(hf_repos)))
+    for r, res in gh:
         if res and res.get("stargazers_count") is not None:
             out["repos"][r] = {"stars": res["stargazers_count"], "pushed_at": res.get("pushed_at")}
-    for r in sorted(hf_repos):
-        res = get_json(f"https://huggingface.co/api/models/{r}")
+    for r, res in hfm:
         if res:
             out["models"][r] = {"downloads": res.get("downloads", 0), "likes": res.get("likes", 0)}
 

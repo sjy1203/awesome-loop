@@ -1,0 +1,18 @@
+id: "2602.10520"
+tier: radar
+title: "Prioritize the Process, Not Just the Outcome: Rewarding Latent Thought Trajectories Improves Reasoning in Looped Language Models"
+date: "2026-02-11"
+venue: ICML 2026
+authors: [Jonathan Williams, Esin Tureci]
+links:
+  paper: https://arxiv.org/abs/2602.10520
+  code: https://github.com/jonwill8/RLTT
+category: training
+facets:
+  placement: n/a
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: RLTT replaces GRPO's final-state credit with reward spread over the whole latent thought trajectory of looped LMs; on Ouro-Thinking it raises mean math accuracy over GRPO by +5.8% at 1.4B and +10.9% at 2.6B.
+  zh: RLTT 不再像 GRPO 那样只给最终隐状态分配信用，而是把奖励分配到循环语言模型的整条隐式思考轨迹上；在 Ouro-Thinking 上，数学基准平均准确率比 GRPO 在 1.4B 规模提高 +5.8%，在 2.6B 规模提高 +10.9%。
+added: "2026-11-23"

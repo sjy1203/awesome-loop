@@ -1,0 +1,18 @@
+id: "2604.21999"
+tier: radar
+title: "Universal Transformers Need Memory: Depth-State Trade-offs in Adaptive Recursive Reasoning"
+date: "2026-04-23"
+venue: arXiv
+authors: [Grigory Sapunov]
+links:
+  paper: https://arxiv.org/abs/2604.21999
+  code: https://github.com/che-shr-cat/utm-jax
+category: applications
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: Studies learned memory tokens in a single-block Universal Transformer with ACT on Sudoku-Extreme; without them no configuration reaches non-trivial accuracy, and inverting the halting-router bias to -3 avoids an initialization trap that breaks most runs.
+  zh: 研究单块 Universal Transformer 加 ACT 在 Sudoku-Extreme 上使用可学习 memory token 的效果；没有 memory token 时任何配置都达不到有意义的准确率，把停止路由器的偏置反转为 -3 可避开导致多数训练失败的初始化陷阱。
+added: "2026-11-23"

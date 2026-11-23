@@ -7,6 +7,10 @@ authors: [Dezhen Lu, Runguo Li, Zixiang Ni, Yuchen Tang, Xingquan Kong, Jiaxing 
 links:
   paper: https://arxiv.org/abs/2611.05150
 category: systems
+facets:
+  placement: n/a
+  depth_train: n/a
+  kv: per-pass
 tldr:
   en: Measures serving of looped LMs Ouro and Huginn-0125, grading optimizations by exactness; the many small kernels per token set the cost, and fusing them behind rounding fences raises throughput 1.11-1.59x with identical outputs.
   zh: 测量循环语言模型 Ouro 和 Huginn-0125 的服务性能，并按精确程度为优化分级；每 token 的大量小 kernel 才是主要开销，在舍入屏障后融合这些 kernel 使吞吐提高 1.11-1.59x，且输出完全一致。

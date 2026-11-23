@@ -1,0 +1,17 @@
+id: "1511.08228"
+tier: radar
+title: "Neural GPUs Learn Algorithms"
+date: "2015-11-25"
+venue: arXiv
+authors: [Łukasz Kaiser, Ilya Sutskever]
+links:
+  paper: https://arxiv.org/abs/1511.08228
+category: applications
+facets:
+  placement: whole-stack
+  depth_train: curriculum
+  kv: n/a
+tldr:
+  en: The Neural GPU repeats shared convolutional GRU layers for n steps on length-n inputs; trained with parameter sharing relaxation on up to 20-bit numbers, it adds and multiplies much longer binary numbers without errors.
+  zh: Neural GPU 在长度为 n 的输入上把同一组卷积 GRU 层重复 n 步；借助参数共享松弛在最多 20 比特的数上训练后，它对长得多的二进制数做加法和乘法也没有错误。
+added: "2026-11-23"

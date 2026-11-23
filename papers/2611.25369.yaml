@@ -7,6 +7,10 @@ authors: [Kun Zhou, Wenmian Yang, Zhensheng Wang, Yanzeng Li, Weijia Jia]
 links:
   paper: https://arxiv.org/abs/2611.25369
 category: systems
+facets:
+  placement: hierarchical
+  depth_train: fixed
+  kv: compressed
 tldr:
   en: FoldCache lets groups of recurrent steps in a looped VLM share the group's final visual KV during decoding; on LoopVL it approximately halves prefix KV memory while matching full-cache accuracy on five open-ended benchmarks.
   zh: FoldCache 让循环 VLM 中同一组循环步在 decode 时共享该组最后一步的视觉 KV；在 LoopVL 上，prefix KV 显存约减半，五个开放式基准上的准确率与完整 cache 持平。

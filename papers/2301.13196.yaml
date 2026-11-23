@@ -1,0 +1,17 @@
+id: "2301.13196"
+tier: radar
+title: "Looped Transformers as Programmable Computers"
+date: "2023-01-30"
+venue: arXiv
+authors: [Angeliki Giannou, Shashank Rajput, Jy-yong Sohn, Kangwook Lee, Jason D. Lee, Dimitris Papailiopoulos]
+links:
+  paper: https://arxiv.org/abs/2301.13196
+category: theory
+facets:
+  placement: whole-stack
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: Shows that a looped 13-layer transformer with programmed weights, reading instructions and memory from its input, emulates a small instruction-set computer and runs a calculator, linear algebra routines and in-context learning algorithms.
+  zh: 证明一个权重经过编程设定的循环 13 层 transformer 能从输入中读取指令和内存，模拟一台小型指令集计算机，并运行计算器、线性代数例程和 in-context learning 算法。
+added: "2026-11-23"

@@ -1,0 +1,18 @@
+id: "2405.16039"
+tier: radar
+title: "MoEUT: Mixture-of-Experts Universal Transformers"
+date: "2024-05-25"
+venue: NeurIPS 2024
+authors: [Róbert Csordás, Kazuki Irie, Jürgen Schmidhuber, Christopher Potts, Christopher D. Manning]
+links:
+  paper: https://arxiv.org/abs/2405.16039
+  code: https://github.com/robertcsordas/moeut
+category: architecture/placement
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: MoEUT is a shared-layer Transformer with mixture-of-experts feedforward and attention layers, layer grouping and peri-layernorm; it slightly outperforms standard Transformers on language modeling tasks such as BLiMP and PIQA using less compute and memory.
+  zh: MoEUT 是在前馈层和注意力层都使用 MoE 的共享层 Transformer，并采用层分组和 peri-layernorm 方案；它在 BLiMP、PIQA 等语言建模任务上略优于标准 Transformer，同时计算和内存更少。
+added: "2026-11-23"

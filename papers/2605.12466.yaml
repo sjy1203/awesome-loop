@@ -1,0 +1,18 @@
+id: "2605.12466"
+tier: radar
+title: "Solve the Loop: Attractor Models for Language and Reasoning"
+date: "2026-05-12"
+venue: arXiv
+authors: [Jacob Fein-Ashley, Paria Rashidinejad]
+links:
+  paper: https://arxiv.org/abs/2605.12466
+  code: https://github.com/jacobfa/Attractor
+category: architecture/placement
+facets:
+  placement: implicit
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: Attractor Models refine a backbone's output embedding by solving for a fixed point with implicit gradients, keeping training memory constant; a 770M model outperforms a 1.3B Transformer trained on twice as many tokens.
+  zh: Attractor Models 先由 backbone 给出输出嵌入，再由 attractor 模块求解不动点进行精炼，并用隐式微分求梯度，训练显存不随有效深度增长；770M 的 Attractor Model 超过用两倍 token 训练的 1.3B Transformer。
+added: "2026-11-23"

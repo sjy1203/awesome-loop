@@ -3,10 +3,12 @@ message: "If this collection helps your research, please cite it as below."
 title: "Awesome Loop: Papers, Open Models and Evidence on Looped Language Models"
 type: dataset
 authors:
-  - name: "Awesome Loop contributors"
+  - family-names: "Shang"
+    given-names: "Junyuan"
 url: "https://github.com/sjy1203/awesome-loop"
 repository-code: "https://github.com/sjy1203/awesome-loop"
 date-released: 2026-11-23
+license: CC-BY-4.0
 keywords:
   - looped transformer
   - recurrent depth

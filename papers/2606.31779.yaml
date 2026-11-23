@@ -1,0 +1,18 @@
+id: "2606.31779"
+tier: radar
+title: "Bridging the Gap Between Latent and Explicit Reasoning with Looped Transformers"
+date: "2026-06-30"
+venue: arXiv
+authors: [Ying Fan, Anej Svete, Kangwook Lee]
+links:
+  paper: https://arxiv.org/abs/2606.31779
+  code: https://github.com/yingfan-bot/lotus
+category: training
+facets:
+  placement: whole-stack
+  depth_train: curriculum
+  kv: n/a
+tldr:
+  en: LOTUS loops a pretrained LM over padded latent blocks and supervises each latent position with its gold CoT-step token; at 3B scale it closes the gap to explicit CoT while cutting thought-phase latency 2.5x-6.9x.
+  zh: LOTUS 让预训练语言模型在填充的 latent 块上循环计算，并用对应 CoT 步骤的 gold token 逐位置监督每个 latent；在 3B 规模上它弥合了与显式 CoT 的差距，同时把思考阶段延迟降低 2.5x-6.9x。
+added: "2026-11-23"

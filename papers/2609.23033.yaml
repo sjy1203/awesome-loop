@@ -1,0 +1,18 @@
+id: "2609.23033"
+tier: radar
+title: "WaveFront Decoding: Parallelized Self-Speculative Decoding for Looped Language Models"
+date: "2026-09-19"
+venue: arXiv
+authors: [Hyeongju Ha, Jae-Joon Kim]
+links:
+  paper: https://arxiv.org/abs/2609.23033
+  code: https://github.com/summerbro-hhj/wavefront-decoding
+category: systems
+facets:
+  placement: n/a
+  depth_train: n/a
+  kv: per-pass
+tldr:
+  en: Wavefront Decoding is a training-free self-speculative decoder for looped language models that co-batches shallow drafting and full-depth verification in the same recurrent-block calls, reaching 2.42x speedup on Ouro-2.6B and 3.54x on Huginn-3.5B over autoregressive decoding.
+  zh: Wavefront Decoding 是面向循环语言模型的免训练自推测解码方法，在同一次批量循环块调用中同时做浅层起草和全深度验证，相对自回归解码在 Ouro-2.6B 上加速 2.42x、在 Huginn-3.5B 上加速 3.54x。
+added: "2026-11-23"

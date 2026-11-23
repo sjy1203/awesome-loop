@@ -1,0 +1,125 @@
+id: zai-glm-5-4
+tier: deep
+status: draft
+short: GLM-5.4
+title: "GLM-5.4: Toward Generalized Coding with Our First Loop Transformer"
+date: "2026-11-23"
+venue: Z.ai blog
+authors: [Z.ai]
+orgs: [Z.ai]
+links:
+  paper: https://z.ai/blog/glm-5.4
+category: training
+facets:
+  placement: prelude-core-coda
+  sharing: full
+  depth_train: fixed
+  depth_test: fixed
+  injection: gated
+  kv: first-pass
+  gradient: n/a
+  origin: retrofit
+  ffn: n/a
+  attention: hybrid
+loop:
+  segments:
+    - {role: prelude, layers: "?", label: earlier layers}
+    - role: core
+      layers: 28
+      label: 28 shared layers
+      passes: {train: "2", test: "2"}
+    - {role: coda, layers: "?", label: later layers}
+  note:
+    en: GLM-5.4 loops 28 layers of the GLM-5 base model for two iterations; the post describes them as middle layers but does not give the base model's layer count or which 28 layers are looped. The loop was added to the already pre-trained base through continued training at the 750B scale.
+    zh: GLM-5.4 把 GLM-5 基座的 28 层循环两遍；文中说这些是中间层，但没有给出基座的总层数，也没说具体是哪 28 层。循环是在已经预训练好的 750B 规模基座上通过继续训练加进去的。
+budget:
+  baseline:
+    en: A 30B model with the same architecture as the 750B base, without the loop, evaluated after 200K long-context SFT with thinking mode enabled.
+    zh: 与 750B 基座同架构、不循环的 30B 模型，在 200K 长上下文 SFT 之后开启 thinking 模式评测。
+  matched: [params]
+  not_matched: [flops]
+  baseline_tuned: unknown
+  headline:
+    en: With identical parameter counts and about 10% more total training compute, the looped 30B model improves AIME25 from 19.17 to 30.42 and GPQA-Diamond from 47.58 to 56.26, while average output length drops by 10-14% on most benchmarks.
+    zh: 参数量相同、总训练算力只多约 10% 时，循环版 30B 模型的 AIME25 从 19.17 升到 30.42，GPQA-Diamond 从 47.58 升到 56.26；多数基准上的平均输出长度缩短 10-14%。
+  ref: Scaling Correctness & Controlled Iso-Parameter Ablations (results table)
+results:
+  - setting: 30B, same architecture as the 750B base, iso-parameter, about 10% more total training compute; after 200K long-context SFT, thinking mode on
+    metric: score, baseline / + Loop
+    values:
+      AIME25: "19.17 / 30.42"
+      GPQA-Diamond: "47.58 / 56.26"
+      AA-LCR: "40.33 / 47.67"
+      MMLU-Pro: "71.65 / 75.05"
+      IFBench: "50.20 / 53.47"
+    ref: Scaling Correctness & Controlled Iso-Parameter Ablations (results table)
+  - setting: Same 30B comparison
+    metric: average output length change with the loop
+    values:
+      AIME25: "-635 tokens (-2%)"
+      GPQA-Diamond: "-2,473 tokens (-11.7%)"
+      AA-LCR: "-539 tokens (-9.7%)"
+      MMLU-Pro: "-863 tokens (-14.9%)"
+      IFBench: "-763 tokens (-13.0%)"
+    ref: Scaling Correctness & Controlled Iso-Parameter Ablations (results table)
+  - setting: GLM-5.4 serving
+    metric: output speed
+    values:
+      Off-peak: up to 200 tokens/s
+      Peak load: 70-80 tokens/s
+    ref: Inference Efficiency
+findings:
+  - en: Converting middle layers of a pre-trained model into a loop by directly overwriting hidden states makes activation norms blow up across iterations; per-token gates for each iteration fix this, with the first pass writing conservatively and the second pass opening the gates, and harder tokens getting larger first-pass writes.
+    zh: 把预训练模型的中间层改成循环时，如果直接覆盖隐状态，激活范数会随迭代爆炸；为每次迭代加独立的逐 token 门控可以解决：第一遍写入较保守，第二遍放开门控，难的 token 第一遍写得更多。
+    ref: Gated Progressive Updates
+  - en: The second loop reuses the sparse KV selected in the first pass and keeps only its own new KV in a sliding window, so an extra loop costs one sliding window of KV rather than a full context cache.
+    zh: 第二遍复用第一遍选出的稀疏 KV，自己新生成的 KV 只保留一个滑窗，所以多一遍只多一个滑窗的 KV，而不是一整份上下文缓存。
+    ref: Hybrid KV Cache (Global Sharing + Independent Sliding Window)
+  - en: Reusing the first loop's sparse-attention indices in the second loop performs nearly identically to recomputing them on every pass.
+    zh: 第二遍直接复用第一遍稀疏注意力的索引，效果与每遍重新计算索引几乎相同。
+    ref: Sparse Attention Index Reuse
+  - en: The authors state that looped models trained from scratch still lag behind unshared models under the same pre-training compute budget, which is why they adapted a pre-trained base through continued training instead.
+    zh: 作者称，从头训练的循环模型在相同预训练算力下仍不如不共享权重的模型，所以改为在预训练好的基座上继续训练出循环结构。
+    ref: From Pre-Trained Base to Loop Transformer
+tldr:
+  en: Z.ai turns 28 layers of its pre-trained GLM-5 base into a two-pass loop through continued training at the 750B scale, with per-token gates, a shared-plus-sliding-window KV cache and reused sparse-attention indices.
+  zh: Z.ai 通过继续训练，把已预训练的 GLM-5 基座中的 28 层改成跑两遍的循环（750B 规模），配合逐 token 门控、共享加滑窗的 KV cache 和复用的稀疏注意力索引。
+quickread:
+  problem:
+    en: Long-chain tasks such as large-scale software engineering, 3D modeling and physical control need more effective compute per token, but looped models trained from scratch lag behind unshared models at the same pre-training compute.
+    zh: 大规模软件工程、3D 建模、物理控制等长链条任务需要每个 token 更多的有效计算，但从头训练的循环模型在相同预训练算力下不如不共享权重的模型。
+  method:
+    en:
+      - Adapt the pre-trained GLM-5 base into a Loop Transformer by continued training, running 28 weight-shared layers for two iterations.
+      - Add independent per-token gates for each iteration that write candidate updates back into the residual stream, so activation norms stay stable.
+      - Let the second loop reuse the first pass's sparse KV and attention indices plus its own sliding-window KV, and fuse kernels to cut intermediate memory traffic.
+    zh:
+      - 在预训练好的 GLM-5 基座上继续训练，改成 Loop Transformer：28 层共享权重的层跑两遍。
+      - 每次迭代加独立的逐 token 门控，按比例把候选更新写回残差流，让激活范数保持稳定。
+      - 第二遍复用第一遍的稀疏 KV 和注意力索引，外加自己的滑窗 KV；系统层面融合算子，减少中间结果的显存读写。
+  caveats:
+    en:
+      - This is a blog post, not a paper; the base model's layer count, which 28 layers are looped, the training tokens and the evaluation details beyond the table are not given.
+      - The controlled comparison is iso-parameter, not iso-compute (the looped 30B model used about 10% more total training compute), and it is reported only at 30B after long-context SFT; the 750B results are not shown as a controlled comparison.
+      - The claim that GLM-5.4 reaches intelligence levels comparable to 2T-3T parameter models comes without a stated evaluation protocol in the post.
+      - The authors note that the model tends to get caught in overly long "marathon thinking" loops.
+      - Weights are not released yet (planned after safety hardening) and the API is listed as coming soon.
+    zh:
+      - 这是一篇博客而不是论文；基座总层数、循环的是哪 28 层、训练 token 数，以及表格之外的评测细节都没有给出。
+      - 对照只对齐了参数，没有对齐算力（循环版 30B 多用了约 10% 的总训练算力），而且只在 30B、长上下文 SFT 之后报告；750B 没有给出受控对比。
+      - 文中称 GLM-5.4 达到 2T-3T 参数模型的水平，但没有说明评测方法。
+      - 作者提到模型容易陷入过长的「马拉松式思考」。
+      - 权重尚未发布（计划在安全加固后开源），API 标注为即将推出。
+  hooks:
+    en:
+      - How to make compute adaptive so that harder tokens get more iterations.
+      - How the returns of looping behave as both loop count and model size keep growing.
+    zh:
+      - 如何做到自适应计算，让更难的 token 自动获得更多迭代。
+      - 循环次数和模型规模同时继续增大时，循环的收益会怎样变化。
+reproducibility:
+  code: none
+  weights: none
+  configs: none
+  data: none
+added: "2026-11-23"

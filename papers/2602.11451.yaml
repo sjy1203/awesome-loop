@@ -1,0 +1,18 @@
+id: "2602.11451"
+tier: radar
+title: "LoopFormer: Elastic-Depth Looped Transformers for Latent Reasoning via Shortcut Modulation"
+date: "2026-02-11"
+venue: ICLR 2026
+authors: [Ahmadreza Jeddi, Marco Ciccone, Babak Taati]
+links:
+  paper: https://arxiv.org/abs/2602.11451
+  code: https://github.com/armenjeddi/loopformer
+category: depth
+facets:
+  placement: whole-stack
+  depth_train: sampled
+  kv: n/a
+tldr:
+  en: Trains one looped Transformer for many depths via time and step-size conditioning and a shortcut-consistency loss; it performs well on language modeling and reasoning under tight compute budgets and improves as the budget grows.
+  zh: 通过时间与步长条件化和 shortcut-consistency 损失，让同一个循环 Transformer 适配多种深度；它在较紧的计算预算下仍能在语言建模和推理上表现良好，并随预算增加而提升。
+added: "2026-11-23"

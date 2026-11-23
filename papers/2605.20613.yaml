@@ -1,0 +1,18 @@
+id: "2605.20613"
+tier: radar
+title: "HRM-Text: Efficient Pretraining Beyond Scaling"
+date: "2026-05-20"
+venue: arXiv
+authors: [Guan Wang, Changling Liu, Chenyu Wang, Cai Zhou, Yuhao Sun, Yifei Wu, Shuai Zhen, Luca Scimeca, Yasin Abbasi Yadkori]
+links:
+  paper: https://arxiv.org/abs/2605.20613
+  code: https://github.com/sapientinc/HRM-Text
+category: training
+facets:
+  placement: hierarchical
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: HRM-Text pretrains a hierarchical recurrent language model with MagicNorm, warmup deep credit assignment and a task-completion objective on instruction-response pairs; a 1B model on 40 billion unique tokens performs competitively with 2-7B open models.
+  zh: HRM-Text 用 MagicNorm、warmup deep credit assignment 和基于指令-回复对的任务完成目标预训练分层循环语言模型；在 40 billion 个不重复 token 上训练的 1B 模型与 2-7B 参数的开源模型表现相当。
+added: "2026-11-23"

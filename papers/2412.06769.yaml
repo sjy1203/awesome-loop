@@ -1,0 +1,17 @@
+id: "2412.06769"
+tier: radar
+title: "Training Large Language Models to Reason in a Continuous Latent Space"
+date: "2024-12-09"
+venue: COLM 2025
+authors: [Shibo Hao, Sainbayar Sukhbaatar, DiJia Su, Xian Li, Zhiting Hu, Jason Weston, Yuandong Tian]
+links:
+  paper: https://arxiv.org/abs/2412.06769
+category: adjacent
+facets:
+  placement: n/a
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: Coconut feeds the last hidden state back as the next input embedding rather than decoding it into a token; these continuous thoughts can encode alternative next steps, and Coconut outperforms CoT on search-heavy logical reasoning.
+  zh: Coconut 不把最后的隐藏状态解码成 token，而是直接作为下一个输入 embedding 送回模型；这种连续思维可以编码多个候选的下一步，Coconut 在需要大量搜索的逻辑推理任务上优于 CoT。
+added: "2026-11-23"

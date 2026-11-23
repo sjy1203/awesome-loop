@@ -1,0 +1,17 @@
+id: "2503.03961"
+tier: radar
+title: "A Little Depth Goes a Long Way: The Expressive Power of Log-Depth Transformers"
+date: "2025-03-05"
+venue: NeurIPS 2025
+authors: [William Merrill, Ashish Sabharwal]
+links:
+  paper: https://arxiv.org/abs/2503.03961
+category: theory
+facets:
+  placement: prelude-core-coda
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: Proves that looped transformers repeating middle layers Θ(log n) times recognize regular languages and solve graph connectivity, which fixed-depth transformers cannot under standard conjectures; growing depth is more efficient than growing width or chain-of-thought steps.
+  zh: 证明中间层重复 Θ(log n) 次的循环 transformer 能识别正则语言并求解图连通性，而在标准复杂性猜想下固定深度 transformer 做不到；增加深度比增加宽度或 chain-of-thought 步数更高效。
+added: "2026-11-23"

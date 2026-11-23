@@ -1,0 +1,18 @@
+id: "2507.02092"
+tier: radar
+title: "Energy-Based Transformers are Scalable Learners and Thinkers"
+date: "2025-07-02"
+venue: arXiv
+authors: [Alexi Gladstone, Ganesh Nanduru, Md Mofijul Islam, Peixuan Han, Hyeonjeong Ha, Aman Chadha, Yilun Du, Heng Ji, Jundong Li, Tariq Iqbal]
+links:
+  paper: https://arxiv.org/abs/2507.02092
+  code: https://github.com/alexiglad/ebt
+category: adjacent
+facets:
+  placement: n/a
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: Energy-Based Transformers predict by gradient descent on a learned energy over input-prediction pairs; versus Transformer++, they show up to 35% higher training scaling rate and 29% more gain from System 2 Thinking on language tasks.
+  zh: Energy-Based Transformer 学习输入与候选预测之间的能量，通过对能量做梯度下降来给出预测；与 Transformer++ 相比，训练时的 scaling 速率最高高出 35%，在语言任务上 System 2 Thinking 带来的提升多 29%。
+added: "2026-11-23"

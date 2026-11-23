@@ -1,0 +1,17 @@
+id: "2602.09080"
+tier: radar
+title: "Looping Back to Move Forward: Recursive Transformers for Efficient and Flexible Large Multimodal Models"
+date: "2026-02-09"
+venue: arXiv
+authors: [Ruihan Xu, Yuting Gao, Lan Wang, Jianing Li, Weihao Chen, Qingpei Guo, Ming Yang, Shiliang Zhang]
+links:
+  paper: https://arxiv.org/abs/2602.09080
+category: architecture/state
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: RecursiveVLM loops a multimodal model's LLM backbone, adding a Recursive Connector that fuses intermediate-layer states per modality and a Monotonic Recursion Loss; it gains +3% over standard Transformers and +7% over vanilla recursive baselines.
+  zh: RecursiveVLM 循环多模态模型的 LLM 主干，加入按模态融合中间层状态的 Recursive Connector 和 Monotonic Recursion Loss；相比标准 Transformer 提升 +3%，相比普通递归基线提升 +7%。
+added: "2026-11-23"

@@ -1,0 +1,18 @@
+id: "2006.08656"
+tier: radar
+title: "Multiscale Deep Equilibrium Models"
+date: "2020-06-15"
+venue: NeurIPS 2020
+authors: [Shaojie Bai, Vladlen Koltun, J. Zico Kolter]
+links:
+  paper: https://arxiv.org/abs/2006.08656
+  code: https://github.com/locuslab/mdeq
+category: applications
+facets:
+  placement: implicit
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: MDEQ solves for and backpropagates through the equilibrium points of several feature resolutions at once, using implicit differentiation with O(1) memory; on ImageNet classification and Cityscapes segmentation it matches or exceeds competitive vision models.
+  zh: MDEQ 借助隐式微分同时求解多个特征分辨率的平衡点并对其反传，只需 O(1) 内存；在 ImageNet 分类和 Cityscapes 语义分割上达到或超过有竞争力的视觉模型。
+added: "2026-11-23"

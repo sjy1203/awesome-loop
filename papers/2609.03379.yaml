@@ -1,0 +1,17 @@
+id: "2609.03379"
+tier: radar
+title: "RecurTrace: Adaptive Latent Reasoning with Loop-Time Memory"
+date: "2026-09-03"
+venue: arXiv
+authors: [Yuxiang Wang, Kunyu Feng, Yingda Shen, Haoning Xu, Junyu Wang, Zhizheng Wu]
+links:
+  paper: https://arxiv.org/abs/2609.03379
+category: depth
+facets:
+  placement: prelude-core-coda
+  depth_train: sampled
+  kv: n/a
+tldr:
+  en: Loops a middle block of an LM, adding attention over earlier loop states and an oracle-supervised halting head; on MathQA it reaches 56.9% with 2.0 loops on average, 2.2 points above the best fixed depth.
+  zh: 在语言模型中循环一个中间层块，加入对先前各遍状态的注意力（Loop Memory Attention）和由 oracle 监督的停止头；在 MathQA 上以平均 2.0 遍达到 56.9% 准确率，比最佳固定循环深度高 2.2 个点。
+added: "2026-11-23"

@@ -1,0 +1,18 @@
+id: "2610.06833"
+tier: radar
+title: "Towards Looped Models Done Right, Part II: Rethinking at Fixed Points"
+date: "2026-10-05"
+venue: arXiv
+authors: [Benhao Huang, Chufan Shi, Junlin Chen, Shicheng Wen, Zhengzhong Liu, Eric Xing, Xuezhe Ma]
+links:
+  paper: https://arxiv.org/abs/2610.06833
+  code: https://github.com/ifm-ai/xllm-loop
+category: training
+facets:
+  placement: prelude-core-coda
+  depth_train: sampled
+  kv: last-pass
+tldr:
+  en: Shows that near fixed points looped LMs can skip recurrence paths in training, decoding, prefill and RL; its learned depth prior and orthogonal input injection lower perplexity over existing choices from 100M to 1.6B.
+  zh: 说明循环语言模型的状态接近不动点时，训练、解码、prefill 和 RL 都可以跳过递归路径；文中学习的深度先验和正交输入注入在 100M 到 1.6B 参数规模上都比已有做法困惑度更低。
+added: "2026-11-23"

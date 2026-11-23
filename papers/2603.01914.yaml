@@ -1,0 +1,17 @@
+id: "2603.01914"
+tier: radar
+title: "AdaPonderLM: Gated Pondering Language Models with Token-Wise Adaptive Depth"
+date: "2026-03-02"
+venue: arXiv
+authors: [Shixiang Song, He Li, Zitong Wang, Boyi Zeng, Feichen Song, Yixuan Wang, Zhiqin John Xu, Ziwei He, Zhouhan Lin]
+links:
+  paper: https://arxiv.org/abs/2603.01914
+category: depth
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: per-pass
+tldr:
+  en: AdaPonderLM, a recurrent LM, learns token-wise halting with iteration-specific MLP gates and reuses KV states of halted tokens; it cuts inference compute by about 10% at comparable perplexity, spending more compute on high-NLL tokens.
+  zh: AdaPonderLM 是一种循环语言模型，用每次迭代专属的 MLP 门控学习按 token 停止，并复用已停止 token 的 KV；在困惑度相当的情况下推理计算量减少约 10%，并把更多计算分配给高 NLL 的 token。
+added: "2026-11-23"

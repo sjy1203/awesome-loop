@@ -1,0 +1,17 @@
+id: "2607.22083"
+tier: radar
+title: "Nanbeige4.2-3B: Unlocking Agentic Capabilities in a Compact Model"
+date: "2026-07-24"
+venue: arXiv
+authors: [Nanbeige Lab, Chen Yang, Chengrui Huang, Fufeng Lan, Hanhui Chen, Hao Zhou, Huatong Song, Jiaqi Cao, Jiaying Zhu, Jinlin Niu, Kai Wang, Lisheng Huang, Qiliang Liang, Ran Le, Ruixiang Feng, Shuang Sun, Tao Gu, Tao Zhang, Tianyu Luo, Yang Song, Yun Xing, Yuntao Wen, Ziyao Xu, Zongchao Chen, Zongqiang Li]
+links:
+  paper: https://arxiv.org/abs/2607.22083
+category: training
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: per-pass
+tldr:
+  en: Nanbeige4.2-3B is pretrained from scratch on 28T tokens as a Looped Transformer that reuses its layer stack, then post-trained with SFT and RL; it outperforms larger models including Qwen3.5-9B and Gemma4-12B on agentic benchmarks.
+  zh: Nanbeige4.2-3B 采用复用整个层栈的 Looped Transformer，在 28T token 上从头预训练，再经 SFT 和 RL 后训练；在 agentic 基准上超过 Qwen3.5-9B 和 Gemma4-12B 等更大的模型。
+added: "2026-11-23"

@@ -1,0 +1,17 @@
+id: "2211.09961"
+tier: radar
+title: "Path Independent Equilibrium Models Can Better Exploit Test-Time Computation"
+date: "2022-11-18"
+venue: NeurIPS 2022
+authors: [Cem Anil, Ashwini Pokle, Kaiqu Liang, Johannes Treutlein, Yuhuai Wu, Shaojie Bai, Zico Kolter, Roger Grosse]
+links:
+  paper: https://arxiv.org/abs/2211.09961
+category: applications
+facets:
+  placement: implicit
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: In equilibrium models, upward generalization to harder instances with more test-time iterations correlates with path independence (reaching the same fixed point from any initialization); promoting it improves generalization and penalizing it degrades it.
+  zh: 在均衡模型中，用更多测试时迭代向更难实例泛化的能力与路径无关性（从任意初始化都收敛到同一不动点）相关；提升路径无关性能改善泛化，惩罚它则会变差。
+added: "2026-11-23"

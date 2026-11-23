@@ -7,6 +7,10 @@ authors: [Kaito Takanami, Cengiz Pehlevan]
 links:
   paper: https://arxiv.org/abs/2611.01740
 category: theory
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
 tldr:
   en: Studies an in-context linear-regression weight predictor trained on gradient-descent trajectories and run recursively beyond them; long-horizon reasoning has phase transitions in context length and training CoT budget, and overthinking splits into error accumulation and amplification.
   zh: 研究一个在梯度下降轨迹上训练、测试时递归应用并超出训练步数的线性回归上下文权重预测模型；长程推理的成败随上下文长度和训练 CoT 总量出现相变，过度思考分为误差累积和误差放大两种机制。

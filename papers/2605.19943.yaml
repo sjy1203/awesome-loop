@@ -1,0 +1,17 @@
+id: "2605.19943"
+tier: radar
+title: "Probabilistic Tiny Recursive Model"
+date: "2026-05-19"
+venue: arXiv
+authors: [Amin Sghaier, Ali Parviz, Alexia Jolicoeur-Martineau]
+links:
+  paper: https://arxiv.org/abs/2605.19943
+category: applications
+facets:
+  placement: hierarchical
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: PTRM injects Gaussian noise at each deep recursion step of a trained TRM to run parallel trajectories and selects among them with its Q head; without retraining, Sudoku-Extreme accuracy rises from 87.4% to 98.75%.
+  zh: PTRM 在训练好的 TRM 每个深度递归步注入高斯噪声以并行运行多条轨迹，并用模型自带的 Q head 选出答案；无需重新训练，Sudoku-Extreme 准确率从 87.4% 提高到 98.75%。
+added: "2026-11-23"

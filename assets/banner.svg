@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="400" viewBox="0 0 1280 400" role="img" aria-label="The Era of Loop. Looped computation is entering pretraining as a path to stronger reasoning. How to build loops that are principled and efficient remains wide open.">
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="400" viewBox="0 0 1280 400" role="img" aria-label="The Era of Loop. Loop Transformers are becoming the default pre-training architecture for stronger reasoning. How to build loops that are principled and efficient remains wide open.">
 <title>The Era of Loop</title>
 <defs>
 <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#060a16"/><stop offset="0.55" stop-color="#0c1530"/><stop offset="1" stop-color="#080d1f"/></linearGradient>
@@ -29,10 +29,11 @@
 <path class="pulse" d="M1059,156 C1209,122 1209,298 1063,264" fill="none" stroke="#ecfeff" stroke-width="4" stroke-linecap="round"/>
 <path d="M1057,264 L1070,256 L1068,271 Z" fill="#c084fc"/>
 <text x="1187" y="217" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="24" fill="#c4b5fd">×T</text>
-<text x="88" y="112" font-family="Inter, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="600" letter-spacing="4.5" fill="#7aa2ff">AWESOME LOOP</text>
-<text x="86" y="190" font-family="Inter, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="66" font-weight="700" letter-spacing="-1.2" fill="#f4f6ff">The Era of <tspan fill="url(#title)">Loop</tspan></text>
-<text x="88" y="246" font-family="Inter, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="18" fill="#b9c5dd">Looped computation is entering pretraining as a path to stronger reasoning.</text>
-<text x="88" y="276" font-family="Inter, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="18" fill="#b9c5dd">How to build loops that are principled and efficient remains wide open.</text>
-<rect x="88" y="308" width="44" height="2" fill="url(#rule)"/>
-<text x="146" y="314" font-family="Inter, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="12" letter-spacing="3" fill="#6f7fa3">PAPERS · OPEN MODELS · EVIDENCE</text>
+<text x="88" y="104" font-family="Inter, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="600" letter-spacing="4.5" fill="#7aa2ff">AWESOME LOOP</text>
+<text x="86" y="184" font-family="Inter, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="66" font-weight="700" letter-spacing="-1.2" fill="#f4f6ff">The Era of <tspan fill="url(#title)">Loop</tspan></text>
+<text x="88" y="244" font-family="Inter, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="18" fill="#b9c5dd">Loop Transformers are becoming the default pre-training architecture</text>
+<text x="88" y="273" font-family="Inter, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="18" fill="#b9c5dd">for stronger reasoning. How to build loops that are principled and</text>
+<text x="88" y="302" font-family="Inter, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="18" fill="#b9c5dd">efficient remains wide open.</text>
+<rect x="88" y="355" width="44" height="2" fill="url(#rule)"/>
+<text x="146" y="361" font-family="Inter, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="12" letter-spacing="3" fill="#6f7fa3">PAPERS · OPEN MODELS · EVIDENCE</text>
 </svg>

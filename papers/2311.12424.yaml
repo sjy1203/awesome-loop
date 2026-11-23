@@ -1,0 +1,18 @@
+id: "2311.12424"
+tier: radar
+title: "Looped Transformers are Better at Learning Learning Algorithms"
+date: "2023-11-21"
+venue: ICLR 2024
+authors: [Liu Yang, Kangwook Lee, Robert Nowak, Dimitris Papailiopoulos]
+links:
+  paper: https://arxiv.org/abs/2311.12424
+  code: https://github.com/leiay/looped_transformer
+category: theory
+facets:
+  placement: whole-stack
+  depth_train: curriculum
+  kv: n/a
+tldr:
+  en: Trains a looped transformer with input injection to solve in-context data-fitting problems such as linear regression; it performs comparably to a standard transformer while using less than 10% of the parameters.
+  zh: 训练带输入注入的循环 Transformer，在上下文中求解线性回归等数据拟合问题；其表现与标准 Transformer 相当，参数量不到后者的 10%。
+added: "2026-11-23"

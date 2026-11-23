@@ -1,0 +1,18 @@
+id: "2606.18206"
+tier: radar
+title: "Fixed-Point Reasoners: Stable and Adaptive Deep Looped Transformers"
+date: "2026-06-16"
+venue: arXiv
+authors: [Sajad Movahedi, Vera Milovanović, Shlomo Libo Feigin, Alexander Theus, Thomas Hofmann, Valentina Boeva, T. Konstantin Rusch, Antonio Orvieto]
+links:
+  paper: https://arxiv.org/abs/2606.18206
+  code: https://github.com/nilskiKonjIzDunava/fprm
+category: applications
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: FPRM stabilizes deep looped Transformers with pre-norm layers and residual scaling and halts when the hidden state reaches a fixed point, adapting compute to task difficulty; it is effective on Sudoku, Maze, state-tracking and ARC-AGI.
+  zh: FPRM 用 pre-norm 层和残差缩放稳定深层循环 Transformer，并在隐藏状态到达不动点时停止，使算力随任务难度变化；在 Sudoku、Maze、状态追踪和 ARC-AGI 上有效。
+added: "2026-11-23"

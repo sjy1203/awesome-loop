@@ -7,6 +7,10 @@ authors: [Anh Dao, Xinxin Liu, Hang Yu, Jeffrey A Chan Santiago, Yuzhang Shang]
 links:
   paper: https://arxiv.org/abs/2611.25595
 category: applications
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: per-pass
 tldr:
   en: LoopedWAM loops a shared six-block core in each expert of a robot world action model, and elastic self-distillation lets one checkpoint serve several action-depth and sampling-step budgets; it reaches 96.1% success on LIBERO.
   zh: LoopedWAM 在机器人世界动作模型的每个专家里循环一个由六个 block 组成的共享核心，并用弹性自蒸馏让单个 checkpoint 适配多种动作深度和采样步数预算，在 LIBERO 上成功率为 96.1%。

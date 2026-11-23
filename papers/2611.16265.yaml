@@ -7,6 +7,10 @@ authors: [Musheng Li, Jiawei Zhang, Ziyuan Liu, Yuantao Gu]
 links:
   paper: https://arxiv.org/abs/2611.16265
 category: architecture/state
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
 tldr:
   en: Feeds each loop a linear interpolation between the current state and the block's prediction; at matched depth this lowers perplexity versus a standard looped Transformer and keeps hidden-state norms more stable, with no extra parameters.
   zh: 把下一遍循环的输入改为当前状态与本遍预测之间的线性插值；在相同深度下，困惑度低于标准循环 Transformer，隐状态范数更稳定，且不增加参数。

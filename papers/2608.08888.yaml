@@ -1,0 +1,18 @@
+id: "2608.08888"
+tier: radar
+title: "Full-bandwidth transformer"
+date: "2026-08-09"
+venue: arXiv
+authors: [Xi Wang, Ziyang Cai, Zheng Zhan, Harry Dong, Ying Fan, Gustavo de Rosa, Tim Pearce, John Langford]
+links:
+  paper: https://arxiv.org/abs/2608.08888
+  code: https://github.com/xidulu/Full-bandwidth-transformer
+category: architecture/state
+facets:
+  placement: shifted-parallel
+  depth_train: curriculum
+  kv: n/a
+tldr:
+  en: Fuses each step's top-layer state with the sampled token embedding through a gate and feeds it back as the next input; 1B models match or approach standard transformers trained on roughly 1.5x more tokens.
+  zh: 把每一步的顶层状态与采样 token 的 embedding 经门控融合后送回作为下一步输入；1B 模型的效果达到或接近用约 1.5x token 训练的标准 Transformer。
+added: "2026-11-23"

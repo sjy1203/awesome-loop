@@ -7,6 +7,10 @@ authors: [Carlos Boned Riera, David Romero Sanchez, Oriol Ramos Terrades]
 links:
   paper: https://arxiv.org/abs/2611.08236
 category: applications
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
 tldr:
   en: Replaces ViT self-attention with a separable sum-of-Gaussians operator, globally Lipschitz with fixed kernels, across discrete, looped and Neural ODE ViTs; in the looped setting it raises CIFAR-100 Top-1 accuracy by 5.4-8.1 points.
   zh: 用可分离的高斯和算子替换 ViT 的自注意力（固定核时全局 Lipschitz），并在离散、循环和 Neural ODE 三种 ViT 中测试；在循环设置下 CIFAR-100 Top-1 准确率提高 5.4-8.1 个点。

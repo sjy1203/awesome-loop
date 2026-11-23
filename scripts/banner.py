@@ -14,12 +14,11 @@ SANS = "Inter, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif"
 CJK = "'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Source Han Sans SC', sans-serif"
 
 SUB = {
-    "en": ("Looped computation is entering pretraining as a path to stronger reasoning.",
-           "How to build loops that are principled and efficient remains wide open.", SANS, 18,
-           "PAPERS · OPEN MODELS · EVIDENCE", 3),
-    "zh": ("循环结构正进入预训练架构，成为增强推理能力的新路径；",
-           "如何构建更科学、更高效的循环结构，仍有广阔的探索空间。", CJK, 19,
-           "论文 · 开源模型 · 证据", 4),
+    "en": (["Loop Transformers are becoming the default pre-training architecture",
+            "for stronger reasoning. How to build loops that are principled and",
+            "efficient remains wide open."], SANS, 18, "PAPERS · OPEN MODELS · EVIDENCE", 3),
+    "zh": (["Loop Transformer 正在成为增强推理能力的默认预训练架构；",
+            "如何构建更科学、更高效的循环结构，仍有广阔的探索空间。"], CJK, 19, "论文 · 开源模型 · 证据", 4),
 }
 
 
@@ -37,7 +36,7 @@ def slab(cy, role):
 
 
 def build(lang):
-    s1, s2, font, size, foot, foot_ls = SUB[lang]
+    lines, font, size, foot, foot_ls = SUB[lang]
     ys = [Y0 - i * STEP for i in range(len(ROLES))]
     core_top, core_bot = ys[5], ys[2]
     x_in = CX + A + 6
@@ -49,7 +48,7 @@ def build(lang):
     head = f"M{tip[0]},{tip[1]} L{tip[0] + 13},{tip[1] - 8} L{tip[0] + 11},{tip[1] + 7} Z"
     out = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" '
-        f'aria-label="The Era of Loop. {html.escape(s1)} {html.escape(s2)}">',
+        f'aria-label="The Era of Loop. {html.escape(" ".join(lines))}">',
         f"<title>The Era of Loop</title>",
         "<defs>",
         '<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#060a16"/>'
@@ -87,15 +86,15 @@ def build(lang):
         f'<text x="{x_in + 128}" y="{(core_top + core_bot) / 2 + 7:g}" font-family="Georgia, \'Times New Roman\', serif" '
         f'font-style="italic" font-size="24" fill="#c4b5fd">×T</text>',
         # text block
-        f'<text x="88" y="112" font-family="{SANS}" font-size="14" font-weight="600" letter-spacing="4.5" '
+        f'<text x="88" y="104" font-family="{SANS}" font-size="14" font-weight="600" letter-spacing="4.5" '
         f'fill="#7aa2ff">AWESOME LOOP</text>',
-        f'<text x="86" y="190" font-family="{SANS}" font-size="66" font-weight="700" letter-spacing="-1.2" '
+        f'<text x="86" y="184" font-family="{SANS}" font-size="66" font-weight="700" letter-spacing="-1.2" '
         f'fill="#f4f6ff">The Era of <tspan fill="url(#title)">Loop</tspan></text>',
-        f'<text x="88" y="246" font-family="{font}" font-size="{size}" fill="#b9c5dd">{html.escape(s1)}</text>',
-        f'<text x="88" y="276" font-family="{font}" font-size="{size}" fill="#b9c5dd">{html.escape(s2)}</text>',
-        f'<rect x="88" y="308" width="44" height="2" fill="url(#rule)"/>',
-        f'<text x="146" y="314" font-family="{font}" font-size="12" letter-spacing="{foot_ls}" fill="#6f7fa3">'
-        f'{foot}</text>',
+        *[f'<text x="88" y="{244 + 29 * i}" font-family="{font}" font-size="{size}" fill="#b9c5dd">'
+          f'{html.escape(line)}</text>' for i, line in enumerate(lines)],
+        f'<rect x="88" y="{268 + 29 * len(lines)}" width="44" height="2" fill="url(#rule)"/>',
+        f'<text x="146" y="{274 + 29 * len(lines)}" font-family="{font}" font-size="12" letter-spacing="{foot_ls}" '
+        f'fill="#6f7fa3">{foot}</text>',
         "</svg>",
     ]
     return "\n".join(out) + "\n"

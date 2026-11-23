@@ -1,0 +1,17 @@
+id: "2607.13491"
+tier: radar
+title: "DeepLoop: Depth Scaling for Looped Transformers"
+date: "2026-07-15"
+venue: arXiv
+authors: [Shuzhen Li, Yifan Zhang, Jiacheng Guo, Quanquan Gu, Mengdi Wang]
+links:
+  paper: https://arxiv.org/abs/2607.13491
+category: training
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: DeepLoop derives a residual-scaling rule for looped Transformers that counts repeated visits to shared blocks; in GPT-2 small and medium looped language models it improves validation loss and downstream accuracy once blocks are revisited.
+  zh: DeepLoop 为循环 Transformer 推导出考虑共享块被重复访问的残差缩放规则；在 GPT-2 small 和 medium 规模的循环语言模型上，一旦块被重复使用，它就能改善验证损失和下游准确率。
+added: "2026-11-23"

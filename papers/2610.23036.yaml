@@ -1,0 +1,18 @@
+id: "2610.23036"
+tier: radar
+title: "Towards Looped Models Done Right, Part I: Topology, Input Injection, Recurrent-State Design"
+date: "2026-10-16"
+venue: arXiv
+authors: [Benhao Huang, Chufan Shi, Junlin Chen, Shicheng Wen, Zhengzhong Liu, Eric Xing, Xuezhe Ma]
+links:
+  paper: https://arxiv.org/abs/2610.23036
+  code: https://github.com/ifm-ai/xllm-loop
+category: architecture/placement
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Isolates loop placement, input injection and recurrent-state design in matched from-scratch looped LMs; a prelude-recurrent-coda Huginn-style design outperforms Ouro across all ten benchmarks at 730M parameters and 336B tokens, and the advantage transfers to MoE.
+  zh: 在从头训练、参数规模、逻辑深度和 token 预算都匹配的循环语言模型中分别考察循环位置、输入注入和递归状态设计；在 730M 参数、336B token 规模下，完整的 Huginn 式 prelude-recurrent-coda 设计在全部十个基准上优于 Ouro，且这一优势可迁移到 MoE 模型。
+added: "2026-11-23"

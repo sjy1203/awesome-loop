@@ -1,0 +1,17 @@
+id: "2604.15259"
+tier: radar
+title: "Stability and Generalization in Looped Transformers"
+date: "2026-04-16"
+venue: NeurIPS 2026
+authors: [Asher Labovich]
+links:
+  paper: https://arxiv.org/abs/2604.15259
+category: theory
+facets:
+  placement: whole-stack
+  depth_train: sampled
+  kv: n/a
+tldr:
+  en: A fixed-point analysis of looped transformers proves that models without recall cannot achieve strong input-dependence, while recall with outer normalization yields stable, input-dependent fixed points; small models on chess, sudoku and prefix-sums follow these predictions.
+  zh: 对循环 Transformer 的不动点分析证明，没有 recall 的模型无法获得强输入依赖，而 recall 加外层归一化能得到稳定且依赖输入的不动点；在国际象棋、数独和前缀和任务上训练的小模型符合这些预测。
+added: "2026-11-23"

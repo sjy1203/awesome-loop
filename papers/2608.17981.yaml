@@ -1,0 +1,17 @@
+id: "2608.17981"
+tier: radar
+title: "Recirculation"
+date: "2026-08-18"
+venue: arXiv
+authors: [Michael C. Mozer, Shoaib Ahmed Siddiqui, Danny Sawyer, Sunny Sanyal, Rosanne Liu]
+links:
+  paper: https://arxiv.org/abs/2608.17981
+category: architecture/state
+facets:
+  placement: shifted-parallel
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: Recirculation feeds part of a deep layer activation into a shallow layer of frozen pretrained transformers, adding recurrence over depth and tokens; adaptive recirculation on Gemma3 lowers perplexity and raises relative GSM8k accuracy by 21%.
+  zh: Recirculation 把深层激活的一部分送入冻结的预训练 transformer 的浅层，形成跨深度和跨 token 的循环；在 Gemma3 上，adaptive recirculation 降低了困惑度，并使 GSM8k 的相对准确率提高 21%。
+added: "2026-11-23"

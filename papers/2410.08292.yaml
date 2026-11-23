@@ -1,0 +1,17 @@
+id: "2410.08292"
+tier: radar
+title: "Can Looped Transformers Learn to Implement Multi-step Gradient Descent for In-context Learning?"
+date: "2024-10-10"
+venue: arXiv
+authors: [Khashayar Gatmiry, Nikunj Saunshi, Sashank J. Reddi, Stefanie Jegelka, Sanjiv Kumar]
+links:
+  paper: https://arxiv.org/abs/2410.08292
+category: theory
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Proves that for in-context linear regression, the global minimizer of a linear looped Transformer's training loss implements multi-step preconditioned gradient descent, and that gradient flow converges fast despite non-convexity; synthetic experiments agree.
+  zh: 证明在 in-context 线性回归中，线性循环 Transformer 总体训练损失的全局最小点实现了多步预条件梯度下降，且尽管损失非凸，梯度流仍能快速收敛；合成实验与理论一致。
+added: "2026-11-23"

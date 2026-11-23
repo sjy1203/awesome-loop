@@ -1,0 +1,18 @@
+id: "2101.00234"
+tier: radar
+title: "Subformer: Exploring Weight Sharing for Parameter Efficiency in Generative Transformers"
+date: "2021-01-01"
+venue: EMNLP 2021 Findings
+authors: [Machel Reid, Edison Marrese-Taylor, Yutaka Matsuo]
+links:
+  paper: https://arxiv.org/abs/2101.00234
+  code: https://github.com/machelreid/subformer
+category: architecture/placement
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Subformer shares parameters across the central layers of generative Transformers, with unshared first and last layers and self-attentive factorized embeddings; it can beat the Transformer on translation, summarization and language modeling with fewer parameters.
+  zh: Subformer 在生成式 Transformer 中让中间各层共享参数，首尾两层不共享，并使用自注意力式的分解 embedding；在机器翻译、摘要和语言建模上，它能以更少的参数超过 Transformer。
+added: "2026-11-23"

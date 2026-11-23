@@ -1,0 +1,18 @@
+id: "2502.21074"
+tier: radar
+title: "CODI: Compressing Chain-of-Thought into Continuous Space via Self-Distillation"
+date: "2025-02-28"
+venue: arXiv
+authors: [Zhenyi Shen, Hanqi Yan, Linhai Zhang, Zhanghao Hu, Yali Du, Yulan He]
+links:
+  paper: https://arxiv.org/abs/2502.21074
+  code: https://github.com/zhenyi4/codi
+category: adjacent
+facets:
+  placement: n/a
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: CODI jointly trains explicit-CoT teacher and implicit-CoT student tasks, aligning a designated token's hidden states to compress CoT into continuous space; at GPT-2 scale it matches explicit CoT on GSM8k with 3.1x compression.
+  zh: CODI 联合训练显式 CoT 教师任务和隐式 CoT 学生任务，通过对齐指定 token 的隐藏状态把 CoT 压缩到连续空间；在 GPT-2 规模上它在 GSM8k 上追平显式 CoT，压缩率为 3.1x。
+added: "2026-11-23"

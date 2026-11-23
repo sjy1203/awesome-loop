@@ -1,0 +1,18 @@
+id: "2604.21106"
+tier: radar
+title: "How Much Is One Recurrence Worth? Iso-Depth Scaling Laws for Looped Language Models"
+date: "2026-04-22"
+venue: NeurIPS 2026
+authors: [Kristian Schwethelm, Daniel Rueckert, Georgios Kaissis]
+links:
+  paper: https://arxiv.org/abs/2604.21106
+  code: https://github.com/kschwethelm/looped-lm-scaling
+category: scaling
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Fits a joint scaling law over an iso-depth pretraining sweep of looped language models and measures a recurrence-equivalence exponent of 0.46, so replacing unique blocks with shared recurrences raises validation loss at matched training compute.
+  zh: 在循环语言模型的等深度预训练扫描上拟合联合 scaling law，测得 recurrence-equivalence 指数为 0.46，说明在训练算力匹配时用共享的循环替换独立块会提高验证损失。
+added: "2026-11-23"

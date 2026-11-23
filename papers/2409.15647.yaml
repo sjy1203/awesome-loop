@@ -1,0 +1,18 @@
+id: "2409.15647"
+tier: radar
+title: "Looped Transformers for Length Generalization"
+date: "2024-09-24"
+venue: ICLR 2025
+authors: [Ying Fan, Yilun Du, Kannan Ramchandran, Kangwook Lee]
+links:
+  paper: https://arxiv.org/abs/2409.15647
+  code: https://github.com/UW-Madison-Lee-Lab/looped-tf
+category: applications
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: Trains looped decoder-only Transformers on tasks with known iterative RASP-L solutions, supervising only the final answer after an input-dependent number of steps; adapting the step count at test time improves length generalization.
+  zh: 在有已知迭代 RASP-L 解法的任务上训练循环 decoder-only Transformer，只在与输入相关的步数之后监督最终答案；测试时按输入调整循环步数可以改善长度泛化。
+added: "2026-11-23"

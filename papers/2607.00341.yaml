@@ -1,0 +1,17 @@
+id: "2607.00341"
+tier: radar
+title: "DiscoLoop: Looping Discrete Embeddings and Continuous Hidden States for Multi-hop Reasoning"
+date: "2026-07-01"
+venue: arXiv
+authors: [Hengyu Fu, Tianyu Guo, Zixuan Wang, Hanlin Zhu, Jason D. Lee, Jiantao Jiao, Stuart Russell, Song Mei]
+links:
+  paper: https://arxiv.org/abs/2607.00341
+category: architecture/state
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Finds that a looped transformer's first loop leaves the two-hop bridge entity decodable but misaligned with its embedding; DiscoLoop adds a decoded-embedding channel between loops and outperforms looped baselines on multi-hop tasks and in pretraining.
+  zh: 发现循环 Transformer 第一遍循环后两跳问题的桥接实体已可解码，但隐藏状态与其 token embedding 不对齐；DiscoLoop 在循环之间增加一条解码后的 embedding 通道，在多跳任务和预训练中都优于循环基线。
+added: "2026-11-23"

@@ -1,0 +1,17 @@
+id: "2608.11233"
+tier: radar
+title: "Retrofitting Recurrent Depth into a Pretrained Language Model: Installation, Extrapolation, Transfer, and Retention at Two Parameter Budgets"
+date: "2026-07-31"
+venue: arXiv
+authors: [Mark Shapiro]
+links:
+  paper: https://arxiv.org/abs/2608.11233
+category: training
+facets:
+  placement: prelude-core-coda
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: Splits Qwen2.5-0.5B-Instruct into prelude, weight-tied recurrent block and coda; with intermediate-step supervision it computes one task step per loop, extrapolates to roughly 1.5 times its supervised depth, and beats a scratchpad model 84% versus 72%.
+  zh: 把 Qwen2.5-0.5B-Instruct 拆成 prelude、权重共享的循环块和 coda；在中间步骤监督下，模型每遍循环完成一步任务，可外推到约 1.5 倍的监督深度，总体准确率以 84% 对 72% 胜过 scratchpad 训练的模型。
+added: "2026-11-23"

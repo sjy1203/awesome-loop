@@ -1,0 +1,18 @@
+id: "2505.20674"
+tier: radar
+title: "PonderLM: Pretraining Language Models to Ponder in Continuous Space"
+date: "2025-05-27"
+venue: ICLR 2026
+authors: [Boyi Zeng, Shixiang Song, Siyuan Huang, Yixuan Wang, He Li, Ziwei He, Xinbing Wang, Zhiyu Li, Zhouhan Lin]
+links:
+  paper: https://arxiv.org/abs/2505.20674
+  code: https://github.com/LUMIA-Group/PonderingLM
+category: architecture/state
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: PonderLM feeds the probability-weighted sum of token embeddings back into the same model for several forward passes per token, learned by self-supervised pretraining; PonderPythia-2.8B surpasses Pythia-6.9B and rivals Pythia-12B.
+  zh: PonderLM 在预测每个 token 时，把按预测分布加权的 token 嵌入之和加回输入，再送入同一个模型做下一次前向，并通过自监督预训练学会这种思考；PonderPythia-2.8B 超过 Pythia-6.9B，并与 Pythia-12B 相当。
+added: "2026-11-23"

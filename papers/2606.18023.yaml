@@ -1,0 +1,17 @@
+id: "2606.18023"
+tier: radar
+title: "LoopCoder-v2: Only Loop Once for Efficient Test-Time Computation Scaling"
+date: "2026-06-16"
+venue: arXiv
+authors: [Jian Yang, Shawn Guo, Wei Zhang, Tianyu Zheng, Yaxin Du, Haau-Sing Li, Jiajun Wu, Yue Song, Yan Xing, Qingsong Cai, Zelong Huang, Chuan Hao, Ran Tao, Xianglong Liu, Wayne Xin Zhao, Mingjie Tang, Weifeng Lv, Ming Zhou, Bryan Dai]
+links:
+  paper: https://arxiv.org/abs/2606.18023
+category: understanding
+facets:
+  placement: shifted-parallel
+  depth_train: fixed
+  kv: first-pass
+tldr:
+  en: LoopCoder-v2 trains 7B Parallel Loop Transformer coders on 18T tokens; two loops lift SWE-bench Verified from 43.0 (non-looped) to 64.4, but three or more regress as later-loop gains shrink against a roughly fixed position-offset cost.
+  zh: LoopCoder-v2 在 18T token 上训练 7B 的 Parallel Loop Transformer 代码模型；两遍循环把 SWE-bench Verified 从不循环时的 43.0 提到 64.4，三遍及以上反而退步，因为后续循环的收益递减，而位置偏移代价大致不变。
+added: "2026-11-23"

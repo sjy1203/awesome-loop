@@ -1,0 +1,17 @@
+id: "2607.15178"
+tier: radar
+title: "T^2MLR: Transformer with Temporal Middle-Layer Recurrence"
+date: "2026-07-16"
+venue: arXiv
+authors: [Ziyang Cai, Xingyu Zhu, Yihe Dong, Yinghui He, Sanjeev Arora]
+links:
+  paper: https://arxiv.org/abs/2607.15178
+category: architecture/placement
+facets:
+  placement: shifted-parallel
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: T2MLR fuses a middle-layer state cached from the previous token into an earlier layer at the current token; it beats data- and parameter-matched Transformers, and recurrence over a middle block often beats full-layer recurrence.
+  zh: T2MLR 把上一个 token 缓存的中间层表示融合进当前 token 的较早层；它优于数据和参数匹配的 Transformer 基线，而且只在中间一段层上做循环往往优于全层循环。
+added: "2026-11-23"

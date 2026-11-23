@@ -1,0 +1,17 @@
+id: "2602.11698"
+tier: radar
+title: "SpiralFormer: Looped Transformers Can Learn Hierarchical Dependencies via Multi-Resolution Recursion"
+date: "2026-02-12"
+venue: arXiv
+authors: [Chengting Yu, Xiaobo Shu, Yadao Wang, Yizhen Zhang, Haoyi Wu, You Wu, Rujiao Long, Ziheng Chen, Yuchi Xu, Wenbo Su, Bo Zheng]
+links:
+  paper: https://arxiv.org/abs/2602.11698
+category: architecture/placement
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: per-pass
+tldr:
+  en: SpiralFormer runs a looped Transformer's shared core at a different sequence resolution each iteration, coarse to fine; from 160M to 1.4B it beats looped and non-looped baselines in parameter and compute efficiency.
+  zh: SpiralFormer 让循环 Transformer 的共享核心在每次迭代中以不同的序列分辨率运行（由粗到细）；在 160M 到 1.4B 规模上，其参数效率和计算效率都优于循环与非循环基线。
+added: "2026-11-23"

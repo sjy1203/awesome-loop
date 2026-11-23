@@ -1,0 +1,18 @@
+id: "2605.11011"
+tier: radar
+title: "LoopUS: Recasting Pretrained LLMs into Looped Latent Refinement Models"
+date: "2026-05-10"
+venue: arXiv
+authors: [Taekhyun Park, Yongjae Lee, Dohee Kim, Hyerim Bae]
+links:
+  paper: https://arxiv.org/abs/2605.11011
+  code: https://github.com/Thrillcrazyer/LoopUS
+category: training
+facets:
+  placement: prelude-core-coda
+  depth_train: adaptive
+  kv: per-pass
+tldr:
+  en: LoopUS splits a pretrained LLM into encoder, looped reasoning block and decoder, adding a selective gate, random deep supervision and a confidence head for early exit; this improves reasoning-oriented performance without recurrent training from scratch.
+  zh: LoopUS 把预训练 LLM 拆成 encoder、循环的推理块和 decoder，并加入选择性门控、随机深度监督和用于提前退出的置信度头；无需从头训练循环模型即可提升偏推理任务的表现。
+added: "2026-11-23"

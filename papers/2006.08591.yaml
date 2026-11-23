@@ -1,0 +1,18 @@
+id: "2006.08591"
+tier: radar
+title: "Monotone operator equilibrium networks"
+date: "2020-06-15"
+venue: NeurIPS 2020
+authors: [Ezra Winston, J. Zico Kolter]
+links:
+  paper: https://arxiv.org/abs/2006.08591
+  code: https://github.com/locuslab/monotone_op_net
+category: theory
+facets:
+  placement: implicit
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: Introduces monDEQ, an implicit-depth model built on monotone operator theory whose parameterization guarantees a unique equilibrium, solved with operator-splitting methods that converge stably; it outperforms Neural ODE-based models while being more computationally efficient.
+  zh: 提出 monDEQ，一种基于单调算子理论的隐式深度模型，其参数化保证唯一平衡点存在，并用稳定收敛的算子分裂方法求解；它优于基于 Neural ODE 的模型，且计算效率更高。
+added: "2026-11-23"

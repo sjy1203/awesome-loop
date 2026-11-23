@@ -1,0 +1,17 @@
+id: "2603.04971"
+tier: radar
+title: "Mixture of Universal Experts: Scaling Virtual Width via Depth-Width Transformation"
+date: "2026-03-05"
+venue: arXiv
+authors: [Yilong Chen, Naibin Gu, Junyuan Shang, Zhenyu Zhang, Yuchen Feng, Jiawei Sheng, Tingwen Liu, Shuohuan Wang, Yu Sun, Hua Wu, Haifeng Wang]
+links:
+  paper: https://arxiv.org/abs/2603.04971
+category: architecture/placement
+facets:
+  placement: partial
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: MoUE reuses a shared pool of universal experts across MoE layers under a fixed activation budget; it beats matched MoE baselines by up to 1.3% and converts existing MoE checkpoints with up to 4.2% gains.
+  zh: MoUE 在固定的激活预算下让多个 MoE 层复用同一个通用专家池；它比匹配的 MoE 基线最多高 1.3%，并能把已有 MoE checkpoint 转换过来，最多带来 4.2% 的提升。
+added: "2026-11-23"

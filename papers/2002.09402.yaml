@@ -1,0 +1,17 @@
+id: "2002.09402"
+tier: radar
+title: "Addressing Some Limitations of Transformers with Feedback Memory"
+date: "2020-02-21"
+venue: arXiv
+authors: [Angela Fan, Thibaut Lavril, Edouard Grave, Armand Joulin, Sainbayar Sukhbaatar]
+links:
+  paper: https://arxiv.org/abs/2002.09402
+category: architecture/state
+facets:
+  placement: shifted-parallel
+  depth_train: n/a
+  kv: single-global
+tldr:
+  en: Feedback Transformer makes every layer attend to per-timestep memory vectors that mix all layers' past representations, exposing high-level past states to low layers; small, shallow models beat comparable Transformers on language modeling, translation and RL.
+  zh: Feedback Transformer 让每一层都关注逐时间步的记忆向量，该向量由各层过去的表示加权求和得到，使低层也能看到过去的高层表示；小而浅的模型在语言建模、机器翻译和强化学习上优于可比的 Transformer。
+added: "2026-11-23"

@@ -1,0 +1,18 @@
+id: "2111.05297"
+tier: radar
+title: "Sliced Recursive Transformer"
+date: "2021-11-09"
+venue: ECCV 2022
+authors: [Zhiqiang Shen, Zechun Liu, Eric Xing]
+links:
+  paper: https://arxiv.org/abs/2111.05297
+  code: https://github.com/szq0214/SReT
+category: applications
+facets:
+  placement: n/a
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: SReT shares weights across depth in vision transformers by looping each block; naive recursion gives a ~2% gain, and sliced group self-attention across recursions cuts the added cost by 10~30% with minimal performance loss.
+  zh: SReT 通过循环执行每个块在视觉 Transformer 的深度上共享权重；朴素递归带来 ~2% 的提升，跨递归的切片分组自注意力把额外开销降低 10~30%，性能损失很小。
+added: "2026-11-23"

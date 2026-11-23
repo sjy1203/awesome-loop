@@ -1,0 +1,17 @@
+id: "1807.05353"
+tier: radar
+title: "Recurrent Stacking of Layers for Compact Neural Machine Translation Models"
+date: "2018-07-14"
+venue: arXiv
+authors: [Raj Dabre, Atsushi Fujita]
+links:
+  paper: https://arxiv.org/abs/1807.05353
+category: architecture/placement
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Shares parameters across all layers of an NMT encoder and decoder; a single layer recurrently stacked 6 times translates comparably to 6 separate layers, and back-translated data improves it further.
+  zh: 在 NMT 模型的编码器和解码器中让所有层共享参数；把单层循环堆叠 6 次的翻译质量与 6 个独立层相当，加入回译数据后进一步提升。
+added: "2026-11-23"

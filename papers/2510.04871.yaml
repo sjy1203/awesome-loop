@@ -1,0 +1,18 @@
+id: "2510.04871"
+tier: radar
+title: "Less is More: Recursive Reasoning with Tiny Networks"
+date: "2025-10-06"
+venue: arXiv
+authors: [Alexia Jolicoeur-Martineau]
+links:
+  paper: https://arxiv.org/abs/2510.04871
+  code: https://github.com/SamsungSAILMontreal/TinyRecursiveModels
+category: applications
+facets:
+  placement: hierarchical
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: TRM, a single 2-layer network that recursively refines a latent state and an answer, generalizes better than HRM on puzzles; with 7M parameters it reaches 45% on ARC-AGI-1 and 8% on ARC-AGI-2.
+  zh: TRM 只用一个 2 层小网络递归地更新潜在状态和答案，在谜题任务上比 HRM 泛化更好；7M 参数在 ARC-AGI-1 上达到 45%，在 ARC-AGI-2 上达到 8%。
+added: "2026-11-23"

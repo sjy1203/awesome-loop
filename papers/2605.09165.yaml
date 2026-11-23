@@ -1,0 +1,17 @@
+id: "2605.09165"
+tier: radar
+title: "Sparse Layers are Critical to Scaling Looped Language Models"
+date: "2026-05-09"
+venue: arXiv
+authors: [Ryan Lee, Jacob Biloki, Edward J. Hu, Jonathan May]
+links:
+  paper: https://arxiv.org/abs/2605.09165
+category: scaling
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Compares dense and MoE transformers with and without looping; Looped-MoE out-scales the standard baseline while dense looped models do not, since routing picks different experts per pass, and loop boundaries are better early-exit points.
+  zh: 比较带循环和不带循环的 dense 与 MoE Transformer；Looped-MoE 的 scaling 优于标准基线而 dense 循环模型不然，原因是路由在每一遍激活不同的专家；循环边界也是更好的 early exit 点。
+added: "2026-11-23"

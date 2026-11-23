@@ -1,0 +1,17 @@
+id: "2605.07721"
+tier: radar
+title: "Memory-Efficient Looped Transformer: Decoupling Compute from Memory in Looped Language Models"
+date: "2026-05-08"
+venue: arXiv
+authors: [Victor Conchello Vendrell, Arnau Padres Masdemont, Niccolò Grillo, Jordi Ros-Giralt, Arash Behboodi, Fabio Valerio Massoli]
+links:
+  paper: https://arxiv.org/abs/2605.07721
+category: systems
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: compressed
+tldr:
+  en: MELT, fine-tuned from Ouro, keeps one KV cache per layer that is shared across loops and updated by a learned gate; it outperforms comparable-size LLMs with a similar memory footprint, far smaller than Ouro's.
+  zh: MELT 从 Ouro 微调而来，每层只保留一份跨循环共享、由可学习门控更新的 KV cache；它优于参数规模相当的标准 LLM，显存占用与之相近，远小于 Ouro。
+added: "2026-11-23"

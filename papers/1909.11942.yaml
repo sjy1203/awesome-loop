@@ -1,0 +1,18 @@
+id: "1909.11942"
+tier: radar
+title: "ALBERT: A Lite BERT for Self-supervised Learning of Language Representations"
+date: "2019-09-26"
+venue: arXiv
+authors: [Zhenzhong Lan, Mingda Chen, Sebastian Goodman, Kevin Gimpel, Piyush Sharma, Radu Soricut]
+links:
+  paper: https://arxiv.org/abs/1909.11942
+  code: https://github.com/google-research/ALBERT
+category: architecture/placement
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: ALBERT reduces BERT's parameters with a factorized embedding and cross-layer parameter sharing, adds an inter-sentence coherence loss, and sets new state-of-the-art results on GLUE, RACE and SQuAD with fewer parameters than BERT-large.
+  zh: ALBERT 用因式分解的词嵌入和跨层参数共享减少 BERT 的参数量，并加入句间连贯性损失；它以少于 BERT-large 的参数在 GLUE、RACE 和 SQuAD 上取得新的最好结果。
+added: "2026-11-23"

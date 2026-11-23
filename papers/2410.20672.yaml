@@ -1,0 +1,17 @@
+id: "2410.20672"
+tier: radar
+title: "Relaxed Recursive Transformers: Effective Parameter Sharing with Layer-wise LoRA"
+date: "2024-10-28"
+venue: ICLR 2025
+authors: [Sangmin Bae, Adam Fisch, Hrayr Harutyunyan, Ziwei Ji, Seungyeon Kim, Tal Schuster]
+links:
+  paper: https://arxiv.org/abs/2410.20672
+category: training
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: per-pass
+tldr:
+  en: Converts pretrained LLMs into Recursive Transformers that loop one shared block, optionally relaxed with depth-wise LoRA; recursive Gemma 1B beats TinyLlama 1.1B, Pythia 1B and distillation baselines and recovers most of Gemma 2B's performance.
+  zh: 把预训练 LLM 转换为循环复用同一组共享层的 Recursive Transformer，并可用逐深度 LoRA 放松权重共享；recursive Gemma 1B 优于 TinyLlama 1.1B、Pythia 1B 和知识蒸馏基线，并恢复了原始 Gemma 2B 的大部分性能。
+added: "2026-11-23"

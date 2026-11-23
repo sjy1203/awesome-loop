@@ -1,0 +1,17 @@
+id: "2609.17184"
+tier: radar
+title: "LoopSpec: Pipelined Self-Speculative Decoding for Looped Transformers"
+date: "2026-09-15"
+venue: arXiv
+authors: [SangLyul Cho, Langqing Cui, Sehoon Kim, Dongsu Han, Insu Han]
+links:
+  paper: https://arxiv.org/abs/2609.17184
+category: systems
+facets:
+  placement: n/a
+  depth_train: n/a
+  kv: per-pass
+tldr:
+  en: LoopSpec, a training-free self-speculative decoder for looped Transformers, drafts tokens from early recurrent states and overlaps drafting with verification; it stays lossless under greedy and sampling decoding and reaches up to 6.83× speedup.
+  zh: LoopSpec 是面向循环 Transformer 的免训练自投机解码方法，从较早循环深度的状态中取 draft token，并把后续 token 的起草与当前 token 的验证流水线重叠；在 greedy 和采样解码下均无损，最高加速 6.83×。
+added: "2026-11-23"

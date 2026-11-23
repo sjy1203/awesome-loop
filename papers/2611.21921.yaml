@@ -7,6 +7,10 @@ authors: [Tianyi Zhang, Feiying Chen]
 links:
   paper: https://arxiv.org/abs/2611.21921
 category: understanding
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
 tldr:
   en: Baton looped transformers pass the intermediate entity to the second loop as a token embedding; trained only on answers, two variants almost solve held-out two-hop questions, but next-token training makes accuracy rise then decline.
   zh: Baton 循环 Transformer 把中间实体作为 token embedding 传给第二遍循环；只用答案训练时，三个变体中的两个几乎全部答对留出的两跳问题，但改用 next-token 训练后准确率先升后降。

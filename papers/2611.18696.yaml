@@ -7,6 +7,10 @@ authors: [Xiang Zhang, Xiangyu Dong, Yang Lu, Xiaoguang Ma]
 links:
   paper: https://arxiv.org/abs/2611.18696
 category: applications
+facets:
+  placement: prelude-core-coda
+  depth_train: adaptive
+  kv: n/a
 tldr:
   en: ARC-VLN runs a shared-parameter language backbone recursively for aerial VLN, letting only visual tokens exit early; on OpenFly it has the lowest navigation error of the compared methods and reduces FLOPs and GPU memory.
   zh: ARC-VLN 在共享参数的语言骨干上做递归计算来完成空中视觉语言导航，只让视觉 token 提前退出；在 OpenFly 上，它的导航误差在对比方法中最低，并减少了 FLOPs 和显存占用。

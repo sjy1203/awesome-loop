@@ -1,0 +1,17 @@
+id: "2102.07346"
+tier: radar
+title: "On the Theory of Implicit Deep Learning: Global Convergence with Implicit Layers"
+date: "2021-02-15"
+venue: ICLR 2021
+authors: [Kenji Kawaguchi]
+links:
+  paper: https://arxiv.org/abs/2102.07346
+category: theory
+facets:
+  placement: implicit
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: For deep equilibrium models with nonlinearity only on weights, proves that gradient dynamics reach a global optimum at a linear rate without width assumptions, and relates them to trust region Newton on a shallow layer.
+  zh: 针对只在权重上有非线性的深度均衡模型，证明其梯度动力学不需要宽度假设就能以线性速率收敛到全局最优，并把这一动力学与浅层显式层上的信赖域牛顿法联系起来。
+added: "2026-11-23"

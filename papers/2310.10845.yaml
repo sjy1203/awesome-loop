@@ -1,0 +1,17 @@
+id: "2310.10845"
+tier: radar
+title: "CoTFormer: A Chain-of-Thought Driven Architecture with Budget-Adaptive Computation Cost at Inference"
+date: "2023-10-16"
+venue: arXiv
+authors: [Amirkeivan Mohtashami, Matteo Pagliardini, Martin Jaggi]
+links:
+  paper: https://arxiv.org/abs/2310.10845
+category: architecture/state
+facets:
+  placement: prelude-core-coda
+  depth_train: adaptive
+  kv: per-pass
+tldr:
+  en: CoTFormer re-applies the same layers several times and lets each pass attend to tokens from earlier passes, like chain-of-thought; it approaches much larger models, and a token-wise adaptive-depth variant cuts compute without losing accuracy.
+  zh: CoTFormer 多次重复应用同一组层，并像 chain-of-thought 一样让每一遍都能关注前几遍产生的 token；准确率接近大得多的模型，按 token 自适应深度的变体能在不损失准确率的情况下降低计算成本。
+added: "2026-11-23"

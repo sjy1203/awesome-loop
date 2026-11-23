@@ -1,0 +1,17 @@
+id: "1807.03819"
+tier: radar
+title: "Universal Transformers"
+date: "2018-07-10"
+venue: ICLR 2019
+authors: [Mostafa Dehghani, Stephan Gouws, Oriol Vinyals, Jakob Uszkoreit, Łukasz Kaiser]
+links:
+  paper: https://arxiv.org/abs/1807.03819
+category: architecture/placement
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: Universal Transformer applies the same Transformer block recurrently over depth, with dynamic per-position halting; it is Turing-complete under some assumptions and outperforms standard Transformers on algorithmic and language tasks, gaining 0.9 BLEU on WMT14 En-De.
+  zh: Universal Transformer 在深度方向上循环使用同一个 Transformer 块，并按位置动态停止；在一定假设下它是图灵完备的，在算法和语言任务上优于标准 Transformer，在 WMT14 En-De 上提高 0.9 BLEU。
+added: "2026-11-23"

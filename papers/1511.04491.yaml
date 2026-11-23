@@ -1,0 +1,17 @@
+id: "1511.04491"
+tier: radar
+title: "Deeply-Recursive Convolutional Network for Image Super-Resolution"
+date: "2015-11-14"
+venue: CVPR 2016
+authors: [Jiwon Kim, Jung Kwon Lee, Kyoung Mu Lee]
+links:
+  paper: https://arxiv.org/abs/1511.04491
+category: applications
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: DRCN applies a single convolutional layer recursively, up to 16 recursions, for image super-resolution, adding depth without new parameters; recursive-supervision and skip-connection ease training, and it outperforms previous methods.
+  zh: DRCN 在图像超分辨率中递归应用同一个卷积层（最多 16 次递归），加深网络而不增加参数；递归监督和跳跃连接缓解了训练困难，效果超过以往方法。
+added: "2026-11-23"

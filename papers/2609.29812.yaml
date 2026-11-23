@@ -1,0 +1,17 @@
+id: "2609.29812"
+tier: radar
+title: "FlashLoop: Fast and Memory-Efficient Looped Transformers via Lazy Updates"
+date: "2026-09-24"
+venue: arXiv
+authors: [Wanqi Yang, Shiwei Liu]
+links:
+  paper: https://arxiv.org/abs/2609.29812
+category: systems
+facets:
+  placement: whole-stack
+  depth_train: n/a
+  kv: compressed
+tldr:
+  en: FlashLoop, a training-free inference framework, cuts cross-loop redundancy in looped Transformers with token-sparse updates, sparse attention and KV-residual quantization, giving up to 1.64x speedup and 6x less KV-cache memory while largely preserving accuracy.
+  zh: FlashLoop 是一个无需训练的推理框架，通过 token 稀疏更新、稀疏注意力和 KV 残差量化减少循环 Transformer 的跨遍冗余，在基本保持精度的同时带来最高 1.64x 的加速和 6x 的 KV 缓存内存降低。
+added: "2026-11-23"

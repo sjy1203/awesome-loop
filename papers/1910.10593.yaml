@@ -1,0 +1,17 @@
+id: "1910.10593"
+tier: radar
+title: "Neural Execution of Graph Algorithms"
+date: "2019-10-23"
+venue: ICLR 2020
+authors: [Petar Veličković, Rex Ying, Matilde Padovano, Raia Hadsell, Charles Blundell]
+links:
+  paper: https://arxiv.org/abs/1910.10593
+category: applications
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: Trains graph neural networks to imitate each step of classical graph algorithms by repeating an encode-process-decode network with a learned termination network; max-based message passing works best, and learning reachability alongside improves shortest-path learning.
+  zh: 训练图神经网络逐步模仿经典图算法，每一步重复同一个 encode-process-decode 网络并由学到的终止网络决定何时停止；基于最大值聚合的消息传递效果最好，同时学习可达性任务能改进最短路径算法的学习。
+added: "2026-11-23"

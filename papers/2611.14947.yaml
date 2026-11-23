@@ -8,6 +8,10 @@ links:
   paper: https://arxiv.org/abs/2611.14947
   code: https://github.com/hym97/LoopMR
 category: applications
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
 tldr:
   en: Reuses one Restormer block at every iteration of unrolled MRI reconstruction and beats PromptMR+ with about 1/9 of its parameters; shared transformer blocks match or beat distinct-weight ones, while shared CNN blocks do worse.
   zh: 在展开式 MRI 重建中每次迭代复用同一个 Restormer 块，参数量约为 PromptMR+ 的 1/9 而效果更好；共享的 Transformer 块与独立权重版本持平或更好，共享的 CNN 块则更差。

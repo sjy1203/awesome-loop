@@ -7,6 +7,10 @@ authors: [Xuanyu Liu, Keyi Cao, Xiang Cheng]
 links:
   paper: https://arxiv.org/abs/2611.11275
 category: applications
+facets:
+  placement: encoder
+  depth_train: fixed
+  kv: n/a
 tldr:
   en: Builds a wireless channel foundation model whose parameter-shared recurrent updates refine CSI features and add latent tokens; multi-depth pretraining trains intermediate states to reconstruct CSI, and selectable depth improves the accuracy-complexity trade-off.
   zh: 构建无线信道基础模型，用参数共享的循环更新细化 CSI 特征并加入新的潜在 token；多深度预训练让中间状态也能重建 CSI，可选的循环深度改善了精度与复杂度的权衡。

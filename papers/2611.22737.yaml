@@ -7,6 +7,10 @@ authors: [Syed Affan Daimi]
 links:
   paper: https://arxiv.org/abs/2611.22737
 category: applications
+facets:
+  placement: hierarchical
+  depth_train: fixed
+  kv: n/a
 tldr:
   en: Proves that a single stored target sets a loss floor for looped refiners (HRM, TRM) on puzzles with many answers; training each pass toward the nearest correct answer solves 98.8% of multi-answer Sudoku versus 2.5%.
   zh: 证明在有多个正确答案的谜题上，HRM、TRM 等循环精炼器朝单一存储答案训练会留下任何模型容量都消除不了的损失下限；改为让每一遍朝离自身输入最近的正确答案训练后，多解 Sudoku 的求解率为 98.8%，标准目标为 2.5%。

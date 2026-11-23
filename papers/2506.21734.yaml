@@ -1,0 +1,17 @@
+id: "2506.21734"
+tier: radar
+title: "Hierarchical Reasoning Model"
+date: "2025-06-26"
+venue: arXiv
+authors: [Guan Wang, Jin Li, Yuhao Sun, Xing Chen, Changling Liu, Yue Wu, Meng Lu, Sen Song, Yasin Abbasi Yadkori]
+links:
+  paper: https://arxiv.org/abs/2506.21734
+category: applications
+facets:
+  placement: hierarchical
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: HRM couples a slow high-level and a fast low-level recurrent module; with 27 million parameters and 1000 training samples, it nearly solves complex Sudoku and large mazes and beats larger models on ARC.
+  zh: HRM 把慢速的高层循环模块和快速的低层循环模块耦合在一起；只用 27M 参数和 1000 个训练样本，就在复杂 Sudoku 和大型迷宫上接近完美，并在 ARC 上超过更大的模型。
+added: "2026-11-23"

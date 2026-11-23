@@ -67,8 +67,8 @@
             "properties": {
               "role": {"enum": ["prelude", "core", "coda"]},
               "layers": {
-                "description": "Number of distinct layers, or a share of the stack such as \"50%\".",
-                "oneOf": [{"type": "integer", "minimum": 1}, {"type": "string", "pattern": "^[0-9]{1,3}%$"}]
+                "description": "Number of distinct layers, a share of the stack such as \"50%\", or \"?\" when the source does not say.",
+                "oneOf": [{"type": "integer", "minimum": 1}, {"type": "string", "pattern": "^([0-9]{1,3}%|\\?)$"}]
               },
               "label": {"description": "Optional text under the blocks, e.g. L2-5.", "type": "string"},
               "passes": {

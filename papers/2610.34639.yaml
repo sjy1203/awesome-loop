@@ -8,6 +8,10 @@ links:
   paper: https://arxiv.org/abs/2610.34639
   code: https://github.com/Muuzzziiy/cql-handoff
 category: understanding
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: per-pass
 tldr:
   en: Transplants attention queries between loops of Ouro-1.4B and Ouro-2.6B; loop-3 queries injected into loop 1 rescue 90% and 97% of synthetic two-hop loop-1 failures that loop 3 fixes, versus 24% and 21% with shuffled donors.
   zh: 在 Ouro-1.4B 和 Ouro-2.6B 中跨循环移植注意力 query；把第 3 遍的 query 注入第 1 遍，可挽救 90% 和 97% 第 1 遍答错而第 3 遍答对的合成两跳问题，打乱的供体只有 24% 和 21%。

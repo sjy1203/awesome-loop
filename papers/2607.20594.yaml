@@ -1,0 +1,17 @@
+id: "2607.20594"
+tier: radar
+title: "When Does Recurrence Become an Algorithm? Convergence Selection in Weight-Tied Looped Transformers"
+date: "2026-07-22"
+venue: arXiv
+authors: [Tong Zhang, Junhao Hu, Yun Peng, Tao Xie]
+links:
+  paper: https://arxiv.org/abs/2607.20594
+category: understanding
+facets:
+  placement: whole-stack
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: Trains weight-tied looped transformers on group word problems; training installs a serial frontier that solves about n_train/T_train positions per loop, and weight tying, not expressivity, selects it over the parallel scans untied models learn.
+  zh: 在群的字问题（group word problem）上训练权重共享的循环 Transformer；训练会形成每遍约求解 n_train/T_train 个位置的串行前沿，选出这种算法的是权重共享这一结构先验而不是表达能力，未共享权重的标准深度 Transformer 则学到并行扫描。
+added: "2026-11-23"

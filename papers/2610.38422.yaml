@@ -7,6 +7,10 @@ authors: [Jiarun Shen, Xiao Li]
 links:
   paper: https://arxiv.org/abs/2610.38422
 category: training
+facets:
+  placement: prelude-core-coda
+  depth_train: sampled
+  kv: n/a
 tldr:
   en: Compares shorter and longer truncated-backprop windows for training looped language models at roughly equal training time; the advantage of shorter windows shrinks as training budgets grow, so the preferred window can change.
   zh: 在大致相同的训练时间下比较循环语言模型训练中较短与较长的截断反传窗口；随着训练预算增大，较短窗口的优势缩小，更优的窗口可能随之改变。

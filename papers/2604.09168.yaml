@@ -1,0 +1,17 @@
+id: "2604.09168"
+tier: radar
+title: "ELT: Elastic Looped Transformers for Visual Generation"
+date: "2026-04-10"
+venue: ECCV 2026
+authors: [Sahil Goyal, Swayam Agrawal, Gautham Govind Anil, Prateek Jain, Sujoy Paul, Aditya Kusupati]
+links:
+  paper: https://arxiv.org/abs/2604.09168
+category: applications
+facets:
+  placement: whole-stack
+  depth_train: sampled
+  kv: n/a
+tldr:
+  en: ELT loops weight-shared transformer blocks for image and video generation and distills the maximum-loop output into intermediate loops for any-time inference; with 4× fewer parameters at iso-inference compute, it reaches FID 2.0 on ImageNet 256×256.
+  zh: ELT 用权重共享的循环 Transformer 块做图像和视频生成，并把最大循环次数的输出蒸馏给中间各遍以支持随时退出的推理；在推理算力相同、参数少 4× 的设置下，它在 ImageNet 256×256 上达到 FID 2.0。
+added: "2026-11-23"

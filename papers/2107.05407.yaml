@@ -1,0 +1,17 @@
+id: "2107.05407"
+tier: radar
+title: "PonderNet: Learning to Ponder"
+date: "2021-07-12"
+venue: ICML 2021 AutoML Workshop
+authors: [Andrea Banino, Jan Balaguer, Charles Blundell]
+links:
+  paper: https://arxiv.org/abs/2107.05407
+category: depth
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: PonderNet runs a step function recurrently with a learned probabilistic halting policy; it outperforms earlier adaptive-computation methods on parity, succeeds at extrapolation, and matches state-of-the-art bAbI accuracy with less compute.
+  zh: PonderNet 循环调用同一个 step function，并端到端学习概率化的停止策略；在 parity 任务上优于以往的自适应计算方法并能外推，在 bAbI 上以更少的计算达到当时的最优水平。
+added: "2026-11-23"

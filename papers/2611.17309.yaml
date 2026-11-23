@@ -7,6 +7,10 @@ authors: [Benjamin Hoover, Hugh Blayney, James C. R. Whittington]
 links:
   paper: https://arxiv.org/abs/2611.17309
 category: training
+facets:
+  placement: implicit
+  depth_train: n/a
+  kv: n/a
 tldr:
   en: CRAM, a learned Hopfield-Tank energy minimized at inference, solves 99.996% of Sudoku-Extreme and 100% of Maze-Unique test puzzles with training at least 1,000x faster than looped models; the authors call these benchmarks trivially solvable.
   zh: CRAM 是可学习的 Hopfield-Tank 能量函数，推理时沿能量下降求解；它解出 Sudoku-Extreme 99.996% 和 Maze-Unique 100% 的测试题，训练至少比循环模型快 1,000 倍；作者认为这类基准可以被轻易解决。

@@ -1,0 +1,17 @@
+id: "2607.16051"
+tier: radar
+title: "Loop the Loopies!"
+date: "2026-07-17"
+venue: arXiv
+authors: [Zitian Gao, Yilong Chen, Yihao Xiao, Xinyu Yang, Ran Tao, Joey Zhou, Bryan Dai]
+links:
+  paper: https://arxiv.org/abs/2607.16051
+category: scaling
+facets:
+  placement: n/a
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Loopie comprises two open-source looped MoE Transformers (20B with 2B active, 6B with 0.6B active) that repeat each layer in place; ablations show they outperform vanilla Transformers trained with the same compute budget.
+  zh: Loopie 包括两个开源的循环 MoE Transformer（20B 总参数、2B 激活，以及 6B 总参数、0.6B 激活），每一层原地重复执行；消融实验显示它们优于相同训练算力下的 vanilla Transformer 基线。
+added: "2026-11-23"

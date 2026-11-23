@@ -1,0 +1,17 @@
+id: "2605.19376"
+tier: radar
+title: "Generative Recursive Reasoning"
+date: "2026-05-19"
+venue: arXiv
+authors: [Junyeob Baek, Mingyu Jo, Minsu Kim, Mengye Ren, Yoshua Bengio, Sungjin Ahn]
+links:
+  paper: https://arxiv.org/abs/2605.19376
+category: applications
+facets:
+  placement: hierarchical
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: GRAM makes recursive reasoning models stochastic latent-variable generative models trained by amortized variational inference, scaling inference by recursion depth and parallel trajectory sampling; it beats deterministic recursive baselines on structured and multi-solution reasoning.
+  zh: GRAM 把递归推理模型变成带随机潜在轨迹的隐变量生成模型，用摊销变分推断训练，推理时可按递归深度和并行采样的轨迹数扩展；在结构化推理和多解约束满足任务上优于确定性的循环和递归基线。
+added: "2026-11-23"

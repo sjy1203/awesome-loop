@@ -7,6 +7,10 @@ authors: [Dezhen Lu, Runguo Li, Zixiang Ni, Yuchen Tang, Xingquan Kong, Jiaxing 
 links:
   paper: https://arxiv.org/abs/2610.41825
 category: systems
+facets:
+  placement: n/a
+  depth_train: n/a
+  kv: per-pass
 tldr:
   en: Studies how KV and shared-weight quantization error changes next-token distributions in looped LMs Ouro and Huginn-0125; per unit of error, values carry 94% of diagonal Fisher mass, but keys dominate measured KL.
   zh: 研究 KV 与共享权重的量化误差如何改变循环语言模型 Ouro 和 Huginn-0125 的下一 token 分布；按单位误差计，value 占对角 Fisher 质量的 94%，但实测 KL 主要来自 key。

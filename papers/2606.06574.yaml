@@ -1,0 +1,18 @@
+id: "2606.06574"
+tier: radar
+title: "Skip a Layer or Loop It? Learning Program-of-Layers in LLMs"
+date: "2026-06-04"
+venue: ICML 2026
+authors: [Ziyue Li, Yang Li, Tianyi Zhou]
+links:
+  paper: https://arxiv.org/abs/2606.06574
+  code: https://github.com/tianyi-lab/PoLar
+category: depth
+facets:
+  placement: n/a
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: Shows that frozen pretrained LLMs admit per-input programs that skip or repeat layer segments, and trains a lightweight predictor of such programs that improves math reasoning accuracy over standard inference, often using fewer layers.
+  zh: 发现冻结的预训练 LLM 对每个输入都存在跳过或重复层段的执行程序，并训练一个轻量预测网络生成这类程序，在数学推理上比标准推理更准确，且常常执行更少的层。
+added: "2026-11-23"

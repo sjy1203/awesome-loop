@@ -1,0 +1,17 @@
+id: "2106.04537"
+tier: radar
+title: "Can You Learn an Algorithm? Generalizing from Easy to Hard Problems with Recurrent Networks"
+date: "2021-06-08"
+venue: arXiv
+authors: [Avi Schwarzschild, Eitan Borgnia, Arjun Gupta, Furong Huang, Uzi Vishkin, Micah Goldblum, Tom Goldstein]
+links:
+  paper: https://arxiv.org/abs/2106.04537
+category: applications
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Trains weight-tied recurrent networks with few iterations on easy prefix-sum, maze and chess problems and shows that running extra iterations at test time lets them solve harder instances.
+  zh: 用较少的迭代次数在简单的前缀和、迷宫和国际象棋问题上训练权重共享的循环网络，发现测试时增加迭代次数即可解出更难的实例。
+added: "2026-11-23"

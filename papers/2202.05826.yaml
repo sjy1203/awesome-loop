@@ -1,0 +1,17 @@
+id: "2202.05826"
+tier: radar
+title: "End-to-end Algorithm Synthesis with Recurrent Networks: Logical Extrapolation Without Overthinking"
+date: "2022-02-11"
+venue: arXiv
+authors: [Arpit Bansal, Avi Schwarzschild, Eitan Borgnia, Zeyad Emam, Furong Huang, Micah Goldblum, Tom Goldstein]
+links:
+  paper: https://arxiv.org/abs/2202.05826
+category: applications
+facets:
+  placement: prelude-core-coda
+  depth_train: sampled
+  kv: n/a
+tldr:
+  en: Adds recall, which feeds the input into every iteration of a recurrent block, and a progressive loss over random iteration counts; together they prevent overthinking and let networks trained on small problems solve larger ones.
+  zh: 提出 recall 结构，把输入拼接到循环块每次迭代的输入中，并用随机迭代次数的渐进式损失训练；二者共同避免 overthinking，使在小问题上训练的网络能解更大的问题。
+added: "2026-11-23"

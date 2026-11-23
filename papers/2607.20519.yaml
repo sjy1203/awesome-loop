@@ -1,0 +1,17 @@
+id: "2607.20519"
+tier: radar
+title: "Adaptive Depth in Looped Transformers: Diagnosing Learned Halting Gates and Trajectory Readouts"
+date: "2026-07-08"
+venue: arXiv
+authors: [Andrei Cristian Popescu, Haitz Sáez de Ocáriz Borde, Pietro Liò]
+links:
+  paper: https://arxiv.org/abs/2607.20519
+category: depth
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: Splits adaptive depth in looped Transformers into trajectory formation and exit readout; fixed-prior depth supervision plus confidence readouts often matches or beats learned halting gates, and Ouro's pretrained gates are competitive but not uniformly Pareto-optimal.
+  zh: 把循环 Transformer 的自适应深度拆成轨迹形成和退出读出两部分；固定先验的深度监督配合置信度读出常常追平或超过学到的停止门控，Ouro 预训练的门控有竞争力但并非处处 Pareto 最优。
+added: "2026-11-23"

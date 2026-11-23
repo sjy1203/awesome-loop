@@ -7,6 +7,10 @@ authors: [Fatih Temiz, Melike Erol-Kantarci]
 links:
   paper: https://arxiv.org/abs/2611.19131
 category: applications
+facets:
+  placement: partial
+  depth_train: n/a
+  kv: n/a
 tldr:
   en: Uses constrained deep RL (TRPO-Lag) to jointly choose local or edge execution and the latent-reasoning convergence threshold of a recurrent-depth VLA, reaching up to 23% higher feasibility-weighted task success than benchmark constrained RL methods.
   zh: 用约束深度强化学习（TRPO-Lag）为循环深度 VLA 联合选择本地或边缘执行以及隐式推理的收敛阈值，可行性加权任务成功率比基准约束强化学习方法最多高 23%。

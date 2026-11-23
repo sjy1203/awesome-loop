@@ -1,0 +1,17 @@
+id: "2605.20670"
+tier: radar
+title: "LT2: Linear-Time Looped Transformers"
+date: "2026-05-20"
+venue: arXiv
+authors: [Chunyuan Deng, Yizhe Zhang, Rui-Jie Zhu, Yuanyuan Xu, Jiarui Liu, T. S. Eugene Ng, Hanjie Chen]
+links:
+  paper: https://arxiv.org/abs/2605.20670
+category: systems
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: LT2 replaces softmax attention in looped transformers with linear or sparse attention; looping refines linear-attention memory and widens the sparse receptive field, and hybrid variants match or surpass the standard looped transformer at lower cost.
+  zh: LT2 把循环 Transformer 中的 softmax 注意力换成线性或稀疏注意力；循环会迭代细化线性注意力的记忆并扩大稀疏注意力的有效感受野，混合变体以更低成本达到或超过标准循环 Transformer。
+added: "2026-11-23"

@@ -1,0 +1,17 @@
+id: "2605.18797"
+tier: radar
+title: "Simply Stabilizing the Loop via Fully Looped Transformer"
+date: "2026-05-11"
+venue: arXiv
+authors: [Rao Fu, Zixuan Yang, Jiankun Zhang, Jing Ma, Hechang Chen, Yu Li, Yi Chang]
+links:
+  paper: https://arxiv.org/abs/2605.18797
+category: architecture/state
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Fully Looped Transformer injects the previous loop's output into every layer by reusing self-attention, adding no parameters; it curbs residual explosion and gradient oscillation and trains stably up to 12 loop iterations, where baselines collapse.
+  zh: Fully Looped Transformer 通过复用 self-attention 把上一遍循环的输出注入每一层，不增加参数；它抑制残差爆炸和梯度振荡，可稳定训练到 12 次循环，而基线循环模型在这一设置下会崩溃。
+added: "2026-11-23"

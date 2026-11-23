@@ -1,0 +1,17 @@
+id: "2604.21254"
+tier: radar
+title: "Hyperloop Transformers"
+date: "2026-04-23"
+venue: arXiv
+authors: [Abbas Zeitoun, Lucas Torroba-Hennigen, Yoon Kim]
+links:
+  paper: https://arxiv.org/abs/2604.21254
+category: architecture/state
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Hyperloop Transformers loop the middle block and add loop-level hyper-connections with matrix-valued residual streams; across scales they compare well with depth-matched Transformer and mHC baselines while using approximately 50% fewer parameters.
+  zh: Hyperloop Transformer 只循环中段模块，并在每次循环后用 hyper-connections 写入矩阵形式的多路残差流；在多个规模上，它用约 50% 更少的参数，与深度匹配的 Transformer 和 mHC 基线相比表现良好。
+added: "2026-11-23"

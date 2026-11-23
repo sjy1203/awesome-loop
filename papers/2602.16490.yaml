@@ -1,0 +1,17 @@
+id: "2602.16490"
+tier: radar
+title: "From Growing to Looping: A Unified View of Iterative Computation in LLMs"
+date: "2026-02-18"
+venue: arXiv
+authors: [Ferdinand Kapl, Emmanouil Angelis, Kaitlin Maile, Johannes von Oswald, Stefan Bauer]
+links:
+  paper: https://arxiv.org/abs/2602.16490
+category: understanding
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Looped and depth-grown (middle-layer duplication) LLMs share depth-wise signatures of iterative computation; looping a middle block of a depth-grown model at inference, without loop training, raises accuracy on some reasoning primitives by up to 2x.
+  zh: 循环模型与深度生长（复制中间层）得到的 LLM 具有共同的逐层迭代计算特征；在推理时对未经循环训练的深度生长模型循环其中间块，可使部分推理基元的准确率最多提升到 2 倍。
+added: "2026-11-23"

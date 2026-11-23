@@ -1,0 +1,17 @@
+id: "2108.09119"
+tier: radar
+title: "Semantic Communication with Adaptive Universal Transformer"
+date: "2021-08-20"
+venue: arXiv
+authors: [Qingyang Zhou, Rongpeng Li, Zhifeng Zhao, Chenghui Peng, Honggang Zhang]
+links:
+  paper: https://arxiv.org/abs/2108.09119
+category: applications
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: Uses Universal Transformers with adaptive computation time halting as encoder and decoder of a semantic communication system; it reports higher BLEU and lower symbol error ratio than a fixed-depth Transformer system on noisy channels.
+  zh: 把带自适应计算时间（ACT）停止机制的 Universal Transformer 用作语义通信系统的编码器和解码器；在有噪声的信道上，它的 BLEU 高于固定深度的 Transformer 系统，符号错误率也更低。
+added: "2026-11-23"

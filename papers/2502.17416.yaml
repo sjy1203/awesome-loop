@@ -1,0 +1,17 @@
+id: "2502.17416"
+tier: radar
+title: "Reasoning with Latent Thoughts: On the Power of Looped Transformers"
+date: "2025-02-24"
+venue: ICLR 2025
+authors: [Nikunj Saunshi, Nishanth Dikkala, Zhiyuan Li, Sanjiv Kumar, Sashank J. Reddi]
+links:
+  paper: https://arxiv.org/abs/2502.17416
+category: theory
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Shows that a k-layer transformer looped L times nearly matches a kL-layer model on synthetic reasoning and is competitive on language-model reasoning tasks, and proves T loops can simulate T steps of CoT.
+  zh: 表明 k 层 Transformer 循环 L 次在合成推理任务上接近 kL 层模型，在语言模型的下游推理任务上也能与之竞争，并证明 T 次循环可以模拟 T 步 CoT。
+added: "2026-11-23"

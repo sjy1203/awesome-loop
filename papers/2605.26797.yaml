@@ -1,0 +1,17 @@
+id: "2605.26797"
+tier: radar
+title: "Latent Recurrent Transformer: Architecture Exploration, Training Strategies, and Scaling Behavior"
+date: "2026-05-26"
+venue: arXiv
+authors: [Zeyi Huang, Xuehai He, LiLiang Ren, Yiping Wang, Baolin Peng, Hao Cheng, Shuohang Wang, Pengcheng He, Jianfeng Gao, Yong Jae Lee, Yelong Shen]
+links:
+  paper: https://arxiv.org/abs/2605.26797
+category: architecture/state
+facets:
+  placement: shifted-parallel
+  depth_train: fixed
+  kv: last-pass
+tldr:
+  en: LRT feeds the previous token's high-level hidden state into the next token's layers; at matched effective compute it improves BPB and CORE and matches a three-loop Transformer in BPB, with one forward per token.
+  zh: LRT 把前一个 token 的高层隐藏状态送入下一个 token 的各层；在等效算力相同时提升 BPB 和 CORE，BPB 与三遍循环 Transformer 持平，且每个 token 仍只需一次前向。
+added: "2026-11-23"

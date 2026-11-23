@@ -1,0 +1,17 @@
+id: "2103.03206"
+tier: radar
+title: "Perceiver: General Perception with Iterative Attention"
+date: "2021-03-04"
+venue: ICML 2021
+authors: [Andrew Jaegle, Felix Gimeno, Andrew Brock, Andrew Zisserman, Oriol Vinyals, Joao Carreira]
+links:
+  paper: https://arxiv.org/abs/2103.03206
+category: applications
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Perceiver repeatedly cross-attends from a small latent array to large inputs, with weights shared across repeats after the first, like an RNN unrolled in depth; it is competitive across images, point clouds, audio and video.
+  zh: Perceiver 用一个小的隐变量数组反复对大规模输入做 cross-attention，除第一次外各次重复共享权重，相当于沿深度展开的 RNN；它在图像、点云、音频和视频上都有竞争力。
+added: "2026-11-23"

@@ -1,0 +1,17 @@
+id: "2605.30215"
+tier: radar
+title: "Déjà View: Looping Transformers for Multi-View 3D Reconstruction"
+date: "2026-05-28"
+venue: arXiv
+authors: [Alessandro Burzio, Tobias Fischer, Sven Elflein, Qunjie Zhou, Riccardo de Lutio, Jiawei Ren, Jiahui Huang, Shengyu Huang, Marc Pollefeys, Laura Leal-Taixé, Zan Gojcic, Haithem Turki]
+links:
+  paper: https://arxiv.org/abs/2605.30215
+category: applications
+facets:
+  placement: prelude-core-coda
+  depth_train: sampled
+  kv: n/a
+tldr:
+  en: DéjàView applies a single looped transformer block to per-view features for K refinement steps in multi-view 3D reconstruction; it matches or beats much larger feed-forward models on five benchmarks and beats an untied per-step variant.
+  zh: DéjàView 在多视角 3D 重建中把同一个循环 transformer block 在每个视角的特征上应用 K 步精炼；在五个基准上达到或超过大得多的前馈模型，也优于每步参数独立的变体。
+added: "2026-11-23"

@@ -1,0 +1,17 @@
+id: "2604.11791"
+tier: radar
+title: "A Mechanistic Analysis of Looped Reasoning Language Models"
+date: "2026-04-13"
+venue: NeurIPS 2026
+authors: [Hugh Blayney, Álvaro Arroyo, Johan Obando-Ceron, Pablo Samuel Castro, Aaron Courville, Michael M. Bronstein, Xiaowen Dong]
+links:
+  paper: https://arxiv.org/abs/2604.11791
+category: understanding
+facets:
+  placement: n/a
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: Analyzes latent states of pretrained looped language models; in many, each recurrent-block layer converges to a distinct fixed point and each iteration repeats feedforward-like stages of inference, depending on input injection and normalization.
+  zh: 分析预训练循环语言模型的隐状态；在许多被研究的模型中，循环块的每一层都收敛到各自不同的不动点，每次迭代都重复与前馈模型相似的推理阶段，这些现象受输入注入和归一化方式影响。
+added: "2026-11-23"

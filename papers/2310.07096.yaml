@@ -1,0 +1,18 @@
+id: "2310.07096"
+tier: radar
+title: "Sparse Universal Transformer"
+date: "2023-10-11"
+venue: arXiv
+authors: [Shawn Tan, Yikang Shen, Zhenfang Chen, Aaron Courville, Chuang Gan]
+links:
+  paper: https://arxiv.org/abs/2310.07096
+  code: https://github.com/shawntan/SUT
+category: architecture/placement
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: Adds sparse mixture-of-experts and stick-breaking dynamic halting to the Universal Transformer, matching strong baselines on WMT'14 with half the computation and parameters; halting saves around 50% inference computation on formal language tasks with little loss.
+  zh: 在 Universal Transformer 中加入稀疏 MoE 和基于 stick-breaking 的动态停止机制，在 WMT'14 上以一半的计算量和参数量达到强基线水平；停止机制在形式语言任务上节省约 50% 的推理计算，性能下降很小。
+added: "2026-11-23"

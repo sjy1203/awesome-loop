@@ -1,0 +1,17 @@
+id: "2607.15456"
+tier: radar
+title: "Looped Latent Attention: Cross-Loop KV Compression for Looped Transformers"
+date: "2026-07-16"
+venue: arXiv
+authors: [James O' Neill, Fergal Reid]
+links:
+  paper: https://arxiv.org/abs/2607.15456
+category: systems
+facets:
+  placement: whole-stack
+  depth_train: n/a
+  kv: compressed
+tldr:
+  en: Looped Latent Attention, a post-training codec, stores the per-loop KV cache as compact latents and rebuilds loop-specific K/V on read; at matched cache budget it beats head-axis MLA, cross-layer sharing, KV quantization and final-loop reuse.
+  zh: Looped Latent Attention 是一种在模型训练后加装的 KV 缓存编解码器，把循环 Transformer 每遍的 KV 缓存存成紧凑的 latent，在注意力读取时再重建各遍的 K/V；在相同缓存预算下，它优于 head 维度的 MLA、跨层共享、KV 量化和复用末遍 KV。
+added: "2026-11-23"

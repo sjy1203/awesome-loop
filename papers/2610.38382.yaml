@@ -8,6 +8,10 @@ links:
   paper: https://arxiv.org/abs/2610.38382
   code: https://github.com/creator-xi/SelfMorph
 category: depth
+facets:
+  placement: prelude-core-coda
+  depth_train: adaptive
+  kv: per-pass
 tldr:
   en: SelfMorph trains a selector that picks, per input, whether a frozen LLM keeps its forward path, repeats a layer span or branches hidden states; this gives an 8.06% mean relative improvement on five in-distribution benchmarks.
   zh: SelfMorph 训练一个选择器，按输入决定冻结的 LLM 走原始前向路径、重复执行一段层，还是在局部分叉隐藏状态；在五个分布内基准上平均相对提升 8.06%。

@@ -1,0 +1,18 @@
+id: "2608.09444"
+tier: radar
+title: "Depth-adaptive Inference of Looped Language Models via Continuous Depth Batching"
+date: "2026-08-10"
+venue: arXiv
+authors: [Kristian Schwethelm, Daniel Rueckert, Georgios Kaissis]
+links:
+  paper: https://arxiv.org/abs/2608.09444
+  code: https://github.com/kschwethelm/continuous-depth-batching
+category: systems
+facets:
+  placement: n/a
+  depth_train: n/a
+  kv: last-pass
+tldr:
+  en: Continuous depth batching forms new batches between loop steps so looped LMs can serve tokens exiting at different depths; on Ouro 1.4B and Huginn 3.5B it realizes up to 99% of the estimated maximum speedup.
+  zh: Continuous depth batching 在循环步之间重新组 batch，使循环语言模型能同时处理在不同深度退出的 token；在 Ouro 1.4B 和 Huginn 3.5B 上最多实现估计最大加速的 99%。
+added: "2026-11-23"

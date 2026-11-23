@@ -1,0 +1,18 @@
+id: "2602.07845"
+tier: radar
+title: "Recurrent-Depth VLA: Implicit Test-Time Compute Scaling of Vision-Language-Action Models via Latent Iterative Reasoning"
+date: "2026-02-08"
+venue: arXiv
+authors: [Yalcin Tur, Jalal Naghiyev, Haoquan Fang, Wei-Chuan Tsai, Jiafei Duan, Dieter Fox, Ranjay Krishna]
+links:
+  paper: https://arxiv.org/abs/2602.07845
+  code: https://github.com/rd-vla/rd-vla
+category: applications
+facets:
+  placement: partial
+  depth_train: sampled
+  kv: n/a
+tldr:
+  en: RD-VLA gives a VLA a weight-tied recurrent action head that stops on latent convergence; tasks failing at one iteration exceed 90 percent success with four, and inference is up to 80x faster than reasoning VLAs.
+  zh: RD-VLA 为 VLA 加入权重共享的循环动作头，并按隐状态收敛自适应停止；单次迭代完全失败的任务在四次迭代时成功率超过 90%，推理速度比以往基于推理的 VLA 最多快 80x。
+added: "2026-11-23"

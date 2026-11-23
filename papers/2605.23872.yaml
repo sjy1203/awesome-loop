@@ -1,0 +1,17 @@
+id: "2605.23872"
+tier: radar
+title: "Training-Free Looped Transformers"
+date: "2026-05-22"
+venue: arXiv
+authors: [Lizhang Chen, Jonathan Li, Chen Liang, Ni Lao, Qiang Liu]
+links:
+  paper: https://arxiv.org/abs/2605.23872
+category: training
+facets:
+  placement: prelude-core-coda
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: Loops a contiguous mid-stack block of a frozen checkpoint at inference without training; naive reapplication usually hurts, but damped sub-steps of the block's ODE update help, e.g. +2.64 pp MMLU-Pro on Qwen3-4B-Instruct.
+  zh: 在推理时不经训练地循环冻结 checkpoint 中一段连续的中间层块；朴素重复通常会降低性能，而把循环看作该块 ODE 更新的阻尼子步则能带来提升，例如 Qwen3-4B-Instruct 在 MMLU-Pro 上提高 +2.64 pp。
+added: "2026-11-23"

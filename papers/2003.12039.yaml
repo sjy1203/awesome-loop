@@ -1,0 +1,18 @@
+id: "2003.12039"
+tier: radar
+title: "RAFT: Recurrent All-Pairs Field Transforms for Optical Flow"
+date: "2020-03-26"
+venue: arXiv
+authors: [Zachary Teed, Jia Deng]
+links:
+  paper: https://arxiv.org/abs/2003.12039
+  code: https://github.com/princeton-vl/RAFT
+category: applications
+facets:
+  placement: partial
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: RAFT builds all-pairs 4D correlation volumes and iteratively updates a flow field with a weight-tied recurrent update operator; it reaches 5.10% F1-all error on KITTI and 2.855 pixels end-point error on Sintel (final pass).
+  zh: RAFT 为光流任务构建全像素对的 4D 相关体，并用权重共享的循环更新算子反复更新光流场；在 KITTI 上 F1-all 误差为 5.10%，在 Sintel（final pass）上端点误差为 2.855 像素。
+added: "2026-11-23"

@@ -1,0 +1,17 @@
+id: "2608.18222"
+tier: radar
+title: "Think Shallow, Solve Deep: Controlling Recurrent Dynamics for Reliable Test-Time Depth"
+date: "2026-08-18"
+venue: arXiv
+authors: [Ivan Viakhirev, Kirill Borodin, Amirah Almutairi, Serguei Barannikov, Maxim Abramov, Grach Mkrtchian]
+links:
+  paper: https://arxiv.org/abs/2608.18222
+category: applications
+facets:
+  placement: n/a
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Shows that a trained recurrent operator's dynamical regime (settling, marginal or drifting) predicts whether extra test-time iterations help, preserve or degrade answers on algorithmic tasks; a terminal fixed-point objective controls the regime.
+  zh: 表明训练后循环算子的动力学状态（趋稳、临界或漂移）能预测在算法任务上增加测试时迭代会提升、保持还是损害答案；终端不动点目标可以控制这一状态。
+added: "2026-11-23"

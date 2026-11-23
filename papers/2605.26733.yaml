@@ -1,0 +1,18 @@
+id: "2605.26733"
+tier: radar
+title: "Stabilizing Recurrent Dynamics for Test-Time Scalable Latent Reasoning in Looped Language Models"
+date: "2026-05-26"
+venue: ICML 2026
+authors: [Xiao-Wen Yang, Ziyu Han, Xi-Hua Zhang, Wen-Da Wei, Jie-Jing Shao, Lan-Zhe Guo, Yu-Feng Li]
+links:
+  paper: https://arxiv.org/abs/2605.26733
+  code: https://github.com/njuyxw/STARS
+category: training
+facets:
+  placement: whole-stack
+  depth_train: sampled
+  kv: n/a
+tldr:
+  en: STARS trains looped LMs with Jacobian spectral radius regularization and random loop sampling so latent states approach stable fixed points, giving reliable test-time scaling on arithmetic and less degradation with deeper recurrence in math reasoning.
+  zh: STARS 用 Jacobian 谱半径正则和随机循环次数采样训练循环语言模型，使隐状态趋向稳定不动点；在算术任务上实现可靠的 test-time scaling，在数学推理中循环加深时性能下降更少。
+added: "2026-11-23"

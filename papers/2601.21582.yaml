@@ -1,0 +1,17 @@
+id: "2601.21582"
+tier: radar
+title: "Depth-Recurrent Attention Mixture (Dreamer): Giving Latent Reasoning the Attention it Deserves"
+date: "2026-01-29"
+venue: NeurIPS 2026
+authors: [Jonas Knupp, Jan Hendrik Metzen, Jeremias Bohn, Georg Groh, Kristian Kersting]
+links:
+  paper: https://arxiv.org/abs/2601.21582
+category: architecture/state
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: per-pass
+tldr:
+  en: Dreamer combines sequence attention, depth attention and sparse expert attention in a depth-recurrent model; against FLOP-, parameter- and memory-matched baselines it needs 2 to 8x fewer training tokens for the same accuracy on language reasoning.
+  zh: Dreamer 在深度循环模型中结合序列注意力、沿深度的注意力和稀疏专家注意力；与 FLOP、参数和显存都匹配的基线相比，在语言推理基准上达到相同准确率所需的训练 token 少 2 到 8 倍。
+added: "2026-11-23"

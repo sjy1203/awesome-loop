@@ -1,0 +1,17 @@
+id: "2603.08391"
+tier: radar
+title: "Adaptive Loops and Memory in Transformers: Think Harder or Know More?"
+date: "2026-03-09"
+venue: "ICLR 2026 Latent & Implicit Thinking Workshop"
+authors: [Markus Frey, Behzad Shomali, Ali Hamza Bashir, David Berghaus, Joachim Koehler, Mehdi Ali]
+links:
+  paper: https://arxiv.org/abs/2603.08391
+category: architecture/placement
+facets:
+  placement: n/a
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: Lets each block loop with learned halting and adds gated memory banks; looping mainly helps math, memory banks help commonsense tasks, and combined they beat an iso-FLOP baseline with three times the layers on math.
+  zh: 让每个 Transformer 块借助学习的停止机制自适应循环，并加入门控记忆库；循环主要提升数学推理，记忆库有助于常识任务，两者结合后在数学基准上超过层数为其三倍的等 FLOP 基线。
+added: "2026-11-23"

@@ -1,0 +1,17 @@
+id: "2410.01405"
+tier: radar
+title: "On Expressive Power of Looped Transformers: Theoretical Analysis and Enhancement via Timestep Encoding"
+date: "2024-10-02"
+venue: ICML 2025
+authors: [Kevin Xu, Issei Sato]
+links:
+  paper: https://arxiv.org/abs/2410.01405
+category: theory
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Derives approximation rates for looped Transformers, revealing a limitation specific to looping, and adds per-loop scaling parameters conditioned on timestep encoding; in experiments more loops improve performance and timestep encoding adds further gains.
+  zh: 推导循环 Transformer 的逼近速率，揭示循环结构特有的局限，并据此加入以时间步编码为条件的每遍缩放参数；实验中循环次数越多效果越好，时间步编码带来进一步提升。
+added: "2026-11-23"

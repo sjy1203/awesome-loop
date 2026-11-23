@@ -1,0 +1,17 @@
+id: "1603.08983"
+tier: radar
+title: "Adaptive Computation Time for Recurrent Neural Networks"
+date: "2016-03-29"
+venue: arXiv
+authors: [Alex Graves]
+links:
+  paper: https://arxiv.org/abs/1603.08983
+category: depth
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: Introduces Adaptive Computation Time, a differentiable halting mechanism that lets an RNN learn how many steps to take per input; it improves performance on four synthetic tasks, while gains on character-level language modelling are small.
+  zh: 提出 Adaptive Computation Time（ACT），一种可微的停止机制，让 RNN 学习每个输入要计算多少步；它在四个合成任务上提升了性能，但在字符级语言建模上收益很小。
+added: "2026-11-23"

@@ -22,7 +22,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import validate as V  # noqa: E402
 from fetch_metrics import get_json  # noqa: E402
 
-PHRASES = ["looped transformer", "looped transformers", "looped language model", "looped language models",
+PHRASES = ["looped transformer", "looped transformers", "loop transformer", "loop transformers", "looped llm",
+           "looped llms", "looped language model", "looped language models",
            "looped model", "looped models", "recurrent depth", "recurrent-depth", "depth recurrence",
            "depth-recurrent", "recursive transformer", "recursive transformers", "universal transformer",
            "universal transformers", "layer looping", "weight-tied layers", "latent recurrence"]

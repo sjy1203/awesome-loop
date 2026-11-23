@@ -1,0 +1,18 @@
+id: "2605.21488"
+tier: radar
+title: "Equilibrium Reasoners: Learning Attractors Enables Scalable Reasoning"
+date: "2026-05-20"
+venue: ICML 2026
+authors: [Benhao Huang, Zhengyang Geng, Zico Kolter]
+links:
+  paper: https://arxiv.org/abs/2605.21488
+  code: https://github.com/locuslab/eqr
+category: applications
+facets:
+  placement: hierarchical
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: Equilibrium Reasoners frame iterative latent reasoning as learning task-conditioned attractors and scale depth and breadth at test time; gains track convergence to solution attractors, reaching over 99% on Sudoku-Extreme versus 2.6% for feedforward models.
+  zh: Equilibrium Reasoners 把迭代式隐空间推理视为学习任务条件下的吸引子，并在测试时沿深度和广度扩展计算；收益与向解吸引子的收敛程度紧密相关，在 Sudoku-Extreme 上准确率超过 99%，而前馈模型只有 2.6%。
+added: "2026-11-23"
