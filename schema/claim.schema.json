@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/sjy1203/awesome-loop/schema/claim.schema.json",
+  "title": "awesome-loop open question (claims/<id>.yaml)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "question", "status", "summary", "evidence", "updated"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"},
+    "question": {"$ref": "#/$defs/text"},
+    "status": {"enum": ["consistent", "mixed", "single-source", "open"]},
+    "summary": {"description": "Current state of the evidence in one or two sentences.", "$ref": "#/$defs/text"},
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["paper", "stance", "setting", "finding", "ref"],
+        "properties": {
+          "paper": {"description": "id of the entry in papers/.", "type": "string", "minLength": 1},
+          "stance": {"enum": ["supports", "against", "partial"]},
+          "setting": {"description": "Scale and setup, e.g. 150M dense, 6.0B tokens.", "type": "string", "minLength": 1},
+          "finding": {"$ref": "#/$defs/text"},
+          "ref": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "updated": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"}
+  },
+  "$defs": {
+    "text": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["en", "zh"],
+      "properties": {"en": {"type": "string", "minLength": 1}, "zh": {"type": "string", "minLength": 1}}
+    }
+  }
+}

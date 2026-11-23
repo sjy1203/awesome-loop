@@ -1,0 +1,191 @@
+id: tml-inkling-2-mini
+tier: deep
+status: draft
+short: Inkling 2 Mini
+title: Introducing Inkling 2 Mini
+date: "2026-11-20"
+venue: Thinking Machines Lab blog
+authors: [Thinking Machines Lab]
+orgs: [Thinking Machines Lab]
+links:
+  paper: https://thinkingmachines.ai/news/inkling-2-mini/
+  weights:
+    - https://huggingface.co/thinkingmachines/Inkling-2-Mini
+    - https://huggingface.co/thinkingmachines/TML-d24-varloop-research
+  project: https://thinkingmachines.ai/model-card/inkling-2-mini/
+  blog: https://huggingface.co/blog/inkling2mini
+category: architecture/placement
+facets:
+  placement: prelude-core-coda
+  sharing: full
+  depth_train: fixed
+  depth_test: fixed
+  injection: depth-attention
+  kv: per-pass
+  gradient: n/a
+  origin: n/a
+  ffn: moe
+  attention: hybrid
+loop:
+  segments:
+    - {role: prelude, layers: 6, label: L0-5}
+    - role: core
+      layers: 12
+      label: L6-17
+      passes: {train: "3", test: "3"}
+    - {role: coda, layers: 6, label: L18-23}
+  note:
+    en: >-
+      Inkling 2 Mini has 24 MoE layers (8 of 128 experts per token) in four six-layer blocks; the two middle blocks
+      share weights and run three times, so 24 stored layers give 48 layer applications per token. Per the Hugging Face
+      blog, each block has five sliding-window layers (1,024-token window) and one full-attention layer, and each layer
+      visit keeps its own KV. Every pass starts from the prelude output; passes 2 and 3 also read the previous pass's
+      middle-block outputs (the message) through attention residuals, admitted by a learned gate that starts fully
+      closed. Labels are 0-indexed as in the Hugging Face blog; the post numbers the same core 7-18. The released
+      research twin TML-d24-varloop-research has the same layout but was trained with 1 to 5 passes and is run at up to
+      10 in the post.
+    zh: >-
+      Inkling 2 Mini 有 24 层 MoE（每 token 从 128 个专家中选 8 个），分成四个 6 层块；中间两块共享权重、跑三遍，24 层存储权重每 token 执行 48 次层计算。据 Hugging Face 博客，每块有五层滑窗注意力（窗口 1,024 token）和一层全注意力，每次层访问各存一份 KV。每一遍都从 prelude 输出开始；第 2、3 遍还通过 attention residuals 读取上一遍中间块的输出（称为 message），由一个初始完全关闭的可学习门控接入。层号按 Hugging Face 博客从 0 开始，原文把同一段 core 记作 7-18。同时发布的研究版 TML-d24-varloop-research 结构相同，但训练时用 1 到 5 遍，文中最多跑到 10 遍。
+budget:
+  baseline:
+    en: >-
+      A scaling-ladder run that loops the last 12 layers (13-24) instead of the middle 12 (7-18), with the same three
+      passes and equal training compute; both runs' gains are expressed as the compute a no-loop baseline would need to
+      match their loss.
+    zh: >-
+      scaling ladder 上的对照：循环最后 12 层（13-24）而不是中间 12 层（7-18），同样跑三遍、训练算力相同；两者的收益都用无循环基线追平其 loss 所需的算力来表示。
+  matched: [flops]
+  not_matched: []
+  baseline_tuned: unknown
+  headline:
+    en: >-
+      Looping the middle 12 layers gave larger accuracy gains than looping the last 12 on 27 of 28 evaluations; at
+      training step 2,000 a no-loop baseline was estimated to need 1.51-1.91x the compute to match the middle loop's
+      loss, against 1.24-1.36x for the last loop.
+    zh: >-
+      28 项评测中有 27 项，循环中间 12 层的准确率收益大于循环最后 12 层；训练到第 2,000 步时，估计无循环基线需要 1.51-1.91 倍算力才能追平中间循环的 loss，追平最后 12 层循环只需 1.24-1.36 倍。
+  ref: 'Looping design; figure "Compute-equivalent gain by loop position"'
+results:
+  - setting: "Scaling-ladder runs at training step 2,000, three passes, equal training compute; range over three evaluations"
+    metric: compute a no-loop baseline is estimated to need to match the looped run's loss
+    values:
+      "Loop middle layers (7–18)": "1.51–1.91×"
+      "Loop last layers (13–24)": "1.24–1.36×"
+    ref: 'Looping design; figure "Compute-equivalent gain by loop position"'
+  - setting: "Subset of Think Fast tasks, no-CoT answers elicited by prefilling the response; Varloop = TML-d24-varloop-research, trained with 1-5 passes"
+    metric: no-CoT 50% time horizon (human seconds)
+    values:
+      "Inkling 2 Mini, 3 passes": "41 s"
+      "Varloop, 1 pass": "16 s"
+      "Varloop, 2 passes": "26 s"
+      "Varloop, 3 passes": "37 s"
+      "Varloop, 5 passes": "42 s"
+      "Varloop, 10 passes": "40 s"
+    ref: 'No-CoT capabilities; figure "No-CoT time horizons"'
+  - setting: "TML-d24-varloop-research run at 1-5 passes (1-5 passes sampled 1:2:6:2:1 for the rest of midtraining, post-trained at 3)"
+    metric: score at 1 / 2 / 3 / 4 / 5 passes
+    values:
+      "DeepSWE v1.1 (mini-swe-agent v2.4.6)": "0.7% / 28.3% / 47.4% / 46.9% / 48.2%"
+      "GPQA Diamond": "69.6% / 79.2% / 84.2% / 81.9% / 83.1%"
+      "MRCR v2 8-needle 256K–512K": "26.2% / 65.2% / 89.2% / 93.4% / 92.1%"
+      "SimpleQA Verified": "6.3% / 6.5% / 7.3% / 6.8% / 6.7%"
+    ref: TML-d24-varloop-research model card, Section 5 (Evaluations)
+  - setting: "TML-d24-varloop-research on the GPQA Diamond questions it answered correctly at all five pass counts"
+    metric: mean reasoning tokens / mean words per sentence / words in an English dictionary / uncertainty indicators
+    values:
+      "1 pass": "3703 / 8.9 / 94.6% / 9.7"
+      "3 passes": "1731 / 8.7 / 94.5% / 3.9"
+      "5 passes": "1661 / 8.7 / 94.4% / 3.6"
+    ref: CoT monitorability; Compression and legibility table
+  - setting: "LinuxArena, subset of 184 main-task/side-task pairings, simple-attack policy, monitor Qwen3.6-35B-A3B at a 1% false-positive rate; Inkling 2 Mini is a helpful-only fine-tune; Varloop = TML-d24-varloop-research"
+    metric: stealth rate (% of attack episodes), monitor sees tool calls and outputs only / also sees text and thinking
+    values:
+      "Inkling 2 Mini (helpful-only)": "3.9% / 1.3%"
+      "Varloop, 1 pass": "1.0% / 0.3%"
+      "Varloop, 2 passes": "2.5% / 0.4%"
+      "Varloop, 3 passes": "4.0% / 0.6%"
+      "Varloop, 4 passes": "2.8% / 0.3%"
+      "Varloop, 5 passes": "5.0% / 0.0%"
+    ref: 'Agentic monitorability; figure "LinuxArena stealth rate"'
+findings:
+  - en: >-
+      On the scaling ladder, an unpruned non-looping model cost 7.5% less compute to train than the unpruned looped
+      version but needed 140% more inference compute to match its loss on 512k-token agentic traces.
+    zh: >-
+      在 scaling ladder 上，未剪枝的不循环模型训练算力比未剪枝的循环版少 7.5%，但要在 512k token 的 agentic 轨迹上追平循环版的 loss，推理算力要多 140%。
+    ref: Looping design
+  - en: >-
+      TML-d24-varloop-research was never trained with more than five passes, yet running it with ten does not
+      significantly degrade its no-CoT time horizon (40 s, against 42 s at five), and on N-Hop Lookup it follows longer
+      chains with more passes, improving out to ten loops.
+    zh: >-
+      TML-d24-varloop-research 训练时从未超过 5 遍，但跑 10 遍时 no-CoT 时间跨度没有明显下降（40 秒，5 遍时为 42 秒）；在 N-Hop Lookup 上，遍数越多能跟的查找链越长，一直提升到 10 遍。
+    ref: 'No-CoT capabilities; figures "No-CoT time horizons" and "N-Hop Lookup"'
+  - en: >-
+      With CoT, more passes mainly help multi-hop reasoning rather than recall: gains are largest on long-context
+      retrieval (MRCR), then math and science reasoning, then long-horizon agentic tasks, while knowledge-intensive
+      benchmarks (AA-Omniscience, SimpleQA Verified, SimpleVQA, WorldVQA) do not improve with more passes.
+    zh: >-
+      有 CoT 时，增加遍数主要帮助多跳推理而不是记忆：长上下文检索（MRCR）收益最大，其次是数学和科学推理，再次是长程 agentic 任务；AA-Omniscience、SimpleQA Verified、SimpleVQA、WorldVQA 这类知识密集型评测不随遍数提升。
+    ref: Capabilities; No-CoT capabilities
+  - en: >-
+      Accuracy at each reasoning-token budget generally rises with passes, with diminishing returns after 3; on GPQA
+      Diamond questions solved at all pass counts, reasoning at 5 passes averages 1,661 tokens against 3,703 at 1 pass,
+      with unchanged sentence length and dictionary-word share.
+    zh: >-
+      每个推理 token 预算下的准确率一般随遍数上升，3 遍之后收益递减；在各遍数都答对的 GPQA Diamond 题上，5 遍的推理平均 1,661 token，1 遍为 3,703 token，句长和词典词比例不变。
+    ref: CoT monitorability; Compression and legibility
+  - en: >-
+      Among CoTs of 750-1,250 tokens, Inkling 2 Mini and the variable-loop model at 3 passes follow a CoT instruction at
+      most 0.1% of the time (Qwen3.8-27B 1.3%), too rarely to separate loop counts; LinuxArena stealth rates show no
+      clear trend with the number of passes.
+    zh: >-
+      在 750-1,250 token 的 CoT 中，Inkling 2 Mini 和 3 遍的可变循环模型最多只有 0.1% 的时候遵守 CoT 指令（Qwen3.8-27B 为 1.3%），低到无法区分不同遍数；LinuxArena 的 stealth rate 也看不出随遍数变化的明显趋势。
+    ref: CoT monitorability (Controllability); Agentic monitorability
+tldr:
+  en: >-
+    Open-weight MoE (26.4B total, 3.4B active) that runs the middle 12 of its 24 layers three times with shared weights,
+    released with a variable-loop research twin used to measure how pass count affects capability and CoT
+    monitorability.
+  zh: >-
+    开源权重的 MoE（总参数 26.4B、激活 3.4B），24 层中的中间 12 层共享权重跑三遍；同时发布一个可变循环的研究版，用来测遍数对能力和 CoT 可监控性的影响。
+quickread:
+  problem:
+    en: >-
+      Looping lets a model do more serial computation per token without adding parameters, which has raised concerns
+      that looped models are harder to oversee by reading their chain of thought; the post reports what looping gives a
+      small open model and how pass count affects CoT monitorability.
+    zh: >-
+      循环让模型不增加参数就能在每个 token 上做更多串行计算，这引起了一种担忧：循环模型更难通过阅读 CoT 来监督。本文报告循环给一个小型开源模型带来的收益，以及遍数如何影响 CoT 可监控性。
+  method:
+    en:
+      - "24 MoE layers (8 of 128 experts per token) in four six-layer blocks; the two middle blocks share weights and run three times, giving 48 layer applications per token from 24 stored layers."
+      - "Every pass starts from the prelude output; passes 2 and 3 also read the previous pass's middle-block outputs (the message) through attention residuals, and a learned gate that initially blocks the message lets looping be introduced stably during training."
+      - "Training started with 8 of 384 experts per token; two-thirds of the experts were pruned at one point in midtraining (keeping the 128 most used per layer), followed by 1T tokens distilled from a larger internal Inkling model, SFT, and RL totaling 2.2T tokens over 2,000 steps. Expert layers use NVFP4 on all forward passes and the last four layers use MXFP8."
+      - "A variable-loop research model, TML-d24-varloop-research, was trained with 1 to 5 passes (sampled 1:2:6:2:1 for the rest of midtraining, post-trained at 3) and is run at 1 to 5 passes, and at 10 in the no-CoT tests, to measure capability and CoT monitorability."
+    zh:
+      - "24 层 MoE（每 token 从 128 个专家中选 8 个），分成四个 6 层块；中间两块共享权重、跑三遍，24 层存储权重每 token 执行 48 次层计算。"
+      - "每一遍都从 prelude 输出开始；第 2、3 遍还通过 attention residuals 读取上一遍中间块的输出（message），一个初始完全挡住 message 的可学习门控让训练中可以稳定地引入循环。"
+      - "训练开始时每 token 从 384 个专家中选 8 个；midtraining 中某一时刻剪掉三分之二的专家（每层保留最常用的 128 个），之后用 1T token 从更大的内部 Inkling 模型蒸馏，再做 SFT 和共 2.2T token、2,000 步的 RL。专家层的所有前向都用 NVFP4，最后四层用 MXFP8。"
+      - "可变循环研究版 TML-d24-varloop-research 用 1 到 5 遍训练（midtraining 后段按 1:2:6:2:1 采样，post-training 用 3 遍），评测时跑 1 到 5 遍、no-CoT 测试还跑 10 遍，用来测能力和 CoT 可监控性。"
+  caveats:
+    en:
+      - "Inkling 2 Mini supports only a fixed number of passes (3), so every pass-count comparison uses TML-d24-varloop-research, whose later training stages differ; its model card cautions against comparing it directly with Inkling 2 Mini."
+      - "Three passes dominated the variable-loop model's training and its RL used 3 passes only; the authors say results at other pass counts may understate what dedicated training could achieve and do not show what RL at a higher pass count would learn."
+      - "The loop-placement and looping-versus-non-looping comparisons come from scaling-ladder runs (placement at training step 2,000; unpruned models for looping versus non-looping), not from the released model, and the post does not give the sizes of those runs."
+      - "No-CoT results use a subset of Think Fast tasks, with answers elicited by prefilling the start of the response; the models were not trained to answer without CoT."
+      - "LinuxArena used a helpful-only fine-tune of Inkling 2 Mini, a weaker monitor (Qwen3.6-35B-A3B) and a subset of 184 task pairings."
+      - "Decoding speeds in the opening coding figure are theoretical ceilings (614 GB/s, BF16 weights, batch size one), evaluation setups vary by model, and the post gives no pretraining token count."
+    zh:
+      - "Inkling 2 Mini 只支持固定遍数（3 遍），所有遍数对比都用 TML-d24-varloop-research，而它后期的训练阶段与 Inkling 2 Mini 不同；其 model card 提醒不要把两者直接比较。"
+      - "可变循环模型的训练以 3 遍为主，RL 也只用 3 遍；作者说其他遍数的结果可能低估专门训练能达到的水平，也说明不了在更多遍数上做 RL 会学到什么。"
+      - "循环位置对比和循环与不循环的对比都来自 scaling ladder 实验（位置对比在第 2,000 训练步；循环与不循环对比用未剪枝模型），不是发布的模型，文中也没给这些实验的模型规模。"
+      - "no-CoT 结果只用了 Think Fast 的部分任务，通过预填回答开头让模型直接作答；这些模型没有为不用 CoT 作答而训练。"
+      - "LinuxArena 用的是 Inkling 2 Mini 的 helpful-only 微调版、较弱的监控模型（Qwen3.6-35B-A3B），以及 184 组任务的子集。"
+      - "开篇编码图里的解码速度是理论上限（614 GB/s、BF16 权重、batch size 1），各模型评测设置不同，文中也没给预训练 token 数。"
+reproducibility:
+  code: partial
+  weights: available
+  configs: partial
+  data: none
+added: "2026-11-23"

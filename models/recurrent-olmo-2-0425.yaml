@@ -1,0 +1,32 @@
+id: recurrent-olmo-2-0425
+name: Recurrent-OLMo-2-0425 (4,6,4)
+paper: "2511.07384"
+hf:
+  - smcleish/Recurrent-OLMo-2-0425-train-recurrence-4
+  - smcleish/Recurrent-OLMo-2-0425-train-recurrence-8
+  - smcleish/Recurrent-OLMo-2-0425-train-recurrence-16
+  - smcleish/Recurrent-OLMo-2-0425-train-recurrence-32
+  - smcleish/Recurrent-OLMo-2-0425-untrained
+params: "939,638,784 excluding embeddings (Table 8)"
+tokens: "about 50B (Nemotron-CC-Math-v1-4plus)"
+context: "1024 (training context length)"
+passes:
+  default: "32"
+  range: "num_steps; paper tests 1, 2, 4, 8, 16, 32"
+kv: per-pass
+license: apache-2.0
+inference: [transformers-remote-code]
+notes:
+  en: >-
+    Built from layers 0-3, 6-11 and 12-15 of OLMo-2-0425-1B, dropping layers 4-5 (Section 4.3.2, Table 9). The
+    train-recurrence-k repos match by name the runs with mean training recurrence k in Table 4; -untrained holds the
+    converted weights before any recurrence training. The cards say the modeling file is based on huginn-0125; its
+    HuginnDynamicCache keeps a separate KV entry per recurrence step.
+  zh: >-
+    由 OLMo-2-0425-1B 的第 0-3、6-11、12-15 层构成，删掉第 4-5 层（Section 4.3.2，Table 9）。train-recurrence-k 仓库按名字对应 Table 4 中平均训练递归次数为 k 的训练；-untrained 是转换后、尚未做循环训练的权重。模型卡说建模代码基于 huginn-0125；其中的 HuginnDynamicCache 为每个递归步单独保存 KV。
+ref: >-
+  Model cards (num_steps example, trust_remote_code, apache-2.0, based on huginn-0125); HF API (repo existence, license
+  tags) and the Retrofitting Recurrence collection; paper Section 3 (context 1024), Section 4.3.2 (layers, tokens),
+  Table 4 (test recurrences), Tables 8 and 9 (parameters, layers); HuginnDynamicCache in the repos'
+  raven_modeling_minimal.py (KV keyed by recurrence step).
+added: "2026-11-23"

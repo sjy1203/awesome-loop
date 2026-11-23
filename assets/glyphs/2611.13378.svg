@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="282.6" height="66" viewBox="0 0 282.6 66" role="img" aria-label="L0-1 (2 layers) -&gt; [L2-5 (4 layers)] x max(1, Poisson(8)) -&gt; L6-11 (6 layers); injection gated; KV last-pass">
+<title>L0-1 (2 layers) -&gt; [L2-5 (4 layers)] x max(1, Poisson(8)) -&gt; L6-11 (6 layers); injection gated; KV last-pass</title>
+<style>@media (prefers-color-scheme:dark){text{fill:#9198a1}text.p{fill:#4493f8}}</style>
+<g transform="translate(5.8,0)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="10">
+<rect x="2.7" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="14.7" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="38.4" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<rect x="50.4" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<rect x="62.4" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<rect x="74.4" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<path d="M83.4,27 C83.4,13 38.4,13 38.4,22" fill="none" stroke="#0969da" stroke-width="1.5"/>
+<path d="M34.9,21 L41.9,21 L38.4,28 Z" fill="#0969da"/>
+<rect x="95.4" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="107.4" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="119.4" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="131.4" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="143.4" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="155.4" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<text x="13.2" y="61" text-anchor="middle" fill="#57606a">L0-1</text>
+<text x="60.9" y="61" text-anchor="middle" fill="#57606a">L2-5</text>
+<text x="60.9" y="11" text-anchor="middle" class="p" fill="#0969da">×max(1, Poisson(8))</text>
+<text x="129.9" y="61" text-anchor="middle" fill="#57606a">L6-11</text>
+<text x="178.4" y="37" text-anchor="start" fill="#57606a">inj · gated</text>
+<text x="178.4" y="49" text-anchor="start" fill="#57606a">KV · last-pass</text>
+</g>
+</svg>

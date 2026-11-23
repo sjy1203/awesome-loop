@@ -1,0 +1,69 @@
+id: shared-kv-across-passes
+question:
+  en: Can later passes reuse one KV cache instead of keeping KV for every pass?
+  zh: 后续各遍能否共用一份 KV，而不是每遍各存一份？
+status: mixed
+summary:
+  en: >-
+    Reusing the last pass's KV works when the model is trained for it or when it is done only during decoding, while
+    reusing the first pass's KV alone costs accuracy unless a local window is added. Looped CED loses nothing with
+    last-round KV under sampled-depth training but fails with fixed depth, Ouro keeps quality with last-step KV in
+    decoding but not in prefill, and PLT needs a gated sliding window on top of first-pass KV sharing.
+  zh: >-
+    模型为此训练过、或只在解码阶段复用时，复用最后一遍的 KV 可行；只复用第一遍的 KV 会掉点，除非再加局部窗口。Looped CED 用随机遍数训练时只存末遍
+    KV 不掉点，固定遍数训练就不行；Ouro 解码时只用最后一步的 KV 基本不掉点，prefill 时不行；PLT 在共享首遍 KV 之外还要加门控滑窗才能恢复精度。
+evidence:
+  - paper: "2611.13378"
+    stance: partial
+    setting: 150M CED, 6.0B tokens, exact fp32 token-by-token decoding at T=8
+    finding:
+      en: With sampled-depth training, last-round KV changes BPB by -0.0002 relative to per-round KV; with fixed-depth training it adds +0.0317.
+      zh: 随机遍数训练时，只存末遍 KV 相对每遍各存，BPB 变化 -0.0002；固定遍数训练时变差 +0.0317。
+    ref: Table 3
+  - paper: "2510.25741"
+    stance: partial
+    setting: Ouro 1.4B, KV reuse during decoding only
+    finding:
+      en: >-
+        Keeping only the last step's KV gives GSM8K 78.85 and MATH-500 80.40 against 78.92 and 82.40 with all four
+        caches, at 4.00x less memory; first-step-only KV drops to 18.73 and 8.43, and reusing KV during prefill costs
+        more than 10 points on GSM8K.
+      zh: 只保留最后一步的 KV，GSM8K 为 78.85、MATH-500 为 80.40，保留全部四份时为 78.92 和 82.40，显存省 4.00 倍；只用第一步的 KV 会降到 18.73 和 8.43；prefill 阶段复用 KV 会让 GSM8K 掉 10 分以上。
+    ref: Section 5.4.2; Table 14
+  - paper: "2510.24824"
+    stance: partial
+    setting: 680M activated / 13B total MoE, 150B tokens
+    finding:
+      en: >-
+        Sharing the first loop's KV halves the KV cache (560M to 280M) but lowers average accuracy from 39.6 to 36.2;
+        adding gated SWA with a 64-token window restores 39.7 at 284M.
+      zh: 共享首遍 KV 让 KV 减半（560M 到 280M），但平均精度从 39.6 降到 36.2；再加窗口 64 的门控 SWA，精度回到 39.7，KV 为 284M。
+    ref: Table 2
+  - paper: "2604.01220"
+    stance: supports
+    setting: 1.3B dense, 20B tokens
+    finding:
+      en: >-
+        Looping the cross-decoder while it keeps reading the one shared global KV averages 47.34, against 46.41 when
+        those layers use their own self-attention KV instead.
+      zh: 循环 cross-decoder 时继续读同一份共享全局 KV，平均 47.34；这些层改用自己的 self-attention KV 时为 46.41。
+    ref: Table 5; Section 4.3
+  - paper: "2507.10524"
+    stance: partial
+    setting: 360M-base family, 10B FineWeb-Edu tokens
+    finding:
+      en: >-
+        Recursive KV sharing, which reuses the first recursion's KV, raises validation NLL for expert-choice MoR from
+        2.8667 to 2.8895 but lowers it for token-choice MoR from 2.9358 to 2.9155.
+      zh: 递归 KV 共享（复用第一次递归的 KV）让 expert-choice MoR 的验证 NLL 从 2.8667 升到 2.8895，但让 token-choice MoR 从 2.9358 降到 2.9155。
+    ref: Section 4.3; Table 15
+  - paper: "2502.05171"
+    stance: supports
+    setting: Huginn 3.5B, zero-shot (not trained for it), first-turn MT-Bench
+    finding:
+      en: >-
+        Capping the per-token KV cache at s=4, 8 or 16 recurrence steps scores 5.856, 5.631 and 5.687 against 5.662
+        for the full cache at 32 iterations; the paper finds no significant difference.
+      zh: 把每个 token 的 KV cache 限制为 s=4、8、16 个递归步，得分 5.856、5.631、5.687，32 次迭代的完整缓存为 5.662；论文认为差异不显著。
+    ref: Table 6; Section 6.2
+updated: "2026-11-23"

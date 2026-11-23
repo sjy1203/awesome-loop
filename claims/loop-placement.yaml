@@ -1,0 +1,62 @@
+id: loop-placement
+question:
+  en: Where in the stack should the loop sit?
+  zh: 循环应该放在网络的哪一段？
+status: consistent
+summary:
+  en: >-
+    Every comparison favors looping lower or middle layers over the whole stack or the top layers, and in layouts with
+    a shared global KV the loop should include the layers that produce it. The comparisons come from models of 1.3B
+    parameters or less, or from runs whose sizes are not given.
+  zh: >-
+    所有对比都支持循环中下部或中间的层，而不是整栈或顶部的层；在共享全局 KV 的布局里，循环应包含产出这份 KV 的层。这些对比来自 1.3B
+    及以下的模型，或没有给出规模的实验。
+evidence:
+  - paper: "2609.01343"
+    stance: supports
+    setting: 200M MoE, FLOPs, parameters and KV matched, two passes
+    finding:
+      en: >-
+        Looping the middle 6 of 12 layers gives validation loss 1.9257 against 1.9322 for looping all 12 (S ≈ 85%), and
+        every span tested beats the unlooped Baseline (1.9445). DCLM Core at S ≈ 95% peaks at the 67% span instead.
+      zh: 循环 12 层中间的 6 层验证 loss 为 1.9257，循环全部 12 层为 1.9322（S ≈ 85%），测试的每种跨度都优于不循环的 Baseline（1.9445）。但 S ≈ 95% 时 DCLM Core 在 67% 跨度最高。
+    ref: Table 3; Section 3.3
+  - paper: tml-inkling-2-mini
+    stance: supports
+    setting: Scaling-ladder runs, three passes, equal training compute; model sizes not given
+    finding:
+      en: >-
+        Looping the middle 12 layers beat looping the last 12 on 27 of 28 evaluations; a no-loop baseline would need an
+        estimated 1.51-1.91x the compute to match the middle loop, against 1.24-1.36x for the last loop.
+      zh: 28 项评测中 27 项是循环中间 12 层好于循环最后 12 层；估计无循环基线需要 1.51-1.91 倍算力才能追平中间循环，追平最后 12 层循环只需 1.24-1.36 倍。
+    ref: 'Looping design; figure "Compute-equivalent gain by loop position"'
+  - paper: "2611.13378"
+    stance: supports
+    setting: 150M CED, 6.0B and 29.6B tokens
+    finding:
+      en: >-
+        Looping encoder layers L2-5, which contain the global KV source, reaches 0.8468 BPB against 0.8648 for looping
+        decoder layers L7-10 (no loop 0.8716); after 29.6B tokens the decoder loop captures only 38% of the encoder
+        loop's improvement.
+      zh: 循环含全局 KV 源的 encoder 层 L2-5，BPB 为 0.8468；循环 decoder 层 L7-10 为 0.8648（不循环 0.8716）。训练到 29.6B token 后，decoder 循环的收益仍只有 encoder 循环的 38%。
+    ref: Table 1; Table 2
+  - paper: "2604.01220"
+    stance: supports
+    setting: 1.3B dense, 20B tokens
+    finding:
+      en: >-
+        Looping the self-decoder averages 48.25 against 47.34 for looping the cross-decoder. At about 2x FLOPs, looping
+        the whole 20-layer Transformer twice averages 47.8 against 48.3 for RINS and YOCO-U.
+      zh: 循环 self-decoder 平均 48.25，循环 cross-decoder 为 47.34。约 2 倍 FLOPs 下，整个 20 层 Transformer 循环两遍平均 47.8，RINS 和 YOCO-U 都是 48.3。
+    ref: Table 5; Table 3
+  - paper: "2507.10524"
+    stance: partial
+    setting: Fixed-depth recursive models; 730M base with unique parameters fixed at 252M (Nr=3), and 135M base (Nr=2)
+    finding:
+      en: >-
+        Keeping the first and last layers unshared (Middle-Cycle, 1+8+1) beats cycling the whole stack (Cycle, 10
+        layers) at 252M unique parameters, NLL 2.7552 vs 2.7573 and accuracy 42.32 vs 41.90; at the 135M base with
+        Nr=2, Cycle is slightly ahead (3.0071 vs 3.0330).
+      zh: 252M 唯一参数下，首尾两层不共享（Middle-Cycle，1+8+1）好于整栈循环（Cycle，10 层），NLL 2.7552 对 2.7573，准确率 42.32 对 41.90；135M 基座、Nr=2 时 Cycle 略好（3.0071 对 3.0330）。
+    ref: Appendix F; Tables 10-11
+updated: "2026-11-23"

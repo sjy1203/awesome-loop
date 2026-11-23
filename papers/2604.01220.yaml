@@ -1,0 +1,194 @@
+id: "2604.01220"
+tier: deep
+status: draft
+short: YOCO-U
+title: "Universal YOCO for Efficient Depth Scaling"
+date: "2026-04-01"
+venue: arXiv
+authors: [Yutao Sun, Li Dong, Tianzhu Ye, Shaohan Huang, Jianyong Wang, Furu Wei]
+orgs: [Microsoft Research, Tsinghua University]
+links:
+  paper: https://arxiv.org/abs/2604.01220
+category: architecture/placement
+facets:
+  placement: encoder
+  sharing: full
+  depth_train: fixed
+  depth_test: fixed
+  injection: none
+  kv: single-global
+  gradient: n/a
+  origin: scratch
+  ffn: moe
+  attention: hybrid
+loop:
+  segments:
+    - role: core
+      layers: 10
+      label: Universal Self-Decoder, SWA-512
+      passes: {train: "3", test: "3"}
+    - {role: coda, layers: 10, label: "Cross-Decoder, shared global KV"}
+  note:
+    en: >-
+      Section 4.1 model, a 20-layer YOCO with MoE FFNs (1.3B activated, 10B total). The 10-layer self-decoder uses SWA
+      with window 512 and RoPE and is applied T=3 times with shared weights; its final output is projected once into
+      the global KV that all 10 cross-decoder layers (NoPE) read. Each iteration keeps its own window cache. Figure 6
+      trains separate 1.3B models with 1, 2, 3 and 5 loops.
+    zh: >-
+      Section 4.1 的模型是 20 层 YOCO，FFN 为 MoE（1.3B 激活，10B 总参数）。10 层 self-decoder 用窗口 512 的 SWA 和 RoPE，共享权重连续跑 T=3 次；最后一次的输出只投影一次，得到 10 层 cross-decoder（NoPE）共用的全局 KV。每次迭代各存自己的窗口缓存。Figure 6 另外训练了 1、2、3、5 遍的 1.3B 模型。
+budget:
+  baseline:
+    en: >-
+      Non-recursive YOCO with the same configuration and hyperparameters (Loop=1); Section 4.2 adds a Transformer, a
+      Universal Transformer looped twice, RINS and ParScale at 1.3B dense.
+    zh: 配置和超参都相同、不循环的 YOCO（Loop=1）；Section 4.2 另有 1.3B dense 的 Transformer、整模型循环两遍的 Universal Transformer、RINS 和 ParScale。
+  matched: [params, active-params, flops]
+  not_matched: [tokens, depth, kv]
+  baseline_tuned: shared
+  headline:
+    en: >-
+      With the same 1.3B-activated / 10B-total MoE, YOCO-U at equal training FLOPs averages 46.23 on the Table 2
+      tasks against 41.78 for non-recursive YOCO (+4.45), and 47.08 at equal steps; at equal FLOPs its loss is lower
+      by 0.033.
+    zh: >-
+      同样 1.3B 激活 / 10B 总参数的 MoE，等训练 FLOPs 时 YOCO-U 在 Table 2 任务上平均 46.23，不循环的 YOCO 为 41.78（+4.45）；等步数时为 47.08；等 FLOPs 时 loss 低 0.033。
+  ref: Section 4.1; Table 2; Figure 2
+results:
+  - setting: Section 4.1 MoE (1.3B activated, 10B total), 20 layers, 8192 training length, trained up to 300B tokens, T=3
+    metric: MMLU / GSM8K / Average (LM Eval-Harness)
+    values:
+      "YOCO": "49.59 / 38.06 / 41.78"
+      "YOCO-U (Equal FLOPS)": "54.63 / 50.49 / 46.23"
+      "YOCO-U (Equal Steps)": "55.63 / 50.57 / 47.08"
+    ref: Table 2; Section 4.1
+    note:
+      en: The paper does not state how many training tokens the Equal FLOPS row used.
+      zh: 论文没写 Equal FLOPS 那一行训练了多少 token。
+  - setting: >-
+      Thinking SFT from the 280B checkpoint, 20B tokens of math thinking data, 32768 maximal length; greedy decoding
+      up to 32,768 tokens
+    metric: average accuracy over 11 math benchmarks (%)
+    values:
+      "YOCO": 42.7
+      "YOCO-U": 67.1
+    ref: Figure 3; Section 4.1; Appendix B
+  - setting: >-
+      1.3B dense, 20 layers, hidden 2560, 20B tokens; the compute-scaling variants are aligned to approximately 2×
+      the FLOPs of a standard 20-layer Transformer
+    metric: WikiText ppl / Avg. accuracy
+    values:
+      "Transformer": "22.52 / 47.1"
+      "YOCO": "22.25 / 47.0"
+      "Loop/Universal TRM (whole model looped 2 times)": "21.56 / 47.8"
+      "ParScale": "23.13 / 46.8"
+      "RINS (early-layer recursion)": "20.98 / 48.3"
+      "YOCO-U": "21.01 / 48.3"
+    ref: Table 3; Appendix E
+  - setting: 1.3B dense ablations; the YOCO and YOCO-U rows repeat the Table 3 values at two decimals
+    metric: WikiText ppl / Avg. accuracy
+    values:
+      "YOCO": "22.25 / 46.95"
+      "Deep (Instead of Wide)": "22.04 / 46.87"
+      "YOCO-U": "21.01 / 48.25"
+      "Deeper (Instead of Wide)": "21.42 / 48.59"
+      "Upper Loop (Cross-Decoder)": "22.15 / 47.34"
+      "Upper Loop w/o Shared KV": "22.06 / 46.41"
+    ref: Table 5; Section 4.3
+    note:
+      en: >-
+        Deep and Deeper double the depth at the same model size (Deeper has hidden size 1792 and 40 layers). Upper
+        Loop loops the cross-decoder instead of the self-decoder; the w/o Shared KV variant uses self-attention there.
+      zh: Deep 和 Deeper 在模型大小不变时把深度加倍（Deeper 的 hidden 为 1792、40 层）。Upper Loop 改为循环 cross-decoder；w/o Shared KV 变体在那里改用 self-attention。
+  - setting: 1.3B configuration of Section 4.4, Nano-vLLM in BF16 on H100-80GB, generation batch size 32, length 128
+    metric: at 256K length, prefill tokens/s / decode tokens/s / KV cache MB
+    values:
+      "Transformer": "7475 / 137 / 10240"
+      "YOCO": "220407 / 318 / 522"
+      "RINS": "3739 / 56 / 20480"
+      "YOCO-U": "76301 / 303 / 542"
+    ref: Tables 8-10; Appendix D
+    note:
+      en: >-
+        Section 4.5 states that YOCO-U gives up 5% of YOCO's decoding throughput, decodes 2.21× faster than the
+        Transformer at 256K, and that RINS needs 38× the KV memory of YOCO-U.
+      zh: Section 4.5 称 YOCO-U 的解码吞吐比 YOCO 低 5%，256K 时解码速度是 Transformer 的 2.21 倍；RINS 的 KV 显存是 YOCO-U 的 38 倍。
+findings:
+  - en: >-
+      Looping the cross-decoder instead of the self-decoder averages 47.34 (46.41 without the shared KV), against
+      48.25 for YOCO-U and 46.95 for non-recursive YOCO; the authors conclude that recursion on deeper layers gives
+      diminishing improvement regardless of the KV cache strategy.
+    zh: 改为循环 cross-decoder 平均 47.34（不共享 KV 时 46.41），YOCO-U 为 48.25，不循环的 YOCO 为 46.95；作者据此认为在更深的层上循环收益递减，与 KV 策略无关。
+    ref: Table 5; Section 4.3
+  - en: >-
+      At about 2× FLOPs, looping the whole 20-layer Transformer twice averages 47.8, while RINS and YOCO-U both reach
+      48.3; the authors read this as scaling FLOPs on bottom blocks being more effective than on all blocks.
+    zh: 约 2 倍 FLOPs 下，整个 20 层 Transformer 循环两遍平均 47.8，RINS 和 YOCO-U 都是 48.3；作者认为把 FLOPs 加在底部的块上比加在所有块上更有效。
+    ref: Table 3; Section 4.2; Appendix E
+  - en: >-
+      Separately trained 1.3B models with 1, 2, 3 and 5 loops show consistent improvements in validation loss as the
+      loop count grows; Loop=5 uses 3 times the FLOPs of the non-recursive model. The figure prints no per-loop values.
+    zh: 分别训练 1、2、3、5 遍的 1.3B 模型，验证 loss 随遍数增加持续改善；Loop=5 的 FLOPs 是不循环模型的 3 倍。图中没有印出各遍数的数值。
+    ref: Figure 6; Section 4.4
+  - en: YOCO-U trained on 80B tokens is comparable with non-recursive YOCO trained on 210B tokens (approximately 62% fewer tokens).
+    zh: YOCO-U 训练 80B token 的效果与不循环的 YOCO 训练 210B token 相当（约少用 62% 的 token）。
+    ref: Figure 2; Section 4.1
+  - en: >-
+      With training steps fixed, YOCO-U matches YOCO with 50% fewer parameters; when activated parameters are aligned,
+      the authors say YOCO-U narrows the gap to non-recursive models and is near-comparable above 10B.
+    zh: 训练步数相同时，YOCO-U 用少 50% 的参数达到 YOCO 的效果；按激活参数对齐时，作者称 YOCO-U 与不循环模型的差距缩小，超过 10B 时接近持平。
+    ref: Figure 5; Section 4.4
+  - en: >-
+      On Needle-in-a-Haystack, YOCO-U scores 1.00 (S-NIAH-1) and 0.95 (S-NIAH-2), against 0.87 and 0.82 for the
+      Transformer and 0.99 and 0.91 for RINS.
+    zh: Needle-in-a-Haystack 上 YOCO-U 得分 1.00（S-NIAH-1）和 0.95（S-NIAH-2），Transformer 为 0.87 和 0.82，RINS 为 0.99 和 0.91。
+    ref: Table 4
+tldr:
+  en: >-
+    Loop only YOCO's self-decoder, whose layers use sliding-window attention, so extra depth costs compute while the
+    cross-decoder's global KV is still computed once.
+  zh: 只循环 YOCO 的 self-decoder（这些层用 SWA），加深只多花计算，cross-decoder 用的全局 KV 仍只算一次。
+quickread:
+  problem:
+    en: >-
+      Looping a standard Transformer re-runs every layer, which regenerates KV caches and repeats global attention,
+      so memory and compute grow with depth.
+    zh: 循环标准 Transformer 要重跑所有层，每遍重新生成 KV、重复全局注意力，显存和计算都随深度增长。
+  method:
+    en:
+      - >-
+        Start from YOCO, where an L/2-layer self-decoder with efficient self-attention (SWA by default) produces one
+        global KV cache that every layer of the L/2-layer cross-decoder reads through cross-attention.
+      - >-
+        Replace the self-decoder with a Universal Self-Decoder that applies the same L/2 layers T times in sequence
+        (T=3 by default, 2× the total FLOPs of the non-recursive baseline).
+      - Project the global KV from the final iteration's output, so its size does not depend on T; only the SWA window caches grow with T.
+    zh:
+      - 以 YOCO 为基础：L/2 层的 self-decoder 用高效注意力（默认 SWA），产出一份全局 KV，L/2 层的 cross-decoder 每层都通过 cross-attention 读它。
+      - 把 self-decoder 换成 Universal Self-Decoder，同一组 L/2 层依次跑 T 次（默认 T=3，总 FLOPs 是不循环基线的 2 倍）。
+      - 全局 KV 由最后一次迭代的输出投影得到，大小与 T 无关；只有 SWA 的窗口缓存随 T 增长。
+  caveats:
+    en:
+      - >-
+        The headline runs are a 1.3B-activated / 10B-total MoE trained on up to 300B tokens; the architecture
+        comparison, ablations and loop scaling use 1.3B dense models trained on 20B tokens, and the efficiency tests
+        use the same 1.3B configuration. Training length is 8192 in Sections 4.1 and 4.4.
+      - Each model is trained and tested with one fixed loop count (3 by default; 1, 2, 3 and 5 in Figure 6); the paper does not report changing the loop count at inference.
+      - Training FLOPs are computed as tokens × layers (Section 4.1), and the Equal FLOPS row of Table 2 does not state its token count.
+      - >-
+        The KV cache is not identical to YOCO's because each self-decoder iteration keeps its own window cache
+        (Table 10, 46 MB vs 26 MB at 8K and 542 vs 522 MB at 256K).
+      - Prefill throughput is below non-recursive YOCO's, 76301 vs 220407 tokens/s at 256K (Table 8).
+      - Table 5 does not state the loop count or FLOPs of the Upper Loop variants.
+    zh:
+      - 主结果是 1.3B 激活 / 10B 总参数的 MoE，最多训练 300B token；架构对比、消融和遍数扩展用 1.3B dense 模型，训练 20B token，效率测试也用这个 1.3B 配置。Section 4.1 和 4.4 的训练长度是 8192。
+      - 每个模型训练和测试都用同一个固定遍数（默认 3，Figure 6 中有 1、2、3、5）；论文没有报告推理时改变遍数。
+      - 训练 FLOPs 按 token × 层数计算（Section 4.1），Table 2 的 Equal FLOPS 行没写训练了多少 token。
+      - KV 和 YOCO 并不完全相同，因为 self-decoder 每次迭代各存自己的窗口缓存（Table 10，8K 时 46 MB 对 26 MB，256K 时 542 MB 对 522 MB）。
+      - prefill 吞吐低于不循环的 YOCO，256K 时为 76301 对 220407 tokens/s（Table 8）。
+      - Table 5 没写 Upper Loop 变体的遍数和 FLOPs。
+reproducibility:
+  code: none
+  weights: none
+  configs: partial
+  data: none
+added: "2026-11-23"

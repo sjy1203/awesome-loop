@@ -1,0 +1,33 @@
+id: ouro-2-6b
+name: Ouro-2.6B
+paper: "2510.25741"
+hf:
+  - ByteDance/Ouro-2.6B
+  - ByteDance/Ouro-2.6B-Thinking
+params: 2.6B
+tokens: 7.7T
+context: "Base card: 4K (training), extendable to 64K; Thinking card: 32K (SFT)"
+passes:
+  default: "4"
+  range: "total_ut_steps is adjustable, with early exit; paper tests 1-8"
+kv: per-pass
+license: apache-2.0
+inference: [transformers-remote-code, vllm]
+notes:
+  en: >-
+    Ouro-2.6B is the base model and Ouro-2.6B-Thinking its reasoning-SFT version. config.json and the paper's
+    architecture table give 48 layers looped 4 times, upcycled from the 24-layer model by layer duplication (Section
+    4.3.1); both cards' architecture tables list 24 layers, and the base card lists 2.6T tokens for CT annealing where
+    the paper's training recipe gives 1.4T. The released modeling_ouro.py keeps one KV cache per recurrent step and runs
+    all total_ut_steps in every forward pass; early_exit_threshold only selects which step's output is used. The cards
+    say vLLM always runs the full total_ut_steps, and the project page says vLLM v0.26.0 is the last release with native
+    Ouro support. The cards ask for transformers<4.56.0 (4.54.1 recommended).
+  zh: >-
+    Ouro-2.6B 是基座模型，Ouro-2.6B-Thinking 是它的推理 SFT 版本。config.json 和论文的结构表给出 48 层、循环 4 遍，由 24 层模型复制层 upcycle 而来（Section 4.3.1）；两张模型卡的结构表写的是 24 层，基座模型卡写 CT annealing 用了 2.6T token，而论文的训练配方是 1.4T。官方 modeling_ouro.py 为每个循环步各存一份 KV，每次前向都跑满 total_ut_steps，early_exit_threshold 只决定用哪一步的输出。模型卡说 vLLM 总是跑满 total_ut_steps；项目页说 vLLM v0.26.0 是最后一个原生支持 Ouro 的版本。模型卡要求 transformers<4.56.0（推荐 4.54.1）。
+ref: >-
+  Model cards and config.json of both repos (total_ut_steps 4, early_exit_threshold 1.0, num_hidden_layers 48, context
+  length, apache-2.0, vLLM note, transformers version); HF API (repo existence, cardData.license); modeling_ouro.py
+  (UniversalTransformerCache indexed by step and layer); paper (arXiv v6 numbering) Table 1 (CT annealing 1.4T), Table 2
+  (2.6B, 48 layers), Section 4.3.1 (upcycling), Tables 11 and 13 (T=1-8); project page ouro-llm.github.io (vLLM
+  versions, trust_remote_code).
+added: "2026-11-23"

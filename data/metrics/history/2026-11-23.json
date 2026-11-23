@@ -1,0 +1,288 @@
+{
+ "date": "2026-11-23",
+ "models": {
+  "ByteDance/Ouro-1.4B": {
+   "downloads": 23491,
+   "likes": 167
+  },
+  "ByteDance/Ouro-1.4B-Thinking": {
+   "downloads": 18155,
+   "likes": 56
+  },
+  "ByteDance/Ouro-2.6B": {
+   "downloads": 9521,
+   "likes": 99
+  },
+  "ByteDance/Ouro-2.6B-Thinking": {
+   "downloads": 8254,
+   "likes": 159
+  },
+  "SandyResearch/parcae-1.3b": {
+   "downloads": 270,
+   "likes": 8
+  },
+  "SandyResearch/parcae-140m": {
+   "downloads": 1101,
+   "likes": 3
+  },
+  "SandyResearch/parcae-370m": {
+   "downloads": 215,
+   "likes": 3
+  },
+  "SandyResearch/parcae-770m": {
+   "downloads": 142,
+   "likes": 4
+  },
+  "smcleish/Recurrent-Llama-3.2-train-recurrence-16": {
+   "downloads": 83,
+   "likes": 0
+  },
+  "smcleish/Recurrent-Llama-3.2-train-recurrence-32": {
+   "downloads": 2004,
+   "likes": 1
+  },
+  "smcleish/Recurrent-Llama-3.2-train-recurrence-4": {
+   "downloads": 593,
+   "likes": 0
+  },
+  "smcleish/Recurrent-Llama-3.2-train-recurrence-8": {
+   "downloads": 160,
+   "likes": 0
+  },
+  "smcleish/Recurrent-Llama-3.2-untrained": {
+   "downloads": 41,
+   "likes": 0
+  },
+  "smcleish/Recurrent-OLMo-2-0425-train-recurrence-16": {
+   "downloads": 102,
+   "likes": 0
+  },
+  "smcleish/Recurrent-OLMo-2-0425-train-recurrence-32": {
+   "downloads": 296,
+   "likes": 3
+  },
+  "smcleish/Recurrent-OLMo-2-0425-train-recurrence-4": {
+   "downloads": 83,
+   "likes": 1
+  },
+  "smcleish/Recurrent-OLMo-2-0425-train-recurrence-8": {
+   "downloads": 98,
+   "likes": 0
+  },
+  "smcleish/Recurrent-OLMo-2-0425-untrained": {
+   "downloads": 33,
+   "likes": 0
+  },
+  "smcleish/Recurrent-TinyLlama-3T-train-recurrence-16": {
+   "downloads": 61,
+   "likes": 1
+  },
+  "smcleish/Recurrent-TinyLlama-3T-train-recurrence-32": {
+   "downloads": 355,
+   "likes": 2
+  },
+  "smcleish/Recurrent-TinyLlama-3T-train-recurrence-4": {
+   "downloads": 152,
+   "likes": 0
+  },
+  "smcleish/Recurrent-TinyLlama-3T-train-recurrence-4-single-phase": {
+   "downloads": 38,
+   "likes": 0
+  },
+  "smcleish/Recurrent-TinyLlama-3T-train-recurrence-4-two-phase": {
+   "downloads": 52,
+   "likes": 0
+  },
+  "smcleish/Recurrent-TinyLlama-3T-train-recurrence-8": {
+   "downloads": 139,
+   "likes": 0
+  },
+  "smcleish/Recurrent-TinyLlama-3T-untrained": {
+   "downloads": 61,
+   "likes": 0
+  },
+  "thinkingmachines/Inkling-2-Mini": {
+   "downloads": 23543,
+   "likes": 5198
+  },
+  "thinkingmachines/TML-d24-varloop-research": {
+   "downloads": 1200,
+   "likes": 55
+  },
+  "tomg-group-umd/huginn-0125": {
+   "downloads": 22199,
+   "likes": 321
+  },
+  "tomg-group-umd/huginn_swa_100_10_avg_0.9_merge": {
+   "downloads": 28,
+   "likes": 0
+  },
+  "tomg-group-umd/huginn_swa_75_7_ema_0.9_merge": {
+   "downloads": 38,
+   "likes": 1
+  },
+  "tomg-group-umd/step-00006144-recurrence_full_512_0": {
+   "downloads": 33,
+   "likes": 0
+  },
+  "tomg-group-umd/step-00010752-recurrence_full_512_0": {
+   "downloads": 26,
+   "likes": 0
+  },
+  "tomg-group-umd/step-00011904-recurrence_full_512_0": {
+   "downloads": 15,
+   "likes": 0
+  },
+  "tomg-group-umd/step-00017920-recurrence_full_512_0": {
+   "downloads": 19,
+   "likes": 0
+  },
+  "tomg-group-umd/step-00023808-recurrence_full_512_0": {
+   "downloads": 16,
+   "likes": 0
+  },
+  "tomg-group-umd/step-00029824-recurrence_full_512_0": {
+   "downloads": 16,
+   "likes": 0
+  },
+  "tomg-group-umd/step-00035840-recurrence_full_512_0": {
+   "downloads": 17,
+   "likes": 0
+  },
+  "tomg-group-umd/step-00041728-recurrence_full_512_0": {
+   "downloads": 28,
+   "likes": 0
+  }
+ },
+ "papers": {
+  "2502.05171": {
+   "citations": 578,
+   "citations_source": "semanticscholar",
+   "hf_upvotes": 162,
+   "influential": 131,
+   "institutions": [
+    "Tübingen AI Center",
+    "ELLIS Institute Tübingen",
+    "University of Maryland, College Park",
+    "Lawrence Livermore National Laboratory"
+   ],
+   "openalex_citations": 584
+  },
+  "2507.10524": {
+   "citations": 204,
+   "citations_source": "semanticscholar",
+   "hf_upvotes": 74,
+   "influential": 23,
+   "institutions": [
+    "Korea Advanced Institute of Science and Technology",
+    "Mila - Quebec Artificial Intelligence Institute",
+    "Stanford University",
+    "Google DeepMind (United Kingdom)",
+    "Google (United States)",
+    "Université de Montréal"
+   ],
+   "openalex_citations": 200
+  },
+  "2510.24824": {
+   "citations": 34,
+   "citations_source": "semanticscholar",
+   "hf_upvotes": 18,
+   "influential": 7,
+   "openalex_citations": 36
+  },
+  "2510.25741": {
+   "citations": 245,
+   "citations_source": "semanticscholar",
+   "hf_upvotes": 146,
+   "influential": 61,
+   "institutions": [
+    "University of California, Santa Cruz",
+    "Princeton University",
+    "Mila - Quebec Artificial Intelligence Institute",
+    "Université de Montréal",
+    "Peking University",
+    "Carnegie Mellon University",
+    "University of Pennsylvania",
+    "University of Manchester"
+   ],
+   "openalex_citations": 265
+  },
+  "2511.07384": {
+   "citations": 79,
+   "citations_source": "semanticscholar",
+   "hf_upvotes": 21,
+   "influential": 7,
+   "institutions": [
+    "University of Maryland, College Park",
+    "New York University",
+    "Lawrence Livermore National Laboratory",
+    "Max Planck Institute for Intelligent Systems",
+    "Tübingen AI Center",
+    "ELLIS Institute Tübingen",
+    "Columbia University"
+   ],
+   "openalex_citations": 62
+  },
+  "2604.01220": {
+   "citations": 3,
+   "citations_source": "semanticscholar",
+   "hf_upvotes": 18,
+   "influential": 1,
+   "institutions": [
+    "Microsoft (United States)",
+    "Tsinghua University"
+   ],
+   "openalex_citations": 4
+  },
+  "2604.12946": {
+   "citations": 89,
+   "citations_source": "semanticscholar",
+   "hf_upvotes": 11,
+   "influential": 25,
+   "institutions": [
+    "University of California San Diego"
+   ],
+   "openalex_citations": 83
+  },
+  "2609.01343": {
+   "citations": 31,
+   "citations_source": "semanticscholar",
+   "hf_upvotes": 92,
+   "influential": 2,
+   "openalex_citations": 31
+  },
+  "2611.07211": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "institutions": [
+    "Duke University"
+   ],
+   "openalex_citations": 0
+  },
+  "2611.13378": {
+   "citations": 0,
+   "citations_source": "semanticscholar",
+   "influential": 0,
+   "openalex_citations": 0
+  }
+ },
+ "repos": {
+  "mcleish7/retrofitting-recurrence": {
+   "pushed_at": "2025-11-11T13:06:45Z",
+   "stars": 72
+  },
+  "raymin0223/mixture_of_recursions": {
+   "pushed_at": "2026-09-19T16:40:15Z",
+   "stars": 652
+  },
+  "sandyresearch/parcae": {
+   "pushed_at": "2026-10-23T17:27:59Z",
+   "stars": 194
+  },
+  "seal-rg/recurrent-pretraining": {
+   "pushed_at": "2025-12-29T10:31:27Z",
+   "stars": 998
+  }
+ }
+}

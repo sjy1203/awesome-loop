@@ -1,0 +1,196 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/sjy1203/awesome-loop/schema/paper.schema.json",
+  "title": "awesome-loop paper entry (papers/<id>.yaml)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "tier", "title", "date", "authors", "links", "category", "tldr", "added"],
+  "properties": {
+    "id": {
+      "description": "arXiv id without version (quote it in YAML), or a lowercase slug for non-arXiv sources. Must equal the file name.",
+      "type": "string",
+      "pattern": "^([0-9]{4}\\.[0-9]{4,5}|[a-z0-9]+(-[a-z0-9]+)*)$"
+    },
+    "tier": {"description": "deep = full card; radar = light entry.", "enum": ["deep", "radar"]},
+    "status": {"enum": ["draft", "verified"]},
+    "short": {"description": "Short display name, e.g. Huginn.", "type": "string", "minLength": 1, "maxLength": 40},
+    "title": {"type": "string", "minLength": 1},
+    "date": {"description": "First public version.", "$ref": "#/$defs/date"},
+    "venue": {"type": "string"},
+    "authors": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "orgs": {"description": "Affiliations as printed in the paper, deduplicated.", "type": "array", "items": {"type": "string", "minLength": 1}},
+    "links": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["paper"],
+      "properties": {
+        "paper": {"$ref": "#/$defs/url"},
+        "code": {"$ref": "#/$defs/url"},
+        "weights": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/url"}},
+        "project": {"$ref": "#/$defs/url"},
+        "blog": {"$ref": "#/$defs/url"}
+      }
+    },
+    "category": {
+      "enum": ["theory", "architecture/placement", "architecture/state", "depth", "training", "scaling", "systems",
+               "understanding", "applications", "safety", "adjacent"]
+    },
+    "facets": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "placement": {"enum": ["whole-stack", "prelude-core-coda", "encoder", "decoder", "partial", "hierarchical", "shifted-parallel", "implicit", "n/a"]},
+        "sharing": {"enum": ["full", "relaxed", "routed", "n/a"]},
+        "depth_train": {"enum": ["fixed", "sampled", "curriculum", "adaptive", "n/a"]},
+        "depth_test": {"enum": ["fixed", "extrapolate", "adaptive", "n/a"]},
+        "injection": {"enum": ["none", "additive", "concat", "gated", "depth-attention", "state", "n/a"]},
+        "kv": {"enum": ["per-pass", "last-pass", "first-pass", "single-global", "compressed", "n/a"]},
+        "gradient": {"enum": ["full-bptt", "truncated", "one-step", "implicit", "n/a"]},
+        "origin": {"enum": ["scratch", "retrofit", "distill", "n/a"]},
+        "ffn": {"enum": ["dense", "moe", "n/a"]},
+        "attention": {"enum": ["full", "swa", "hybrid", "linear", "n/a"]}
+      }
+    },
+    "loop": {
+      "description": "Layer layout that drives the fingerprint figure.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["segments"],
+      "properties": {
+        "segments": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["role", "layers"],
+            "properties": {
+              "role": {"enum": ["prelude", "core", "coda"]},
+              "layers": {
+                "description": "Number of distinct layers, or a share of the stack such as \"50%\".",
+                "oneOf": [{"type": "integer", "minimum": 1}, {"type": "string", "pattern": "^[0-9]{1,3}%$"}]
+              },
+              "label": {"description": "Optional text under the blocks, e.g. L2-5.", "type": "string"},
+              "passes": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["train"],
+                "properties": {"train": {"type": "string", "minLength": 1}, "test": {"type": "string", "minLength": 1}}
+              },
+              "bptt": {"type": "string"}
+            }
+          }
+        },
+        "note": {"$ref": "#/$defs/text"}
+      }
+    },
+    "budget": {
+      "description": "What the main comparison holds fixed. Author-reported facts only.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["baseline", "matched", "not_matched", "baseline_tuned", "headline", "ref"],
+      "properties": {
+        "baseline": {"$ref": "#/$defs/text"},
+        "matched": {"$ref": "#/$defs/budget_items"},
+        "not_matched": {"$ref": "#/$defs/budget_items"},
+        "baseline_tuned": {"enum": ["separate", "shared", "unknown"]},
+        "headline": {"description": "The authors' main claim, with their own numbers.", "$ref": "#/$defs/text"},
+        "ref": {"$ref": "#/$defs/ref"}
+      }
+    },
+    "results": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["setting", "metric", "values", "ref"],
+        "properties": {
+          "setting": {"type": "string", "minLength": 1},
+          "metric": {"type": "string", "minLength": 1},
+          "values": {
+            "description": "Row name -> value exactly as printed in the paper.",
+            "type": "object",
+            "minProperties": 1,
+            "additionalProperties": {"type": ["number", "string"]}
+          },
+          "ref": {"$ref": "#/$defs/ref"},
+          "note": {"$ref": "#/$defs/text"}
+        }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["en", "zh", "ref"],
+        "properties": {"en": {"$ref": "#/$defs/str"}, "zh": {"$ref": "#/$defs/str"}, "ref": {"$ref": "#/$defs/ref"}}
+      }
+    },
+    "tldr": {"$ref": "#/$defs/text"},
+    "quickread": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["problem", "method", "caveats"],
+      "properties": {
+        "problem": {"$ref": "#/$defs/text"},
+        "method": {"$ref": "#/$defs/textlist"},
+        "caveats": {"$ref": "#/$defs/textlist"},
+        "hooks": {"description": "Open questions the authors themselves state.", "$ref": "#/$defs/textlist"}
+      }
+    },
+    "reproducibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "weights", "configs", "data"],
+      "properties": {
+        "code": {"$ref": "#/$defs/repro"},
+        "weights": {"$ref": "#/$defs/repro"},
+        "configs": {"$ref": "#/$defs/repro"},
+        "data": {"$ref": "#/$defs/repro"}
+      }
+    },
+    "added": {"$ref": "#/$defs/date"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"tier": {"const": "deep"}}},
+      "then": {
+        "required": ["status", "short", "orgs", "facets", "loop", "budget", "results", "quickread", "reproducibility"],
+        "properties": {
+          "facets": {
+            "required": ["placement", "sharing", "depth_train", "depth_test", "injection", "kv", "gradient", "origin", "ffn", "attention"]
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "str": {"type": "string", "minLength": 1},
+    "date": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
+    "url": {"type": "string", "pattern": "^https://"},
+    "ref": {"description": "Where in the source: Table 2, Figure 3, Section 4.1, Appendix C ...", "type": "string", "minLength": 1},
+    "text": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["en", "zh"],
+      "properties": {"en": {"$ref": "#/$defs/str"}, "zh": {"$ref": "#/$defs/str"}}
+    },
+    "textlist": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["en", "zh"],
+      "properties": {
+        "en": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/str"}},
+        "zh": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/str"}}
+      }
+    },
+    "budget_items": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"enum": ["params", "active-params", "flops", "kv", "tokens", "depth", "wallclock"]}
+    },
+    "repro": {"enum": ["available", "partial", "none"]}
+  }
+}

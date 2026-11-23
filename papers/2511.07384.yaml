@@ -1,0 +1,180 @@
+id: "2511.07384"
+tier: deep
+status: draft
+short: Retrofitted Recurrence
+title: Teaching Pretrained Language Models to Think Deeper with Retrofitted Recurrence
+date: "2025-11-10"
+venue: arXiv
+authors: [Sean McLeish, Ang Li, John Kirchenbauer, Dayal Singh Kalra, Brian R. Bartoldson, Bhavya Kailkhura, Avi Schwarzschild, Jonas Geiping, Tom Goldstein, Micah Goldblum]
+orgs:
+  - University of Maryland
+  - New York University
+  - Lawrence Livermore National Laboratory
+  - University of North Carolina
+  - ELLIS Institute Tübingen
+  - Max Planck Institute for Intelligent Systems
+  - Tübingen AI Center
+  - Columbia University
+links:
+  paper: https://arxiv.org/abs/2511.07384
+  code: https://github.com/mcleish7/retrofitting-recurrence
+  weights:
+    - https://huggingface.co/collections/tomg-group-umd/retrofitting-recurrence
+category: training
+facets:
+  placement: prelude-core-coda
+  sharing: full
+  depth_train: curriculum
+  depth_test: extrapolate
+  injection: concat
+  kv: n/a
+  gradient: truncated
+  origin: retrofit
+  ffn: dense
+  attention: full
+loop:
+  segments:
+    - {role: prelude, layers: 4, label: L0-3}
+    - role: core
+      layers: 8
+      label: L10-17
+      passes: {train: "Poisson-Lognormal, mean ramped to 4, 8, 16 or 32", test: "1-32"}
+      bptt: last 8
+    - {role: coda, layers: 4, label: L18-21}
+  note:
+    en: >-
+      Shown is TinyLlama (4,8,4); labels are layer indices in the 22-layer TinyLlama-1.1B-3T parent, whose layers 4-9
+      are dropped. OLMo-2-0425-1B and Llama-3.2-1B use (4,6,4) with layers L0-3, L6-11 and L12-15, dropping L4-5.
+      Sections 4.1-4.2 use a (2,4,2) model built from Llama-3.2-1B. The recurrence count is sampled from a
+      Poisson-Lognormal distribution whose mean follows the curriculum, so depth is both sampled and scheduled.
+    zh: >-
+      图示为 TinyLlama (4,8,4)；标签是 22 层父模型 TinyLlama-1.1B-3T 中的层号，第 4-9 层被删掉。OLMo-2-0425-1B 和 Llama-3.2-1B 用 (4,6,4)，取 L0-3、L6-11、L12-15，删掉 L4-5。Section 4.1-4.2 用的是由 Llama-3.2-1B 构造的 (2,4,2)。递归次数从 Poisson-Lognormal 分布采样，分布均值按课程变化，所以深度既是采样的，也按计划递增。
+budget:
+  baseline:
+    en: >-
+      The parent model (TinyLlama, OLMo or Llama) post-trained without recurrence on the same data in the same order.
+      Figures 5-7 compare accuracy against training FLOPs and at the final checkpoint.
+    zh: 父模型（TinyLlama、OLMo 或 Llama）不加循环，用相同数据、按相同顺序继续训练。Figure 5-7 按训练 FLOPs 和最终 checkpoint 比较准确率。
+  matched: [tokens]
+  not_matched: [params, flops, depth]
+  baseline_tuned: shared
+  headline:
+    en: >-
+      Converting a pretrained model to a recurrent one gives better math accuracy at a given training compute budget
+      than post-training the non-recurrent model. After the same ~50B math tokens, OLMo (4,6,4) at train and test
+      recurrence 32 scores 51.6 on GSM8K and 29.3 on MATH, against 35.3 and 25.1 for the post-trained non-recurrent OLMo.
+    zh: >-
+      把预训练模型改造成循环模型，在给定训练算力下数学准确率高于直接继续训练非循环模型。用同样约 50B 的数学 token 训练后，训练和测试递归次数都为 32 的 OLMo (4,6,4) 在 GSM8K 和 MATH 上为 51.6 和 29.3，继续训练的非循环 OLMo 为 35.3 和 25.1。
+  ref: Abstract; Section 4.3; Table 4
+results:
+  - setting: TinyLlama-1.1B-3T converted to (4,8,4), about 50B tokens of Nemotron-CC-Math-v1-4plus, test recurrence 32
+    metric: "GSM8K | MATH accuracy (1-shot)"
+    values:
+      "Non-recurrent TinyLlama, same data": "26.6 | 24.0"
+      "Train recurrence 4": "37.9 | 26.0"
+      "Train recurrence 8": "41.0 | 25.9"
+      "Train recurrence 16": "43.7 | 29.0"
+      "Train recurrence 32": "45.0 | 27.1"
+    ref: Table 3
+  - setting: OLMo-2-0425-1B converted to (4,6,4), same data, test recurrence 32
+    metric: "GSM8K | MATH accuracy (1-shot)"
+    values:
+      "Non-recurrent OLMo, same data": "35.3 | 25.1"
+      "Train recurrence 4": "40.6 | 27.6"
+      "Train recurrence 8": "44.6 | 28.1"
+      "Train recurrence 16": "48.3 | 29.0"
+      "Train recurrence 32": "51.6 | 29.3"
+    ref: Table 4
+  - setting: Llama-3.2-1B converted to (4,6,4), same data, test recurrence 32
+    metric: "GSM8K | MATH accuracy (1-shot)"
+    values:
+      "Non-recurrent Llama, same data": "37.1 | 27.4"
+      "Train recurrence 4": "40.0 | 28.9"
+      "Train recurrence 8": "44.7 | 29.6"
+      "Train recurrence 16": "45.3 | 28.4"
+      "Train recurrence 32": "49.4 | 31.5"
+    ref: Table 5
+  - setting: >-
+      TinyLlama (4,8,4) at train recurrence 4. Single phase is 26B tokens of FineWeb-Edu mixed with Nemotron SFT data;
+      two phase first trains on 26B tokens of FineWeb-Edu (52B in total)
+    metric: "Arc-C | MMLU | GSM8K"
+    values:
+      "Recurrent, two phase, test recurrence 1": "31.6 | 36.2 | 26.5"
+      "Recurrent, two phase, test recurrence 32": "37.7 | 44.8 | 51.2"
+      "Recurrent, single phase, test recurrence 32": "32.7 | 39.4 | 52.0"
+      "Non-recurrent, two phase": "36.5 | 44.4 | 45.2"
+      "Non-recurrent, single phase": "35.2 | 45.1 | 46.2"
+    ref: Table 1
+  - setting: "(2,4,2) model, about 120B tokens of FineWeb-Edu, mean recurrence 32, zero-shot"
+    metric: "Arc-C | HellaSwag"
+    values:
+      "Random (Takase) init, test recurrence 1": "23.4 | 28.6"
+      "Random (Takase) init, test recurrence 32": "29.5 | 48.3"
+      "Llama-3.2-1B init, test recurrence 1": "23.8 | 34.8"
+      "Llama-3.2-1B init, test recurrence 32": "35.0 | 55.6"
+    ref: Table 2 (Appendix C.1)
+findings:
+  - en: >-
+      Linearly ramping the mean recurrence up to 32 slightly lowers validation loss per step and greatly lowers it per
+      training FLOP ((2,4,2) from Llama, 48 hours on 4 MI300A GPUs, about 1e20 FLOPs).
+    zh: 把平均递归次数线性升到 32，按 step 看验证 loss 略低，按训练 FLOPs 看低很多（Llama 初始化的 (2,4,2)，4 张 MI300A 跑 48 小时，约 1e20 FLOPs）。
+    ref: Section 4.2; Figure 3
+  - en: On GSM8K, larger training recurrences give a larger gain per training FLOP for OLMo and Llama, but not for TinyLlama.
+    zh: 在 GSM8K 上，OLMo 和 Llama 的训练递归次数越大，每单位训练 FLOP 的提升越大；TinyLlama 不符合这一趋势。
+    ref: Section 4.3.2; Figure 20
+  - en: >-
+      A 26B-token FineWeb-Edu healing phase before the mixed data raises the recurrent model's Arc-C by 5% over
+      single-phase training, while the non-recurrent model changes little.
+    zh: 在混合数据之前先用 26B token 的 FineWeb-Edu 做 healing，循环模型的 Arc-C 比单阶段训练高 5%，非循环模型变化不大。
+    ref: Section 4.4; Figure 8
+  - en: >-
+      Among the tested layer choices for a (2,4,2) model from Llama-1b, taking early layers for the prelude and later
+      layers for the core and coda gave the lowest training loss; on TinyLlama (4,8,4) this choice also reached lower
+      loss than layers picked with ShortGPT.
+    zh: 在从 Llama-1b 构造 (2,4,2) 的几种选层方式中，prelude 取前面的层、核心块和 coda 取后面的层，训练 loss 最低；在 TinyLlama (4,8,4) 上，这种选法的 loss 也低于用 ShortGPT 选出的层。
+    ref: Appendix C.1.1; Figures 12 and 13
+  - en: >-
+      Muon trains the recurrent models more stably than AdamW, whose loss spiked to NaN at learning rate 5e-5; for the
+      non-recurrent TinyLlama the gap is much smaller, with a small gain for Muon.
+    zh: Muon 训练循环模型比 AdamW 稳定，AdamW（学习率 5e-5）的 loss 出现尖峰并变成 NaN；对非循环的 TinyLlama，两者差距小得多，Muon 略好。
+    ref: Section 4.3.1; Figure 4
+tldr:
+  en: Turn pretrained 1B models into prelude-core-coda recurrent models by dropping middle layers and looping a block, then keep training while a curriculum raises the mean recurrence.
+  zh: 从预训练 1B 模型中删掉中间几层、把一段层改为循环块，得到 prelude-core-coda 循环模型，再继续训练，并按课程逐步提高平均递归次数。
+quickread:
+  problem:
+    en: >-
+      Pretraining a depth-recurrent model from scratch is costly. Huginn-0125 used 800B tokens, and running many
+      recurrences per step slows training compared with a fixed-depth model of the same parameter count. The paper
+      studies how to convert existing pretrained non-recurrent models into recurrent ones efficiently.
+    zh: 从头预训练深度循环模型代价高。Huginn-0125 用了 800B token，每步多次递归也让训练比同参数量的固定深度模型慢。本文研究如何高效地把现有的非循环预训练模型改造成循环模型。
+  method:
+    en:
+      - Take a pretrained model's early layers as the prelude and later layers as the recurrent core and coda, dropping the layers in between, e.g. (4,8,4) from TinyLlama-1.1B-3T and (4,6,4) from OLMo-2-0425-1B and Llama-3.2-1B.
+      - Keep Huginn-0125's recurrence, with a linear adapter on concat(prelude output, state), a random initial state, a Poisson-Lognormal recurrence count and gradients through at most the last 8 core passes.
+      - Raise the mean of the recurrence distribution with a curriculum (1-sqrt over the first 75% of training in the main runs) to 4, 8, 16 or 32, and optimize with Muon.
+      - Train on about 50B tokens of Nemotron-CC-Math-v1-4plus. To keep general ability, first heal on 26B tokens of FineWeb-Edu, then train on 26B tokens mixing FineWeb-Edu with Nemotron SFT data.
+    zh:
+      - 用预训练模型的前几层做 prelude，后几层做循环核心块和 coda，删掉中间的层，例如从 TinyLlama-1.1B-3T 取 (4,8,4)，从 OLMo-2-0425-1B 和 Llama-3.2-1B 取 (4,6,4)。
+      - 沿用 Huginn-0125 的循环方式，对 concat(prelude 输出, 状态) 做线性 adapter，初始状态随机，递归次数从 Poisson-Lognormal 分布采样，梯度最多只过最后 8 遍核心块。
+      - 用课程把递归分布的均值升到 4、8、16 或 32（主实验在前 75% 的训练里用 1-sqrt 课程），优化器用 Muon。
+      - 在约 50B token 的 Nemotron-CC-Math-v1-4plus 上训练。为保住通用能力，先用 26B token 的 FineWeb-Edu 做 healing，再用 26B token 的 FineWeb-Edu 与 Nemotron SFT 混合数据训练。
+  caveats:
+    en:
+      - Models have about 1B parameters and are post-trained on about 50B tokens (about 120B in the initialization study); the authors say larger model and data scales still need testing.
+      - All models are trained with a 1024-token context.
+      - Against the non-recurrent parent, data and tokens are matched but parameters and compute are not. The recurrent models keep 72.7% (TinyLlama) or 87.5% (OLMo, Llama) of the parent's parameters and use more FLOPs per training step.
+      - All models share one hyperparameter set (Muon with learning rate 0.001 and weight decay 1e-4, Appendix D); the baselines are not tuned separately.
+      - Training only on math slightly lowers HellaSwag, Arc and OpenBookQA (Section 4.4). GSM8K and MATH use one in-context example, flexible extract for GSM8K and Minerva criteria with Math-Verify for MATH.
+    zh:
+      - 模型约 1B 参数，后训练约 50B token（初始化对比实验约 120B token）；作者表示更大的模型和数据规模还有待验证。
+      - 所有模型都用 1024 token 的上下文训练。
+      - 与非循环父模型相比，对齐了数据和 token，没对齐参数和算力。循环模型只保留父模型 72.7%（TinyLlama）或 87.5%（OLMo、Llama）的参数，每个训练 step 的 FLOPs 更多。
+      - 所有模型共用一套超参（Muon，学习率 0.001，weight decay 1e-4，Appendix D），基线没有单独调。
+      - 只用数学数据训练会让 HellaSwag、Arc、OpenBookQA 略降（Section 4.4）。GSM8K 和 MATH 用 1 个上下文示例评测，GSM8K 取 flexible extract，MATH 用 Minerva 标准加 Math-Verify。
+reproducibility:
+  code: available
+  weights: available
+  configs: available
+  data: partial
+added: "2026-11-23"

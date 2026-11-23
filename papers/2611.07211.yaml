@@ -1,0 +1,193 @@
+id: "2611.07211"
+tier: deep
+status: draft
+short: LoopDuet
+title: "Not All Loops Cost the Same: Phase-Dependent Depth for Serving Looped Transformers"
+date: "2026-11-04"
+venue: arXiv
+authors: [Zhixu Du, Yuhan Cheng, "Hai (Helen) Li", Yiran Chen]
+orgs: [Duke University]
+links:
+  paper: https://arxiv.org/abs/2611.07211
+category: systems
+facets:
+  placement: prelude-core-coda
+  sharing: full
+  depth_train: n/a
+  depth_test: adaptive
+  injection: n/a
+  kv: last-pass
+  gradient: n/a
+  origin: n/a
+  ffn: dense
+  attention: full
+loop:
+  segments:
+    - {role: prelude, layers: 4}
+    - role: core
+      layers: 6
+      passes: {train: "32 (OLMo r32 checkpoint)", test: "S for decode, P <= S for prefill, at most 32"}
+    - {role: coda, layers: 4}
+  note:
+    en: >-
+      Shown for OLMo r32, a recurrent OLMo-2 retrofit with 4/6/4 prelude/core/coda layers at width 2,048 (the r16
+      checkpoint has the same layout and was trained at 16 loops); Huginn-0125 has 2/4/2 layers at width 5,280. LoopDuet
+      trains nothing. Ordinary prompt positions run P core loops, while every prompt-chunk endpoint and every decoded
+      token runs S. Serving keeps one shared KV plane per core layer that each loop overwrites, so later queries read
+      the last computed KV of positions that stopped early.
+    zh: >-
+      图示为 OLMo r32：OLMo-2 的循环改造版，prelude/core/coda 为 4/6/4 层，宽度 2,048（r16 布局相同，训练时 16 遍）；Huginn-0125 为 2/4/2 层，宽度 5,280。LoopDuet 不训练模型。普通 prompt 位置跑 P 遍 core，每个 prompt chunk 的末位置和每个 decode token 跑 S 遍。服务时每个 core 层只有一份共享 KV，每遍覆盖写入，后续 query 读到的是提前停下的位置最后算出的 KV。
+budget:
+  baseline:
+    en: >-
+      Uniform-depth serving (S, S) of the same checkpoint in the same vLLM engine, with the same prompts, KV layout,
+      precision and execution mode; (32, 32) is the full-depth reference, and fixed prefilling depths at the same S are
+      the controls under load.
+    zh: >-
+      同一 checkpoint 在同一 vLLM 引擎中按均匀深度 (S, S) 服务，prompt、KV 布局、精度和执行模式都相同；(32, 32) 是满深度参照，负载实验的对照是同一 S 下的固定 prefill 深度。
+  matched: [params, tokens, kv]
+  not_matched: [depth, wallclock]
+  baseline_tuned: shared
+  headline:
+    en: >-
+      On full HotpotQA with one A100-80GB, Huginn (32, 16) gives 1.19x the throughput of (20, 20), the fastest tested
+      uniform setting meeting the same accuracy criterion, and (14, 8) gains 6.04 EM points over uniform (8, 8) at 97%
+      of its throughput. Under load, adapting OLMo's prefilling depth gains 0.92-1.35 EM points over the most accurate
+      tested fixed depths at the same 100% one-second TTFT attainment.
+    zh: >-
+      在完整 HotpotQA、单张 A100-80GB 上，Huginn (32, 16) 的吞吐是 (20, 20) 的 1.19 倍，后者是满足同一准确率标准的最快均匀设置；(14, 8) 保留均匀 (8, 8) 97% 的吞吐，EM 高 6.04 分。负载下，自适应调整 OLMo 的 prefill 深度，在一秒 TTFT 达标率同为 100% 时，比测过的最准固定深度高 0.92-1.35 EM 分。
+  ref: Abstract; Figure 3; Table 1; Table 2
+results:
+  - setting: "Huginn-0125, full HotpotQA distractor dev set (7,405 examples), one A100-SXM4-80GB, vLLM 0.14.1, bf16, no prefix caching, C = 64"
+    metric: throughput (req/s) / EM
+    values:
+      "Uniform (32, 32)": "0.976 / 33.79"
+      "Uniform (20, 20)": "1.536 / 33.52"
+      "Uniform (16, 16)": "1.897 / 32.07"
+      "Uniform (8, 8)": "3.587 / 24.29"
+      "LoopDuet (32, 16)": "1.822 / 33.69"
+      "LoopDuet (14, 8)": "3.489 / 30.33"
+    ref: Table A6; Figure 3
+  - setting: "Same HotpotQA serving setup, OLMo r32 with four-paragraph prompts"
+    metric: throughput (req/s) / EM
+    values:
+      "Uniform (32, 32)": "9.156 / 38.49"
+      "Uniform (11, 11)": "24.302 / 38.43"
+      "Uniform (8, 8)": "32.220 / 38.37"
+      "Uniform (4, 4)": "56.464 / 37.95"
+      "LoopDuet (32, 8)": "27.315 / 38.42"
+      "LoopDuet (11, 4)": "51.850 / 38.27"
+    ref: Table A6; Figure A1
+  - setting: "HotpotQA, C = 64; each LoopDuet setting against a uniform setting whose throughput differs by at most 10%"
+    metric: throughput ratio LoopDuet/uniform / ΔEM / ΔF1
+    values:
+      "Huginn (14, 8) vs (8, 8)": "0.973 / +6.04 / +7.13"
+      "Huginn (24, 12) vs (12, 12)": "0.979 / -0.45 / -0.47"
+      "Huginn (32, 16) vs (16, 16)": "0.960 / +1.62 / +1.90"
+      "Huginn (32, 16) vs (18, 18)": "1.073 / +0.97 / +1.10"
+      "OLMo r32 (11, 4) vs (4, 4)": "0.918 / +0.32 / +0.49"
+    ref: Table 1
+  - setting: "HotpotQA, C = 64, decoding depth S held fixed; LoopDuet (S, P) against uniform (S, S)"
+    metric: speedup / EM uniform → LoopDuet / measured speedup as a fraction of the layer-pass ratio
+    values:
+      "OLMo r32 (32, 8)": "2.98× / 38.49 → 38.42 / 85%"
+      "OLMo r32 (11, 4)": "2.13× / 38.43 → 38.27 / 93%"
+      "Huginn (32, 16)": "1.87× / 33.79 → 33.69 / 96%"
+    ref: Table A7; Figure 4
+  - setting: "OLMo r32, S = 4, all HotpotQA examples, open-loop C = 128; queue controller with P in [2, 4]"
+    metric: one-second TTFT attainment (%) / EM
+    values:
+      "Poisson 60 req/s, fixed (4, 4)": "8.6 / 38.04"
+      "Poisson 60 req/s, fixed (4, 3)": "100 / 36.35"
+      "Poisson 60 req/s, LoopDuet queue": "100 / 37.27"
+      "Burst 10/60 req/s, fixed (4, 4)": "46.9 / 38.04"
+      "Burst 10/60 req/s, fixed (4, 3)": "100 / 36.42"
+      "Burst 10/60 req/s, LoopDuet queue": "100 / 37.77"
+      "Burst 20/80 req/s, fixed (4, 2)": "100 / 31.91"
+      "Burst 20/80 req/s, LoopDuet queue": "87.5 / 35.12"
+    ref: Table 2
+  - setting: "GSM8K, all 1,319 test examples, five demonstrations, greedy decoding; changes from each checkpoint's (S, S) control"
+    metric: accuracy change (pp), uniform (P, P) / LoopDuet (S, P)
+    values:
+      "Huginn, (S, P) = (14, 8)": "-10.99 / +0.68"
+      "OLMo r16, (S, P) = (16, 4)": "-1.44 / +1.74"
+      "OLMo r32, (S, P) = (11, 4)": "-4.85 / +1.06"
+    ref: Figure 6; Section 4.5
+findings:
+  - en: >-
+      The first output token needs full depth: for Huginn on HotpotQA at S = 32 with other prompt positions at P = 16,
+      running the final prompt position at 16 loops instead of 32 lowers EM by 1.74 points relative to (32, 16) and by
+      1.97 points relative to (32, 32).
+    zh: >-
+      首个输出 token 需要满深度：Huginn 在 HotpotQA 上 S = 32、其余 prompt 位置 P = 16 时，把最后一个 prompt 位置从 32 遍降到 16 遍，EM 比 (32, 16) 低 1.74 分，比 (32, 32) 低 1.97 分。
+    ref: Section 4.5
+  - en: >-
+      Split budgets do not always win: Huginn (24, 12) gives 31.60 EM at 2.43 req/s, while uniform (12, 12) gives 32.05
+      EM at 2.48 req/s.
+    zh: >-
+      拆分预算不一定更好：Huginn (24, 12) 为 31.60 EM、2.43 req/s，均匀的 (12, 12) 为 32.05 EM、2.48 req/s。
+    ref: Section 4.2; Table 1
+  - en: >-
+      For OLMo r32 on HotpotQA, EM stays between 37.95 and 38.49 across all six tested settings, so uniform depth four,
+      the fastest at 56.46 req/s and 0.54 points below (32, 32), is chosen as the controller's starting point.
+    zh: >-
+      OLMo r32 在 HotpotQA 上测的六种设置 EM 都在 37.95 到 38.49 之间，因此选最快的均匀 4 遍（56.46 req/s，比 (32, 32) 低 0.54 分）作为控制器的起点。
+    ref: Section 4.2; Figure A1; Table A6
+  - en: >-
+      Useful prefilling depth is task dependent: on ARC at S = 11, raising OLMo r32's P from 4 to 8 moves the accuracy
+      change from -1.54 to +0.85 points, and Huginn (14, 8) stays 4.44 points below (14, 14).
+    zh: >-
+      合适的 prefill 深度因任务而异：ARC 上 S = 11 时，OLMo r32 的 P 从 4 提到 8，准确率变化从 -1.54 变为 +0.85 分；Huginn (14, 8) 仍比 (14, 14) 低 4.44 分。
+    ref: Section 4.5; Figure 8
+  - en: >-
+      The savings survive batching: Huginn (32, 16) keeps 1.84x, 1.87x and 1.88x speedups over (32, 32) at engine-step
+      token budgets of 4,096, 8,192 and 16,384 (C = 128), and 1.87x at C = 32, 64 and 128.
+    zh: >-
+      节省在 batching 下依然存在：C = 128 时，engine step 的 token 预算为 4,096、8,192、16,384，Huginn (32, 16) 相对 (32, 32) 的加速为 1.84、1.87、1.88 倍；C = 32、64、128 时都是 1.87 倍。
+    ref: Section 4.3; Table A9
+tldr:
+  en: >-
+    Serve looped Transformers with fewer core loops for ordinary prompt tokens than for the last prompt token and the
+    decoded tokens, run the deep tail as a compact batch in vLLM, and lower prefilling depth when the queue grows.
+  zh: >-
+    服务循环 Transformer 时，普通 prompt token 少跑几遍，最后一个 prompt token 和 decode token 跑满；在 vLLM 里把需要继续循环的位置收成紧凑 batch，排队变长时再降低 prefill 深度。
+quickread:
+  problem:
+    en: >-
+      Serving a looped model with one loop count for all tokens ties prefill cost to decode depth. With long prompts and
+      short answers (OLMo HotpotQA prompts average 796 tokens and answers about 4.7), prompt positions account for over
+      99% of layer applications, so keeping deep decoding repeats deep computation over the whole prompt.
+    zh: >-
+      用同一个循环遍数服务所有 token，会把 prefill 成本和 decode 深度绑在一起。prompt 长、回答短时（OLMo 的 HotpotQA prompt 平均 796 token，回答约 4.7 token），prompt 位置占了 99% 以上的层计算，保留深 decode 就意味着整段 prompt 都要跑深循环。
+  method:
+    en:
+      - "Choose decode depth S and prefill depth P <= S jointly from measured quality-throughput trade-offs; ordinary prompt positions stop after P core loops, while every prompt-chunk endpoint and every decoded token runs S."
+      - "In vLLM, after P loops the engine gathers each request's final query into a compact B x d batch for the remaining S - P loops and scatters it back before the coda; prompt context stays in one shared KV plane per core layer, so existing weights and attention kernels are reused."
+      - "A queue-age controller maps the oldest first-token wait from 0.25 s to 1 s linearly onto [P_min, P_max] before each engine step, keeping S fixed (main setting S = 4, P in {2, 3, 4})."
+      - "A recurrent-state distance (90th percentile over ordinary prompt tokens, threshold about 0.24) screens candidate P values before task-accuracy checks."
+    zh:
+      - "根据实测的质量-吞吐权衡联合选 decode 深度 S 和 prefill 深度 P（P <= S）；普通 prompt 位置跑 P 遍 core 后停下，每个 prompt chunk 的末位置和每个 decode token 跑满 S 遍。"
+      - "在 vLLM 里，跑完 P 遍后把每个请求的最后一个 query 收集成 B x d 的紧凑 batch，跑剩下的 S - P 遍，再在 coda 前散回原位；prompt 上下文留在每个 core 层一份的共享 KV 里，直接复用现有权重和 attention kernel。"
+      - "队列年龄控制器在每个 engine step 前，把最早一个请求等待首 token 的时间从 0.25 秒到 1 秒线性映射到 [P_min, P_max]，S 保持不变（主实验 S = 4，P 取 {2, 3, 4}）。"
+      - "用循环状态距离（普通 prompt token 的 90 分位，阈值约 0.24）先筛出候选 P，再用任务准确率验证。"
+  caveats:
+    en:
+      - "Training-free serving study of existing checkpoints only (Huginn-0125 and the recurrent OLMo-2 retrofits r16 and r32); every tested depth is at most 32 loops (16 for OLMo r16)."
+      - "Tasks are GSM8K, HotpotQA (distractor dev set) and ARC-Challenge, with model-specific prompts (OLMo four paragraphs and one demonstration under a 1,000-token cap; Huginn ten paragraphs and two demonstrations); the authors call these within-model comparisons, not a ranking between models."
+      - "All timings use one A100-SXM4-80GB, vLLM 0.14.1, bf16 and no prefix caching; the joint-depth comparison uses one execution per configuration at C = 64."
+      - "Gains depend on the workload: on GSM8K, longer responses give wall-time ratios of 0.98-1.01 across four serving pairs despite layer-pass ratios of 1.52-2.71."
+      - "Decoding reads prompt KV from the last loop each position computed, an approximation to full-depth context that the authors evaluate through task accuracy; the controller has no correctness feedback and works within a depth range chosen offline."
+      - "On the 20/80 req/s burst trace the controller reaches 87.5% one-second TTFT attainment, against 100% for fixed P = 2."
+    zh:
+      - "只在现有 checkpoint 上做免训练的服务研究（Huginn-0125 和 OLMo-2 循环改造版 r16、r32）；所有测试深度都不超过 32 遍（OLMo r16 不超过 16 遍）。"
+      - "任务为 GSM8K、HotpotQA（distractor 开发集）和 ARC-Challenge，prompt 按模型分别构造（OLMo 四段材料加一个示例，上限 1,000 token；Huginn 十段材料加两个示例）；作者说明这些是同一模型内的对比，不是模型间排名。"
+      - "所有计时都在单张 A100-SXM4-80GB、vLLM 0.14.1、bf16、不开 prefix caching 下进行；联合深度对比在 C = 64 下每个配置只跑一次。"
+      - "收益取决于负载：GSM8K 回答更长，四组服务对比的墙钟时间比只有 0.98-1.01，而层计算比为 1.52-2.71。"
+      - "decode 读到的 prompt KV 来自各位置最后算到的那一遍，是对满深度上下文的近似，作者通过任务准确率来评估；控制器没有正确性反馈，只在离线选定的深度范围内调整。"
+      - "在 20/80 req/s 的突发流量下，控制器的一秒 TTFT 达标率为 87.5%，固定 P = 2 为 100%。"
+reproducibility:
+  code: none
+  weights: none
+  configs: partial
+  data: available
+added: "2026-11-23"

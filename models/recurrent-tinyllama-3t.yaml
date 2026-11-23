@@ -1,0 +1,35 @@
+id: recurrent-tinyllama-3t
+name: Recurrent-TinyLlama-3T (4,8,4)
+paper: "2511.07384"
+hf:
+  - smcleish/Recurrent-TinyLlama-3T-train-recurrence-4
+  - smcleish/Recurrent-TinyLlama-3T-train-recurrence-8
+  - smcleish/Recurrent-TinyLlama-3T-train-recurrence-16
+  - smcleish/Recurrent-TinyLlama-3T-train-recurrence-32
+  - smcleish/Recurrent-TinyLlama-3T-train-recurrence-4-single-phase
+  - smcleish/Recurrent-TinyLlama-3T-train-recurrence-4-two-phase
+  - smcleish/Recurrent-TinyLlama-3T-untrained
+params: "704,708,608 excluding embeddings (Table 8)"
+tokens: "about 50B (train-recurrence-k repos); 26B single phase, 52B two phase"
+context: "1024 (training context length)"
+passes:
+  default: "32"
+  range: "num_steps; paper tests 1, 2, 4, 8, 16, 32"
+kv: per-pass
+license: apache-2.0
+inference: [transformers-remote-code]
+notes:
+  en: >-
+    Built from layers 0-3, 10-17 and 18-21 of TinyLlama-1.1B-intermediate-step-1431k-3T (Section 3). The
+    train-recurrence-k repos match by name the Nemotron-CC-Math runs with mean training recurrence k (Table 3); the
+    single-phase and two-phase repos match the train-recurrence-4 data-mixture runs (Table 1); -untrained holds the
+    converted weights before any recurrence training. The cards say the modeling file is based on huginn-0125; its
+    HuginnDynamicCache keeps a separate KV entry per recurrence step.
+  zh: >-
+    由 TinyLlama-1.1B-intermediate-step-1431k-3T 的第 0-3、10-17、18-21 层构成（Section 3）。train-recurrence-k 仓库按名字对应平均训练递归次数为 k 的 Nemotron-CC-Math 训练（Table 3）；single-phase 和 two-phase 仓库对应 train recurrence 4 的数据配比实验（Table 1）；-untrained 是转换后、尚未做循环训练的权重。模型卡说建模代码基于 huginn-0125；其中的 HuginnDynamicCache 为每个递归步单独保存 KV。
+ref: >-
+  Model cards (num_steps example, trust_remote_code, apache-2.0, based on huginn-0125); HF API (repo existence, license
+  tags) and the Retrofitting Recurrence collection; paper Section 3 (context 1024, layer choice), Sections 4.3.2 and
+  4.4 (tokens), Tables 3 and 6 (test recurrences), Table 8 (parameters); HuginnDynamicCache in the repos'
+  raven_modeling_minimal.py (KV keyed by recurrence step).
+added: "2026-11-23"

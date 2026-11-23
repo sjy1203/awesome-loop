@@ -1,0 +1,30 @@
+id: ouro-1-4b
+name: Ouro-1.4B
+paper: "2510.25741"
+hf:
+  - ByteDance/Ouro-1.4B
+  - ByteDance/Ouro-1.4B-Thinking
+params: 1.4B
+tokens: 7.7T
+context: "Base card: 4K (training), extendable to 64K; Thinking card: 32K (SFT)"
+passes:
+  default: "4"
+  range: "total_ut_steps is adjustable, with early exit; paper tests 1-8"
+kv: per-pass
+license: apache-2.0
+inference: [transformers-remote-code, vllm]
+notes:
+  en: >-
+    Ouro-1.4B is the base model and Ouro-1.4B-Thinking its reasoning-SFT version; both have 24 layers looped 4 times.
+    The released modeling_ouro.py keeps one KV cache per recurrent step and runs all total_ut_steps in every forward
+    pass; early_exit_threshold only selects which step's output is used. The cards say vLLM always runs the full
+    total_ut_steps, and the project page says vLLM v0.26.0 is the last release with native Ouro support. The cards ask
+    for transformers<4.56.0 (4.54.1 recommended).
+  zh: >-
+    Ouro-1.4B 是基座模型，Ouro-1.4B-Thinking 是它的推理 SFT 版本，两者都是 24 层、循环 4 遍。官方 modeling_ouro.py 为每个循环步各存一份 KV，每次前向都跑满 total_ut_steps，early_exit_threshold 只决定用哪一步的输出。模型卡说 vLLM 总是跑满 total_ut_steps；项目页说 vLLM v0.26.0 是最后一个原生支持 Ouro 的版本。模型卡要求 transformers<4.56.0（推荐 4.54.1）。
+ref: >-
+  Model cards and config.json of both repos (total_ut_steps 4, early_exit_threshold 1.0, num_hidden_layers 24, context
+  length, apache-2.0, vLLM note, transformers version); HF API (repo existence, cardData.license); modeling_ouro.py
+  (UniversalTransformerCache indexed by step and layer); paper (arXiv v6 numbering) Table 2 (1.4B, 24 layers), Section 4
+  (7.7T tokens), Tables 10 and 12 (T=1-8); project page ouro-llm.github.io (vLLM versions, trust_remote_code).
+added: "2026-11-23"

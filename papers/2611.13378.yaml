@@ -1,0 +1,126 @@
+id: "2611.13378"
+tier: deep
+status: draft
+short: Looped CED
+title: "Looping Deeper Without Growing the KV Cache: Recurrent Depth for Causal Encoder-Decoders"
+date: "2026-11-09"
+venue: arXiv
+authors: [Jiaqi Leng, Minshen Zhang, Zhaofeng Sun, Yu-Yang Qian, Peng Zhao, Hao Zhang]
+orgs: ["University of California, San Diego", Tsinghua University, Nanjing University]
+links:
+  paper: https://arxiv.org/abs/2611.13378
+category: architecture/placement
+facets:
+  placement: encoder
+  sharing: full
+  depth_train: sampled
+  depth_test: extrapolate
+  injection: gated
+  kv: last-pass
+  gradient: truncated
+  origin: scratch
+  ffn: dense
+  attention: hybrid
+loop:
+  segments:
+    - {role: prelude, layers: 2, label: L0-1}
+    - role: core
+      layers: 4
+      label: L2-5
+      passes: {train: "max(1, Poisson(8))", test: "8"}
+      bptt: last 4
+    - {role: coda, layers: 6, label: L6-11}
+  note:
+    en: >-
+      12-layer causal encoder-decoder (CED) in the DeepSeek-V4.1-Flash layout: every layer has SWA-128; L2 is the
+      encoder's only global KV source and L6 projects the global KV shared by the decoder. The loop repeats L2-5.
+    zh: >-
+      12 层因果编码器-解码器（CED），沿用 DeepSeek-V4.1-Flash 的布局：每层都有 128 窗口 SWA；L2 是 encoder 唯一的全局
+      KV 源，L6 投影出 decoder 共用的全局 KV。循环 L2-5。
+budget:
+  baseline:
+    en: Unlooped CED with the same 12-layer layout; dense, decoder-loop and YOCO-U-style variants are also compared.
+    zh: 同样 12 层布局、不循环的 CED；另有 dense、decoder 循环和 YOCO-U 式对照。
+  matched: [params, tokens, kv]
+  not_matched: [flops, depth]
+  baseline_tuned: shared
+  headline:
+    en: >-
+      At 150M, the encoder loop lowers BPB from 0.8716 to 0.8468 while keeping the unlooped CED's 8 KB of global KV
+      per token; the paper reports recovering 86-93% of a looped Transformer's gain with 1/6 of its global KV.
+    zh: >-
+      150M 规模下，encoder 循环把 BPB 从 0.8716 降到 0.8468，每 token 全局 KV 仍是不循环 CED 的 8 KB；论文称用 1/6 的全局 KV 拿回了循环 Transformer 86-93% 的收益。
+  ref: Abstract; Table 1
+results:
+  - setting: 150M non-embedding params, 6.0B tokens, FineWeb-Edu, 2048 context, T=8 at evaluation
+    metric: validation BPB (lower is better)
+    values:
+      "Dense, no loop": 0.8747
+      "Dense, loop L2-5": 0.8461
+      "CED, no loop": 0.8716
+      "CED, encoder loop L2-5": 0.8468
+      "CED, decoder loop L7-10": 0.8648
+      "CED, encoder loop, fixed rounds": 0.8487
+      "YOCO-U style, loop L2-5": 0.8506
+    ref: Table 1
+  - setting: 150M, 29.6B tokens
+    metric: validation BPB / DCLM CORE accuracy
+    values:
+      "CED, no loop": "0.8401 / 19.09"
+      "CED, encoder loop": "0.8124 / 21.63"
+      "CED, decoder loop": "0.8295 / 21.56"
+    ref: Table 2
+  - setting: 150M, 6.0B tokens, exact fp32 token-by-token decoding at T=8
+    metric: BPB with last-round KV minus BPB with per-round KV
+    values:
+      "Encoder loop, stochastic depth": "-0.0002"
+      "Encoder loop, fixed depth": "+0.0317"
+    ref: Table 3
+  - setting: DeepSeek-V4.1-Flash (552B) looped for 8 rounds on 4x GB200, serving only (no loop training)
+    metric: KV per token and 128K-token requests that fit
+    values:
+      "Per-layer and per-round KV": cannot fit one 128K request
+      "Looped CED (last-round KV)": 36.8x less KV per token, fits 38 requests
+    ref: Abstract; Table 4
+findings:
+  - en: Running 12 or 16 rounds instead of the trained mean of 8 lowers BPB by at most 0.0004 and never raises it.
+    zh: 推理时跑 12 或 16 遍（训练均值是 8 遍），BPB 最多降 0.0004，从不变差。
+    ref: Appendix F; Table 9
+  - en: After 5x longer training (29.6B tokens) the decoder loop still captures only 38% of the encoder loop's improvement.
+    zh: 训练加长到 5 倍（29.6B token）后，decoder 循环的收益仍只有 encoder 循环的 38%。
+    ref: Table 2
+tldr:
+  en: Loop the CED encoder layers that produce global KV, train with random depth, and keep only the last round's KV.
+  zh: 循环产出全局 KV 的 CED encoder 层，随机遍数训练，推理只存最后一遍的 KV。
+quickread:
+  problem:
+    en: >-
+      When every round caches its own KV, a looped model's KV cache grows with the number of rounds, which cancels
+      the memory advantage of KV-sparse layouts such as the causal encoder-decoder.
+    zh: 如果每一遍都存自己的 KV，循环模型的 KV 会随遍数增长，抵消掉 CED 这类稀疏 KV 布局的显存优势。
+  method:
+    en:
+      - Loop layers L2-5 of the encoder, which contain its only global KV source, for 8 rounds with Parcae's gated input injection.
+      - Sample the number of rounds per sequence from max(1, Poisson(8)) and backpropagate through the last 4, so the core settles into a fixed point.
+      - At inference, past tokens keep only their last-round KV, so the resident KV equals the unlooped CED's.
+    zh:
+      - 循环 encoder 的 L2-5（含 encoder 唯一的全局 KV 源），跑 8 遍，用 Parcae 的门控输入注入。
+      - 每条序列的遍数从 max(1, Poisson(8)) 采样，只反传最后 4 遍，让循环块收敛到不动点。
+      - 推理时历史 token 只保留最后一遍的 KV，常驻 KV 和不循环的 CED 一样。
+  caveats:
+    en:
+      - Training experiments use 12-layer dense-FFN models up to 340M non-embedding parameters at 2K context; the 552B DeepSeek-V4.1-Flash runs measure serving cost only, with no loop training.
+      - Parameters, tokens and KV are held fixed but compute is not; a looped model runs 40 layer passes per decoded token instead of 12.
+      - All runs share one hyperparameter set (Table 8); the baselines were not tuned separately.
+      - The encoder loop puts every round on the prefill path; in the 552B serving test, prefill cost per prompt token at T=8 is 5.12x the unlooped CED (Table 13).
+    zh:
+      - 训练实验是 12 层 dense FFN 模型，最大 340M 非 embedding 参数，2K 上下文；552B 的 DeepSeek-V4.1-Flash 只测服务成本，没训练过循环。
+      - 对齐了参数、token 和 KV，没对齐算力：循环模型每解码一个 token 执行 40 层，不循环是 12 层。
+      - 所有实验共用一套超参（Table 8），基线没有单独调。
+      - encoder 循环让每一遍都进入 prefill；552B 服务测试里，T=8 时每个 prompt token 的 prefill 成本是不循环 CED 的 5.12 倍（Table 13）。
+reproducibility:
+  code: none
+  weights: none
+  configs: partial
+  data: available
+added: "2026-11-23"

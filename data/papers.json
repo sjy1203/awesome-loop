@@ -1,0 +1,2594 @@
+{
+ "schema": "schema/paper.schema.json",
+ "papers": [
+  {
+   "id": "2502.05171",
+   "tier": "deep",
+   "status": "draft",
+   "short": "Huginn",
+   "title": "Scaling up Test-Time Compute with Latent Reasoning: A Recurrent Depth Approach",
+   "date": "2025-02-07",
+   "venue": "arXiv",
+   "authors": [
+    "Jonas Geiping",
+    "Sean McLeish",
+    "Neel Jain",
+    "John Kirchenbauer",
+    "Siddharth Singh",
+    "Brian R. Bartoldson",
+    "Bhavya Kailkhura",
+    "Abhinav Bhatele",
+    "Tom Goldstein"
+   ],
+   "orgs": [
+    "ELLIS Institute Tübingen",
+    "Max-Planck Institute for Intelligent Systems",
+    "Tübingen AI Center",
+    "University of Maryland, College Park",
+    "Lawrence Livermore National Laboratory"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2502.05171",
+    "code": "https://github.com/seal-rg/recurrent-pretraining",
+    "weights": [
+     "https://huggingface.co/tomg-group-umd/huginn-0125",
+     "https://huggingface.co/collections/tomg-group-umd/recurrent-models"
+    ]
+   },
+   "category": "architecture/placement",
+   "facets": {
+    "placement": "prelude-core-coda",
+    "sharing": "full",
+    "depth_train": "sampled",
+    "depth_test": "extrapolate",
+    "injection": "concat",
+    "kv": "per-pass",
+    "gradient": "truncated",
+    "origin": "scratch",
+    "ffn": "dense",
+    "attention": "full"
+   },
+   "loop": {
+    "segments": [
+     {
+      "role": "prelude",
+      "layers": 2,
+      "label": "P"
+     },
+     {
+      "role": "core",
+      "layers": 4,
+      "label": "R",
+      "passes": {
+       "train": "log-normal Poisson, mean 32",
+       "test": "1-64 (32 in most tables)"
+      },
+      "bptt": "last 8"
+     },
+     {
+      "role": "coda",
+      "layers": 2,
+      "label": "C"
+     }
+    ],
+    "note": {
+     "en": "Huginn-0125 has 8 distinct layers in a (2,4,2) layout with hidden size 5280 and 55 heads of size 96. The core starts with an adapter that maps the concatenation of the state and the prelude output from 2h to h, and the first state is random noise. At r=32 the model unrolls to 132 effective layers. Small ablation models use (1,4,1) with h=1024.",
+     "zh": "Huginn-0125 共 8 个不同的层，布局 (2,4,2)，hidden size 5280，55 个 96 维的 head。核心块开头的 adapter 把状态和 prelude 输出的拼接从 2h 映射到 h，初始状态是随机噪声。r=32 时展开为 132 层。小规模消融模型用 (1,4,1)，h=1024。"
+    }
+   },
+   "budget": {
+    "baseline": {
+     "en": "A fixed-depth twin with the same architecture, data and training setup that passes through the core block once, trained for 180B tokens (256 nodes, batch size 2 per GPU).",
+     "zh": "同架构、同数据、同训练设置的固定深度孪生模型，只过一遍核心块，训练 180B token（256 个节点，每张 GPU batch size 2）。"
+    },
+    "matched": [
+     "params",
+     "tokens"
+    ],
+    "not_matched": [
+     "flops",
+     "depth"
+    ],
+    "baseline_tuned": "shared",
+    "headline": {
+     "en": "The 3.5B model trained on 800B tokens improves on reasoning benchmarks as test-time recurrence grows, up to a computation load equivalent to 50B parameters. At 180B tokens and r=32 it scores 9.02/10.24 on GSM8K CoT against 1.82/2.20 for the fixed-depth twin, which the paper calls 5 times better.",
+     "zh": "800B token 训练的 3.5B 模型，测试时循环次数越多，推理类基准越好，算力最多相当于 50B 参数的模型。180B token 时，r=32 的 GSM8K CoT 为 9.02/10.24，固定深度孪生模型为 1.82/2.20，论文称是基线的 5 倍。"
+    },
+    "ref": "Abstract; Section 5.3; Table 4"
+   },
+   "results": [
+    {
+     "setting": "3.5B parameters, both models at 180B tokens (0.18T), same data and setup",
+     "metric": "ARC-C | HellaSwag | GSM8K CoT",
+     "values": {
+      "Fixed-depth baseline (one core pass)": "26.96 | 37.34 | 1.82/2.20",
+      "Recurrent model, r=32": "29.18 | 48.80 | 9.02/10.24",
+      "Recurrent model, r=1": "23.72 | 29.19 | 0.00/0.15"
+     },
+     "ref": "Table 4",
+     "note": {
+      "en": "GSM8K CoT pairs are copied as printed; the Table 2 caption says the paper reports flexible and strict extract.",
+      "zh": "GSM8K CoT 的两个数照原文抄录；Table 2 标题说明报告的是 flexible 和 strict extract。"
+     }
+    },
+    {
+     "setting": "Huginn-0125 (3.5B, 800B tokens), lm-eval zero-shot at different test-time recurrences r",
+     "metric": "ARC-C | HellaSwag | MMLU",
+     "values": {
+      "r=1": "24.06 | 29.34 | 23.60",
+      "r=4": "27.99 | 43.46 | 23.39",
+      "r=8": "35.15 | 58.54 | 25.29",
+      "r=16": "37.71 | 64.67 | 31.25",
+      "r=32": "38.23 | 65.21 | 31.38"
+     },
+     "ref": "Table 1 (arXiv v2); Table 4 (r=1 row)",
+     "note": {
+      "en": "arXiv v1 printed different values in the r=4, 8 and 16 rows of Table 1; these are the v2 values.",
+      "zh": "arXiv v1 的 Table 1 中 r=4、8、16 三行数值与此不同；这里用 v2 的数值。"
+     }
+    },
+    {
+     "setting": "Huginn-0125 at r=32 next to fixed-depth open models",
+     "metric": "GSM8K | GSM8K CoT | Minerva MATH",
+     "values": {
+      "Huginn-0125, with system prompt": "24.87/38.13 | 34.80/42.08 | 11.24",
+      "Huginn-0125, without system prompt": "28.05/28.20 | 32.60/34.57 | 12.58",
+      "OLMo-7B-0724": "28.66/28.73 | 28.89/28.89 | 5.62",
+      "OLMo-2-1124-7B": "66.72/66.79 | 61.94/66.19 | 19.08"
+     },
+     "ref": "Table 2"
+    },
+    {
+     "setting": "Huginn-0125, first-turn MT-Bench, inference schemes used zero-shot",
+     "metric": "MT-Bench score (standard error)",
+     "values": {
+      "baseline, 32 iterations": "5.662 (0.388)",
+      "baseline, 64 iterations": "5.693 (0.386)",
+      "KL exit, t=5×10^-4": "5.562 (0.389)",
+      "cache compression, s=4": "5.856 (0.395)",
+      "cache compression, s=8": "5.631 (0.384)",
+      "cache compression, s=16": "5.687 (0.402)"
+     },
+     "ref": "Table 6; Sections 6.1-6.2",
+     "note": {
+      "en": "s is the per-token KV-cache budget in recurrence steps. The paper states no difference from the baseline is statistically significant.",
+      "zh": "s 是每个 token 的 KV cache 预算（递归步数）。论文说明与基线的差异都不显著。"
+     }
+    }
+   ],
+   "findings": [
+    {
+     "en": "Evaluated with one recurrence, the model barely changes between the 180B and 800B checkpoints (ARC-C 23.72 and 24.06); the authors conclude that later gains sit in the recurrent iterations, not in the prelude or coda.",
+     "zh": "只跑 1 次循环时，180B 和 800B 两个 checkpoint 几乎没有差别（ARC-C 23.72 和 24.06）；作者据此认为后续提升来自循环迭代，而不在 prelude 或 coda。",
+     "ref": "Section 5.3; Table 4"
+    },
+    {
+     "en": "Useful depth depends on task and context. HellaSwag is near its peak at 8 recurrences; ARC-C saturates around 8-12 iterations with no few-shot examples, around 20 with 1 example and around 32 with 25-50 examples.",
+     "zh": "有用的迭代次数取决于任务和上下文。HellaSwag 在 8 次左右接近峰值；ARC-C 没有 few-shot 示例时约 8-12 次饱和，1 个示例时约 20 次，25-50 个示例时约 32 次。",
+     "ref": "Section 5.3; Figures 7 and 9"
+    },
+    {
+     "en": "Tested at r=64 (training mean 32), an EMA of the last 75 checkpoints reaches 47.23% flexible (38.59% strict) on GSM8K.",
+     "zh": "在 r=64（训练均值为 32）下测试，最后 75 个 checkpoint 的 EMA 在 GSM8K 上达到 47.23%（flexible）/ 38.59%（strict）。",
+     "ref": "Section 5.4"
+    },
+    {
+     "en": "In ablations, a core block that takes the step index as input interacted badly with path independence and gave models that cannot extrapolate; adding noise at each step did not help.",
+     "zh": "消融中，以步数为输入的核心块破坏了路径无关性，得到的模型无法外推；每步加噪声也没有帮助。",
+     "ref": "Section 3.1 (Remark 3.1)"
+    },
+    {
+     "en": "Two earlier large-scale runs failed. In one, all tokens collapsed to the same hidden state; in the other, the model learned to ignore the recurrent state, with the same validation perplexity at 1 or 32 recurrences. The successful run used sandwich norms and a peak learning rate of 4×10^-5.",
+     "zh": "此前两次大规模训练失败。一次所有 token 坍缩成相同的隐状态；另一次模型学会忽略循环状态，1 次和 32 次循环的验证 perplexity 相同。成功的那次用 sandwich 归一化，峰值学习率 4×10^-5。",
+     "ref": "Section 4.3; Figure 5"
+    }
+   ],
+   "tldr": {
+    "en": "Pretrain a 3.5B prelude-core-coda transformer with a randomly sampled number of core iterations, so test-time compute scales by iterating the core more.",
+    "zh": "用随机采样的核心块迭代次数预训练 3.5B 的 prelude-core-coda Transformer，测试时多迭代核心块即可增加算力。"
+   },
+   "quickread": {
+    "problem": {
+     "en": "Mainstream reasoning models scale test-time compute by generating more tokens in long chains of thought, which needs specialized training data and long context windows. The paper scales compute by iterating a recurrent block in latent space instead.",
+     "zh": "主流推理模型靠生成更多 token（长 CoT）增加测试时算力，需要专门的训练数据和长上下文窗口。本文改为在隐空间反复迭代一个循环块来增加算力。"
+    },
+    "method": {
+     "en": [
+      "Split a decoder-only transformer into a prelude, a weight-shared recurrent core and a coda. At every iteration the core receives the prelude output through an adapter on concat(state, prelude output); the first state is random.",
+      "Sample the iteration count from a log-normal Poisson distribution with mean 32 (one count per micro-batch, synchronized across workers) and backpropagate through only the last 8 iterations.",
+      "Train once at (2,4,2) with h=5280 on 800B tokens of public data weighted toward code and math, on 4096 AMD MI250X GPUs, with sandwich normalization (four RMSNorms per layer) and a scaled initialization.",
+      "At inference the iteration count is free; the paper also tries zero-shot per-token early exit, KV-cache sharing, continuous-CoT warm starts and self-speculative decoding."
+     ],
+     "zh": [
+      "把 decoder-only Transformer 分成 prelude、权重共享的循环核心块和 coda。每次迭代，核心块通过对 concat(状态, prelude 输出) 的 adapter 接收 prelude 输出；初始状态随机。",
+      "迭代次数从均值 32 的 log-normal Poisson 分布采样（每个 micro-batch 一个值，各 worker 同步），只反传最后 8 次迭代。",
+      "以 (2,4,2)、h=5280 的形状，在 4096 张 AMD MI250X 上用 800B token 的公开数据（偏重代码和数学）训练一次，采用 sandwich 归一化（每层四个 RMSNorm）和缩放初始化。",
+      "推理时迭代次数可自由设定；论文还零样本尝试了逐 token 提前退出、KV cache 共享、连续 CoT 热启动和自推测解码。"
+     ]
+    },
+    "caveats": {
+     "en": [
+      "A single large run with 3.5B parameters and 800B tokens, on a data mixture the authors could not ablate and with a constant learning rate that was never cooled down (47000 steps).",
+      "The looped-vs-fixed-depth comparison exists only at 180B tokens. It matches parameters and tokens but not compute, since the baseline passes through the core once.",
+      "The comparisons with Amber, Pythia, OLMo and StarCoder2 models (Tables 1-3) are not matched in parameters, tokens or data.",
+      "Training uses 4096-token sequences and backpropagates through only the last 8 core iterations.",
+      "Early exit, KV-cache sharing and continuous CoT are zero-shot uses of a model not trained for them, measured only on first-turn MT-Bench, where the differences are not statistically significant (Table 6). Self-speculative decoding has no reported measurements."
+     ],
+     "zh": [
+      "只训练了一个大模型，3.5B 参数、800B token；数据配比作者没能做消融，学习率一直是常数、没有退火（47000 step）。",
+      "循环与固定深度的对比只在 180B token 处做过；对齐了参数和 token，没对齐算力，基线只过一遍核心块。",
+      "与 Amber、Pythia、OLMo、StarCoder2 等模型的对比（Table 1-3）在参数、token 和数据上都没有对齐。",
+      "训练序列长 4096 token，只反传核心块最后 8 次迭代。",
+      "提前退出、KV cache 共享和连续 CoT 都是对未专门训练的模型的零样本用法，只在 MT-Bench 第一轮测过，差异不显著（Table 6）。自推测解码没有给出测量结果。"
+     ]
+    }
+   },
+   "reproducibility": {
+    "code": "available",
+    "weights": "available",
+    "configs": "available",
+    "data": "available"
+   },
+   "added": "2026-11-23",
+   "glyph": "P (2 layers) -> [R (4 layers)] x log-normal Poisson, mean 32 -> C (2 layers); injection concat; KV per-pass",
+   "card": {
+    "en": "https://raw.githubusercontent.com/sjy1203/awesome-loop/main/docs/en/2502.05171.md",
+    "zh": "https://raw.githubusercontent.com/sjy1203/awesome-loop/main/docs/zh/2502.05171.md"
+   }
+  },
+  {
+   "id": "2507.10524",
+   "tier": "deep",
+   "status": "draft",
+   "short": "MoR",
+   "title": "Mixture-of-Recursions: Learning Dynamic Recursive Depths for Adaptive Token-Level Computation",
+   "date": "2025-07-14",
+   "venue": "NeurIPS 2025",
+   "authors": [
+    "Sangmin Bae",
+    "Yujin Kim",
+    "Reza Bayat",
+    "Sungnyun Kim",
+    "Jiyoun Ha",
+    "Tal Schuster",
+    "Adam Fisch",
+    "Hrayr Harutyunyan",
+    "Ziwei Ji",
+    "Aaron Courville",
+    "Se-Young Yun"
+   ],
+   "orgs": [
+    "KAIST AI",
+    "Mila",
+    "Google Cloud",
+    "Google DeepMind",
+    "Google Research",
+    "Université de Montréal"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2507.10524",
+    "code": "https://github.com/raymin0223/mixture_of_recursions",
+    "weights": [
+     "https://drive.google.com/drive/folders/1pYKJOu2aBGC-jgoWbfP6T_vqEYtUVxa4"
+    ]
+   },
+   "category": "depth",
+   "facets": {
+    "placement": "prelude-core-coda",
+    "sharing": "full",
+    "depth_train": "adaptive",
+    "depth_test": "adaptive",
+    "injection": "none",
+    "kv": "per-pass",
+    "gradient": "full-bptt",
+    "origin": "scratch",
+    "ffn": "dense",
+    "attention": "full"
+   },
+   "loop": {
+    "segments": [
+     {
+      "role": "prelude",
+      "layers": 1,
+      "label": "first layer"
+     },
+     {
+      "role": "core",
+      "layers": 10,
+      "label": "shared block",
+      "passes": {
+       "train": "1-3 per token, set by the router (Nr=3)",
+       "test": "1-3 per token, set by the router"
+      }
+     },
+     {
+      "role": "coda",
+      "layers": 1,
+      "label": "last layer"
+     }
+    ],
+    "note": {
+     "en": "Middle-Cycle sharing on a Llama-style model keeps the first and last layers unique and applies one shared block up to Nr times (360M base with Nr=3 uses 1+10+1 unique layers; Nr=2 uses 1+15+1). Routers decide how many recursions each token gets. Expert-choice keeps the top-k tokens at each step (3/3, 2/3 and 1/3 of the tokens for Nr=3), and only tokens kept at step r can be kept at r+1; token-choice assigns each token its depth once. The router score scales the block output that is added to the residual. Each step caches KV only for its active tokens and attends only among them; a variant reuses the first recursion's KV at every step.",
+     "zh": "在 Llama 式模型上用 Middle-Cycle 共享：首尾两层独立，中间一个共享块最多重复 Nr 次（360M 基座、Nr=3 时为 1+10+1 个独立层；Nr=2 为 1+15+1）。由路由器决定每个 token 递归几次。expert-choice 每步保留 top-k token（Nr=3 时依次为 3/3、2/3、1/3），只有第 r 步被保留的 token 才能在第 r+1 步再被选中；token-choice 一开始就给每个 token 定好深度。路由分数缩放共享块的输出，再加回残差。每一步只为仍在计算的 token 存 KV，注意力也只在这些 token 之间计算；另一种变体在每一步都复用第一遍的 KV。"
+    }
+   },
+   "budget": {
+    "baseline": {
+     "en": "Vanilla Llama-style Transformer (315M non-embedding parameters at the 360M base) and fixed-depth Recursive Transformers with the same Middle-Cycle sharing (Nr=2-4).",
+     "zh": "Llama 式 vanilla Transformer（360M 基座，315M 非 embedding 参数），以及同样采用 Middle-Cycle 共享、固定深度的递归 Transformer（Nr=2-4）。"
+    },
+    "matched": [
+     "flops"
+    ],
+    "not_matched": [
+     "params",
+     "tokens",
+     "depth",
+     "kv"
+    ],
+    "baseline_tuned": "shared",
+    "headline": {
+     "en": "At 16.5e18 training FLOPs, expert-choice MoR with Nr=2 reaches validation NLL 2.7511 and 43.1% average few-shot accuracy with 167M non-embedding parameters, against 2.7824 and 42.3% for the 315M vanilla model. At an equal 20B tokens it uses 25% fewer training FLOPs, 19% less training time and 25% less peak memory than vanilla.",
+     "zh": "训练 FLOPs 同为 16.5e18 时，Nr=2 的 expert-choice MoR 用 167M 非 embedding 参数达到验证 NLL 2.7511、few-shot 平均准确率 43.1%，315M 的 vanilla 为 2.7824 和 42.3%。同为 20B token 时，它比 vanilla 少用 25% 训练 FLOPs、19% 训练时间和 25% 峰值显存。"
+    },
+    "ref": "Section 3.1; Table 3"
+   },
+   "results": [
+    {
+     "setting": "360M base, FineWeb-Edu, 16.5e18 training FLOPs (tokens vary), Middle-Cycle sharing",
+     "metric": "validation NLL / average few-shot accuracy",
+     "values": {
+      "Vanilla, 315M, 20B tokens": "2.7824 / 42.3",
+      "Recursive Nr=2, 167M, 20B": "2.8079 / 42.6",
+      "Recursive Nr=3, 118M, 20B": "2.8466 / 41.5",
+      "Recursive Nr=4, 98M, 19B": "2.8781 / 41.0",
+      "MoR expert Nr=2, 167M, 27B": "2.7511 / 43.1",
+      "MoR expert Nr=3, 118M, 30B": "2.7925 / 42.6",
+      "MoR expert Nr=4, 98M, 30B": "2.8204 / 41.6",
+      "MoR token Nr=3, 118M, 30B": "2.9163 / 40.0",
+      "MoR expert Nr=3, KV sharing, 118M, 31B": "2.7983 / 41.9"
+     },
+     "ref": "Table 3"
+    },
+    {
+     "setting": "360M base, FineWeb-Edu, 20B training tokens (FLOPs vary)",
+     "metric": "training FLOPs (×1e18) / validation NLL / average few-shot accuracy",
+     "values": {
+      "Vanilla": "16.5 / 2.7824 / 42.3",
+      "MoR expert Nr=2": "12.3 / 2.7749 / 42.9",
+      "MoR expert Nr=3": "11.0 / 2.8246 / 41.8",
+      "MoR expert Nr=4": "11.0 / 2.8519 / 41.5"
+     },
+     "ref": "Table 3"
+    },
+    {
+     "setting": "Equal training FLOPs per row, Nr=3, expert-choice MoR with recursion-wise KV caching, FineWeb-Edu",
+     "metric": "validation NLL, Vanilla / Recursive / MoR",
+     "values": {
+      "135M base, 5e18": "2.9464 / 3.0534 / 3.0192",
+      "135M base, 16.5e18": "2.8432 / 2.9552 / 2.9490",
+      "360M base, 5e18": "3.0097 / 3.0722 / 2.9161",
+      "360M base, 16.5e18": "2.7824 / 2.8466 / 2.7924",
+      "730M base, 5e18": "3.0821 / 3.1640 / 3.0067",
+      "730M base, 16.5e18": "2.7048 / 2.7886 / 2.7438",
+      "1.7B base, 5e18": "3.6926 / 3.8876 / 3.2905",
+      "1.7B base, 16.5e18": "2.8658 / 3.0042 / 2.8316"
+     },
+     "ref": "Appendix D; Table 9"
+    },
+    {
+     "setting": "118M unique non-embedding parameters, 10B tokens, Middle-Cycle MoR",
+     "metric": "validation NLL / average few-shot accuracy",
+     "values": {
+      "Vanilla (Nr=1, 12 layers)": "2.9678 / 39.48",
+      "MoR Nr=2 (1+10+1)": "2.9205 / 39.96",
+      "MoR Nr=3 (1+10+1)": "2.9111 / 40.10"
+     },
+     "ref": "Appendix C.2; Table 8"
+    },
+    {
+     "setting": "Fixed-depth Recursive Transformers on the 360M base, Nr=3, 10B tokens; four parameter-sharing schemes",
+     "metric": "validation NLL / average few-shot accuracy",
+     "values": {
+      "Vanilla, 32 layers, 315M": "2.8471 / 40.68",
+      "Cycle, 10 layers, 98M": "2.9363 / 39.15",
+      "Sequence, 10 layers, 98M": "3.0245 / 38.30",
+      "Middle-Cycle, 1+10+1, 118M": "2.8760 / 40.82",
+      "Middle-Sequence, 1+10+1, 118M": "2.9753 / 38.44"
+     },
+     "ref": "Appendix F; Table 10",
+     "note": {
+      "en": "Cycle reuses the whole block in order [(0,1,2),(0,1,2),...]; Sequence repeats each layer back to back; the Middle variants keep the first and last layers unique.",
+      "zh": "Cycle 按 [(0,1,2),(0,1,2),...] 的顺序重复整个块；Sequence 把每层连续重复；Middle 变体保留首尾两层独立。"
+     }
+    }
+   ],
+   "findings": [
+    {
+     "en": "In Table 9, weight sharing alone (fixed-depth recursion) has higher validation NLL than vanilla at every size and budget. MoR has lower NLL than vanilla at 2e18 and 5e18 from the 360M base up, and at 16.5e18 only at the 1.7B base; at 135M it stays above vanilla.",
+     "zh": "Table 9 中，只做权重共享（固定深度递归）在所有规模和预算下验证 NLL 都高于 vanilla。MoR 从 360M 基座起在 2e18 和 5e18 预算下 NLL 低于 vanilla，16.5e18 预算下只有 1.7B 基座低于 vanilla；135M 时始终高于 vanilla。",
+     "ref": "Section 3.2; Appendix D; Table 9"
+    },
+    {
+     "en": "At the 1.7B base with 68.5e18 FLOPs, vanilla averages 48.9 few-shot accuracy against 48.4 for the best MoR (expert, Nr=2); the authors say this might signal that the current MoR design is not suitable for scaling.",
+     "zh": "1.7B 基座、68.5e18 FLOPs 时，vanilla 的 few-shot 平均准确率为 48.9，最好的 MoR（expert，Nr=2）为 48.4；作者说这可能说明目前的 MoR 设计不适合扩展。",
+     "ref": "Appendix C.1; Table 7"
+    },
+    {
+     "en": "With unique parameters fixed at 252M (730M base, Nr=3), Middle-Cycle with 1+8+1 layers (26 effective) beats Cycle with 10 layers (30 effective), with NLL 2.7552 vs 2.7573 and average accuracy 42.32 vs 41.90.",
+     "zh": "唯一参数固定为 252M（730M 基座，Nr=3）时，1+8+1 层的 Middle-Cycle（26 个有效层）优于 10 层的 Cycle（30 个有效层），NLL 为 2.7552 对 2.7573，平均准确率为 42.32 对 41.90。",
+     "ref": "Appendix F; Table 11"
+    },
+    {
+     "en": "At the 135M base, Cycle is slightly ahead of Middle-Cycle at Nr=2 (NLL 3.0071 vs 3.0330), while Middle-Cycle leads at Nr=3 and at the 360M base for both depths. In up-training from SmolLM checkpoints, both Middle strategies do better than the others in all settings.",
+     "zh": "135M 基座、Nr=2 时 Cycle 略好于 Middle-Cycle（NLL 3.0071 对 3.0330）；Nr=3 时以及 360M 基座的两种深度下都是 Middle-Cycle 领先。从 SmolLM checkpoint 继续训练（up-training）时，两种 Middle 策略在所有设置下都优于其他策略。",
+     "ref": "Appendix F; Tables 10 and 12"
+    },
+    {
+     "en": "At Nr=3, expert-choice routing beats token-choice (42.6% vs 40.0% average accuracy in Table 3). In the 10B-token ablation, recursive KV sharing raises training NLL for expert-choice MoR (2.8667 to 2.8895) but lowers it for token-choice MoR (2.9358 to 2.9155).",
+     "zh": "Nr=3 时 expert-choice 路由优于 token-choice（Table 3 中平均准确率 42.6% 对 40.0%）。在 10B token 的消融中，recursive KV sharing 让 expert-choice MoR 的训练 NLL 升高（2.8667 到 2.8895），却让 token-choice MoR 的训练 NLL 降低（2.9358 到 2.9155）。",
+     "ref": "Section 3.1; Section 4.3; Tables 3 and 15"
+    },
+    {
+     "en": "With continuous depth-wise batching at the 360M scale, every MoR variant decodes faster than vanilla, and MoR-4 reaches up to a 2.06× speedup at the maximum batch size, with a slight drop in quality.",
+     "zh": "在 360M 规模下用 continuous depth-wise batching 解码，所有 MoR 变体都比 vanilla 快，MoR-4 在最大 batch size 下最高提速 2.06×，质量略有下降。",
+     "ref": "Section 3.3; Figure 4a"
+    },
+    {
+     "en": "Log-likelihood improves as the maximum recursion depth at inference is raised step by step up to the trained Nr (models with Nr=2, 3 and 4 at the 360M base); no run goes beyond the trained Nr.",
+     "zh": "推理时把最大递归深度逐步提高到训练时的 Nr，log-likelihood 随之提升（360M 基座，Nr=2、3、4 的模型）；没有实验超过训练时的 Nr。",
+     "ref": "Section 5.3; Figure 5c"
+    }
+   ],
+   "tldr": {
+    "en": "Routers give each token its own number of passes through a shared middle block, and each pass caches KV only for its active tokens; at equal training FLOPs MoR beats fixed-depth recursive baselines and often vanilla, with fewer parameters.",
+    "zh": "路由器给每个 token 分配穿过共享中段的遍数，每一遍只为仍在计算的 token 存 KV；同等训练 FLOPs 下，MoR 优于固定深度的递归基线，也常优于 vanilla，且参数更少。"
+   },
+   "quickread": {
+    "problem": {
+     "en": "Efficiency work usually targets either parameter sharing or adaptive computation. Recursive Transformers mostly apply one fixed depth to every token and keep a separate KV cache per depth, while early-exit methods need extra training stages and leave exited tokens without KV at deeper layers.",
+     "zh": "提效工作通常只做参数共享或自适应计算之一。递归 Transformer 大多给所有 token 同样的固定深度，每个深度各存一份 KV；early-exit 方法需要额外的训练阶段，而且提前退出的 token 在更深的层没有 KV。"
+    },
+    "method": {
+     "en": [
+      "Middle-Cycle sharing keeps the first and last layers unique and cycles one shared block of middle layers up to Nr times.",
+      "Lightweight routers trained from scratch give each token its own recursion depth. Expert-choice picks the top-k tokens at every step with hierarchical filtering and adds an auxiliary BCE loss so the choice can be made causally at inference; token-choice assigns the depth once and uses a balancing loss.",
+      "Recursion-wise caching stores KV at each step only for the tokens routed there and restricts attention to them; recursive KV sharing instead reuses the first step's KV at every step.",
+      "Vanilla, fixed-depth recursive and MoR models (135M-1.7B base sizes, FineWeb-Edu, 2K context) are compared at equal training FLOPs (2e18, 5e18, 16.5e18) and at equal tokens (20B)."
+     ],
+     "zh": [
+      "Middle-Cycle 共享：首尾两层独立，中间层组成一个共享块，最多循环 Nr 次。",
+      "从头训练的轻量路由器给每个 token 分配递归深度。expert-choice 每步按层级过滤选出 top-k token，并加辅助 BCE loss，使推理时能按因果方式做选择；token-choice 一开始就定好深度，并用负载均衡 loss。",
+      "recursion-wise caching 在每一步只为被路由到该步的 token 存 KV，注意力也只在这些 token 之间计算；recursive KV sharing 则在每一步都复用第一步的 KV。",
+      "在相同训练 FLOPs（2e18、5e18、16.5e18）和相同 token（20B）下比较 vanilla、固定深度递归和 MoR 模型（基座 135M-1.7B，FineWeb-Edu，2K 上下文）。"
+     ]
+    },
+    "caveats": {
+     "en": [
+      "Models go up to a 1.7B base (0.67B-0.87B unique non-embedding parameters for MoR) with 2K context, are trained only on FineWeb-Edu and are evaluated by NLL and six few-shot benchmarks; the authors leave models above 3B to future work (Section 7.1).",
+      "The main comparison fixes training FLOPs, not parameters or tokens; MoR has fewer unique parameters and sees more tokens (27B-31B against 20B in Table 3).",
+      "FLOPs are approximate forward-pass counts that leave out FlashAttention, normalization and non-linearities, and token-choice FLOPs assume perfect balancing (Appendix D).",
+      "At the 135M base, and at the 1.7B base with 68.5e18 FLOPs, vanilla beats MoR (Section 3.2; Appendix C.1).",
+      "Expert-choice top-k selection is non-causal during training; inference relies on an auxiliary loss to predict it, and the near-binary router outputs make top-k hard to change after training (Section 2.2.1; Section 7.1).",
+      "Throughput is measured only at the 360M scale, generating from an empty prefix, and excludes the time spent caching and updating KV (Appendix E).",
+      "Vanilla, recursive and MoR runs share one set of optimizer settings (learning rate 3e-3 in the released 360M configs); the paper reports no separate tuning."
+     ],
+     "zh": [
+      "模型最大到 1.7B 基座（MoR 的唯一非 embedding 参数为 0.67B-0.87B），2K 上下文，只用 FineWeb-Edu 训练，只评测 NLL 和六个 few-shot 基准；作者把 3B 以上的模型留作后续工作（Section 7.1）。",
+      "主要对比对齐了训练 FLOPs，没对齐参数和 token：MoR 唯一参数更少，看到的 token 更多（Table 3 中 27B-31B 对 20B）。",
+      "FLOPs 是近似的前向计算量，不含 FlashAttention、归一化和非线性运算，token-choice 的 FLOPs 按完美负载均衡估算（Appendix D）。",
+      "135M 基座时，以及 1.7B 基座、68.5e18 FLOPs 时，vanilla 都优于 MoR（Section 3.2；Appendix C.1）。",
+      "expert-choice 的 top-k 选择在训练时不满足因果性；推理时靠辅助 loss 来预测，而路由输出几乎是二值的，训练后很难再改 top-k（Section 2.2.1；Section 7.1）。",
+      "吞吐只在 360M 规模上测，从空前缀开始生成，不计缓存和更新 KV 的时间（Appendix E）。",
+      "vanilla、递归和 MoR 共用一套优化器设置（公开的 360M 配置里学习率都是 3e-3）；论文没有提到单独调参。"
+     ]
+    }
+   },
+   "reproducibility": {
+    "code": "available",
+    "weights": "partial",
+    "configs": "partial",
+    "data": "available"
+   },
+   "added": "2026-11-23",
+   "glyph": "first layer (1 layer) -> [shared block (10 layers)] x 1-3 per token, set by the router (Nr=3) -> last layer (1 layer); injection none; KV per-pass",
+   "card": {
+    "en": "https://raw.githubusercontent.com/sjy1203/awesome-loop/main/docs/en/2507.10524.md",
+    "zh": "https://raw.githubusercontent.com/sjy1203/awesome-loop/main/docs/zh/2507.10524.md"
+   }
+  },
+  {
+   "id": "2510.24824",
+   "tier": "deep",
+   "status": "draft",
+   "short": "PLT",
+   "title": "Parallel Loop Transformer for Efficient Test-Time Computation Scaling",
+   "date": "2025-10-28",
+   "venue": "arXiv",
+   "authors": [
+    "Bohong Wu",
+    "Mengzhao Chen",
+    "Xiang Luo",
+    "Shen Yan",
+    "Qifan Yu",
+    "Fan Xia",
+    "Tianqi Zhang",
+    "Hongrui Zhan",
+    "Zheng Zhong",
+    "Xun Zhou",
+    "Siyuan Qiao",
+    "Xingyan Bin"
+   ],
+   "orgs": [
+    "ByteDance Seed"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2510.24824"
+   },
+   "category": "systems",
+   "facets": {
+    "placement": "shifted-parallel",
+    "sharing": "full",
+    "depth_train": "fixed",
+    "depth_test": "fixed",
+    "injection": "additive",
+    "kv": "first-pass",
+    "gradient": "n/a",
+    "origin": "scratch",
+    "ffn": "moe",
+    "attention": "hybrid"
+   },
+   "loop": {
+    "segments": [
+     {
+      "role": "core",
+      "layers": "100%",
+      "label": "all layers, every loop",
+      "passes": {
+       "train": "2 or 3 (PLT-2 / PLT-3)",
+       "test": "2 or 3, same as training"
+      }
+     }
+    ],
+    "note": {
+     "en": "Each loop runs the whole stack with tied weights. Before every non-first loop, the previous loop's last-layer states are shifted right by one token and added to the token embeddings, so at decoding time loop l of token i runs in the same forward pass as loop l+1 of token i-1. Non-first loops attend globally to the first loop's KV and locally to their own KV through SWA (w=64), mixed by a head-wise sigmoid gate. The in-house Seed-MoE layer count is not disclosed; the open-source OLMo/OLMoE runs use 16 layers (Appendix A.2.1).",
+     "zh": "每一遍都跑整个模型，权重共享。每个非首遍之前，把上一遍最后一层的输出右移一个 token，再加上 token embedding，所以解码时 token i 的第 l 遍和 token i-1 的第 l+1 遍在同一次前向里执行。非首遍对首遍的 KV 做全局注意力，对自己的 KV 做窗口 w=64 的 SWA，两者用按 head 的 sigmoid 门控混合。内部 Seed-MoE 的层数未公开；开源 OLMo/OLMoE 实验用 16 层（Appendix A.2.1）。"
+    }
+   },
+   "budget": {
+    "baseline": {
+     "en": "Unlooped in-house Seed-MoE 680M/13B and the same model looped twice without CLP; CLP, KV sharing and G-SWA are then added one at a time.",
+     "zh": "不循环的内部 Seed-MoE 680M/13B，以及不带 CLP、直接循环两遍的同一模型；之后把 CLP、KV 共享和 G-SWA 逐个加上去对比。"
+    },
+    "matched": [
+     "params",
+     "active-params",
+     "tokens"
+    ],
+    "not_matched": [
+     "flops",
+     "depth",
+     "kv"
+    ],
+    "baseline_tuned": "unknown",
+    "headline": {
+     "en": "On a 680M/13B MoE trained on 150B tokens, PLT-2 reaches the vanilla two-loop model's average accuracy of 39.7 (34.7 without loops) at 4.9 ms decoding latency and 284M KV cache (batch size 4), against 9.4 ms and 560M for the vanilla two-loop model and 4.8 ms and 280M for the unlooped model.",
+     "zh": "在 150B token 训练的 680M/13B MoE 上，PLT-2 的平均精度与普通两遍循环模型相同，都是 39.7（不循环为 34.7）； batch size 4 时 PLT-2 解码延迟 4.9 ms、KV 284M，普通两遍循环是 9.4 ms、560M，不循环模型是 4.8 ms、280M。"
+    },
+    "ref": "Table 2; Section 3.1.2"
+   },
+   "results": [
+    {
+     "setting": "In-house Seed-MoE, 680M activated / 13B total, 150B tokens; latency and KV cache at batch size 4",
+     "metric": "Avg. accuracy / decoding latency (ms) / KV cache",
+     "values": {
+      "(1)Seed-MoE 680M/13B": "34.7 / 4.8 / 280M",
+      "(2)+loop-2": "39.7 / 9.4 / 560M",
+      "(3)+loop-2+CLP": "39.6 / 5.9 / 560M",
+      "(4)+loop-2+CLP+KV share": "36.2 / 4.8 / 280M",
+      "(5)+loop-2+CLP+KV share+G-SWA(PLT-2)": "39.7 / 4.9 / 284M",
+      "(6)+loop-3+CLP+KV share+G-SWA(PLT-3)": "40.8 / 5.0 / 287M"
+     },
+     "ref": "Table 2",
+     "note": {
+      "en": "The Section 3.1.2 text gives PLT-3's latency as 4.8→4.9 ms; Table 2 prints 5.0 ms.",
+      "zh": "Section 3.1.2 正文写 PLT-3 的延迟是 4.8→4.9 ms，Table 2 印的是 5.0 ms。"
+     }
+    },
+    {
+     "setting": "Same models as Table 2; FP8 attention, W4A8 linear layers, 5000-token prefill, one GPU, mean of five runs that each decode 256 tokens",
+     "metric": "per-token decoding latency in ms (ratio to Seed-MoE), bs=4 / bs=64",
+     "values": {
+      "(1)Seed-MoE 680M/13B": "4.8(1.00×) / 10.9(1.00×)",
+      "(2)+loop-2": "9.4(1.96×) / 21.4(1.96×)",
+      "(3)+loop-2+CLP": "5.9(1.23×) / 16.4(1.50×)",
+      "(4)+loop-2+CLP+KV share": "4.8(1.00×) / 11.1(1.02×)",
+      "(5)+loop-2+CLP+KV share+G-SWA(PLT-2)": "4.9(1.02×) / 11.3(1.04×)"
+     },
+     "ref": "Table 3; Section 3.1.1"
+    },
+    {
+     "setting": "In-house MoE, baseline trained on 1T tokens; PLT-2 uses two-thirds of the baseline's layers",
+     "metric": "Avg. accuracy",
+     "values": {
+      "Seed-MoE (2.5B/60B)": 62.1,
+      "PLT-2 (1.7B/40B)": 62.6
+     },
+     "ref": "Table 4; Section 3.2",
+     "note": {
+      "en": "Section 3.2 reports about 30% lower decoding latency for PLT-2 across batch sizes 4 to 64 (Figure 5) and a KV cache roughly two-thirds of the baseline's.",
+      "zh": "Section 3.2 称 PLT-2 在 batch size 4 到 64 下解码延迟约低 30%（Figure 5），KV 约为基线的三分之二。"
+     }
+    },
+    {
+     "setting": "OLMo-based 1.2B dense and OLMoE-based 1B/7B MoE, 16 layers, 400B tokens, L=2",
+     "metric": "Loss / Avg. accuracy",
+     "values": {
+      "Vanilla Dense": "2.577 / 55.4",
+      "Dense + loop-2": "2.532 / 57.6",
+      "Dense + PLT-2": "2.537 / 57.4",
+      "Vanilla MoE": "2.342 / 57.8",
+      "MoE + loop-2": "2.302 / 59.6",
+      "MoE + PLT-2": "2.280 / 60.0"
+     },
+     "ref": "Table 5; Appendix A.2.1"
+    },
+    {
+     "setting": "OLMo-based dense ablation (hidden 1536, GQA with 16 query and 4 KV heads), 100B tokens, latency on one H800",
+     "metric": "Loss / Avg. accuracy / latency in ms at bs=1 / at bs=16",
+     "values": {
+      "(1) Vanilla Dense": "2.880 / 46.6 / 1.68 / 2.49",
+      "(2) +loop-2": "2.856 / 46.7 / 2.66 / 3.92",
+      "(3) +loop-2+CLP": "2.840 / 47.8 / 1.73 / 3.23",
+      "(4) +loop-2+CLP+KVshare": "2.858 / 46.9 / 1.73 / 2.69",
+      "(5) +loop-2+CLP+KVshare+G-SWA": "2.844 / 47.8 / 1.73 / 2.70"
+     },
+     "ref": "Table 6; Appendix A.3.1"
+    }
+   ],
+   "findings": [
+    {
+     "en": "Adding CLP to the two-loop model leaves average accuracy nearly unchanged (39.7 to 39.6) and cuts decoding latency from 9.4 ms to 5.9 ms, while the KV cache stays at 560M.",
+     "zh": "两遍循环模型加上 CLP 后，平均精度基本不变（39.7 到 39.6），解码延迟从 9.4 ms 降到 5.9 ms，KV 仍是 560M。",
+     "ref": "Table 2; Section 3.1.2"
+    },
+    {
+     "en": "Sharing the first loop's KV halves the KV cache (560M to 280M) but lowers average accuracy from 39.6 to 36.2; adding G-SWA with a 64-token window brings it back to 39.7 at 284M.",
+     "zh": "共享首遍 KV 让 KV 减半（560M 到 280M），但平均精度从 39.6 降到 36.2；再加窗口 64 的 G-SWA，精度回到 39.7，KV 为 284M。",
+     "ref": "Table 2; Section 3.1.2"
+    },
+    {
+     "en": "With the same parameters, three loops beat two, with average accuracy 40.8 for PLT-3 against 39.7 for PLT-2; Table 2 lists 5.0 vs 4.9 ms latency and 287M vs 284M KV.",
+     "zh": "参数相同时三遍好于两遍，PLT-3 平均精度 40.8，PLT-2 为 39.7；Table 2 中两者延迟为 5.0 和 4.9 ms，KV 为 287M 和 284M。",
+     "ref": "Table 2; Section 3.1.2"
+    },
+    {
+     "en": "At batch sizes 32 and 64, PLT-2 cuts per-token decoding latency by 47% relative to the vanilla two-loop model and runs at 1.06× and 1.04× the latency of the unlooped model.",
+     "zh": "batch size 为 32 和 64 时，PLT-2 的每 token 解码延迟比普通两遍循环低 47%，分别是不循环模型的 1.06 倍和 1.04 倍。",
+     "ref": "Table 3; Section 3.1.3"
+    },
+    {
+     "en": "A PLT-2 with two-thirds of the baseline's layers (1.7B/40B) averages 62.6 against 62.1 for the 2.5B/60B Seed-MoE, with about 30% lower decoding latency.",
+     "zh": "层数为基线三分之二的 PLT-2（1.7B/40B）平均 62.6，2.5B/60B 的 Seed-MoE 为 62.1，PLT-2 解码延迟约低 30%。",
+     "ref": "Table 4; Section 3.2; Figure 5"
+    }
+   ],
+   "tldr": {
+    "en": "Run loop l of token i in the same forward pass as loop l+1 of token i-1, let later loops reuse the first loop's KV plus a gated SWA, and a looped model decodes at close to unlooped latency and KV.",
+    "zh": "让 token i 的第 l 遍和 token i-1 的第 l+1 遍在同一次前向里执行，后续遍复用首遍 KV 并加门控 SWA，循环模型的解码延迟和 KV 接近不循环模型。"
+   },
+   "quickread": {
+    "problem": {
+     "en": "In a vanilla looped Transformer the loops run one after another, so per-token compute, decoding latency and KV cache all grow linearly with the number of loops.",
+     "zh": "普通循环 Transformer 的各遍依次串行执行，每 token 计算、解码延迟和 KV 都随遍数线性增长。"
+    },
+    "method": {
+     "en": [
+      "Cross-loop parallelism (CLP) shifts the previous loop's last-layer states right by one token and adds the embeddings before each non-first loop, so loop l of token i, loop l+1 of token i-1 and so on are decoded as one micro-batch in a single forward pass.",
+      "Non-first loops keep their own queries but attend globally to the first loop's KV, so only one global KV cache is stored.",
+      "Gated SWA (G-SWA) lets non-first loops also attend to their own KV within a 64-token window and mixes local and global outputs through a head-wise sigmoid gate; these loops cache only the most recent w KV entries."
+     ],
+     "zh": [
+      "跨遍并行（CLP）在每个非首遍之前把上一遍最后一层的输出右移一个 token 再加上 embedding，解码时 token i 的第 l 遍、token i-1 的第 l+1 遍等组成一个 micro-batch，在一次前向里算完。",
+      "非首遍保留自己的 query，但对首遍的 KV 做全局注意力，所以只需存一份全局 KV。",
+      "门控 SWA（G-SWA）让非首遍再在 64 token 的窗口内看自己的 KV，局部和全局输出用按 head 的 sigmoid 门控混合；这些遍只缓存最近 w 个 KV。"
+     ]
+    },
+    "caveats": {
+     "en": [
+      "The main results use in-house Seed-MoE models whose data and other training details are withheld; the open-source OLMo/OLMoE runs (1.2B dense and 1B/7B MoE at 400B tokens, plus a 100B-token dense ablation) test only L=2.",
+      "Each model is trained and evaluated at one fixed loop count (L=2 or 3); the paper does not report running a different number of loops at inference.",
+      "Parameters and training tokens are matched but compute is not; an L-loop PLT spends L times the per-token compute of the baseline (Table 1), and its latency advantage rests on decoding being memory-bound.",
+      "CLP parallelizes decoding only; training stays serial along the loop dimension (Figure 4).",
+      "Latency is per-token decoding latency on one GPU with FP8 attention, W4A8 linear layers and a 5000-token prefill; the latency and KV columns of Table 2 are at batch size 4.",
+      "Hyperparameters of the in-house runs are not given, so the paper does not say whether the baseline was tuned separately."
+     ],
+     "zh": [
+      "主要结果来自内部 Seed-MoE 模型，数据和其他训练细节未公开；开源的 OLMo/OLMoE 实验（400B token 的 1.2B dense 和 1B/7B MoE，以及 100B token 的 dense 消融）只测了 L=2。",
+      "每个模型训练和评测都用同一个固定遍数（L=2 或 3）；论文没有报告推理时换用其他遍数。",
+      "对齐了参数和训练 token，没对齐算力；L 遍的 PLT 每 token 计算是基线的 L 倍（Table 1），延迟优势依赖解码受显存带宽限制。",
+      "CLP 只让解码并行；训练在遍数维度上仍是串行（Figure 4）。",
+      "延迟是单卡上的每 token 解码延迟，attention 用 FP8、线性层用 W4A8，prefill 长度 5000；Table 2 的延迟和 KV 列是 batch size 4 下的值。",
+      "内部实验的超参没有给出，论文没说基线是否单独调过。"
+     ]
+    }
+   },
+   "reproducibility": {
+    "code": "none",
+    "weights": "none",
+    "configs": "partial",
+    "data": "none"
+   },
+   "added": "2026-11-23",
+   "glyph": "[all layers, every loop (100% of layers)] x 2 or 3 (PLT-2 / PLT-3); injection additive; KV first-pass",
+   "card": {
+    "en": "https://raw.githubusercontent.com/sjy1203/awesome-loop/main/docs/en/2510.24824.md",
+    "zh": "https://raw.githubusercontent.com/sjy1203/awesome-loop/main/docs/zh/2510.24824.md"
+   }
+  },
+  {
+   "id": "2510.25741",
+   "tier": "deep",
+   "status": "draft",
+   "short": "Ouro (LoopLM)",
+   "title": "Scaling Latent Reasoning via Looped Language Models",
+   "date": "2025-10-29",
+   "venue": "arXiv",
+   "authors": [
+    "Rui-Jie Zhu",
+    "Zixuan Wang",
+    "Kai Hua",
+    "Tianyu Zhang",
+    "Ziniu Li",
+    "Haoran Que",
+    "Boyi Wei",
+    "Zixin Wen",
+    "Fan Yin",
+    "He Xing",
+    "Lu Li",
+    "Jiajun Shi",
+    "Kaijing Ma",
+    "Shanda Li",
+    "Taylor Kergan",
+    "Andrew Smith",
+    "Xingwei Qu",
+    "Mude Hui",
+    "Bohong Wu",
+    "Qiyang Min",
+    "Hongzhi Huang",
+    "Xun Zhou",
+    "Wei Ye",
+    "Jiaheng Liu",
+    "Jian Yang",
+    "Yunfeng Shi",
+    "Chenghua Lin",
+    "Enduo Zhao",
+    "Tianle Cai",
+    "Ge Zhang",
+    "Wenhao Huang",
+    "Yoshua Bengio",
+    "Jason Eshraghian"
+   ],
+   "orgs": [
+    "ByteDance Seed",
+    "UC Santa Cruz",
+    "Princeton University",
+    "Mila - Quebec AI Institute",
+    "University of Montreal",
+    "Peking University",
+    "Carnegie Mellon University",
+    "University of Pennsylvania",
+    "Conscium",
+    "University of Manchester",
+    "M-A-P"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2510.25741",
+    "weights": [
+     "https://huggingface.co/ByteDance/Ouro-1.4B",
+     "https://huggingface.co/ByteDance/Ouro-1.4B-Thinking",
+     "https://huggingface.co/ByteDance/Ouro-2.6B",
+     "https://huggingface.co/ByteDance/Ouro-2.6B-Thinking"
+    ],
+    "project": "https://ouro-llm.github.io"
+   },
+   "category": "depth",
+   "facets": {
+    "placement": "whole-stack",
+    "sharing": "full",
+    "depth_train": "adaptive",
+    "depth_test": "adaptive",
+    "injection": "none",
+    "kv": "per-pass",
+    "gradient": "full-bptt",
+    "origin": "scratch",
+    "ffn": "dense",
+    "attention": "full"
+   },
+   "loop": {
+    "segments": [
+     {
+      "role": "core",
+      "layers": 24,
+      "label": "whole stack (2.6B: 48 layers)",
+      "passes": {
+       "train": "8 in Stage 1a, then 4",
+       "test": "4 by default; the exit gate can stop earlier"
+      }
+     }
+    ],
+    "note": {
+     "en": "The whole decoder stack loops: Ouro 1.4B repeats its 24 layers and Ouro 2.6B its 48 layers, which were upcycled from the 24 layers by layer duplication; embedding and LM head sit outside the loop. The embedding enters only before the first step, and each step takes the previous step's output. After every step an LM head and an exit gate read the hidden state. Training always runs T_max steps and weights each step's loss by the learned exit distribution. Each step keeps its own KV cache.",
+     "zh": "整个 decoder 层栈循环：Ouro 1.4B 重复全部 24 层，Ouro 2.6B 重复 48 层（由这 24 层复制 upcycle 而来）；embedding 和 LM head 在循环外。embedding 只在第一步之前输入，之后每一步接上一步的输出。每一步之后由 LM head 和退出门读取隐状态。训练时总是跑满 T_max 步，按学到的退出分布给各步 loss 加权。每一步各存一份 KV。"
+    }
+   },
+   "budget": {
+    "baseline": {
+     "en": "Public dense base models run through the same evaluation pipeline (Gemma3, Llama3.1/3.2, Qwen2.5 and Qwen3, 1B to 12B); the Thinking models are compared with Qwen3 and DeepSeek-Distill-Qwen.",
+     "zh": "用同一评测流程测试的公开 dense 基座模型（Gemma3、Llama3.1/3.2、Qwen2.5、Qwen3，1B 到 12B）；Thinking 模型对比 Qwen3 和 DeepSeek-Distill-Qwen。"
+    },
+    "matched": [],
+    "not_matched": [
+     "params",
+     "tokens"
+    ],
+    "baseline_tuned": "unknown",
+    "headline": {
+     "en": "Ouro 1.4B R4 (7.7T tokens) matches or beats the 4B Qwen3-Base (36T tokens) on BBH (71.02 vs 70.95), GSM8K (78.92 vs 72.86) and MATH500 (82.40 vs 59.60); Ouro 2.6B R4 scores 55.73 on MMLU-Pro, 80.46 on BBH and 90.85 on MATH500, against 53.72, 77.65 and 62.30 for the 8B Qwen3-Base.",
+     "zh": "Ouro 1.4B R4（7.7T token）在 BBH（71.02 对 70.95）、GSM8K（78.92 对 72.86）和 MATH500（82.40 对 59.60）上持平或超过 4B 的 Qwen3-Base（36T token）；Ouro 2.6B R4 的 MMLU-Pro、BBH、MATH500 分别为 55.73、80.46、90.85，8B 的 Qwen3-Base 为 53.72、77.65、62.30。"
+    },
+    "ref": "Section 5.1; Tables 7-8"
+   },
+   "results": [
+    {
+     "setting": "Base models; Ouro runs 4 recurrent steps (R4); all models use the same evaluation pipeline (Appendix C.1)",
+     "metric": "MMLU / MMLU-Pro / BBH / GSM8K / MATH500",
+     "values": {
+      "Ouro 1.4B R4 (1.4B params, 7.7T tokens)": "67.35 / 48.62 / 71.02 / 78.92 / 82.40",
+      "Qwen3 1.7B (1.7B, 36T)": "62.46 / 37.27 / 53.51 / 70.28 / 25.80",
+      "Gemma3 4B (4.0B, 4T)": "58.37 / 34.61 / 66.32 / 68.69 / 68.60",
+      "Qwen3 4B (4.0B, 36T)": "73.19 / 51.40 / 70.95 / 72.86 / 59.60"
+     },
+     "ref": "Table 7"
+    },
+    {
+     "setting": "Base models; Ouro runs 4 recurrent steps (R4)",
+     "metric": "MMLU / MMLU-Pro / BBH / GSM8K / MATH500",
+     "values": {
+      "Ouro 2.6B R4 (2.6B params, 7.7T tokens)": "74.60 / 55.73 / 80.46 / 81.58 / 90.85",
+      "Qwen3 8B (8.0B, 36T)": "76.63 / 53.72 / 77.65 / 83.09 / 62.30",
+      "Gemma3 12B (12.0B, 12T)": "72.14 / 49.21 / 78.41 / 77.18 / 83.20"
+     },
+     "ref": "Table 8"
+    },
+    {
+     "setting": "Ouro base models trained with 4 steps, evaluated at T=1-8 (T=5-8 is extrapolation)",
+     "metric": "MMLU (5-shot avg), Ouro 1.4B / Ouro 2.6B",
+     "values": {
+      "T=1": "41.21 / 51.55",
+      "T=2": "60.43 / 67.63",
+      "T=3": "66.71 / 73.57",
+      "T=4": "67.45 / 74.60",
+      "T=5": "66.64 / 74.43",
+      "T=6": "65.77 / 73.79",
+      "T=7": "65.28 / 72.92",
+      "T=8": "64.49 / 72.24"
+     },
+     "ref": "Tables 10-11"
+    },
+    {
+     "setting": "Ouro-Thinking models trained with 4 steps, evaluated at T=1-8",
+     "metric": "AIME 2024, 1.4B-Thinking / 2.6B-Thinking",
+     "values": {
+      "T=1": "0.00 / 3.00",
+      "T=2": "37.33 / 52.00",
+      "T=3": "62.33 / 70.33",
+      "T=4": "65.00 / 64.70",
+      "T=5": "60.67 / 57.00",
+      "T=6": "50.67 / 56.33",
+      "T=7": "42.33 / 49.67",
+      "T=8": "38.67 / 39.00"
+     },
+     "ref": "Tables 12-13"
+    },
+    {
+     "setting": "Ouro 1.4B, KV cache reuse during decoding only; prefill keeps all four caches",
+     "metric": "GSM8K / MATH-500 / memory reduction",
+     "values": {
+      "Full (4× cache)": "78.92 / 82.40 / 1.00×",
+      "First-step only": "18.73 / 8.43 / 4.00×",
+      "Last-step only": "78.85 / 80.40 / 4.00×",
+      "Averaged": "78.73 / 78.52 / 4.00×"
+     },
+     "ref": "Section 5.4.2; Table 14",
+     "note": {
+      "en": "The paper does not name the model size in Table 14; the project page labels the same table Ouro-1.4B.",
+      "zh": "论文 Table 14 没写模型规模；项目页把同一张表标为 Ouro-1.4B。"
+     }
+    },
+    {
+     "setting": "Mano task (modular arithmetic answered without intermediate steps); k⊗n is k layers looped n times, and 12⊗1 is the iso-FLOP baseline",
+     "metric": "exact-match accuracy at maximum expression length L=10 / 16 / 24",
+     "values": {
+      "Base 12⊗1": "93.6 / 94.4 / 34.8",
+      "Base 2⊗1": "21.5 / 8.4 / 7.5",
+      "Loop 2⊗6": "98.1 / 96.3 / 78.0",
+      "Base 3⊗1": "75.4 / 29.8 / 11.0",
+      "Loop 3⊗4": "97.9 / 95.8 / 92.2",
+      "Base 6⊗1": "84.7 / 59.5 / 20.0",
+      "Loop 6⊗2": "93.4 / 88.5 / 35.1"
+     },
+     "ref": "Section 6.2; Figure 6 (right)",
+     "note": {
+      "en": "Each setting reports the best of 3 random seeds (Appendix B.2).",
+      "zh": "每个设置报告 3 个随机种子中最好的结果（Appendix B.2）。"
+     }
+    }
+   ],
+   "findings": [
+    {
+     "en": "Training with 8 recurrent steps in Stage 1a led to loss spikes and gradient oscillations, so the authors cut to 4 steps from Stage 1b on.",
+     "zh": "Stage 1a 用 8 个循环步训练时出现 loss 尖峰和梯度震荡，作者从 Stage 1b 起改为 4 步。",
+     "ref": "Section 4.3"
+    },
+    {
+     "en": "The trained depth is not always best for the Thinking models. The 1.4B model scores higher at T=5 than at T=4 on OlympiadBench (72.30 vs 71.55) and SuperGPQA (48.73 vs 47.37), and the 2.6B model peaks at T=3 on AIME 2024 (70.33, against 64.70 at T=4).",
+     "zh": "Thinking 模型并不总在训练深度上最好：1.4B 在 OlympiadBench（72.30 对 71.55）和 SuperGPQA（48.73 对 47.37）上 T=5 高于 T=4；2.6B 在 AIME 2024 上 T=3 最高（70.33，T=4 为 64.70）。",
+     "ref": "Tables 12-13"
+    },
+    {
+     "en": "Safety on HEx-PHI improves as the number of recurrent steps grows (tested 1-8), including the extrapolated steps 5-8. At 4 steps the harmful rate is 0.009 for Ouro 1.4B Thinking and 0.003 for Ouro 2.6B Thinking (Qwen3-4B-Thinking 0.009).",
+     "zh": "HEx-PHI 上的安全性随循环步数增加而改善（测了 1-8 步），外推的第 5-8 步也是如此。4 步时 Ouro 1.4B Thinking 和 2.6B Thinking 的有害率分别为 0.009 和 0.003（Qwen3-4B-Thinking 为 0.009）。",
+     "ref": "Section 7.1; Figure 8a"
+    },
+    {
+     "en": "On MMLU, the gate with Stage II exit training reaches 66% accuracy at an average of 2.5 exit rounds, against about 64% for the gate from pre-training alone; fixed-depth exit gives 40% at 1 round and 67.35% at 4.",
+     "zh": "在 MMLU 上，经过 Stage II 退出训练的门在平均 2.5 步退出时准确率为 66%，只经过预训练的门约为 64%；固定深度退出在 1 步时为 40%，4 步时为 67.35%。",
+     "ref": "Section 5.4.1; Figure 5"
+    },
+    {
+     "en": "Reusing KV caches during prefill costs more than 10 points on GSM8K, so all four steps keep their own KV during prefill.",
+     "zh": "prefill 阶段复用 KV 会让 GSM8K 下降 10 分以上，所以 prefill 时四步都各存 KV。",
+     "ref": "Section 5.4.2"
+    },
+    {
+     "en": "On the synthetic Capo task, looped (4 steps) and non-looped models with the same parameter count both store about 2 bits of knowledge per parameter.",
+     "zh": "在合成的 Capo 任务上，参数量相同的循环模型（4 步）和不循环模型都存下约 2 bit/参数的知识。",
+     "ref": "Section 6.1; Figure 6 (left)"
+    },
+    {
+     "en": "In 20B-token FineWeb-Edu runs at 53M-1.36B, a Standard model with unshared layers and the same executed depth scores higher than LoopLM in every case, and the gap grows with the step count (in Table 18 the 1.3B gap is 0.017 at 2 steps and 0.025 at 4).",
+     "zh": "在 53M-1.36B、20B token FineWeb-Edu 的实验中，执行层数相同但各层不共享的 Standard 模型在所有设置下都高于 LoopLM，差距随步数增大（Table 18 中 1.3B 的差距在 2 步时为 0.017，4 步时为 0.025）。",
+     "ref": "Appendix D.1; Table 18"
+    }
+   ],
+   "tldr": {
+    "en": "Pre-train a weight-tied layer stack that repeats 4 times, with a learned exit gate, on 7.7T tokens; the authors report that the 1.4B and 2.6B models match dense models of up to 12B parameters.",
+    "zh": "在 7.7T token 上预训练共享权重、重复 4 遍的层栈，并学习退出门；作者称 1.4B 和 2.6B 模型可比肩最大 12B 参数的 dense 模型。"
+   },
+   "quickread": {
+    "problem": {
+     "en": "LLMs mostly learn to reason through explicit chain-of-thought added after pre-training. The paper asks whether looping shared layers in latent space, built into pre-training at multi-trillion-token scale, scales better than non-recursive Transformers.",
+     "zh": "LLM 主要靠预训练之后加入的显式 CoT 来推理。论文研究把共享层的隐空间循环放进数万亿 token 规模的预训练，是否比不循环的 Transformer 扩展得更好。"
+    },
+    "method": {
+     "en": [
+      "Repeat the whole decoder stack (24 layers for 1.4B, 48 for 2.6B) with shared weights; after every step an LM head computes a loss and an exit gate predicts the probability of stopping.",
+      "Stage I minimizes the per-step losses weighted by the gate's exit distribution minus an entropy bonus, which equals a KL term toward a uniform prior over exit steps up to a constant.",
+      "Stage II freezes the LM and trains only the gate to continue while the next step still lowers the loss by more than a threshold; at inference the model exits at the first step whose cumulative exit probability reaches q.",
+      "Pre-train on 7.7T tokens in four stages (8 steps in Stage 1a, then 4; the 2.6B model is upcycled from the 24-layer model), then run reasoning SFT on about 8.3M examples for the Thinking models."
+     ],
+     "zh": [
+      "整个 decoder 层栈共享权重重复执行（1.4B 为 24 层，2.6B 为 48 层）；每一步之后 LM head 计算 loss，退出门预测停止的概率。",
+      "Stage I 最小化按退出分布加权的各步 loss 再减去熵奖励，除一个常数外等价于朝均匀先验的 KL 项。",
+      "Stage II 冻结 LM，只训练退出门：下一步还能让 loss 下降超过阈值就继续；推理时在累计退出概率首次达到 q 的那一步退出。",
+      "分四个阶段预训练 7.7T token（Stage 1a 用 8 步，之后用 4 步；2.6B 由 24 层模型 upcycle 而来），再用约 8.3M 条数据做推理 SFT 得到 Thinking 模型。"
+     ]
+    },
+    "caveats": {
+     "en": [
+      "The headline comparisons (Tables 7-9) are against separately trained public models that differ in parameters and training tokens (2T-36T); no budget is matched, and Ouro runs its stack 4 times per token.",
+      "The models are trained at 4 steps; base benchmark scores are strongest around T=4 and degrade moderately at T=5-8, and the Thinking models degrade at T=6-8 (Tables 10-13).",
+      "By default every step keeps its own KV cache (4× memory at 4 steps); last-step-only reuse was tested for decoding only, because prefill needs all four caches (Section 5.4.2).",
+      "Reasoning results come from an in-house harness with an LLM judge and temperature 1.0, top_p 0.7 for every model (Section 5.2; Table 17).",
+      "Controlled looped-versus-unlooped studies are small; they use synthetic tasks (Capo with 1M-40M GPT-2-style models, Mano, multi-hop QA) and 53M-1.36B models trained on 20B FineWeb-Edu tokens (Section 6; Appendix D).",
+      "The authors did not run exhaustive learning-rate sweeps (Section 4.3), and RLVR with DAPO and GRPO did not improve on the SFT checkpoint (Section 4.5)."
+     ],
+     "zh": [
+      "主要对比（Tables 7-9）是与独立训练的公开模型比，参数量和训练 token（2T-36T）都不同，没有对齐任何预算；Ouro 每个 token 要把层栈跑 4 遍。",
+      "模型按 4 步训练；基座模型的 benchmark 分数在 T=4 附近最好，T=5-8 小幅下降，Thinking 模型在 T=6-8 下降（Tables 10-13）。",
+      "默认每一步各存一份 KV（4 步即 4× 显存）；只存末步 KV 的做法只在 decoding 测过，因为 prefill 需要全部四份 KV（Section 5.4.2）。",
+      "推理类结果来自内部评测框架，用 LLM 评判，所有模型都用 temperature 1.0、top_p 0.7（Section 5.2；Table 17）。",
+      "循环与不循环的受控对比规模都很小：合成任务（Capo 用 1M-40M 的 GPT-2 式模型，Mano，多跳问答）以及在 20B FineWeb-Edu token 上训练的 53M-1.36B 模型（Section 6；Appendix D）。",
+      "作者没有做全面的学习率搜索（Section 4.3）；用 DAPO 和 GRPO 做 RLVR 也没有超过 SFT checkpoint（Section 4.5）。"
+     ]
+    }
+   },
+   "reproducibility": {
+    "code": "partial",
+    "weights": "available",
+    "configs": "partial",
+    "data": "partial"
+   },
+   "added": "2026-11-23",
+   "glyph": "[whole stack (2.6B: 48 layers) (24 layers)] x 8 in Stage 1a, then 4; injection none; KV per-pass",
+   "card": {
+    "en": "https://raw.githubusercontent.com/sjy1203/awesome-loop/main/docs/en/2510.25741.md",
+    "zh": "https://raw.githubusercontent.com/sjy1203/awesome-loop/main/docs/zh/2510.25741.md"
+   }
+  },
+  {
+   "id": "2511.07384",
+   "tier": "deep",
+   "status": "draft",
+   "short": "Retrofitted Recurrence",
+   "title": "Teaching Pretrained Language Models to Think Deeper with Retrofitted Recurrence",
+   "date": "2025-11-10",
+   "venue": "arXiv",
+   "authors": [
+    "Sean McLeish",
+    "Ang Li",
+    "John Kirchenbauer",
+    "Dayal Singh Kalra",
+    "Brian R. Bartoldson",
+    "Bhavya Kailkhura",
+    "Avi Schwarzschild",
+    "Jonas Geiping",
+    "Tom Goldstein",
+    "Micah Goldblum"
+   ],
+   "orgs": [
+    "University of Maryland",
+    "New York University",
+    "Lawrence Livermore National Laboratory",
+    "University of North Carolina",
+    "ELLIS Institute Tübingen",
+    "Max Planck Institute for Intelligent Systems",
+    "Tübingen AI Center",
+    "Columbia University"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2511.07384",
+    "code": "https://github.com/mcleish7/retrofitting-recurrence",
+    "weights": [
+     "https://huggingface.co/collections/tomg-group-umd/retrofitting-recurrence"
+    ]
+   },
+   "category": "training",
+   "facets": {
+    "placement": "prelude-core-coda",
+    "sharing": "full",
+    "depth_train": "curriculum",
+    "depth_test": "extrapolate",
+    "injection": "concat",
+    "kv": "n/a",
+    "gradient": "truncated",
+    "origin": "retrofit",
+    "ffn": "dense",
+    "attention": "full"
+   },
+   "loop": {
+    "segments": [
+     {
+      "role": "prelude",
+      "layers": 4,
+      "label": "L0-3"
+     },
+     {
+      "role": "core",
+      "layers": 8,
+      "label": "L10-17",
+      "passes": {
+       "train": "Poisson-Lognormal, mean ramped to 4, 8, 16 or 32",
+       "test": "1-32"
+      },
+      "bptt": "last 8"
+     },
+     {
+      "role": "coda",
+      "layers": 4,
+      "label": "L18-21"
+     }
+    ],
+    "note": {
+     "en": "Shown is TinyLlama (4,8,4); labels are layer indices in the 22-layer TinyLlama-1.1B-3T parent, whose layers 4-9 are dropped. OLMo-2-0425-1B and Llama-3.2-1B use (4,6,4) with layers L0-3, L6-11 and L12-15, dropping L4-5. Sections 4.1-4.2 use a (2,4,2) model built from Llama-3.2-1B. The recurrence count is sampled from a Poisson-Lognormal distribution whose mean follows the curriculum, so depth is both sampled and scheduled.",
+     "zh": "图示为 TinyLlama (4,8,4)；标签是 22 层父模型 TinyLlama-1.1B-3T 中的层号，第 4-9 层被删掉。OLMo-2-0425-1B 和 Llama-3.2-1B 用 (4,6,4)，取 L0-3、L6-11、L12-15，删掉 L4-5。Section 4.1-4.2 用的是由 Llama-3.2-1B 构造的 (2,4,2)。递归次数从 Poisson-Lognormal 分布采样，分布均值按课程变化，所以深度既是采样的，也按计划递增。"
+    }
+   },
+   "budget": {
+    "baseline": {
+     "en": "The parent model (TinyLlama, OLMo or Llama) post-trained without recurrence on the same data in the same order. Figures 5-7 compare accuracy against training FLOPs and at the final checkpoint.",
+     "zh": "父模型（TinyLlama、OLMo 或 Llama）不加循环，用相同数据、按相同顺序继续训练。Figure 5-7 按训练 FLOPs 和最终 checkpoint 比较准确率。"
+    },
+    "matched": [
+     "tokens"
+    ],
+    "not_matched": [
+     "params",
+     "flops",
+     "depth"
+    ],
+    "baseline_tuned": "shared",
+    "headline": {
+     "en": "Converting a pretrained model to a recurrent one gives better math accuracy at a given training compute budget than post-training the non-recurrent model. After the same ~50B math tokens, OLMo (4,6,4) at train and test recurrence 32 scores 51.6 on GSM8K and 29.3 on MATH, against 35.3 and 25.1 for the post-trained non-recurrent OLMo.",
+     "zh": "把预训练模型改造成循环模型，在给定训练算力下数学准确率高于直接继续训练非循环模型。用同样约 50B 的数学 token 训练后，训练和测试递归次数都为 32 的 OLMo (4,6,4) 在 GSM8K 和 MATH 上为 51.6 和 29.3，继续训练的非循环 OLMo 为 35.3 和 25.1。"
+    },
+    "ref": "Abstract; Section 4.3; Table 4"
+   },
+   "results": [
+    {
+     "setting": "TinyLlama-1.1B-3T converted to (4,8,4), about 50B tokens of Nemotron-CC-Math-v1-4plus, test recurrence 32",
+     "metric": "GSM8K | MATH accuracy (1-shot)",
+     "values": {
+      "Non-recurrent TinyLlama, same data": "26.6 | 24.0",
+      "Train recurrence 4": "37.9 | 26.0",
+      "Train recurrence 8": "41.0 | 25.9",
+      "Train recurrence 16": "43.7 | 29.0",
+      "Train recurrence 32": "45.0 | 27.1"
+     },
+     "ref": "Table 3"
+    },
+    {
+     "setting": "OLMo-2-0425-1B converted to (4,6,4), same data, test recurrence 32",
+     "metric": "GSM8K | MATH accuracy (1-shot)",
+     "values": {
+      "Non-recurrent OLMo, same data": "35.3 | 25.1",
+      "Train recurrence 4": "40.6 | 27.6",
+      "Train recurrence 8": "44.6 | 28.1",
+      "Train recurrence 16": "48.3 | 29.0",
+      "Train recurrence 32": "51.6 | 29.3"
+     },
+     "ref": "Table 4"
+    },
+    {
+     "setting": "Llama-3.2-1B converted to (4,6,4), same data, test recurrence 32",
+     "metric": "GSM8K | MATH accuracy (1-shot)",
+     "values": {
+      "Non-recurrent Llama, same data": "37.1 | 27.4",
+      "Train recurrence 4": "40.0 | 28.9",
+      "Train recurrence 8": "44.7 | 29.6",
+      "Train recurrence 16": "45.3 | 28.4",
+      "Train recurrence 32": "49.4 | 31.5"
+     },
+     "ref": "Table 5"
+    },
+    {
+     "setting": "TinyLlama (4,8,4) at train recurrence 4. Single phase is 26B tokens of FineWeb-Edu mixed with Nemotron SFT data; two phase first trains on 26B tokens of FineWeb-Edu (52B in total)",
+     "metric": "Arc-C | MMLU | GSM8K",
+     "values": {
+      "Recurrent, two phase, test recurrence 1": "31.6 | 36.2 | 26.5",
+      "Recurrent, two phase, test recurrence 32": "37.7 | 44.8 | 51.2",
+      "Recurrent, single phase, test recurrence 32": "32.7 | 39.4 | 52.0",
+      "Non-recurrent, two phase": "36.5 | 44.4 | 45.2",
+      "Non-recurrent, single phase": "35.2 | 45.1 | 46.2"
+     },
+     "ref": "Table 1"
+    },
+    {
+     "setting": "(2,4,2) model, about 120B tokens of FineWeb-Edu, mean recurrence 32, zero-shot",
+     "metric": "Arc-C | HellaSwag",
+     "values": {
+      "Random (Takase) init, test recurrence 1": "23.4 | 28.6",
+      "Random (Takase) init, test recurrence 32": "29.5 | 48.3",
+      "Llama-3.2-1B init, test recurrence 1": "23.8 | 34.8",
+      "Llama-3.2-1B init, test recurrence 32": "35.0 | 55.6"
+     },
+     "ref": "Table 2 (Appendix C.1)"
+    }
+   ],
+   "findings": [
+    {
+     "en": "Linearly ramping the mean recurrence up to 32 slightly lowers validation loss per step and greatly lowers it per training FLOP ((2,4,2) from Llama, 48 hours on 4 MI300A GPUs, about 1e20 FLOPs).",
+     "zh": "把平均递归次数线性升到 32，按 step 看验证 loss 略低，按训练 FLOPs 看低很多（Llama 初始化的 (2,4,2)，4 张 MI300A 跑 48 小时，约 1e20 FLOPs）。",
+     "ref": "Section 4.2; Figure 3"
+    },
+    {
+     "en": "On GSM8K, larger training recurrences give a larger gain per training FLOP for OLMo and Llama, but not for TinyLlama.",
+     "zh": "在 GSM8K 上，OLMo 和 Llama 的训练递归次数越大，每单位训练 FLOP 的提升越大；TinyLlama 不符合这一趋势。",
+     "ref": "Section 4.3.2; Figure 20"
+    },
+    {
+     "en": "A 26B-token FineWeb-Edu healing phase before the mixed data raises the recurrent model's Arc-C by 5% over single-phase training, while the non-recurrent model changes little.",
+     "zh": "在混合数据之前先用 26B token 的 FineWeb-Edu 做 healing，循环模型的 Arc-C 比单阶段训练高 5%，非循环模型变化不大。",
+     "ref": "Section 4.4; Figure 8"
+    },
+    {
+     "en": "Among the tested layer choices for a (2,4,2) model from Llama-1b, taking early layers for the prelude and later layers for the core and coda gave the lowest training loss; on TinyLlama (4,8,4) this choice also reached lower loss than layers picked with ShortGPT.",
+     "zh": "在从 Llama-1b 构造 (2,4,2) 的几种选层方式中，prelude 取前面的层、核心块和 coda 取后面的层，训练 loss 最低；在 TinyLlama (4,8,4) 上，这种选法的 loss 也低于用 ShortGPT 选出的层。",
+     "ref": "Appendix C.1.1; Figures 12 and 13"
+    },
+    {
+     "en": "Muon trains the recurrent models more stably than AdamW, whose loss spiked to NaN at learning rate 5e-5; for the non-recurrent TinyLlama the gap is much smaller, with a small gain for Muon.",
+     "zh": "Muon 训练循环模型比 AdamW 稳定，AdamW（学习率 5e-5）的 loss 出现尖峰并变成 NaN；对非循环的 TinyLlama，两者差距小得多，Muon 略好。",
+     "ref": "Section 4.3.1; Figure 4"
+    }
+   ],
+   "tldr": {
+    "en": "Turn pretrained 1B models into prelude-core-coda recurrent models by dropping middle layers and looping a block, then keep training while a curriculum raises the mean recurrence.",
+    "zh": "从预训练 1B 模型中删掉中间几层、把一段层改为循环块，得到 prelude-core-coda 循环模型，再继续训练，并按课程逐步提高平均递归次数。"
+   },
+   "quickread": {
+    "problem": {
+     "en": "Pretraining a depth-recurrent model from scratch is costly. Huginn-0125 used 800B tokens, and running many recurrences per step slows training compared with a fixed-depth model of the same parameter count. The paper studies how to convert existing pretrained non-recurrent models into recurrent ones efficiently.",
+     "zh": "从头预训练深度循环模型代价高。Huginn-0125 用了 800B token，每步多次递归也让训练比同参数量的固定深度模型慢。本文研究如何高效地把现有的非循环预训练模型改造成循环模型。"
+    },
+    "method": {
+     "en": [
+      "Take a pretrained model's early layers as the prelude and later layers as the recurrent core and coda, dropping the layers in between, e.g. (4,8,4) from TinyLlama-1.1B-3T and (4,6,4) from OLMo-2-0425-1B and Llama-3.2-1B.",
+      "Keep Huginn-0125's recurrence, with a linear adapter on concat(prelude output, state), a random initial state, a Poisson-Lognormal recurrence count and gradients through at most the last 8 core passes.",
+      "Raise the mean of the recurrence distribution with a curriculum (1-sqrt over the first 75% of training in the main runs) to 4, 8, 16 or 32, and optimize with Muon.",
+      "Train on about 50B tokens of Nemotron-CC-Math-v1-4plus. To keep general ability, first heal on 26B tokens of FineWeb-Edu, then train on 26B tokens mixing FineWeb-Edu with Nemotron SFT data."
+     ],
+     "zh": [
+      "用预训练模型的前几层做 prelude，后几层做循环核心块和 coda，删掉中间的层，例如从 TinyLlama-1.1B-3T 取 (4,8,4)，从 OLMo-2-0425-1B 和 Llama-3.2-1B 取 (4,6,4)。",
+      "沿用 Huginn-0125 的循环方式，对 concat(prelude 输出, 状态) 做线性 adapter，初始状态随机，递归次数从 Poisson-Lognormal 分布采样，梯度最多只过最后 8 遍核心块。",
+      "用课程把递归分布的均值升到 4、8、16 或 32（主实验在前 75% 的训练里用 1-sqrt 课程），优化器用 Muon。",
+      "在约 50B token 的 Nemotron-CC-Math-v1-4plus 上训练。为保住通用能力，先用 26B token 的 FineWeb-Edu 做 healing，再用 26B token 的 FineWeb-Edu 与 Nemotron SFT 混合数据训练。"
+     ]
+    },
+    "caveats": {
+     "en": [
+      "Models have about 1B parameters and are post-trained on about 50B tokens (about 120B in the initialization study); the authors say larger model and data scales still need testing.",
+      "All models are trained with a 1024-token context.",
+      "Against the non-recurrent parent, data and tokens are matched but parameters and compute are not. The recurrent models keep 72.7% (TinyLlama) or 87.5% (OLMo, Llama) of the parent's parameters and use more FLOPs per training step.",
+      "All models share one hyperparameter set (Muon with learning rate 0.001 and weight decay 1e-4, Appendix D); the baselines are not tuned separately.",
+      "Training only on math slightly lowers HellaSwag, Arc and OpenBookQA (Section 4.4). GSM8K and MATH use one in-context example, flexible extract for GSM8K and Minerva criteria with Math-Verify for MATH."
+     ],
+     "zh": [
+      "模型约 1B 参数，后训练约 50B token（初始化对比实验约 120B token）；作者表示更大的模型和数据规模还有待验证。",
+      "所有模型都用 1024 token 的上下文训练。",
+      "与非循环父模型相比，对齐了数据和 token，没对齐参数和算力。循环模型只保留父模型 72.7%（TinyLlama）或 87.5%（OLMo、Llama）的参数，每个训练 step 的 FLOPs 更多。",
+      "所有模型共用一套超参（Muon，学习率 0.001，weight decay 1e-4，Appendix D），基线没有单独调。",
+      "只用数学数据训练会让 HellaSwag、Arc、OpenBookQA 略降（Section 4.4）。GSM8K 和 MATH 用 1 个上下文示例评测，GSM8K 取 flexible extract，MATH 用 Minerva 标准加 Math-Verify。"
+     ]
+    }
+   },
+   "reproducibility": {
+    "code": "available",
+    "weights": "available",
+    "configs": "available",
+    "data": "partial"
+   },
+   "added": "2026-11-23",
+   "glyph": "L0-3 (4 layers) -> [L10-17 (8 layers)] x Poisson-Lognormal, mean ramped to 4, 8, 16 or 32 -> L18-21 (4 layers); injection concat; KV n/a",
+   "card": {
+    "en": "https://raw.githubusercontent.com/sjy1203/awesome-loop/main/docs/en/2511.07384.md",
+    "zh": "https://raw.githubusercontent.com/sjy1203/awesome-loop/main/docs/zh/2511.07384.md"
+   }
+  },
+  {
+   "id": "2604.01220",
+   "tier": "deep",
+   "status": "draft",
+   "short": "YOCO-U",
+   "title": "Universal YOCO for Efficient Depth Scaling",
+   "date": "2026-04-01",
+   "venue": "arXiv",
+   "authors": [
+    "Yutao Sun",
+    "Li Dong",
+    "Tianzhu Ye",
+    "Shaohan Huang",
+    "Jianyong Wang",
+    "Furu Wei"
+   ],
+   "orgs": [
+    "Microsoft Research",
+    "Tsinghua University"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2604.01220"
+   },
+   "category": "architecture/placement",
+   "facets": {
+    "placement": "encoder",
+    "sharing": "full",
+    "depth_train": "fixed",
+    "depth_test": "fixed",
+    "injection": "none",
+    "kv": "single-global",
+    "gradient": "n/a",
+    "origin": "scratch",
+    "ffn": "moe",
+    "attention": "hybrid"
+   },
+   "loop": {
+    "segments": [
+     {
+      "role": "core",
+      "layers": 10,
+      "label": "Universal Self-Decoder, SWA-512",
+      "passes": {
+       "train": "3",
+       "test": "3"
+      }
+     },
+     {
+      "role": "coda",
+      "layers": 10,
+      "label": "Cross-Decoder, shared global KV"
+     }
+    ],
+    "note": {
+     "en": "Section 4.1 model, a 20-layer YOCO with MoE FFNs (1.3B activated, 10B total). The 10-layer self-decoder uses SWA with window 512 and RoPE and is applied T=3 times with shared weights; its final output is projected once into the global KV that all 10 cross-decoder layers (NoPE) read. Each iteration keeps its own window cache. Figure 6 trains separate 1.3B models with 1, 2, 3 and 5 loops.",
+     "zh": "Section 4.1 的模型是 20 层 YOCO，FFN 为 MoE（1.3B 激活，10B 总参数）。10 层 self-decoder 用窗口 512 的 SWA 和 RoPE，共享权重连续跑 T=3 次；最后一次的输出只投影一次，得到 10 层 cross-decoder（NoPE）共用的全局 KV。每次迭代各存自己的窗口缓存。Figure 6 另外训练了 1、2、3、5 遍的 1.3B 模型。"
+    }
+   },
+   "budget": {
+    "baseline": {
+     "en": "Non-recursive YOCO with the same configuration and hyperparameters (Loop=1); Section 4.2 adds a Transformer, a Universal Transformer looped twice, RINS and ParScale at 1.3B dense.",
+     "zh": "配置和超参都相同、不循环的 YOCO（Loop=1）；Section 4.2 另有 1.3B dense 的 Transformer、整模型循环两遍的 Universal Transformer、RINS 和 ParScale。"
+    },
+    "matched": [
+     "params",
+     "active-params",
+     "flops"
+    ],
+    "not_matched": [
+     "tokens",
+     "depth",
+     "kv"
+    ],
+    "baseline_tuned": "shared",
+    "headline": {
+     "en": "With the same 1.3B-activated / 10B-total MoE, YOCO-U at equal training FLOPs averages 46.23 on the Table 2 tasks against 41.78 for non-recursive YOCO (+4.45), and 47.08 at equal steps; at equal FLOPs its loss is lower by 0.033.",
+     "zh": "同样 1.3B 激活 / 10B 总参数的 MoE，等训练 FLOPs 时 YOCO-U 在 Table 2 任务上平均 46.23，不循环的 YOCO 为 41.78（+4.45）；等步数时为 47.08；等 FLOPs 时 loss 低 0.033。"
+    },
+    "ref": "Section 4.1; Table 2; Figure 2"
+   },
+   "results": [
+    {
+     "setting": "Section 4.1 MoE (1.3B activated, 10B total), 20 layers, 8192 training length, trained up to 300B tokens, T=3",
+     "metric": "MMLU / GSM8K / Average (LM Eval-Harness)",
+     "values": {
+      "YOCO": "49.59 / 38.06 / 41.78",
+      "YOCO-U (Equal FLOPS)": "54.63 / 50.49 / 46.23",
+      "YOCO-U (Equal Steps)": "55.63 / 50.57 / 47.08"
+     },
+     "ref": "Table 2; Section 4.1",
+     "note": {
+      "en": "The paper does not state how many training tokens the Equal FLOPS row used.",
+      "zh": "论文没写 Equal FLOPS 那一行训练了多少 token。"
+     }
+    },
+    {
+     "setting": "Thinking SFT from the 280B checkpoint, 20B tokens of math thinking data, 32768 maximal length; greedy decoding up to 32,768 tokens",
+     "metric": "average accuracy over 11 math benchmarks (%)",
+     "values": {
+      "YOCO": 42.7,
+      "YOCO-U": 67.1
+     },
+     "ref": "Figure 3; Section 4.1; Appendix B"
+    },
+    {
+     "setting": "1.3B dense, 20 layers, hidden 2560, 20B tokens; the compute-scaling variants are aligned to approximately 2× the FLOPs of a standard 20-layer Transformer",
+     "metric": "WikiText ppl / Avg. accuracy",
+     "values": {
+      "Transformer": "22.52 / 47.1",
+      "YOCO": "22.25 / 47.0",
+      "Loop/Universal TRM (whole model looped 2 times)": "21.56 / 47.8",
+      "ParScale": "23.13 / 46.8",
+      "RINS (early-layer recursion)": "20.98 / 48.3",
+      "YOCO-U": "21.01 / 48.3"
+     },
+     "ref": "Table 3; Appendix E"
+    },
+    {
+     "setting": "1.3B dense ablations; the YOCO and YOCO-U rows repeat the Table 3 values at two decimals",
+     "metric": "WikiText ppl / Avg. accuracy",
+     "values": {
+      "YOCO": "22.25 / 46.95",
+      "Deep (Instead of Wide)": "22.04 / 46.87",
+      "YOCO-U": "21.01 / 48.25",
+      "Deeper (Instead of Wide)": "21.42 / 48.59",
+      "Upper Loop (Cross-Decoder)": "22.15 / 47.34",
+      "Upper Loop w/o Shared KV": "22.06 / 46.41"
+     },
+     "ref": "Table 5; Section 4.3",
+     "note": {
+      "en": "Deep and Deeper double the depth at the same model size (Deeper has hidden size 1792 and 40 layers). Upper Loop loops the cross-decoder instead of the self-decoder; the w/o Shared KV variant uses self-attention there.",
+      "zh": "Deep 和 Deeper 在模型大小不变时把深度加倍（Deeper 的 hidden 为 1792、40 层）。Upper Loop 改为循环 cross-decoder；w/o Shared KV 变体在那里改用 self-attention。"
+     }
+    },
+    {
+     "setting": "1.3B configuration of Section 4.4, Nano-vLLM in BF16 on H100-80GB, generation batch size 32, length 128",
+     "metric": "at 256K length, prefill tokens/s / decode tokens/s / KV cache MB",
+     "values": {
+      "Transformer": "7475 / 137 / 10240",
+      "YOCO": "220407 / 318 / 522",
+      "RINS": "3739 / 56 / 20480",
+      "YOCO-U": "76301 / 303 / 542"
+     },
+     "ref": "Tables 8-10; Appendix D",
+     "note": {
+      "en": "Section 4.5 states that YOCO-U gives up 5% of YOCO's decoding throughput, decodes 2.21× faster than the Transformer at 256K, and that RINS needs 38× the KV memory of YOCO-U.",
+      "zh": "Section 4.5 称 YOCO-U 的解码吞吐比 YOCO 低 5%，256K 时解码速度是 Transformer 的 2.21 倍；RINS 的 KV 显存是 YOCO-U 的 38 倍。"
+     }
+    }
+   ],
+   "findings": [
+    {
+     "en": "Looping the cross-decoder instead of the self-decoder averages 47.34 (46.41 without the shared KV), against 48.25 for YOCO-U and 46.95 for non-recursive YOCO; the authors conclude that recursion on deeper layers gives diminishing improvement regardless of the KV cache strategy.",
+     "zh": "改为循环 cross-decoder 平均 47.34（不共享 KV 时 46.41），YOCO-U 为 48.25，不循环的 YOCO 为 46.95；作者据此认为在更深的层上循环收益递减，与 KV 策略无关。",
+     "ref": "Table 5; Section 4.3"
+    },
+    {
+     "en": "At about 2× FLOPs, looping the whole 20-layer Transformer twice averages 47.8, while RINS and YOCO-U both reach 48.3; the authors read this as scaling FLOPs on bottom blocks being more effective than on all blocks.",
+     "zh": "约 2 倍 FLOPs 下，整个 20 层 Transformer 循环两遍平均 47.8，RINS 和 YOCO-U 都是 48.3；作者认为把 FLOPs 加在底部的块上比加在所有块上更有效。",
+     "ref": "Table 3; Section 4.2; Appendix E"
+    },
+    {
+     "en": "Separately trained 1.3B models with 1, 2, 3 and 5 loops show consistent improvements in validation loss as the loop count grows; Loop=5 uses 3 times the FLOPs of the non-recursive model. The figure prints no per-loop values.",
+     "zh": "分别训练 1、2、3、5 遍的 1.3B 模型，验证 loss 随遍数增加持续改善；Loop=5 的 FLOPs 是不循环模型的 3 倍。图中没有印出各遍数的数值。",
+     "ref": "Figure 6; Section 4.4"
+    },
+    {
+     "en": "YOCO-U trained on 80B tokens is comparable with non-recursive YOCO trained on 210B tokens (approximately 62% fewer tokens).",
+     "zh": "YOCO-U 训练 80B token 的效果与不循环的 YOCO 训练 210B token 相当（约少用 62% 的 token）。",
+     "ref": "Figure 2; Section 4.1"
+    },
+    {
+     "en": "With training steps fixed, YOCO-U matches YOCO with 50% fewer parameters; when activated parameters are aligned, the authors say YOCO-U narrows the gap to non-recursive models and is near-comparable above 10B.",
+     "zh": "训练步数相同时，YOCO-U 用少 50% 的参数达到 YOCO 的效果；按激活参数对齐时，作者称 YOCO-U 与不循环模型的差距缩小，超过 10B 时接近持平。",
+     "ref": "Figure 5; Section 4.4"
+    },
+    {
+     "en": "On Needle-in-a-Haystack, YOCO-U scores 1.00 (S-NIAH-1) and 0.95 (S-NIAH-2), against 0.87 and 0.82 for the Transformer and 0.99 and 0.91 for RINS.",
+     "zh": "Needle-in-a-Haystack 上 YOCO-U 得分 1.00（S-NIAH-1）和 0.95（S-NIAH-2），Transformer 为 0.87 和 0.82，RINS 为 0.99 和 0.91。",
+     "ref": "Table 4"
+    }
+   ],
+   "tldr": {
+    "en": "Loop only YOCO's self-decoder, whose layers use sliding-window attention, so extra depth costs compute while the cross-decoder's global KV is still computed once.",
+    "zh": "只循环 YOCO 的 self-decoder（这些层用 SWA），加深只多花计算，cross-decoder 用的全局 KV 仍只算一次。"
+   },
+   "quickread": {
+    "problem": {
+     "en": "Looping a standard Transformer re-runs every layer, which regenerates KV caches and repeats global attention, so memory and compute grow with depth.",
+     "zh": "循环标准 Transformer 要重跑所有层，每遍重新生成 KV、重复全局注意力，显存和计算都随深度增长。"
+    },
+    "method": {
+     "en": [
+      "Start from YOCO, where an L/2-layer self-decoder with efficient self-attention (SWA by default) produces one global KV cache that every layer of the L/2-layer cross-decoder reads through cross-attention.",
+      "Replace the self-decoder with a Universal Self-Decoder that applies the same L/2 layers T times in sequence (T=3 by default, 2× the total FLOPs of the non-recursive baseline).",
+      "Project the global KV from the final iteration's output, so its size does not depend on T; only the SWA window caches grow with T."
+     ],
+     "zh": [
+      "以 YOCO 为基础：L/2 层的 self-decoder 用高效注意力（默认 SWA），产出一份全局 KV，L/2 层的 cross-decoder 每层都通过 cross-attention 读它。",
+      "把 self-decoder 换成 Universal Self-Decoder，同一组 L/2 层依次跑 T 次（默认 T=3，总 FLOPs 是不循环基线的 2 倍）。",
+      "全局 KV 由最后一次迭代的输出投影得到，大小与 T 无关；只有 SWA 的窗口缓存随 T 增长。"
+     ]
+    },
+    "caveats": {
+     "en": [
+      "The headline runs are a 1.3B-activated / 10B-total MoE trained on up to 300B tokens; the architecture comparison, ablations and loop scaling use 1.3B dense models trained on 20B tokens, and the efficiency tests use the same 1.3B configuration. Training length is 8192 in Sections 4.1 and 4.4.",
+      "Each model is trained and tested with one fixed loop count (3 by default; 1, 2, 3 and 5 in Figure 6); the paper does not report changing the loop count at inference.",
+      "Training FLOPs are computed as tokens × layers (Section 4.1), and the Equal FLOPS row of Table 2 does not state its token count.",
+      "The KV cache is not identical to YOCO's because each self-decoder iteration keeps its own window cache (Table 10, 46 MB vs 26 MB at 8K and 542 vs 522 MB at 256K).",
+      "Prefill throughput is below non-recursive YOCO's, 76301 vs 220407 tokens/s at 256K (Table 8).",
+      "Table 5 does not state the loop count or FLOPs of the Upper Loop variants."
+     ],
+     "zh": [
+      "主结果是 1.3B 激活 / 10B 总参数的 MoE，最多训练 300B token；架构对比、消融和遍数扩展用 1.3B dense 模型，训练 20B token，效率测试也用这个 1.3B 配置。Section 4.1 和 4.4 的训练长度是 8192。",
+      "每个模型训练和测试都用同一个固定遍数（默认 3，Figure 6 中有 1、2、3、5）；论文没有报告推理时改变遍数。",
+      "训练 FLOPs 按 token × 层数计算（Section 4.1），Table 2 的 Equal FLOPS 行没写训练了多少 token。",
+      "KV 和 YOCO 并不完全相同，因为 self-decoder 每次迭代各存自己的窗口缓存（Table 10，8K 时 46 MB 对 26 MB，256K 时 542 MB 对 522 MB）。",
+      "prefill 吞吐低于不循环的 YOCO，256K 时为 76301 对 220407 tokens/s（Table 8）。",
+      "Table 5 没写 Upper Loop 变体的遍数和 FLOPs。"
+     ]
+    }
+   },
+   "reproducibility": {
+    "code": "none",
+    "weights": "none",
+    "configs": "partial",
+    "data": "none"
+   },
+   "added": "2026-11-23",
+   "glyph": "[Universal Self-Decoder, SWA-512 (10 layers)] x 3 -> Cross-Decoder, shared global KV (10 layers); injection none; KV single-global",
+   "card": {
+    "en": "https://raw.githubusercontent.com/sjy1203/awesome-loop/main/docs/en/2604.01220.md",
+    "zh": "https://raw.githubusercontent.com/sjy1203/awesome-loop/main/docs/zh/2604.01220.md"
+   }
+  },
+  {
+   "id": "2604.12946",
+   "tier": "deep",
+   "status": "draft",
+   "short": "Parcae",
+   "title": "Parcae: Scaling Laws For Stable Looped Language Models",
+   "date": "2026-04-14",
+   "venue": "arXiv",
+   "authors": [
+    "Hayden Prairie",
+    "Zachary Novack",
+    "Taylor Berg-Kirkpatrick",
+    "Daniel Y. Fu"
+   ],
+   "orgs": [
+    "University of California, San Diego",
+    "Together AI"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2604.12946",
+    "code": "https://github.com/sandyresearch/parcae",
+    "weights": [
+     "https://huggingface.co/SandyResearch/parcae-140m",
+     "https://huggingface.co/SandyResearch/parcae-370m",
+     "https://huggingface.co/SandyResearch/parcae-770m",
+     "https://huggingface.co/SandyResearch/parcae-1.3b"
+    ],
+    "project": "https://sandyresearch.github.io/parcae/"
+   },
+   "category": "scaling",
+   "facets": {
+    "placement": "prelude-core-coda",
+    "sharing": "full",
+    "depth_train": "sampled",
+    "depth_test": "extrapolate",
+    "injection": "gated",
+    "kv": "n/a",
+    "gradient": "truncated",
+    "origin": "scratch",
+    "ffn": "dense",
+    "attention": "full"
+   },
+   "loop": {
+    "segments": [
+     {
+      "role": "prelude",
+      "layers": 8
+     },
+     {
+      "role": "core",
+      "layers": 8,
+      "passes": {
+       "train": "Poisson with mean 8, per sequence",
+       "test": "8"
+      },
+      "bptt": "last 4"
+     },
+     {
+      "role": "coda",
+      "layers": 8
+     }
+    ],
+    "note": {
+     "en": "Shown for the 1.3B model of the Transformer comparison (Table 18), which has 8 prelude, 8 recurrent and 8 coda blocks against a 24-layer Transformer; the 140M, 370M and 770M models use 2, 4 and 6 blocks per unit, and all loop the middle third. Each step computes h_{t+1} = Ā h_t + B̄ e + R̄(h_t, e) with Ā = exp(ΔA) for a negative diagonal A (ZOH), B̄ = ΔB (Euler) and a normalized prelude output e. The Section 5.1 models are also evaluated at T = 1-16 and the Section 5.3 models up to T = 24.",
+     "zh": "图示为 Transformer 对比中的 1.3B 模型（Table 18）：prelude、循环块、coda 各 8 层，对照是 24 层 Transformer；140M、370M、770M 每段分别为 2、4、6 层，循环的都是中间三分之一。每一步计算 h_{t+1} = Ā h_t + B̄ e + R̄(h_t, e)，其中 Ā = exp(ΔA)，A 为负对角矩阵（ZOH 离散化），B̄ = ΔB（Euler），e 是归一化后的 prelude 输出。Section 5.1 的模型还在 T = 1-16 上评测，Section 5.3 的模型评测到 T = 24。"
+    }
+   },
+   "budget": {
+    "baseline": {
+     "en": "Fixed-depth Transformers in a simplified nanochat setup with the same parameter count and training data; Huginn-style RDMs with matched parameters and data are a second baseline.",
+     "zh": "简化 nanochat 设置下参数量和训练数据相同的定深 Transformer；另一组对照是参数和数据都对齐的 Huginn 式 RDM。"
+    },
+    "matched": [
+     "params",
+     "tokens"
+    ],
+    "not_matched": [
+     "flops",
+     "depth"
+    ],
+    "baseline_tuned": "separate",
+    "headline": {
+     "en": "At 1.3B parameters and the same data, Parcae (T=8) scores 28.44 Core and 17.08 Core-Extended against the Transformer's 25.45 and 15.90 (+2.99 and +1.18 points); the 770M Parcae's 25.07 Core is comparable to the 1.3B Transformer with roughly half the parameters.",
+     "zh": "1.3B 参数、相同数据下，Parcae（T=8）的 Core / Core-Extended 为 28.44 / 17.08，Transformer 为 25.45 / 15.90（高 2.99 和 1.18 分）；770M 的 Parcae Core 为 25.07，用约一半参数与 1.3B Transformer 相当。"
+    },
+    "ref": "Abstract; Section 5.1; Table 5"
+   },
+   "results": [
+    {
+     "setting": "Transformer setup (simplified nanochat), FineWeb-Edu, 2,048 context, parameter- and data-matched pairs trained on 11.2B, 29.6B, 61.6B and 104B tokens at 140M, 370M, 770M and 1.3B; Parcae evaluated at T=8",
+     "metric": "validation PPL / Core / Core-Extended",
+     "values": {
+      "140M Transformer": "21.48 / 13.00 / 8.80",
+      "140M Parcae": "19.06 / 14.04 / 9.67",
+      "370M Transformer": "15.79 / 17.46 / 11.71",
+      "370M Parcae": "14.49 / 20.00 / 12.75",
+      "770M Transformer": "13.08 / 22.42 / 14.20",
+      "770M Parcae": "12.49 / 25.07 / 15.19",
+      "1.3B Transformer": "11.95 / 25.45 / 15.90",
+      "1.3B Parcae": "11.42 / 28.44 / 17.08"
+     },
+     "ref": "Table 5; Table 21"
+    },
+    {
+     "setting": "RDM setup of Geiping et al. (Huginn data and tokenizer); 100M evaluated at T=16, 350M at T=8",
+     "metric": "validation PPL / WikiText PPL / zero-shot average of six tasks",
+     "values": {
+      "100M RDM": "14.23 / 63.27 / 45.03",
+      "100M Parcae": "13.59 / 60.33 / 46.83",
+      "350M RDM": "10.76 / 41.31 / 49.45",
+      "350M Parcae": "10.09 / 37.53 / 50.12"
+     },
+     "ref": "Table 3"
+    },
+    {
+     "setting": "Transformer setup at 140M and 370M with parameters and training FLOPs fixed (tokens shrink as μ_rec grows); fixed depth means μ_rec = 1",
+     "metric": "optimal μ_rec* / Core at μ_rec* / Core at fixed depth",
+     "values": {
+      "140M, 1x10^18 FLOPs": "2 / 7.6 / 7.9",
+      "140M, 2x10^18 FLOPs": "2 / 9.0 / 10.5",
+      "140M, 4x10^18 FLOPs": "4 / 11.2 / 10.7",
+      "140M, 8x10^18 FLOPs": "6 / 10.5 / 11.8",
+      "140M, 16x10^18 FLOPs": "8 / 14.6 / 13.0",
+      "140M, 64x10^18 FLOPs": "10 / 16.2 / 15.0",
+      "370M, 32x10^18 FLOPs": "4 / 15.2 / 16.8",
+      "370M, 64x10^18 FLOPs": "6 / 18.1 / 18.1",
+      "370M, 128x10^18 FLOPs": "6 / 20.1 / 18.1"
+     },
+     "ref": "Table 6; Appendix O"
+    },
+    {
+     "setting": "RDM-setup Parcae models (100M trained with μ_rec 16, 350M with μ_rec 8), depth sampled per micro-batch or per sequence",
+     "metric": "validation PPL at test-time T = 1 / 4 / 8 / 16",
+     "values": {
+      "100M, per-batch": "300.32 / 36.75 / 16.65 / 13.81",
+      "100M, per-sequence": "70.47 / 17.15 / 14.08 / 13.59",
+      "350M, per-batch": "167.61 / 12.80 / 10.40 / 10.24",
+      "350M, per-sequence": "17.92 / 10.49 / 10.09 / 10.11"
+     },
+     "ref": "Table 8; Table 17"
+    }
+   ],
+   "findings": [
+    {
+     "en": "Run at up to twice the training mean (μ_rec = 8), the 140M-1.3B models' gains plateau near T = μ_rec; the authors read this as training depth setting the test-time ceiling.",
+     "zh": "140M–1.3B 模型推理时跑到训练均值 μ_rec = 8 的两倍，收益在 T = μ_rec 附近就饱和；作者认为训练深度决定了推理时 scaling 的上限。",
+     "ref": "Section 5.3; Figure 7"
+    },
+    {
+     "en": "Loss against test-time T follows L(T) = L∞ + Z·exp(−zT); fitted on T ≤ μ_rec and tested on T > μ_rec, this form has the lowest error of the four forms tried (Huber loss 3.18 and 2.29 x10^-7 at 140M and 370M).",
+     "zh": "loss 随推理遍数 T 的变化符合 L(T) = L∞ + Z·exp(−zT)；用 T ≤ μ_rec 拟合、在 T > μ_rec 上检验时，它在四种候选形式中误差最低（140M 和 370M 的 Huber loss 为 3.18 和 2.29 x10^-7）。",
+     "ref": "Section 5.3; Appendix L; Table 12"
+    },
+    {
+     "en": "Sampling the total depth from Λ(μ_rec) and then truncating backprop, instead of sampling only the no-gradient steps as Geiping et al. do, keeps validation loss at T = 4, 16 and 64 closer to full backprop (100M models, 10B tokens, μ_rec = μ_bwd = 8).",
+     "zh": "先从 Λ(μ_rec) 采样总遍数再截断反传，而不是像 Geiping et al. 那样只采样不带梯度的步数，能让 T = 4、16、64 时的验证 loss 更接近全程反传（100M 模型，10B token，μ_rec = μ_bwd = 8）。",
+     "ref": "Section 4.2; Appendix H; Figure 14"
+    },
+    {
+     "en": "With parameters and FLOPs fixed, the optimal μ_rec grows with the budget (2 at 1x10^18 to 10 at 64x10^18 FLOPs for 140M) and follows a power law with exponent about 0.40; the optimal token count follows one with exponent about 0.78.",
+     "zh": "固定参数和 FLOPs 时，最优 μ_rec 随预算增大（140M 从 1x10^18 FLOPs 时的 2 增到 64x10^18 时的 10），服从指数约 0.40 的幂律；最优 token 数服从指数约 0.78 的幂律。",
+     "ref": "Section 5.2; Table 6; Figure 5"
+    },
+    {
+     "en": "In early RDM runs made before the Appendix H sampling fix (10B tokens, μ_bwd = 4, evaluated at T = μ_rec), μ_rec = 8 gave the lowest validation loss (2.453) among values from 4 to 32; in a second sweep at μ_rec = 20 (8.5B tokens), raising μ_bwd from 4 to 12 lowered it from 2.500 to 2.474.",
+     "zh": "在 Appendix H 采样修正之前的早期 RDM 实验里（10B token，μ_bwd = 4，按 T = μ_rec 评测），μ_rec 取 4 到 32 时 μ_rec = 8 的验证 loss 最低（2.453）；另一组 μ_rec = 20 的实验（8.5B token）中，把 μ_bwd 从 4 提到 12，loss 从 2.500 降到 2.474。",
+     "ref": "Appendix I; Table 9; Table 10"
+    },
+    {
+     "en": "Across learning rates from 2e-4 to 1e-3, the Pre-Norm RDM converges only at 2e-4 and the residual-norm RDM up to 4e-4, while Parcae converges at all five.",
+     "zh": "学习率从 2e-4 到 1e-3 的五档中，Pre-Norm RDM 只在 2e-4 收敛，残差归一化 RDM 只到 4e-4，Parcae 五档全部收敛。",
+     "ref": "Table 2; Appendix F"
+    }
+   ],
+   "tldr": {
+    "en": "Constrain the loop's injection to a stable negative-diagonal form, sample depth per sequence, and fit training and test-time scaling laws for looping at fixed parameter count.",
+    "zh": "把循环的注入约束成稳定的负对角形式，按序列采样遍数训练，并在固定参数量下拟合循环的训练和推理 scaling law。"
+   },
+   "quickread": {
+    "problem": {
+     "en": "Middle-looped models such as Huginn-style RDMs diverge or show loss spikes unless hyperparameters are chosen carefully; the paper traces this to injection parameters whose linearized state matrix reaches a spectral radius of 1 or more, and asks whether a stable looped model scales predictably with loops.",
+     "zh": "Huginn 式 RDM 等中段循环模型若超参没选好就会发散或出现 loss spike；论文把原因归到注入参数线性化后的状态矩阵谱半径达到或超过 1，并研究稳定后的循环模型能否随循环遍数可预测地 scale。"
+    },
+    "method": {
+     "en": [
+      "Write each loop step as h_{t+1} = Ā h_t + B̄ e + R̄(h_t, e) and parameterize A as a negative diagonal discretized with ZOH, so the spectral radius of Ā stays below 1; the prelude output e is normalized before injection.",
+      "Sample the depth T per sequence from a Poisson distribution with mean μ_rec, backpropagate through the last μ_bwd = ⌈μ_rec/2⌉ steps, and loop the middle third of a nanochat-style Transformer.",
+      "Fit isoFLOP scaling laws over μ_rec and tokens at fixed parameters (140M, 370M) and a saturating exponential law for loss against test-time T, then join them in one unified law."
+     ],
+     "zh": [
+      "把每一步循环写成 h_{t+1} = Ā h_t + B̄ e + R̄(h_t, e)，A 参数化为负对角矩阵并用 ZOH 离散化，使 Ā 的谱半径始终小于 1；prelude 输出 e 注入前先归一化。",
+      "每条序列的遍数 T 从均值为 μ_rec 的 Poisson 分布采样，只反传最后 μ_bwd = ⌈μ_rec/2⌉ 步；循环 nanochat 式 Transformer 中间三分之一的层。",
+      "在固定参数（140M、370M）下拟合 μ_rec 与 token 数的 isoFLOP scaling law，再拟合 loss 随推理遍数 T 变化的饱和指数律，最后合成一个统一的 scaling law。"
+     ]
+    },
+    "caveats": {
+     "en": [
+      "Experiments stop at 1.3B parameters, 104B tokens and a 2,048-token context with dense FFNs; the scaling laws are fitted only at 140M and 370M, and the authors say their observations are limited to small architectures (Section 6).",
+      "Parameters and data are matched (Parcae has 0.35-0.83% more parameters, Table 19) but compute is not; at T = 8 the recurrent block runs 8 times per token, and the paper reports neither KV-cache size nor inference cost.",
+      "The Transformer and RDM baselines got their own learning-rate sweeps, and Parcae reused the baselines' best settings without a sweep of its own (Section 5.1; Appendix Q).",
+      "Test-time gains saturate near the training mean μ_rec, and the authors note that a larger μ_rec needs more test-time steps for equivalent quality (Section 5.3; Section 6)."
+     ],
+     "zh": [
+      "实验最大到 1.3B 参数、104B token、2,048 上下文，FFN 为 dense；scaling law 只在 140M 和 370M 上拟合，作者也说结论仅限于小模型（Section 6）。",
+      "对齐了参数（Parcae 多 0.35-0.83%，Table 19）和数据，没对齐算力：T = 8 时循环块每个 token 跑 8 遍；论文没有报告 KV 大小或推理成本。",
+      "Transformer 和 RDM 基线各自扫过学习率，Parcae 直接沿用基线的最优设置，没有单独扫（Section 5.1；Appendix Q）。",
+      "推理收益在训练均值 μ_rec 附近饱和；作者指出 μ_rec 越大，达到同等质量需要的推理步数越多（Section 5.3；Section 6）。"
+     ]
+    }
+   },
+   "reproducibility": {
+    "code": "available",
+    "weights": "available",
+    "configs": "available",
+    "data": "available"
+   },
+   "added": "2026-11-23",
+   "glyph": "prelude 8 layers -> [core 8 layers] x Poisson with mean 8, per sequence -> coda 8 layers; injection gated; KV n/a",
+   "card": {
+    "en": "https://raw.githubusercontent.com/sjy1203/awesome-loop/main/docs/en/2604.12946.md",
+    "zh": "https://raw.githubusercontent.com/sjy1203/awesome-loop/main/docs/zh/2604.12946.md"
+   }
+  },
+  {
+   "id": "2609.01343",
+   "tier": "deep",
+   "status": "draft",
+   "short": "SMELT",
+   "title": "SMELT: Scaling Laws for Compute-Matched MoE Looped Transformers",
+   "date": "2026-09-01",
+   "venue": "arXiv",
+   "authors": [
+    "Shaowen Wang",
+    "Ge Zhang",
+    "Kairong Luo",
+    "Yuhao Wu",
+    "Shaofan Liu",
+    "Jiaheng Liu",
+    "Wenhao Huang",
+    "Shen Yan",
+    "Jian Li"
+   ],
+   "orgs": [
+    "Tsinghua University",
+    "ByteDance Seed",
+    "M-A-P",
+    "TokenWave.AI"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2609.01343"
+   },
+   "category": "scaling",
+   "facets": {
+    "placement": "prelude-core-coda",
+    "sharing": "full",
+    "depth_train": "fixed",
+    "depth_test": "fixed",
+    "injection": "none",
+    "kv": "per-pass",
+    "gradient": "full-bptt",
+    "origin": "scratch",
+    "ffn": "moe",
+    "attention": "full"
+   },
+   "loop": {
+    "segments": [
+     {
+      "role": "prelude",
+      "layers": 3,
+      "label": "L1-3"
+     },
+     {
+      "role": "core",
+      "layers": 6,
+      "label": "L4-9",
+      "passes": {
+       "train": "2",
+       "test": "2"
+      },
+      "bptt": "both passes"
+     },
+     {
+      "role": "coda",
+      "layers": 3,
+      "label": "L10-12"
+     }
+    ],
+    "note": {
+     "en": "Shown for the 200M scale (L = 12) used in all design ablations; the middle 6 of 12 layers run twice, so 18 layers execute per token. All four scales loop the middle 50% twice and place ⌊(L − m)/2⌋ layers before the span (looped layers 3-7, 4-9, 6-15 and 8-22 for L = 10, 12, 20 and 30). Inside the loop each sublayer's residual update is scaled by 1/r (here 1/2), and every layer execution computes its own Q, K and V; smaller heads at a higher GQA ratio keep the KV cache close to the Baseline's.",
+     "zh": "图示为所有设计消融所用的 200M 规模（L = 12）：12 层中间的 6 层跑两遍，每个 token 执行 18 层。四个规模都循环中间 50% 的层两遍，循环段之前放 ⌊(L − m)/2⌋ 层（L = 10、12、20、30 时循环的分别是第 3-7、4-9、6-15、8-22 层）。循环内每个子层的残差更新乘 1/r（这里是 1/2），每次执行都重新计算 Q、K、V；用更小的 head 和更高的 GQA 比例让 KV 接近 Baseline。"
+    }
+   },
+   "budget": {
+    "baseline": {
+     "en": "Unlooped MoE Transformer from the same internal family (top-8 routing, GQA), trained on identical token sequences in each of 16 grid cells (four scales; S = 0% and S ≈ 85%, 95%, 97%).",
+     "zh": "同一内部家族、不循环的 MoE Transformer（top-8 路由，GQA），在 16 个网格单元（四个规模；S = 0% 及 S ≈ 85%、95%、97%）里都用相同的 token 序列训练。"
+    },
+    "matched": [
+     "flops",
+     "params",
+     "kv",
+     "tokens"
+    ],
+    "not_matched": [
+     "active-params",
+     "depth"
+    ],
+    "baseline_tuned": "shared",
+    "headline": {
+     "en": "With per-token FLOPs, total non-embedding parameters and KV cache matched (typical mismatch under 4%, 1% and 4%), SMELT reaches lower loss than the Baseline at every scale and sparsity level, and its separately fitted frontier saves 6.8-18.0% of training FLOPs at 10^20-10^21 FLOPs (14.7% at 10^21 and S ≈ 97%).",
+     "zh": "每 token FLOPs、总非 embedding 参数和 KV 都对齐（典型偏差分别低于 4%、1%、4%）时，SMELT 在每个规模和稀疏度上的 loss 都低于 Baseline；分别拟合的前沿在 10^20-10^21 FLOPs 处省下 6.8-18.0% 的训练 FLOPs（10^21、S ≈ 97% 时为 14.7%）。"
+    },
+    "ref": "Abstract; Section 1; Table 2; Table 7"
+   },
+   "results": [
+    {
+     "setting": "200M, L = 12, two passes, per-token FLOPs, total parameters and KV matched; contiguous middle span from 0 layers (Baseline) to all 12",
+     "metric": "validation loss at S ≈ 85% / S ≈ 95% (lower is better)",
+     "values": {
+      "No loop (Baseline), 12 executed layers": "1.9445 / 1.8735",
+      "Middle 2 layers (17%), 14 executed": "1.9384 / 1.8562",
+      "Middle 4 layers (33%), 16 executed": "1.9275 / 1.8524",
+      "Middle 6 layers (50%), 18 executed": "1.9257 / 1.8517",
+      "Middle 8 layers (67%), 20 executed": "1.9374 / 1.8544",
+      "Middle 10 layers (83%), 22 executed": "1.9413 / 1.8572",
+      "All 12 layers (100%), 24 executed": "1.9322 / 1.8601"
+     },
+     "ref": "Table 3",
+     "note": {
+      "en": "DCLM Core does not track validation loss in this sweep; at S ≈ 95% it peaks at 67% span (31.78) and is 29.68 at 50%. The authors select the span on validation loss and train each configuration once.",
+      "zh": "这组实验中 DCLM Core 与验证 loss 走势不一致：S ≈ 95% 时 Core 在 67% 跨度最高（31.78），50% 跨度为 29.68。作者按验证 loss 选跨度，每个配置只训练一次。"
+     }
+    },
+    {
+     "setting": "200M, S ≈ 85%, middle 50% looped, physical depth 12, FLOPs, parameters and KV matched (more passes force a narrower model)",
+     "metric": "validation loss / DCLM Core / DCLM Completion",
+     "values": {
+      "Baseline (1x), 12 executed layers": "1.9445 / 24.92 / 2.2887",
+      "Looped 2x, 18 executed layers": "1.9257 / 27.57 / 2.2635",
+      "Looped 3x, 24 executed layers": "1.9385 / 27.15 / 2.2779",
+      "Looped 4x, 30 executed layers": "1.9360 / 27.30 / 2.2820"
+     },
+     "ref": "Table 5"
+    },
+    {
+     "setting": "Separate fits of L(F, S, D) for each architecture on S ≈ 85%, 95% and 97% (72 + 72 endpoints spanning 1.3x10^19 to 2.2x10^21 training FLOPs)",
+     "metric": "CE Gain, the share of training compute SMELT saves at equal frontier loss, at S ≈ 85% / 95% / 97%",
+     "values": {
+      "10^20 FLOPs": "10.0% / 7.8% / 6.8%",
+      "10^21 FLOPs": "18.0% / 15.8% / 14.7%",
+      "10^22 FLOPs (extrapolated)": "23.5% / 20.9% / 19.6%"
+     },
+     "ref": "Table 7",
+     "note": {
+      "en": "Cell-bootstrap 95% intervals are wide, e.g. [1,22] at 10^20 FLOPs and S ≈ 85%; the 10^22 row lies beyond the fitted window and two of its three intervals reach 0.",
+      "zh": "cell bootstrap 的 95% 区间很宽，例如 10^20 FLOPs、S ≈ 85% 时为 [1,22]；10^22 一行超出拟合范围，三个区间中有两个下限为 0。"
+     }
+    },
+    {
+     "setting": "C = 10^21 FLOPs, S ≈ 95%; per-category intercepts fitted with the aggregate exponents",
+     "metric": "CE Gain by validation category",
+     "values": {
+      "Code": "20.4%",
+      "Finance": "16.8%",
+      "Math/STEM": "16.6%",
+      "Knowledge": "14.9%",
+      "Web": "14.8%"
+     },
+     "ref": "Section 5.2; Figure 10"
+    }
+   ],
+   "findings": [
+    {
+     "en": "At 200M with all budgets matched, looping the middle 6 of 12 layers gives lower validation loss than looping all 12 (1.9257 vs 1.9322 at S ≈ 85%, 1.8517 vs 1.8601 at S ≈ 95%), and every span tested beats the unlooped Baseline.",
+     "zh": "200M、预算全部对齐时，循环 12 层中间的 6 层比循环全部 12 层的验证 loss 更低（S ≈ 85% 时 1.9257 对 1.9322，S ≈ 95% 时 1.8517 对 1.8601），且测试的每种跨度都优于不循环的 Baseline。",
+     "ref": "Section 3.3; Table 3"
+    },
+    {
+     "en": "Two passes beat three and four at matched FLOPs, parameters and KV (validation loss 1.9257 vs 1.9385 and 1.9360, DCLM Core 27.57 vs 27.15 and 27.30); the authors attribute the regression to the narrower model that extra passes force.",
+     "zh": "FLOPs、参数和 KV 对齐时，循环两遍优于三遍和四遍（验证 loss 1.9257 对 1.9385 和 1.9360，DCLM Core 27.57 对 27.15 和 27.30）；作者认为原因是多出的遍数迫使模型变窄。",
+     "ref": "Section 3.5; Table 5"
+    },
+    {
+     "en": "SMELT's fitted capacity and data exponents are both larger (a = 0.3892 vs 0.3703, c = 0.7011 vs 0.6594), giving frontier exponents of 0.250 vs 0.237; the irreducible losses differ by 0.005 nats, less than either fit's RMSE.",
+     "zh": "SMELT 拟合出的容量指数和数据指数都更大（a = 0.3892 对 0.3703，c = 0.7011 对 0.6594），前沿指数为 0.250 对 0.237；两者的不可约 loss 相差 0.005 nats，小于任一拟合的 RMSE。",
+     "ref": "Section 4.3; Table 6"
+    },
+    {
+     "en": "SMELT wins 96 of 96 matched pairs on DCLM Completion, 83 of 96 on DCLM Core and 29 of the 30 MMLU pairs whose Baseline is at least 10 points above chance, and it scores better than a Baseline at the same validation loss would (positive mean residual on all three at every scale).",
+     "zh": "SMELT 在 DCLM Completion 上赢下全部 96 对，DCLM Core 赢 83 对（共 96 对），MMLU 在 Baseline 高于随机水平至少 10 个点的 30 对中赢 29 对；而且比同等验证 loss 的 Baseline 预期得分更好（三项指标在每个规模上的平均残差都为正）。",
+     "ref": "Section 5.1; Figures 5-9"
+    },
+    {
+     "en": "The gain is larger on longer samples and with in-context examples; the loss improvement on the four longest length buckets is 1.52x that on the four shortest, and the few-shot accuracy gap widens from 0.9 pp at k = 0 to 1.9 pp at k = 1, holding through k = 8.",
+     "zh": "样本越长、in-context 示例越多，收益越大：最长四个长度桶的 loss 改善是最短四个的 1.52 倍；few-shot 准确率差距从 k = 0 时的 0.9 pp 扩大到 k = 1 时的 1.9 pp，并保持到 k = 8。",
+     "ref": "Section 5.3; Figure 11"
+    },
+    {
+     "en": "The second visit shrinks the attention sink; for the 1.6B Dyck head, BOS attention mass falls from 0.60 to 0.02 and mass on demonstration answers rises from 0.24 to 0.85.",
+     "zh": "第二遍会削弱 attention sink：1.6B 模型的 Dyck head 上，BOS 的注意力从 0.60 降到 0.02，示例答案上的注意力从 0.24 升到 0.85。",
+     "ref": "Section 6.4; Figure 18"
+    }
+   ],
+   "tldr": {
+    "en": "With per-token FLOPs, total parameters and KV cache matched, looping the middle half of an MoE Transformer twice lowers loss at four scales up to 54B non-embedding parameters and saves 6.8-18.0% of training FLOPs on the fitted frontier.",
+    "zh": "每 token FLOPs、总参数和 KV 都对齐时，把 MoE Transformer 中间一半的层循环两遍，在最大 54B 非 embedding 参数的四个规模上都降低了 loss，并在拟合前沿上省下 6.8-18.0% 的训练 FLOPs。"
+   },
+   "quickread": {
+    "problem": {
+     "en": "Most looped-model gains are reported at fixed parameter count, where the looped model also spends more FLOPs and KV cache, so architecture and extra compute are conflated; the paper asks whether looping still helps when per-token FLOPs, total parameters and KV cache are all held fixed.",
+     "zh": "多数循环模型的收益是在固定参数量下报告的，循环模型同时多花了 FLOPs 和 KV，结构优势和额外算力混在一起；论文研究每 token FLOPs、总参数和 KV 都固定时，循环是否仍然有用。"
+    },
+    "method": {
+     "en": [
+      "Pay for the extra pass by narrowing the hidden size (1280 to 1056 at 200M, S ≈ 95%), recover total parameters by adding experts (192 to 288 per layer), and use smaller heads at a higher GQA ratio to keep the KV cache within 4%.",
+      "Choose the recipe with three 200M ablations under these budgets; loop the middle 50% of layers twice, keep the Baseline's physical depth, and scale each looped sublayer's residual update by 1/r.",
+      "Train matched Baseline / SMELT pairs over 4 scales x 4 sparsity levels with six WSD decay branches each (up to about 215B tokens), and fit a separate Chinchilla-style law L(F, S, D) per architecture to compare compute-optimal frontiers."
+     ],
+     "zh": [
+      "用更窄的隐藏维度支付多出的一遍（200M、S ≈ 95% 时从 1280 降到 1056），增加专家补回总参数（每层从 192 增到 288），并用更小的 head 和更高的 GQA 比例把 KV 偏差控制在 4% 以内。",
+      "在这些预算约束下用三组 200M 消融确定配方：中间 50% 的层循环两遍，物理深度与 Baseline 相同，循环内每个子层的残差更新乘 1/r。",
+      "在 4 个规模 × 4 个稀疏度上训练成对的 Baseline / SMELT，每个 run 有六个 WSD 衰减分支（最长约 215B token），并为两种结构分别拟合 Chinchilla 式的 L(F, S, D)，比较 compute-optimal 前沿。"
+     ]
+    },
+    "caveats": {
+     "en": [
+      "Active parameters and executed depth are not matched; at 200M and S ≈ 95% SMELT has 0.142B active parameters against the Baseline's 0.209B and executes 18 layers instead of 12 (Section 3.2; Tables 9-10).",
+      "The span, depth and loop-count ablations ran only at 200M, with one training run per configuration and the same loop count in training and evaluation; the authors note the best span or count may differ at larger scales (Section 3.3; Section 7).",
+      "Budget matching equates arithmetic FLOPs, parameters and KV-cache size, not wall-clock cost (Section 7).",
+      "The model family and training stack are proprietary and cannot be released, pretraining uses an internal corpus, and training contexts are 4096 tokens (Section 3.1; Appendix A).",
+      "SMELT shares the Baseline's optimizer, schedule and data; the Baseline configurations come from a tuned MoE family, and no separate tuning for SMELT is reported (Section 3.1; Appendix A)."
+     ],
+     "zh": [
+      "激活参数和执行深度没有对齐：200M、S ≈ 95% 时 SMELT 的激活参数为 0.142B，Baseline 为 0.209B，执行 18 层而不是 12 层（Section 3.2；Tables 9-10）。",
+      "跨度、深度和遍数消融只在 200M 上做，每个配置只训练一次，训练和评测用同一个遍数；作者指出更大规模下最优跨度或遍数可能不同（Section 3.3；Section 7）。",
+      "预算对齐的是算术 FLOPs、参数和 KV 大小，不是墙钟时间（Section 7）。",
+      "模型家族和训练框架是专有的、无法公开，预训练用内部语料，训练上下文为 4096 token（Section 3.1；Appendix A）。",
+      "SMELT 与 Baseline 共用优化器、学习率调度和数据；Baseline 配置来自一个调过的 MoE 家族，论文没有提到为 SMELT 单独调参（Section 3.1；Appendix A）。"
+     ]
+    }
+   },
+   "reproducibility": {
+    "code": "none",
+    "weights": "none",
+    "configs": "partial",
+    "data": "none"
+   },
+   "added": "2026-11-23",
+   "glyph": "L1-3 (3 layers) -> [L4-9 (6 layers)] x 2 -> L10-12 (3 layers); injection none; KV per-pass",
+   "card": {
+    "en": "https://raw.githubusercontent.com/sjy1203/awesome-loop/main/docs/en/2609.01343.md",
+    "zh": "https://raw.githubusercontent.com/sjy1203/awesome-loop/main/docs/zh/2609.01343.md"
+   }
+  },
+  {
+   "id": "2611.07211",
+   "tier": "deep",
+   "status": "draft",
+   "short": "LoopDuet",
+   "title": "Not All Loops Cost the Same: Phase-Dependent Depth for Serving Looped Transformers",
+   "date": "2026-11-04",
+   "venue": "arXiv",
+   "authors": [
+    "Zhixu Du",
+    "Yuhan Cheng",
+    "Hai (Helen) Li",
+    "Yiran Chen"
+   ],
+   "orgs": [
+    "Duke University"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2611.07211"
+   },
+   "category": "systems",
+   "facets": {
+    "placement": "prelude-core-coda",
+    "sharing": "full",
+    "depth_train": "n/a",
+    "depth_test": "adaptive",
+    "injection": "n/a",
+    "kv": "last-pass",
+    "gradient": "n/a",
+    "origin": "n/a",
+    "ffn": "dense",
+    "attention": "full"
+   },
+   "loop": {
+    "segments": [
+     {
+      "role": "prelude",
+      "layers": 4
+     },
+     {
+      "role": "core",
+      "layers": 6,
+      "passes": {
+       "train": "32 (OLMo r32 checkpoint)",
+       "test": "S for decode, P <= S for prefill, at most 32"
+      }
+     },
+     {
+      "role": "coda",
+      "layers": 4
+     }
+    ],
+    "note": {
+     "en": "Shown for OLMo r32, a recurrent OLMo-2 retrofit with 4/6/4 prelude/core/coda layers at width 2,048 (the r16 checkpoint has the same layout and was trained at 16 loops); Huginn-0125 has 2/4/2 layers at width 5,280. LoopDuet trains nothing. Ordinary prompt positions run P core loops, while every prompt-chunk endpoint and every decoded token runs S. Serving keeps one shared KV plane per core layer that each loop overwrites, so later queries read the last computed KV of positions that stopped early.",
+     "zh": "图示为 OLMo r32：OLMo-2 的循环改造版，prelude/core/coda 为 4/6/4 层，宽度 2,048（r16 布局相同，训练时 16 遍）；Huginn-0125 为 2/4/2 层，宽度 5,280。LoopDuet 不训练模型。普通 prompt 位置跑 P 遍 core，每个 prompt chunk 的末位置和每个 decode token 跑 S 遍。服务时每个 core 层只有一份共享 KV，每遍覆盖写入，后续 query 读到的是提前停下的位置最后算出的 KV。"
+    }
+   },
+   "budget": {
+    "baseline": {
+     "en": "Uniform-depth serving (S, S) of the same checkpoint in the same vLLM engine, with the same prompts, KV layout, precision and execution mode; (32, 32) is the full-depth reference, and fixed prefilling depths at the same S are the controls under load.",
+     "zh": "同一 checkpoint 在同一 vLLM 引擎中按均匀深度 (S, S) 服务，prompt、KV 布局、精度和执行模式都相同；(32, 32) 是满深度参照，负载实验的对照是同一 S 下的固定 prefill 深度。"
+    },
+    "matched": [
+     "params",
+     "tokens",
+     "kv"
+    ],
+    "not_matched": [
+     "depth",
+     "wallclock"
+    ],
+    "baseline_tuned": "shared",
+    "headline": {
+     "en": "On full HotpotQA with one A100-80GB, Huginn (32, 16) gives 1.19x the throughput of (20, 20), the fastest tested uniform setting meeting the same accuracy criterion, and (14, 8) gains 6.04 EM points over uniform (8, 8) at 97% of its throughput. Under load, adapting OLMo's prefilling depth gains 0.92-1.35 EM points over the most accurate tested fixed depths at the same 100% one-second TTFT attainment.",
+     "zh": "在完整 HotpotQA、单张 A100-80GB 上，Huginn (32, 16) 的吞吐是 (20, 20) 的 1.19 倍，后者是满足同一准确率标准的最快均匀设置；(14, 8) 保留均匀 (8, 8) 97% 的吞吐，EM 高 6.04 分。负载下，自适应调整 OLMo 的 prefill 深度，在一秒 TTFT 达标率同为 100% 时，比测过的最准固定深度高 0.92-1.35 EM 分。"
+    },
+    "ref": "Abstract; Figure 3; Table 1; Table 2"
+   },
+   "results": [
+    {
+     "setting": "Huginn-0125, full HotpotQA distractor dev set (7,405 examples), one A100-SXM4-80GB, vLLM 0.14.1, bf16, no prefix caching, C = 64",
+     "metric": "throughput (req/s) / EM",
+     "values": {
+      "Uniform (32, 32)": "0.976 / 33.79",
+      "Uniform (20, 20)": "1.536 / 33.52",
+      "Uniform (16, 16)": "1.897 / 32.07",
+      "Uniform (8, 8)": "3.587 / 24.29",
+      "LoopDuet (32, 16)": "1.822 / 33.69",
+      "LoopDuet (14, 8)": "3.489 / 30.33"
+     },
+     "ref": "Table A6; Figure 3"
+    },
+    {
+     "setting": "Same HotpotQA serving setup, OLMo r32 with four-paragraph prompts",
+     "metric": "throughput (req/s) / EM",
+     "values": {
+      "Uniform (32, 32)": "9.156 / 38.49",
+      "Uniform (11, 11)": "24.302 / 38.43",
+      "Uniform (8, 8)": "32.220 / 38.37",
+      "Uniform (4, 4)": "56.464 / 37.95",
+      "LoopDuet (32, 8)": "27.315 / 38.42",
+      "LoopDuet (11, 4)": "51.850 / 38.27"
+     },
+     "ref": "Table A6; Figure A1"
+    },
+    {
+     "setting": "HotpotQA, C = 64; each LoopDuet setting against a uniform setting whose throughput differs by at most 10%",
+     "metric": "throughput ratio LoopDuet/uniform / ΔEM / ΔF1",
+     "values": {
+      "Huginn (14, 8) vs (8, 8)": "0.973 / +6.04 / +7.13",
+      "Huginn (24, 12) vs (12, 12)": "0.979 / -0.45 / -0.47",
+      "Huginn (32, 16) vs (16, 16)": "0.960 / +1.62 / +1.90",
+      "Huginn (32, 16) vs (18, 18)": "1.073 / +0.97 / +1.10",
+      "OLMo r32 (11, 4) vs (4, 4)": "0.918 / +0.32 / +0.49"
+     },
+     "ref": "Table 1"
+    },
+    {
+     "setting": "HotpotQA, C = 64, decoding depth S held fixed; LoopDuet (S, P) against uniform (S, S)",
+     "metric": "speedup / EM uniform → LoopDuet / measured speedup as a fraction of the layer-pass ratio",
+     "values": {
+      "OLMo r32 (32, 8)": "2.98× / 38.49 → 38.42 / 85%",
+      "OLMo r32 (11, 4)": "2.13× / 38.43 → 38.27 / 93%",
+      "Huginn (32, 16)": "1.87× / 33.79 → 33.69 / 96%"
+     },
+     "ref": "Table A7; Figure 4"
+    },
+    {
+     "setting": "OLMo r32, S = 4, all HotpotQA examples, open-loop C = 128; queue controller with P in [2, 4]",
+     "metric": "one-second TTFT attainment (%) / EM",
+     "values": {
+      "Poisson 60 req/s, fixed (4, 4)": "8.6 / 38.04",
+      "Poisson 60 req/s, fixed (4, 3)": "100 / 36.35",
+      "Poisson 60 req/s, LoopDuet queue": "100 / 37.27",
+      "Burst 10/60 req/s, fixed (4, 4)": "46.9 / 38.04",
+      "Burst 10/60 req/s, fixed (4, 3)": "100 / 36.42",
+      "Burst 10/60 req/s, LoopDuet queue": "100 / 37.77",
+      "Burst 20/80 req/s, fixed (4, 2)": "100 / 31.91",
+      "Burst 20/80 req/s, LoopDuet queue": "87.5 / 35.12"
+     },
+     "ref": "Table 2"
+    },
+    {
+     "setting": "GSM8K, all 1,319 test examples, five demonstrations, greedy decoding; changes from each checkpoint's (S, S) control",
+     "metric": "accuracy change (pp), uniform (P, P) / LoopDuet (S, P)",
+     "values": {
+      "Huginn, (S, P) = (14, 8)": "-10.99 / +0.68",
+      "OLMo r16, (S, P) = (16, 4)": "-1.44 / +1.74",
+      "OLMo r32, (S, P) = (11, 4)": "-4.85 / +1.06"
+     },
+     "ref": "Figure 6; Section 4.5"
+    }
+   ],
+   "findings": [
+    {
+     "en": "The first output token needs full depth: for Huginn on HotpotQA at S = 32 with other prompt positions at P = 16, running the final prompt position at 16 loops instead of 32 lowers EM by 1.74 points relative to (32, 16) and by 1.97 points relative to (32, 32).",
+     "zh": "首个输出 token 需要满深度：Huginn 在 HotpotQA 上 S = 32、其余 prompt 位置 P = 16 时，把最后一个 prompt 位置从 32 遍降到 16 遍，EM 比 (32, 16) 低 1.74 分，比 (32, 32) 低 1.97 分。",
+     "ref": "Section 4.5"
+    },
+    {
+     "en": "Split budgets do not always win: Huginn (24, 12) gives 31.60 EM at 2.43 req/s, while uniform (12, 12) gives 32.05 EM at 2.48 req/s.",
+     "zh": "拆分预算不一定更好：Huginn (24, 12) 为 31.60 EM、2.43 req/s，均匀的 (12, 12) 为 32.05 EM、2.48 req/s。",
+     "ref": "Section 4.2; Table 1"
+    },
+    {
+     "en": "For OLMo r32 on HotpotQA, EM stays between 37.95 and 38.49 across all six tested settings, so uniform depth four, the fastest at 56.46 req/s and 0.54 points below (32, 32), is chosen as the controller's starting point.",
+     "zh": "OLMo r32 在 HotpotQA 上测的六种设置 EM 都在 37.95 到 38.49 之间，因此选最快的均匀 4 遍（56.46 req/s，比 (32, 32) 低 0.54 分）作为控制器的起点。",
+     "ref": "Section 4.2; Figure A1; Table A6"
+    },
+    {
+     "en": "Useful prefilling depth is task dependent: on ARC at S = 11, raising OLMo r32's P from 4 to 8 moves the accuracy change from -1.54 to +0.85 points, and Huginn (14, 8) stays 4.44 points below (14, 14).",
+     "zh": "合适的 prefill 深度因任务而异：ARC 上 S = 11 时，OLMo r32 的 P 从 4 提到 8，准确率变化从 -1.54 变为 +0.85 分；Huginn (14, 8) 仍比 (14, 14) 低 4.44 分。",
+     "ref": "Section 4.5; Figure 8"
+    },
+    {
+     "en": "The savings survive batching: Huginn (32, 16) keeps 1.84x, 1.87x and 1.88x speedups over (32, 32) at engine-step token budgets of 4,096, 8,192 and 16,384 (C = 128), and 1.87x at C = 32, 64 and 128.",
+     "zh": "节省在 batching 下依然存在：C = 128 时，engine step 的 token 预算为 4,096、8,192、16,384，Huginn (32, 16) 相对 (32, 32) 的加速为 1.84、1.87、1.88 倍；C = 32、64、128 时都是 1.87 倍。",
+     "ref": "Section 4.3; Table A9"
+    }
+   ],
+   "tldr": {
+    "en": "Serve looped Transformers with fewer core loops for ordinary prompt tokens than for the last prompt token and the decoded tokens, run the deep tail as a compact batch in vLLM, and lower prefilling depth when the queue grows.",
+    "zh": "服务循环 Transformer 时，普通 prompt token 少跑几遍，最后一个 prompt token 和 decode token 跑满；在 vLLM 里把需要继续循环的位置收成紧凑 batch，排队变长时再降低 prefill 深度。"
+   },
+   "quickread": {
+    "problem": {
+     "en": "Serving a looped model with one loop count for all tokens ties prefill cost to decode depth. With long prompts and short answers (OLMo HotpotQA prompts average 796 tokens and answers about 4.7), prompt positions account for over 99% of layer applications, so keeping deep decoding repeats deep computation over the whole prompt.",
+     "zh": "用同一个循环遍数服务所有 token，会把 prefill 成本和 decode 深度绑在一起。prompt 长、回答短时（OLMo 的 HotpotQA prompt 平均 796 token，回答约 4.7 token），prompt 位置占了 99% 以上的层计算，保留深 decode 就意味着整段 prompt 都要跑深循环。"
+    },
+    "method": {
+     "en": [
+      "Choose decode depth S and prefill depth P <= S jointly from measured quality-throughput trade-offs; ordinary prompt positions stop after P core loops, while every prompt-chunk endpoint and every decoded token runs S.",
+      "In vLLM, after P loops the engine gathers each request's final query into a compact B x d batch for the remaining S - P loops and scatters it back before the coda; prompt context stays in one shared KV plane per core layer, so existing weights and attention kernels are reused.",
+      "A queue-age controller maps the oldest first-token wait from 0.25 s to 1 s linearly onto [P_min, P_max] before each engine step, keeping S fixed (main setting S = 4, P in {2, 3, 4}).",
+      "A recurrent-state distance (90th percentile over ordinary prompt tokens, threshold about 0.24) screens candidate P values before task-accuracy checks."
+     ],
+     "zh": [
+      "根据实测的质量-吞吐权衡联合选 decode 深度 S 和 prefill 深度 P（P <= S）；普通 prompt 位置跑 P 遍 core 后停下，每个 prompt chunk 的末位置和每个 decode token 跑满 S 遍。",
+      "在 vLLM 里，跑完 P 遍后把每个请求的最后一个 query 收集成 B x d 的紧凑 batch，跑剩下的 S - P 遍，再在 coda 前散回原位；prompt 上下文留在每个 core 层一份的共享 KV 里，直接复用现有权重和 attention kernel。",
+      "队列年龄控制器在每个 engine step 前，把最早一个请求等待首 token 的时间从 0.25 秒到 1 秒线性映射到 [P_min, P_max]，S 保持不变（主实验 S = 4，P 取 {2, 3, 4}）。",
+      "用循环状态距离（普通 prompt token 的 90 分位，阈值约 0.24）先筛出候选 P，再用任务准确率验证。"
+     ]
+    },
+    "caveats": {
+     "en": [
+      "Training-free serving study of existing checkpoints only (Huginn-0125 and the recurrent OLMo-2 retrofits r16 and r32); every tested depth is at most 32 loops (16 for OLMo r16).",
+      "Tasks are GSM8K, HotpotQA (distractor dev set) and ARC-Challenge, with model-specific prompts (OLMo four paragraphs and one demonstration under a 1,000-token cap; Huginn ten paragraphs and two demonstrations); the authors call these within-model comparisons, not a ranking between models.",
+      "All timings use one A100-SXM4-80GB, vLLM 0.14.1, bf16 and no prefix caching; the joint-depth comparison uses one execution per configuration at C = 64.",
+      "Gains depend on the workload: on GSM8K, longer responses give wall-time ratios of 0.98-1.01 across four serving pairs despite layer-pass ratios of 1.52-2.71.",
+      "Decoding reads prompt KV from the last loop each position computed, an approximation to full-depth context that the authors evaluate through task accuracy; the controller has no correctness feedback and works within a depth range chosen offline.",
+      "On the 20/80 req/s burst trace the controller reaches 87.5% one-second TTFT attainment, against 100% for fixed P = 2."
+     ],
+     "zh": [
+      "只在现有 checkpoint 上做免训练的服务研究（Huginn-0125 和 OLMo-2 循环改造版 r16、r32）；所有测试深度都不超过 32 遍（OLMo r16 不超过 16 遍）。",
+      "任务为 GSM8K、HotpotQA（distractor 开发集）和 ARC-Challenge，prompt 按模型分别构造（OLMo 四段材料加一个示例，上限 1,000 token；Huginn 十段材料加两个示例）；作者说明这些是同一模型内的对比，不是模型间排名。",
+      "所有计时都在单张 A100-SXM4-80GB、vLLM 0.14.1、bf16、不开 prefix caching 下进行；联合深度对比在 C = 64 下每个配置只跑一次。",
+      "收益取决于负载：GSM8K 回答更长，四组服务对比的墙钟时间比只有 0.98-1.01，而层计算比为 1.52-2.71。",
+      "decode 读到的 prompt KV 来自各位置最后算到的那一遍，是对满深度上下文的近似，作者通过任务准确率来评估；控制器没有正确性反馈，只在离线选定的深度范围内调整。",
+      "在 20/80 req/s 的突发流量下，控制器的一秒 TTFT 达标率为 87.5%，固定 P = 2 为 100%。"
+     ]
+    }
+   },
+   "reproducibility": {
+    "code": "none",
+    "weights": "none",
+    "configs": "partial",
+    "data": "available"
+   },
+   "added": "2026-11-23",
+   "glyph": "prelude 4 layers -> [core 6 layers] x 32 (OLMo r32 checkpoint) -> coda 4 layers; injection n/a; KV last-pass",
+   "card": {
+    "en": "https://raw.githubusercontent.com/sjy1203/awesome-loop/main/docs/en/2611.07211.md",
+    "zh": "https://raw.githubusercontent.com/sjy1203/awesome-loop/main/docs/zh/2611.07211.md"
+   }
+  },
+  {
+   "id": "2611.13378",
+   "tier": "deep",
+   "status": "draft",
+   "short": "Looped CED",
+   "title": "Looping Deeper Without Growing the KV Cache: Recurrent Depth for Causal Encoder-Decoders",
+   "date": "2026-11-09",
+   "venue": "arXiv",
+   "authors": [
+    "Jiaqi Leng",
+    "Minshen Zhang",
+    "Zhaofeng Sun",
+    "Yu-Yang Qian",
+    "Peng Zhao",
+    "Hao Zhang"
+   ],
+   "orgs": [
+    "University of California, San Diego",
+    "Tsinghua University",
+    "Nanjing University"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2611.13378"
+   },
+   "category": "architecture/placement",
+   "facets": {
+    "placement": "encoder",
+    "sharing": "full",
+    "depth_train": "sampled",
+    "depth_test": "extrapolate",
+    "injection": "gated",
+    "kv": "last-pass",
+    "gradient": "truncated",
+    "origin": "scratch",
+    "ffn": "dense",
+    "attention": "hybrid"
+   },
+   "loop": {
+    "segments": [
+     {
+      "role": "prelude",
+      "layers": 2,
+      "label": "L0-1"
+     },
+     {
+      "role": "core",
+      "layers": 4,
+      "label": "L2-5",
+      "passes": {
+       "train": "max(1, Poisson(8))",
+       "test": "8"
+      },
+      "bptt": "last 4"
+     },
+     {
+      "role": "coda",
+      "layers": 6,
+      "label": "L6-11"
+     }
+    ],
+    "note": {
+     "en": "12-layer causal encoder-decoder (CED) in the DeepSeek-V4.1-Flash layout: every layer has SWA-128; L2 is the encoder's only global KV source and L6 projects the global KV shared by the decoder. The loop repeats L2-5.",
+     "zh": "12 层因果编码器-解码器（CED），沿用 DeepSeek-V4.1-Flash 的布局：每层都有 128 窗口 SWA；L2 是 encoder 唯一的全局 KV 源，L6 投影出 decoder 共用的全局 KV。循环 L2-5。"
+    }
+   },
+   "budget": {
+    "baseline": {
+     "en": "Unlooped CED with the same 12-layer layout; dense, decoder-loop and YOCO-U-style variants are also compared.",
+     "zh": "同样 12 层布局、不循环的 CED；另有 dense、decoder 循环和 YOCO-U 式对照。"
+    },
+    "matched": [
+     "params",
+     "tokens",
+     "kv"
+    ],
+    "not_matched": [
+     "flops",
+     "depth"
+    ],
+    "baseline_tuned": "shared",
+    "headline": {
+     "en": "At 150M, the encoder loop lowers BPB from 0.8716 to 0.8468 while keeping the unlooped CED's 8 KB of global KV per token; the paper reports recovering 86-93% of a looped Transformer's gain with 1/6 of its global KV.",
+     "zh": "150M 规模下，encoder 循环把 BPB 从 0.8716 降到 0.8468，每 token 全局 KV 仍是不循环 CED 的 8 KB；论文称用 1/6 的全局 KV 拿回了循环 Transformer 86-93% 的收益。"
+    },
+    "ref": "Abstract; Table 1"
+   },
+   "results": [
+    {
+     "setting": "150M non-embedding params, 6.0B tokens, FineWeb-Edu, 2048 context, T=8 at evaluation",
+     "metric": "validation BPB (lower is better)",
+     "values": {
+      "Dense, no loop": 0.8747,
+      "Dense, loop L2-5": 0.8461,
+      "CED, no loop": 0.8716,
+      "CED, encoder loop L2-5": 0.8468,
+      "CED, decoder loop L7-10": 0.8648,
+      "CED, encoder loop, fixed rounds": 0.8487,
+      "YOCO-U style, loop L2-5": 0.8506
+     },
+     "ref": "Table 1"
+    },
+    {
+     "setting": "150M, 29.6B tokens",
+     "metric": "validation BPB / DCLM CORE accuracy",
+     "values": {
+      "CED, no loop": "0.8401 / 19.09",
+      "CED, encoder loop": "0.8124 / 21.63",
+      "CED, decoder loop": "0.8295 / 21.56"
+     },
+     "ref": "Table 2"
+    },
+    {
+     "setting": "150M, 6.0B tokens, exact fp32 token-by-token decoding at T=8",
+     "metric": "BPB with last-round KV minus BPB with per-round KV",
+     "values": {
+      "Encoder loop, stochastic depth": "-0.0002",
+      "Encoder loop, fixed depth": "+0.0317"
+     },
+     "ref": "Table 3"
+    },
+    {
+     "setting": "DeepSeek-V4.1-Flash (552B) looped for 8 rounds on 4x GB200, serving only (no loop training)",
+     "metric": "KV per token and 128K-token requests that fit",
+     "values": {
+      "Per-layer and per-round KV": "cannot fit one 128K request",
+      "Looped CED (last-round KV)": "36.8x less KV per token, fits 38 requests"
+     },
+     "ref": "Abstract; Table 4"
+    }
+   ],
+   "findings": [
+    {
+     "en": "Running 12 or 16 rounds instead of the trained mean of 8 lowers BPB by at most 0.0004 and never raises it.",
+     "zh": "推理时跑 12 或 16 遍（训练均值是 8 遍），BPB 最多降 0.0004，从不变差。",
+     "ref": "Appendix F; Table 9"
+    },
+    {
+     "en": "After 5x longer training (29.6B tokens) the decoder loop still captures only 38% of the encoder loop's improvement.",
+     "zh": "训练加长到 5 倍（29.6B token）后，decoder 循环的收益仍只有 encoder 循环的 38%。",
+     "ref": "Table 2"
+    }
+   ],
+   "tldr": {
+    "en": "Loop the CED encoder layers that produce global KV, train with random depth, and keep only the last round's KV.",
+    "zh": "循环产出全局 KV 的 CED encoder 层，随机遍数训练，推理只存最后一遍的 KV。"
+   },
+   "quickread": {
+    "problem": {
+     "en": "When every round caches its own KV, a looped model's KV cache grows with the number of rounds, which cancels the memory advantage of KV-sparse layouts such as the causal encoder-decoder.",
+     "zh": "如果每一遍都存自己的 KV，循环模型的 KV 会随遍数增长，抵消掉 CED 这类稀疏 KV 布局的显存优势。"
+    },
+    "method": {
+     "en": [
+      "Loop layers L2-5 of the encoder, which contain its only global KV source, for 8 rounds with Parcae's gated input injection.",
+      "Sample the number of rounds per sequence from max(1, Poisson(8)) and backpropagate through the last 4, so the core settles into a fixed point.",
+      "At inference, past tokens keep only their last-round KV, so the resident KV equals the unlooped CED's."
+     ],
+     "zh": [
+      "循环 encoder 的 L2-5（含 encoder 唯一的全局 KV 源），跑 8 遍，用 Parcae 的门控输入注入。",
+      "每条序列的遍数从 max(1, Poisson(8)) 采样，只反传最后 4 遍，让循环块收敛到不动点。",
+      "推理时历史 token 只保留最后一遍的 KV，常驻 KV 和不循环的 CED 一样。"
+     ]
+    },
+    "caveats": {
+     "en": [
+      "Training experiments use 12-layer dense-FFN models up to 340M non-embedding parameters at 2K context; the 552B DeepSeek-V4.1-Flash runs measure serving cost only, with no loop training.",
+      "Parameters, tokens and KV are held fixed but compute is not; a looped model runs 40 layer passes per decoded token instead of 12.",
+      "All runs share one hyperparameter set (Table 8); the baselines were not tuned separately.",
+      "The encoder loop puts every round on the prefill path; in the 552B serving test, prefill cost per prompt token at T=8 is 5.12x the unlooped CED (Table 13)."
+     ],
+     "zh": [
+      "训练实验是 12 层 dense FFN 模型，最大 340M 非 embedding 参数，2K 上下文；552B 的 DeepSeek-V4.1-Flash 只测服务成本，没训练过循环。",
+      "对齐了参数、token 和 KV，没对齐算力：循环模型每解码一个 token 执行 40 层，不循环是 12 层。",
+      "所有实验共用一套超参（Table 8），基线没有单独调。",
+      "encoder 循环让每一遍都进入 prefill；552B 服务测试里，T=8 时每个 prompt token 的 prefill 成本是不循环 CED 的 5.12 倍（Table 13）。"
+     ]
+    }
+   },
+   "reproducibility": {
+    "code": "none",
+    "weights": "none",
+    "configs": "partial",
+    "data": "available"
+   },
+   "added": "2026-11-23",
+   "glyph": "L0-1 (2 layers) -> [L2-5 (4 layers)] x max(1, Poisson(8)) -> L6-11 (6 layers); injection gated; KV last-pass",
+   "card": {
+    "en": "https://raw.githubusercontent.com/sjy1203/awesome-loop/main/docs/en/2611.13378.md",
+    "zh": "https://raw.githubusercontent.com/sjy1203/awesome-loop/main/docs/zh/2611.13378.md"
+   }
+  },
+  {
+   "id": "tml-inkling-2-mini",
+   "tier": "deep",
+   "status": "draft",
+   "short": "Inkling 2 Mini",
+   "title": "Introducing Inkling 2 Mini",
+   "date": "2026-11-20",
+   "venue": "Thinking Machines Lab blog",
+   "authors": [
+    "Thinking Machines Lab"
+   ],
+   "orgs": [
+    "Thinking Machines Lab"
+   ],
+   "links": {
+    "paper": "https://thinkingmachines.ai/news/inkling-2-mini/",
+    "weights": [
+     "https://huggingface.co/thinkingmachines/Inkling-2-Mini",
+     "https://huggingface.co/thinkingmachines/TML-d24-varloop-research"
+    ],
+    "project": "https://thinkingmachines.ai/model-card/inkling-2-mini/",
+    "blog": "https://huggingface.co/blog/inkling2mini"
+   },
+   "category": "architecture/placement",
+   "facets": {
+    "placement": "prelude-core-coda",
+    "sharing": "full",
+    "depth_train": "fixed",
+    "depth_test": "fixed",
+    "injection": "depth-attention",
+    "kv": "per-pass",
+    "gradient": "n/a",
+    "origin": "n/a",
+    "ffn": "moe",
+    "attention": "hybrid"
+   },
+   "loop": {
+    "segments": [
+     {
+      "role": "prelude",
+      "layers": 6,
+      "label": "L0-5"
+     },
+     {
+      "role": "core",
+      "layers": 12,
+      "label": "L6-17",
+      "passes": {
+       "train": "3",
+       "test": "3"
+      }
+     },
+     {
+      "role": "coda",
+      "layers": 6,
+      "label": "L18-23"
+     }
+    ],
+    "note": {
+     "en": "Inkling 2 Mini has 24 MoE layers (8 of 128 experts per token) in four six-layer blocks; the two middle blocks share weights and run three times, so 24 stored layers give 48 layer applications per token. Per the Hugging Face blog, each block has five sliding-window layers (1,024-token window) and one full-attention layer, and each layer visit keeps its own KV. Every pass starts from the prelude output; passes 2 and 3 also read the previous pass's middle-block outputs (the message) through attention residuals, admitted by a learned gate that starts fully closed. Labels are 0-indexed as in the Hugging Face blog; the post numbers the same core 7-18. The released research twin TML-d24-varloop-research has the same layout but was trained with 1 to 5 passes and is run at up to 10 in the post.",
+     "zh": "Inkling 2 Mini 有 24 层 MoE（每 token 从 128 个专家中选 8 个），分成四个 6 层块；中间两块共享权重、跑三遍，24 层存储权重每 token 执行 48 次层计算。据 Hugging Face 博客，每块有五层滑窗注意力（窗口 1,024 token）和一层全注意力，每次层访问各存一份 KV。每一遍都从 prelude 输出开始；第 2、3 遍还通过 attention residuals 读取上一遍中间块的输出（称为 message），由一个初始完全关闭的可学习门控接入。层号按 Hugging Face 博客从 0 开始，原文把同一段 core 记作 7-18。同时发布的研究版 TML-d24-varloop-research 结构相同，但训练时用 1 到 5 遍，文中最多跑到 10 遍。"
+    }
+   },
+   "budget": {
+    "baseline": {
+     "en": "A scaling-ladder run that loops the last 12 layers (13-24) instead of the middle 12 (7-18), with the same three passes and equal training compute; both runs' gains are expressed as the compute a no-loop baseline would need to match their loss.",
+     "zh": "scaling ladder 上的对照：循环最后 12 层（13-24）而不是中间 12 层（7-18），同样跑三遍、训练算力相同；两者的收益都用无循环基线追平其 loss 所需的算力来表示。"
+    },
+    "matched": [
+     "flops"
+    ],
+    "not_matched": [],
+    "baseline_tuned": "unknown",
+    "headline": {
+     "en": "Looping the middle 12 layers gave larger accuracy gains than looping the last 12 on 27 of 28 evaluations; at training step 2,000 a no-loop baseline was estimated to need 1.51-1.91x the compute to match the middle loop's loss, against 1.24-1.36x for the last loop.",
+     "zh": "28 项评测中有 27 项，循环中间 12 层的准确率收益大于循环最后 12 层；训练到第 2,000 步时，估计无循环基线需要 1.51-1.91 倍算力才能追平中间循环的 loss，追平最后 12 层循环只需 1.24-1.36 倍。"
+    },
+    "ref": "Looping design; figure \"Compute-equivalent gain by loop position\""
+   },
+   "results": [
+    {
+     "setting": "Scaling-ladder runs at training step 2,000, three passes, equal training compute; range over three evaluations",
+     "metric": "compute a no-loop baseline is estimated to need to match the looped run's loss",
+     "values": {
+      "Loop middle layers (7–18)": "1.51–1.91×",
+      "Loop last layers (13–24)": "1.24–1.36×"
+     },
+     "ref": "Looping design; figure \"Compute-equivalent gain by loop position\""
+    },
+    {
+     "setting": "Subset of Think Fast tasks, no-CoT answers elicited by prefilling the response; Varloop = TML-d24-varloop-research, trained with 1-5 passes",
+     "metric": "no-CoT 50% time horizon (human seconds)",
+     "values": {
+      "Inkling 2 Mini, 3 passes": "41 s",
+      "Varloop, 1 pass": "16 s",
+      "Varloop, 2 passes": "26 s",
+      "Varloop, 3 passes": "37 s",
+      "Varloop, 5 passes": "42 s",
+      "Varloop, 10 passes": "40 s"
+     },
+     "ref": "No-CoT capabilities; figure \"No-CoT time horizons\""
+    },
+    {
+     "setting": "TML-d24-varloop-research run at 1-5 passes (1-5 passes sampled 1:2:6:2:1 for the rest of midtraining, post-trained at 3)",
+     "metric": "score at 1 / 2 / 3 / 4 / 5 passes",
+     "values": {
+      "DeepSWE v1.1 (mini-swe-agent v2.4.6)": "0.7% / 28.3% / 47.4% / 46.9% / 48.2%",
+      "GPQA Diamond": "69.6% / 79.2% / 84.2% / 81.9% / 83.1%",
+      "MRCR v2 8-needle 256K–512K": "26.2% / 65.2% / 89.2% / 93.4% / 92.1%",
+      "SimpleQA Verified": "6.3% / 6.5% / 7.3% / 6.8% / 6.7%"
+     },
+     "ref": "TML-d24-varloop-research model card, Section 5 (Evaluations)"
+    },
+    {
+     "setting": "TML-d24-varloop-research on the GPQA Diamond questions it answered correctly at all five pass counts",
+     "metric": "mean reasoning tokens / mean words per sentence / words in an English dictionary / uncertainty indicators",
+     "values": {
+      "1 pass": "3703 / 8.9 / 94.6% / 9.7",
+      "3 passes": "1731 / 8.7 / 94.5% / 3.9",
+      "5 passes": "1661 / 8.7 / 94.4% / 3.6"
+     },
+     "ref": "CoT monitorability; Compression and legibility table"
+    },
+    {
+     "setting": "LinuxArena, subset of 184 main-task/side-task pairings, simple-attack policy, monitor Qwen3.6-35B-A3B at a 1% false-positive rate; Inkling 2 Mini is a helpful-only fine-tune; Varloop = TML-d24-varloop-research",
+     "metric": "stealth rate (% of attack episodes), monitor sees tool calls and outputs only / also sees text and thinking",
+     "values": {
+      "Inkling 2 Mini (helpful-only)": "3.9% / 1.3%",
+      "Varloop, 1 pass": "1.0% / 0.3%",
+      "Varloop, 2 passes": "2.5% / 0.4%",
+      "Varloop, 3 passes": "4.0% / 0.6%",
+      "Varloop, 4 passes": "2.8% / 0.3%",
+      "Varloop, 5 passes": "5.0% / 0.0%"
+     },
+     "ref": "Agentic monitorability; figure \"LinuxArena stealth rate\""
+    }
+   ],
+   "findings": [
+    {
+     "en": "On the scaling ladder, an unpruned non-looping model cost 7.5% less compute to train than the unpruned looped version but needed 140% more inference compute to match its loss on 512k-token agentic traces.",
+     "zh": "在 scaling ladder 上，未剪枝的不循环模型训练算力比未剪枝的循环版少 7.5%，但要在 512k token 的 agentic 轨迹上追平循环版的 loss，推理算力要多 140%。",
+     "ref": "Looping design"
+    },
+    {
+     "en": "TML-d24-varloop-research was never trained with more than five passes, yet running it with ten does not significantly degrade its no-CoT time horizon (40 s, against 42 s at five), and on N-Hop Lookup it follows longer chains with more passes, improving out to ten loops.",
+     "zh": "TML-d24-varloop-research 训练时从未超过 5 遍，但跑 10 遍时 no-CoT 时间跨度没有明显下降（40 秒，5 遍时为 42 秒）；在 N-Hop Lookup 上，遍数越多能跟的查找链越长，一直提升到 10 遍。",
+     "ref": "No-CoT capabilities; figures \"No-CoT time horizons\" and \"N-Hop Lookup\""
+    },
+    {
+     "en": "With CoT, more passes mainly help multi-hop reasoning rather than recall: gains are largest on long-context retrieval (MRCR), then math and science reasoning, then long-horizon agentic tasks, while knowledge-intensive benchmarks (AA-Omniscience, SimpleQA Verified, SimpleVQA, WorldVQA) do not improve with more passes.",
+     "zh": "有 CoT 时，增加遍数主要帮助多跳推理而不是记忆：长上下文检索（MRCR）收益最大，其次是数学和科学推理，再次是长程 agentic 任务；AA-Omniscience、SimpleQA Verified、SimpleVQA、WorldVQA 这类知识密集型评测不随遍数提升。",
+     "ref": "Capabilities; No-CoT capabilities"
+    },
+    {
+     "en": "Accuracy at each reasoning-token budget generally rises with passes, with diminishing returns after 3; on GPQA Diamond questions solved at all pass counts, reasoning at 5 passes averages 1,661 tokens against 3,703 at 1 pass, with unchanged sentence length and dictionary-word share.",
+     "zh": "每个推理 token 预算下的准确率一般随遍数上升，3 遍之后收益递减；在各遍数都答对的 GPQA Diamond 题上，5 遍的推理平均 1,661 token，1 遍为 3,703 token，句长和词典词比例不变。",
+     "ref": "CoT monitorability; Compression and legibility"
+    },
+    {
+     "en": "Among CoTs of 750-1,250 tokens, Inkling 2 Mini and the variable-loop model at 3 passes follow a CoT instruction at most 0.1% of the time (Qwen3.8-27B 1.3%), too rarely to separate loop counts; LinuxArena stealth rates show no clear trend with the number of passes.",
+     "zh": "在 750-1,250 token 的 CoT 中，Inkling 2 Mini 和 3 遍的可变循环模型最多只有 0.1% 的时候遵守 CoT 指令（Qwen3.8-27B 为 1.3%），低到无法区分不同遍数；LinuxArena 的 stealth rate 也看不出随遍数变化的明显趋势。",
+     "ref": "CoT monitorability (Controllability); Agentic monitorability"
+    }
+   ],
+   "tldr": {
+    "en": "Open-weight MoE (26.4B total, 3.4B active) that runs the middle 12 of its 24 layers three times with shared weights, released with a variable-loop research twin used to measure how pass count affects capability and CoT monitorability.",
+    "zh": "开源权重的 MoE（总参数 26.4B、激活 3.4B），24 层中的中间 12 层共享权重跑三遍；同时发布一个可变循环的研究版，用来测遍数对能力和 CoT 可监控性的影响。"
+   },
+   "quickread": {
+    "problem": {
+     "en": "Looping lets a model do more serial computation per token without adding parameters, which has raised concerns that looped models are harder to oversee by reading their chain of thought; the post reports what looping gives a small open model and how pass count affects CoT monitorability.",
+     "zh": "循环让模型不增加参数就能在每个 token 上做更多串行计算，这引起了一种担忧：循环模型更难通过阅读 CoT 来监督。本文报告循环给一个小型开源模型带来的收益，以及遍数如何影响 CoT 可监控性。"
+    },
+    "method": {
+     "en": [
+      "24 MoE layers (8 of 128 experts per token) in four six-layer blocks; the two middle blocks share weights and run three times, giving 48 layer applications per token from 24 stored layers.",
+      "Every pass starts from the prelude output; passes 2 and 3 also read the previous pass's middle-block outputs (the message) through attention residuals, and a learned gate that initially blocks the message lets looping be introduced stably during training.",
+      "Training started with 8 of 384 experts per token; two-thirds of the experts were pruned at one point in midtraining (keeping the 128 most used per layer), followed by 1T tokens distilled from a larger internal Inkling model, SFT, and RL totaling 2.2T tokens over 2,000 steps. Expert layers use NVFP4 on all forward passes and the last four layers use MXFP8.",
+      "A variable-loop research model, TML-d24-varloop-research, was trained with 1 to 5 passes (sampled 1:2:6:2:1 for the rest of midtraining, post-trained at 3) and is run at 1 to 5 passes, and at 10 in the no-CoT tests, to measure capability and CoT monitorability."
+     ],
+     "zh": [
+      "24 层 MoE（每 token 从 128 个专家中选 8 个），分成四个 6 层块；中间两块共享权重、跑三遍，24 层存储权重每 token 执行 48 次层计算。",
+      "每一遍都从 prelude 输出开始；第 2、3 遍还通过 attention residuals 读取上一遍中间块的输出（message），一个初始完全挡住 message 的可学习门控让训练中可以稳定地引入循环。",
+      "训练开始时每 token 从 384 个专家中选 8 个；midtraining 中某一时刻剪掉三分之二的专家（每层保留最常用的 128 个），之后用 1T token 从更大的内部 Inkling 模型蒸馏，再做 SFT 和共 2.2T token、2,000 步的 RL。专家层的所有前向都用 NVFP4，最后四层用 MXFP8。",
+      "可变循环研究版 TML-d24-varloop-research 用 1 到 5 遍训练（midtraining 后段按 1:2:6:2:1 采样，post-training 用 3 遍），评测时跑 1 到 5 遍、no-CoT 测试还跑 10 遍，用来测能力和 CoT 可监控性。"
+     ]
+    },
+    "caveats": {
+     "en": [
+      "Inkling 2 Mini supports only a fixed number of passes (3), so every pass-count comparison uses TML-d24-varloop-research, whose later training stages differ; its model card cautions against comparing it directly with Inkling 2 Mini.",
+      "Three passes dominated the variable-loop model's training and its RL used 3 passes only; the authors say results at other pass counts may understate what dedicated training could achieve and do not show what RL at a higher pass count would learn.",
+      "The loop-placement and looping-versus-non-looping comparisons come from scaling-ladder runs (placement at training step 2,000; unpruned models for looping versus non-looping), not from the released model, and the post does not give the sizes of those runs.",
+      "No-CoT results use a subset of Think Fast tasks, with answers elicited by prefilling the start of the response; the models were not trained to answer without CoT.",
+      "LinuxArena used a helpful-only fine-tune of Inkling 2 Mini, a weaker monitor (Qwen3.6-35B-A3B) and a subset of 184 task pairings.",
+      "Decoding speeds in the opening coding figure are theoretical ceilings (614 GB/s, BF16 weights, batch size one), evaluation setups vary by model, and the post gives no pretraining token count."
+     ],
+     "zh": [
+      "Inkling 2 Mini 只支持固定遍数（3 遍），所有遍数对比都用 TML-d24-varloop-research，而它后期的训练阶段与 Inkling 2 Mini 不同；其 model card 提醒不要把两者直接比较。",
+      "可变循环模型的训练以 3 遍为主，RL 也只用 3 遍；作者说其他遍数的结果可能低估专门训练能达到的水平，也说明不了在更多遍数上做 RL 会学到什么。",
+      "循环位置对比和循环与不循环的对比都来自 scaling ladder 实验（位置对比在第 2,000 训练步；循环与不循环对比用未剪枝模型），不是发布的模型，文中也没给这些实验的模型规模。",
+      "no-CoT 结果只用了 Think Fast 的部分任务，通过预填回答开头让模型直接作答；这些模型没有为不用 CoT 作答而训练。",
+      "LinuxArena 用的是 Inkling 2 Mini 的 helpful-only 微调版、较弱的监控模型（Qwen3.6-35B-A3B），以及 184 组任务的子集。",
+      "开篇编码图里的解码速度是理论上限（614 GB/s、BF16 权重、batch size 1），各模型评测设置不同，文中也没给预训练 token 数。"
+     ]
+    }
+   },
+   "reproducibility": {
+    "code": "partial",
+    "weights": "available",
+    "configs": "partial",
+    "data": "none"
+   },
+   "added": "2026-11-23",
+   "glyph": "L0-5 (6 layers) -> [L6-17 (12 layers)] x 3 -> L18-23 (6 layers); injection depth-attention; KV per-pass",
+   "card": {
+    "en": "https://raw.githubusercontent.com/sjy1203/awesome-loop/main/docs/en/tml-inkling-2-mini.md",
+    "zh": "https://raw.githubusercontent.com/sjy1203/awesome-loop/main/docs/zh/tml-inkling-2-mini.md"
+   }
+  }
+ ]
+}

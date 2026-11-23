@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="368.4" height="66" viewBox="0 0 368.4 66" role="img" aria-label="L0-3 (4 layers) -&gt; [L10-17 (8 layers)] x Poisson-Lognormal, mean ramped to 4, 8, 16 or 32 -&gt; L18-21 (4 layers); injection concat; KV n/a">
+<title>L0-3 (4 layers) -&gt; [L10-17 (8 layers)] x Poisson-Lognormal, mean ramped to 4, 8, 16 or 32 -&gt; L18-21 (4 layers); injection concat; KV n/a</title>
+<style>@media (prefers-color-scheme:dark){text{fill:#9198a1}text.p{fill:#4493f8}}</style>
+<g transform="translate(62.2,0)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="10">
+<rect x="0" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="12" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="24" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="36" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="57" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<rect x="69" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<rect x="81" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<rect x="93" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<rect x="105" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<rect x="117" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<rect x="129" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<rect x="141" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<path d="M150,27 C150,13 57,13 57,22" fill="none" stroke="#0969da" stroke-width="1.5"/>
+<path d="M53.5,21 L60.5,21 L57,28 Z" fill="#0969da"/>
+<rect x="162" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="174" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="186" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="198" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<text x="22.5" y="61" text-anchor="middle" fill="#57606a">L0-3</text>
+<text x="103.5" y="61" text-anchor="middle" fill="#57606a">L10-17</text>
+<text x="103.5" y="11" text-anchor="middle" class="p" fill="#0969da">×Poisson-Lognormal, mean ramped to 4, 8, 16 or 32</text>
+<text x="184.5" y="61" text-anchor="middle" fill="#57606a">L18-21</text>
+<text x="221" y="37" text-anchor="start" fill="#57606a">inj · concat</text>
+<text x="221" y="49" text-anchor="start" fill="#57606a">KV · n/a</text>
+</g>
+</svg>

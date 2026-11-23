@@ -1,0 +1,41 @@
+id: huginn-0125
+name: Huginn-0125
+paper: "2502.05171"
+hf:
+  - tomg-group-umd/huginn-0125
+  - tomg-group-umd/huginn_swa_75_7_ema_0.9_merge
+  - tomg-group-umd/huginn_swa_100_10_avg_0.9_merge
+  - tomg-group-umd/step-00006144-recurrence_full_512_0
+  - tomg-group-umd/step-00010752-recurrence_full_512_0
+  - tomg-group-umd/step-00011904-recurrence_full_512_0
+  - tomg-group-umd/step-00017920-recurrence_full_512_0
+  - tomg-group-umd/step-00023808-recurrence_full_512_0
+  - tomg-group-umd/step-00029824-recurrence_full_512_0
+  - tomg-group-umd/step-00035840-recurrence_full_512_0
+  - tomg-group-umd/step-00041728-recurrence_full_512_0
+params: 3.5B
+tokens: 800B
+context: "4096 (training sequence length)"
+passes:
+  default: "32"
+  range: "any num_steps; card says under 4 is very coarse and benchmarks improve up to about 64"
+kv: per-pass
+license: apache-2.0
+inference: [transformers-remote-code]
+notes:
+  en: >-
+    huginn-0125 is the final checkpoint of the 800B-token run. huginn_swa_75_7_ema_0.9_merge is a weight-averaged
+    checkpoint that its card says improves GSM8K; its name matches the EMA in Section 5.4 (last 75 checkpoints,
+    dilation 7, beta 0.9), which scores 47.23% flexible on GSM8K at r=64. The card of huginn_swa_100_10_avg_0.9_merge
+    calls it an SWA merge of the main model. The eight step-* repos are intermediate checkpoints of the same run. The
+    model needs its own cache class (HuginnDynamicCache) so that later recurrence steps do not overwrite earlier KV
+    entries; the card also documents zero-shot adaptive exits, KV-cache sharing (lookup_strategy compress-s16) and
+    continuous-CoT warm starts. The non-recurrent baseline checkpoints in the same collection (step-*-baseline_2_0) are
+    not listed. The GitHub README also describes a vLLM plugin.
+  zh: >-
+    huginn-0125 是 800B token 训练的最终 checkpoint。huginn_swa_75_7_ema_0.9_merge 是权重平均的 checkpoint，模型卡说它提升了 GSM8K；名字与 Section 5.4 的 EMA 一致（最后 75 个 checkpoint、dilation 7、beta 0.9），该 EMA 在 r=64 时 GSM8K 为 47.23%（flexible）。huginn_swa_100_10_avg_0.9_merge 的模型卡称其为主模型的 SWA 合并。8 个 step-* 仓库是同一次训练的中间 checkpoint。模型需要自带的 cache 类（HuginnDynamicCache），否则后面递归步的 KV 会覆盖前面的；模型卡还介绍了零样本自适应退出、KV cache 共享（lookup_strategy compress-s16）和连续 CoT 热启动。同一 collection 里不循环基线的 checkpoint（step-*-baseline_2_0）未列出。GitHub README 还介绍了一个 vLLM 插件。
+ref: >-
+  huginn-0125 model card (num_steps usage and range, HuginnDynamicCache, trust_remote_code, apache-2.0) and the cards of
+  the other ten repos; HF API (repo existence, license tags) and the Recurrent Models collection; paper Abstract (3.5B,
+  800B tokens), Section 4.1 (4096-token sequences, mean recurrence 32), Section 5.4 (EMA); GitHub README (vLLM plugin).
+added: "2026-11-23"

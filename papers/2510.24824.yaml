@@ -1,0 +1,190 @@
+id: "2510.24824"
+tier: deep
+status: draft
+short: PLT
+title: "Parallel Loop Transformer for Efficient Test-Time Computation Scaling"
+date: "2025-10-28"
+venue: arXiv
+authors: [Bohong Wu, Mengzhao Chen, Xiang Luo, Shen Yan, Qifan Yu, Fan Xia, Tianqi Zhang, Hongrui Zhan, Zheng Zhong, Xun Zhou, Siyuan Qiao, Xingyan Bin]
+orgs: [ByteDance Seed]
+links:
+  paper: https://arxiv.org/abs/2510.24824
+category: systems
+facets:
+  placement: shifted-parallel
+  sharing: full
+  depth_train: fixed
+  depth_test: fixed
+  injection: additive
+  kv: first-pass
+  gradient: n/a
+  origin: scratch
+  ffn: moe
+  attention: hybrid
+loop:
+  segments:
+    - role: core
+      layers: "100%"
+      label: all layers, every loop
+      passes: {train: "2 or 3 (PLT-2 / PLT-3)", test: "2 or 3, same as training"}
+  note:
+    en: >-
+      Each loop runs the whole stack with tied weights. Before every non-first loop, the previous loop's last-layer
+      states are shifted right by one token and added to the token embeddings, so at decoding time loop l of token i
+      runs in the same forward pass as loop l+1 of token i-1. Non-first loops attend globally to the first loop's KV
+      and locally to their own KV through SWA (w=64), mixed by a head-wise sigmoid gate. The in-house Seed-MoE layer
+      count is not disclosed; the open-source OLMo/OLMoE runs use 16 layers (Appendix A.2.1).
+    zh: >-
+      每一遍都跑整个模型，权重共享。每个非首遍之前，把上一遍最后一层的输出右移一个 token，再加上 token embedding，所以解码时 token i 的第 l 遍和 token i-1 的第 l+1 遍在同一次前向里执行。非首遍对首遍的 KV 做全局注意力，对自己的 KV 做窗口 w=64 的 SWA，两者用按 head 的 sigmoid 门控混合。内部 Seed-MoE 的层数未公开；开源 OLMo/OLMoE 实验用 16 层（Appendix A.2.1）。
+budget:
+  baseline:
+    en: >-
+      Unlooped in-house Seed-MoE 680M/13B and the same model looped twice without CLP; CLP, KV sharing and G-SWA are
+      then added one at a time.
+    zh: 不循环的内部 Seed-MoE 680M/13B，以及不带 CLP、直接循环两遍的同一模型；之后把 CLP、KV 共享和 G-SWA 逐个加上去对比。
+  matched: [params, active-params, tokens]
+  not_matched: [flops, depth, kv]
+  baseline_tuned: unknown
+  headline:
+    en: >-
+      On a 680M/13B MoE trained on 150B tokens, PLT-2 reaches the vanilla two-loop model's average accuracy of 39.7
+      (34.7 without loops) at 4.9 ms decoding latency and 284M KV cache (batch size 4), against 9.4 ms and 560M for the
+      vanilla two-loop model and 4.8 ms and 280M for the unlooped model.
+    zh: >-
+      在 150B token 训练的 680M/13B MoE 上，PLT-2 的平均精度与普通两遍循环模型相同，都是 39.7（不循环为 34.7）；
+      batch size 4 时 PLT-2 解码延迟 4.9 ms、KV 284M，普通两遍循环是 9.4 ms、560M，不循环模型是 4.8 ms、280M。
+  ref: Table 2; Section 3.1.2
+results:
+  - setting: In-house Seed-MoE, 680M activated / 13B total, 150B tokens; latency and KV cache at batch size 4
+    metric: Avg. accuracy / decoding latency (ms) / KV cache
+    values:
+      "(1)Seed-MoE 680M/13B": "34.7 / 4.8 / 280M"
+      "(2)+loop-2": "39.7 / 9.4 / 560M"
+      "(3)+loop-2+CLP": "39.6 / 5.9 / 560M"
+      "(4)+loop-2+CLP+KV share": "36.2 / 4.8 / 280M"
+      "(5)+loop-2+CLP+KV share+G-SWA(PLT-2)": "39.7 / 4.9 / 284M"
+      "(6)+loop-3+CLP+KV share+G-SWA(PLT-3)": "40.8 / 5.0 / 287M"
+    ref: Table 2
+    note:
+      en: The Section 3.1.2 text gives PLT-3's latency as 4.8→4.9 ms; Table 2 prints 5.0 ms.
+      zh: Section 3.1.2 正文写 PLT-3 的延迟是 4.8→4.9 ms，Table 2 印的是 5.0 ms。
+  - setting: >-
+      Same models as Table 2; FP8 attention, W4A8 linear layers, 5000-token prefill, one GPU, mean of five runs
+      that each decode 256 tokens
+    metric: per-token decoding latency in ms (ratio to Seed-MoE), bs=4 / bs=64
+    values:
+      "(1)Seed-MoE 680M/13B": "4.8(1.00×) / 10.9(1.00×)"
+      "(2)+loop-2": "9.4(1.96×) / 21.4(1.96×)"
+      "(3)+loop-2+CLP": "5.9(1.23×) / 16.4(1.50×)"
+      "(4)+loop-2+CLP+KV share": "4.8(1.00×) / 11.1(1.02×)"
+      "(5)+loop-2+CLP+KV share+G-SWA(PLT-2)": "4.9(1.02×) / 11.3(1.04×)"
+    ref: Table 3; Section 3.1.1
+  - setting: In-house MoE, baseline trained on 1T tokens; PLT-2 uses two-thirds of the baseline's layers
+    metric: Avg. accuracy
+    values:
+      "Seed-MoE (2.5B/60B)": 62.1
+      "PLT-2 (1.7B/40B)": 62.6
+    ref: Table 4; Section 3.2
+    note:
+      en: >-
+        Section 3.2 reports about 30% lower decoding latency for PLT-2 across batch sizes 4 to 64 (Figure 5) and a
+        KV cache roughly two-thirds of the baseline's.
+      zh: Section 3.2 称 PLT-2 在 batch size 4 到 64 下解码延迟约低 30%（Figure 5），KV 约为基线的三分之二。
+  - setting: OLMo-based 1.2B dense and OLMoE-based 1B/7B MoE, 16 layers, 400B tokens, L=2
+    metric: Loss / Avg. accuracy
+    values:
+      "Vanilla Dense": "2.577 / 55.4"
+      "Dense + loop-2": "2.532 / 57.6"
+      "Dense + PLT-2": "2.537 / 57.4"
+      "Vanilla MoE": "2.342 / 57.8"
+      "MoE + loop-2": "2.302 / 59.6"
+      "MoE + PLT-2": "2.280 / 60.0"
+    ref: Table 5; Appendix A.2.1
+  - setting: OLMo-based dense ablation (hidden 1536, GQA with 16 query and 4 KV heads), 100B tokens, latency on one H800
+    metric: Loss / Avg. accuracy / latency in ms at bs=1 / at bs=16
+    values:
+      "(1) Vanilla Dense": "2.880 / 46.6 / 1.68 / 2.49"
+      "(2) +loop-2": "2.856 / 46.7 / 2.66 / 3.92"
+      "(3) +loop-2+CLP": "2.840 / 47.8 / 1.73 / 3.23"
+      "(4) +loop-2+CLP+KVshare": "2.858 / 46.9 / 1.73 / 2.69"
+      "(5) +loop-2+CLP+KVshare+G-SWA": "2.844 / 47.8 / 1.73 / 2.70"
+    ref: Table 6; Appendix A.3.1
+findings:
+  - en: >-
+      Adding CLP to the two-loop model leaves average accuracy nearly unchanged (39.7 to 39.6) and cuts decoding
+      latency from 9.4 ms to 5.9 ms, while the KV cache stays at 560M.
+    zh: 两遍循环模型加上 CLP 后，平均精度基本不变（39.7 到 39.6），解码延迟从 9.4 ms 降到 5.9 ms，KV 仍是 560M。
+    ref: Table 2; Section 3.1.2
+  - en: >-
+      Sharing the first loop's KV halves the KV cache (560M to 280M) but lowers average accuracy from 39.6 to 36.2;
+      adding G-SWA with a 64-token window brings it back to 39.7 at 284M.
+    zh: 共享首遍 KV 让 KV 减半（560M 到 280M），但平均精度从 39.6 降到 36.2；再加窗口 64 的 G-SWA，精度回到 39.7，KV 为 284M。
+    ref: Table 2; Section 3.1.2
+  - en: >-
+      With the same parameters, three loops beat two, with average accuracy 40.8 for PLT-3 against 39.7 for PLT-2;
+      Table 2 lists 5.0 vs 4.9 ms latency and 287M vs 284M KV.
+    zh: 参数相同时三遍好于两遍，PLT-3 平均精度 40.8，PLT-2 为 39.7；Table 2 中两者延迟为 5.0 和 4.9 ms，KV 为 287M 和 284M。
+    ref: Table 2; Section 3.1.2
+  - en: >-
+      At batch sizes 32 and 64, PLT-2 cuts per-token decoding latency by 47% relative to the vanilla two-loop model
+      and runs at 1.06× and 1.04× the latency of the unlooped model.
+    zh: batch size 为 32 和 64 时，PLT-2 的每 token 解码延迟比普通两遍循环低 47%，分别是不循环模型的 1.06 倍和 1.04 倍。
+    ref: Table 3; Section 3.1.3
+  - en: >-
+      A PLT-2 with two-thirds of the baseline's layers (1.7B/40B) averages 62.6 against 62.1 for the 2.5B/60B
+      Seed-MoE, with about 30% lower decoding latency.
+    zh: 层数为基线三分之二的 PLT-2（1.7B/40B）平均 62.6，2.5B/60B 的 Seed-MoE 为 62.1，PLT-2 解码延迟约低 30%。
+    ref: Table 4; Section 3.2; Figure 5
+tldr:
+  en: >-
+    Run loop l of token i in the same forward pass as loop l+1 of token i-1, let later loops reuse the first loop's
+    KV plus a gated SWA, and a looped model decodes at close to unlooped latency and KV.
+  zh: 让 token i 的第 l 遍和 token i-1 的第 l+1 遍在同一次前向里执行，后续遍复用首遍 KV 并加门控 SWA，循环模型的解码延迟和 KV 接近不循环模型。
+quickread:
+  problem:
+    en: >-
+      In a vanilla looped Transformer the loops run one after another, so per-token compute, decoding latency and KV
+      cache all grow linearly with the number of loops.
+    zh: 普通循环 Transformer 的各遍依次串行执行，每 token 计算、解码延迟和 KV 都随遍数线性增长。
+  method:
+    en:
+      - >-
+        Cross-loop parallelism (CLP) shifts the previous loop's last-layer states right by one token and adds the
+        embeddings before each non-first loop, so loop l of token i, loop l+1 of token i-1 and so on are decoded as
+        one micro-batch in a single forward pass.
+      - Non-first loops keep their own queries but attend globally to the first loop's KV, so only one global KV cache is stored.
+      - >-
+        Gated SWA (G-SWA) lets non-first loops also attend to their own KV within a 64-token window and mixes local
+        and global outputs through a head-wise sigmoid gate; these loops cache only the most recent w KV entries.
+    zh:
+      - 跨遍并行（CLP）在每个非首遍之前把上一遍最后一层的输出右移一个 token 再加上 embedding，解码时 token i 的第 l 遍、token i-1 的第 l+1 遍等组成一个 micro-batch，在一次前向里算完。
+      - 非首遍保留自己的 query，但对首遍的 KV 做全局注意力，所以只需存一份全局 KV。
+      - 门控 SWA（G-SWA）让非首遍再在 64 token 的窗口内看自己的 KV，局部和全局输出用按 head 的 sigmoid 门控混合；这些遍只缓存最近 w 个 KV。
+  caveats:
+    en:
+      - >-
+        The main results use in-house Seed-MoE models whose data and other training details are withheld; the
+        open-source OLMo/OLMoE runs (1.2B dense and 1B/7B MoE at 400B tokens, plus a 100B-token dense ablation)
+        test only L=2.
+      - Each model is trained and evaluated at one fixed loop count (L=2 or 3); the paper does not report running a different number of loops at inference.
+      - >-
+        Parameters and training tokens are matched but compute is not; an L-loop PLT spends L times the per-token
+        compute of the baseline (Table 1), and its latency advantage rests on decoding being memory-bound.
+      - CLP parallelizes decoding only; training stays serial along the loop dimension (Figure 4).
+      - >-
+        Latency is per-token decoding latency on one GPU with FP8 attention, W4A8 linear layers and a 5000-token
+        prefill; the latency and KV columns of Table 2 are at batch size 4.
+      - Hyperparameters of the in-house runs are not given, so the paper does not say whether the baseline was tuned separately.
+    zh:
+      - 主要结果来自内部 Seed-MoE 模型，数据和其他训练细节未公开；开源的 OLMo/OLMoE 实验（400B token 的 1.2B dense 和 1B/7B MoE，以及 100B token 的 dense 消融）只测了 L=2。
+      - 每个模型训练和评测都用同一个固定遍数（L=2 或 3）；论文没有报告推理时换用其他遍数。
+      - 对齐了参数和训练 token，没对齐算力；L 遍的 PLT 每 token 计算是基线的 L 倍（Table 1），延迟优势依赖解码受显存带宽限制。
+      - CLP 只让解码并行；训练在遍数维度上仍是串行（Figure 4）。
+      - 延迟是单卡上的每 token 解码延迟，attention 用 FP8、线性层用 W4A8，prefill 长度 5000；Table 2 的延迟和 KV 列是 batch size 4 下的值。
+      - 内部实验的超参没有给出，论文没说基线是否单独调过。
+reproducibility:
+  code: none
+  weights: none
+  configs: partial
+  data: none
+added: "2026-11-23"

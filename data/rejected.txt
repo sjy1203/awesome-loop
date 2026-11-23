@@ -1,0 +1,3 @@
+# arXiv ids that were triaged out of scope; scripts/discover.py skips them.
+# One id per line, optional reason after "#", for example:
+# 2601.00001  # agent loop, no reused layers

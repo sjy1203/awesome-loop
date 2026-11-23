@@ -1,0 +1,184 @@
+id: "2609.01343"
+tier: deep
+status: draft
+short: SMELT
+title: "SMELT: Scaling Laws for Compute-Matched MoE Looped Transformers"
+date: "2026-09-01"
+venue: arXiv
+authors: [Shaowen Wang, Ge Zhang, Kairong Luo, Yuhao Wu, Shaofan Liu, Jiaheng Liu, Wenhao Huang, Shen Yan, Jian Li]
+orgs: [Tsinghua University, ByteDance Seed, M-A-P, TokenWave.AI]
+links:
+  paper: https://arxiv.org/abs/2609.01343
+category: scaling
+facets:
+  placement: prelude-core-coda
+  sharing: full
+  depth_train: fixed
+  depth_test: fixed
+  injection: none
+  kv: per-pass
+  gradient: full-bptt
+  origin: scratch
+  ffn: moe
+  attention: full
+loop:
+  segments:
+    - {role: prelude, layers: 3, label: L1-3}
+    - role: core
+      layers: 6
+      label: L4-9
+      passes: {train: "2", test: "2"}
+      bptt: both passes
+    - {role: coda, layers: 3, label: L10-12}
+  note:
+    en: >-
+      Shown for the 200M scale (L = 12) used in all design ablations; the middle 6 of 12 layers run twice, so 18 layers
+      execute per token. All four scales loop the middle 50% twice and place ⌊(L − m)/2⌋ layers before the span (looped
+      layers 3-7, 4-9, 6-15 and 8-22 for L = 10, 12, 20 and 30). Inside the loop each sublayer's residual update is
+      scaled by 1/r (here 1/2), and every layer execution computes its own Q, K and V; smaller heads at a higher GQA
+      ratio keep the KV cache close to the Baseline's.
+    zh: >-
+      图示为所有设计消融所用的 200M 规模（L = 12）：12 层中间的 6 层跑两遍，每个 token 执行 18 层。四个规模都循环中间 50% 的层两遍，循环段之前放 ⌊(L − m)/2⌋ 层（L = 10、12、20、30 时循环的分别是第 3-7、4-9、6-15、8-22 层）。循环内每个子层的残差更新乘 1/r（这里是 1/2），每次执行都重新计算 Q、K、V；用更小的 head 和更高的 GQA 比例让 KV 接近 Baseline。
+budget:
+  baseline:
+    en: >-
+      Unlooped MoE Transformer from the same internal family (top-8 routing, GQA), trained on identical token sequences
+      in each of 16 grid cells (four scales; S = 0% and S ≈ 85%, 95%, 97%).
+    zh: 同一内部家族、不循环的 MoE Transformer（top-8 路由，GQA），在 16 个网格单元（四个规模；S = 0% 及 S ≈ 85%、95%、97%）里都用相同的 token 序列训练。
+  matched: [flops, params, kv, tokens]
+  not_matched: [active-params, depth]
+  baseline_tuned: shared
+  headline:
+    en: >-
+      With per-token FLOPs, total non-embedding parameters and KV cache matched (typical mismatch under 4%, 1% and 4%),
+      SMELT reaches lower loss than the Baseline at every scale and sparsity level, and its separately fitted frontier
+      saves 6.8-18.0% of training FLOPs at 10^20-10^21 FLOPs (14.7% at 10^21 and S ≈ 97%).
+    zh: 每 token FLOPs、总非 embedding 参数和 KV 都对齐（典型偏差分别低于 4%、1%、4%）时，SMELT 在每个规模和稀疏度上的 loss 都低于 Baseline；分别拟合的前沿在 10^20-10^21 FLOPs 处省下 6.8-18.0% 的训练 FLOPs（10^21、S ≈ 97% 时为 14.7%）。
+  ref: Abstract; Section 1; Table 2; Table 7
+results:
+  - setting: >-
+      200M, L = 12, two passes, per-token FLOPs, total parameters and KV matched; contiguous middle span from 0 layers
+      (Baseline) to all 12
+    metric: validation loss at S ≈ 85% / S ≈ 95% (lower is better)
+    values:
+      "No loop (Baseline), 12 executed layers": "1.9445 / 1.8735"
+      "Middle 2 layers (17%), 14 executed": "1.9384 / 1.8562"
+      "Middle 4 layers (33%), 16 executed": "1.9275 / 1.8524"
+      "Middle 6 layers (50%), 18 executed": "1.9257 / 1.8517"
+      "Middle 8 layers (67%), 20 executed": "1.9374 / 1.8544"
+      "Middle 10 layers (83%), 22 executed": "1.9413 / 1.8572"
+      "All 12 layers (100%), 24 executed": "1.9322 / 1.8601"
+    ref: Table 3
+    note:
+      en: >-
+        DCLM Core does not track validation loss in this sweep; at S ≈ 95% it peaks at 67% span (31.78) and is 29.68 at
+        50%. The authors select the span on validation loss and train each configuration once.
+      zh: 这组实验中 DCLM Core 与验证 loss 走势不一致：S ≈ 95% 时 Core 在 67% 跨度最高（31.78），50% 跨度为 29.68。作者按验证 loss 选跨度，每个配置只训练一次。
+  - setting: >-
+      200M, S ≈ 85%, middle 50% looped, physical depth 12, FLOPs, parameters and KV matched (more passes force a
+      narrower model)
+    metric: validation loss / DCLM Core / DCLM Completion
+    values:
+      "Baseline (1x), 12 executed layers": "1.9445 / 24.92 / 2.2887"
+      "Looped 2x, 18 executed layers": "1.9257 / 27.57 / 2.2635"
+      "Looped 3x, 24 executed layers": "1.9385 / 27.15 / 2.2779"
+      "Looped 4x, 30 executed layers": "1.9360 / 27.30 / 2.2820"
+    ref: Table 5
+  - setting: >-
+      Separate fits of L(F, S, D) for each architecture on S ≈ 85%, 95% and 97% (72 + 72 endpoints spanning 1.3x10^19
+      to 2.2x10^21 training FLOPs)
+    metric: CE Gain, the share of training compute SMELT saves at equal frontier loss, at S ≈ 85% / 95% / 97%
+    values:
+      "10^20 FLOPs": "10.0% / 7.8% / 6.8%"
+      "10^21 FLOPs": "18.0% / 15.8% / 14.7%"
+      "10^22 FLOPs (extrapolated)": "23.5% / 20.9% / 19.6%"
+    ref: Table 7
+    note:
+      en: >-
+        Cell-bootstrap 95% intervals are wide, e.g. [1,22] at 10^20 FLOPs and S ≈ 85%; the 10^22 row lies beyond the
+        fitted window and two of its three intervals reach 0.
+      zh: cell bootstrap 的 95% 区间很宽，例如 10^20 FLOPs、S ≈ 85% 时为 [1,22]；10^22 一行超出拟合范围，三个区间中有两个下限为 0。
+  - setting: C = 10^21 FLOPs, S ≈ 95%; per-category intercepts fitted with the aggregate exponents
+    metric: CE Gain by validation category
+    values:
+      Code: "20.4%"
+      Finance: "16.8%"
+      "Math/STEM": "16.6%"
+      Knowledge: "14.9%"
+      Web: "14.8%"
+    ref: Section 5.2; Figure 10
+findings:
+  - en: >-
+      At 200M with all budgets matched, looping the middle 6 of 12 layers gives lower validation loss than looping all
+      12 (1.9257 vs 1.9322 at S ≈ 85%, 1.8517 vs 1.8601 at S ≈ 95%), and every span tested beats the unlooped Baseline.
+    zh: 200M、预算全部对齐时，循环 12 层中间的 6 层比循环全部 12 层的验证 loss 更低（S ≈ 85% 时 1.9257 对 1.9322，S ≈ 95% 时 1.8517 对 1.8601），且测试的每种跨度都优于不循环的 Baseline。
+    ref: Section 3.3; Table 3
+  - en: >-
+      Two passes beat three and four at matched FLOPs, parameters and KV (validation loss 1.9257 vs 1.9385 and 1.9360,
+      DCLM Core 27.57 vs 27.15 and 27.30); the authors attribute the regression to the narrower model that extra passes
+      force.
+    zh: FLOPs、参数和 KV 对齐时，循环两遍优于三遍和四遍（验证 loss 1.9257 对 1.9385 和 1.9360，DCLM Core 27.57 对 27.15 和 27.30）；作者认为原因是多出的遍数迫使模型变窄。
+    ref: Section 3.5; Table 5
+  - en: >-
+      SMELT's fitted capacity and data exponents are both larger (a = 0.3892 vs 0.3703, c = 0.7011 vs 0.6594), giving
+      frontier exponents of 0.250 vs 0.237; the irreducible losses differ by 0.005 nats, less than either fit's RMSE.
+    zh: SMELT 拟合出的容量指数和数据指数都更大（a = 0.3892 对 0.3703，c = 0.7011 对 0.6594），前沿指数为 0.250 对 0.237；两者的不可约 loss 相差 0.005 nats，小于任一拟合的 RMSE。
+    ref: Section 4.3; Table 6
+  - en: >-
+      SMELT wins 96 of 96 matched pairs on DCLM Completion, 83 of 96 on DCLM Core and 29 of the 30 MMLU pairs whose
+      Baseline is at least 10 points above chance, and it scores better than a Baseline at the same validation loss
+      would (positive mean residual on all three at every scale).
+    zh: SMELT 在 DCLM Completion 上赢下全部 96 对，DCLM Core 赢 83 对（共 96 对），MMLU 在 Baseline 高于随机水平至少 10 个点的 30 对中赢 29 对；而且比同等验证 loss 的 Baseline 预期得分更好（三项指标在每个规模上的平均残差都为正）。
+    ref: Section 5.1; Figures 5-9
+  - en: >-
+      The gain is larger on longer samples and with in-context examples; the loss improvement on the four longest
+      length buckets is 1.52x that on the four shortest, and the few-shot accuracy gap widens from 0.9 pp at k = 0 to
+      1.9 pp at k = 1, holding through k = 8.
+    zh: 样本越长、in-context 示例越多，收益越大：最长四个长度桶的 loss 改善是最短四个的 1.52 倍；few-shot 准确率差距从 k = 0 时的 0.9 pp 扩大到 k = 1 时的 1.9 pp，并保持到 k = 8。
+    ref: Section 5.3; Figure 11
+  - en: >-
+      The second visit shrinks the attention sink; for the 1.6B Dyck head, BOS attention mass falls from 0.60 to 0.02 and
+      mass on demonstration answers rises from 0.24 to 0.85.
+    zh: 第二遍会削弱 attention sink：1.6B 模型的 Dyck head 上，BOS 的注意力从 0.60 降到 0.02，示例答案上的注意力从 0.24 升到 0.85。
+    ref: Section 6.4; Figure 18
+tldr:
+  en: >-
+    With per-token FLOPs, total parameters and KV cache matched, looping the middle half of an MoE Transformer twice
+    lowers loss at four scales up to 54B non-embedding parameters and saves 6.8-18.0% of training FLOPs on the fitted
+    frontier.
+  zh: 每 token FLOPs、总参数和 KV 都对齐时，把 MoE Transformer 中间一半的层循环两遍，在最大 54B 非 embedding 参数的四个规模上都降低了 loss，并在拟合前沿上省下 6.8-18.0% 的训练 FLOPs。
+quickread:
+  problem:
+    en: >-
+      Most looped-model gains are reported at fixed parameter count, where the looped model also spends more FLOPs and
+      KV cache, so architecture and extra compute are conflated; the paper asks whether looping still helps when
+      per-token FLOPs, total parameters and KV cache are all held fixed.
+    zh: 多数循环模型的收益是在固定参数量下报告的，循环模型同时多花了 FLOPs 和 KV，结构优势和额外算力混在一起；论文研究每 token FLOPs、总参数和 KV 都固定时，循环是否仍然有用。
+  method:
+    en:
+      - "Pay for the extra pass by narrowing the hidden size (1280 to 1056 at 200M, S ≈ 95%), recover total parameters by adding experts (192 to 288 per layer), and use smaller heads at a higher GQA ratio to keep the KV cache within 4%."
+      - "Choose the recipe with three 200M ablations under these budgets; loop the middle 50% of layers twice, keep the Baseline's physical depth, and scale each looped sublayer's residual update by 1/r."
+      - "Train matched Baseline / SMELT pairs over 4 scales x 4 sparsity levels with six WSD decay branches each (up to about 215B tokens), and fit a separate Chinchilla-style law L(F, S, D) per architecture to compare compute-optimal frontiers."
+    zh:
+      - "用更窄的隐藏维度支付多出的一遍（200M、S ≈ 95% 时从 1280 降到 1056），增加专家补回总参数（每层从 192 增到 288），并用更小的 head 和更高的 GQA 比例把 KV 偏差控制在 4% 以内。"
+      - "在这些预算约束下用三组 200M 消融确定配方：中间 50% 的层循环两遍，物理深度与 Baseline 相同，循环内每个子层的残差更新乘 1/r。"
+      - "在 4 个规模 × 4 个稀疏度上训练成对的 Baseline / SMELT，每个 run 有六个 WSD 衰减分支（最长约 215B token），并为两种结构分别拟合 Chinchilla 式的 L(F, S, D)，比较 compute-optimal 前沿。"
+  caveats:
+    en:
+      - "Active parameters and executed depth are not matched; at 200M and S ≈ 95% SMELT has 0.142B active parameters against the Baseline's 0.209B and executes 18 layers instead of 12 (Section 3.2; Tables 9-10)."
+      - "The span, depth and loop-count ablations ran only at 200M, with one training run per configuration and the same loop count in training and evaluation; the authors note the best span or count may differ at larger scales (Section 3.3; Section 7)."
+      - "Budget matching equates arithmetic FLOPs, parameters and KV-cache size, not wall-clock cost (Section 7)."
+      - "The model family and training stack are proprietary and cannot be released, pretraining uses an internal corpus, and training contexts are 4096 tokens (Section 3.1; Appendix A)."
+      - "SMELT shares the Baseline's optimizer, schedule and data; the Baseline configurations come from a tuned MoE family, and no separate tuning for SMELT is reported (Section 3.1; Appendix A)."
+    zh:
+      - "激活参数和执行深度没有对齐：200M、S ≈ 95% 时 SMELT 的激活参数为 0.142B，Baseline 为 0.209B，执行 18 层而不是 12 层（Section 3.2；Tables 9-10）。"
+      - "跨度、深度和遍数消融只在 200M 上做，每个配置只训练一次，训练和评测用同一个遍数；作者指出更大规模下最优跨度或遍数可能不同（Section 3.3；Section 7）。"
+      - "预算对齐的是算术 FLOPs、参数和 KV 大小，不是墙钟时间（Section 7）。"
+      - "模型家族和训练框架是专有的、无法公开，预训练用内部语料，训练上下文为 4096 token（Section 3.1；Appendix A）。"
+      - "SMELT 与 Baseline 共用优化器、学习率调度和数据；Baseline 配置来自一个调过的 MoE 家族，论文没有提到为 SMELT 单独调参（Section 3.1；Appendix A）。"
+reproducibility:
+  code: none
+  weights: none
+  configs: partial
+  data: none
+added: "2026-11-23"

@@ -1,0 +1,31 @@
+id: inkling-2-mini
+name: Inkling 2 Mini
+paper: tml-inkling-2-mini
+org: [Thinking Machines Lab]
+hf: [thinkingmachines/Inkling-2-Mini]
+params: "26.4B"
+active_params: "3.4B; 5.4B effective at 3 passes"
+tokens: not stated
+context: "1M"
+passes:
+  default: "3"
+  range: "fixed"
+kv: per-pass
+license: apache-2.0
+inference: [transformers, vllm, sglang, gguf]
+notes:
+  en: >-
+    Multimodal (text and image in, text out) 24-layer MoE with 8 of 128 experts per token; the middle 12 layers run
+    three times with shared weights, giving 48 layer applications per token. Single checkpoint of about 20GB in mixed
+    NVFP4 and MXFP8, the precisions it was trained in. The blog gives 1T distillation tokens after expert pruning and
+    2.2T RL tokens over 2,000 steps, but no pretraining token count. Quantized GGUF versions come via Unsloth and
+    llama.cpp (ggml-org/Inkling-2-Mini-GGUF).
+  zh: >-
+    多模态（输入文本和图像，输出文本）24 层 MoE，每 token 从 128 个专家中选 8 个；中间 12 层共享权重跑三遍，每 token 执行 48 次层计算。单个 checkpoint 约 20GB，混合 NVFP4 和 MXFP8，与训练时的精度一致。博客给出专家剪枝后 1T token 的蒸馏和 2,000 步共 2.2T token 的 RL，但没给预训练 token 数。量化 GGUF 版来自 Unsloth 和 llama.cpp（ggml-org/Inkling-2-Mini-GGUF）。
+ref: >-
+  HF API (cardData license apache-2.0) and model card sections 1-3 (26.4B / 3.4B active / 5.4B effective at three
+  passes, 1M context, about 20GB NVFP4 + MXFP8 checkpoint, SGLang, vLLM, Hugging Face and GGUF support); config.json
+  (loop_config core_start 6, core_end 18, num_passes 3, is_varloop false); Thinking Machines Lab blog (Monitorability
+  of looped transformers: only a fixed number of looping passes; Pruning and healing: 1T tokens; Training Inkling 2
+  Mini: 2.2T RL tokens); Hugging Face blog (transformers usage; each layer visit keeps its own KV)
+added: "2026-11-23"

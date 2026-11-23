@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="271.5" height="66" viewBox="0 0 271.5 66" role="img" aria-label="[all layers, every loop (100% of layers)] x 2 or 3 (PLT-2 / PLT-3); injection additive; KV first-pass">
+<title>[all layers, every loop (100% of layers)] x 2 or 3 (PLT-2 / PLT-3); injection additive; KV first-pass</title>
+<style>@media (prefers-color-scheme:dark){text{fill:#9198a1}text.p{fill:#4493f8}}</style>
+<g transform="translate(7.3,0)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="10">
+<rect x="14.1" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<rect x="26.1" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<rect x="38.1" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<rect x="50.1" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<rect x="62.1" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<rect x="74.1" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<rect x="86.1" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<rect x="98.1" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<rect x="110.1" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<rect x="122.1" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<path d="M131.1,27 C131.1,13 14.1,13 14.1,22" fill="none" stroke="#0969da" stroke-width="1.5"/>
+<path d="M10.6,21 L17.6,21 L14.1,28 Z" fill="#0969da"/>
+<text x="72.6" y="61" text-anchor="middle" fill="#57606a">all layers, every loop</text>
+<text x="72.6" y="11" text-anchor="middle" class="p" fill="#0969da">×2 or 3 (PLT-2 / PLT-3)</text>
+<text x="159.2" y="37" text-anchor="start" fill="#57606a">inj · additive</text>
+<text x="159.2" y="49" text-anchor="start" fill="#57606a">KV · first-pass</text>
+</g>
+</svg>

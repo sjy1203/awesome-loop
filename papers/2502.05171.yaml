@@ -1,0 +1,175 @@
+id: "2502.05171"
+tier: deep
+status: draft
+short: Huginn
+title: "Scaling up Test-Time Compute with Latent Reasoning: A Recurrent Depth Approach"
+date: "2025-02-07"
+venue: arXiv
+authors: [Jonas Geiping, Sean McLeish, Neel Jain, John Kirchenbauer, Siddharth Singh, Brian R. Bartoldson, Bhavya Kailkhura, Abhinav Bhatele, Tom Goldstein]
+orgs:
+  - ELLIS Institute Tübingen
+  - Max-Planck Institute for Intelligent Systems
+  - Tübingen AI Center
+  - University of Maryland, College Park
+  - Lawrence Livermore National Laboratory
+links:
+  paper: https://arxiv.org/abs/2502.05171
+  code: https://github.com/seal-rg/recurrent-pretraining
+  weights:
+    - https://huggingface.co/tomg-group-umd/huginn-0125
+    - https://huggingface.co/collections/tomg-group-umd/recurrent-models
+category: architecture/placement
+facets:
+  placement: prelude-core-coda
+  sharing: full
+  depth_train: sampled
+  depth_test: extrapolate
+  injection: concat
+  kv: per-pass
+  gradient: truncated
+  origin: scratch
+  ffn: dense
+  attention: full
+loop:
+  segments:
+    - {role: prelude, layers: 2, label: P}
+    - role: core
+      layers: 4
+      label: R
+      passes: {train: "log-normal Poisson, mean 32", test: "1-64 (32 in most tables)"}
+      bptt: last 8
+    - {role: coda, layers: 2, label: C}
+  note:
+    en: >-
+      Huginn-0125 has 8 distinct layers in a (2,4,2) layout with hidden size 5280 and 55 heads of size 96. The core
+      starts with an adapter that maps the concatenation of the state and the prelude output from 2h to h, and the
+      first state is random noise. At r=32 the model unrolls to 132 effective layers. Small ablation models use
+      (1,4,1) with h=1024.
+    zh: >-
+      Huginn-0125 共 8 个不同的层，布局 (2,4,2)，hidden size 5280，55 个 96 维的 head。核心块开头的 adapter 把状态和 prelude 输出的拼接从 2h 映射到 h，初始状态是随机噪声。r=32 时展开为 132 层。小规模消融模型用 (1,4,1)，h=1024。
+budget:
+  baseline:
+    en: >-
+      A fixed-depth twin with the same architecture, data and training setup that passes through the core block once,
+      trained for 180B tokens (256 nodes, batch size 2 per GPU).
+    zh: 同架构、同数据、同训练设置的固定深度孪生模型，只过一遍核心块，训练 180B token（256 个节点，每张 GPU batch size 2）。
+  matched: [params, tokens]
+  not_matched: [flops, depth]
+  baseline_tuned: shared
+  headline:
+    en: >-
+      The 3.5B model trained on 800B tokens improves on reasoning benchmarks as test-time recurrence grows, up to a
+      computation load equivalent to 50B parameters. At 180B tokens and r=32 it scores 9.02/10.24 on GSM8K CoT against
+      1.82/2.20 for the fixed-depth twin, which the paper calls 5 times better.
+    zh: >-
+      800B token 训练的 3.5B 模型，测试时循环次数越多，推理类基准越好，算力最多相当于 50B 参数的模型。180B token 时，r=32 的 GSM8K CoT 为 9.02/10.24，固定深度孪生模型为 1.82/2.20，论文称是基线的 5 倍。
+  ref: Abstract; Section 5.3; Table 4
+results:
+  - setting: 3.5B parameters, both models at 180B tokens (0.18T), same data and setup
+    metric: "ARC-C | HellaSwag | GSM8K CoT"
+    values:
+      "Fixed-depth baseline (one core pass)": "26.96 | 37.34 | 1.82/2.20"
+      "Recurrent model, r=32": "29.18 | 48.80 | 9.02/10.24"
+      "Recurrent model, r=1": "23.72 | 29.19 | 0.00/0.15"
+    ref: Table 4
+    note:
+      en: GSM8K CoT pairs are copied as printed; the Table 2 caption says the paper reports flexible and strict extract.
+      zh: GSM8K CoT 的两个数照原文抄录；Table 2 标题说明报告的是 flexible 和 strict extract。
+  - setting: Huginn-0125 (3.5B, 800B tokens), lm-eval zero-shot at different test-time recurrences r
+    metric: "ARC-C | HellaSwag | MMLU"
+    values:
+      "r=1": "24.06 | 29.34 | 23.60"
+      "r=4": "27.99 | 43.46 | 23.39"
+      "r=8": "35.15 | 58.54 | 25.29"
+      "r=16": "37.71 | 64.67 | 31.25"
+      "r=32": "38.23 | 65.21 | 31.38"
+    ref: Table 1 (arXiv v2); Table 4 (r=1 row)
+    note:
+      en: arXiv v1 printed different values in the r=4, 8 and 16 rows of Table 1; these are the v2 values.
+      zh: arXiv v1 的 Table 1 中 r=4、8、16 三行数值与此不同；这里用 v2 的数值。
+  - setting: Huginn-0125 at r=32 next to fixed-depth open models
+    metric: "GSM8K | GSM8K CoT | Minerva MATH"
+    values:
+      "Huginn-0125, with system prompt": "24.87/38.13 | 34.80/42.08 | 11.24"
+      "Huginn-0125, without system prompt": "28.05/28.20 | 32.60/34.57 | 12.58"
+      "OLMo-7B-0724": "28.66/28.73 | 28.89/28.89 | 5.62"
+      "OLMo-2-1124-7B": "66.72/66.79 | 61.94/66.19 | 19.08"
+    ref: Table 2
+  - setting: Huginn-0125, first-turn MT-Bench, inference schemes used zero-shot
+    metric: MT-Bench score (standard error)
+    values:
+      "baseline, 32 iterations": "5.662 (0.388)"
+      "baseline, 64 iterations": "5.693 (0.386)"
+      "KL exit, t=5×10^-4": "5.562 (0.389)"
+      "cache compression, s=4": "5.856 (0.395)"
+      "cache compression, s=8": "5.631 (0.384)"
+      "cache compression, s=16": "5.687 (0.402)"
+    ref: Table 6; Sections 6.1-6.2
+    note:
+      en: s is the per-token KV-cache budget in recurrence steps. The paper states no difference from the baseline is statistically significant.
+      zh: s 是每个 token 的 KV cache 预算（递归步数）。论文说明与基线的差异都不显著。
+findings:
+  - en: >-
+      Evaluated with one recurrence, the model barely changes between the 180B and 800B checkpoints (ARC-C 23.72 and
+      24.06); the authors conclude that later gains sit in the recurrent iterations, not in the prelude or coda.
+    zh: 只跑 1 次循环时，180B 和 800B 两个 checkpoint 几乎没有差别（ARC-C 23.72 和 24.06）；作者据此认为后续提升来自循环迭代，而不在 prelude 或 coda。
+    ref: Section 5.3; Table 4
+  - en: >-
+      Useful depth depends on task and context. HellaSwag is near its peak at 8 recurrences; ARC-C saturates around
+      8-12 iterations with no few-shot examples, around 20 with 1 example and around 32 with 25-50 examples.
+    zh: 有用的迭代次数取决于任务和上下文。HellaSwag 在 8 次左右接近峰值；ARC-C 没有 few-shot 示例时约 8-12 次饱和，1 个示例时约 20 次，25-50 个示例时约 32 次。
+    ref: Section 5.3; Figures 7 and 9
+  - en: Tested at r=64 (training mean 32), an EMA of the last 75 checkpoints reaches 47.23% flexible (38.59% strict) on GSM8K.
+    zh: 在 r=64（训练均值为 32）下测试，最后 75 个 checkpoint 的 EMA 在 GSM8K 上达到 47.23%（flexible）/ 38.59%（strict）。
+    ref: Section 5.4
+  - en: >-
+      In ablations, a core block that takes the step index as input interacted badly with path independence and gave
+      models that cannot extrapolate; adding noise at each step did not help.
+    zh: 消融中，以步数为输入的核心块破坏了路径无关性，得到的模型无法外推；每步加噪声也没有帮助。
+    ref: Section 3.1 (Remark 3.1)
+  - en: >-
+      Two earlier large-scale runs failed. In one, all tokens collapsed to the same hidden state; in the other, the
+      model learned to ignore the recurrent state, with the same validation perplexity at 1 or 32 recurrences. The
+      successful run used sandwich norms and a peak learning rate of 4×10^-5.
+    zh: 此前两次大规模训练失败。一次所有 token 坍缩成相同的隐状态；另一次模型学会忽略循环状态，1 次和 32 次循环的验证 perplexity 相同。成功的那次用 sandwich 归一化，峰值学习率 4×10^-5。
+    ref: Section 4.3; Figure 5
+tldr:
+  en: Pretrain a 3.5B prelude-core-coda transformer with a randomly sampled number of core iterations, so test-time compute scales by iterating the core more.
+  zh: 用随机采样的核心块迭代次数预训练 3.5B 的 prelude-core-coda Transformer，测试时多迭代核心块即可增加算力。
+quickread:
+  problem:
+    en: >-
+      Mainstream reasoning models scale test-time compute by generating more tokens in long chains of thought, which
+      needs specialized training data and long context windows. The paper scales compute by iterating a recurrent
+      block in latent space instead.
+    zh: 主流推理模型靠生成更多 token（长 CoT）增加测试时算力，需要专门的训练数据和长上下文窗口。本文改为在隐空间反复迭代一个循环块来增加算力。
+  method:
+    en:
+      - Split a decoder-only transformer into a prelude, a weight-shared recurrent core and a coda. At every iteration the core receives the prelude output through an adapter on concat(state, prelude output); the first state is random.
+      - Sample the iteration count from a log-normal Poisson distribution with mean 32 (one count per micro-batch, synchronized across workers) and backpropagate through only the last 8 iterations.
+      - Train once at (2,4,2) with h=5280 on 800B tokens of public data weighted toward code and math, on 4096 AMD MI250X GPUs, with sandwich normalization (four RMSNorms per layer) and a scaled initialization.
+      - At inference the iteration count is free; the paper also tries zero-shot per-token early exit, KV-cache sharing, continuous-CoT warm starts and self-speculative decoding.
+    zh:
+      - 把 decoder-only Transformer 分成 prelude、权重共享的循环核心块和 coda。每次迭代，核心块通过对 concat(状态, prelude 输出) 的 adapter 接收 prelude 输出；初始状态随机。
+      - 迭代次数从均值 32 的 log-normal Poisson 分布采样（每个 micro-batch 一个值，各 worker 同步），只反传最后 8 次迭代。
+      - 以 (2,4,2)、h=5280 的形状，在 4096 张 AMD MI250X 上用 800B token 的公开数据（偏重代码和数学）训练一次，采用 sandwich 归一化（每层四个 RMSNorm）和缩放初始化。
+      - 推理时迭代次数可自由设定；论文还零样本尝试了逐 token 提前退出、KV cache 共享、连续 CoT 热启动和自推测解码。
+  caveats:
+    en:
+      - A single large run with 3.5B parameters and 800B tokens, on a data mixture the authors could not ablate and with a constant learning rate that was never cooled down (47000 steps).
+      - The looped-vs-fixed-depth comparison exists only at 180B tokens. It matches parameters and tokens but not compute, since the baseline passes through the core once.
+      - The comparisons with Amber, Pythia, OLMo and StarCoder2 models (Tables 1-3) are not matched in parameters, tokens or data.
+      - Training uses 4096-token sequences and backpropagates through only the last 8 core iterations.
+      - Early exit, KV-cache sharing and continuous CoT are zero-shot uses of a model not trained for them, measured only on first-turn MT-Bench, where the differences are not statistically significant (Table 6). Self-speculative decoding has no reported measurements.
+    zh:
+      - 只训练了一个大模型，3.5B 参数、800B token；数据配比作者没能做消融，学习率一直是常数、没有退火（47000 step）。
+      - 循环与固定深度的对比只在 180B token 处做过；对齐了参数和 token，没对齐算力，基线只过一遍核心块。
+      - 与 Amber、Pythia、OLMo、StarCoder2 等模型的对比（Table 1-3）在参数、token 和数据上都没有对齐。
+      - 训练序列长 4096 token，只反传核心块最后 8 次迭代。
+      - 提前退出、KV cache 共享和连续 CoT 都是对未专门训练的模型的零样本用法，只在 MT-Bench 第一轮测过，差异不显著（Table 6）。自推测解码没有给出测量结果。
+reproducibility:
+  code: available
+  weights: available
+  configs: available
+  data: available
+added: "2026-11-23"

@@ -1,0 +1,68 @@
+id: extra-passes-at-test-time
+question:
+  en: Does running more passes at test time than in training keep improving quality?
+  zh: 推理时跑得比训练时更多遍，质量还会继续提升吗？
+status: mixed
+summary:
+  en: >-
+    Models trained with a sampled or variable number of passes stay flat or improve slightly beyond the training
+    depth, and their gains level off near the training mean. Ouro, trained with 4 steps and learned exits rather than
+    sampled depth, loses accuracy at 5-8 steps. No source trains the same model both ways, so the role of
+    sampled-depth training is not isolated.
+  zh: >-
+    用随机或可变遍数训练的模型，推理遍数超过训练深度后基本持平或略有提升，收益在训练均值附近饱和。Ouro 训练时用 4 步和学习的退出、没有随机采样遍数，跑到 5-8 步时准确率下降。没有论文把同一个模型分别用两种方式训练来对比，所以随机遍数训练本身起多大作用还没被单独验证。
+evidence:
+  - paper: "2502.05171"
+    stance: partial
+    setting: 3.5B dense, 800B tokens, passes sampled with mean 32
+    finding:
+      en: >-
+        First-turn MT-Bench is 5.693 at 64 iterations and 5.662 at 32, a difference the paper calls not significant.
+        ARC-C saturates around 8-12 iterations without few-shot examples and around 32 with 25-50 examples.
+      zh: MT-Bench 第一轮在 64 次迭代时为 5.693，32 次时为 5.662，论文称差异不显著。ARC-C 没有 few-shot 示例时约 8-12 次饱和，有 25-50 个示例时约 32 次饱和。
+    ref: Table 6; Section 5.3; Figures 7 and 9
+  - paper: "2604.12946"
+    stance: partial
+    setting: 350M (RDM setup) trained with mean 8 passes sampled per sequence; 140M-1.3B models for the saturation result
+    finding:
+      en: >-
+        Validation PPL is 10.09 at T=8 and 10.11 at T=16. Run at up to twice the training mean, the 140M-1.3B models'
+        gains plateau near T = μ_rec.
+      zh: 验证 PPL 在 T=8 时为 10.09，T=16 时为 10.11。140M-1.3B 模型推理时跑到训练均值的两倍，收益在 T = μ_rec 附近饱和。
+    ref: Table 8; Section 5.3; Figure 7
+  - paper: "2611.13378"
+    stance: partial
+    setting: 150M CED, 6.0B tokens, rounds sampled from max(1, Poisson(8))
+    finding:
+      en: Running 12 or 16 rounds instead of 8 lowers BPB by at most 0.0004 and never raises it (0.8465 at T=8, 0.8462 at T=12 and 16).
+      zh: 推理时跑 12 或 16 遍（训练均值 8 遍），BPB 最多降 0.0004，从不变差（T=8 为 0.8465，T=12 和 16 为 0.8462）。
+    ref: Appendix F; Table 9
+  - paper: "2511.07384"
+    stance: partial
+    setting: TinyLlama-1.1B retrofitted to (4,8,4), about 50B math tokens
+    finding:
+      en: >-
+        Trained with mean recurrence 4, the model scores 38.0 on GSM8K at test recurrence 4 and 37.9 at 32; trained with
+        mean 16, it scores 43.4 at test recurrence 16 and 43.7 at 32.
+      zh: 训练均值为 4 的模型，GSM8K 在测试递归 4 次时为 38.0，32 次时为 37.9；训练均值为 16 的模型，测试 16 次为 43.4，32 次为 43.7。
+    ref: Table 3
+  - paper: tml-inkling-2-mini
+    stance: partial
+    setting: TML-d24-varloop-research, 26.4B total / 3.4B active MoE, trained with 1-5 passes
+    finding:
+      en: >-
+        Never trained with more than five passes, it keeps a no-CoT 50% time horizon of 40 s at ten passes against 42 s
+        at five, and on N-Hop Lookup it keeps improving out to ten loops.
+      zh: 训练时从未超过 5 遍，跑 10 遍时 no-CoT 50% 时间跨度为 40 秒，5 遍时为 42 秒；在 N-Hop Lookup 上一直提升到 10 遍。
+    ref: 'No-CoT capabilities; figures "No-CoT time horizons" and "N-Hop Lookup"'
+  - paper: "2510.25741"
+    stance: against
+    setting: Ouro 1.4B and 2.6B, 7.7T tokens, trained with 4 recurrent steps (8 in the first stage) and learned exit gates
+    finding:
+      en: >-
+        MMLU falls from 67.45 at T=4 to 64.49 at T=8 for the 1.4B model and from 74.60 to 72.24 for the 2.6B model;
+        AIME 2024 for the 1.4B Thinking model falls from 65.00 at T=4 to 38.67 at T=8. Safety on HEx-PHI keeps
+        improving through the extrapolated steps.
+      zh: MMLU 从 T=4 到 T=8，1.4B 模型从 67.45 降到 64.49，2.6B 模型从 74.60 降到 72.24；1.4B Thinking 模型的 AIME 2024 从 T=4 的 65.00 降到 T=8 的 38.67。HEx-PHI 安全性在外推的步数上仍持续提升。
+    ref: Tables 10-13; Section 7.1; Figure 8a
+updated: "2026-11-23"

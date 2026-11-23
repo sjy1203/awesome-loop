@@ -1,0 +1,31 @@
+id: tml-d24-varloop-research
+name: TML-d24-varloop-research
+paper: tml-inkling-2-mini
+org: [Thinking Machines Lab]
+hf: [thinkingmachines/TML-d24-varloop-research]
+params: "26.4B"
+active_params: "3.4B at 1 pass, 5.4B at 3 passes, 7.4B at 5 passes"
+tokens: not stated
+context: "1M"
+passes:
+  default: "3"
+  range: "1-5 trained, set at inference; blog also runs 10"
+kv: per-pass
+license: apache-2.0
+inference: [transformers, vllm, sglang, gguf]
+notes:
+  en: >-
+    Research model with the same architecture as Inkling 2 Mini, but the number of passes through the middle 12 layers
+    is set at inference (loop_num_passes in text_config, per the Hugging Face blog). It shares pretraining and the
+    first midtraining stage with Inkling 2 Mini, then sampled 1 to 5 passes in a 1:2:6:2:1 ratio for the rest of
+    midtraining and was post-trained with 3 passes. The model card says it may behave unpredictably at pass counts
+    other than 3, is not intended for production, and is not offered through an API. GGUF quants are in
+    ggml-org/TML-d24-varloop-research-GGUF.
+  zh: >-
+    研究用模型，结构与 Inkling 2 Mini 相同，但中间 12 层的遍数在推理时设定（据 Hugging Face 博客，用 text_config 里的 loop_num_passes）。预训练和 midtraining 第一阶段与 Inkling 2 Mini 共用，之后的 midtraining 按 1:2:6:2:1 采样 1 到 5 遍，post-training 用 3 遍。model card 说遍数不是 3 时行为可能不可预测，不打算用于生产，也不提供 API。GGUF 量化版在 ggml-org/TML-d24-varloop-research-GGUF。
+ref: >-
+  HF API (cardData license apache-2.0) and model card sections 1-4 (26.4B; 3.4B / 5.4B / 7.4B active at 1 / 3 / 5
+  passes; 1M context; trained with 1 to 5 passes sampled 1:2:6:2:1, post-trained with 3; SGLang, vLLM, Hugging Face
+  and GGUF support); config.json (loop_config num_passes 3, is_varloop true); Thinking Machines Lab blog (No-CoT
+  capabilities: run with ten passes); Hugging Face blog (Variable loop example; each layer visit keeps its own KV)
+added: "2026-11-23"

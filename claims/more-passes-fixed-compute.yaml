@@ -1,0 +1,68 @@
+id: more-passes-fixed-compute
+question:
+  en: With training compute held fixed, do more passes help?
+  zh: 训练算力固定时，遍数越多越好吗？
+status: mixed
+summary:
+  en: >-
+    On language modeling at the budgets tested, SMELT and MoR find two passes better than three or four with FLOPs
+    fixed, and in Ouro the gap to untied models of the same executed depth grows with the step count. Other results
+    point the other way: Parcae's compute-optimal number of passes rises with the training budget, deeper training
+    recurrence pays off per training FLOP for two of three retrofitted model families, and on Ouro's synthetic Mano task
+    more passes of fewer layers win at the same executed depth.
+  zh: >-
+    语言建模上，在已测的预算下，固定 FLOPs 时 SMELT 和 MoR 都发现两遍好于三遍、四遍；Ouro 中循环模型与执行层数相同的不共享模型之间的差距随步数增大。也有相反的结果：Parcae 的算力最优遍数随训练预算上升；三个改造模型家族中有两个，训练递归越深、单位训练 FLOP 的收益越大；在 Ouro 的合成任务 Mano
+    上，执行层数相同时，用更少的层跑更多遍更好。
+evidence:
+  - paper: "2609.01343"
+    stance: against
+    setting: 200M MoE, S ≈ 85%, FLOPs, parameters and KV matched (more passes force a narrower model)
+    finding:
+      en: Validation loss is 1.9257 at 2 passes, 1.9385 at 3 and 1.9360 at 4; DCLM Core is 27.57, 27.15 and 27.30.
+      zh: 验证 loss 两遍为 1.9257，三遍 1.9385，四遍 1.9360；DCLM Core 分别为 27.57、27.15、27.30。
+    ref: Table 5; Section 3.5
+  - paper: "2507.10524"
+    stance: against
+    setting: 360M base, 16.5e18 training FLOPs; more recursions mean fewer unique parameters (167M, 118M, 98M)
+    finding:
+      en: >-
+        Expert-choice MoR reaches validation NLL 2.7511 at Nr=2, 2.7925 at Nr=3 and 2.8204 at Nr=4; fixed-depth
+        recursion gives 2.8079, 2.8466 and 2.8781 (vanilla 2.7824).
+      zh: expert-choice MoR 的验证 NLL 在 Nr=2、3、4 时为 2.7511、2.7925、2.8204；固定深度递归为 2.8079、2.8466、2.8781（vanilla 为 2.7824）。
+    ref: Table 3
+  - paper: "2510.25741"
+    stance: against
+    setting: 53M-1.36B, 20B FineWeb-Edu tokens; untied model with the same executed depth and more unique parameters
+    finding:
+      en: >-
+        The untied model scores higher in every case and the gap grows with the step count; at 1.3B the average
+        benchmark gap is 0.017 at 2 steps and 0.025 at 4.
+      zh: 不共享的模型在所有设置下得分都更高，差距随步数增大；1.3B 时平均基准差距在 2 步时为 0.017，4 步时为 0.025。
+    ref: Appendix D.1; Table 18
+  - paper: "2510.25741"
+    stance: supports
+    setting: Synthetic Mano task (modular arithmetic), 12 executed layers in every layout, unique parameters differ
+    finding:
+      en: >-
+        At maximum expression length 24, 3 layers looped 4 times reach 92.2 exact-match accuracy, against 78.0 for 2
+        layers x 6, 35.1 for 6 layers x 2 and 34.8 for 12 unlooped layers.
+      zh: 最大表达式长度 24 时，3 层循环 4 遍的精确匹配准确率为 92.2，2 层 x 6 遍为 78.0，6 层 x 2 遍为 35.1，12 层不循环为 34.8。
+    ref: Section 6.2; Figure 6 (right)
+  - paper: "2604.12946"
+    stance: partial
+    setting: 140M and 370M, parameters and training FLOPs fixed (tokens shrink as passes grow)
+    finding:
+      en: >-
+        The compute-optimal mean recurrence rises with the budget, from 2 at 1x10^18 FLOPs to 10 at 64x10^18 for 140M,
+        following a power law with exponent about 0.40; at some small budgets fixed depth scores higher Core (10.5 vs
+        9.0 at 2x10^18 FLOPs).
+      zh: 算力最优的平均递归次数随预算上升，140M 从 1x10^18 FLOPs 时的 2 增到 64x10^18 时的 10，服从指数约 0.40 的幂律；部分小预算下固定深度的 Core 更高（2x10^18 FLOPs 时 10.5 对 9.0）。
+    ref: Table 6; Section 5.2; Figure 5
+  - paper: "2511.07384"
+    stance: partial
+    setting: 1B-class models retrofitted from TinyLlama, OLMo and Llama, about 50B math tokens
+    finding:
+      en: Per training FLOP, larger training recurrences give a larger GSM8K gain for OLMo and Llama but not for TinyLlama.
+      zh: 按单位训练 FLOP 算，训练递归越深，OLMo 和 Llama 在 GSM8K 上的收益越大，TinyLlama 则不是。
+    ref: Section 4.3.2; Figure 20
+updated: "2026-11-23"

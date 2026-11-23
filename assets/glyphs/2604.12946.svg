@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="399.6" height="66" viewBox="0 0 399.6 66" role="img" aria-label="prelude 8 layers -&gt; [core 8 layers] x Poisson with mean 8, per sequence -&gt; coda 8 layers; injection gated; KV n/a">
+<title>prelude 8 layers -&gt; [core 8 layers] x Poisson with mean 8, per sequence -&gt; coda 8 layers; injection gated; KV n/a</title>
+<style>@media (prefers-color-scheme:dark){text{fill:#9198a1}text.p{fill:#4493f8}}</style>
+<g transform="translate(4,0)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="10">
+<rect x="0" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="12" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="24" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="36" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="48" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="60" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="72" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="84" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="105" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<rect x="117" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<rect x="129" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<rect x="141" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<rect x="153" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<rect x="165" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<rect x="177" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<rect x="189" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<path d="M198,27 C198,13 105,13 105,22" fill="none" stroke="#0969da" stroke-width="1.5"/>
+<path d="M101.5,21 L108.5,21 L105,28 Z" fill="#0969da"/>
+<rect x="210" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="222" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="234" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="246" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="258" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="270" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="282" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="294" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<text x="46.5" y="61" text-anchor="middle" fill="#57606a">P8</text>
+<text x="151.5" y="61" text-anchor="middle" fill="#57606a">R8</text>
+<text x="151.5" y="11" text-anchor="middle" class="p" fill="#0969da">×Poisson with mean 8, per sequence</text>
+<text x="256.5" y="61" text-anchor="middle" fill="#57606a">C8</text>
+<text x="317" y="37" text-anchor="start" fill="#57606a">inj · gated</text>
+<text x="317" y="49" text-anchor="start" fill="#57606a">KV · n/a</text>
+</g>
+</svg>

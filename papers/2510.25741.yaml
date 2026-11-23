@@ -1,0 +1,212 @@
+id: "2510.25741"
+tier: deep
+status: draft
+short: Ouro (LoopLM)
+title: "Scaling Latent Reasoning via Looped Language Models"
+date: "2025-10-29"
+venue: arXiv
+authors: [Rui-Jie Zhu, Zixuan Wang, Kai Hua, Tianyu Zhang, Ziniu Li, Haoran Que, Boyi Wei, Zixin Wen, Fan Yin, He Xing, Lu Li, Jiajun Shi, Kaijing Ma, Shanda Li, Taylor Kergan, Andrew Smith, Xingwei Qu, Mude Hui, Bohong Wu, Qiyang Min, Hongzhi Huang, Xun Zhou, Wei Ye, Jiaheng Liu, Jian Yang, Yunfeng Shi, Chenghua Lin, Enduo Zhao, Tianle Cai, Ge Zhang, Wenhao Huang, Yoshua Bengio, Jason Eshraghian]
+orgs:
+  - ByteDance Seed
+  - UC Santa Cruz
+  - Princeton University
+  - "Mila - Quebec AI Institute"
+  - University of Montreal
+  - Peking University
+  - Carnegie Mellon University
+  - University of Pennsylvania
+  - Conscium
+  - University of Manchester
+  - M-A-P
+links:
+  paper: https://arxiv.org/abs/2510.25741
+  weights:
+    - https://huggingface.co/ByteDance/Ouro-1.4B
+    - https://huggingface.co/ByteDance/Ouro-1.4B-Thinking
+    - https://huggingface.co/ByteDance/Ouro-2.6B
+    - https://huggingface.co/ByteDance/Ouro-2.6B-Thinking
+  project: https://ouro-llm.github.io
+category: depth
+facets:
+  placement: whole-stack
+  sharing: full
+  depth_train: adaptive
+  depth_test: adaptive
+  injection: none
+  kv: per-pass
+  gradient: full-bptt
+  origin: scratch
+  ffn: dense
+  attention: full
+loop:
+  segments:
+    - role: core
+      layers: 24
+      label: "whole stack (2.6B: 48 layers)"
+      passes: {train: "8 in Stage 1a, then 4", test: "4 by default; the exit gate can stop earlier"}
+  note:
+    en: >-
+      The whole decoder stack loops: Ouro 1.4B repeats its 24 layers and Ouro 2.6B its 48 layers, which were upcycled
+      from the 24 layers by layer duplication; embedding and LM head sit outside the loop. The embedding enters only
+      before the first step, and each step takes the previous step's output. After every step an LM head and an exit
+      gate read the hidden state. Training always runs T_max steps and weights each step's loss by the learned exit
+      distribution. Each step keeps its own KV cache.
+    zh: >-
+      整个 decoder 层栈循环：Ouro 1.4B 重复全部 24 层，Ouro 2.6B 重复 48 层（由这 24 层复制 upcycle 而来）；embedding 和 LM head 在循环外。embedding 只在第一步之前输入，之后每一步接上一步的输出。每一步之后由 LM head 和退出门读取隐状态。训练时总是跑满 T_max 步，按学到的退出分布给各步 loss 加权。每一步各存一份 KV。
+budget:
+  baseline:
+    en: >-
+      Public dense base models run through the same evaluation pipeline (Gemma3, Llama3.1/3.2, Qwen2.5 and Qwen3, 1B to
+      12B); the Thinking models are compared with Qwen3 and DeepSeek-Distill-Qwen.
+    zh: 用同一评测流程测试的公开 dense 基座模型（Gemma3、Llama3.1/3.2、Qwen2.5、Qwen3，1B 到 12B）；Thinking 模型对比 Qwen3 和 DeepSeek-Distill-Qwen。
+  matched: []
+  not_matched: [params, tokens]
+  baseline_tuned: unknown
+  headline:
+    en: >-
+      Ouro 1.4B R4 (7.7T tokens) matches or beats the 4B Qwen3-Base (36T tokens) on BBH (71.02 vs 70.95), GSM8K (78.92
+      vs 72.86) and MATH500 (82.40 vs 59.60); Ouro 2.6B R4 scores 55.73 on MMLU-Pro, 80.46 on BBH and 90.85 on MATH500,
+      against 53.72, 77.65 and 62.30 for the 8B Qwen3-Base.
+    zh: >-
+      Ouro 1.4B R4（7.7T token）在 BBH（71.02 对 70.95）、GSM8K（78.92 对 72.86）和 MATH500（82.40 对 59.60）上持平或超过 4B 的 Qwen3-Base（36T token）；Ouro 2.6B R4 的 MMLU-Pro、BBH、MATH500 分别为 55.73、80.46、90.85，8B 的 Qwen3-Base 为 53.72、77.65、62.30。
+  ref: Section 5.1; Tables 7-8
+results:
+  - setting: Base models; Ouro runs 4 recurrent steps (R4); all models use the same evaluation pipeline (Appendix C.1)
+    metric: MMLU / MMLU-Pro / BBH / GSM8K / MATH500
+    values:
+      "Ouro 1.4B R4 (1.4B params, 7.7T tokens)": "67.35 / 48.62 / 71.02 / 78.92 / 82.40"
+      "Qwen3 1.7B (1.7B, 36T)": "62.46 / 37.27 / 53.51 / 70.28 / 25.80"
+      "Gemma3 4B (4.0B, 4T)": "58.37 / 34.61 / 66.32 / 68.69 / 68.60"
+      "Qwen3 4B (4.0B, 36T)": "73.19 / 51.40 / 70.95 / 72.86 / 59.60"
+    ref: Table 7
+  - setting: Base models; Ouro runs 4 recurrent steps (R4)
+    metric: MMLU / MMLU-Pro / BBH / GSM8K / MATH500
+    values:
+      "Ouro 2.6B R4 (2.6B params, 7.7T tokens)": "74.60 / 55.73 / 80.46 / 81.58 / 90.85"
+      "Qwen3 8B (8.0B, 36T)": "76.63 / 53.72 / 77.65 / 83.09 / 62.30"
+      "Gemma3 12B (12.0B, 12T)": "72.14 / 49.21 / 78.41 / 77.18 / 83.20"
+    ref: Table 8
+  - setting: Ouro base models trained with 4 steps, evaluated at T=1-8 (T=5-8 is extrapolation)
+    metric: MMLU (5-shot avg), Ouro 1.4B / Ouro 2.6B
+    values:
+      "T=1": "41.21 / 51.55"
+      "T=2": "60.43 / 67.63"
+      "T=3": "66.71 / 73.57"
+      "T=4": "67.45 / 74.60"
+      "T=5": "66.64 / 74.43"
+      "T=6": "65.77 / 73.79"
+      "T=7": "65.28 / 72.92"
+      "T=8": "64.49 / 72.24"
+    ref: Tables 10-11
+  - setting: Ouro-Thinking models trained with 4 steps, evaluated at T=1-8
+    metric: AIME 2024, 1.4B-Thinking / 2.6B-Thinking
+    values:
+      "T=1": "0.00 / 3.00"
+      "T=2": "37.33 / 52.00"
+      "T=3": "62.33 / 70.33"
+      "T=4": "65.00 / 64.70"
+      "T=5": "60.67 / 57.00"
+      "T=6": "50.67 / 56.33"
+      "T=7": "42.33 / 49.67"
+      "T=8": "38.67 / 39.00"
+    ref: Tables 12-13
+  - setting: Ouro 1.4B, KV cache reuse during decoding only; prefill keeps all four caches
+    metric: GSM8K / MATH-500 / memory reduction
+    values:
+      "Full (4× cache)": "78.92 / 82.40 / 1.00×"
+      "First-step only": "18.73 / 8.43 / 4.00×"
+      "Last-step only": "78.85 / 80.40 / 4.00×"
+      "Averaged": "78.73 / 78.52 / 4.00×"
+    ref: Section 5.4.2; Table 14
+    note:
+      en: The paper does not name the model size in Table 14; the project page labels the same table Ouro-1.4B.
+      zh: 论文 Table 14 没写模型规模；项目页把同一张表标为 Ouro-1.4B。
+  - setting: "Mano task (modular arithmetic answered without intermediate steps); k⊗n is k layers looped n times, and 12⊗1 is the iso-FLOP baseline"
+    metric: exact-match accuracy at maximum expression length L=10 / 16 / 24
+    values:
+      "Base 12⊗1": "93.6 / 94.4 / 34.8"
+      "Base 2⊗1": "21.5 / 8.4 / 7.5"
+      "Loop 2⊗6": "98.1 / 96.3 / 78.0"
+      "Base 3⊗1": "75.4 / 29.8 / 11.0"
+      "Loop 3⊗4": "97.9 / 95.8 / 92.2"
+      "Base 6⊗1": "84.7 / 59.5 / 20.0"
+      "Loop 6⊗2": "93.4 / 88.5 / 35.1"
+    ref: Section 6.2; Figure 6 (right)
+    note:
+      en: Each setting reports the best of 3 random seeds (Appendix B.2).
+      zh: 每个设置报告 3 个随机种子中最好的结果（Appendix B.2）。
+findings:
+  - en: Training with 8 recurrent steps in Stage 1a led to loss spikes and gradient oscillations, so the authors cut to 4 steps from Stage 1b on.
+    zh: Stage 1a 用 8 个循环步训练时出现 loss 尖峰和梯度震荡，作者从 Stage 1b 起改为 4 步。
+    ref: Section 4.3
+  - en: >-
+      The trained depth is not always best for the Thinking models. The 1.4B model scores higher at T=5 than at T=4 on
+      OlympiadBench (72.30 vs 71.55) and SuperGPQA (48.73 vs 47.37), and the 2.6B model peaks at T=3 on AIME 2024
+      (70.33, against 64.70 at T=4).
+    zh: Thinking 模型并不总在训练深度上最好：1.4B 在 OlympiadBench（72.30 对 71.55）和 SuperGPQA（48.73 对 47.37）上 T=5 高于 T=4；2.6B 在 AIME 2024 上 T=3 最高（70.33，T=4 为 64.70）。
+    ref: Tables 12-13
+  - en: >-
+      Safety on HEx-PHI improves as the number of recurrent steps grows (tested 1-8), including the extrapolated steps
+      5-8. At 4 steps the harmful rate is 0.009 for Ouro 1.4B Thinking and 0.003 for Ouro 2.6B Thinking
+      (Qwen3-4B-Thinking 0.009).
+    zh: HEx-PHI 上的安全性随循环步数增加而改善（测了 1-8 步），外推的第 5-8 步也是如此。4 步时 Ouro 1.4B Thinking 和 2.6B Thinking 的有害率分别为 0.009 和 0.003（Qwen3-4B-Thinking 为 0.009）。
+    ref: Section 7.1; Figure 8a
+  - en: >-
+      On MMLU, the gate with Stage II exit training reaches 66% accuracy at an average of 2.5 exit rounds, against about
+      64% for the gate from pre-training alone; fixed-depth exit gives 40% at 1 round and 67.35% at 4.
+    zh: 在 MMLU 上，经过 Stage II 退出训练的门在平均 2.5 步退出时准确率为 66%，只经过预训练的门约为 64%；固定深度退出在 1 步时为 40%，4 步时为 67.35%。
+    ref: Section 5.4.1; Figure 5
+  - en: Reusing KV caches during prefill costs more than 10 points on GSM8K, so all four steps keep their own KV during prefill.
+    zh: prefill 阶段复用 KV 会让 GSM8K 下降 10 分以上，所以 prefill 时四步都各存 KV。
+    ref: Section 5.4.2
+  - en: On the synthetic Capo task, looped (4 steps) and non-looped models with the same parameter count both store about 2 bits of knowledge per parameter.
+    zh: 在合成的 Capo 任务上，参数量相同的循环模型（4 步）和不循环模型都存下约 2 bit/参数的知识。
+    ref: Section 6.1; Figure 6 (left)
+  - en: >-
+      In 20B-token FineWeb-Edu runs at 53M-1.36B, a Standard model with unshared layers and the same executed depth
+      scores higher than LoopLM in every case, and the gap grows with the step count (in Table 18 the 1.3B gap is 0.017
+      at 2 steps and 0.025 at 4).
+    zh: 在 53M-1.36B、20B token FineWeb-Edu 的实验中，执行层数相同但各层不共享的 Standard 模型在所有设置下都高于 LoopLM，差距随步数增大（Table 18 中 1.3B 的差距在 2 步时为 0.017，4 步时为 0.025）。
+    ref: Appendix D.1; Table 18
+tldr:
+  en: Pre-train a weight-tied layer stack that repeats 4 times, with a learned exit gate, on 7.7T tokens; the authors report that the 1.4B and 2.6B models match dense models of up to 12B parameters.
+  zh: 在 7.7T token 上预训练共享权重、重复 4 遍的层栈，并学习退出门；作者称 1.4B 和 2.6B 模型可比肩最大 12B 参数的 dense 模型。
+quickread:
+  problem:
+    en: >-
+      LLMs mostly learn to reason through explicit chain-of-thought added after pre-training. The paper asks whether
+      looping shared layers in latent space, built into pre-training at multi-trillion-token scale, scales better than
+      non-recursive Transformers.
+    zh: LLM 主要靠预训练之后加入的显式 CoT 来推理。论文研究把共享层的隐空间循环放进数万亿 token 规模的预训练，是否比不循环的 Transformer 扩展得更好。
+  method:
+    en:
+      - Repeat the whole decoder stack (24 layers for 1.4B, 48 for 2.6B) with shared weights; after every step an LM head computes a loss and an exit gate predicts the probability of stopping.
+      - Stage I minimizes the per-step losses weighted by the gate's exit distribution minus an entropy bonus, which equals a KL term toward a uniform prior over exit steps up to a constant.
+      - Stage II freezes the LM and trains only the gate to continue while the next step still lowers the loss by more than a threshold; at inference the model exits at the first step whose cumulative exit probability reaches q.
+      - Pre-train on 7.7T tokens in four stages (8 steps in Stage 1a, then 4; the 2.6B model is upcycled from the 24-layer model), then run reasoning SFT on about 8.3M examples for the Thinking models.
+    zh:
+      - 整个 decoder 层栈共享权重重复执行（1.4B 为 24 层，2.6B 为 48 层）；每一步之后 LM head 计算 loss，退出门预测停止的概率。
+      - Stage I 最小化按退出分布加权的各步 loss 再减去熵奖励，除一个常数外等价于朝均匀先验的 KL 项。
+      - Stage II 冻结 LM，只训练退出门：下一步还能让 loss 下降超过阈值就继续；推理时在累计退出概率首次达到 q 的那一步退出。
+      - 分四个阶段预训练 7.7T token（Stage 1a 用 8 步，之后用 4 步；2.6B 由 24 层模型 upcycle 而来），再用约 8.3M 条数据做推理 SFT 得到 Thinking 模型。
+  caveats:
+    en:
+      - The headline comparisons (Tables 7-9) are against separately trained public models that differ in parameters and training tokens (2T-36T); no budget is matched, and Ouro runs its stack 4 times per token.
+      - The models are trained at 4 steps; base benchmark scores are strongest around T=4 and degrade moderately at T=5-8, and the Thinking models degrade at T=6-8 (Tables 10-13).
+      - By default every step keeps its own KV cache (4× memory at 4 steps); last-step-only reuse was tested for decoding only, because prefill needs all four caches (Section 5.4.2).
+      - Reasoning results come from an in-house harness with an LLM judge and temperature 1.0, top_p 0.7 for every model (Section 5.2; Table 17).
+      - Controlled looped-versus-unlooped studies are small; they use synthetic tasks (Capo with 1M-40M GPT-2-style models, Mano, multi-hop QA) and 53M-1.36B models trained on 20B FineWeb-Edu tokens (Section 6; Appendix D).
+      - The authors did not run exhaustive learning-rate sweeps (Section 4.3), and RLVR with DAPO and GRPO did not improve on the SFT checkpoint (Section 4.5).
+    zh:
+      - 主要对比（Tables 7-9）是与独立训练的公开模型比，参数量和训练 token（2T-36T）都不同，没有对齐任何预算；Ouro 每个 token 要把层栈跑 4 遍。
+      - 模型按 4 步训练；基座模型的 benchmark 分数在 T=4 附近最好，T=5-8 小幅下降，Thinking 模型在 T=6-8 下降（Tables 10-13）。
+      - 默认每一步各存一份 KV（4 步即 4× 显存）；只存末步 KV 的做法只在 decoding 测过，因为 prefill 需要全部四份 KV（Section 5.4.2）。
+      - 推理类结果来自内部评测框架，用 LLM 评判，所有模型都用 temperature 1.0、top_p 0.7（Section 5.2；Table 17）。
+      - 循环与不循环的受控对比规模都很小：合成任务（Capo 用 1M-40M 的 GPT-2 式模型，Mano，多跳问答）以及在 20B FineWeb-Edu token 上训练的 53M-1.36B 模型（Section 6；Appendix D）。
+      - 作者没有做全面的学习率搜索（Section 4.3）；用 DAPO 和 GRPO 做 RLVR 也没有超过 SFT checkpoint（Section 4.5）。
+reproducibility:
+  code: partial
+  weights: available
+  configs: partial
+  data: partial
+added: "2026-11-23"

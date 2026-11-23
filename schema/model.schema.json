@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/sjy1203/awesome-loop/schema/model.schema.json",
+  "title": "awesome-loop open model entry (models/<id>.yaml)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "name", "paper", "hf", "params", "tokens", "passes", "kv", "license", "inference", "ref", "added"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"},
+    "name": {"type": "string", "minLength": 1},
+    "paper": {"description": "id of the entry in papers/.", "type": "string", "minLength": 1},
+    "org": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "hf": {
+      "description": "Hugging Face repos (owner/name) that hold the weights.",
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"}
+    },
+    "params": {"description": "As reported, e.g. 3.5B.", "type": "string", "minLength": 1},
+    "active_params": {"type": "string", "minLength": 1},
+    "tokens": {"description": "Training tokens as reported, e.g. 800B.", "type": "string", "minLength": 1},
+    "context": {"type": "string", "minLength": 1},
+    "passes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["default"],
+      "properties": {
+        "default": {"type": "string", "minLength": 1},
+        "range": {"description": "What the model card or paper says can be set at inference.", "type": "string", "minLength": 1}
+      }
+    },
+    "kv": {"enum": ["per-pass", "last-pass", "first-pass", "single-global", "compressed", "n/a"]},
+    "license": {"type": "string", "minLength": 1},
+    "inference": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"enum": ["transformers", "transformers-remote-code", "vllm", "sglang", "gguf", "custom"]}
+    },
+    "notes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["en", "zh"],
+      "properties": {"en": {"type": "string", "minLength": 1}, "zh": {"type": "string", "minLength": 1}}
+    },
+    "ref": {"description": "Where the facts come from (model card, paper table).", "type": "string", "minLength": 1},
+    "added": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"}
+  }
+}

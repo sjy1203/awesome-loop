@@ -1,0 +1,185 @@
+id: "2604.12946"
+tier: deep
+status: draft
+short: Parcae
+title: "Parcae: Scaling Laws For Stable Looped Language Models"
+date: "2026-04-14"
+venue: arXiv
+authors: [Hayden Prairie, Zachary Novack, Taylor Berg-Kirkpatrick, Daniel Y. Fu]
+orgs: ["University of California, San Diego", Together AI]
+links:
+  paper: https://arxiv.org/abs/2604.12946
+  code: https://github.com/sandyresearch/parcae
+  weights:
+    - https://huggingface.co/SandyResearch/parcae-140m
+    - https://huggingface.co/SandyResearch/parcae-370m
+    - https://huggingface.co/SandyResearch/parcae-770m
+    - https://huggingface.co/SandyResearch/parcae-1.3b
+  project: https://sandyresearch.github.io/parcae/
+category: scaling
+facets:
+  placement: prelude-core-coda
+  sharing: full
+  depth_train: sampled
+  depth_test: extrapolate
+  injection: gated
+  kv: n/a
+  gradient: truncated
+  origin: scratch
+  ffn: dense
+  attention: full
+loop:
+  segments:
+    - {role: prelude, layers: 8}
+    - role: core
+      layers: 8
+      passes: {train: "Poisson with mean 8, per sequence", test: "8"}
+      bptt: last 4
+    - {role: coda, layers: 8}
+  note:
+    en: >-
+      Shown for the 1.3B model of the Transformer comparison (Table 18), which has 8 prelude, 8 recurrent and 8 coda
+      blocks against a 24-layer Transformer; the 140M, 370M and 770M models use 2, 4 and 6 blocks per unit, and all
+      loop the middle third. Each step computes h_{t+1} = Ā h_t + B̄ e + R̄(h_t, e) with Ā = exp(ΔA) for a negative
+      diagonal A (ZOH), B̄ = ΔB (Euler) and a normalized prelude output e. The Section 5.1 models are also evaluated at
+      T = 1-16 and the Section 5.3 models up to T = 24.
+    zh: >-
+      图示为 Transformer 对比中的 1.3B 模型（Table 18）：prelude、循环块、coda 各 8 层，对照是 24 层 Transformer；140M、370M、770M 每段分别为 2、4、6 层，循环的都是中间三分之一。每一步计算 h_{t+1} = Ā h_t + B̄ e + R̄(h_t, e)，其中 Ā = exp(ΔA)，A 为负对角矩阵（ZOH 离散化），B̄ = ΔB（Euler），e 是归一化后的 prelude 输出。Section 5.1 的模型还在 T = 1-16 上评测，Section 5.3 的模型评测到 T = 24。
+budget:
+  baseline:
+    en: >-
+      Fixed-depth Transformers in a simplified nanochat setup with the same parameter count and training data;
+      Huginn-style RDMs with matched parameters and data are a second baseline.
+    zh: >-
+      简化 nanochat 设置下参数量和训练数据相同的定深 Transformer；另一组对照是参数和数据都对齐的 Huginn 式 RDM。
+  matched: [params, tokens]
+  not_matched: [flops, depth]
+  baseline_tuned: separate
+  headline:
+    en: >-
+      At 1.3B parameters and the same data, Parcae (T=8) scores 28.44 Core and 17.08 Core-Extended against the
+      Transformer's 25.45 and 15.90 (+2.99 and +1.18 points); the 770M Parcae's 25.07 Core is comparable to the 1.3B
+      Transformer with roughly half the parameters.
+    zh: >-
+      1.3B 参数、相同数据下，Parcae（T=8）的 Core / Core-Extended 为 28.44 / 17.08，Transformer 为 25.45 / 15.90（高 2.99 和 1.18 分）；770M 的 Parcae Core 为 25.07，用约一半参数与 1.3B Transformer 相当。
+  ref: Abstract; Section 5.1; Table 5
+results:
+  - setting: >-
+      Transformer setup (simplified nanochat), FineWeb-Edu, 2,048 context, parameter- and data-matched pairs trained on
+      11.2B, 29.6B, 61.6B and 104B tokens at 140M, 370M, 770M and 1.3B; Parcae evaluated at T=8
+    metric: validation PPL / Core / Core-Extended
+    values:
+      "140M Transformer": "21.48 / 13.00 / 8.80"
+      "140M Parcae": "19.06 / 14.04 / 9.67"
+      "370M Transformer": "15.79 / 17.46 / 11.71"
+      "370M Parcae": "14.49 / 20.00 / 12.75"
+      "770M Transformer": "13.08 / 22.42 / 14.20"
+      "770M Parcae": "12.49 / 25.07 / 15.19"
+      "1.3B Transformer": "11.95 / 25.45 / 15.90"
+      "1.3B Parcae": "11.42 / 28.44 / 17.08"
+    ref: Table 5; Table 21
+  - setting: RDM setup of Geiping et al. (Huginn data and tokenizer); 100M evaluated at T=16, 350M at T=8
+    metric: validation PPL / WikiText PPL / zero-shot average of six tasks
+    values:
+      "100M RDM": "14.23 / 63.27 / 45.03"
+      "100M Parcae": "13.59 / 60.33 / 46.83"
+      "350M RDM": "10.76 / 41.31 / 49.45"
+      "350M Parcae": "10.09 / 37.53 / 50.12"
+    ref: Table 3
+  - setting: >-
+      Transformer setup at 140M and 370M with parameters and training FLOPs fixed (tokens shrink as μ_rec grows);
+      fixed depth means μ_rec = 1
+    metric: optimal μ_rec* / Core at μ_rec* / Core at fixed depth
+    values:
+      "140M, 1x10^18 FLOPs": "2 / 7.6 / 7.9"
+      "140M, 2x10^18 FLOPs": "2 / 9.0 / 10.5"
+      "140M, 4x10^18 FLOPs": "4 / 11.2 / 10.7"
+      "140M, 8x10^18 FLOPs": "6 / 10.5 / 11.8"
+      "140M, 16x10^18 FLOPs": "8 / 14.6 / 13.0"
+      "140M, 64x10^18 FLOPs": "10 / 16.2 / 15.0"
+      "370M, 32x10^18 FLOPs": "4 / 15.2 / 16.8"
+      "370M, 64x10^18 FLOPs": "6 / 18.1 / 18.1"
+      "370M, 128x10^18 FLOPs": "6 / 20.1 / 18.1"
+    ref: Table 6; Appendix O
+  - setting: >-
+      RDM-setup Parcae models (100M trained with μ_rec 16, 350M with μ_rec 8), depth sampled per micro-batch or per
+      sequence
+    metric: validation PPL at test-time T = 1 / 4 / 8 / 16
+    values:
+      "100M, per-batch": "300.32 / 36.75 / 16.65 / 13.81"
+      "100M, per-sequence": "70.47 / 17.15 / 14.08 / 13.59"
+      "350M, per-batch": "167.61 / 12.80 / 10.40 / 10.24"
+      "350M, per-sequence": "17.92 / 10.49 / 10.09 / 10.11"
+    ref: Table 8; Table 17
+findings:
+  - en: >-
+      Run at up to twice the training mean (μ_rec = 8), the 140M-1.3B models' gains plateau near T = μ_rec; the authors
+      read this as training depth setting the test-time ceiling.
+    zh: 140M–1.3B 模型推理时跑到训练均值 μ_rec = 8 的两倍，收益在 T = μ_rec 附近就饱和；作者认为训练深度决定了推理时 scaling 的上限。
+    ref: Section 5.3; Figure 7
+  - en: >-
+      Loss against test-time T follows L(T) = L∞ + Z·exp(−zT); fitted on T ≤ μ_rec and tested on T > μ_rec, this form
+      has the lowest error of the four forms tried (Huber loss 3.18 and 2.29 x10^-7 at 140M and 370M).
+    zh: loss 随推理遍数 T 的变化符合 L(T) = L∞ + Z·exp(−zT)；用 T ≤ μ_rec 拟合、在 T > μ_rec 上检验时，它在四种候选形式中误差最低（140M 和 370M 的 Huber loss 为 3.18 和 2.29 x10^-7）。
+    ref: Section 5.3; Appendix L; Table 12
+  - en: >-
+      Sampling the total depth from Λ(μ_rec) and then truncating backprop, instead of sampling only the no-gradient
+      steps as Geiping et al. do, keeps validation loss at T = 4, 16 and 64 closer to full backprop (100M models, 10B
+      tokens, μ_rec = μ_bwd = 8).
+    zh: 先从 Λ(μ_rec) 采样总遍数再截断反传，而不是像 Geiping et al. 那样只采样不带梯度的步数，能让 T = 4、16、64 时的验证 loss 更接近全程反传（100M 模型，10B token，μ_rec = μ_bwd = 8）。
+    ref: Section 4.2; Appendix H; Figure 14
+  - en: >-
+      With parameters and FLOPs fixed, the optimal μ_rec grows with the budget (2 at 1x10^18 to 10 at 64x10^18 FLOPs for
+      140M) and follows a power law with exponent about 0.40; the optimal token count follows one with exponent about
+      0.78.
+    zh: 固定参数和 FLOPs 时，最优 μ_rec 随预算增大（140M 从 1x10^18 FLOPs 时的 2 增到 64x10^18 时的 10），服从指数约 0.40 的幂律；最优 token 数服从指数约 0.78 的幂律。
+    ref: Section 5.2; Table 6; Figure 5
+  - en: >-
+      In early RDM runs made before the Appendix H sampling fix (10B tokens, μ_bwd = 4, evaluated at T = μ_rec), μ_rec = 8
+      gave the lowest validation loss (2.453) among values from 4 to 32; in a second sweep at μ_rec = 20 (8.5B tokens),
+      raising μ_bwd from 4 to 12 lowered it from 2.500 to 2.474.
+    zh: 在 Appendix H 采样修正之前的早期 RDM 实验里（10B token，μ_bwd = 4，按 T = μ_rec 评测），μ_rec 取 4 到 32 时 μ_rec = 8 的验证 loss 最低（2.453）；另一组 μ_rec = 20 的实验（8.5B token）中，把 μ_bwd 从 4 提到 12，loss 从 2.500 降到 2.474。
+    ref: Appendix I; Table 9; Table 10
+  - en: >-
+      Across learning rates from 2e-4 to 1e-3, the Pre-Norm RDM converges only at 2e-4 and the residual-norm RDM up to
+      4e-4, while Parcae converges at all five.
+    zh: 学习率从 2e-4 到 1e-3 的五档中，Pre-Norm RDM 只在 2e-4 收敛，残差归一化 RDM 只到 4e-4，Parcae 五档全部收敛。
+    ref: Table 2; Appendix F
+tldr:
+  en: >-
+    Constrain the loop's injection to a stable negative-diagonal form, sample depth per sequence, and fit training and
+    test-time scaling laws for looping at fixed parameter count.
+  zh: 把循环的注入约束成稳定的负对角形式，按序列采样遍数训练，并在固定参数量下拟合循环的训练和推理 scaling law。
+quickread:
+  problem:
+    en: >-
+      Middle-looped models such as Huginn-style RDMs diverge or show loss spikes unless hyperparameters are chosen
+      carefully; the paper traces this to injection parameters whose linearized state matrix reaches a spectral radius
+      of 1 or more, and asks whether a stable looped model scales predictably with loops.
+    zh: Huginn 式 RDM 等中段循环模型若超参没选好就会发散或出现 loss spike；论文把原因归到注入参数线性化后的状态矩阵谱半径达到或超过 1，并研究稳定后的循环模型能否随循环遍数可预测地 scale。
+  method:
+    en:
+      - "Write each loop step as h_{t+1} = Ā h_t + B̄ e + R̄(h_t, e) and parameterize A as a negative diagonal discretized with ZOH, so the spectral radius of Ā stays below 1; the prelude output e is normalized before injection."
+      - "Sample the depth T per sequence from a Poisson distribution with mean μ_rec, backpropagate through the last μ_bwd = ⌈μ_rec/2⌉ steps, and loop the middle third of a nanochat-style Transformer."
+      - "Fit isoFLOP scaling laws over μ_rec and tokens at fixed parameters (140M, 370M) and a saturating exponential law for loss against test-time T, then join them in one unified law."
+    zh:
+      - "把每一步循环写成 h_{t+1} = Ā h_t + B̄ e + R̄(h_t, e)，A 参数化为负对角矩阵并用 ZOH 离散化，使 Ā 的谱半径始终小于 1；prelude 输出 e 注入前先归一化。"
+      - "每条序列的遍数 T 从均值为 μ_rec 的 Poisson 分布采样，只反传最后 μ_bwd = ⌈μ_rec/2⌉ 步；循环 nanochat 式 Transformer 中间三分之一的层。"
+      - "在固定参数（140M、370M）下拟合 μ_rec 与 token 数的 isoFLOP scaling law，再拟合 loss 随推理遍数 T 变化的饱和指数律，最后合成一个统一的 scaling law。"
+  caveats:
+    en:
+      - "Experiments stop at 1.3B parameters, 104B tokens and a 2,048-token context with dense FFNs; the scaling laws are fitted only at 140M and 370M, and the authors say their observations are limited to small architectures (Section 6)."
+      - "Parameters and data are matched (Parcae has 0.35-0.83% more parameters, Table 19) but compute is not; at T = 8 the recurrent block runs 8 times per token, and the paper reports neither KV-cache size nor inference cost."
+      - "The Transformer and RDM baselines got their own learning-rate sweeps, and Parcae reused the baselines' best settings without a sweep of its own (Section 5.1; Appendix Q)."
+      - "Test-time gains saturate near the training mean μ_rec, and the authors note that a larger μ_rec needs more test-time steps for equivalent quality (Section 5.3; Section 6)."
+    zh:
+      - "实验最大到 1.3B 参数、104B token、2,048 上下文，FFN 为 dense；scaling law 只在 140M 和 370M 上拟合，作者也说结论仅限于小模型（Section 6）。"
+      - "对齐了参数（Parcae 多 0.35-0.83%，Table 19）和数据，没对齐算力：T = 8 时循环块每个 token 跑 8 遍；论文没有报告 KV 大小或推理成本。"
+      - "Transformer 和 RDM 基线各自扫过学习率，Parcae 直接沿用基线的最优设置，没有单独扫（Section 5.1；Appendix Q）。"
+      - "推理收益在训练均值 μ_rec 附近饱和；作者指出 μ_rec 越大，达到同等质量需要的推理步数越多（Section 5.3；Section 6）。"
+reproducibility:
+  code: available
+  weights: available
+  configs: available
+  data: available
+added: "2026-11-23"

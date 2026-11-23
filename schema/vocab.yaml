@@ -1,0 +1,119 @@
+# Controlled vocabulary with English / Chinese display labels.
+# Every enum value in schema/*.schema.json must appear here; scripts/build.py checks this.
+
+category:
+  theory: {en: Theory and capability, zh: 理论与能力}
+  architecture/placement: {en: "Architecture: where to loop, what to share", zh: 结构：放哪循环、共享什么}
+  architecture/state: {en: "Architecture: cross-pass state and residuals", zh: 结构：遍间状态与残差}
+  depth: {en: Depth control, zh: 深度控制}
+  training: {en: Training and retrofitting, zh: 训练与改造}
+  scaling: {en: Scaling and budget, zh: Scaling 与预算}
+  systems: {en: Systems and inference, zh: 系统与推理}
+  understanding: {en: Mechanisms and failure modes, zh: 机理与失败模式}
+  applications: {en: Applications beyond language modeling, zh: 语言模型以外的应用}
+  safety: {en: Safety and monitorability, zh: 安全与可监控}
+  adjacent: {en: "Adjacent: latent reasoning without loops", zh: 相邻方向：不靠循环的隐式推理}
+
+# Facets. "n/a" = not applicable or not stated by the paper.
+placement:
+  whole-stack: {en: whole stack, zh: 整栈循环}
+  prelude-core-coda: {en: middle core (prelude-core-coda), zh: 中段循环（prelude-core-coda）}
+  encoder: {en: KV-producing half (CED encoder / YOCO self-decoder), zh: 产出共享 KV 的前半段（CED encoder / YOCO self-decoder）}
+  decoder: {en: KV-reading half (CED decoder / YOCO cross-decoder), zh: 读共享 KV 的后半段（CED decoder / YOCO cross-decoder）}
+  partial: {en: partial (one early/late block or sub-module), zh: 局部（前段、后段或子模块）}
+  hierarchical: {en: hierarchical (coupled loops at different rates), zh: 分层（不同频率的耦合循环）}
+  shifted-parallel: {en: shifted / parallel across tokens, zh: 跨 token 错位或并行}
+  implicit: {en: implicit fixed point, zh: 隐式不动点}
+  n/a: {en: n/a, zh: 不适用}
+sharing:
+  full: {en: fully tied, zh: 完全共享}
+  relaxed: {en: relaxed (per-pass LoRA / embeddings), zh: 放松共享（每遍 LoRA / 遍嵌入）}
+  routed: {en: routed (per-pass or per-token choice of weights), zh: 路由（按遍或按 token 选权重）}
+  n/a: {en: n/a, zh: 不适用}
+depth_train:
+  fixed: {en: fixed, zh: 固定}
+  sampled: {en: sampled, zh: 随机采样}
+  curriculum: {en: scheduled curriculum, zh: 按课程递增}
+  adaptive: {en: learned / adaptive, zh: 学习或自适应}
+  n/a: {en: n/a, zh: 不适用}
+depth_test:
+  fixed: {en: fixed, zh: 固定}
+  extrapolate: {en: can run more passes than trained, zh: 可多于训练遍数}
+  adaptive: {en: adaptive exit / routing, zh: 自适应退出或路由}
+  n/a: {en: n/a, zh: 不适用}
+injection:
+  none: {en: none, zh: 无}
+  additive: {en: additive, zh: 加法}
+  concat: {en: concat + projection, zh: 拼接 + 投影}
+  gated: {en: gated, zh: 门控}
+  depth-attention: {en: attention over earlier passes, zh: 对前几遍做注意力}
+  state: {en: persistent state, zh: 持久状态}
+  n/a: {en: n/a, zh: 不适用}
+kv:
+  per-pass: {en: per-pass KV, zh: 每遍各存 KV}
+  last-pass: {en: last-pass KV only, zh: 只存末遍 KV}
+  first-pass: {en: first-pass KV shared, zh: 共享首遍 KV}
+  single-global: {en: one global KV per token, zh: 每 token 一份全局 KV}
+  compressed: {en: compressed across passes, zh: 跨遍压缩}
+  n/a: {en: n/a, zh: 不适用}
+gradient:
+  full-bptt: {en: full BPTT, zh: 全程反传}
+  truncated: {en: truncated (last k passes), zh: 截断（只反传最后 k 遍）}
+  one-step: {en: one-step approximation, zh: 一步近似}
+  implicit: {en: implicit gradient, zh: 隐式梯度}
+  n/a: {en: n/a, zh: 不适用}
+origin:
+  scratch: {en: trained from scratch, zh: 从头训}
+  retrofit: {en: retrofitted from a pretrained model, zh: 从预训练模型改造}
+  distill: {en: distilled, zh: 蒸馏}
+  n/a: {en: n/a, zh: 不适用}
+ffn:
+  dense: {en: dense FFN, zh: dense FFN}
+  moe: {en: MoE, zh: MoE}
+  n/a: {en: n/a, zh: 不适用}
+attention:
+  full: {en: full attention, zh: 全注意力}
+  swa: {en: sliding-window attention, zh: 滑窗注意力}
+  hybrid: {en: hybrid (full + window / linear), zh: 混合（全注意力 + 滑窗或线性）}
+  linear: {en: linear / recurrent mixer, zh: 线性或循环式 mixer}
+  n/a: {en: n/a, zh: 不适用}
+
+# Quantities a comparison can hold fixed. "badge" is the short tag shown in tables.
+budget_item:
+  params: {badge: N, en: unique parameters, zh: 唯一参数}
+  active-params: {badge: A, en: active parameters, zh: 激活参数}
+  flops: {badge: F, en: training FLOPs, zh: 训练 FLOPs}
+  kv: {badge: KV, en: KV cache per token, zh: 每 token KV}
+  tokens: {badge: D, en: training tokens, zh: 训练 token}
+  depth: {badge: L, en: executed layers per token, zh: 每 token 执行层数}
+  wallclock: {badge: W, en: wall-clock time, zh: 墙钟时间}
+# Were the baseline's hyperparameters (at least the LR) tuned separately from the looped model?
+# (Values avoid yes/no because YAML 1.1 reads them as booleans.)
+baseline_tuned:
+  separate: {en: tuned separately, zh: 单独调过}
+  shared: {en: shared with the looped model, zh: 和循环模型共用}
+  unknown: {en: not stated, zh: 未说明}
+
+status:
+  draft: {en: draft (numbers not yet re-checked), zh: 草稿（数字未复核）}
+  verified: {en: verified against the paper, zh: 已对原文复核}
+repro:
+  available: {en: available, zh: 有}
+  partial: {en: partial, zh: 部分}
+  none: {en: none, zh: 无}
+claim_status:
+  consistent: {en: consistent, zh: 一致}
+  mixed: {en: mixed, zh: 有分歧}
+  single-source: {en: single source, zh: 单一来源}
+  open: {en: untested, zh: 没人测过}
+stance:
+  supports: {en: supports, zh: 支持}
+  against: {en: against, zh: 反对}
+  partial: {en: partly, zh: 部分支持}
+inference:
+  transformers: {en: transformers, zh: transformers}
+  transformers-remote-code: {en: transformers (trust_remote_code), zh: transformers（trust_remote_code）}
+  vllm: {en: vLLM, zh: vLLM}
+  sglang: {en: SGLang, zh: SGLang}
+  gguf: {en: GGUF, zh: GGUF}
+  custom: {en: custom code, zh: 自带代码}

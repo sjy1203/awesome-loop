@@ -1,0 +1,197 @@
+id: "2507.10524"
+tier: deep
+status: draft
+short: MoR
+title: "Mixture-of-Recursions: Learning Dynamic Recursive Depths for Adaptive Token-Level Computation"
+date: "2025-07-14"
+venue: NeurIPS 2025
+authors: [Sangmin Bae, Yujin Kim, Reza Bayat, Sungnyun Kim, Jiyoun Ha, Tal Schuster, Adam Fisch, Hrayr Harutyunyan, Ziwei Ji, Aaron Courville, Se-Young Yun]
+orgs: [KAIST AI, Mila, Google Cloud, Google DeepMind, Google Research, Université de Montréal]
+links:
+  paper: https://arxiv.org/abs/2507.10524
+  code: https://github.com/raymin0223/mixture_of_recursions
+  weights:
+    - https://drive.google.com/drive/folders/1pYKJOu2aBGC-jgoWbfP6T_vqEYtUVxa4
+category: depth
+facets:
+  placement: prelude-core-coda
+  sharing: full
+  depth_train: adaptive
+  depth_test: adaptive
+  injection: none
+  kv: per-pass
+  gradient: full-bptt
+  origin: scratch
+  ffn: dense
+  attention: full
+loop:
+  segments:
+    - {role: prelude, layers: 1, label: first layer}
+    - role: core
+      layers: 10
+      label: shared block
+      passes: {train: "1-3 per token, set by the router (Nr=3)", test: "1-3 per token, set by the router"}
+    - {role: coda, layers: 1, label: last layer}
+  note:
+    en: >-
+      Middle-Cycle sharing on a Llama-style model keeps the first and last layers unique and applies one shared block up
+      to Nr times (360M base with Nr=3 uses 1+10+1 unique layers; Nr=2 uses 1+15+1). Routers decide how many recursions
+      each token gets. Expert-choice keeps the top-k tokens at each step (3/3, 2/3 and 1/3 of the tokens for Nr=3), and
+      only tokens kept at step r can be kept at r+1; token-choice assigns each token its depth once. The router score
+      scales the block output that is added to the residual. Each step caches KV only for its active tokens and attends
+      only among them; a variant reuses the first recursion's KV at every step.
+    zh: >-
+      在 Llama 式模型上用 Middle-Cycle 共享：首尾两层独立，中间一个共享块最多重复 Nr 次（360M 基座、Nr=3 时为 1+10+1 个独立层；Nr=2 为 1+15+1）。由路由器决定每个 token 递归几次。expert-choice 每步保留 top-k token（Nr=3 时依次为 3/3、2/3、1/3），只有第 r 步被保留的 token 才能在第 r+1 步再被选中；token-choice 一开始就给每个 token 定好深度。路由分数缩放共享块的输出，再加回残差。每一步只为仍在计算的 token 存 KV，注意力也只在这些 token 之间计算；另一种变体在每一步都复用第一遍的 KV。
+budget:
+  baseline:
+    en: >-
+      Vanilla Llama-style Transformer (315M non-embedding parameters at the 360M base) and fixed-depth Recursive
+      Transformers with the same Middle-Cycle sharing (Nr=2-4).
+    zh: Llama 式 vanilla Transformer（360M 基座，315M 非 embedding 参数），以及同样采用 Middle-Cycle 共享、固定深度的递归 Transformer（Nr=2-4）。
+  matched: [flops]
+  not_matched: [params, tokens, depth, kv]
+  baseline_tuned: shared
+  headline:
+    en: >-
+      At 16.5e18 training FLOPs, expert-choice MoR with Nr=2 reaches validation NLL 2.7511 and 43.1% average few-shot
+      accuracy with 167M non-embedding parameters, against 2.7824 and 42.3% for the 315M vanilla model. At an equal 20B
+      tokens it uses 25% fewer training FLOPs, 19% less training time and 25% less peak memory than vanilla.
+    zh: >-
+      训练 FLOPs 同为 16.5e18 时，Nr=2 的 expert-choice MoR 用 167M 非 embedding 参数达到验证 NLL 2.7511、few-shot 平均准确率 43.1%，315M 的 vanilla 为 2.7824 和 42.3%。同为 20B token 时，它比 vanilla 少用 25% 训练 FLOPs、19% 训练时间和 25% 峰值显存。
+  ref: Section 3.1; Table 3
+results:
+  - setting: 360M base, FineWeb-Edu, 16.5e18 training FLOPs (tokens vary), Middle-Cycle sharing
+    metric: validation NLL / average few-shot accuracy
+    values:
+      "Vanilla, 315M, 20B tokens": "2.7824 / 42.3"
+      "Recursive Nr=2, 167M, 20B": "2.8079 / 42.6"
+      "Recursive Nr=3, 118M, 20B": "2.8466 / 41.5"
+      "Recursive Nr=4, 98M, 19B": "2.8781 / 41.0"
+      "MoR expert Nr=2, 167M, 27B": "2.7511 / 43.1"
+      "MoR expert Nr=3, 118M, 30B": "2.7925 / 42.6"
+      "MoR expert Nr=4, 98M, 30B": "2.8204 / 41.6"
+      "MoR token Nr=3, 118M, 30B": "2.9163 / 40.0"
+      "MoR expert Nr=3, KV sharing, 118M, 31B": "2.7983 / 41.9"
+    ref: Table 3
+  - setting: 360M base, FineWeb-Edu, 20B training tokens (FLOPs vary)
+    metric: training FLOPs (×1e18) / validation NLL / average few-shot accuracy
+    values:
+      "Vanilla": "16.5 / 2.7824 / 42.3"
+      "MoR expert Nr=2": "12.3 / 2.7749 / 42.9"
+      "MoR expert Nr=3": "11.0 / 2.8246 / 41.8"
+      "MoR expert Nr=4": "11.0 / 2.8519 / 41.5"
+    ref: Table 3
+  - setting: Equal training FLOPs per row, Nr=3, expert-choice MoR with recursion-wise KV caching, FineWeb-Edu
+    metric: validation NLL, Vanilla / Recursive / MoR
+    values:
+      "135M base, 5e18": "2.9464 / 3.0534 / 3.0192"
+      "135M base, 16.5e18": "2.8432 / 2.9552 / 2.9490"
+      "360M base, 5e18": "3.0097 / 3.0722 / 2.9161"
+      "360M base, 16.5e18": "2.7824 / 2.8466 / 2.7924"
+      "730M base, 5e18": "3.0821 / 3.1640 / 3.0067"
+      "730M base, 16.5e18": "2.7048 / 2.7886 / 2.7438"
+      "1.7B base, 5e18": "3.6926 / 3.8876 / 3.2905"
+      "1.7B base, 16.5e18": "2.8658 / 3.0042 / 2.8316"
+    ref: Appendix D; Table 9
+  - setting: 118M unique non-embedding parameters, 10B tokens, Middle-Cycle MoR
+    metric: validation NLL / average few-shot accuracy
+    values:
+      "Vanilla (Nr=1, 12 layers)": "2.9678 / 39.48"
+      "MoR Nr=2 (1+10+1)": "2.9205 / 39.96"
+      "MoR Nr=3 (1+10+1)": "2.9111 / 40.10"
+    ref: Appendix C.2; Table 8
+  - setting: Fixed-depth Recursive Transformers on the 360M base, Nr=3, 10B tokens; four parameter-sharing schemes
+    metric: validation NLL / average few-shot accuracy
+    values:
+      "Vanilla, 32 layers, 315M": "2.8471 / 40.68"
+      "Cycle, 10 layers, 98M": "2.9363 / 39.15"
+      "Sequence, 10 layers, 98M": "3.0245 / 38.30"
+      "Middle-Cycle, 1+10+1, 118M": "2.8760 / 40.82"
+      "Middle-Sequence, 1+10+1, 118M": "2.9753 / 38.44"
+    ref: Appendix F; Table 10
+    note:
+      en: Cycle reuses the whole block in order [(0,1,2),(0,1,2),...]; Sequence repeats each layer back to back; the Middle variants keep the first and last layers unique.
+      zh: Cycle 按 [(0,1,2),(0,1,2),...] 的顺序重复整个块；Sequence 把每层连续重复；Middle 变体保留首尾两层独立。
+findings:
+  - en: >-
+      In Table 9, weight sharing alone (fixed-depth recursion) has higher validation NLL than vanilla at every size and
+      budget. MoR has lower NLL than vanilla at 2e18 and 5e18 from the 360M base up, and at 16.5e18 only at the 1.7B base;
+      at 135M it stays above vanilla.
+    zh: Table 9 中，只做权重共享（固定深度递归）在所有规模和预算下验证 NLL 都高于 vanilla。MoR 从 360M 基座起在 2e18 和 5e18 预算下 NLL 低于 vanilla，16.5e18 预算下只有 1.7B 基座低于 vanilla；135M 时始终高于 vanilla。
+    ref: Section 3.2; Appendix D; Table 9
+  - en: >-
+      At the 1.7B base with 68.5e18 FLOPs, vanilla averages 48.9 few-shot accuracy against 48.4 for the best MoR (expert,
+      Nr=2); the authors say this might signal that the current MoR design is not suitable for scaling.
+    zh: 1.7B 基座、68.5e18 FLOPs 时，vanilla 的 few-shot 平均准确率为 48.9，最好的 MoR（expert，Nr=2）为 48.4；作者说这可能说明目前的 MoR 设计不适合扩展。
+    ref: Appendix C.1; Table 7
+  - en: >-
+      With unique parameters fixed at 252M (730M base, Nr=3), Middle-Cycle with 1+8+1 layers (26 effective) beats Cycle
+      with 10 layers (30 effective), with NLL 2.7552 vs 2.7573 and average accuracy 42.32 vs 41.90.
+    zh: 唯一参数固定为 252M（730M 基座，Nr=3）时，1+8+1 层的 Middle-Cycle（26 个有效层）优于 10 层的 Cycle（30 个有效层），NLL 为 2.7552 对 2.7573，平均准确率为 42.32 对 41.90。
+    ref: Appendix F; Table 11
+  - en: >-
+      At the 135M base, Cycle is slightly ahead of Middle-Cycle at Nr=2 (NLL 3.0071 vs 3.0330), while Middle-Cycle leads
+      at Nr=3 and at the 360M base for both depths. In up-training from SmolLM checkpoints, both Middle strategies do
+      better than the others in all settings.
+    zh: 135M 基座、Nr=2 时 Cycle 略好于 Middle-Cycle（NLL 3.0071 对 3.0330）；Nr=3 时以及 360M 基座的两种深度下都是 Middle-Cycle 领先。从 SmolLM checkpoint 继续训练（up-training）时，两种 Middle 策略在所有设置下都优于其他策略。
+    ref: Appendix F; Tables 10 and 12
+  - en: >-
+      At Nr=3, expert-choice routing beats token-choice (42.6% vs 40.0% average accuracy in Table 3). In the 10B-token
+      ablation, recursive KV sharing raises training NLL for expert-choice MoR (2.8667 to 2.8895) but lowers it for
+      token-choice MoR (2.9358 to 2.9155).
+    zh: Nr=3 时 expert-choice 路由优于 token-choice（Table 3 中平均准确率 42.6% 对 40.0%）。在 10B token 的消融中，recursive KV sharing 让 expert-choice MoR 的训练 NLL 升高（2.8667 到 2.8895），却让 token-choice MoR 的训练 NLL 降低（2.9358 到 2.9155）。
+    ref: Section 3.1; Section 4.3; Tables 3 and 15
+  - en: >-
+      With continuous depth-wise batching at the 360M scale, every MoR variant decodes faster than vanilla, and MoR-4
+      reaches up to a 2.06× speedup at the maximum batch size, with a slight drop in quality.
+    zh: 在 360M 规模下用 continuous depth-wise batching 解码，所有 MoR 变体都比 vanilla 快，MoR-4 在最大 batch size 下最高提速 2.06×，质量略有下降。
+    ref: Section 3.3; Figure 4a
+  - en: >-
+      Log-likelihood improves as the maximum recursion depth at inference is raised step by step up to the trained Nr
+      (models with Nr=2, 3 and 4 at the 360M base); no run goes beyond the trained Nr.
+    zh: 推理时把最大递归深度逐步提高到训练时的 Nr，log-likelihood 随之提升（360M 基座，Nr=2、3、4 的模型）；没有实验超过训练时的 Nr。
+    ref: Section 5.3; Figure 5c
+tldr:
+  en: Routers give each token its own number of passes through a shared middle block, and each pass caches KV only for its active tokens; at equal training FLOPs MoR beats fixed-depth recursive baselines and often vanilla, with fewer parameters.
+  zh: 路由器给每个 token 分配穿过共享中段的遍数，每一遍只为仍在计算的 token 存 KV；同等训练 FLOPs 下，MoR 优于固定深度的递归基线，也常优于 vanilla，且参数更少。
+quickread:
+  problem:
+    en: >-
+      Efficiency work usually targets either parameter sharing or adaptive computation. Recursive Transformers mostly
+      apply one fixed depth to every token and keep a separate KV cache per depth, while early-exit methods need extra
+      training stages and leave exited tokens without KV at deeper layers.
+    zh: 提效工作通常只做参数共享或自适应计算之一。递归 Transformer 大多给所有 token 同样的固定深度，每个深度各存一份 KV；early-exit 方法需要额外的训练阶段，而且提前退出的 token 在更深的层没有 KV。
+  method:
+    en:
+      - Middle-Cycle sharing keeps the first and last layers unique and cycles one shared block of middle layers up to Nr times.
+      - Lightweight routers trained from scratch give each token its own recursion depth. Expert-choice picks the top-k tokens at every step with hierarchical filtering and adds an auxiliary BCE loss so the choice can be made causally at inference; token-choice assigns the depth once and uses a balancing loss.
+      - Recursion-wise caching stores KV at each step only for the tokens routed there and restricts attention to them; recursive KV sharing instead reuses the first step's KV at every step.
+      - Vanilla, fixed-depth recursive and MoR models (135M-1.7B base sizes, FineWeb-Edu, 2K context) are compared at equal training FLOPs (2e18, 5e18, 16.5e18) and at equal tokens (20B).
+    zh:
+      - Middle-Cycle 共享：首尾两层独立，中间层组成一个共享块，最多循环 Nr 次。
+      - 从头训练的轻量路由器给每个 token 分配递归深度。expert-choice 每步按层级过滤选出 top-k token，并加辅助 BCE loss，使推理时能按因果方式做选择；token-choice 一开始就定好深度，并用负载均衡 loss。
+      - recursion-wise caching 在每一步只为被路由到该步的 token 存 KV，注意力也只在这些 token 之间计算；recursive KV sharing 则在每一步都复用第一步的 KV。
+      - 在相同训练 FLOPs（2e18、5e18、16.5e18）和相同 token（20B）下比较 vanilla、固定深度递归和 MoR 模型（基座 135M-1.7B，FineWeb-Edu，2K 上下文）。
+  caveats:
+    en:
+      - Models go up to a 1.7B base (0.67B-0.87B unique non-embedding parameters for MoR) with 2K context, are trained only on FineWeb-Edu and are evaluated by NLL and six few-shot benchmarks; the authors leave models above 3B to future work (Section 7.1).
+      - The main comparison fixes training FLOPs, not parameters or tokens; MoR has fewer unique parameters and sees more tokens (27B-31B against 20B in Table 3).
+      - FLOPs are approximate forward-pass counts that leave out FlashAttention, normalization and non-linearities, and token-choice FLOPs assume perfect balancing (Appendix D).
+      - At the 135M base, and at the 1.7B base with 68.5e18 FLOPs, vanilla beats MoR (Section 3.2; Appendix C.1).
+      - Expert-choice top-k selection is non-causal during training; inference relies on an auxiliary loss to predict it, and the near-binary router outputs make top-k hard to change after training (Section 2.2.1; Section 7.1).
+      - Throughput is measured only at the 360M scale, generating from an empty prefix, and excludes the time spent caching and updating KV (Appendix E).
+      - Vanilla, recursive and MoR runs share one set of optimizer settings (learning rate 3e-3 in the released 360M configs); the paper reports no separate tuning.
+    zh:
+      - 模型最大到 1.7B 基座（MoR 的唯一非 embedding 参数为 0.67B-0.87B），2K 上下文，只用 FineWeb-Edu 训练，只评测 NLL 和六个 few-shot 基准；作者把 3B 以上的模型留作后续工作（Section 7.1）。
+      - 主要对比对齐了训练 FLOPs，没对齐参数和 token：MoR 唯一参数更少，看到的 token 更多（Table 3 中 27B-31B 对 20B）。
+      - FLOPs 是近似的前向计算量，不含 FlashAttention、归一化和非线性运算，token-choice 的 FLOPs 按完美负载均衡估算（Appendix D）。
+      - 135M 基座时，以及 1.7B 基座、68.5e18 FLOPs 时，vanilla 都优于 MoR（Section 3.2；Appendix C.1）。
+      - expert-choice 的 top-k 选择在训练时不满足因果性；推理时靠辅助 loss 来预测，而路由输出几乎是二值的，训练后很难再改 top-k（Section 2.2.1；Section 7.1）。
+      - 吞吐只在 360M 规模上测，从空前缀开始生成，不计缓存和更新 KV 的时间（Appendix E）。
+      - vanilla、递归和 MoR 共用一套优化器设置（公开的 360M 配置里学习率都是 3e-3）；论文没有提到单独调参。
+reproducibility:
+  code: available
+  weights: partial
+  configs: partial
+  data: available
+added: "2026-11-23"

@@ -1,0 +1,287 @@
+{
+ "schema": "schema/model.schema.json",
+ "models": [
+  {
+   "id": "huginn-0125",
+   "name": "Huginn-0125",
+   "paper": "2502.05171",
+   "hf": [
+    "tomg-group-umd/huginn-0125",
+    "tomg-group-umd/huginn_swa_75_7_ema_0.9_merge",
+    "tomg-group-umd/huginn_swa_100_10_avg_0.9_merge",
+    "tomg-group-umd/step-00006144-recurrence_full_512_0",
+    "tomg-group-umd/step-00010752-recurrence_full_512_0",
+    "tomg-group-umd/step-00011904-recurrence_full_512_0",
+    "tomg-group-umd/step-00017920-recurrence_full_512_0",
+    "tomg-group-umd/step-00023808-recurrence_full_512_0",
+    "tomg-group-umd/step-00029824-recurrence_full_512_0",
+    "tomg-group-umd/step-00035840-recurrence_full_512_0",
+    "tomg-group-umd/step-00041728-recurrence_full_512_0"
+   ],
+   "params": "3.5B",
+   "tokens": "800B",
+   "context": "4096 (training sequence length)",
+   "passes": {
+    "default": "32",
+    "range": "any num_steps; card says under 4 is very coarse and benchmarks improve up to about 64"
+   },
+   "kv": "per-pass",
+   "license": "apache-2.0",
+   "inference": [
+    "transformers-remote-code"
+   ],
+   "notes": {
+    "en": "huginn-0125 is the final checkpoint of the 800B-token run. huginn_swa_75_7_ema_0.9_merge is a weight-averaged checkpoint that its card says improves GSM8K; its name matches the EMA in Section 5.4 (last 75 checkpoints, dilation 7, beta 0.9), which scores 47.23% flexible on GSM8K at r=64. The card of huginn_swa_100_10_avg_0.9_merge calls it an SWA merge of the main model. The eight step-* repos are intermediate checkpoints of the same run. The model needs its own cache class (HuginnDynamicCache) so that later recurrence steps do not overwrite earlier KV entries; the card also documents zero-shot adaptive exits, KV-cache sharing (lookup_strategy compress-s16) and continuous-CoT warm starts. The non-recurrent baseline checkpoints in the same collection (step-*-baseline_2_0) are not listed. The GitHub README also describes a vLLM plugin.",
+    "zh": "huginn-0125 是 800B token 训练的最终 checkpoint。huginn_swa_75_7_ema_0.9_merge 是权重平均的 checkpoint，模型卡说它提升了 GSM8K；名字与 Section 5.4 的 EMA 一致（最后 75 个 checkpoint、dilation 7、beta 0.9），该 EMA 在 r=64 时 GSM8K 为 47.23%（flexible）。huginn_swa_100_10_avg_0.9_merge 的模型卡称其为主模型的 SWA 合并。8 个 step-* 仓库是同一次训练的中间 checkpoint。模型需要自带的 cache 类（HuginnDynamicCache），否则后面递归步的 KV 会覆盖前面的；模型卡还介绍了零样本自适应退出、KV cache 共享（lookup_strategy compress-s16）和连续 CoT 热启动。同一 collection 里不循环基线的 checkpoint（step-*-baseline_2_0）未列出。GitHub README 还介绍了一个 vLLM 插件。"
+   },
+   "ref": "huginn-0125 model card (num_steps usage and range, HuginnDynamicCache, trust_remote_code, apache-2.0) and the cards of the other ten repos; HF API (repo existence, license tags) and the Recurrent Models collection; paper Abstract (3.5B, 800B tokens), Section 4.1 (4096-token sequences, mean recurrence 32), Section 5.4 (EMA); GitHub README (vLLM plugin).",
+   "added": "2026-11-23"
+  },
+  {
+   "id": "inkling-2-mini",
+   "name": "Inkling 2 Mini",
+   "paper": "tml-inkling-2-mini",
+   "org": [
+    "Thinking Machines Lab"
+   ],
+   "hf": [
+    "thinkingmachines/Inkling-2-Mini"
+   ],
+   "params": "26.4B",
+   "active_params": "3.4B; 5.4B effective at 3 passes",
+   "tokens": "not stated",
+   "context": "1M",
+   "passes": {
+    "default": "3",
+    "range": "fixed"
+   },
+   "kv": "per-pass",
+   "license": "apache-2.0",
+   "inference": [
+    "transformers",
+    "vllm",
+    "sglang",
+    "gguf"
+   ],
+   "notes": {
+    "en": "Multimodal (text and image in, text out) 24-layer MoE with 8 of 128 experts per token; the middle 12 layers run three times with shared weights, giving 48 layer applications per token. Single checkpoint of about 20GB in mixed NVFP4 and MXFP8, the precisions it was trained in. The blog gives 1T distillation tokens after expert pruning and 2.2T RL tokens over 2,000 steps, but no pretraining token count. Quantized GGUF versions come via Unsloth and llama.cpp (ggml-org/Inkling-2-Mini-GGUF).",
+    "zh": "多模态（输入文本和图像，输出文本）24 层 MoE，每 token 从 128 个专家中选 8 个；中间 12 层共享权重跑三遍，每 token 执行 48 次层计算。单个 checkpoint 约 20GB，混合 NVFP4 和 MXFP8，与训练时的精度一致。博客给出专家剪枝后 1T token 的蒸馏和 2,000 步共 2.2T token 的 RL，但没给预训练 token 数。量化 GGUF 版来自 Unsloth 和 llama.cpp（ggml-org/Inkling-2-Mini-GGUF）。"
+   },
+   "ref": "HF API (cardData license apache-2.0) and model card sections 1-3 (26.4B / 3.4B active / 5.4B effective at three passes, 1M context, about 20GB NVFP4 + MXFP8 checkpoint, SGLang, vLLM, Hugging Face and GGUF support); config.json (loop_config core_start 6, core_end 18, num_passes 3, is_varloop false); Thinking Machines Lab blog (Monitorability of looped transformers: only a fixed number of looping passes; Pruning and healing: 1T tokens; Training Inkling 2 Mini: 2.2T RL tokens); Hugging Face blog (transformers usage; each layer visit keeps its own KV)",
+   "added": "2026-11-23"
+  },
+  {
+   "id": "ouro-1-4b",
+   "name": "Ouro-1.4B",
+   "paper": "2510.25741",
+   "hf": [
+    "ByteDance/Ouro-1.4B",
+    "ByteDance/Ouro-1.4B-Thinking"
+   ],
+   "params": "1.4B",
+   "tokens": "7.7T",
+   "context": "Base card: 4K (training), extendable to 64K; Thinking card: 32K (SFT)",
+   "passes": {
+    "default": "4",
+    "range": "total_ut_steps is adjustable, with early exit; paper tests 1-8"
+   },
+   "kv": "per-pass",
+   "license": "apache-2.0",
+   "inference": [
+    "transformers-remote-code",
+    "vllm"
+   ],
+   "notes": {
+    "en": "Ouro-1.4B is the base model and Ouro-1.4B-Thinking its reasoning-SFT version; both have 24 layers looped 4 times. The released modeling_ouro.py keeps one KV cache per recurrent step and runs all total_ut_steps in every forward pass; early_exit_threshold only selects which step's output is used. The cards say vLLM always runs the full total_ut_steps, and the project page says vLLM v0.26.0 is the last release with native Ouro support. The cards ask for transformers<4.56.0 (4.54.1 recommended).",
+    "zh": "Ouro-1.4B 是基座模型，Ouro-1.4B-Thinking 是它的推理 SFT 版本，两者都是 24 层、循环 4 遍。官方 modeling_ouro.py 为每个循环步各存一份 KV，每次前向都跑满 total_ut_steps，early_exit_threshold 只决定用哪一步的输出。模型卡说 vLLM 总是跑满 total_ut_steps；项目页说 vLLM v0.26.0 是最后一个原生支持 Ouro 的版本。模型卡要求 transformers<4.56.0（推荐 4.54.1）。"
+   },
+   "ref": "Model cards and config.json of both repos (total_ut_steps 4, early_exit_threshold 1.0, num_hidden_layers 24, context length, apache-2.0, vLLM note, transformers version); HF API (repo existence, cardData.license); modeling_ouro.py (UniversalTransformerCache indexed by step and layer); paper (arXiv v6 numbering) Table 2 (1.4B, 24 layers), Section 4 (7.7T tokens), Tables 10 and 12 (T=1-8); project page ouro-llm.github.io (vLLM versions, trust_remote_code).",
+   "added": "2026-11-23"
+  },
+  {
+   "id": "ouro-2-6b",
+   "name": "Ouro-2.6B",
+   "paper": "2510.25741",
+   "hf": [
+    "ByteDance/Ouro-2.6B",
+    "ByteDance/Ouro-2.6B-Thinking"
+   ],
+   "params": "2.6B",
+   "tokens": "7.7T",
+   "context": "Base card: 4K (training), extendable to 64K; Thinking card: 32K (SFT)",
+   "passes": {
+    "default": "4",
+    "range": "total_ut_steps is adjustable, with early exit; paper tests 1-8"
+   },
+   "kv": "per-pass",
+   "license": "apache-2.0",
+   "inference": [
+    "transformers-remote-code",
+    "vllm"
+   ],
+   "notes": {
+    "en": "Ouro-2.6B is the base model and Ouro-2.6B-Thinking its reasoning-SFT version. config.json and the paper's architecture table give 48 layers looped 4 times, upcycled from the 24-layer model by layer duplication (Section 4.3.1); both cards' architecture tables list 24 layers, and the base card lists 2.6T tokens for CT annealing where the paper's training recipe gives 1.4T. The released modeling_ouro.py keeps one KV cache per recurrent step and runs all total_ut_steps in every forward pass; early_exit_threshold only selects which step's output is used. The cards say vLLM always runs the full total_ut_steps, and the project page says vLLM v0.26.0 is the last release with native Ouro support. The cards ask for transformers<4.56.0 (4.54.1 recommended).",
+    "zh": "Ouro-2.6B 是基座模型，Ouro-2.6B-Thinking 是它的推理 SFT 版本。config.json 和论文的结构表给出 48 层、循环 4 遍，由 24 层模型复制层 upcycle 而来（Section 4.3.1）；两张模型卡的结构表写的是 24 层，基座模型卡写 CT annealing 用了 2.6T token，而论文的训练配方是 1.4T。官方 modeling_ouro.py 为每个循环步各存一份 KV，每次前向都跑满 total_ut_steps，early_exit_threshold 只决定用哪一步的输出。模型卡说 vLLM 总是跑满 total_ut_steps；项目页说 vLLM v0.26.0 是最后一个原生支持 Ouro 的版本。模型卡要求 transformers<4.56.0（推荐 4.54.1）。"
+   },
+   "ref": "Model cards and config.json of both repos (total_ut_steps 4, early_exit_threshold 1.0, num_hidden_layers 48, context length, apache-2.0, vLLM note, transformers version); HF API (repo existence, cardData.license); modeling_ouro.py (UniversalTransformerCache indexed by step and layer); paper (arXiv v6 numbering) Table 1 (CT annealing 1.4T), Table 2 (2.6B, 48 layers), Section 4.3.1 (upcycling), Tables 11 and 13 (T=1-8); project page ouro-llm.github.io (vLLM versions, trust_remote_code).",
+   "added": "2026-11-23"
+  },
+  {
+   "id": "parcae",
+   "name": "Parcae",
+   "paper": "2604.12946",
+   "org": [
+    "Sandy Research"
+   ],
+   "hf": [
+    "SandyResearch/parcae-140m",
+    "SandyResearch/parcae-370m",
+    "SandyResearch/parcae-770m",
+    "SandyResearch/parcae-1.3b"
+   ],
+   "params": "140M / 370M / 770M / 1.3B",
+   "tokens": "11.2B / 29.6B / 61.6B / 104B",
+   "context": "2,048",
+   "passes": {
+    "default": "8",
+    "range": "1-16 (evaluated in the paper)"
+   },
+   "kv": "per-pass",
+   "license": "not stated on the model cards",
+   "inference": [
+    "custom"
+   ],
+   "notes": {
+    "en": "Base models (no instruction tuning) trained on FineWeb-Edu; the prelude, recurrent and coda blocks have 2, 4, 6 and 8 layers at the four sizes. Load them with the parcae-lm package (parcae_lm.from_pretrained); the tokenizer is SandyResearch/parcae-tokenizer. The model cards give no license, while the GitHub code repository is MIT-licensed. The generation wrapper in the GitHub repo (receval) defaults to num_steps = mean_recurrence (8) and keeps a separate KV entry for every recurrence step; the same repository also has KV-sharing modes from the authors' later BeNice! paper.",
+    "zh": "基座模型（未做指令微调），在 FineWeb-Edu 上训练；四个规模的 prelude、循环块、coda 各为 2、4、6、8 层。用 parcae-lm 包加载（parcae_lm.from_pretrained），tokenizer 在 SandyResearch/parcae-tokenizer。模型卡没有写 license，GitHub 代码仓库是 MIT。GitHub 仓库里的生成封装（receval）默认 num_steps = mean_recurrence（8），每一遍循环各存一份 KV；同一仓库还提供作者后续 BeNice! 论文中的 KV 共享模式。"
+   },
+   "ref": "HF API and model cards of the four repos (sizes, base-model note, parcae-lm usage, Recurrence 8, no license field) and their config.json (mean_recurrence 8, block_size 2048); GitHub README (model table, tokenizer) and GitHub API (MIT); paper Table 18 (context 2,048), Table 21 (training tokens, not given on the cards) and Appendix O (evaluation at T = 1-16); receval/models/parcae.py and parcae_lm/utils/cache.py in the GitHub repo (default num_steps and the per-step \"full\" cache).",
+   "added": "2026-11-23"
+  },
+  {
+   "id": "recurrent-llama-3-2",
+   "name": "Recurrent-Llama-3.2 (4,6,4)",
+   "paper": "2511.07384",
+   "hf": [
+    "smcleish/Recurrent-Llama-3.2-train-recurrence-4",
+    "smcleish/Recurrent-Llama-3.2-train-recurrence-8",
+    "smcleish/Recurrent-Llama-3.2-train-recurrence-16",
+    "smcleish/Recurrent-Llama-3.2-train-recurrence-32",
+    "smcleish/Recurrent-Llama-3.2-untrained"
+   ],
+   "params": "851,501,056 excluding embeddings (Table 8)",
+   "tokens": "about 50B (Nemotron-CC-Math-v1)",
+   "context": "1024 (training context length)",
+   "passes": {
+    "default": "32",
+    "range": "num_steps; paper tests 1, 2, 4, 8, 16, 32"
+   },
+   "kv": "per-pass",
+   "license": "apache-2.0",
+   "inference": [
+    "transformers-remote-code"
+   ],
+   "notes": {
+    "en": "Built from layers 0-3, 6-11 and 12-15 of Llama-3.2-1B, dropping layers 4-5 (Appendix C.3.3, Table 9). The train-recurrence-k repos match by name the runs with mean training recurrence k in Table 5; -untrained holds the converted weights before any recurrence training. The cards say the modeling file is based on huginn-0125; its HuginnDynamicCache keeps a separate KV entry per recurrence step. The collection also holds smcleish/Recurrent-Llama-3.2-2-4-2-untrained (an untrained (2,4,2) conversion of a different size) and the non-recurrent baseline smcleish/Llama-3.2-non-recurrent-posttrained; neither is listed here.",
+    "zh": "由 Llama-3.2-1B 的第 0-3、6-11、12-15 层构成，删掉第 4-5 层（Appendix C.3.3，Table 9）。train-recurrence-k 仓库按名字对应 Table 5 中平均训练递归次数为 k 的训练；-untrained 是转换后、尚未做循环训练的权重。模型卡说建模代码基于 huginn-0125；其中的 HuginnDynamicCache 为每个递归步单独保存 KV。collection 里还有 smcleish/Recurrent-Llama-3.2-2-4-2-untrained（未训练的 (2,4,2) 转换模型，规模不同）和不循环基线 smcleish/Llama-3.2-non-recurrent-posttrained，这里都没有列出。"
+   },
+   "ref": "Model cards (num_steps example, trust_remote_code, apache-2.0, based on huginn-0125); HF API (repo existence, license tags) and the Retrofitting Recurrence collection; paper Section 3 (context 1024), Appendix C.3.3 (layers, tokens), Table 5 (test recurrences), Tables 8 and 9 (parameters, layers); HuginnDynamicCache in the repos' raven_modeling_minimal.py (KV keyed by recurrence step).",
+   "added": "2026-11-23"
+  },
+  {
+   "id": "recurrent-olmo-2-0425",
+   "name": "Recurrent-OLMo-2-0425 (4,6,4)",
+   "paper": "2511.07384",
+   "hf": [
+    "smcleish/Recurrent-OLMo-2-0425-train-recurrence-4",
+    "smcleish/Recurrent-OLMo-2-0425-train-recurrence-8",
+    "smcleish/Recurrent-OLMo-2-0425-train-recurrence-16",
+    "smcleish/Recurrent-OLMo-2-0425-train-recurrence-32",
+    "smcleish/Recurrent-OLMo-2-0425-untrained"
+   ],
+   "params": "939,638,784 excluding embeddings (Table 8)",
+   "tokens": "about 50B (Nemotron-CC-Math-v1-4plus)",
+   "context": "1024 (training context length)",
+   "passes": {
+    "default": "32",
+    "range": "num_steps; paper tests 1, 2, 4, 8, 16, 32"
+   },
+   "kv": "per-pass",
+   "license": "apache-2.0",
+   "inference": [
+    "transformers-remote-code"
+   ],
+   "notes": {
+    "en": "Built from layers 0-3, 6-11 and 12-15 of OLMo-2-0425-1B, dropping layers 4-5 (Section 4.3.2, Table 9). The train-recurrence-k repos match by name the runs with mean training recurrence k in Table 4; -untrained holds the converted weights before any recurrence training. The cards say the modeling file is based on huginn-0125; its HuginnDynamicCache keeps a separate KV entry per recurrence step.",
+    "zh": "由 OLMo-2-0425-1B 的第 0-3、6-11、12-15 层构成，删掉第 4-5 层（Section 4.3.2，Table 9）。train-recurrence-k 仓库按名字对应 Table 4 中平均训练递归次数为 k 的训练；-untrained 是转换后、尚未做循环训练的权重。模型卡说建模代码基于 huginn-0125；其中的 HuginnDynamicCache 为每个递归步单独保存 KV。"
+   },
+   "ref": "Model cards (num_steps example, trust_remote_code, apache-2.0, based on huginn-0125); HF API (repo existence, license tags) and the Retrofitting Recurrence collection; paper Section 3 (context 1024), Section 4.3.2 (layers, tokens), Table 4 (test recurrences), Tables 8 and 9 (parameters, layers); HuginnDynamicCache in the repos' raven_modeling_minimal.py (KV keyed by recurrence step).",
+   "added": "2026-11-23"
+  },
+  {
+   "id": "recurrent-tinyllama-3t",
+   "name": "Recurrent-TinyLlama-3T (4,8,4)",
+   "paper": "2511.07384",
+   "hf": [
+    "smcleish/Recurrent-TinyLlama-3T-train-recurrence-4",
+    "smcleish/Recurrent-TinyLlama-3T-train-recurrence-8",
+    "smcleish/Recurrent-TinyLlama-3T-train-recurrence-16",
+    "smcleish/Recurrent-TinyLlama-3T-train-recurrence-32",
+    "smcleish/Recurrent-TinyLlama-3T-train-recurrence-4-single-phase",
+    "smcleish/Recurrent-TinyLlama-3T-train-recurrence-4-two-phase",
+    "smcleish/Recurrent-TinyLlama-3T-untrained"
+   ],
+   "params": "704,708,608 excluding embeddings (Table 8)",
+   "tokens": "about 50B (train-recurrence-k repos); 26B single phase, 52B two phase",
+   "context": "1024 (training context length)",
+   "passes": {
+    "default": "32",
+    "range": "num_steps; paper tests 1, 2, 4, 8, 16, 32"
+   },
+   "kv": "per-pass",
+   "license": "apache-2.0",
+   "inference": [
+    "transformers-remote-code"
+   ],
+   "notes": {
+    "en": "Built from layers 0-3, 10-17 and 18-21 of TinyLlama-1.1B-intermediate-step-1431k-3T (Section 3). The train-recurrence-k repos match by name the Nemotron-CC-Math runs with mean training recurrence k (Table 3); the single-phase and two-phase repos match the train-recurrence-4 data-mixture runs (Table 1); -untrained holds the converted weights before any recurrence training. The cards say the modeling file is based on huginn-0125; its HuginnDynamicCache keeps a separate KV entry per recurrence step.",
+    "zh": "由 TinyLlama-1.1B-intermediate-step-1431k-3T 的第 0-3、10-17、18-21 层构成（Section 3）。train-recurrence-k 仓库按名字对应平均训练递归次数为 k 的 Nemotron-CC-Math 训练（Table 3）；single-phase 和 two-phase 仓库对应 train recurrence 4 的数据配比实验（Table 1）；-untrained 是转换后、尚未做循环训练的权重。模型卡说建模代码基于 huginn-0125；其中的 HuginnDynamicCache 为每个递归步单独保存 KV。"
+   },
+   "ref": "Model cards (num_steps example, trust_remote_code, apache-2.0, based on huginn-0125); HF API (repo existence, license tags) and the Retrofitting Recurrence collection; paper Section 3 (context 1024, layer choice), Sections 4.3.2 and 4.4 (tokens), Tables 3 and 6 (test recurrences), Table 8 (parameters); HuginnDynamicCache in the repos' raven_modeling_minimal.py (KV keyed by recurrence step).",
+   "added": "2026-11-23"
+  },
+  {
+   "id": "tml-d24-varloop-research",
+   "name": "TML-d24-varloop-research",
+   "paper": "tml-inkling-2-mini",
+   "org": [
+    "Thinking Machines Lab"
+   ],
+   "hf": [
+    "thinkingmachines/TML-d24-varloop-research"
+   ],
+   "params": "26.4B",
+   "active_params": "3.4B at 1 pass, 5.4B at 3 passes, 7.4B at 5 passes",
+   "tokens": "not stated",
+   "context": "1M",
+   "passes": {
+    "default": "3",
+    "range": "1-5 trained, set at inference; blog also runs 10"
+   },
+   "kv": "per-pass",
+   "license": "apache-2.0",
+   "inference": [
+    "transformers",
+    "vllm",
+    "sglang",
+    "gguf"
+   ],
+   "notes": {
+    "en": "Research model with the same architecture as Inkling 2 Mini, but the number of passes through the middle 12 layers is set at inference (loop_num_passes in text_config, per the Hugging Face blog). It shares pretraining and the first midtraining stage with Inkling 2 Mini, then sampled 1 to 5 passes in a 1:2:6:2:1 ratio for the rest of midtraining and was post-trained with 3 passes. The model card says it may behave unpredictably at pass counts other than 3, is not intended for production, and is not offered through an API. GGUF quants are in ggml-org/TML-d24-varloop-research-GGUF.",
+    "zh": "研究用模型，结构与 Inkling 2 Mini 相同，但中间 12 层的遍数在推理时设定（据 Hugging Face 博客，用 text_config 里的 loop_num_passes）。预训练和 midtraining 第一阶段与 Inkling 2 Mini 共用，之后的 midtraining 按 1:2:6:2:1 采样 1 到 5 遍，post-training 用 3 遍。model card 说遍数不是 3 时行为可能不可预测，不打算用于生产，也不提供 API。GGUF 量化版在 ggml-org/TML-d24-varloop-research-GGUF。"
+   },
+   "ref": "HF API (cardData license apache-2.0) and model card sections 1-4 (26.4B; 3.4B / 5.4B / 7.4B active at 1 / 3 / 5 passes; 1M context; trained with 1 to 5 passes sampled 1:2:6:2:1, post-trained with 3; SGLang, vLLM, Hugging Face and GGUF support); config.json (loop_config num_passes 3, is_varloop true); Thinking Machines Lab blog (No-CoT capabilities: run with ten passes); Hugging Face blog (Variable loop example; each layer visit keeps its own KV)",
+   "added": "2026-11-23"
+  }
+ ]
+}

@@ -1,0 +1,1571 @@
+# Awesome Loop: all deep cards
+
+
+# Inkling 2 Mini: Introducing Inkling 2 Mini
+
+English · [简体中文](../zh/tml-inkling-2-mini.md) · [Back to the list](../../README.md)
+
+<sub>Thinking Machines Lab blog · 2026-11-20 · Thinking Machines Lab</sub>
+
+
+> Open-weight MoE (26.4B total, 3.4B active) that runs the middle 12 of its 24 layers three times with shared weights, released with a variable-loop research twin used to measure how pass count affects capability and CoT monitorability.
+
+**Category**: Architecture: where to loop, what to share · **Status**: draft (numbers not yet re-checked) · **Metrics**: -
+
+[paper](https://thinkingmachines.ai/news/inkling-2-mini/) · [project](https://thinkingmachines.ai/model-card/inkling-2-mini/) · [blog](https://huggingface.co/blog/inkling2mini) · [weights](https://huggingface.co/thinkingmachines/Inkling-2-Mini)
+
+## Problem
+
+Looping lets a model do more serial computation per token without adding parameters, which has raised concerns that looped models are harder to oversee by reading their chain of thought; the post reports what looping gives a small open model and how pass count affects CoT monitorability.
+
+## Method
+
+- 24 MoE layers (8 of 128 experts per token) in four six-layer blocks; the two middle blocks share weights and run three times, giving 48 layer applications per token from 24 stored layers.
+- Every pass starts from the prelude output; passes 2 and 3 also read the previous pass's middle-block outputs (the message) through attention residuals, and a learned gate that initially blocks the message lets looping be introduced stably during training.
+- Training started with 8 of 384 experts per token; two-thirds of the experts were pruned at one point in midtraining (keeping the 128 most used per layer), followed by 1T tokens distilled from a larger internal Inkling model, SFT, and RL totaling 2.2T tokens over 2,000 steps. Expert layers use NVFP4 on all forward passes and the last four layers use MXFP8.
+- A variable-loop research model, TML-d24-varloop-research, was trained with 1 to 5 passes (sampled 1:2:6:2:1 for the rest of midtraining, post-trained at 3) and is run at 1 to 5 passes, and at 10 in the no-CoT tests, to measure capability and CoT monitorability.
+
+## Loop layout
+
+| Facet | Value |
+|---|---|
+| Where the loop sits | middle core (prelude-core-coda) |
+| Weight sharing | fully tied |
+| Passes in training | fixed |
+| Passes at test time | fixed |
+| Input injection | attention over earlier passes |
+| KV cache | per-pass KV |
+| Gradient through passes | n/a |
+| Origin | n/a |
+| FFN | MoE |
+| Attention in the loop | hybrid (full + window / linear) |
+| Passes (L6-17) | train 3; test 3 |
+
+Inkling 2 Mini has 24 MoE layers (8 of 128 experts per token) in four six-layer blocks; the two middle blocks share weights and run three times, so 24 stored layers give 48 layer applications per token. Per the Hugging Face blog, each block has five sliding-window layers (1,024-token window) and one full-attention layer, and each layer visit keeps its own KV. Every pass starts from the prelude output; passes 2 and 3 also read the previous pass's middle-block outputs (the message) through attention residuals, admitted by a learned gate that starts fully closed. Labels are 0-indexed as in the Hugging Face blog; the post numbers the same core 7-18. The released research twin TML-d24-varloop-research has the same layout but was trained with 1 to 5 passes and is run at up to 10 in the post.
+
+## Results
+
+**Scaling-ladder runs at training step 2,000, three passes, equal training compute; range over three evaluations** · compute a no-loop baseline is estimated to need to match the looped run's loss · Looping design; figure "Compute-equivalent gain by loop position"
+
+| Variant | Value |
+|---|---|
+| Loop middle layers (7–18) | 1.51–1.91× |
+| Loop last layers (13–24) | 1.24–1.36× |
+
+**Subset of Think Fast tasks, no-CoT answers elicited by prefilling the response; Varloop = TML-d24-varloop-research, trained with 1-5 passes** · no-CoT 50% time horizon (human seconds) · No-CoT capabilities; figure "No-CoT time horizons"
+
+| Variant | Value |
+|---|---|
+| Inkling 2 Mini, 3 passes | 41 s |
+| Varloop, 1 pass | 16 s |
+| Varloop, 2 passes | 26 s |
+| Varloop, 3 passes | 37 s |
+| Varloop, 5 passes | 42 s |
+| Varloop, 10 passes | 40 s |
+
+**TML-d24-varloop-research run at 1-5 passes (1-5 passes sampled 1:2:6:2:1 for the rest of midtraining, post-trained at 3)** · score at 1 / 2 / 3 / 4 / 5 passes · TML-d24-varloop-research model card, Section 5 (Evaluations)
+
+| Variant | Value |
+|---|---|
+| DeepSWE v1.1 (mini-swe-agent v2.4.6) | 0.7% / 28.3% / 47.4% / 46.9% / 48.2% |
+| GPQA Diamond | 69.6% / 79.2% / 84.2% / 81.9% / 83.1% |
+| MRCR v2 8-needle 256K–512K | 26.2% / 65.2% / 89.2% / 93.4% / 92.1% |
+| SimpleQA Verified | 6.3% / 6.5% / 7.3% / 6.8% / 6.7% |
+
+**TML-d24-varloop-research on the GPQA Diamond questions it answered correctly at all five pass counts** · mean reasoning tokens / mean words per sentence / words in an English dictionary / uncertainty indicators · CoT monitorability; Compression and legibility table
+
+| Variant | Value |
+|---|---|
+| 1 pass | 3703 / 8.9 / 94.6% / 9.7 |
+| 3 passes | 1731 / 8.7 / 94.5% / 3.9 |
+| 5 passes | 1661 / 8.7 / 94.4% / 3.6 |
+
+**LinuxArena, subset of 184 main-task/side-task pairings, simple-attack policy, monitor Qwen3.6-35B-A3B at a 1% false-positive rate; Inkling 2 Mini is a helpful-only fine-tune; Varloop = TML-d24-varloop-research** · stealth rate (% of attack episodes), monitor sees tool calls and outputs only / also sees text and thinking · Agentic monitorability; figure "LinuxArena stealth rate"
+
+| Variant | Value |
+|---|---|
+| Inkling 2 Mini (helpful-only) | 3.9% / 1.3% |
+| Varloop, 1 pass | 1.0% / 0.3% |
+| Varloop, 2 passes | 2.5% / 0.4% |
+| Varloop, 3 passes | 4.0% / 0.6% |
+| Varloop, 4 passes | 2.8% / 0.3% |
+| Varloop, 5 passes | 5.0% / 0.0% |
+
+## Other findings
+
+- On the scaling ladder, an unpruned non-looping model cost 7.5% less compute to train than the unpruned looped version but needed 140% more inference compute to match its loss on 512k-token agentic traces. (Looping design)
+- TML-d24-varloop-research was never trained with more than five passes, yet running it with ten does not significantly degrade its no-CoT time horizon (40 s, against 42 s at five), and on N-Hop Lookup it follows longer chains with more passes, improving out to ten loops. (No-CoT capabilities; figures "No-CoT time horizons" and "N-Hop Lookup")
+- With CoT, more passes mainly help multi-hop reasoning rather than recall: gains are largest on long-context retrieval (MRCR), then math and science reasoning, then long-horizon agentic tasks, while knowledge-intensive benchmarks (AA-Omniscience, SimpleQA Verified, SimpleVQA, WorldVQA) do not improve with more passes. (Capabilities; No-CoT capabilities)
+- Accuracy at each reasoning-token budget generally rises with passes, with diminishing returns after 3; on GPQA Diamond questions solved at all pass counts, reasoning at 5 passes averages 1,661 tokens against 3,703 at 1 pass, with unchanged sentence length and dictionary-word share. (CoT monitorability; Compression and legibility)
+- Among CoTs of 750-1,250 tokens, Inkling 2 Mini and the variable-loop model at 3 passes follow a CoT instruction at most 0.1% of the time (Qwen3.8-27B 1.3%), too rarely to separate loop counts; LinuxArena stealth rates show no clear trend with the number of passes. (CoT monitorability (Controllability); Agentic monitorability)
+
+## Comparison
+
+- **Baseline**: A scaling-ladder run that loops the last 12 layers (13-24) instead of the middle 12 (7-18), with the same three passes and equal training compute; both runs' gains are expressed as the compute a no-loop baseline would need to match their loss.
+- **Held fixed**: F (training FLOPs)
+- **Differs**: none
+- **Baseline hyperparameters**: not stated
+- **Headline claim**: Looping the middle 12 layers gave larger accuracy gains than looping the last 12 on 27 of 28 evaluations; at training step 2,000 a no-loop baseline was estimated to need 1.51-1.91x the compute to match the middle loop's loss, against 1.24-1.36x for the last loop. (Looping design; figure "Compute-equivalent gain by loop position")
+
+## Caveats
+
+- Inkling 2 Mini supports only a fixed number of passes (3), so every pass-count comparison uses TML-d24-varloop-research, whose later training stages differ; its model card cautions against comparing it directly with Inkling 2 Mini.
+- Three passes dominated the variable-loop model's training and its RL used 3 passes only; the authors say results at other pass counts may understate what dedicated training could achieve and do not show what RL at a higher pass count would learn.
+- The loop-placement and looping-versus-non-looping comparisons come from scaling-ladder runs (placement at training step 2,000; unpruned models for looping versus non-looping), not from the released model, and the post does not give the sizes of those runs.
+- No-CoT results use a subset of Think Fast tasks, with answers elicited by prefilling the start of the response; the models were not trained to answer without CoT.
+- LinuxArena used a helpful-only fine-tune of Inkling 2 Mini, a weaker monitor (Qwen3.6-35B-A3B) and a subset of 184 task pairings.
+- Decoding speeds in the opening coding figure are theoretical ceilings (614 GB/s, BF16 weights, batch size one), evaluation setups vary by model, and the post gives no pretraining token count.
+
+## Reproducibility
+
+| Code | Weights | Configs | Data |
+|---|---|---|---|
+| partial | available | partial | none |
+
+## Open weights
+
+- Inkling 2 Mini: [thinkingmachines/Inkling-2-Mini](https://huggingface.co/thinkingmachines/Inkling-2-Mini)
+- TML-d24-varloop-research: [thinkingmachines/TML-d24-varloop-research](https://huggingface.co/thinkingmachines/TML-d24-varloop-research)
+
+## Related open questions
+
+- [Does running more passes at test time than in training keep improving quality?](questions.md#extra-passes-at-test-time) (partly)
+- [Where in the stack should the loop sit?](questions.md#loop-placement) (supports)
+
+## Authors
+
+Thinking Machines Lab
+
+
+# Looped CED: Looping Deeper Without Growing the KV Cache: Recurrent Depth for Causal Encoder-Decoders
+
+English · [简体中文](../zh/2611.13378.md) · [Back to the list](../../README.md)
+
+<sub>arXiv 2611.13378 · 2026-11-09 · University of California, San Diego, Tsinghua University, Nanjing University</sub>
+
+
+> Loop the CED encoder layers that produce global KV, train with random depth, and keep only the last round's KV.
+
+**Category**: Architecture: where to loop, what to share · **Status**: draft (numbers not yet re-checked) · **Metrics**: cites 0
+
+[paper](https://arxiv.org/abs/2611.13378)
+
+## Problem
+
+When every round caches its own KV, a looped model's KV cache grows with the number of rounds, which cancels the memory advantage of KV-sparse layouts such as the causal encoder-decoder.
+
+## Method
+
+- Loop layers L2-5 of the encoder, which contain its only global KV source, for 8 rounds with Parcae's gated input injection.
+- Sample the number of rounds per sequence from max(1, Poisson(8)) and backpropagate through the last 4, so the core settles into a fixed point.
+- At inference, past tokens keep only their last-round KV, so the resident KV equals the unlooped CED's.
+
+## Loop layout
+
+| Facet | Value |
+|---|---|
+| Where the loop sits | KV-producing half (CED encoder / YOCO self-decoder) |
+| Weight sharing | fully tied |
+| Passes in training | sampled |
+| Passes at test time | can run more passes than trained |
+| Input injection | gated |
+| KV cache | last-pass KV only |
+| Gradient through passes | truncated (last k passes) |
+| Origin | trained from scratch |
+| FFN | dense FFN |
+| Attention in the loop | hybrid (full + window / linear) |
+| Passes (L2-5) | train max(1, Poisson(8)); test 8 |
+| Backprop (L2-5) | last 4 |
+
+12-layer causal encoder-decoder (CED) in the DeepSeek-V4.1-Flash layout: every layer has SWA-128; L2 is the encoder's only global KV source and L6 projects the global KV shared by the decoder. The loop repeats L2-5.
+
+## Results
+
+**150M non-embedding params, 6.0B tokens, FineWeb-Edu, 2048 context, T=8 at evaluation** · validation BPB (lower is better) · Table 1
+
+| Variant | Value |
+|---|---|
+| Dense, no loop | 0.8747 |
+| Dense, loop L2-5 | 0.8461 |
+| CED, no loop | 0.8716 |
+| CED, encoder loop L2-5 | 0.8468 |
+| CED, decoder loop L7-10 | 0.8648 |
+| CED, encoder loop, fixed rounds | 0.8487 |
+| YOCO-U style, loop L2-5 | 0.8506 |
+
+**150M, 29.6B tokens** · validation BPB / DCLM CORE accuracy · Table 2
+
+| Variant | Value |
+|---|---|
+| CED, no loop | 0.8401 / 19.09 |
+| CED, encoder loop | 0.8124 / 21.63 |
+| CED, decoder loop | 0.8295 / 21.56 |
+
+**150M, 6.0B tokens, exact fp32 token-by-token decoding at T=8** · BPB with last-round KV minus BPB with per-round KV · Table 3
+
+| Variant | Value |
+|---|---|
+| Encoder loop, stochastic depth | -0.0002 |
+| Encoder loop, fixed depth | +0.0317 |
+
+**DeepSeek-V4.1-Flash (552B) looped for 8 rounds on 4x GB200, serving only (no loop training)** · KV per token and 128K-token requests that fit · Abstract; Table 4
+
+| Variant | Value |
+|---|---|
+| Per-layer and per-round KV | cannot fit one 128K request |
+| Looped CED (last-round KV) | 36.8x less KV per token, fits 38 requests |
+
+## Other findings
+
+- Running 12 or 16 rounds instead of the trained mean of 8 lowers BPB by at most 0.0004 and never raises it. (Appendix F; Table 9)
+- After 5x longer training (29.6B tokens) the decoder loop still captures only 38% of the encoder loop's improvement. (Table 2)
+
+## Comparison
+
+- **Baseline**: Unlooped CED with the same 12-layer layout; dense, decoder-loop and YOCO-U-style variants are also compared.
+- **Held fixed**: N (unique parameters), D (training tokens), KV (KV cache per token)
+- **Differs**: F (training FLOPs), L (executed layers per token)
+- **Baseline hyperparameters**: shared with the looped model
+- **Headline claim**: At 150M, the encoder loop lowers BPB from 0.8716 to 0.8468 while keeping the unlooped CED's 8 KB of global KV per token; the paper reports recovering 86-93% of a looped Transformer's gain with 1/6 of its global KV. (Abstract; Table 1)
+
+## Caveats
+
+- Training experiments use 12-layer dense-FFN models up to 340M non-embedding parameters at 2K context; the 552B DeepSeek-V4.1-Flash runs measure serving cost only, with no loop training.
+- Parameters, tokens and KV are held fixed but compute is not; a looped model runs 40 layer passes per decoded token instead of 12.
+- All runs share one hyperparameter set (Table 8); the baselines were not tuned separately.
+- The encoder loop puts every round on the prefill path; in the 552B serving test, prefill cost per prompt token at T=8 is 5.12x the unlooped CED (Table 13).
+
+## Reproducibility
+
+| Code | Weights | Configs | Data |
+|---|---|---|---|
+| none | none | partial | available |
+
+## Related open questions
+
+- [Does running more passes at test time than in training keep improving quality?](questions.md#extra-passes-at-test-time) (partly)
+- [Where in the stack should the loop sit?](questions.md#loop-placement) (supports)
+- [Can later passes reuse one KV cache instead of keeping KV for every pass?](questions.md#shared-kv-across-passes) (partly)
+
+## Authors
+
+Jiaqi Leng, Minshen Zhang, Zhaofeng Sun, Yu-Yang Qian, Peng Zhao, Hao Zhang
+
+
+# LoopDuet: Not All Loops Cost the Same: Phase-Dependent Depth for Serving Looped Transformers
+
+English · [简体中文](../zh/2611.07211.md) · [Back to the list](../../README.md)
+
+<sub>arXiv 2611.07211 · 2026-11-04 · Duke University</sub>
+
+
+> Serve looped Transformers with fewer core loops for ordinary prompt tokens than for the last prompt token and the decoded tokens, run the deep tail as a compact batch in vLLM, and lower prefilling depth when the queue grows.
+
+**Category**: Systems and inference · **Status**: draft (numbers not yet re-checked) · **Metrics**: cites 0
+
+[paper](https://arxiv.org/abs/2611.07211)
+
+## Problem
+
+Serving a looped model with one loop count for all tokens ties prefill cost to decode depth. With long prompts and short answers (OLMo HotpotQA prompts average 796 tokens and answers about 4.7), prompt positions account for over 99% of layer applications, so keeping deep decoding repeats deep computation over the whole prompt.
+
+## Method
+
+- Choose decode depth S and prefill depth P <= S jointly from measured quality-throughput trade-offs; ordinary prompt positions stop after P core loops, while every prompt-chunk endpoint and every decoded token runs S.
+- In vLLM, after P loops the engine gathers each request's final query into a compact B x d batch for the remaining S - P loops and scatters it back before the coda; prompt context stays in one shared KV plane per core layer, so existing weights and attention kernels are reused.
+- A queue-age controller maps the oldest first-token wait from 0.25 s to 1 s linearly onto [P_min, P_max] before each engine step, keeping S fixed (main setting S = 4, P in {2, 3, 4}).
+- A recurrent-state distance (90th percentile over ordinary prompt tokens, threshold about 0.24) screens candidate P values before task-accuracy checks.
+
+## Loop layout
+
+| Facet | Value |
+|---|---|
+| Where the loop sits | middle core (prelude-core-coda) |
+| Weight sharing | fully tied |
+| Passes in training | n/a |
+| Passes at test time | adaptive exit / routing |
+| Input injection | n/a |
+| KV cache | last-pass KV only |
+| Gradient through passes | n/a |
+| Origin | n/a |
+| FFN | dense FFN |
+| Attention in the loop | full attention |
+| Passes (R6) | train 32 (OLMo r32 checkpoint); test S for decode, P <= S for prefill, at most 32 |
+
+Shown for OLMo r32, a recurrent OLMo-2 retrofit with 4/6/4 prelude/core/coda layers at width 2,048 (the r16 checkpoint has the same layout and was trained at 16 loops); Huginn-0125 has 2/4/2 layers at width 5,280. LoopDuet trains nothing. Ordinary prompt positions run P core loops, while every prompt-chunk endpoint and every decoded token runs S. Serving keeps one shared KV plane per core layer that each loop overwrites, so later queries read the last computed KV of positions that stopped early.
+
+## Results
+
+**Huginn-0125, full HotpotQA distractor dev set (7,405 examples), one A100-SXM4-80GB, vLLM 0.14.1, bf16, no prefix caching, C = 64** · throughput (req/s) / EM · Table A6; Figure 3
+
+| Variant | Value |
+|---|---|
+| Uniform (32, 32) | 0.976 / 33.79 |
+| Uniform (20, 20) | 1.536 / 33.52 |
+| Uniform (16, 16) | 1.897 / 32.07 |
+| Uniform (8, 8) | 3.587 / 24.29 |
+| LoopDuet (32, 16) | 1.822 / 33.69 |
+| LoopDuet (14, 8) | 3.489 / 30.33 |
+
+**Same HotpotQA serving setup, OLMo r32 with four-paragraph prompts** · throughput (req/s) / EM · Table A6; Figure A1
+
+| Variant | Value |
+|---|---|
+| Uniform (32, 32) | 9.156 / 38.49 |
+| Uniform (11, 11) | 24.302 / 38.43 |
+| Uniform (8, 8) | 32.220 / 38.37 |
+| Uniform (4, 4) | 56.464 / 37.95 |
+| LoopDuet (32, 8) | 27.315 / 38.42 |
+| LoopDuet (11, 4) | 51.850 / 38.27 |
+
+**HotpotQA, C = 64; each LoopDuet setting against a uniform setting whose throughput differs by at most 10%** · throughput ratio LoopDuet/uniform / ΔEM / ΔF1 · Table 1
+
+| Variant | Value |
+|---|---|
+| Huginn (14, 8) vs (8, 8) | 0.973 / +6.04 / +7.13 |
+| Huginn (24, 12) vs (12, 12) | 0.979 / -0.45 / -0.47 |
+| Huginn (32, 16) vs (16, 16) | 0.960 / +1.62 / +1.90 |
+| Huginn (32, 16) vs (18, 18) | 1.073 / +0.97 / +1.10 |
+| OLMo r32 (11, 4) vs (4, 4) | 0.918 / +0.32 / +0.49 |
+
+**HotpotQA, C = 64, decoding depth S held fixed; LoopDuet (S, P) against uniform (S, S)** · speedup / EM uniform → LoopDuet / measured speedup as a fraction of the layer-pass ratio · Table A7; Figure 4
+
+| Variant | Value |
+|---|---|
+| OLMo r32 (32, 8) | 2.98× / 38.49 → 38.42 / 85% |
+| OLMo r32 (11, 4) | 2.13× / 38.43 → 38.27 / 93% |
+| Huginn (32, 16) | 1.87× / 33.79 → 33.69 / 96% |
+
+**OLMo r32, S = 4, all HotpotQA examples, open-loop C = 128; queue controller with P in [2, 4]** · one-second TTFT attainment (%) / EM · Table 2
+
+| Variant | Value |
+|---|---|
+| Poisson 60 req/s, fixed (4, 4) | 8.6 / 38.04 |
+| Poisson 60 req/s, fixed (4, 3) | 100 / 36.35 |
+| Poisson 60 req/s, LoopDuet queue | 100 / 37.27 |
+| Burst 10/60 req/s, fixed (4, 4) | 46.9 / 38.04 |
+| Burst 10/60 req/s, fixed (4, 3) | 100 / 36.42 |
+| Burst 10/60 req/s, LoopDuet queue | 100 / 37.77 |
+| Burst 20/80 req/s, fixed (4, 2) | 100 / 31.91 |
+| Burst 20/80 req/s, LoopDuet queue | 87.5 / 35.12 |
+
+**GSM8K, all 1,319 test examples, five demonstrations, greedy decoding; changes from each checkpoint's (S, S) control** · accuracy change (pp), uniform (P, P) / LoopDuet (S, P) · Figure 6; Section 4.5
+
+| Variant | Value |
+|---|---|
+| Huginn, (S, P) = (14, 8) | -10.99 / +0.68 |
+| OLMo r16, (S, P) = (16, 4) | -1.44 / +1.74 |
+| OLMo r32, (S, P) = (11, 4) | -4.85 / +1.06 |
+
+## Other findings
+
+- The first output token needs full depth: for Huginn on HotpotQA at S = 32 with other prompt positions at P = 16, running the final prompt position at 16 loops instead of 32 lowers EM by 1.74 points relative to (32, 16) and by 1.97 points relative to (32, 32). (Section 4.5)
+- Split budgets do not always win: Huginn (24, 12) gives 31.60 EM at 2.43 req/s, while uniform (12, 12) gives 32.05 EM at 2.48 req/s. (Section 4.2; Table 1)
+- For OLMo r32 on HotpotQA, EM stays between 37.95 and 38.49 across all six tested settings, so uniform depth four, the fastest at 56.46 req/s and 0.54 points below (32, 32), is chosen as the controller's starting point. (Section 4.2; Figure A1; Table A6)
+- Useful prefilling depth is task dependent: on ARC at S = 11, raising OLMo r32's P from 4 to 8 moves the accuracy change from -1.54 to +0.85 points, and Huginn (14, 8) stays 4.44 points below (14, 14). (Section 4.5; Figure 8)
+- The savings survive batching: Huginn (32, 16) keeps 1.84x, 1.87x and 1.88x speedups over (32, 32) at engine-step token budgets of 4,096, 8,192 and 16,384 (C = 128), and 1.87x at C = 32, 64 and 128. (Section 4.3; Table A9)
+
+## Comparison
+
+- **Baseline**: Uniform-depth serving (S, S) of the same checkpoint in the same vLLM engine, with the same prompts, KV layout, precision and execution mode; (32, 32) is the full-depth reference, and fixed prefilling depths at the same S are the controls under load.
+- **Held fixed**: N (unique parameters), D (training tokens), KV (KV cache per token)
+- **Differs**: L (executed layers per token), W (wall-clock time)
+- **Baseline hyperparameters**: shared with the looped model
+- **Headline claim**: On full HotpotQA with one A100-80GB, Huginn (32, 16) gives 1.19x the throughput of (20, 20), the fastest tested uniform setting meeting the same accuracy criterion, and (14, 8) gains 6.04 EM points over uniform (8, 8) at 97% of its throughput. Under load, adapting OLMo's prefilling depth gains 0.92-1.35 EM points over the most accurate tested fixed depths at the same 100% one-second TTFT attainment. (Abstract; Figure 3; Table 1; Table 2)
+
+## Caveats
+
+- Training-free serving study of existing checkpoints only (Huginn-0125 and the recurrent OLMo-2 retrofits r16 and r32); every tested depth is at most 32 loops (16 for OLMo r16).
+- Tasks are GSM8K, HotpotQA (distractor dev set) and ARC-Challenge, with model-specific prompts (OLMo four paragraphs and one demonstration under a 1,000-token cap; Huginn ten paragraphs and two demonstrations); the authors call these within-model comparisons, not a ranking between models.
+- All timings use one A100-SXM4-80GB, vLLM 0.14.1, bf16 and no prefix caching; the joint-depth comparison uses one execution per configuration at C = 64.
+- Gains depend on the workload: on GSM8K, longer responses give wall-time ratios of 0.98-1.01 across four serving pairs despite layer-pass ratios of 1.52-2.71.
+- Decoding reads prompt KV from the last loop each position computed, an approximation to full-depth context that the authors evaluate through task accuracy; the controller has no correctness feedback and works within a depth range chosen offline.
+- On the 20/80 req/s burst trace the controller reaches 87.5% one-second TTFT attainment, against 100% for fixed P = 2.
+
+## Reproducibility
+
+| Code | Weights | Configs | Data |
+|---|---|---|---|
+| none | none | partial | available |
+
+## Authors
+
+Zhixu Du, Yuhan Cheng, Hai (Helen) Li, Yiran Chen
+
+
+# SMELT: SMELT: Scaling Laws for Compute-Matched MoE Looped Transformers
+
+English · [简体中文](../zh/2609.01343.md) · [Back to the list](../../README.md)
+
+<sub>arXiv 2609.01343 · 2026-09-01 · Tsinghua University, ByteDance Seed, M-A-P, TokenWave.AI</sub>
+
+
+> With per-token FLOPs, total parameters and KV cache matched, looping the middle half of an MoE Transformer twice lowers loss at four scales up to 54B non-embedding parameters and saves 6.8-18.0% of training FLOPs on the fitted frontier.
+
+**Category**: Scaling and budget · **Status**: draft (numbers not yet re-checked) · **Metrics**: cites 31 · HF upvotes 92
+
+[paper](https://arxiv.org/abs/2609.01343)
+
+## Problem
+
+Most looped-model gains are reported at fixed parameter count, where the looped model also spends more FLOPs and KV cache, so architecture and extra compute are conflated; the paper asks whether looping still helps when per-token FLOPs, total parameters and KV cache are all held fixed.
+
+## Method
+
+- Pay for the extra pass by narrowing the hidden size (1280 to 1056 at 200M, S ≈ 95%), recover total parameters by adding experts (192 to 288 per layer), and use smaller heads at a higher GQA ratio to keep the KV cache within 4%.
+- Choose the recipe with three 200M ablations under these budgets; loop the middle 50% of layers twice, keep the Baseline's physical depth, and scale each looped sublayer's residual update by 1/r.
+- Train matched Baseline / SMELT pairs over 4 scales x 4 sparsity levels with six WSD decay branches each (up to about 215B tokens), and fit a separate Chinchilla-style law L(F, S, D) per architecture to compare compute-optimal frontiers.
+
+## Loop layout
+
+| Facet | Value |
+|---|---|
+| Where the loop sits | middle core (prelude-core-coda) |
+| Weight sharing | fully tied |
+| Passes in training | fixed |
+| Passes at test time | fixed |
+| Input injection | none |
+| KV cache | per-pass KV |
+| Gradient through passes | full BPTT |
+| Origin | trained from scratch |
+| FFN | MoE |
+| Attention in the loop | full attention |
+| Passes (L4-9) | train 2; test 2 |
+| Backprop (L4-9) | both passes |
+
+Shown for the 200M scale (L = 12) used in all design ablations; the middle 6 of 12 layers run twice, so 18 layers execute per token. All four scales loop the middle 50% twice and place ⌊(L − m)/2⌋ layers before the span (looped layers 3-7, 4-9, 6-15 and 8-22 for L = 10, 12, 20 and 30). Inside the loop each sublayer's residual update is scaled by 1/r (here 1/2), and every layer execution computes its own Q, K and V; smaller heads at a higher GQA ratio keep the KV cache close to the Baseline's.
+
+## Results
+
+**200M, L = 12, two passes, per-token FLOPs, total parameters and KV matched; contiguous middle span from 0 layers (Baseline) to all 12** · validation loss at S ≈ 85% / S ≈ 95% (lower is better) · Table 3
+
+| Variant | Value |
+|---|---|
+| No loop (Baseline), 12 executed layers | 1.9445 / 1.8735 |
+| Middle 2 layers (17%), 14 executed | 1.9384 / 1.8562 |
+| Middle 4 layers (33%), 16 executed | 1.9275 / 1.8524 |
+| Middle 6 layers (50%), 18 executed | 1.9257 / 1.8517 |
+| Middle 8 layers (67%), 20 executed | 1.9374 / 1.8544 |
+| Middle 10 layers (83%), 22 executed | 1.9413 / 1.8572 |
+| All 12 layers (100%), 24 executed | 1.9322 / 1.8601 |
+
+DCLM Core does not track validation loss in this sweep; at S ≈ 95% it peaks at 67% span (31.78) and is 29.68 at 50%. The authors select the span on validation loss and train each configuration once.
+
+**200M, S ≈ 85%, middle 50% looped, physical depth 12, FLOPs, parameters and KV matched (more passes force a narrower model)** · validation loss / DCLM Core / DCLM Completion · Table 5
+
+| Variant | Value |
+|---|---|
+| Baseline (1x), 12 executed layers | 1.9445 / 24.92 / 2.2887 |
+| Looped 2x, 18 executed layers | 1.9257 / 27.57 / 2.2635 |
+| Looped 3x, 24 executed layers | 1.9385 / 27.15 / 2.2779 |
+| Looped 4x, 30 executed layers | 1.9360 / 27.30 / 2.2820 |
+
+**Separate fits of L(F, S, D) for each architecture on S ≈ 85%, 95% and 97% (72 + 72 endpoints spanning 1.3x10^19 to 2.2x10^21 training FLOPs)** · CE Gain, the share of training compute SMELT saves at equal frontier loss, at S ≈ 85% / 95% / 97% · Table 7
+
+| Variant | Value |
+|---|---|
+| 10^20 FLOPs | 10.0% / 7.8% / 6.8% |
+| 10^21 FLOPs | 18.0% / 15.8% / 14.7% |
+| 10^22 FLOPs (extrapolated) | 23.5% / 20.9% / 19.6% |
+
+Cell-bootstrap 95% intervals are wide, e.g. [1,22] at 10^20 FLOPs and S ≈ 85%; the 10^22 row lies beyond the fitted window and two of its three intervals reach 0.
+
+**C = 10^21 FLOPs, S ≈ 95%; per-category intercepts fitted with the aggregate exponents** · CE Gain by validation category · Section 5.2; Figure 10
+
+| Variant | Value |
+|---|---|
+| Code | 20.4% |
+| Finance | 16.8% |
+| Math/STEM | 16.6% |
+| Knowledge | 14.9% |
+| Web | 14.8% |
+
+## Other findings
+
+- At 200M with all budgets matched, looping the middle 6 of 12 layers gives lower validation loss than looping all 12 (1.9257 vs 1.9322 at S ≈ 85%, 1.8517 vs 1.8601 at S ≈ 95%), and every span tested beats the unlooped Baseline. (Section 3.3; Table 3)
+- Two passes beat three and four at matched FLOPs, parameters and KV (validation loss 1.9257 vs 1.9385 and 1.9360, DCLM Core 27.57 vs 27.15 and 27.30); the authors attribute the regression to the narrower model that extra passes force. (Section 3.5; Table 5)
+- SMELT's fitted capacity and data exponents are both larger (a = 0.3892 vs 0.3703, c = 0.7011 vs 0.6594), giving frontier exponents of 0.250 vs 0.237; the irreducible losses differ by 0.005 nats, less than either fit's RMSE. (Section 4.3; Table 6)
+- SMELT wins 96 of 96 matched pairs on DCLM Completion, 83 of 96 on DCLM Core and 29 of the 30 MMLU pairs whose Baseline is at least 10 points above chance, and it scores better than a Baseline at the same validation loss would (positive mean residual on all three at every scale). (Section 5.1; Figures 5-9)
+- The gain is larger on longer samples and with in-context examples; the loss improvement on the four longest length buckets is 1.52x that on the four shortest, and the few-shot accuracy gap widens from 0.9 pp at k = 0 to 1.9 pp at k = 1, holding through k = 8. (Section 5.3; Figure 11)
+- The second visit shrinks the attention sink; for the 1.6B Dyck head, BOS attention mass falls from 0.60 to 0.02 and mass on demonstration answers rises from 0.24 to 0.85. (Section 6.4; Figure 18)
+
+## Comparison
+
+- **Baseline**: Unlooped MoE Transformer from the same internal family (top-8 routing, GQA), trained on identical token sequences in each of 16 grid cells (four scales; S = 0% and S ≈ 85%, 95%, 97%).
+- **Held fixed**: F (training FLOPs), N (unique parameters), KV (KV cache per token), D (training tokens)
+- **Differs**: A (active parameters), L (executed layers per token)
+- **Baseline hyperparameters**: shared with the looped model
+- **Headline claim**: With per-token FLOPs, total non-embedding parameters and KV cache matched (typical mismatch under 4%, 1% and 4%), SMELT reaches lower loss than the Baseline at every scale and sparsity level, and its separately fitted frontier saves 6.8-18.0% of training FLOPs at 10^20-10^21 FLOPs (14.7% at 10^21 and S ≈ 97%). (Abstract; Section 1; Table 2; Table 7)
+
+## Caveats
+
+- Active parameters and executed depth are not matched; at 200M and S ≈ 95% SMELT has 0.142B active parameters against the Baseline's 0.209B and executes 18 layers instead of 12 (Section 3.2; Tables 9-10).
+- The span, depth and loop-count ablations ran only at 200M, with one training run per configuration and the same loop count in training and evaluation; the authors note the best span or count may differ at larger scales (Section 3.3; Section 7).
+- Budget matching equates arithmetic FLOPs, parameters and KV-cache size, not wall-clock cost (Section 7).
+- The model family and training stack are proprietary and cannot be released, pretraining uses an internal corpus, and training contexts are 4096 tokens (Section 3.1; Appendix A).
+- SMELT shares the Baseline's optimizer, schedule and data; the Baseline configurations come from a tuned MoE family, and no separate tuning for SMELT is reported (Section 3.1; Appendix A).
+
+## Reproducibility
+
+| Code | Weights | Configs | Data |
+|---|---|---|---|
+| none | none | partial | none |
+
+## Related open questions
+
+- [Where in the stack should the loop sit?](questions.md#loop-placement) (supports)
+- [With training compute held fixed, do more passes help?](questions.md#more-passes-fixed-compute) (against)
+
+## Authors
+
+Shaowen Wang, Ge Zhang, Kairong Luo, Yuhao Wu, Shaofan Liu, Jiaheng Liu, Wenhao Huang, Shen Yan, Jian Li
+
+
+# Parcae: Parcae: Scaling Laws For Stable Looped Language Models
+
+English · [简体中文](../zh/2604.12946.md) · [Back to the list](../../README.md)
+
+<sub>arXiv 2604.12946 · 2026-04-14 · University of California, San Diego, Together AI</sub>
+
+
+> Constrain the loop's injection to a stable negative-diagonal form, sample depth per sequence, and fit training and test-time scaling laws for looping at fixed parameter count.
+
+**Category**: Scaling and budget · **Status**: draft (numbers not yet re-checked) · **Metrics**: cites 89 · stars 194 · HF upvotes 11
+
+[paper](https://arxiv.org/abs/2604.12946) · [code](https://github.com/sandyresearch/parcae) · [project](https://sandyresearch.github.io/parcae/) · [weights](https://huggingface.co/SandyResearch/parcae-140m)
+
+## Problem
+
+Middle-looped models such as Huginn-style RDMs diverge or show loss spikes unless hyperparameters are chosen carefully; the paper traces this to injection parameters whose linearized state matrix reaches a spectral radius of 1 or more, and asks whether a stable looped model scales predictably with loops.
+
+## Method
+
+- Write each loop step as h_{t+1} = Ā h_t + B̄ e + R̄(h_t, e) and parameterize A as a negative diagonal discretized with ZOH, so the spectral radius of Ā stays below 1; the prelude output e is normalized before injection.
+- Sample the depth T per sequence from a Poisson distribution with mean μ_rec, backpropagate through the last μ_bwd = ⌈μ_rec/2⌉ steps, and loop the middle third of a nanochat-style Transformer.
+- Fit isoFLOP scaling laws over μ_rec and tokens at fixed parameters (140M, 370M) and a saturating exponential law for loss against test-time T, then join them in one unified law.
+
+## Loop layout
+
+| Facet | Value |
+|---|---|
+| Where the loop sits | middle core (prelude-core-coda) |
+| Weight sharing | fully tied |
+| Passes in training | sampled |
+| Passes at test time | can run more passes than trained |
+| Input injection | gated |
+| KV cache | n/a |
+| Gradient through passes | truncated (last k passes) |
+| Origin | trained from scratch |
+| FFN | dense FFN |
+| Attention in the loop | full attention |
+| Passes (R8) | train Poisson with mean 8, per sequence; test 8 |
+| Backprop (R8) | last 4 |
+
+Shown for the 1.3B model of the Transformer comparison (Table 18), which has 8 prelude, 8 recurrent and 8 coda blocks against a 24-layer Transformer; the 140M, 370M and 770M models use 2, 4 and 6 blocks per unit, and all loop the middle third. Each step computes h_{t+1} = Ā h_t + B̄ e + R̄(h_t, e) with Ā = exp(ΔA) for a negative diagonal A (ZOH), B̄ = ΔB (Euler) and a normalized prelude output e. The Section 5.1 models are also evaluated at T = 1-16 and the Section 5.3 models up to T = 24.
+
+## Results
+
+**Transformer setup (simplified nanochat), FineWeb-Edu, 2,048 context, parameter- and data-matched pairs trained on 11.2B, 29.6B, 61.6B and 104B tokens at 140M, 370M, 770M and 1.3B; Parcae evaluated at T=8** · validation PPL / Core / Core-Extended · Table 5; Table 21
+
+| Variant | Value |
+|---|---|
+| 140M Transformer | 21.48 / 13.00 / 8.80 |
+| 140M Parcae | 19.06 / 14.04 / 9.67 |
+| 370M Transformer | 15.79 / 17.46 / 11.71 |
+| 370M Parcae | 14.49 / 20.00 / 12.75 |
+| 770M Transformer | 13.08 / 22.42 / 14.20 |
+| 770M Parcae | 12.49 / 25.07 / 15.19 |
+| 1.3B Transformer | 11.95 / 25.45 / 15.90 |
+| 1.3B Parcae | 11.42 / 28.44 / 17.08 |
+
+**RDM setup of Geiping et al. (Huginn data and tokenizer); 100M evaluated at T=16, 350M at T=8** · validation PPL / WikiText PPL / zero-shot average of six tasks · Table 3
+
+| Variant | Value |
+|---|---|
+| 100M RDM | 14.23 / 63.27 / 45.03 |
+| 100M Parcae | 13.59 / 60.33 / 46.83 |
+| 350M RDM | 10.76 / 41.31 / 49.45 |
+| 350M Parcae | 10.09 / 37.53 / 50.12 |
+
+**Transformer setup at 140M and 370M with parameters and training FLOPs fixed (tokens shrink as μ_rec grows); fixed depth means μ_rec = 1** · optimal μ_rec* / Core at μ_rec* / Core at fixed depth · Table 6; Appendix O
+
+| Variant | Value |
+|---|---|
+| 140M, 1x10^18 FLOPs | 2 / 7.6 / 7.9 |
+| 140M, 2x10^18 FLOPs | 2 / 9.0 / 10.5 |
+| 140M, 4x10^18 FLOPs | 4 / 11.2 / 10.7 |
+| 140M, 8x10^18 FLOPs | 6 / 10.5 / 11.8 |
+| 140M, 16x10^18 FLOPs | 8 / 14.6 / 13.0 |
+| 140M, 64x10^18 FLOPs | 10 / 16.2 / 15.0 |
+| 370M, 32x10^18 FLOPs | 4 / 15.2 / 16.8 |
+| 370M, 64x10^18 FLOPs | 6 / 18.1 / 18.1 |
+| 370M, 128x10^18 FLOPs | 6 / 20.1 / 18.1 |
+
+**RDM-setup Parcae models (100M trained with μ_rec 16, 350M with μ_rec 8), depth sampled per micro-batch or per sequence** · validation PPL at test-time T = 1 / 4 / 8 / 16 · Table 8; Table 17
+
+| Variant | Value |
+|---|---|
+| 100M, per-batch | 300.32 / 36.75 / 16.65 / 13.81 |
+| 100M, per-sequence | 70.47 / 17.15 / 14.08 / 13.59 |
+| 350M, per-batch | 167.61 / 12.80 / 10.40 / 10.24 |
+| 350M, per-sequence | 17.92 / 10.49 / 10.09 / 10.11 |
+
+## Other findings
+
+- Run at up to twice the training mean (μ_rec = 8), the 140M-1.3B models' gains plateau near T = μ_rec; the authors read this as training depth setting the test-time ceiling. (Section 5.3; Figure 7)
+- Loss against test-time T follows L(T) = L∞ + Z·exp(−zT); fitted on T ≤ μ_rec and tested on T > μ_rec, this form has the lowest error of the four forms tried (Huber loss 3.18 and 2.29 x10^-7 at 140M and 370M). (Section 5.3; Appendix L; Table 12)
+- Sampling the total depth from Λ(μ_rec) and then truncating backprop, instead of sampling only the no-gradient steps as Geiping et al. do, keeps validation loss at T = 4, 16 and 64 closer to full backprop (100M models, 10B tokens, μ_rec = μ_bwd = 8). (Section 4.2; Appendix H; Figure 14)
+- With parameters and FLOPs fixed, the optimal μ_rec grows with the budget (2 at 1x10^18 to 10 at 64x10^18 FLOPs for 140M) and follows a power law with exponent about 0.40; the optimal token count follows one with exponent about 0.78. (Section 5.2; Table 6; Figure 5)
+- In early RDM runs made before the Appendix H sampling fix (10B tokens, μ_bwd = 4, evaluated at T = μ_rec), μ_rec = 8 gave the lowest validation loss (2.453) among values from 4 to 32; in a second sweep at μ_rec = 20 (8.5B tokens), raising μ_bwd from 4 to 12 lowered it from 2.500 to 2.474. (Appendix I; Table 9; Table 10)
+- Across learning rates from 2e-4 to 1e-3, the Pre-Norm RDM converges only at 2e-4 and the residual-norm RDM up to 4e-4, while Parcae converges at all five. (Table 2; Appendix F)
+
+## Comparison
+
+- **Baseline**: Fixed-depth Transformers in a simplified nanochat setup with the same parameter count and training data; Huginn-style RDMs with matched parameters and data are a second baseline.
+- **Held fixed**: N (unique parameters), D (training tokens)
+- **Differs**: F (training FLOPs), L (executed layers per token)
+- **Baseline hyperparameters**: tuned separately
+- **Headline claim**: At 1.3B parameters and the same data, Parcae (T=8) scores 28.44 Core and 17.08 Core-Extended against the Transformer's 25.45 and 15.90 (+2.99 and +1.18 points); the 770M Parcae's 25.07 Core is comparable to the 1.3B Transformer with roughly half the parameters. (Abstract; Section 5.1; Table 5)
+
+## Caveats
+
+- Experiments stop at 1.3B parameters, 104B tokens and a 2,048-token context with dense FFNs; the scaling laws are fitted only at 140M and 370M, and the authors say their observations are limited to small architectures (Section 6).
+- Parameters and data are matched (Parcae has 0.35-0.83% more parameters, Table 19) but compute is not; at T = 8 the recurrent block runs 8 times per token, and the paper reports neither KV-cache size nor inference cost.
+- The Transformer and RDM baselines got their own learning-rate sweeps, and Parcae reused the baselines' best settings without a sweep of its own (Section 5.1; Appendix Q).
+- Test-time gains saturate near the training mean μ_rec, and the authors note that a larger μ_rec needs more test-time steps for equivalent quality (Section 5.3; Section 6).
+
+## Reproducibility
+
+| Code | Weights | Configs | Data |
+|---|---|---|---|
+| available | available | available | available |
+
+## Open weights
+
+- Parcae: [SandyResearch/parcae-140m](https://huggingface.co/SandyResearch/parcae-140m), [SandyResearch/parcae-370m](https://huggingface.co/SandyResearch/parcae-370m), [SandyResearch/parcae-770m](https://huggingface.co/SandyResearch/parcae-770m), [SandyResearch/parcae-1.3b](https://huggingface.co/SandyResearch/parcae-1.3b)
+
+## Related open questions
+
+- [Does running more passes at test time than in training keep improving quality?](questions.md#extra-passes-at-test-time) (partly)
+- [With training compute held fixed, do more passes help?](questions.md#more-passes-fixed-compute) (partly)
+
+## Authors
+
+Hayden Prairie, Zachary Novack, Taylor Berg-Kirkpatrick, Daniel Y. Fu
+
+
+# YOCO-U: Universal YOCO for Efficient Depth Scaling
+
+English · [简体中文](../zh/2604.01220.md) · [Back to the list](../../README.md)
+
+<sub>arXiv 2604.01220 · 2026-04-01 · Microsoft Research, Tsinghua University</sub>
+
+
+> Loop only YOCO's self-decoder, whose layers use sliding-window attention, so extra depth costs compute while the cross-decoder's global KV is still computed once.
+
+**Category**: Architecture: where to loop, what to share · **Status**: draft (numbers not yet re-checked) · **Metrics**: cites 3 · HF upvotes 18
+
+[paper](https://arxiv.org/abs/2604.01220)
+
+## Problem
+
+Looping a standard Transformer re-runs every layer, which regenerates KV caches and repeats global attention, so memory and compute grow with depth.
+
+## Method
+
+- Start from YOCO, where an L/2-layer self-decoder with efficient self-attention (SWA by default) produces one global KV cache that every layer of the L/2-layer cross-decoder reads through cross-attention.
+- Replace the self-decoder with a Universal Self-Decoder that applies the same L/2 layers T times in sequence (T=3 by default, 2× the total FLOPs of the non-recursive baseline).
+- Project the global KV from the final iteration's output, so its size does not depend on T; only the SWA window caches grow with T.
+
+## Loop layout
+
+| Facet | Value |
+|---|---|
+| Where the loop sits | KV-producing half (CED encoder / YOCO self-decoder) |
+| Weight sharing | fully tied |
+| Passes in training | fixed |
+| Passes at test time | fixed |
+| Input injection | none |
+| KV cache | one global KV per token |
+| Gradient through passes | n/a |
+| Origin | trained from scratch |
+| FFN | MoE |
+| Attention in the loop | hybrid (full + window / linear) |
+| Passes (Universal Self-Decoder, SWA-512) | train 3; test 3 |
+
+Section 4.1 model, a 20-layer YOCO with MoE FFNs (1.3B activated, 10B total). The 10-layer self-decoder uses SWA with window 512 and RoPE and is applied T=3 times with shared weights; its final output is projected once into the global KV that all 10 cross-decoder layers (NoPE) read. Each iteration keeps its own window cache. Figure 6 trains separate 1.3B models with 1, 2, 3 and 5 loops.
+
+## Results
+
+**Section 4.1 MoE (1.3B activated, 10B total), 20 layers, 8192 training length, trained up to 300B tokens, T=3** · MMLU / GSM8K / Average (LM Eval-Harness) · Table 2; Section 4.1
+
+| Variant | Value |
+|---|---|
+| YOCO | 49.59 / 38.06 / 41.78 |
+| YOCO-U (Equal FLOPS) | 54.63 / 50.49 / 46.23 |
+| YOCO-U (Equal Steps) | 55.63 / 50.57 / 47.08 |
+
+The paper does not state how many training tokens the Equal FLOPS row used.
+
+**Thinking SFT from the 280B checkpoint, 20B tokens of math thinking data, 32768 maximal length; greedy decoding up to 32,768 tokens** · average accuracy over 11 math benchmarks (%) · Figure 3; Section 4.1; Appendix B
+
+| Variant | Value |
+|---|---|
+| YOCO | 42.7 |
+| YOCO-U | 67.1 |
+
+**1.3B dense, 20 layers, hidden 2560, 20B tokens; the compute-scaling variants are aligned to approximately 2× the FLOPs of a standard 20-layer Transformer** · WikiText ppl / Avg. accuracy · Table 3; Appendix E
+
+| Variant | Value |
+|---|---|
+| Transformer | 22.52 / 47.1 |
+| YOCO | 22.25 / 47.0 |
+| Loop/Universal TRM (whole model looped 2 times) | 21.56 / 47.8 |
+| ParScale | 23.13 / 46.8 |
+| RINS (early-layer recursion) | 20.98 / 48.3 |
+| YOCO-U | 21.01 / 48.3 |
+
+**1.3B dense ablations; the YOCO and YOCO-U rows repeat the Table 3 values at two decimals** · WikiText ppl / Avg. accuracy · Table 5; Section 4.3
+
+| Variant | Value |
+|---|---|
+| YOCO | 22.25 / 46.95 |
+| Deep (Instead of Wide) | 22.04 / 46.87 |
+| YOCO-U | 21.01 / 48.25 |
+| Deeper (Instead of Wide) | 21.42 / 48.59 |
+| Upper Loop (Cross-Decoder) | 22.15 / 47.34 |
+| Upper Loop w/o Shared KV | 22.06 / 46.41 |
+
+Deep and Deeper double the depth at the same model size (Deeper has hidden size 1792 and 40 layers). Upper Loop loops the cross-decoder instead of the self-decoder; the w/o Shared KV variant uses self-attention there.
+
+**1.3B configuration of Section 4.4, Nano-vLLM in BF16 on H100-80GB, generation batch size 32, length 128** · at 256K length, prefill tokens/s / decode tokens/s / KV cache MB · Tables 8-10; Appendix D
+
+| Variant | Value |
+|---|---|
+| Transformer | 7475 / 137 / 10240 |
+| YOCO | 220407 / 318 / 522 |
+| RINS | 3739 / 56 / 20480 |
+| YOCO-U | 76301 / 303 / 542 |
+
+Section 4.5 states that YOCO-U gives up 5% of YOCO's decoding throughput, decodes 2.21× faster than the Transformer at 256K, and that RINS needs 38× the KV memory of YOCO-U.
+
+## Other findings
+
+- Looping the cross-decoder instead of the self-decoder averages 47.34 (46.41 without the shared KV), against 48.25 for YOCO-U and 46.95 for non-recursive YOCO; the authors conclude that recursion on deeper layers gives diminishing improvement regardless of the KV cache strategy. (Table 5; Section 4.3)
+- At about 2× FLOPs, looping the whole 20-layer Transformer twice averages 47.8, while RINS and YOCO-U both reach 48.3; the authors read this as scaling FLOPs on bottom blocks being more effective than on all blocks. (Table 3; Section 4.2; Appendix E)
+- Separately trained 1.3B models with 1, 2, 3 and 5 loops show consistent improvements in validation loss as the loop count grows; Loop=5 uses 3 times the FLOPs of the non-recursive model. The figure prints no per-loop values. (Figure 6; Section 4.4)
+- YOCO-U trained on 80B tokens is comparable with non-recursive YOCO trained on 210B tokens (approximately 62% fewer tokens). (Figure 2; Section 4.1)
+- With training steps fixed, YOCO-U matches YOCO with 50% fewer parameters; when activated parameters are aligned, the authors say YOCO-U narrows the gap to non-recursive models and is near-comparable above 10B. (Figure 5; Section 4.4)
+- On Needle-in-a-Haystack, YOCO-U scores 1.00 (S-NIAH-1) and 0.95 (S-NIAH-2), against 0.87 and 0.82 for the Transformer and 0.99 and 0.91 for RINS. (Table 4)
+
+## Comparison
+
+- **Baseline**: Non-recursive YOCO with the same configuration and hyperparameters (Loop=1); Section 4.2 adds a Transformer, a Universal Transformer looped twice, RINS and ParScale at 1.3B dense.
+- **Held fixed**: N (unique parameters), A (active parameters), F (training FLOPs)
+- **Differs**: D (training tokens), L (executed layers per token), KV (KV cache per token)
+- **Baseline hyperparameters**: shared with the looped model
+- **Headline claim**: With the same 1.3B-activated / 10B-total MoE, YOCO-U at equal training FLOPs averages 46.23 on the Table 2 tasks against 41.78 for non-recursive YOCO (+4.45), and 47.08 at equal steps; at equal FLOPs its loss is lower by 0.033. (Section 4.1; Table 2; Figure 2)
+
+## Caveats
+
+- The headline runs are a 1.3B-activated / 10B-total MoE trained on up to 300B tokens; the architecture comparison, ablations and loop scaling use 1.3B dense models trained on 20B tokens, and the efficiency tests use the same 1.3B configuration. Training length is 8192 in Sections 4.1 and 4.4.
+- Each model is trained and tested with one fixed loop count (3 by default; 1, 2, 3 and 5 in Figure 6); the paper does not report changing the loop count at inference.
+- Training FLOPs are computed as tokens × layers (Section 4.1), and the Equal FLOPS row of Table 2 does not state its token count.
+- The KV cache is not identical to YOCO's because each self-decoder iteration keeps its own window cache (Table 10, 46 MB vs 26 MB at 8K and 542 vs 522 MB at 256K).
+- Prefill throughput is below non-recursive YOCO's, 76301 vs 220407 tokens/s at 256K (Table 8).
+- Table 5 does not state the loop count or FLOPs of the Upper Loop variants.
+
+## Reproducibility
+
+| Code | Weights | Configs | Data |
+|---|---|---|---|
+| none | none | partial | none |
+
+## Related open questions
+
+- [Where in the stack should the loop sit?](questions.md#loop-placement) (supports)
+- [Can later passes reuse one KV cache instead of keeping KV for every pass?](questions.md#shared-kv-across-passes) (supports)
+
+## Authors
+
+Yutao Sun, Li Dong, Tianzhu Ye, Shaohan Huang, Jianyong Wang, Furu Wei
+
+
+# Retrofitted Recurrence: Teaching Pretrained Language Models to Think Deeper with Retrofitted Recurrence
+
+English · [简体中文](../zh/2511.07384.md) · [Back to the list](../../README.md)
+
+<sub>arXiv 2511.07384 · 2025-11-10 · University of Maryland, New York University, Lawrence Livermore National Laboratory, University of North Carolina, ELLIS Institute Tübingen, Max Planck Institute for Intelligent Systems, Tübingen AI Center, Columbia University</sub>
+
+
+> Turn pretrained 1B models into prelude-core-coda recurrent models by dropping middle layers and looping a block, then keep training while a curriculum raises the mean recurrence.
+
+**Category**: Training and retrofitting · **Status**: draft (numbers not yet re-checked) · **Metrics**: cites 79 · stars 72 · HF upvotes 21
+
+[paper](https://arxiv.org/abs/2511.07384) · [code](https://github.com/mcleish7/retrofitting-recurrence) · [weights](https://huggingface.co/collections/tomg-group-umd/retrofitting-recurrence)
+
+## Problem
+
+Pretraining a depth-recurrent model from scratch is costly. Huginn-0125 used 800B tokens, and running many recurrences per step slows training compared with a fixed-depth model of the same parameter count. The paper studies how to convert existing pretrained non-recurrent models into recurrent ones efficiently.
+
+## Method
+
+- Take a pretrained model's early layers as the prelude and later layers as the recurrent core and coda, dropping the layers in between, e.g. (4,8,4) from TinyLlama-1.1B-3T and (4,6,4) from OLMo-2-0425-1B and Llama-3.2-1B.
+- Keep Huginn-0125's recurrence, with a linear adapter on concat(prelude output, state), a random initial state, a Poisson-Lognormal recurrence count and gradients through at most the last 8 core passes.
+- Raise the mean of the recurrence distribution with a curriculum (1-sqrt over the first 75% of training in the main runs) to 4, 8, 16 or 32, and optimize with Muon.
+- Train on about 50B tokens of Nemotron-CC-Math-v1-4plus. To keep general ability, first heal on 26B tokens of FineWeb-Edu, then train on 26B tokens mixing FineWeb-Edu with Nemotron SFT data.
+
+## Loop layout
+
+| Facet | Value |
+|---|---|
+| Where the loop sits | middle core (prelude-core-coda) |
+| Weight sharing | fully tied |
+| Passes in training | scheduled curriculum |
+| Passes at test time | can run more passes than trained |
+| Input injection | concat + projection |
+| KV cache | n/a |
+| Gradient through passes | truncated (last k passes) |
+| Origin | retrofitted from a pretrained model |
+| FFN | dense FFN |
+| Attention in the loop | full attention |
+| Passes (L10-17) | train Poisson-Lognormal, mean ramped to 4, 8, 16 or 32; test 1-32 |
+| Backprop (L10-17) | last 8 |
+
+Shown is TinyLlama (4,8,4); labels are layer indices in the 22-layer TinyLlama-1.1B-3T parent, whose layers 4-9 are dropped. OLMo-2-0425-1B and Llama-3.2-1B use (4,6,4) with layers L0-3, L6-11 and L12-15, dropping L4-5. Sections 4.1-4.2 use a (2,4,2) model built from Llama-3.2-1B. The recurrence count is sampled from a Poisson-Lognormal distribution whose mean follows the curriculum, so depth is both sampled and scheduled.
+
+## Results
+
+**TinyLlama-1.1B-3T converted to (4,8,4), about 50B tokens of Nemotron-CC-Math-v1-4plus, test recurrence 32** · GSM8K | MATH accuracy (1-shot) · Table 3
+
+| Variant | Value |
+|---|---|
+| Non-recurrent TinyLlama, same data | 26.6 \| 24.0 |
+| Train recurrence 4 | 37.9 \| 26.0 |
+| Train recurrence 8 | 41.0 \| 25.9 |
+| Train recurrence 16 | 43.7 \| 29.0 |
+| Train recurrence 32 | 45.0 \| 27.1 |
+
+**OLMo-2-0425-1B converted to (4,6,4), same data, test recurrence 32** · GSM8K | MATH accuracy (1-shot) · Table 4
+
+| Variant | Value |
+|---|---|
+| Non-recurrent OLMo, same data | 35.3 \| 25.1 |
+| Train recurrence 4 | 40.6 \| 27.6 |
+| Train recurrence 8 | 44.6 \| 28.1 |
+| Train recurrence 16 | 48.3 \| 29.0 |
+| Train recurrence 32 | 51.6 \| 29.3 |
+
+**Llama-3.2-1B converted to (4,6,4), same data, test recurrence 32** · GSM8K | MATH accuracy (1-shot) · Table 5
+
+| Variant | Value |
+|---|---|
+| Non-recurrent Llama, same data | 37.1 \| 27.4 |
+| Train recurrence 4 | 40.0 \| 28.9 |
+| Train recurrence 8 | 44.7 \| 29.6 |
+| Train recurrence 16 | 45.3 \| 28.4 |
+| Train recurrence 32 | 49.4 \| 31.5 |
+
+**TinyLlama (4,8,4) at train recurrence 4. Single phase is 26B tokens of FineWeb-Edu mixed with Nemotron SFT data; two phase first trains on 26B tokens of FineWeb-Edu (52B in total)** · Arc-C | MMLU | GSM8K · Table 1
+
+| Variant | Value |
+|---|---|
+| Recurrent, two phase, test recurrence 1 | 31.6 \| 36.2 \| 26.5 |
+| Recurrent, two phase, test recurrence 32 | 37.7 \| 44.8 \| 51.2 |
+| Recurrent, single phase, test recurrence 32 | 32.7 \| 39.4 \| 52.0 |
+| Non-recurrent, two phase | 36.5 \| 44.4 \| 45.2 |
+| Non-recurrent, single phase | 35.2 \| 45.1 \| 46.2 |
+
+**(2,4,2) model, about 120B tokens of FineWeb-Edu, mean recurrence 32, zero-shot** · Arc-C | HellaSwag · Table 2 (Appendix C.1)
+
+| Variant | Value |
+|---|---|
+| Random (Takase) init, test recurrence 1 | 23.4 \| 28.6 |
+| Random (Takase) init, test recurrence 32 | 29.5 \| 48.3 |
+| Llama-3.2-1B init, test recurrence 1 | 23.8 \| 34.8 |
+| Llama-3.2-1B init, test recurrence 32 | 35.0 \| 55.6 |
+
+## Other findings
+
+- Linearly ramping the mean recurrence up to 32 slightly lowers validation loss per step and greatly lowers it per training FLOP ((2,4,2) from Llama, 48 hours on 4 MI300A GPUs, about 1e20 FLOPs). (Section 4.2; Figure 3)
+- On GSM8K, larger training recurrences give a larger gain per training FLOP for OLMo and Llama, but not for TinyLlama. (Section 4.3.2; Figure 20)
+- A 26B-token FineWeb-Edu healing phase before the mixed data raises the recurrent model's Arc-C by 5% over single-phase training, while the non-recurrent model changes little. (Section 4.4; Figure 8)
+- Among the tested layer choices for a (2,4,2) model from Llama-1b, taking early layers for the prelude and later layers for the core and coda gave the lowest training loss; on TinyLlama (4,8,4) this choice also reached lower loss than layers picked with ShortGPT. (Appendix C.1.1; Figures 12 and 13)
+- Muon trains the recurrent models more stably than AdamW, whose loss spiked to NaN at learning rate 5e-5; for the non-recurrent TinyLlama the gap is much smaller, with a small gain for Muon. (Section 4.3.1; Figure 4)
+
+## Comparison
+
+- **Baseline**: The parent model (TinyLlama, OLMo or Llama) post-trained without recurrence on the same data in the same order. Figures 5-7 compare accuracy against training FLOPs and at the final checkpoint.
+- **Held fixed**: D (training tokens)
+- **Differs**: N (unique parameters), F (training FLOPs), L (executed layers per token)
+- **Baseline hyperparameters**: shared with the looped model
+- **Headline claim**: Converting a pretrained model to a recurrent one gives better math accuracy at a given training compute budget than post-training the non-recurrent model. After the same ~50B math tokens, OLMo (4,6,4) at train and test recurrence 32 scores 51.6 on GSM8K and 29.3 on MATH, against 35.3 and 25.1 for the post-trained non-recurrent OLMo. (Abstract; Section 4.3; Table 4)
+
+## Caveats
+
+- Models have about 1B parameters and are post-trained on about 50B tokens (about 120B in the initialization study); the authors say larger model and data scales still need testing.
+- All models are trained with a 1024-token context.
+- Against the non-recurrent parent, data and tokens are matched but parameters and compute are not. The recurrent models keep 72.7% (TinyLlama) or 87.5% (OLMo, Llama) of the parent's parameters and use more FLOPs per training step.
+- All models share one hyperparameter set (Muon with learning rate 0.001 and weight decay 1e-4, Appendix D); the baselines are not tuned separately.
+- Training only on math slightly lowers HellaSwag, Arc and OpenBookQA (Section 4.4). GSM8K and MATH use one in-context example, flexible extract for GSM8K and Minerva criteria with Math-Verify for MATH.
+
+## Reproducibility
+
+| Code | Weights | Configs | Data |
+|---|---|---|---|
+| available | available | available | partial |
+
+## Open weights
+
+- Recurrent-Llama-3.2 (4,6,4): [smcleish/Recurrent-Llama-3.2-train-recurrence-4](https://huggingface.co/smcleish/Recurrent-Llama-3.2-train-recurrence-4), [smcleish/Recurrent-Llama-3.2-train-recurrence-8](https://huggingface.co/smcleish/Recurrent-Llama-3.2-train-recurrence-8), [smcleish/Recurrent-Llama-3.2-train-recurrence-16](https://huggingface.co/smcleish/Recurrent-Llama-3.2-train-recurrence-16), [smcleish/Recurrent-Llama-3.2-train-recurrence-32](https://huggingface.co/smcleish/Recurrent-Llama-3.2-train-recurrence-32), [smcleish/Recurrent-Llama-3.2-untrained](https://huggingface.co/smcleish/Recurrent-Llama-3.2-untrained)
+- Recurrent-OLMo-2-0425 (4,6,4): [smcleish/Recurrent-OLMo-2-0425-train-recurrence-4](https://huggingface.co/smcleish/Recurrent-OLMo-2-0425-train-recurrence-4), [smcleish/Recurrent-OLMo-2-0425-train-recurrence-8](https://huggingface.co/smcleish/Recurrent-OLMo-2-0425-train-recurrence-8), [smcleish/Recurrent-OLMo-2-0425-train-recurrence-16](https://huggingface.co/smcleish/Recurrent-OLMo-2-0425-train-recurrence-16), [smcleish/Recurrent-OLMo-2-0425-train-recurrence-32](https://huggingface.co/smcleish/Recurrent-OLMo-2-0425-train-recurrence-32), [smcleish/Recurrent-OLMo-2-0425-untrained](https://huggingface.co/smcleish/Recurrent-OLMo-2-0425-untrained)
+- Recurrent-TinyLlama-3T (4,8,4): [smcleish/Recurrent-TinyLlama-3T-train-recurrence-4](https://huggingface.co/smcleish/Recurrent-TinyLlama-3T-train-recurrence-4), [smcleish/Recurrent-TinyLlama-3T-train-recurrence-8](https://huggingface.co/smcleish/Recurrent-TinyLlama-3T-train-recurrence-8), [smcleish/Recurrent-TinyLlama-3T-train-recurrence-16](https://huggingface.co/smcleish/Recurrent-TinyLlama-3T-train-recurrence-16), [smcleish/Recurrent-TinyLlama-3T-train-recurrence-32](https://huggingface.co/smcleish/Recurrent-TinyLlama-3T-train-recurrence-32), [smcleish/Recurrent-TinyLlama-3T-train-recurrence-4-single-phase](https://huggingface.co/smcleish/Recurrent-TinyLlama-3T-train-recurrence-4-single-phase), [smcleish/Recurrent-TinyLlama-3T-train-recurrence-4-two-phase](https://huggingface.co/smcleish/Recurrent-TinyLlama-3T-train-recurrence-4-two-phase), [smcleish/Recurrent-TinyLlama-3T-untrained](https://huggingface.co/smcleish/Recurrent-TinyLlama-3T-untrained)
+
+## Related open questions
+
+- [Does running more passes at test time than in training keep improving quality?](questions.md#extra-passes-at-test-time) (partly)
+- [With training compute held fixed, do more passes help?](questions.md#more-passes-fixed-compute) (partly)
+
+## Authors
+
+Sean McLeish, Ang Li, John Kirchenbauer, Dayal Singh Kalra, Brian R. Bartoldson, Bhavya Kailkhura, Avi Schwarzschild, Jonas Geiping, Tom Goldstein, Micah Goldblum
+
+
+# Ouro (LoopLM): Scaling Latent Reasoning via Looped Language Models
+
+English · [简体中文](../zh/2510.25741.md) · [Back to the list](../../README.md)
+
+<sub>arXiv 2510.25741 · 2025-10-29 · ByteDance Seed, UC Santa Cruz, Princeton University, Mila - Quebec AI Institute, University of Montreal, Peking University, Carnegie Mellon University, University of Pennsylvania, Conscium, University of Manchester, M-A-P</sub>
+
+
+> Pre-train a weight-tied layer stack that repeats 4 times, with a learned exit gate, on 7.7T tokens; the authors report that the 1.4B and 2.6B models match dense models of up to 12B parameters.
+
+**Category**: Depth control · **Status**: draft (numbers not yet re-checked) · **Metrics**: cites 245 · HF upvotes 146
+
+[paper](https://arxiv.org/abs/2510.25741) · [project](https://ouro-llm.github.io) · [weights](https://huggingface.co/ByteDance/Ouro-1.4B)
+
+## Problem
+
+LLMs mostly learn to reason through explicit chain-of-thought added after pre-training. The paper asks whether looping shared layers in latent space, built into pre-training at multi-trillion-token scale, scales better than non-recursive Transformers.
+
+## Method
+
+- Repeat the whole decoder stack (24 layers for 1.4B, 48 for 2.6B) with shared weights; after every step an LM head computes a loss and an exit gate predicts the probability of stopping.
+- Stage I minimizes the per-step losses weighted by the gate's exit distribution minus an entropy bonus, which equals a KL term toward a uniform prior over exit steps up to a constant.
+- Stage II freezes the LM and trains only the gate to continue while the next step still lowers the loss by more than a threshold; at inference the model exits at the first step whose cumulative exit probability reaches q.
+- Pre-train on 7.7T tokens in four stages (8 steps in Stage 1a, then 4; the 2.6B model is upcycled from the 24-layer model), then run reasoning SFT on about 8.3M examples for the Thinking models.
+
+## Loop layout
+
+| Facet | Value |
+|---|---|
+| Where the loop sits | whole stack |
+| Weight sharing | fully tied |
+| Passes in training | learned / adaptive |
+| Passes at test time | adaptive exit / routing |
+| Input injection | none |
+| KV cache | per-pass KV |
+| Gradient through passes | full BPTT |
+| Origin | trained from scratch |
+| FFN | dense FFN |
+| Attention in the loop | full attention |
+| Passes (whole stack (2.6B: 48 layers)) | train 8 in Stage 1a, then 4; test 4 by default; the exit gate can stop earlier |
+
+The whole decoder stack loops: Ouro 1.4B repeats its 24 layers and Ouro 2.6B its 48 layers, which were upcycled from the 24 layers by layer duplication; embedding and LM head sit outside the loop. The embedding enters only before the first step, and each step takes the previous step's output. After every step an LM head and an exit gate read the hidden state. Training always runs T_max steps and weights each step's loss by the learned exit distribution. Each step keeps its own KV cache.
+
+## Results
+
+**Base models; Ouro runs 4 recurrent steps (R4); all models use the same evaluation pipeline (Appendix C.1)** · MMLU / MMLU-Pro / BBH / GSM8K / MATH500 · Table 7
+
+| Variant | Value |
+|---|---|
+| Ouro 1.4B R4 (1.4B params, 7.7T tokens) | 67.35 / 48.62 / 71.02 / 78.92 / 82.40 |
+| Qwen3 1.7B (1.7B, 36T) | 62.46 / 37.27 / 53.51 / 70.28 / 25.80 |
+| Gemma3 4B (4.0B, 4T) | 58.37 / 34.61 / 66.32 / 68.69 / 68.60 |
+| Qwen3 4B (4.0B, 36T) | 73.19 / 51.40 / 70.95 / 72.86 / 59.60 |
+
+**Base models; Ouro runs 4 recurrent steps (R4)** · MMLU / MMLU-Pro / BBH / GSM8K / MATH500 · Table 8
+
+| Variant | Value |
+|---|---|
+| Ouro 2.6B R4 (2.6B params, 7.7T tokens) | 74.60 / 55.73 / 80.46 / 81.58 / 90.85 |
+| Qwen3 8B (8.0B, 36T) | 76.63 / 53.72 / 77.65 / 83.09 / 62.30 |
+| Gemma3 12B (12.0B, 12T) | 72.14 / 49.21 / 78.41 / 77.18 / 83.20 |
+
+**Ouro base models trained with 4 steps, evaluated at T=1-8 (T=5-8 is extrapolation)** · MMLU (5-shot avg), Ouro 1.4B / Ouro 2.6B · Tables 10-11
+
+| Variant | Value |
+|---|---|
+| T=1 | 41.21 / 51.55 |
+| T=2 | 60.43 / 67.63 |
+| T=3 | 66.71 / 73.57 |
+| T=4 | 67.45 / 74.60 |
+| T=5 | 66.64 / 74.43 |
+| T=6 | 65.77 / 73.79 |
+| T=7 | 65.28 / 72.92 |
+| T=8 | 64.49 / 72.24 |
+
+**Ouro-Thinking models trained with 4 steps, evaluated at T=1-8** · AIME 2024, 1.4B-Thinking / 2.6B-Thinking · Tables 12-13
+
+| Variant | Value |
+|---|---|
+| T=1 | 0.00 / 3.00 |
+| T=2 | 37.33 / 52.00 |
+| T=3 | 62.33 / 70.33 |
+| T=4 | 65.00 / 64.70 |
+| T=5 | 60.67 / 57.00 |
+| T=6 | 50.67 / 56.33 |
+| T=7 | 42.33 / 49.67 |
+| T=8 | 38.67 / 39.00 |
+
+**Ouro 1.4B, KV cache reuse during decoding only; prefill keeps all four caches** · GSM8K / MATH-500 / memory reduction · Section 5.4.2; Table 14
+
+| Variant | Value |
+|---|---|
+| Full (4× cache) | 78.92 / 82.40 / 1.00× |
+| First-step only | 18.73 / 8.43 / 4.00× |
+| Last-step only | 78.85 / 80.40 / 4.00× |
+| Averaged | 78.73 / 78.52 / 4.00× |
+
+The paper does not name the model size in Table 14; the project page labels the same table Ouro-1.4B.
+
+**Mano task (modular arithmetic answered without intermediate steps); k⊗n is k layers looped n times, and 12⊗1 is the iso-FLOP baseline** · exact-match accuracy at maximum expression length L=10 / 16 / 24 · Section 6.2; Figure 6 (right)
+
+| Variant | Value |
+|---|---|
+| Base 12⊗1 | 93.6 / 94.4 / 34.8 |
+| Base 2⊗1 | 21.5 / 8.4 / 7.5 |
+| Loop 2⊗6 | 98.1 / 96.3 / 78.0 |
+| Base 3⊗1 | 75.4 / 29.8 / 11.0 |
+| Loop 3⊗4 | 97.9 / 95.8 / 92.2 |
+| Base 6⊗1 | 84.7 / 59.5 / 20.0 |
+| Loop 6⊗2 | 93.4 / 88.5 / 35.1 |
+
+Each setting reports the best of 3 random seeds (Appendix B.2).
+
+## Other findings
+
+- Training with 8 recurrent steps in Stage 1a led to loss spikes and gradient oscillations, so the authors cut to 4 steps from Stage 1b on. (Section 4.3)
+- The trained depth is not always best for the Thinking models. The 1.4B model scores higher at T=5 than at T=4 on OlympiadBench (72.30 vs 71.55) and SuperGPQA (48.73 vs 47.37), and the 2.6B model peaks at T=3 on AIME 2024 (70.33, against 64.70 at T=4). (Tables 12-13)
+- Safety on HEx-PHI improves as the number of recurrent steps grows (tested 1-8), including the extrapolated steps 5-8. At 4 steps the harmful rate is 0.009 for Ouro 1.4B Thinking and 0.003 for Ouro 2.6B Thinking (Qwen3-4B-Thinking 0.009). (Section 7.1; Figure 8a)
+- On MMLU, the gate with Stage II exit training reaches 66% accuracy at an average of 2.5 exit rounds, against about 64% for the gate from pre-training alone; fixed-depth exit gives 40% at 1 round and 67.35% at 4. (Section 5.4.1; Figure 5)
+- Reusing KV caches during prefill costs more than 10 points on GSM8K, so all four steps keep their own KV during prefill. (Section 5.4.2)
+- On the synthetic Capo task, looped (4 steps) and non-looped models with the same parameter count both store about 2 bits of knowledge per parameter. (Section 6.1; Figure 6 (left))
+- In 20B-token FineWeb-Edu runs at 53M-1.36B, a Standard model with unshared layers and the same executed depth scores higher than LoopLM in every case, and the gap grows with the step count (in Table 18 the 1.3B gap is 0.017 at 2 steps and 0.025 at 4). (Appendix D.1; Table 18)
+
+## Comparison
+
+- **Baseline**: Public dense base models run through the same evaluation pipeline (Gemma3, Llama3.1/3.2, Qwen2.5 and Qwen3, 1B to 12B); the Thinking models are compared with Qwen3 and DeepSeek-Distill-Qwen.
+- **Held fixed**: none
+- **Differs**: N (unique parameters), D (training tokens)
+- **Baseline hyperparameters**: not stated
+- **Headline claim**: Ouro 1.4B R4 (7.7T tokens) matches or beats the 4B Qwen3-Base (36T tokens) on BBH (71.02 vs 70.95), GSM8K (78.92 vs 72.86) and MATH500 (82.40 vs 59.60); Ouro 2.6B R4 scores 55.73 on MMLU-Pro, 80.46 on BBH and 90.85 on MATH500, against 53.72, 77.65 and 62.30 for the 8B Qwen3-Base. (Section 5.1; Tables 7-8)
+
+## Caveats
+
+- The headline comparisons (Tables 7-9) are against separately trained public models that differ in parameters and training tokens (2T-36T); no budget is matched, and Ouro runs its stack 4 times per token.
+- The models are trained at 4 steps; base benchmark scores are strongest around T=4 and degrade moderately at T=5-8, and the Thinking models degrade at T=6-8 (Tables 10-13).
+- By default every step keeps its own KV cache (4× memory at 4 steps); last-step-only reuse was tested for decoding only, because prefill needs all four caches (Section 5.4.2).
+- Reasoning results come from an in-house harness with an LLM judge and temperature 1.0, top_p 0.7 for every model (Section 5.2; Table 17).
+- Controlled looped-versus-unlooped studies are small; they use synthetic tasks (Capo with 1M-40M GPT-2-style models, Mano, multi-hop QA) and 53M-1.36B models trained on 20B FineWeb-Edu tokens (Section 6; Appendix D).
+- The authors did not run exhaustive learning-rate sweeps (Section 4.3), and RLVR with DAPO and GRPO did not improve on the SFT checkpoint (Section 4.5).
+
+## Reproducibility
+
+| Code | Weights | Configs | Data |
+|---|---|---|---|
+| partial | available | partial | partial |
+
+## Open weights
+
+- Ouro-1.4B: [ByteDance/Ouro-1.4B](https://huggingface.co/ByteDance/Ouro-1.4B), [ByteDance/Ouro-1.4B-Thinking](https://huggingface.co/ByteDance/Ouro-1.4B-Thinking)
+- Ouro-2.6B: [ByteDance/Ouro-2.6B](https://huggingface.co/ByteDance/Ouro-2.6B), [ByteDance/Ouro-2.6B-Thinking](https://huggingface.co/ByteDance/Ouro-2.6B-Thinking)
+
+## Related open questions
+
+- [Does running more passes at test time than in training keep improving quality?](questions.md#extra-passes-at-test-time) (against)
+- [With training compute held fixed, do more passes help?](questions.md#more-passes-fixed-compute) (against)
+- [With training compute held fixed, do more passes help?](questions.md#more-passes-fixed-compute) (supports)
+- [Can later passes reuse one KV cache instead of keeping KV for every pass?](questions.md#shared-kv-across-passes) (partly)
+
+## Authors
+
+Rui-Jie Zhu, Zixuan Wang, Kai Hua, Tianyu Zhang, Ziniu Li, Haoran Que, Boyi Wei, Zixin Wen, Fan Yin, He Xing, Lu Li, Jiajun Shi, Kaijing Ma, Shanda Li, Taylor Kergan, Andrew Smith, Xingwei Qu, Mude Hui, Bohong Wu, Qiyang Min, Hongzhi Huang, Xun Zhou, Wei Ye, Jiaheng Liu, Jian Yang, Yunfeng Shi, Chenghua Lin, Enduo Zhao, Tianle Cai, Ge Zhang, Wenhao Huang, Yoshua Bengio, Jason Eshraghian
+
+
+# PLT: Parallel Loop Transformer for Efficient Test-Time Computation Scaling
+
+English · [简体中文](../zh/2510.24824.md) · [Back to the list](../../README.md)
+
+<sub>arXiv 2510.24824 · 2025-10-28 · ByteDance Seed</sub>
+
+
+> Run loop l of token i in the same forward pass as loop l+1 of token i-1, let later loops reuse the first loop's KV plus a gated SWA, and a looped model decodes at close to unlooped latency and KV.
+
+**Category**: Systems and inference · **Status**: draft (numbers not yet re-checked) · **Metrics**: cites 34 · HF upvotes 18
+
+[paper](https://arxiv.org/abs/2510.24824)
+
+## Problem
+
+In a vanilla looped Transformer the loops run one after another, so per-token compute, decoding latency and KV cache all grow linearly with the number of loops.
+
+## Method
+
+- Cross-loop parallelism (CLP) shifts the previous loop's last-layer states right by one token and adds the embeddings before each non-first loop, so loop l of token i, loop l+1 of token i-1 and so on are decoded as one micro-batch in a single forward pass.
+- Non-first loops keep their own queries but attend globally to the first loop's KV, so only one global KV cache is stored.
+- Gated SWA (G-SWA) lets non-first loops also attend to their own KV within a 64-token window and mixes local and global outputs through a head-wise sigmoid gate; these loops cache only the most recent w KV entries.
+
+## Loop layout
+
+| Facet | Value |
+|---|---|
+| Where the loop sits | shifted / parallel across tokens |
+| Weight sharing | fully tied |
+| Passes in training | fixed |
+| Passes at test time | fixed |
+| Input injection | additive |
+| KV cache | first-pass KV shared |
+| Gradient through passes | n/a |
+| Origin | trained from scratch |
+| FFN | MoE |
+| Attention in the loop | hybrid (full + window / linear) |
+| Passes (all layers, every loop) | train 2 or 3 (PLT-2 / PLT-3); test 2 or 3, same as training |
+
+Each loop runs the whole stack with tied weights. Before every non-first loop, the previous loop's last-layer states are shifted right by one token and added to the token embeddings, so at decoding time loop l of token i runs in the same forward pass as loop l+1 of token i-1. Non-first loops attend globally to the first loop's KV and locally to their own KV through SWA (w=64), mixed by a head-wise sigmoid gate. The in-house Seed-MoE layer count is not disclosed; the open-source OLMo/OLMoE runs use 16 layers (Appendix A.2.1).
+
+## Results
+
+**In-house Seed-MoE, 680M activated / 13B total, 150B tokens; latency and KV cache at batch size 4** · Avg. accuracy / decoding latency (ms) / KV cache · Table 2
+
+| Variant | Value |
+|---|---|
+| (1)Seed-MoE 680M/13B | 34.7 / 4.8 / 280M |
+| (2)+loop-2 | 39.7 / 9.4 / 560M |
+| (3)+loop-2+CLP | 39.6 / 5.9 / 560M |
+| (4)+loop-2+CLP+KV share | 36.2 / 4.8 / 280M |
+| (5)+loop-2+CLP+KV share+G-SWA(PLT-2) | 39.7 / 4.9 / 284M |
+| (6)+loop-3+CLP+KV share+G-SWA(PLT-3) | 40.8 / 5.0 / 287M |
+
+The Section 3.1.2 text gives PLT-3's latency as 4.8→4.9 ms; Table 2 prints 5.0 ms.
+
+**Same models as Table 2; FP8 attention, W4A8 linear layers, 5000-token prefill, one GPU, mean of five runs that each decode 256 tokens** · per-token decoding latency in ms (ratio to Seed-MoE), bs=4 / bs=64 · Table 3; Section 3.1.1
+
+| Variant | Value |
+|---|---|
+| (1)Seed-MoE 680M/13B | 4.8(1.00×) / 10.9(1.00×) |
+| (2)+loop-2 | 9.4(1.96×) / 21.4(1.96×) |
+| (3)+loop-2+CLP | 5.9(1.23×) / 16.4(1.50×) |
+| (4)+loop-2+CLP+KV share | 4.8(1.00×) / 11.1(1.02×) |
+| (5)+loop-2+CLP+KV share+G-SWA(PLT-2) | 4.9(1.02×) / 11.3(1.04×) |
+
+**In-house MoE, baseline trained on 1T tokens; PLT-2 uses two-thirds of the baseline's layers** · Avg. accuracy · Table 4; Section 3.2
+
+| Variant | Value |
+|---|---|
+| Seed-MoE (2.5B/60B) | 62.1 |
+| PLT-2 (1.7B/40B) | 62.6 |
+
+Section 3.2 reports about 30% lower decoding latency for PLT-2 across batch sizes 4 to 64 (Figure 5) and a KV cache roughly two-thirds of the baseline's.
+
+**OLMo-based 1.2B dense and OLMoE-based 1B/7B MoE, 16 layers, 400B tokens, L=2** · Loss / Avg. accuracy · Table 5; Appendix A.2.1
+
+| Variant | Value |
+|---|---|
+| Vanilla Dense | 2.577 / 55.4 |
+| Dense + loop-2 | 2.532 / 57.6 |
+| Dense + PLT-2 | 2.537 / 57.4 |
+| Vanilla MoE | 2.342 / 57.8 |
+| MoE + loop-2 | 2.302 / 59.6 |
+| MoE + PLT-2 | 2.280 / 60.0 |
+
+**OLMo-based dense ablation (hidden 1536, GQA with 16 query and 4 KV heads), 100B tokens, latency on one H800** · Loss / Avg. accuracy / latency in ms at bs=1 / at bs=16 · Table 6; Appendix A.3.1
+
+| Variant | Value |
+|---|---|
+| (1) Vanilla Dense | 2.880 / 46.6 / 1.68 / 2.49 |
+| (2) +loop-2 | 2.856 / 46.7 / 2.66 / 3.92 |
+| (3) +loop-2+CLP | 2.840 / 47.8 / 1.73 / 3.23 |
+| (4) +loop-2+CLP+KVshare | 2.858 / 46.9 / 1.73 / 2.69 |
+| (5) +loop-2+CLP+KVshare+G-SWA | 2.844 / 47.8 / 1.73 / 2.70 |
+
+## Other findings
+
+- Adding CLP to the two-loop model leaves average accuracy nearly unchanged (39.7 to 39.6) and cuts decoding latency from 9.4 ms to 5.9 ms, while the KV cache stays at 560M. (Table 2; Section 3.1.2)
+- Sharing the first loop's KV halves the KV cache (560M to 280M) but lowers average accuracy from 39.6 to 36.2; adding G-SWA with a 64-token window brings it back to 39.7 at 284M. (Table 2; Section 3.1.2)
+- With the same parameters, three loops beat two, with average accuracy 40.8 for PLT-3 against 39.7 for PLT-2; Table 2 lists 5.0 vs 4.9 ms latency and 287M vs 284M KV. (Table 2; Section 3.1.2)
+- At batch sizes 32 and 64, PLT-2 cuts per-token decoding latency by 47% relative to the vanilla two-loop model and runs at 1.06× and 1.04× the latency of the unlooped model. (Table 3; Section 3.1.3)
+- A PLT-2 with two-thirds of the baseline's layers (1.7B/40B) averages 62.6 against 62.1 for the 2.5B/60B Seed-MoE, with about 30% lower decoding latency. (Table 4; Section 3.2; Figure 5)
+
+## Comparison
+
+- **Baseline**: Unlooped in-house Seed-MoE 680M/13B and the same model looped twice without CLP; CLP, KV sharing and G-SWA are then added one at a time.
+- **Held fixed**: N (unique parameters), A (active parameters), D (training tokens)
+- **Differs**: F (training FLOPs), L (executed layers per token), KV (KV cache per token)
+- **Baseline hyperparameters**: not stated
+- **Headline claim**: On a 680M/13B MoE trained on 150B tokens, PLT-2 reaches the vanilla two-loop model's average accuracy of 39.7 (34.7 without loops) at 4.9 ms decoding latency and 284M KV cache (batch size 4), against 9.4 ms and 560M for the vanilla two-loop model and 4.8 ms and 280M for the unlooped model. (Table 2; Section 3.1.2)
+
+## Caveats
+
+- The main results use in-house Seed-MoE models whose data and other training details are withheld; the open-source OLMo/OLMoE runs (1.2B dense and 1B/7B MoE at 400B tokens, plus a 100B-token dense ablation) test only L=2.
+- Each model is trained and evaluated at one fixed loop count (L=2 or 3); the paper does not report running a different number of loops at inference.
+- Parameters and training tokens are matched but compute is not; an L-loop PLT spends L times the per-token compute of the baseline (Table 1), and its latency advantage rests on decoding being memory-bound.
+- CLP parallelizes decoding only; training stays serial along the loop dimension (Figure 4).
+- Latency is per-token decoding latency on one GPU with FP8 attention, W4A8 linear layers and a 5000-token prefill; the latency and KV columns of Table 2 are at batch size 4.
+- Hyperparameters of the in-house runs are not given, so the paper does not say whether the baseline was tuned separately.
+
+## Reproducibility
+
+| Code | Weights | Configs | Data |
+|---|---|---|---|
+| none | none | partial | none |
+
+## Related open questions
+
+- [Can later passes reuse one KV cache instead of keeping KV for every pass?](questions.md#shared-kv-across-passes) (partly)
+
+## Authors
+
+Bohong Wu, Mengzhao Chen, Xiang Luo, Shen Yan, Qifan Yu, Fan Xia, Tianqi Zhang, Hongrui Zhan, Zheng Zhong, Xun Zhou, Siyuan Qiao, Xingyan Bin
+
+
+# MoR: Mixture-of-Recursions: Learning Dynamic Recursive Depths for Adaptive Token-Level Computation
+
+English · [简体中文](../zh/2507.10524.md) · [Back to the list](../../README.md)
+
+<sub>NeurIPS 2025 · arXiv 2507.10524 · 2025-07-14 · KAIST AI, Mila, Google Cloud, Google DeepMind, Google Research, Université de Montréal</sub>
+
+
+> Routers give each token its own number of passes through a shared middle block, and each pass caches KV only for its active tokens; at equal training FLOPs MoR beats fixed-depth recursive baselines and often vanilla, with fewer parameters.
+
+**Category**: Depth control · **Status**: draft (numbers not yet re-checked) · **Metrics**: cites 204 · stars 652 · HF upvotes 74
+
+[paper](https://arxiv.org/abs/2507.10524) · [code](https://github.com/raymin0223/mixture_of_recursions) · [weights](https://drive.google.com/drive/folders/1pYKJOu2aBGC-jgoWbfP6T_vqEYtUVxa4)
+
+## Problem
+
+Efficiency work usually targets either parameter sharing or adaptive computation. Recursive Transformers mostly apply one fixed depth to every token and keep a separate KV cache per depth, while early-exit methods need extra training stages and leave exited tokens without KV at deeper layers.
+
+## Method
+
+- Middle-Cycle sharing keeps the first and last layers unique and cycles one shared block of middle layers up to Nr times.
+- Lightweight routers trained from scratch give each token its own recursion depth. Expert-choice picks the top-k tokens at every step with hierarchical filtering and adds an auxiliary BCE loss so the choice can be made causally at inference; token-choice assigns the depth once and uses a balancing loss.
+- Recursion-wise caching stores KV at each step only for the tokens routed there and restricts attention to them; recursive KV sharing instead reuses the first step's KV at every step.
+- Vanilla, fixed-depth recursive and MoR models (135M-1.7B base sizes, FineWeb-Edu, 2K context) are compared at equal training FLOPs (2e18, 5e18, 16.5e18) and at equal tokens (20B).
+
+## Loop layout
+
+| Facet | Value |
+|---|---|
+| Where the loop sits | middle core (prelude-core-coda) |
+| Weight sharing | fully tied |
+| Passes in training | learned / adaptive |
+| Passes at test time | adaptive exit / routing |
+| Input injection | none |
+| KV cache | per-pass KV |
+| Gradient through passes | full BPTT |
+| Origin | trained from scratch |
+| FFN | dense FFN |
+| Attention in the loop | full attention |
+| Passes (shared block) | train 1-3 per token, set by the router (Nr=3); test 1-3 per token, set by the router |
+
+Middle-Cycle sharing on a Llama-style model keeps the first and last layers unique and applies one shared block up to Nr times (360M base with Nr=3 uses 1+10+1 unique layers; Nr=2 uses 1+15+1). Routers decide how many recursions each token gets. Expert-choice keeps the top-k tokens at each step (3/3, 2/3 and 1/3 of the tokens for Nr=3), and only tokens kept at step r can be kept at r+1; token-choice assigns each token its depth once. The router score scales the block output that is added to the residual. Each step caches KV only for its active tokens and attends only among them; a variant reuses the first recursion's KV at every step.
+
+## Results
+
+**360M base, FineWeb-Edu, 16.5e18 training FLOPs (tokens vary), Middle-Cycle sharing** · validation NLL / average few-shot accuracy · Table 3
+
+| Variant | Value |
+|---|---|
+| Vanilla, 315M, 20B tokens | 2.7824 / 42.3 |
+| Recursive Nr=2, 167M, 20B | 2.8079 / 42.6 |
+| Recursive Nr=3, 118M, 20B | 2.8466 / 41.5 |
+| Recursive Nr=4, 98M, 19B | 2.8781 / 41.0 |
+| MoR expert Nr=2, 167M, 27B | 2.7511 / 43.1 |
+| MoR expert Nr=3, 118M, 30B | 2.7925 / 42.6 |
+| MoR expert Nr=4, 98M, 30B | 2.8204 / 41.6 |
+| MoR token Nr=3, 118M, 30B | 2.9163 / 40.0 |
+| MoR expert Nr=3, KV sharing, 118M, 31B | 2.7983 / 41.9 |
+
+**360M base, FineWeb-Edu, 20B training tokens (FLOPs vary)** · training FLOPs (×1e18) / validation NLL / average few-shot accuracy · Table 3
+
+| Variant | Value |
+|---|---|
+| Vanilla | 16.5 / 2.7824 / 42.3 |
+| MoR expert Nr=2 | 12.3 / 2.7749 / 42.9 |
+| MoR expert Nr=3 | 11.0 / 2.8246 / 41.8 |
+| MoR expert Nr=4 | 11.0 / 2.8519 / 41.5 |
+
+**Equal training FLOPs per row, Nr=3, expert-choice MoR with recursion-wise KV caching, FineWeb-Edu** · validation NLL, Vanilla / Recursive / MoR · Appendix D; Table 9
+
+| Variant | Value |
+|---|---|
+| 135M base, 5e18 | 2.9464 / 3.0534 / 3.0192 |
+| 135M base, 16.5e18 | 2.8432 / 2.9552 / 2.9490 |
+| 360M base, 5e18 | 3.0097 / 3.0722 / 2.9161 |
+| 360M base, 16.5e18 | 2.7824 / 2.8466 / 2.7924 |
+| 730M base, 5e18 | 3.0821 / 3.1640 / 3.0067 |
+| 730M base, 16.5e18 | 2.7048 / 2.7886 / 2.7438 |
+| 1.7B base, 5e18 | 3.6926 / 3.8876 / 3.2905 |
+| 1.7B base, 16.5e18 | 2.8658 / 3.0042 / 2.8316 |
+
+**118M unique non-embedding parameters, 10B tokens, Middle-Cycle MoR** · validation NLL / average few-shot accuracy · Appendix C.2; Table 8
+
+| Variant | Value |
+|---|---|
+| Vanilla (Nr=1, 12 layers) | 2.9678 / 39.48 |
+| MoR Nr=2 (1+10+1) | 2.9205 / 39.96 |
+| MoR Nr=3 (1+10+1) | 2.9111 / 40.10 |
+
+**Fixed-depth Recursive Transformers on the 360M base, Nr=3, 10B tokens; four parameter-sharing schemes** · validation NLL / average few-shot accuracy · Appendix F; Table 10
+
+| Variant | Value |
+|---|---|
+| Vanilla, 32 layers, 315M | 2.8471 / 40.68 |
+| Cycle, 10 layers, 98M | 2.9363 / 39.15 |
+| Sequence, 10 layers, 98M | 3.0245 / 38.30 |
+| Middle-Cycle, 1+10+1, 118M | 2.8760 / 40.82 |
+| Middle-Sequence, 1+10+1, 118M | 2.9753 / 38.44 |
+
+Cycle reuses the whole block in order [(0,1,2),(0,1,2),...]; Sequence repeats each layer back to back; the Middle variants keep the first and last layers unique.
+
+## Other findings
+
+- In Table 9, weight sharing alone (fixed-depth recursion) has higher validation NLL than vanilla at every size and budget. MoR has lower NLL than vanilla at 2e18 and 5e18 from the 360M base up, and at 16.5e18 only at the 1.7B base; at 135M it stays above vanilla. (Section 3.2; Appendix D; Table 9)
+- At the 1.7B base with 68.5e18 FLOPs, vanilla averages 48.9 few-shot accuracy against 48.4 for the best MoR (expert, Nr=2); the authors say this might signal that the current MoR design is not suitable for scaling. (Appendix C.1; Table 7)
+- With unique parameters fixed at 252M (730M base, Nr=3), Middle-Cycle with 1+8+1 layers (26 effective) beats Cycle with 10 layers (30 effective), with NLL 2.7552 vs 2.7573 and average accuracy 42.32 vs 41.90. (Appendix F; Table 11)
+- At the 135M base, Cycle is slightly ahead of Middle-Cycle at Nr=2 (NLL 3.0071 vs 3.0330), while Middle-Cycle leads at Nr=3 and at the 360M base for both depths. In up-training from SmolLM checkpoints, both Middle strategies do better than the others in all settings. (Appendix F; Tables 10 and 12)
+- At Nr=3, expert-choice routing beats token-choice (42.6% vs 40.0% average accuracy in Table 3). In the 10B-token ablation, recursive KV sharing raises training NLL for expert-choice MoR (2.8667 to 2.8895) but lowers it for token-choice MoR (2.9358 to 2.9155). (Section 3.1; Section 4.3; Tables 3 and 15)
+- With continuous depth-wise batching at the 360M scale, every MoR variant decodes faster than vanilla, and MoR-4 reaches up to a 2.06× speedup at the maximum batch size, with a slight drop in quality. (Section 3.3; Figure 4a)
+- Log-likelihood improves as the maximum recursion depth at inference is raised step by step up to the trained Nr (models with Nr=2, 3 and 4 at the 360M base); no run goes beyond the trained Nr. (Section 5.3; Figure 5c)
+
+## Comparison
+
+- **Baseline**: Vanilla Llama-style Transformer (315M non-embedding parameters at the 360M base) and fixed-depth Recursive Transformers with the same Middle-Cycle sharing (Nr=2-4).
+- **Held fixed**: F (training FLOPs)
+- **Differs**: N (unique parameters), D (training tokens), L (executed layers per token), KV (KV cache per token)
+- **Baseline hyperparameters**: shared with the looped model
+- **Headline claim**: At 16.5e18 training FLOPs, expert-choice MoR with Nr=2 reaches validation NLL 2.7511 and 43.1% average few-shot accuracy with 167M non-embedding parameters, against 2.7824 and 42.3% for the 315M vanilla model. At an equal 20B tokens it uses 25% fewer training FLOPs, 19% less training time and 25% less peak memory than vanilla. (Section 3.1; Table 3)
+
+## Caveats
+
+- Models go up to a 1.7B base (0.67B-0.87B unique non-embedding parameters for MoR) with 2K context, are trained only on FineWeb-Edu and are evaluated by NLL and six few-shot benchmarks; the authors leave models above 3B to future work (Section 7.1).
+- The main comparison fixes training FLOPs, not parameters or tokens; MoR has fewer unique parameters and sees more tokens (27B-31B against 20B in Table 3).
+- FLOPs are approximate forward-pass counts that leave out FlashAttention, normalization and non-linearities, and token-choice FLOPs assume perfect balancing (Appendix D).
+- At the 135M base, and at the 1.7B base with 68.5e18 FLOPs, vanilla beats MoR (Section 3.2; Appendix C.1).
+- Expert-choice top-k selection is non-causal during training; inference relies on an auxiliary loss to predict it, and the near-binary router outputs make top-k hard to change after training (Section 2.2.1; Section 7.1).
+- Throughput is measured only at the 360M scale, generating from an empty prefix, and excludes the time spent caching and updating KV (Appendix E).
+- Vanilla, recursive and MoR runs share one set of optimizer settings (learning rate 3e-3 in the released 360M configs); the paper reports no separate tuning.
+
+## Reproducibility
+
+| Code | Weights | Configs | Data |
+|---|---|---|---|
+| available | partial | partial | available |
+
+## Related open questions
+
+- [Where in the stack should the loop sit?](questions.md#loop-placement) (partly)
+- [With training compute held fixed, do more passes help?](questions.md#more-passes-fixed-compute) (against)
+- [Can later passes reuse one KV cache instead of keeping KV for every pass?](questions.md#shared-kv-across-passes) (partly)
+
+## Authors
+
+Sangmin Bae, Yujin Kim, Reza Bayat, Sungnyun Kim, Jiyoun Ha, Tal Schuster, Adam Fisch, Hrayr Harutyunyan, Ziwei Ji, Aaron Courville, Se-Young Yun
+
+
+# Huginn: Scaling up Test-Time Compute with Latent Reasoning: A Recurrent Depth Approach
+
+English · [简体中文](../zh/2502.05171.md) · [Back to the list](../../README.md)
+
+<sub>arXiv 2502.05171 · 2025-02-07 · ELLIS Institute Tübingen, Max-Planck Institute for Intelligent Systems, Tübingen AI Center, University of Maryland, College Park, Lawrence Livermore National Laboratory</sub>
+
+
+> Pretrain a 3.5B prelude-core-coda transformer with a randomly sampled number of core iterations, so test-time compute scales by iterating the core more.
+
+**Category**: Architecture: where to loop, what to share · **Status**: draft (numbers not yet re-checked) · **Metrics**: cites 578 · stars 998 · HF upvotes 162
+
+[paper](https://arxiv.org/abs/2502.05171) · [code](https://github.com/seal-rg/recurrent-pretraining) · [weights](https://huggingface.co/tomg-group-umd/huginn-0125)
+
+## Problem
+
+Mainstream reasoning models scale test-time compute by generating more tokens in long chains of thought, which needs specialized training data and long context windows. The paper scales compute by iterating a recurrent block in latent space instead.
+
+## Method
+
+- Split a decoder-only transformer into a prelude, a weight-shared recurrent core and a coda. At every iteration the core receives the prelude output through an adapter on concat(state, prelude output); the first state is random.
+- Sample the iteration count from a log-normal Poisson distribution with mean 32 (one count per micro-batch, synchronized across workers) and backpropagate through only the last 8 iterations.
+- Train once at (2,4,2) with h=5280 on 800B tokens of public data weighted toward code and math, on 4096 AMD MI250X GPUs, with sandwich normalization (four RMSNorms per layer) and a scaled initialization.
+- At inference the iteration count is free; the paper also tries zero-shot per-token early exit, KV-cache sharing, continuous-CoT warm starts and self-speculative decoding.
+
+## Loop layout
+
+| Facet | Value |
+|---|---|
+| Where the loop sits | middle core (prelude-core-coda) |
+| Weight sharing | fully tied |
+| Passes in training | sampled |
+| Passes at test time | can run more passes than trained |
+| Input injection | concat + projection |
+| KV cache | per-pass KV |
+| Gradient through passes | truncated (last k passes) |
+| Origin | trained from scratch |
+| FFN | dense FFN |
+| Attention in the loop | full attention |
+| Passes (R) | train log-normal Poisson, mean 32; test 1-64 (32 in most tables) |
+| Backprop (R) | last 8 |
+
+Huginn-0125 has 8 distinct layers in a (2,4,2) layout with hidden size 5280 and 55 heads of size 96. The core starts with an adapter that maps the concatenation of the state and the prelude output from 2h to h, and the first state is random noise. At r=32 the model unrolls to 132 effective layers. Small ablation models use (1,4,1) with h=1024.
+
+## Results
+
+**3.5B parameters, both models at 180B tokens (0.18T), same data and setup** · ARC-C | HellaSwag | GSM8K CoT · Table 4
+
+| Variant | Value |
+|---|---|
+| Fixed-depth baseline (one core pass) | 26.96 \| 37.34 \| 1.82/2.20 |
+| Recurrent model, r=32 | 29.18 \| 48.80 \| 9.02/10.24 |
+| Recurrent model, r=1 | 23.72 \| 29.19 \| 0.00/0.15 |
+
+GSM8K CoT pairs are copied as printed; the Table 2 caption says the paper reports flexible and strict extract.
+
+**Huginn-0125 (3.5B, 800B tokens), lm-eval zero-shot at different test-time recurrences r** · ARC-C | HellaSwag | MMLU · Table 1 (arXiv v2); Table 4 (r=1 row)
+
+| Variant | Value |
+|---|---|
+| r=1 | 24.06 \| 29.34 \| 23.60 |
+| r=4 | 27.99 \| 43.46 \| 23.39 |
+| r=8 | 35.15 \| 58.54 \| 25.29 |
+| r=16 | 37.71 \| 64.67 \| 31.25 |
+| r=32 | 38.23 \| 65.21 \| 31.38 |
+
+arXiv v1 printed different values in the r=4, 8 and 16 rows of Table 1; these are the v2 values.
+
+**Huginn-0125 at r=32 next to fixed-depth open models** · GSM8K | GSM8K CoT | Minerva MATH · Table 2
+
+| Variant | Value |
+|---|---|
+| Huginn-0125, with system prompt | 24.87/38.13 \| 34.80/42.08 \| 11.24 |
+| Huginn-0125, without system prompt | 28.05/28.20 \| 32.60/34.57 \| 12.58 |
+| OLMo-7B-0724 | 28.66/28.73 \| 28.89/28.89 \| 5.62 |
+| OLMo-2-1124-7B | 66.72/66.79 \| 61.94/66.19 \| 19.08 |
+
+**Huginn-0125, first-turn MT-Bench, inference schemes used zero-shot** · MT-Bench score (standard error) · Table 6; Sections 6.1-6.2
+
+| Variant | Value |
+|---|---|
+| baseline, 32 iterations | 5.662 (0.388) |
+| baseline, 64 iterations | 5.693 (0.386) |
+| KL exit, t=5×10^-4 | 5.562 (0.389) |
+| cache compression, s=4 | 5.856 (0.395) |
+| cache compression, s=8 | 5.631 (0.384) |
+| cache compression, s=16 | 5.687 (0.402) |
+
+s is the per-token KV-cache budget in recurrence steps. The paper states no difference from the baseline is statistically significant.
+
+## Other findings
+
+- Evaluated with one recurrence, the model barely changes between the 180B and 800B checkpoints (ARC-C 23.72 and 24.06); the authors conclude that later gains sit in the recurrent iterations, not in the prelude or coda. (Section 5.3; Table 4)
+- Useful depth depends on task and context. HellaSwag is near its peak at 8 recurrences; ARC-C saturates around 8-12 iterations with no few-shot examples, around 20 with 1 example and around 32 with 25-50 examples. (Section 5.3; Figures 7 and 9)
+- Tested at r=64 (training mean 32), an EMA of the last 75 checkpoints reaches 47.23% flexible (38.59% strict) on GSM8K. (Section 5.4)
+- In ablations, a core block that takes the step index as input interacted badly with path independence and gave models that cannot extrapolate; adding noise at each step did not help. (Section 3.1 (Remark 3.1))
+- Two earlier large-scale runs failed. In one, all tokens collapsed to the same hidden state; in the other, the model learned to ignore the recurrent state, with the same validation perplexity at 1 or 32 recurrences. The successful run used sandwich norms and a peak learning rate of 4×10^-5. (Section 4.3; Figure 5)
+
+## Comparison
+
+- **Baseline**: A fixed-depth twin with the same architecture, data and training setup that passes through the core block once, trained for 180B tokens (256 nodes, batch size 2 per GPU).
+- **Held fixed**: N (unique parameters), D (training tokens)
+- **Differs**: F (training FLOPs), L (executed layers per token)
+- **Baseline hyperparameters**: shared with the looped model
+- **Headline claim**: The 3.5B model trained on 800B tokens improves on reasoning benchmarks as test-time recurrence grows, up to a computation load equivalent to 50B parameters. At 180B tokens and r=32 it scores 9.02/10.24 on GSM8K CoT against 1.82/2.20 for the fixed-depth twin, which the paper calls 5 times better. (Abstract; Section 5.3; Table 4)
+
+## Caveats
+
+- A single large run with 3.5B parameters and 800B tokens, on a data mixture the authors could not ablate and with a constant learning rate that was never cooled down (47000 steps).
+- The looped-vs-fixed-depth comparison exists only at 180B tokens. It matches parameters and tokens but not compute, since the baseline passes through the core once.
+- The comparisons with Amber, Pythia, OLMo and StarCoder2 models (Tables 1-3) are not matched in parameters, tokens or data.
+- Training uses 4096-token sequences and backpropagates through only the last 8 core iterations.
+- Early exit, KV-cache sharing and continuous CoT are zero-shot uses of a model not trained for them, measured only on first-turn MT-Bench, where the differences are not statistically significant (Table 6). Self-speculative decoding has no reported measurements.
+
+## Reproducibility
+
+| Code | Weights | Configs | Data |
+|---|---|---|---|
+| available | available | available | available |
+
+## Open weights
+
+- Huginn-0125: [tomg-group-umd/huginn-0125](https://huggingface.co/tomg-group-umd/huginn-0125), [tomg-group-umd/huginn_swa_75_7_ema_0.9_merge](https://huggingface.co/tomg-group-umd/huginn_swa_75_7_ema_0.9_merge), [tomg-group-umd/huginn_swa_100_10_avg_0.9_merge](https://huggingface.co/tomg-group-umd/huginn_swa_100_10_avg_0.9_merge), [tomg-group-umd/step-00006144-recurrence_full_512_0](https://huggingface.co/tomg-group-umd/step-00006144-recurrence_full_512_0), [tomg-group-umd/step-00010752-recurrence_full_512_0](https://huggingface.co/tomg-group-umd/step-00010752-recurrence_full_512_0), [tomg-group-umd/step-00011904-recurrence_full_512_0](https://huggingface.co/tomg-group-umd/step-00011904-recurrence_full_512_0), [tomg-group-umd/step-00017920-recurrence_full_512_0](https://huggingface.co/tomg-group-umd/step-00017920-recurrence_full_512_0), [tomg-group-umd/step-00023808-recurrence_full_512_0](https://huggingface.co/tomg-group-umd/step-00023808-recurrence_full_512_0), [tomg-group-umd/step-00029824-recurrence_full_512_0](https://huggingface.co/tomg-group-umd/step-00029824-recurrence_full_512_0), [tomg-group-umd/step-00035840-recurrence_full_512_0](https://huggingface.co/tomg-group-umd/step-00035840-recurrence_full_512_0), [tomg-group-umd/step-00041728-recurrence_full_512_0](https://huggingface.co/tomg-group-umd/step-00041728-recurrence_full_512_0)
+
+## Related open questions
+
+- [Does running more passes at test time than in training keep improving quality?](questions.md#extra-passes-at-test-time) (partly)
+- [Can later passes reuse one KV cache instead of keeping KV for every pass?](questions.md#shared-kv-across-passes) (supports)
+
+## Authors
+
+Jonas Geiping, Sean McLeish, Neel Jain, John Kirchenbauer, Siddharth Singh, Brian R. Bartoldson, Bhavya Kailkhura, Abhinav Bhatele, Tom Goldstein
+
+
+# Open questions
+
+English · [简体中文](../zh/questions.md) · [Back to the list](../../README.md)
+
+## <a id="extra-passes-at-test-time"></a>Does running more passes at test time than in training keep improving quality?
+
+**mixed** · updated 2026-11-23
+
+Models trained with a sampled or variable number of passes stay flat or improve slightly beyond the training depth, and their gains level off near the training mean. Ouro, trained with 4 steps and learned exits rather than sampled depth, loses accuracy at 5-8 steps. No source trains the same model both ways, so the role of sampled-depth training is not isolated.
+
+| Paper | Stance | Setting | Finding | Ref |
+|---|---|---|---|---|
+| [Huginn](2502.05171.md) | partly | 3.5B dense, 800B tokens, passes sampled with mean 32 | First-turn MT-Bench is 5.693 at 64 iterations and 5.662 at 32, a difference the paper calls not significant. ARC-C saturates around 8-12 iterations without few-shot examples and around 32 with 25-50 examples. | Table 6; Section 5.3; Figures 7 and 9 |
+| [Parcae](2604.12946.md) | partly | 350M (RDM setup) trained with mean 8 passes sampled per sequence; 140M-1.3B models for the saturation result | Validation PPL is 10.09 at T=8 and 10.11 at T=16. Run at up to twice the training mean, the 140M-1.3B models' gains plateau near T = μ_rec. | Table 8; Section 5.3; Figure 7 |
+| [Looped CED](2611.13378.md) | partly | 150M CED, 6.0B tokens, rounds sampled from max(1, Poisson(8)) | Running 12 or 16 rounds instead of 8 lowers BPB by at most 0.0004 and never raises it (0.8465 at T=8, 0.8462 at T=12 and 16). | Appendix F; Table 9 |
+| [Retrofitted Recurrence](2511.07384.md) | partly | TinyLlama-1.1B retrofitted to (4,8,4), about 50B math tokens | Trained with mean recurrence 4, the model scores 38.0 on GSM8K at test recurrence 4 and 37.9 at 32; trained with mean 16, it scores 43.4 at test recurrence 16 and 43.7 at 32. | Table 3 |
+| [Inkling 2 Mini](tml-inkling-2-mini.md) | partly | TML-d24-varloop-research, 26.4B total / 3.4B active MoE, trained with 1-5 passes | Never trained with more than five passes, it keeps a no-CoT 50% time horizon of 40 s at ten passes against 42 s at five, and on N-Hop Lookup it keeps improving out to ten loops. | No-CoT capabilities; figures "No-CoT time horizons" and "N-Hop Lookup" |
+| [Ouro (LoopLM)](2510.25741.md) | against | Ouro 1.4B and 2.6B, 7.7T tokens, trained with 4 recurrent steps (8 in the first stage) and learned exit gates | MMLU falls from 67.45 at T=4 to 64.49 at T=8 for the 1.4B model and from 74.60 to 72.24 for the 2.6B model; AIME 2024 for the 1.4B Thinking model falls from 65.00 at T=4 to 38.67 at T=8. Safety on HEx-PHI keeps improving through the extrapolated steps. | Tables 10-13; Section 7.1; Figure 8a |
+
+## <a id="loop-placement"></a>Where in the stack should the loop sit?
+
+**consistent** · updated 2026-11-23
+
+Every comparison favors looping lower or middle layers over the whole stack or the top layers, and in layouts with a shared global KV the loop should include the layers that produce it. The comparisons come from models of 1.3B parameters or less, or from runs whose sizes are not given.
+
+| Paper | Stance | Setting | Finding | Ref |
+|---|---|---|---|---|
+| [SMELT](2609.01343.md) | supports | 200M MoE, FLOPs, parameters and KV matched, two passes | Looping the middle 6 of 12 layers gives validation loss 1.9257 against 1.9322 for looping all 12 (S ≈ 85%), and every span tested beats the unlooped Baseline (1.9445). DCLM Core at S ≈ 95% peaks at the 67% span instead. | Table 3; Section 3.3 |
+| [Inkling 2 Mini](tml-inkling-2-mini.md) | supports | Scaling-ladder runs, three passes, equal training compute; model sizes not given | Looping the middle 12 layers beat looping the last 12 on 27 of 28 evaluations; a no-loop baseline would need an estimated 1.51-1.91x the compute to match the middle loop, against 1.24-1.36x for the last loop. | Looping design; figure "Compute-equivalent gain by loop position" |
+| [Looped CED](2611.13378.md) | supports | 150M CED, 6.0B and 29.6B tokens | Looping encoder layers L2-5, which contain the global KV source, reaches 0.8468 BPB against 0.8648 for looping decoder layers L7-10 (no loop 0.8716); after 29.6B tokens the decoder loop captures only 38% of the encoder loop's improvement. | Table 1; Table 2 |
+| [YOCO-U](2604.01220.md) | supports | 1.3B dense, 20B tokens | Looping the self-decoder averages 48.25 against 47.34 for looping the cross-decoder. At about 2x FLOPs, looping the whole 20-layer Transformer twice averages 47.8 against 48.3 for RINS and YOCO-U. | Table 5; Table 3 |
+| [MoR](2507.10524.md) | partly | Fixed-depth recursive models; 730M base with unique parameters fixed at 252M (Nr=3), and 135M base (Nr=2) | Keeping the first and last layers unshared (Middle-Cycle, 1+8+1) beats cycling the whole stack (Cycle, 10 layers) at 252M unique parameters, NLL 2.7552 vs 2.7573 and accuracy 42.32 vs 41.90; at the 135M base with Nr=2, Cycle is slightly ahead (3.0071 vs 3.0330). | Appendix F; Tables 10-11 |
+
+## <a id="more-passes-fixed-compute"></a>With training compute held fixed, do more passes help?
+
+**mixed** · updated 2026-11-23
+
+On language modeling at the budgets tested, SMELT and MoR find two passes better than three or four with FLOPs fixed, and in Ouro the gap to untied models of the same executed depth grows with the step count. Other results point the other way: Parcae's compute-optimal number of passes rises with the training budget, deeper training recurrence pays off per training FLOP for two of three retrofitted model families, and on Ouro's synthetic Mano task more passes of fewer layers win at the same executed depth.
+
+| Paper | Stance | Setting | Finding | Ref |
+|---|---|---|---|---|
+| [SMELT](2609.01343.md) | against | 200M MoE, S ≈ 85%, FLOPs, parameters and KV matched (more passes force a narrower model) | Validation loss is 1.9257 at 2 passes, 1.9385 at 3 and 1.9360 at 4; DCLM Core is 27.57, 27.15 and 27.30. | Table 5; Section 3.5 |
+| [MoR](2507.10524.md) | against | 360M base, 16.5e18 training FLOPs; more recursions mean fewer unique parameters (167M, 118M, 98M) | Expert-choice MoR reaches validation NLL 2.7511 at Nr=2, 2.7925 at Nr=3 and 2.8204 at Nr=4; fixed-depth recursion gives 2.8079, 2.8466 and 2.8781 (vanilla 2.7824). | Table 3 |
+| [Ouro (LoopLM)](2510.25741.md) | against | 53M-1.36B, 20B FineWeb-Edu tokens; untied model with the same executed depth and more unique parameters | The untied model scores higher in every case and the gap grows with the step count; at 1.3B the average benchmark gap is 0.017 at 2 steps and 0.025 at 4. | Appendix D.1; Table 18 |
+| [Ouro (LoopLM)](2510.25741.md) | supports | Synthetic Mano task (modular arithmetic), 12 executed layers in every layout, unique parameters differ | At maximum expression length 24, 3 layers looped 4 times reach 92.2 exact-match accuracy, against 78.0 for 2 layers x 6, 35.1 for 6 layers x 2 and 34.8 for 12 unlooped layers. | Section 6.2; Figure 6 (right) |
+| [Parcae](2604.12946.md) | partly | 140M and 370M, parameters and training FLOPs fixed (tokens shrink as passes grow) | The compute-optimal mean recurrence rises with the budget, from 2 at 1x10^18 FLOPs to 10 at 64x10^18 for 140M, following a power law with exponent about 0.40; at some small budgets fixed depth scores higher Core (10.5 vs 9.0 at 2x10^18 FLOPs). | Table 6; Section 5.2; Figure 5 |
+| [Retrofitted Recurrence](2511.07384.md) | partly | 1B-class models retrofitted from TinyLlama, OLMo and Llama, about 50B math tokens | Per training FLOP, larger training recurrences give a larger GSM8K gain for OLMo and Llama but not for TinyLlama. | Section 4.3.2; Figure 20 |
+
+## <a id="shared-kv-across-passes"></a>Can later passes reuse one KV cache instead of keeping KV for every pass?
+
+**mixed** · updated 2026-11-23
+
+Reusing the last pass's KV works when the model is trained for it or when it is done only during decoding, while reusing the first pass's KV alone costs accuracy unless a local window is added. Looped CED loses nothing with last-round KV under sampled-depth training but fails with fixed depth, Ouro keeps quality with last-step KV in decoding but not in prefill, and PLT needs a gated sliding window on top of first-pass KV sharing.
+
+| Paper | Stance | Setting | Finding | Ref |
+|---|---|---|---|---|
+| [Looped CED](2611.13378.md) | partly | 150M CED, 6.0B tokens, exact fp32 token-by-token decoding at T=8 | With sampled-depth training, last-round KV changes BPB by -0.0002 relative to per-round KV; with fixed-depth training it adds +0.0317. | Table 3 |
+| [Ouro (LoopLM)](2510.25741.md) | partly | Ouro 1.4B, KV reuse during decoding only | Keeping only the last step's KV gives GSM8K 78.85 and MATH-500 80.40 against 78.92 and 82.40 with all four caches, at 4.00x less memory; first-step-only KV drops to 18.73 and 8.43, and reusing KV during prefill costs more than 10 points on GSM8K. | Section 5.4.2; Table 14 |
+| [PLT](2510.24824.md) | partly | 680M activated / 13B total MoE, 150B tokens | Sharing the first loop's KV halves the KV cache (560M to 280M) but lowers average accuracy from 39.6 to 36.2; adding gated SWA with a 64-token window restores 39.7 at 284M. | Table 2 |
+| [YOCO-U](2604.01220.md) | supports | 1.3B dense, 20B tokens | Looping the cross-decoder while it keeps reading the one shared global KV averages 47.34, against 46.41 when those layers use their own self-attention KV instead. | Table 5; Section 4.3 |
+| [MoR](2507.10524.md) | partly | 360M-base family, 10B FineWeb-Edu tokens | Recursive KV sharing, which reuses the first recursion's KV, raises validation NLL for expert-choice MoR from 2.8667 to 2.8895 but lowers it for token-choice MoR from 2.9358 to 2.9155. | Section 4.3; Table 15 |
+| [Huginn](2502.05171.md) | supports | Huginn 3.5B, zero-shot (not trained for it), first-turn MT-Bench | Capping the per-token KV cache at s=4, 8 or 16 recurrence steps scores 5.856, 5.631 and 5.687 against 5.662 for the full cache at 32 iterations; the paper finds no significant difference. | Table 6; Section 6.2 |

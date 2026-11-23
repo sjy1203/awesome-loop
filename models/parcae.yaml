@@ -1,0 +1,31 @@
+id: parcae
+name: Parcae
+paper: "2604.12946"
+org: [Sandy Research]
+hf: [SandyResearch/parcae-140m, SandyResearch/parcae-370m, SandyResearch/parcae-770m, SandyResearch/parcae-1.3b]
+params: "140M / 370M / 770M / 1.3B"
+tokens: "11.2B / 29.6B / 61.6B / 104B"
+context: "2,048"
+passes:
+  default: "8"
+  range: "1-16 (evaluated in the paper)"
+kv: per-pass
+license: not stated on the model cards
+inference: [custom]
+notes:
+  en: >-
+    Base models (no instruction tuning) trained on FineWeb-Edu; the prelude, recurrent and coda blocks have 2, 4, 6 and
+    8 layers at the four sizes. Load them with the parcae-lm package (parcae_lm.from_pretrained); the tokenizer is
+    SandyResearch/parcae-tokenizer. The model cards give no license, while the GitHub code repository is MIT-licensed.
+    The generation wrapper in the GitHub repo (receval) defaults to num_steps = mean_recurrence (8) and keeps a separate
+    KV entry for every recurrence step; the same repository also has KV-sharing modes from the authors' later BeNice!
+    paper.
+  zh: >-
+    基座模型（未做指令微调），在 FineWeb-Edu 上训练；四个规模的 prelude、循环块、coda 各为 2、4、6、8 层。用 parcae-lm 包加载（parcae_lm.from_pretrained），tokenizer 在 SandyResearch/parcae-tokenizer。模型卡没有写 license，GitHub 代码仓库是 MIT。GitHub 仓库里的生成封装（receval）默认 num_steps = mean_recurrence（8），每一遍循环各存一份 KV；同一仓库还提供作者后续 BeNice! 论文中的 KV 共享模式。
+ref: >-
+  HF API and model cards of the four repos (sizes, base-model note, parcae-lm usage, Recurrence 8, no license field) and
+  their config.json (mean_recurrence 8, block_size 2048); GitHub README (model table, tokenizer) and GitHub API (MIT);
+  paper Table 18 (context 2,048), Table 21 (training tokens, not given on the cards) and Appendix O (evaluation at
+  T = 1-16); receval/models/parcae.py and parcae_lm/utils/cache.py in the GitHub repo (default num_steps and the
+  per-step "full" cache).
+added: "2026-11-23"
