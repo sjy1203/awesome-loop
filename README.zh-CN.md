@@ -106,9 +106,9 @@
 
 ## 全部论文
 
-收录的全部核心论文（含精读卡），按类别分组，组内从新到旧。另有 165 篇相关论文（语言模型以外的循环、HRM 和 TRM 这类谜题推理模型、早期的前身工作和相关方向）单独列在 [docs/zh/related.md](docs/zh/related.md)。每天从 arXiv 检索到的候选先放进 [data/candidates.json](data/candidates.json)，确认属于循环模型后再收录。
+收录的全部核心论文（含精读卡），按类别分组，组内从新到旧，点击类别名展开。另有 165 篇相关论文（语言模型以外的循环、HRM 和 TRM 这类谜题推理模型、早期的前身工作和相关方向）单独列在 [docs/zh/related.md](docs/zh/related.md)。每天从 arXiv 检索到的候选先放进 [data/candidates.json](data/candidates.json)，确认属于循环模型后再收录。
 
-### 理论与能力 (36)
+<details><summary><b>理论与能力 (36)</b></summary>
 
 | 日期 | 论文 | 一句话 | 链接 | 影响力 |
 |---|---|---|---|---|
@@ -149,7 +149,9 @@
 | 2023-01-30 | [Looped Transformers as Programmable Computers](https://arxiv.org/abs/2301.13196)<br><sub>Angeliki Giannou 等</sub> | 证明一个权重经过编程设定的循环 13 层 transformer 能从输入中读取指令和内存，模拟一台小型指令集计算机，并运行计算器、线性代数例程和 in-context learning 算法。 | [论文](https://arxiv.org/abs/2301.13196) | 引用 333 · HF 点赞 1 · HN 得分 4 |
 | 2018-12-05 | [Attending to Mathematical Language with Transformers](https://arxiv.org/abs/1812.02825)<br><sub>Artit Wangperawong</sub> | 在带符号变量的字符级数学表达式求值任务上，标准 Transformer、带循环的 Universal Transformer 和带循环与自适应计算时间的自适应 Universal Transformer 的测试准确率最高分别达到 76.1%、78.8% 和 84.9%。 | [论文](https://arxiv.org/abs/1812.02825) · [代码](https://github.com/artitw/tensor2tensor) | 引用 30 · star 2 |
 
-### 结构：放哪循环、共享什么 (51)
+</details>
+
+<details><summary><b>结构：放哪循环、共享什么 (51)</b></summary>
 
 | 日期 | 论文 | 一句话 | 链接 | 影响力 |
 |---|---|---|---|---|
@@ -205,7 +207,9 @@
 | 2019-05-16 | [Latent Universal Task-Specific BERT](https://arxiv.org/abs/1905.06638)<br><sub>Alon Rozental 等</sub> | Latent Universal Task-Specific BERT 仿照 Universal Transformer，把 BERT 依次堆叠的自注意力块换成一个循环使用的三层块并加入 ACT；在推文上，Universal Model 有 46.3M 参数（基础模型为 110.1M），masked LM 准确率为 0.508（基础模型为 0.507）。 | [论文](https://arxiv.org/abs/1905.06638) | 引用 4 |
 | 2018-07-10 | [Universal Transformers](https://arxiv.org/abs/1807.03819)<br><sub>Mostafa Dehghani 等 · ICLR 2019</sub> | Universal Transformer 在深度方向上循环使用同一个 Transformer 块，并按位置动态停止；在一定假设下它是图灵完备的，在算法和语言任务上优于标准 Transformer，在 WMT14 En-De 上提高 0.9 BLEU。 | [论文](https://arxiv.org/abs/1807.03819) | 引用 1,237 · HF 点赞 2 |
 
-### 结构：遍间状态与残差 (43)
+</details>
+
+<details><summary><b>结构：遍间状态与残差 (43)</b></summary>
 
 | 日期 | 论文 | 一句话 | 链接 | 影响力 |
 |---|---|---|---|---|
@@ -253,7 +257,9 @@
 | 2021-06-08 | [Staircase Attention for Recurrent Processing of Sequences](https://arxiv.org/abs/2106.04279)<br><sub>Da Ju 等</sub> | Staircase attention 让共享的 Transformer 核心逐 chunk 处理序列，并在步与步之间传递 backward token，使每个 token 经过核心 N 次（Ladder 变体则在完整序列上重复该核心）；参数量相同时，它能解决 Transformer 做不到的追踪任务，并降低语言建模和对话任务的困惑度。 | [论文](https://arxiv.org/abs/2106.04279) | 引用 22 |
 | 2020-02-21 | [Addressing Some Limitations of Transformers with Feedback Memory](https://arxiv.org/abs/2002.09402)<br><sub>Angela Fan 等</sub> | Feedback Transformer 让每一层都关注逐时间步的记忆向量，该向量由各层过去的表示加权求和得到，使低层也能看到过去的高层表示；小而浅的模型在语言建模、机器翻译和强化学习上优于可比的 Transformer。 | [论文](https://arxiv.org/abs/2002.09402) | 引用 118 · HF 点赞 0 |
 
-### 深度控制 (34)
+</details>
+
+<details><summary><b>深度控制 (34)</b></summary>
 
 | 日期 | 论文 | 一句话 | 链接 | 影响力 |
 |---|---|---|---|---|
@@ -292,7 +298,9 @@
 | 2025-02-17 | [Zero Token-Driven Deep Thinking in LLMs: Unlocking the Full Potential of Existing Parameters via Cyclic Refinement](https://arxiv.org/abs/2502.12214)<br><sub>Guanghao Li 等</sub> | Zero Token Transformer 让首层和末层不参与参数循环，只循环中间层，并在每次循环中加入带可训练 key 的 zero token，其注意力分数指导每次循环的计算并触发提前退出；在 6 个计算周期的预算下，其平均分为 33.52，循环全部层的基线为 32.79。 | [论文](https://arxiv.org/abs/2502.12214) | 引用 6 |
 | 2024-02-01 | [Investigating Recurrent Transformers with Dynamic Halt](https://arxiv.org/abs/2402.00976)<br><sub>Jishnu Ray Chowdhury 等</sub> | 比较 Universal Transformer 的深度循环与 Temporal Latent Bottleneck 的分块时间循环，并提出带全局均值动态停止机制的门控 UT（GUT）；GUT 在 ListOps 和 Logical Inference 上总体优于 UT，而分块循环在 flip-flop 语言建模和长度泛化上更稳健。 | [论文](https://arxiv.org/abs/2402.00976) · [代码](https://github.com/JRC1995/InvestigatingRecurrentTransformers) | 引用 8 · star 2 |
 
-### 训练与改造 (52)
+</details>
+
+<details><summary><b>训练与改造 (52)</b></summary>
 
 | 日期 | 论文 | 一句话 | 链接 | 影响力 |
 |---|---|---|---|---|
@@ -349,7 +357,9 @@
 | 2024-10-28 | [Relaxed Recursive Transformers: Effective Parameter Sharing with Layer-wise LoRA](https://arxiv.org/abs/2410.20672)<br><sub>Sangmin Bae 等 · ICLR 2025</sub> | 把预训练 LLM 转换为循环复用同一组共享层的 Recursive Transformer，并可用逐深度 LoRA 放松权重共享；recursive Gemma 1B 优于 TinyLlama 1.1B、Pythia 1B 和知识蒸馏基线，并恢复了原始 Gemma 2B 的大部分性能。 | [论文](https://arxiv.org/abs/2410.20672) | 引用 136 · HF 点赞 10 · HN 得分 1 |
 | 2021-06-28 | [Stabilizing Equilibrium Models by Jacobian Regularization](https://arxiv.org/abs/2106.14342)<br><sub>Shaojie Bai 等 · ICML 2021</sub> | 对 DEQ 不动点更新的 Jacobian 做正则化，可以稳定前向和反向收敛；在 WikiText-103 上，不加正则时会发散的 Pre-LN DEQ-Transformer 达到 24.5 的困惑度，DEQ-Transformer 的训练时间从 Transformer-XL 的 3.1× 降到 1.5×。 | [论文](https://arxiv.org/abs/2106.14342) · [代码](https://github.com/locuslab/deq) | 引用 113 · star 815 |
 
-### Scaling 与预算 (18)
+</details>
+
+<details><summary><b>Scaling 与预算 (18)</b></summary>
 
 | 日期 | 论文 | 一句话 | 链接 | 影响力 |
 |---|---|---|---|---|
@@ -372,7 +382,9 @@
 | 2026-04-14 | [Parcae: Scaling Laws For Stable Looped Language Models](https://arxiv.org/abs/2604.12946) · **[精读卡](docs/zh/2604.12946.md)**<br><sub>Hayden Prairie 等</sub> | 把循环的注入约束成稳定的负对角形式，按序列采样遍数训练，并在固定参数量下拟合循环的训练和推理 scaling law。 | [论文](https://arxiv.org/abs/2604.12946) · [代码](https://github.com/sandyresearch/parcae) · [项目页](https://sandyresearch.github.io/parcae/) · [权重](https://huggingface.co/SandyResearch/parcae-140m) | 引用 92 · star 195 · HF 点赞 11 |
 | 2025-06-23 | [Beyond Parameters: Exploring Virtual Logic Depth for Scaling Laws](https://arxiv.org/abs/2506.18233)<br><sub>Ruike Zhu 等</sub> | 虚拟逻辑深度（VLD）按顺序、循环或逆循环模式复用层，在不增加参数的情况下增加有效深度；知识容量几乎不变而推理能力提升，例如循环模式在 VLD 因子为 5 时把 4 层模型的准确率从 46.3% 提高到 70.7%。 | [论文](https://arxiv.org/abs/2506.18233) · [代码](https://anonymous.4open.science/r/virtual_logical_depth-8024/) | 引用 10 |
 
-### 系统与推理 (47)
+</details>
+
+<details><summary><b>系统与推理 (47)</b></summary>
 
 | 日期 | 论文 | 一句话 | 链接 | 影响力 |
 |---|---|---|---|---|
@@ -424,7 +436,9 @@
 | 2025-10-16 | [Efficient Parallel Samplers for Recurrent-Depth Models and Their Connection to Diffusion Language Models](https://arxiv.org/abs/2510.14961)<br><sub>Jonas Geiping 等</sub> | 为循环深度模型设计的 diffusion forcing 采样器在每次前向时都解码新 token，并通过循环并行地继续细化这些 token 的潜状态；无需任何调参直接用于现有的 3.5B 循环深度 Transformer，最高带来 5x 加速。 | [论文](https://arxiv.org/abs/2510.14961) · [代码](https://github.com/seal-rg/recurrent-pretraining) | 引用 16 · star 1,000 · HF 点赞 8 |
 | 2025-01-26 | [StagFormer: Time Staggering Transformer Decoding for RunningLayers In Parallel](https://arxiv.org/abs/2501.15665)<br><sub>Dylan Cutler 等</sub> | StagFormer 让后一个 Transformer 栈只能看到前一个栈对过去 token 的输出，使各栈在解码时并行执行；当 2 个交错的 18 层栈共享除 cross-attention 外的全部权重时，Pile 困惑度为 3.896，18 层和 36 层基线分别为 4.026 和 3.780。 | [论文](https://arxiv.org/abs/2501.15665) | 引用 3 |
 
-### 机理与失败模式 (44)
+</details>
+
+<details><summary><b>机理与失败模式 (44)</b></summary>
 
 | 日期 | 论文 | 一句话 | 链接 | 影响力 |
 |---|---|---|---|---|
@@ -473,13 +487,17 @@
 | 2022-06-09 | [Unveiling Transformers with LEGO: a synthetic reasoning task](https://arxiv.org/abs/2206.04301)<br><sub>Yi Zhang 等</sub> | 提出 LEGO 链式推理任务，并比较 BERT 与跨层权重共享的 ALBERT：只用变量 #0-#5 训练时，ALBERT 在 #6 和 #7 上接近满分，探针显示其逐层推进更像 for 循环；训练时在 6 到 12 之间随机采样深度可进一步改善长度外推。 | [论文](https://arxiv.org/abs/2206.04301) | 引用 122 |
 | 2021-08-26 | [The Devil is in the Detail: Simple Tricks Improve Systematic Generalization of Transformers](https://arxiv.org/abs/2108.12284)<br><sub>Róbert Csordás 等 · EMNLP 2021</sub> | 重新审视若干简单的配置选择，其中包括跨层共享权重的 Universal Transformer 变体；使用相对位置编码的 Universal Transformer 在 PCFG productivity 划分上达到 85%，此前报告为 50%；除 COGS 和 CFQ MCD 1 外，universal 变体均优于标准 Transformer。 | [论文](https://arxiv.org/abs/2108.12284) · [代码](https://github.com/robertcsordas/transformer_generalization) | 引用 175 · star 65 |
 
-### 安全与可监控 (3)
+</details>
+
+<details><summary><b>安全与可监控 (3)</b></summary>
 
 | 日期 | 论文 | 一句话 | 链接 | 影响力 |
 |---|---|---|---|---|
 | 2026-10-10 | [Running Fewer Loops Removes Refusal Behaviour in Recurrent-Depth Language Models](https://arxiv.org/abs/2610.15218)<br><sub>Seyedarmin Azizi 等</sub> | 在训练深度的一半时，Ouro-1.4B-Thinking 保留 89% 的 GSM8K 准确率，但协助有害请求的比例从 0.038 升至 0.205，而线性分类器在一次循环后仍能读出请求是否有害（ROC AUC 0.967）；以随机深度训练使 Huginn-0125 在 1 到 32 次循环的每个深度上有害协助率都不超过 0.040。 | [论文](https://arxiv.org/abs/2610.15218) | 引用 0 |
 | 2026-10-07 | [Safe at One Loop, Risky at Another: Aligning Safety Across Recurrent Depths in Looped Language Models](https://arxiv.org/abs/2610.10625)<br><sub>Yi Wang 等</sub> | 对 Ouro 循环语言模型的越狱攻击在更深的循环深度上可能更易成功，且可在深度间迁移；SafeBridge 为共享层加入深度专属控制、选择性状态桥接和跨深度联合安全监督，降低同深度与跨深度攻击的成功率，同时提升通用能力。 | [论文](https://arxiv.org/abs/2610.10625) | 引用 0 · HF 点赞 1 |
 | 2026-10-02 | [On the Chain-of-Thought Monitorability of Looped Language Models](https://arxiv.org/abs/2610.02741)<br><sub>Han Wang 等</sub> | 在 MonitorBench 的八个任务上，把 Ouro-1.4B-Thinking 的循环深度从 T=4 提高到 T=8 会降低部分任务在压力测试下的 CoT 可监控性（Direct Concealment 下 Logic 从 77.9% 降到 41.8%），但循环语言模型并不比规模或深度匹配的非循环模型系统性地更难监控。 | [论文](https://arxiv.org/abs/2610.02741) | 引用 2 |
+
+</details>
 
 ## 设计空间
 

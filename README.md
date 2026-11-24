@@ -106,9 +106,9 @@ Held fixed: **N** unique parameters · **A** active parameters · **F** training
 
 ## All papers
 
-Every core paper, deep cards included, grouped by category and newest first. Another 165 related papers (loops outside language models, puzzle reasoners such as HRM and TRM, earlier precursors and adjacent work) are listed in [docs/en/related.md](docs/en/related.md). New arXiv candidates are queued in [data/candidates.json](data/candidates.json) and added after a scope check.
+Every core paper, deep cards included, grouped by category and newest first; click a category to expand it. Another 165 related papers (loops outside language models, puzzle reasoners such as HRM and TRM, earlier precursors and adjacent work) are listed in [docs/en/related.md](docs/en/related.md). New arXiv candidates are queued in [data/candidates.json](data/candidates.json) and added after a scope check.
 
-### Theory and capability (36)
+<details><summary><b>Theory and capability (36)</b></summary>
 
 | Date | Paper | TL;DR | Links | Impact |
 |---|---|---|---|---|
@@ -149,7 +149,9 @@ Every core paper, deep cards included, grouped by category and newest first. Ano
 | 2023-01-30 | [Looped Transformers as Programmable Computers](https://arxiv.org/abs/2301.13196)<br><sub>Angeliki Giannou et al.</sub> | Shows that a looped 13-layer transformer with programmed weights, reading instructions and memory from its input, emulates a small instruction-set computer and runs a calculator, linear algebra routines and in-context learning algorithms. | [paper](https://arxiv.org/abs/2301.13196) | cites 333 · HF upvotes 1 · HN points 4 |
 | 2018-12-05 | [Attending to Mathematical Language with Transformers](https://arxiv.org/abs/1812.02825)<br><sub>Artit Wangperawong</sub> | On character-level evaluation of math expressions with symbolic variables, a standard Transformer, a Universal Transformer with recurrence and an adaptive Universal Transformer with recurrence and adaptive computation time reach test accuracies as high as 76.1%, 78.8% and 84.9%. | [paper](https://arxiv.org/abs/1812.02825) · [code](https://github.com/artitw/tensor2tensor) | cites 30 · stars 2 |
 
-### Architecture: where to loop, what to share (51)
+</details>
+
+<details><summary><b>Architecture: where to loop, what to share (51)</b></summary>
 
 | Date | Paper | TL;DR | Links | Impact |
 |---|---|---|---|---|
@@ -205,7 +207,9 @@ Every core paper, deep cards included, grouped by category and newest first. Ano
 | 2019-05-16 | [Latent Universal Task-Specific BERT](https://arxiv.org/abs/1905.06638)<br><sub>Alon Rozental et al.</sub> | Latent Universal Task-Specific BERT replaces BERT's stacked self-attention blocks with one recurring three-layer block plus ACT, as in the Universal Transformer; on tweets the Universal Model has 46.3M parameters versus 110.1M for the base model, with masked LM accuracy 0.508 versus 0.507. | [paper](https://arxiv.org/abs/1905.06638) | cites 4 |
 | 2018-07-10 | [Universal Transformers](https://arxiv.org/abs/1807.03819)<br><sub>Mostafa Dehghani et al. · ICLR 2019</sub> | Universal Transformer applies the same Transformer block recurrently over depth, with dynamic per-position halting; it is Turing-complete under some assumptions and outperforms standard Transformers on algorithmic and language tasks, gaining 0.9 BLEU on WMT14 En-De. | [paper](https://arxiv.org/abs/1807.03819) | cites 1,237 · HF upvotes 2 |
 
-### Architecture: cross-pass state and residuals (43)
+</details>
+
+<details><summary><b>Architecture: cross-pass state and residuals (43)</b></summary>
 
 | Date | Paper | TL;DR | Links | Impact |
 |---|---|---|---|---|
@@ -253,7 +257,9 @@ Every core paper, deep cards included, grouped by category and newest first. Ano
 | 2021-06-08 | [Staircase Attention for Recurrent Processing of Sequences](https://arxiv.org/abs/2106.04279)<br><sub>Da Ju et al.</sub> | Staircase attention runs a shared Transformer core chunk by chunk, carrying backward tokens so each token passes through the core N times (Ladder repeats it on the full sequence); at equal parameters it solves tracking tasks Transformers fail and lowers language-modeling and dialogue perplexity. | [paper](https://arxiv.org/abs/2106.04279) | cites 22 |
 | 2020-02-21 | [Addressing Some Limitations of Transformers with Feedback Memory](https://arxiv.org/abs/2002.09402)<br><sub>Angela Fan et al.</sub> | Feedback Transformer makes every layer attend to per-timestep memory vectors that mix all layers' past representations, exposing high-level past states to low layers; small, shallow models beat comparable Transformers on language modeling, translation and RL. | [paper](https://arxiv.org/abs/2002.09402) | cites 118 · HF upvotes 0 |
 
-### Depth control (34)
+</details>
+
+<details><summary><b>Depth control (34)</b></summary>
 
 | Date | Paper | TL;DR | Links | Impact |
 |---|---|---|---|---|
@@ -292,7 +298,9 @@ Every core paper, deep cards included, grouped by category and newest first. Ano
 | 2025-02-17 | [Zero Token-Driven Deep Thinking in LLMs: Unlocking the Full Potential of Existing Parameters via Cyclic Refinement](https://arxiv.org/abs/2502.12214)<br><sub>Guanghao Li et al.</sub> | Zero Token Transformer keeps the first and last layers out of parameter cycling, loops only the middle layers, and adds per-cycle zero tokens with trainable keys whose attention scores guide each cycle and trigger early exit; under a 6-cycle budget it averages 33.52 versus 32.79 for cycling all layers. | [paper](https://arxiv.org/abs/2502.12214) | cites 6 |
 | 2024-02-01 | [Investigating Recurrent Transformers with Dynamic Halt](https://arxiv.org/abs/2402.00976)<br><sub>Jishnu Ray Chowdhury et al.</sub> | Compares depth-wise Universal Transformer recurrence with chunk-wise Temporal Latent Bottleneck recurrence and proposes GUT, a gated UT with global mean-based dynamic halting; GUT generally beats UT on ListOps and Logical Inference, while chunk-wise recurrence is more robust in flip-flop LM and length generalization. | [paper](https://arxiv.org/abs/2402.00976) · [code](https://github.com/JRC1995/InvestigatingRecurrentTransformers) | cites 8 · stars 2 |
 
-### Training and retrofitting (52)
+</details>
+
+<details><summary><b>Training and retrofitting (52)</b></summary>
 
 | Date | Paper | TL;DR | Links | Impact |
 |---|---|---|---|---|
@@ -349,7 +357,9 @@ Every core paper, deep cards included, grouped by category and newest first. Ano
 | 2024-10-28 | [Relaxed Recursive Transformers: Effective Parameter Sharing with Layer-wise LoRA](https://arxiv.org/abs/2410.20672)<br><sub>Sangmin Bae et al. · ICLR 2025</sub> | Converts pretrained LLMs into Recursive Transformers that loop one shared block, optionally relaxed with depth-wise LoRA; recursive Gemma 1B beats TinyLlama 1.1B, Pythia 1B and distillation baselines and recovers most of Gemma 2B's performance. | [paper](https://arxiv.org/abs/2410.20672) | cites 136 · HF upvotes 10 · HN points 1 |
 | 2021-06-28 | [Stabilizing Equilibrium Models by Jacobian Regularization](https://arxiv.org/abs/2106.14342)<br><sub>Shaojie Bai et al. · ICML 2021</sub> | Regularizing the Jacobian of the DEQ fixed-point update stabilizes forward and backward convergence; on WikiText-103 a Pre-LN DEQ-Transformer that diverges without it reaches 24.5 perplexity, and DEQ-Transformer training time falls from 3.1× to 1.5× that of Transformer-XL. | [paper](https://arxiv.org/abs/2106.14342) · [code](https://github.com/locuslab/deq) | cites 113 · stars 815 |
 
-### Scaling and budget (18)
+</details>
+
+<details><summary><b>Scaling and budget (18)</b></summary>
 
 | Date | Paper | TL;DR | Links | Impact |
 |---|---|---|---|---|
@@ -372,7 +382,9 @@ Every core paper, deep cards included, grouped by category and newest first. Ano
 | 2026-04-14 | [Parcae: Scaling Laws For Stable Looped Language Models](https://arxiv.org/abs/2604.12946) · **[deep card](docs/en/2604.12946.md)**<br><sub>Hayden Prairie et al.</sub> | Constrain the loop's injection to a stable negative-diagonal form, sample depth per sequence, and fit training and test-time scaling laws for looping at fixed parameter count. | [paper](https://arxiv.org/abs/2604.12946) · [code](https://github.com/sandyresearch/parcae) · [project](https://sandyresearch.github.io/parcae/) · [weights](https://huggingface.co/SandyResearch/parcae-140m) | cites 92 · stars 195 · HF upvotes 11 |
 | 2025-06-23 | [Beyond Parameters: Exploring Virtual Logic Depth for Scaling Laws](https://arxiv.org/abs/2506.18233)<br><sub>Ruike Zhu et al.</sub> | Virtual logical depth reuses layers in sequence, cycle or inverse-cycle patterns to add effective depth without new parameters; knowledge capacity stays nearly unchanged while reasoning improves, e.g. the cycle pattern raises a 4-layer model's accuracy from 46.3% to 70.7% with a VLD factor of 5. | [paper](https://arxiv.org/abs/2506.18233) · [code](https://anonymous.4open.science/r/virtual_logical_depth-8024/) | cites 10 |
 
-### Systems and inference (47)
+</details>
+
+<details><summary><b>Systems and inference (47)</b></summary>
 
 | Date | Paper | TL;DR | Links | Impact |
 |---|---|---|---|---|
@@ -424,7 +436,9 @@ Every core paper, deep cards included, grouped by category and newest first. Ano
 | 2025-10-16 | [Efficient Parallel Samplers for Recurrent-Depth Models and Their Connection to Diffusion Language Models](https://arxiv.org/abs/2510.14961)<br><sub>Jonas Geiping et al.</sub> | A diffusion forcing sampler for recurrent-depth models decodes new tokens at every forward pass and keeps refining their latent states in parallel through the recurrence; applied to an existing 3.5B recurrent-depth Transformer without any tuning, it gives up to a 5x speedup. | [paper](https://arxiv.org/abs/2510.14961) · [code](https://github.com/seal-rg/recurrent-pretraining) | cites 16 · stars 1,000 · HF upvotes 8 |
 | 2025-01-26 | [StagFormer: Time Staggering Transformer Decoding for RunningLayers In Parallel](https://arxiv.org/abs/2501.15665)<br><sub>Dylan Cutler et al.</sub> | StagFormer lets a later Transformer stack see earlier-stack outputs only for past tokens, so stacks run in parallel during decoding; when its 2 staggered 18-layer stacks share all weights except cross-attention, it reaches 3.896 Pile perplexity vs 4.026 for the 18-layer and 3.780 for the 36-layer baseline. | [paper](https://arxiv.org/abs/2501.15665) | cites 3 |
 
-### Mechanisms and failure modes (44)
+</details>
+
+<details><summary><b>Mechanisms and failure modes (44)</b></summary>
 
 | Date | Paper | TL;DR | Links | Impact |
 |---|---|---|---|---|
@@ -473,13 +487,17 @@ Every core paper, deep cards included, grouped by category and newest first. Ano
 | 2022-06-09 | [Unveiling Transformers with LEGO: a synthetic reasoning task](https://arxiv.org/abs/2206.04301)<br><sub>Yi Zhang et al.</sub> | Introduces the LEGO chain-of-reasoning task and compares BERT with weight-tied ALBERT: trained on variables #0-#5, ALBERT reaches near-perfect accuracy on #6 and #7, probing shows it progresses more like a for-loop, and sampling depth between 6 and 12 during training further improves length extrapolation. | [paper](https://arxiv.org/abs/2206.04301) | cites 122 |
 | 2021-08-26 | [The Devil is in the Detail: Simple Tricks Improve Systematic Generalization of Transformers](https://arxiv.org/abs/2108.12284)<br><sub>Róbert Csordás et al. · EMNLP 2021</sub> | Revisits simple configuration choices, including Universal Transformer variants with weights shared across layers; a relative-position Universal Transformer reaches 85% on the PCFG productivity split versus 50% previously reported, and universal variants beat standard ones except on COGS and CFQ MCD 1. | [paper](https://arxiv.org/abs/2108.12284) · [code](https://github.com/robertcsordas/transformer_generalization) | cites 175 · stars 65 |
 
-### Safety and monitorability (3)
+</details>
+
+<details><summary><b>Safety and monitorability (3)</b></summary>
 
 | Date | Paper | TL;DR | Links | Impact |
 |---|---|---|---|---|
 | 2026-10-10 | [Running Fewer Loops Removes Refusal Behaviour in Recurrent-Depth Language Models](https://arxiv.org/abs/2610.15218)<br><sub>Seyedarmin Azizi et al.</sub> | At half its trained depth Ouro-1.4B-Thinking keeps 89% of its GSM8K accuracy, but its harmful-request help rate rises from 0.038 to 0.205 although a linear classifier still detects harm after one loop (ROC AUC 0.967); training at random depths keeps Huginn-0125 at or below 0.040 from 1 to 32 loops. | [paper](https://arxiv.org/abs/2610.15218) | cites 0 |
 | 2026-10-07 | [Safe at One Loop, Risky at Another: Aligning Safety Across Recurrent Depths in Looped Language Models](https://arxiv.org/abs/2610.10625)<br><sub>Yi Wang et al.</sub> | Jailbreaks on Ouro LoopLMs can succeed more at deeper recurrent depths and transfer across depths; SafeBridge adds depth-specific control of shared layers, selective state bridging and joint cross-depth safety supervision, cutting matched- and cross-depth attack success while improving general utility. | [paper](https://arxiv.org/abs/2610.10625) | cites 0 · HF upvotes 1 |
 | 2026-10-02 | [On the Chain-of-Thought Monitorability of Looped Language Models](https://arxiv.org/abs/2610.02741)<br><sub>Han Wang et al.</sub> | Across eight MonitorBench tasks, raising Ouro-1.4B-Thinking's loop depth from T=4 to T=8 lowers stress-test CoT monitorability on some tasks (Logic 77.9% to 41.8% under Direct Concealment), but looped LMs are not systematically less monitorable than non-looped LMs matched on size or depth. | [paper](https://arxiv.org/abs/2610.02741) | cites 2 |
+
+</details>
 
 ## Design space
 

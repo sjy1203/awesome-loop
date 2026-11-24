@@ -101,7 +101,8 @@ UI = {
                    "License", "Runs on", "Downloads · likes"],
         "m_empty": "No open models yet.",
         "all_head": "All papers",
-        "all_note": ("Every core paper, deep cards included, grouped by category and newest first. Another {n} related "
+        "all_note": ("Every core paper, deep cards included, grouped by category and newest first; click a category to "
+                     "expand it. Another {n} related "
                      "papers (loops outside language models, puzzle reasoners such as HRM and TRM, earlier precursors "
                      "and adjacent work) are listed in [docs/en/related.md](docs/en/related.md). New arXiv candidates "
                      "are queued in [data/candidates.json](data/candidates.json) and added after a scope check."),
@@ -207,7 +208,7 @@ UI = {
                    "下载 · 点赞"],
         "m_empty": "暂无开源模型。",
         "all_head": "全部论文",
-        "all_note": ("收录的全部核心论文（含精读卡），按类别分组，组内从新到旧。另有 {n} 篇相关论文（语言模型以外的循环、"
+        "all_note": ("收录的全部核心论文（含精读卡），按类别分组，组内从新到旧，点击类别名展开。另有 {n} 篇相关论文（语言模型以外的循环、"
                      "HRM 和 TRM 这类谜题推理模型、早期的前身工作和相关方向）单独列在 [docs/zh/related.md](docs/zh/related.md)。"
                      "每天从 arXiv 检索到的候选先放进 "
                      "[data/candidates.json](data/candidates.json)，确认属于循环模型后再收录。"),
@@ -747,18 +748,20 @@ def models_table(ctx, lang):
     return out + [""]
 
 
-def paper_groups(ctx, lang, papers, level="###"):
-    """One table per category, newest first."""
+def paper_groups(ctx, lang, papers, level="###", fold=False):
+    """One table per category, newest first; with fold, each table sits in a collapsed <details> block."""
     ui, out = UI[lang], []
     for cat in ctx.vocab["category"]:
         group = sorted((p for p in papers if p["category"] == cat), key=lambda p: (p["date"], p["id"]), reverse=True)
         if not group:
             continue
-        out += [f"{level} {ctx.label('category', cat, lang)} ({len(group)})", ""] + table_head(ui["cols_all"])
+        title = f"{ctx.label('category', cat, lang)} ({len(group)})"
+        out += ([f"<details><summary><b>{esc(title)}</b></summary>", ""] if fold else [f"{level} {title}", ""])
+        out += table_head(ui["cols_all"])
         for p in group:
             out.append(row([p["date"], paper_cell(p, lang, byline(p, lang)), p["tldr"][lang], links_md(p, lang),
                             paper_metrics(ctx, p, lang)]))
-        out.append("")
+        out += ["", "</details>", ""] if fold else [""]
     return out
 
 
@@ -766,7 +769,7 @@ def all_papers(ctx, lang):
     """Every core paper (deep and radar) grouped by category, newest first."""
     ui = UI[lang]
     note = ui["all_note"].format(n=len(ctx.papers) - len(ctx.core))
-    return [f"## {ui['all_head']}", "", note, ""] + paper_groups(ctx, lang, ctx.core)
+    return [f"## {ui['all_head']}", "", note, ""] + paper_groups(ctx, lang, ctx.core, fold=True)
 
 
 def related_md(ctx, lang):
