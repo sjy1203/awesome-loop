@@ -52,18 +52,18 @@ UI = {
                 ("Top 10", "top-10-must-read"), ("Deep cards", "deep-cards"), ("All papers", "all-papers"),
                 ("Design space", "design-space"), ("Open questions", "open-questions"), ("Open models", "open-models")],
         "must_head": "Top 10 must-read",
-        "must_note": ("Core papers of any year, ranked by an impact score out of 100: citations per year since "
+        "must_note": ("Core papers of any year (looped or recurrent-depth Transformer language models), ranked by an "
+                      "impact score out of 100: citations per year since "
                       "publication 40% (the higher of the Semantic Scholar and OpenAlex counts; a paper younger than "
                       "a year counts as one year), GitHub stars of the official code 20%, Hugging Face downloads of "
                       "the released models in the last 30 days 20%, and likes 20% (Hugging Face paper upvotes and "
                       "model likes plus Hacker News points). Each count is log-scaled and divided by the largest value "
-                      "among core papers, so the paper that leads on a signal gets that signal's full weight. Loops "
-                      "in other domains, RNN- and CNN-era precursors and adjacent work are not ranked; they stay in "
-                      "All papers. Counts as of {date}."),
+                      "among core papers, so the paper that leads on a signal gets that signal's full weight. Counts "
+                      "as of {date}."),
         "cols_must": ["#", "Paper", "Score", "Citations / year", "Stars", "Downloads (30 days)", "Likes"],
         "hot_head": "Trending in the last 30 days",
-        "hot_note": ("Core papers (looped or recurrent-depth Transformers for language or general reasoning) released "
-                     "from {start} to {date}, ranked by likes and GitHub stars per day since release. Likes are "
+        "hot_note": ("Core papers (looped or recurrent-depth Transformer language models) released from {start} to "
+                     "{date}, ranked by likes and GitHub stars per day since release. Likes are "
                      "Hugging Face paper upvotes and model likes plus Hacker News points. Papers this new have almost "
                      "no citations yet, so this list counts early attention only."),
         "cols_hot": ["#", "Paper", "Released", "Per day", "Likes", "Stars"],
@@ -76,7 +76,7 @@ UI = {
                           "matches are a proxy for activity in the field, not a curated count."),
         "ds_more": "{n} papers",
         "ds_title": "Design space",
-        "ds_note": "Every paper with a stated loop placement and training depth, grouped by cell.",
+        "ds_note": "Every core paper with a stated loop placement and training depth, grouped by cell.",
         "diff_head": "What this list adds",
         "diff": [
             "Each deep card stores the loop layout as data; the fingerprint figures in the tables are drawn from it.",
@@ -97,8 +97,8 @@ UI = {
                    "**KV** KV cache per token · **D** training tokens · **L** executed layers per token · "
                    "**W** wall-clock. ~~Struck through~~ = differs between the looped model and its baseline."),
         "space_head": "Design space",
-        "space_note": ("Where the loop sits (rows) × how the number of passes is set in training (columns). Bold "
-                       "names are deep cards; the other papers in a cell are counted and linked."),
+        "space_note": ("Core papers only. Where the loop sits (rows) × how the number of passes is set in training "
+                       "(columns). Bold names are deep cards; the other papers in a cell are counted and linked."),
         "q_head": "Open questions",
         "cols_q": ["Question", "Status", "Evidence (+ supports, - against, ~ partly)"],
         "q_more": "Settings, numbers and references for every item: [docs/en/questions.md](docs/en/questions.md).",
@@ -107,9 +107,16 @@ UI = {
                    "License", "Runs on", "Downloads · likes"],
         "m_empty": "No open models yet.",
         "all_head": "All papers",
-        "all_note": ("Every paper in the collection, deep cards included, grouped by category and newest first. "
-                     "New arXiv candidates are queued in [data/candidates.json](data/candidates.json) and added "
-                     "after a scope check."),
+        "all_note": ("Every core paper, deep cards included, grouped by category and newest first. Another {n} related "
+                     "papers (loops outside language models, puzzle reasoners such as HRM and TRM, earlier precursors "
+                     "and adjacent work) are listed in [docs/en/related.md](docs/en/related.md). New arXiv candidates "
+                     "are queued in [data/candidates.json](data/candidates.json) and added after a scope check."),
+        "rel_title": "Related papers",
+        "rel_note": ("Papers in the collection that fall outside its focus on looped language models: loops in other "
+                     "domains and modalities, puzzle and grid reasoners (Sudoku, maze, ARC) such as HRM and TRM, RNN-, "
+                     "CNN- and GNN-era precursors, implicit models outside language, layer sharing used only to save "
+                     "parameters, and adjacent latent reasoning without loops. They are not ranked and not counted in "
+                     "the design space."),
         "cols_all": ["Date", "Paper", "TL;DR", "Links", "Impact"],
         "deep_tag": "deep card", "et_al": "et al.",
         "data_head": "Data for agents",
@@ -164,14 +171,13 @@ UI = {
         "nav": [("论文数量", "论文数量趋势"), ("趋势榜", "最新趋势榜"), ("必读榜", "top-10-必读榜"), ("精读卡", "精读卡"),
                 ("全部论文", "全部论文"), ("设计空间", "设计空间"), ("开放问题", "开放问题"), ("开源模型", "开源模型")],
         "must_head": "TOP-10 必读榜",
-        "must_note": ("不限年份的核心论文，按影响力分数（满分 100）排名：年均引用占 40%（取 Semantic Scholar 和 OpenAlex "
+        "must_note": ("不限年份的核心论文（循环 Transformer 语言模型），按影响力分数（满分 100）排名：年均引用占 40%（取 Semantic Scholar 和 OpenAlex "
                       "中较高的引用数，除以发表至今的年数，不满一年按一年算），官方代码的 GitHub star 占 20%，开源模型近 "
                       "30 天的 Hugging Face 下载量占 20%，点赞占 20%（Hugging Face 论文点赞和模型点赞，加上 Hacker News "
-                      "得分）。每项先取对数，再除以核心论文中这一项的最大值，单项第一的论文拿满这一项的权重。其他领域的循环、"
-                      "RNN/CNN 时代的前身工作和相关方向不参与排名，仍收在「全部论文」里。数据截至 {date}。"),
+                      "得分）。每项先取对数，再除以核心论文中这一项的最大值，单项第一的论文拿满这一项的权重。数据截至 {date}。"),
         "cols_must": ["#", "论文", "分数", "年均引用", "Star", "下载（30 天）", "点赞"],
         "hot_head": "最新趋势榜",
-        "hot_note": ("{start} 至 {date} 发布的核心论文（面向语言或通用推理的循环 Transformer），按发布以来日均点赞和 "
+        "hot_note": ("{start} 至 {date} 发布的核心论文（循环 Transformer 语言模型），按发布以来日均点赞和 "
                      "GitHub star 排名。点赞包括 Hugging Face 论文点赞和模型点赞，以及 Hacker News 得分。这么新的论文"
                      "几乎还没有引用，所以这里只看早期关注度。"),
         "cols_hot": ["#", "论文", "发布", "日均", "点赞", "Star"],
@@ -182,7 +188,7 @@ UI = {
                           "最后一个季度未满。关键词匹配反映领域热度，不是人工筛选后的数量。"),
         "ds_more": "{n} 篇",
         "ds_title": "设计空间",
-        "ds_note": "所有写明了循环位置和训练遍数的论文，按格子分组。",
+        "ds_note": "所有写明了循环位置和训练遍数的核心论文，按格子分组。",
         "diff_head": "这份清单的特点",
         "diff": [
             "每张精读卡把循环结构存成数据，表格里的结构指纹图由它生成。",
@@ -199,7 +205,7 @@ UI = {
         "legend": ("对齐项：**N** 唯一参数 · **A** 激活参数 · **F** 训练 FLOPs · **KV** 每 token KV · "
                    "**D** 训练 token · **L** 每 token 执行层数 · **W** 墙钟时间。~~删除线~~ 表示循环模型和基线在这一项上不同。"),
         "space_head": "设计空间",
-        "space_note": "行是循环位置，列是训练时遍数怎么定。加粗的是精读卡，其余论文给出篇数并链接到明细。",
+        "space_note": "只统计核心论文。行是循环位置，列是训练时遍数怎么定。加粗的是精读卡，其余论文给出篇数并链接到明细。",
         "q_head": "开放问题",
         "cols_q": ["问题", "状态", "证据（+ 支持，- 反对，~ 部分支持）"],
         "q_more": "每条证据的设置、数字和出处见 [docs/zh/questions.md](docs/zh/questions.md)。",
@@ -208,8 +214,14 @@ UI = {
                    "下载 · 点赞"],
         "m_empty": "暂无开源模型。",
         "all_head": "全部论文",
-        "all_note": ("收录的全部论文（含精读卡），按类别分组，组内从新到旧。每天从 arXiv 检索到的候选先放进 "
+        "all_note": ("收录的全部核心论文（含精读卡），按类别分组，组内从新到旧。另有 {n} 篇相关论文（语言模型以外的循环、"
+                     "HRM 和 TRM 这类谜题推理模型、早期的前身工作和相关方向）单独列在 [docs/zh/related.md](docs/zh/related.md)。"
+                     "每天从 arXiv 检索到的候选先放进 "
                      "[data/candidates.json](data/candidates.json)，确认属于循环模型后再收录。"),
+        "rel_title": "相关论文",
+        "rel_note": ("本清单收录、但不在主线（循环语言模型）上的论文：其他领域和模态里的循环，HRM、TRM 这类做 Sudoku、"
+                     "迷宫、ARC 的谜题推理模型，RNN/CNN/GNN 时代的前身工作，语言以外的隐式模型，只为省参数的跨层共享，"
+                     "以及不靠循环的隐式推理。这些论文不参与排名，也不计入设计空间。"),
         "cols_all": ["日期", "论文", "一句话", "链接", "影响力"],
         "deep_tag": "精读卡", "et_al": "等",
         "data_head": "给 Agent 用的数据",
@@ -275,6 +287,7 @@ class Ctx:
         self.claims = sorted((e for _, e in data["claim"]), key=lambda c: c["id"])
         self.by_id = {p["id"]: p for p in self.papers}
         self.deep = [p for p in self.papers if p["tier"] == "deep"]
+        self.core = [p for p in self.papers if p["focus"] == "core"]
         self.metrics, self.old = load_metrics()
         trend = os.path.join(ROOT, "data", "trend.json")
         self.trend = json.load(open(trend, encoding="utf-8")) if os.path.exists(trend) else None
@@ -541,7 +554,7 @@ def header(ctx, lang):
     ui = UI[lang]
     updated = max([p["added"] for p in ctx.papers] + ([ctx.metrics["date"]] if ctx.metrics.get("date") else []))
     b = ui["badge"]
-    badges = [(b["papers"], len(ctx.papers)), (b["deep"], len(ctx.deep)), (b["models"], len(ctx.models)),
+    badges = [(b["papers"], len(ctx.core)), (b["deep"], len(ctx.deep)), (b["models"], len(ctx.models)),
               (b["updated"], updated)]
     imgs = " ".join(f'<img alt="{esc(k)}: {esc(v)}" src="{shield(k, v)}">' for k, v in badges)
     imgs += f' <a href="LICENSE"><img alt="License: CC BY 4.0" src="{shield("license", "CC BY 4.0", "8b5cf6")}"></a>'
@@ -559,7 +572,7 @@ def header(ctx, lang):
 
 
 def cell_papers(ctx, placement, depth):
-    hits = [p for p in ctx.papers if p.get("facets", {}).get("placement") == placement
+    hits = [p for p in ctx.core if p.get("facets", {}).get("placement") == placement
             and p.get("facets", {}).get("depth_train") == depth]
     return sorted(hits, key=lambda p: (p["tier"] != "deep", p["date"]))
 
@@ -746,21 +759,35 @@ def models_table(ctx, lang):
     return out + [""]
 
 
-def all_papers(ctx, lang):
-    """Every paper (deep and radar) grouped by category, newest first."""
-    ui = UI[lang]
-    out = [f"## {ui['all_head']}", "", ui["all_note"], ""]
+def paper_groups(ctx, lang, papers, level="###"):
+    """One table per category, newest first."""
+    ui, out = UI[lang], []
     for cat in ctx.vocab["category"]:
-        group = sorted((p for p in ctx.papers if p["category"] == cat), key=lambda p: (p["date"], p["id"]),
-                       reverse=True)
+        group = sorted((p for p in papers if p["category"] == cat), key=lambda p: (p["date"], p["id"]), reverse=True)
         if not group:
             continue
-        out += [f"### {ctx.label('category', cat, lang)} ({len(group)})", ""] + table_head(ui["cols_all"])
+        out += [f"{level} {ctx.label('category', cat, lang)} ({len(group)})", ""] + table_head(ui["cols_all"])
         for p in group:
             out.append(row([p["date"], paper_cell(p, lang, byline(p, lang)), p["tldr"][lang], links_md(p, lang),
                             paper_metrics(ctx, p, lang)]))
         out.append("")
     return out
+
+
+def all_papers(ctx, lang):
+    """Every core paper (deep and radar) grouped by category, newest first."""
+    ui = UI[lang]
+    note = ui["all_note"].format(n=len(ctx.papers) - len(ctx.core))
+    return [f"## {ui['all_head']}", "", note, ""] + paper_groups(ctx, lang, ctx.core)
+
+
+def related_md(ctx, lang):
+    """docs/<lang>/related.md: the papers outside the focus on looped language models."""
+    ui = UI[lang]
+    related = [p for p in ctx.papers if p["focus"] == "related"]
+    out = [HEADER, f"# {ui['rel_title']} ({len(related)})", "",
+           ui["lang_links"].format(name="related.md") + " · " + ui["back"], "", ui["rel_note"], ""]
+    return "\n".join(out + paper_groups(ctx, lang, related, level="##"))
 
 
 def card(ctx, p, lang):
@@ -864,7 +891,7 @@ def llms(ctx, cards_en, questions_en):
     if ctx.metrics.get("date"):
         out += [f"## Trending: core papers released in the last {TREND_DAYS} days ({ctx.metrics['date']})", "",
                 "Ranked by likes plus GitHub stars per day since release. Core = looped or recurrent-depth "
-                "Transformers for language or general reasoning (field `focus` in papers.json).", ""]
+                "Transformer language models (field `focus` in papers.json); related papers are not ranked.", ""]
         out += [f"- [{p['title']}]({p['links']['paper']}): {per_day(rate)} per day; released {p['date']}; "
                 f"likes {s['likes']}, stars {s['stars']}." for rate, p, s in hot_ranking(ctx)[:10]]
         out += ["", "## Top 10 must-read: core papers of any year", "",
@@ -919,6 +946,7 @@ def build_outputs(ctx):
     for lang in LANGS:
         out[f"docs/{lang}/questions.md"] = questions_md(ctx, lang)
         out[f"docs/{lang}/design-space.md"] = design_space_md(ctx, lang)
+        out[f"docs/{lang}/related.md"] = related_md(ctx, lang)
         if ctx.trend:
             out[f"assets/{trend_name(lang)}"] = trend_svg(ctx.trend, UI[lang]["trend_title"], UI[lang]["trend_sub"],
                                                           milestones(ctx))

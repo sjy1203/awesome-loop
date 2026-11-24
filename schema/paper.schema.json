@@ -36,7 +36,7 @@
                "understanding", "applications", "safety", "adjacent"]
     },
     "focus": {
-      "description": "core = about a looped or recurrent-depth Transformer for language or general reasoning: building, training, scaling, analyzing or serving one (multimodal language models count). related = loops in other domains or modalities, RNN/CNN/GNN-era precursors, implicit models outside language, layer sharing used only to save parameters, and adjacent work without loops. Only core papers are ranked in the README.",
+      "description": "core = about looped or recurrent-depth Transformer language models: building, training, scaling, analyzing or serving them (multimodal language models count), or theory of looped Transformers on token sequences. related = loops in other domains or modalities, puzzle and grid reasoners (Sudoku, maze, ARC) such as HRM and TRM, RNN/CNN/GNN-era precursors, implicit models outside language, layer sharing used only to save parameters, and adjacent work without loops. The README lists, ranks and maps only core papers; related papers are on docs/<lang>/related.md.",
       "enum": ["core", "related"]
     },
     "facets": {

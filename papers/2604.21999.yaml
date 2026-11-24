@@ -8,7 +8,7 @@ links:
   paper: https://arxiv.org/abs/2604.21999
   code: https://github.com/che-shr-cat/utm-jax
 category: applications
-focus: core
+focus: related
 facets:
   placement: whole-stack
   depth_train: adaptive

@@ -7,7 +7,7 @@ authors: [Amin Sghaier, Ali Parviz, Alexia Jolicoeur-Martineau]
 links:
   paper: https://arxiv.org/abs/2605.19943
 category: applications
-focus: core
+focus: related
 facets:
   placement: hierarchical
   depth_train: adaptive

@@ -8,7 +8,7 @@ links:
   paper: https://arxiv.org/abs/2506.21734
   code: https://github.com/sapientinc/HRM
 category: applications
-focus: core
+focus: related
 facets:
   placement: hierarchical
   depth_train: adaptive

@@ -8,7 +8,7 @@ links:
   paper: https://arxiv.org/abs/2611.08977
   code: https://github.com/wwillchen/ebr
 category: applications
-focus: core
+focus: related
 facets:
   placement: whole-stack
   depth_train: adaptive

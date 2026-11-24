@@ -8,7 +8,7 @@ links:
   paper: https://arxiv.org/abs/2605.21488
   code: https://github.com/locuslab/eqr
 category: applications
-focus: core
+focus: related
 facets:
   placement: hierarchical
   depth_train: adaptive

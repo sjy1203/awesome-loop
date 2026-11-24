@@ -7,8 +7,8 @@ authors: [Benjamin Hoover, Hugh Blayney, James C. R. Whittington]
 links:
   paper: https://arxiv.org/abs/2611.17309
   code: https://github.com/Prefrontal-AI/CRAM
-category: training
-focus: core
+category: applications
+focus: related
 facets:
   placement: implicit
   depth_train: n/a

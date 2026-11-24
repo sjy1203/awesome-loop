@@ -7,7 +7,7 @@ authors: [Syed Affan Daimi]
 links:
   paper: https://arxiv.org/abs/2611.22737
 category: applications
-focus: core
+focus: related
 facets:
   placement: hierarchical
   depth_train: fixed

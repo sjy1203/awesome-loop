@@ -783,7 +783,7 @@
     "paper": "https://arxiv.org/abs/2409.15647",
     "code": "https://github.com/UW-Madison-Lee-Lab/looped-tf"
    },
-   "category": "applications",
+   "category": "theory",
    "focus": "core",
    "facets": {
     "placement": "whole-stack",
@@ -1291,7 +1291,7 @@
     "code": "https://github.com/sapientinc/HRM"
    },
    "category": "applications",
-   "focus": "core",
+   "focus": "related",
    "facets": {
     "placement": "hierarchical",
     "depth_train": "adaptive",
@@ -1614,7 +1614,7 @@
     "code": "https://github.com/SamsungSAILMontreal/TinyRecursiveModels"
    },
    "category": "applications",
-   "focus": "core",
+   "focus": "related",
    "facets": {
     "placement": "hierarchical",
     "depth_train": "adaptive",
@@ -2463,7 +2463,7 @@
     "code": "https://github.com/WenjieShu/LoopViT"
    },
    "category": "applications",
-   "focus": "core",
+   "focus": "related",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "fixed",
@@ -3399,7 +3399,7 @@
     "code": "https://github.com/che-shr-cat/utm-jax"
    },
    "category": "applications",
-   "focus": "core",
+   "focus": "related",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "adaptive",
@@ -3574,7 +3574,7 @@
     "paper": "https://arxiv.org/abs/2605.19376"
    },
    "category": "applications",
-   "focus": "core",
+   "focus": "related",
    "facets": {
     "placement": "hierarchical",
     "depth_train": "fixed",
@@ -3601,7 +3601,7 @@
     "paper": "https://arxiv.org/abs/2605.19943"
    },
    "category": "applications",
-   "focus": "core",
+   "focus": "related",
    "facets": {
     "placement": "hierarchical",
     "depth_train": "adaptive",
@@ -3694,7 +3694,7 @@
     "code": "https://github.com/locuslab/eqr"
    },
    "category": "applications",
-   "focus": "core",
+   "focus": "related",
    "facets": {
     "placement": "hierarchical",
     "depth_train": "adaptive",
@@ -3960,7 +3960,7 @@
     "code": "https://github.com/nilskiKonjIzDunava/fprm"
    },
    "category": "applications",
-   "focus": "core",
+   "focus": "related",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "adaptive",
@@ -4384,7 +4384,7 @@
     "paper": "https://arxiv.org/abs/2608.18222"
    },
    "category": "applications",
-   "focus": "core",
+   "focus": "related",
    "facets": {
     "placement": "n/a",
     "depth_train": "fixed",
@@ -4702,7 +4702,7 @@
     "paper": "https://arxiv.org/abs/2609.11801"
    },
    "category": "applications",
-   "focus": "core",
+   "focus": "related",
    "facets": {
     "placement": "hierarchical",
     "depth_train": "adaptive",
@@ -5542,8 +5542,8 @@
    "links": {
     "paper": "https://arxiv.org/abs/2611.04663"
    },
-   "category": "training",
-   "focus": "core",
+   "category": "applications",
+   "focus": "related",
    "facets": {
     "placement": "n/a",
     "depth_train": "fixed",
@@ -6135,7 +6135,7 @@
     "code": "https://github.com/wwillchen/ebr"
    },
    "category": "applications",
-   "focus": "core",
+   "focus": "related",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "adaptive",
@@ -6478,8 +6478,8 @@
     "paper": "https://arxiv.org/abs/2611.17309",
     "code": "https://github.com/Prefrontal-AI/CRAM"
    },
-   "category": "training",
-   "focus": "core",
+   "category": "applications",
+   "focus": "related",
    "facets": {
     "placement": "implicit",
     "depth_train": "n/a",
@@ -6875,7 +6875,7 @@
     "paper": "https://arxiv.org/abs/2611.22737"
    },
    "category": "applications",
-   "focus": "core",
+   "focus": "related",
    "facets": {
     "placement": "hierarchical",
     "depth_train": "fixed",
@@ -6901,8 +6901,8 @@
    "links": {
     "paper": "https://arxiv.org/abs/2611.23677"
    },
-   "category": "architecture/state",
-   "focus": "core",
+   "category": "applications",
+   "focus": "related",
    "facets": {
     "placement": "whole-stack",
     "depth_train": "adaptive",

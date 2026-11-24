@@ -6,8 +6,8 @@ venue: arXiv
 authors: [Torben Glass, Zhengxi Zhang, Paul Swoboda]
 links:
   paper: https://arxiv.org/abs/2611.23677
-category: architecture/state
-focus: core
+category: applications
+focus: related
 facets:
   placement: whole-stack
   depth_train: adaptive

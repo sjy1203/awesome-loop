@@ -4,24 +4,21 @@
 
 [English](../en/design-space.md) · 简体中文 · [返回列表](../../README.zh-CN.md)
 
-所有写明了循环位置和训练遍数的论文，按格子分组。
+所有写明了循环位置和训练遍数的核心论文，按格子分组。
 
-## <a id="whole-stack--fixed"></a>整栈循环 × 固定 (33)
+## <a id="whole-stack--fixed"></a>整栈循环 × 固定 (27)
 
 - 2026-11-20 · [Model Carving: Training Transformers That Optimize Their Own Topology](https://arxiv.org/abs/2611.27962)
 - 2026-11-16 · [Latent Fact Composition under Next-Token Training](https://arxiv.org/abs/2611.21921)
 - 2026-11-14 · [Architectures and KV Replay for Depth-Recurrent Language Models](https://arxiv.org/abs/2611.19446)
 - 2026-11-13 · [Folding Language Models into Themselves](https://arxiv.org/abs/2611.18113)
 - 2026-11-12 · [Rectified Looped Transformer](https://arxiv.org/abs/2611.16265)
-- 2026-11-11 · [One Block Is Enough: LoopMR for Accelerated MRI Reconstruction](https://arxiv.org/abs/2611.14947)
-- 2026-11-05 · [Beyond Quadratic Attention: Separable Gaussian Operators for ODE Vision Transformers](https://arxiv.org/abs/2611.08236)
 - 2026-11-04 · [Loop Before You Leap: What Recurrent Depth Can and Cannot Buy in Data-Limited Pretraining](https://arxiv.org/abs/2611.06206)
 - 2026-11-03 · [ARLoop: Fully-Open Pre-trained Looped Transformers with Attention Residuals](https://arxiv.org/abs/2611.05234)
 - 2026-11-01 · [How Does Chain-of-Thought Supervision Teach Models to Reason? A Theoretical Analysis](https://arxiv.org/abs/2611.01740)
 - 2026-10-29 · [How to Loop Your Transformer: Loop Scaling, Specialization, and Parallel Inference](https://arxiv.org/abs/2610.40325)
 - 2026-10-27 · [Think Twice: The Metis-1.6 Technical Report](https://arxiv.org/abs/2610.37903)
 - 2026-10-26 · [StateLoop: Persistent State for Looped Transformers](https://arxiv.org/abs/2610.35544)
-- 2026-10-25 · [Recursive CLIP: Vision-Language Distillation with Looped Transformer Blocks](https://arxiv.org/abs/2610.34563)
 - 2026-07-24 · [Nanbeige4.2-3B: Unlocking Agentic Capabilities in a Compact Model](https://arxiv.org/abs/2607.22083)
 - 2026-07-15 · [DeepLoop: Depth Scaling for Looped Transformers](https://arxiv.org/abs/2607.13491)
 - 2026-07-01 · [DiscoLoop: Looping Discrete Embeddings and Continuous Hidden States for Multi-hop Reasoning](https://arxiv.org/abs/2607.00341)
@@ -31,7 +28,6 @@
 - 2026-05-08 · [Memory-Efficient Looped Transformer: Decoupling Compute from Memory in Looped Language Models](https://arxiv.org/abs/2605.07721)
 - 2026-04-09 · [Loop, Think, & Generalize: Implicit Reasoning in Recurrent-Depth Transformers](https://arxiv.org/abs/2604.07822)
 - 2026-02-09 · [Looping Back to Move Forward: Recursive Transformers for Efficient and Flexible Large Multimodal Models](https://arxiv.org/abs/2602.09080)
-- 2026-02-02 · [LoopViT: Scaling Visual ARC with Looped Transformers](https://arxiv.org/abs/2602.02156)
 - 2026-01-29 · [Depth-Recurrent Attention Mixture (Dreamer): Giving Latent Reasoning the Attention it Deserves](https://arxiv.org/abs/2601.21582)
 - 2025-05-27 · [PonderLM: Pretraining Language Models to Ponder in Continuous Space](https://arxiv.org/abs/2505.20674)
 - 2025-02-24 · [Reasoning with Latent Thoughts: On the Power of Looped Transformers](https://arxiv.org/abs/2502.17416)
@@ -39,29 +35,22 @@
 - 2024-10-10 · [Can Looped Transformers Learn to Implement Multi-step Gradient Descent for In-context Learning?](https://arxiv.org/abs/2410.08292)
 - 2024-10-02 · [On Expressive Power of Looped Transformers: Theoretical Analysis and Enhancement via Timestep Encoding](https://arxiv.org/abs/2410.01405)
 - 2024-05-25 · [MoEUT: Mixture-of-Experts Universal Transformers](https://arxiv.org/abs/2405.16039)
-- 2019-09-26 · [ALBERT: A Lite BERT for Self-supervised Learning of Language Representations](https://arxiv.org/abs/1909.11942)
-- 2018-07-14 · [Recurrent Stacking of Layers for Compact Neural Machine Translation Models](https://arxiv.org/abs/1807.05353)
 
-## <a id="whole-stack--sampled"></a>整栈循环 × 随机采样 (5)
+## <a id="whole-stack--sampled"></a>整栈循环 × 随机采样 (3)
 
-- 2026-10-30 · [ElTab: Elastically Looped Tabular Transformers](https://arxiv.org/abs/2610.41819)
 - 2026-05-26 · [Stabilizing Recurrent Dynamics for Test-Time Scalable Latent Reasoning in Looped Language Models](https://arxiv.org/abs/2605.26733)
 - 2026-04-16 · [Stability and Generalization in Looped Transformers](https://arxiv.org/abs/2604.15259)
-- 2026-04-10 · [ELT: Elastic Looped Transformers for Visual Generation](https://arxiv.org/abs/2604.09168)
 - 2026-02-11 · [LoopFormer: Elastic-Depth Looped Transformers for Latent Reasoning via Shortcut Modulation](https://arxiv.org/abs/2602.11451)
 
-## <a id="whole-stack--curriculum"></a>整栈循环 × 按课程递增 (3)
+## <a id="whole-stack--curriculum"></a>整栈循环 × 按课程递增 (2)
 
 - 2026-06-30 · [Bridging the Gap Between Latent and Explicit Reasoning with Looped Transformers](https://arxiv.org/abs/2606.31779)
 - 2023-11-21 · [Looped Transformers are Better at Learning Learning Algorithms](https://arxiv.org/abs/2311.12424)
-- 2015-11-25 · [Neural GPUs Learn Algorithms](https://arxiv.org/abs/1511.08228)
 
-## <a id="whole-stack--adaptive"></a>整栈循环 × 学习或自适应 (23)
+## <a id="whole-stack--adaptive"></a>整栈循环 × 学习或自适应 (15)
 
-- 2026-11-18 · [Simpler Tiny Recursive Models](https://arxiv.org/abs/2611.23677)
 - 2026-11-18 · [Late Entry in Looped Language Models](https://arxiv.org/abs/2611.24576)
 - 2026-11-14 · [LoopFill: Pipelined Multi-Token Speculative Decoding for Looped Transformers](https://arxiv.org/abs/2611.19649)
-- 2026-11-06 · [Energy-Based Reasoners: Your Recurrent Reasoner Should Be an Energy-Based Model](https://arxiv.org/abs/2611.08977)
 - 2026-11-05 · [AlterNet: Adaptive-Depth Mixture-of-Experts with Learned Halting for Elastic Inference](https://arxiv.org/abs/2611.08741)
 - 2026-11-03 · [LoopKV: Loop-Aware KV Cache Compression for Serving Looped Transformers](https://arxiv.org/abs/2611.04137)
 - 2026-11-03 · [LoopVQ: Sub 1-bit KV Cache Quantization for Looped Transformers](https://arxiv.org/abs/2611.05304)
@@ -69,25 +58,17 @@
 - 2026-10-25 · [ScaleRLT: Exact Log-Probabilities and Fast Deferred Rollouts for Reinforcement Learning on Looped Transformers](https://arxiv.org/abs/2610.34427)
 - 2026-10-25 · [Cross-Loop Query Handoff: How Later Loops Redirect Two-Hop Retrieval in the Ouro Looped Language Models](https://arxiv.org/abs/2610.34639)
 - 2026-07-08 · [Adaptive Depth in Looped Transformers: Diagnosing Learned Halting Gates and Trajectory Readouts](https://arxiv.org/abs/2607.20519)
-- 2026-06-16 · [Fixed-Point Reasoners: Stable and Adaptive Deep Looped Transformers](https://arxiv.org/abs/2606.18206)
-- 2026-04-23 · [Universal Transformers Need Memory: Depth-State Trade-offs in Adaptive Recursive Reasoning](https://arxiv.org/abs/2604.21999)
 - 2026-03-02 · [AdaPonderLM: Gated Pondering Language Models with Token-Wise Adaptive Depth](https://arxiv.org/abs/2603.01914)
 - 2026-01-15 · [Loop as a Bridge: Can Looped Transformers Truly Link Representation Space and Natural Language Outputs?](https://arxiv.org/abs/2601.10242)
 - 2025-10-29 · [Scaling Latent Reasoning via Looped Language Models](https://arxiv.org/abs/2510.25741) · **[精读卡](2510.25741.md)**
 - 2024-09-24 · [Looped Transformers for Length Generalization](https://arxiv.org/abs/2409.15647)
 - 2023-10-11 · [Sparse Universal Transformer](https://arxiv.org/abs/2310.07096)
-- 2021-08-20 · [Semantic Communication with Adaptive Universal Transformer](https://arxiv.org/abs/2108.09119)
-- 2021-07-12 · [PonderNet: Learning to Ponder](https://arxiv.org/abs/2107.05407)
-- 2019-10-23 · [Neural Execution of Graph Algorithms](https://arxiv.org/abs/1910.10593)
 - 2018-07-10 · [Universal Transformers](https://arxiv.org/abs/1807.03819)
-- 2016-03-29 · [Adaptive Computation Time for Recurrent Neural Networks](https://arxiv.org/abs/1603.08983)
 
-## <a id="prelude-core-coda--fixed"></a>中段循环（prelude-core-coda） × 固定 (17)
+## <a id="prelude-core-coda--fixed"></a>中段循环（prelude-core-coda） × 固定 (11)
 
 - 2026-11-23 · [GLM-5.4: Toward Generalized Coding with Our First Loop Transformer](https://z.ai/blog/glm-5.4) · **[精读卡](zai-glm-5-4.md)**
 - 2026-11-20 · [Introducing Inkling 2 Mini](https://thinkingmachines.ai/news/inkling-2-mini/) · **[精读卡](tml-inkling-2-mini.md)**
-- 2026-11-19 · [LoopedWAM: Looped World Action Models for Elastic Inference](https://arxiv.org/abs/2611.25595)
-- 2026-11-15 · [When Does Reusing Layers Help Multimodal Embeddings?](https://arxiv.org/abs/2611.19827)
 - 2026-11-04 · [Loopback Transformer: Towards a Unified View of Residual Looped Transformers](https://arxiv.org/abs/2611.07226)
 - 2026-10-24 · [One Model, Two Paths: Balancing Single-Pass and Looped Performance in Language Models](https://arxiv.org/abs/2610.33517)
 - 2026-10-16 · [Towards Looped Models Done Right, Part I: Topology, Input Injection, Recurrent-State Design](https://arxiv.org/abs/2610.23036)
@@ -97,26 +78,18 @@
 - 2026-04-22 · [How Much Is One Recurrence Worth? Iso-Depth Scaling Laws for Looped Language Models](https://arxiv.org/abs/2604.21106)
 - 2026-02-18 · [From Growing to Looping: A Unified View of Iterative Computation in LLMs](https://arxiv.org/abs/2602.16490)
 - 2026-02-12 · [SpiralFormer: Looped Transformers Can Learn Hierarchical Dependencies via Multi-Resolution Recursion](https://arxiv.org/abs/2602.11698)
-- 2021-06-08 · [Can You Learn an Algorithm? Generalizing from Easy to Hard Problems with Recurrent Networks](https://arxiv.org/abs/2106.04537)
-- 2021-03-04 · [Perceiver: General Perception with Iterative Attention](https://arxiv.org/abs/2103.03206)
-- 2021-01-01 · [Subformer: Exploring Weight Sharing for Parameter Efficiency in Generative Transformers](https://arxiv.org/abs/2101.00234)
-- 2015-11-14 · [Deeply-Recursive Convolutional Network for Image Super-Resolution](https://arxiv.org/abs/1511.04491)
 
-## <a id="prelude-core-coda--sampled"></a>中段循环（prelude-core-coda） × 随机采样 (13)
+## <a id="prelude-core-coda--sampled"></a>中段循环（prelude-core-coda） × 随机采样 (9)
 
 - 2026-11-19 · [dLoop: Looped Diffusion Language Models via Recurrent Latent Refinement](https://arxiv.org/abs/2611.26275)
-- 2026-11-16 · [Déjà-Events: Multi-view 3D Geometry with Event Cameras via Sparsity-Aware Adaptive Gating](https://arxiv.org/abs/2611.21302)
 - 2026-11-09 · [Depth as a Candidate Source: Portfolio Allocation for Recurrent Test-Time Scaling in Large Language Models](https://arxiv.org/abs/2611.12293)
 - 2026-11-05 · [Extending Reasoning in Typed Decision Models via Looping](https://arxiv.org/abs/2611.07736)
-- 2026-11-02 · [Solv3R: 3D Looped Transformer as a Multi-view Solver](https://arxiv.org/abs/2611.02857)
 - 2026-11-02 · [Dory1.0-4B: A Looped Normalized-GPT](https://arxiv.org/abs/2611.03998)
 - 2026-10-28 · [Deeper Backpropagation or More Updates? Training Looped Language Models Across Budgets](https://arxiv.org/abs/2610.38422)
 - 2026-10-05 · [Towards Looped Models Done Right, Part II: Rethinking at Fixed Points](https://arxiv.org/abs/2610.06833)
 - 2026-09-03 · [RecurTrace: Adaptive Latent Reasoning with Loop-Time Memory](https://arxiv.org/abs/2609.03379)
-- 2026-05-28 · [Déjà View: Looping Transformers for Multi-View 3D Reconstruction](https://arxiv.org/abs/2605.30215)
 - 2026-04-14 · [Parcae: Scaling Laws For Stable Looped Language Models](https://arxiv.org/abs/2604.12946) · **[精读卡](2604.12946.md)**
 - 2025-02-07 · [Scaling up Test-Time Compute with Latent Reasoning: A Recurrent Depth Approach](https://arxiv.org/abs/2502.05171) · **[精读卡](2502.05171.md)**
-- 2022-02-11 · [End-to-end Algorithm Synthesis with Recurrent Networks: Logical Extrapolation Without Overthinking](https://arxiv.org/abs/2202.05826)
 
 ## <a id="prelude-core-coda--curriculum"></a>中段循环（prelude-core-coda） × 按课程递增 (3)
 
@@ -124,62 +97,39 @@
 - 2026-10-30 · [UpLoop: Training Looped Transformers via Upcycling at No Extra Pretraining Compute](https://arxiv.org/abs/2610.41720)
 - 2025-11-10 · [Teaching Pretrained Language Models to Think Deeper with Retrofitted Recurrence](https://arxiv.org/abs/2511.07384) · **[精读卡](2511.07384.md)**
 
-## <a id="prelude-core-coda--adaptive"></a>中段循环（prelude-core-coda） × 学习或自适应 (5)
+## <a id="prelude-core-coda--adaptive"></a>中段循环（prelude-core-coda） × 学习或自适应 (4)
 
-- 2026-11-05 · [ARC-VLN: Adaptive Recursive Computing-based Visual-Language Navigation](https://arxiv.org/abs/2611.18696)
 - 2026-10-28 · [Compute Has Shape: Self-Morphing the Internal Computation of Frozen LLMs](https://arxiv.org/abs/2610.38382)
 - 2026-05-10 · [LoopUS: Recasting Pretrained LLMs into Looped Latent Refinement Models](https://arxiv.org/abs/2605.11011)
 - 2025-07-14 · [Mixture-of-Recursions: Learning Dynamic Recursive Depths for Adaptive Token-Level Computation](https://arxiv.org/abs/2507.10524) · **[精读卡](2507.10524.md)**
 - 2023-10-16 · [CoTFormer: A Chain-of-Thought Driven Architecture with Budget-Adaptive Computation Cost at Inference](https://arxiv.org/abs/2310.10845)
 
-## <a id="encoder--fixed"></a>产出共享 KV 的前半段（CED encoder / YOCO self-decoder） × 固定 (2)
+## <a id="encoder--fixed"></a>产出共享 KV 的前半段（CED encoder / YOCO self-decoder） × 固定 (1)
 
-- 2026-11-08 · [WiFo-R: Wireless Foundation Model with Recurrent Channel Representation](https://arxiv.org/abs/2611.11275)
 - 2026-04-01 · [Universal YOCO for Efficient Depth Scaling](https://arxiv.org/abs/2604.01220) · **[精读卡](2604.01220.md)**
 
 ## <a id="encoder--sampled"></a>产出共享 KV 的前半段（CED encoder / YOCO self-decoder） × 随机采样 (1)
 
 - 2026-11-09 · [Looping Deeper Without Growing the KV Cache: Recurrent Depth for Causal Encoder-Decoders](https://arxiv.org/abs/2611.13378) · **[精读卡](2611.13378.md)**
 
-## <a id="decoder--fixed"></a>读共享 KV 的后半段（CED decoder / YOCO cross-decoder） × 固定 (1)
-
-- 2026-11-05 · [BRIDGE: Bridging the Semantic Quantization Gap for Generative Recommendation](https://arxiv.org/abs/2611.07425)
-
 ## <a id="decoder--sampled"></a>读共享 KV 的后半段（CED decoder / YOCO cross-decoder） × 随机采样 (1)
 
 - 2026-11-04 · [LooM: Loop-Invariant Memory for Causal Encoder-Decoder Language Models](https://arxiv.org/abs/2611.06835)
 
-## <a id="partial--fixed"></a>局部（前段、后段或子模块） × 固定 (4)
+## <a id="partial--fixed"></a>局部（前段、后段或子模块） × 固定 (2)
 
-- 2026-11-16 · [Efficient Multi-View Generation with Iterative Global-Local Proxy Attention](https://arxiv.org/abs/2611.20703)
 - 2026-10-30 · [There Is No Free Loop: When Does Looping a Trained Model Pay for Its Inference Compute?](https://arxiv.org/abs/2610.42030)
 - 2026-03-05 · [Mixture of Universal Experts: Scaling Virtual Width via Depth-Width Transformation](https://arxiv.org/abs/2603.04971)
-- 2020-03-26 · [RAFT: Recurrent All-Pairs Field Transforms for Optical Flow](https://arxiv.org/abs/2003.12039)
-
-## <a id="partial--sampled"></a>局部（前段、后段或子模块） × 随机采样 (1)
-
-- 2026-02-08 · [Recurrent-Depth VLA: Implicit Test-Time Compute Scaling of Vision-Language-Action Models via Latent Iterative Reasoning](https://arxiv.org/abs/2602.07845)
 
 ## <a id="partial--adaptive"></a>局部（前段、后段或子模块） × 学习或自适应 (1)
 
 - 2026-11-03 · [Give the Drafter a Second Chance to Guess: Parallel Reconsideration for Speculative Decoding](https://arxiv.org/abs/2611.05724)
 
-## <a id="hierarchical--fixed"></a>分层（不同频率的耦合循环） × 固定 (6)
+## <a id="hierarchical--fixed"></a>分层（不同频率的耦合循环） × 固定 (3)
 
 - 2026-11-19 · [Fold the Loop: Decoding-Time KV Memory for Looped Vision-Language Models](https://arxiv.org/abs/2611.25369)
 - 2026-11-17 · [LoopZip: Visual Token Compression for Efficient Looped Vision-Language Models](https://arxiv.org/abs/2611.22728)
-- 2026-11-17 · [Proximal Targets: Training Looped Refiners on Problems with Many Correct Answers](https://arxiv.org/abs/2611.22737)
-- 2026-10-25 · [LoopGR: Parameter-Efficient Scaling for Generative Recommendation via Recurrent Depth](https://arxiv.org/abs/2610.34157)
 - 2026-05-20 · [HRM-Text: Efficient Pretraining Beyond Scaling](https://arxiv.org/abs/2605.20613)
-- 2026-05-19 · [Generative Recursive Reasoning](https://arxiv.org/abs/2605.19376)
-
-## <a id="hierarchical--adaptive"></a>分层（不同频率的耦合循环） × 学习或自适应 (5)
-
-- 2026-09-10 · [Thinking with Looped Flows](https://arxiv.org/abs/2609.11801)
-- 2026-05-20 · [Equilibrium Reasoners: Learning Attractors Enables Scalable Reasoning](https://arxiv.org/abs/2605.21488)
-- 2026-05-19 · [Probabilistic Tiny Recursive Model](https://arxiv.org/abs/2605.19943)
-- 2025-10-06 · [Less is More: Recursive Reasoning with Tiny Networks](https://arxiv.org/abs/2510.04871)
-- 2025-06-26 · [Hierarchical Reasoning Model](https://arxiv.org/abs/2506.21734)
 
 ## <a id="shifted-parallel--fixed"></a>跨 token 错位或并行 × 固定 (6)
 

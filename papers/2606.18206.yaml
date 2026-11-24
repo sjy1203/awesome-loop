@@ -8,7 +8,7 @@ links:
   paper: https://arxiv.org/abs/2606.18206
   code: https://github.com/nilskiKonjIzDunava/fprm
 category: applications
-focus: core
+focus: related
 facets:
   placement: whole-stack
   depth_train: adaptive

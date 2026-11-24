@@ -7,7 +7,7 @@ authors: [Ivan Viakhirev, Kirill Borodin, Amirah Almutairi, Serguei Barannikov, 
 links:
   paper: https://arxiv.org/abs/2608.18222
 category: applications
-focus: core
+focus: related
 facets:
   placement: n/a
   depth_train: fixed
