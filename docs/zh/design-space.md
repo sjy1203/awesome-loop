@@ -307,7 +307,6 @@
 
 - 2025-02-10 · [Implicit Language Models are RNNs: Balancing Parallelization and Expressivity](https://arxiv.org/abs/2502.07827)
 
-## <a id="implicit--adaptive"></a>隐式不动点 × 学习或自适应 (2)
+## <a id="implicit--adaptive"></a>隐式不动点 × 学习或自适应 (1)
 
 - 2026-05-12 · [Solve the Loop: Attractor Models for Language and Reasoning](https://arxiv.org/abs/2605.12466)
-- 2025-03-13 · [Fixed-Point RNNs: Interpolating from Diagonal to Dense](https://arxiv.org/abs/2503.10799)

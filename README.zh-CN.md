@@ -6,7 +6,7 @@
 
 <p align="center">循环（looped / recurrent-depth）语言模型的论文、开源模型，以及结论背后的证据。每篇论文按同一套字段记录，方便跨论文比较。</p>
 
-<p align="center"><img alt="论文: 329" src="https://img.shields.io/badge/%E8%AE%BA%E6%96%87-329-4f7cff?style=flat-square&labelColor=0b1020"> <img alt="精读卡: 12" src="https://img.shields.io/badge/%E7%B2%BE%E8%AF%BB%E5%8D%A1-12-4f7cff?style=flat-square&labelColor=0b1020"> <img alt="开源模型: 9" src="https://img.shields.io/badge/%E5%BC%80%E6%BA%90%E6%A8%A1%E5%9E%8B-9-4f7cff?style=flat-square&labelColor=0b1020"> <img alt="更新于: 2026-11-24" src="https://img.shields.io/badge/%E6%9B%B4%E6%96%B0%E4%BA%8E-2026--11--24-4f7cff?style=flat-square&labelColor=0b1020"> <a href="LICENSE"><img alt="License: CC BY 4.0" src="https://img.shields.io/badge/license-CC%20BY%204.0-8b5cf6?style=flat-square&labelColor=0b1020"></a> <a href="https://github.com/sjy1203/awesome-loop/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/sjy1203/awesome-loop/actions/workflows/ci.yml/badge.svg"></a></p>
+<p align="center"><img alt="论文: 328" src="https://img.shields.io/badge/%E8%AE%BA%E6%96%87-328-4f7cff?style=flat-square&labelColor=0b1020"> <img alt="精读卡: 12" src="https://img.shields.io/badge/%E7%B2%BE%E8%AF%BB%E5%8D%A1-12-4f7cff?style=flat-square&labelColor=0b1020"> <img alt="开源模型: 9" src="https://img.shields.io/badge/%E5%BC%80%E6%BA%90%E6%A8%A1%E5%9E%8B-9-4f7cff?style=flat-square&labelColor=0b1020"> <img alt="更新于: 2026-11-24" src="https://img.shields.io/badge/%E6%9B%B4%E6%96%B0%E4%BA%8E-2026--11--24-4f7cff?style=flat-square&labelColor=0b1020"> <a href="LICENSE"><img alt="License: CC BY 4.0" src="https://img.shields.io/badge/license-CC%20BY%204.0-8b5cf6?style=flat-square&labelColor=0b1020"></a> <a href="https://github.com/sjy1203/awesome-loop/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/sjy1203/awesome-loop/actions/workflows/ci.yml/badge.svg"></a></p>
 
 <p align="center"><b>简体中文</b> · <a href="README.md">English</a></p>
 
@@ -106,7 +106,7 @@
 
 ## 全部论文
 
-收录的全部核心论文（含精读卡），按类别分组，组内从新到旧。另有 164 篇相关论文（语言模型以外的循环、HRM 和 TRM 这类谜题推理模型、早期的前身工作和相关方向）单独列在 [docs/zh/related.md](docs/zh/related.md)。每天从 arXiv 检索到的候选先放进 [data/candidates.json](data/candidates.json)，确认属于循环模型后再收录。
+收录的全部核心论文（含精读卡），按类别分组，组内从新到旧。另有 165 篇相关论文（语言模型以外的循环、HRM 和 TRM 这类谜题推理模型、早期的前身工作和相关方向）单独列在 [docs/zh/related.md](docs/zh/related.md)。每天从 arXiv 检索到的候选先放进 [data/candidates.json](data/candidates.json)，确认属于循环模型后再收录。
 
 ### 理论与能力 (36)
 
@@ -149,7 +149,7 @@
 | 2023-01-30 | [Looped Transformers as Programmable Computers](https://arxiv.org/abs/2301.13196)<br><sub>Angeliki Giannou 等</sub> | 证明一个权重经过编程设定的循环 13 层 transformer 能从输入中读取指令和内存，模拟一台小型指令集计算机，并运行计算器、线性代数例程和 in-context learning 算法。 | [论文](https://arxiv.org/abs/2301.13196) | 引用 333 · HF 点赞 1 · HN 得分 4 |
 | 2018-12-05 | [Attending to Mathematical Language with Transformers](https://arxiv.org/abs/1812.02825)<br><sub>Artit Wangperawong</sub> | 在带符号变量的字符级数学表达式求值任务上，标准 Transformer、带循环的 Universal Transformer 和带循环与自适应计算时间的自适应 Universal Transformer 的测试准确率最高分别达到 76.1%、78.8% 和 84.9%。 | [论文](https://arxiv.org/abs/1812.02825) · [代码](https://github.com/artitw/tensor2tensor) | 引用 30 · star 2 |
 
-### 结构：放哪循环、共享什么 (52)
+### 结构：放哪循环、共享什么 (51)
 
 | 日期 | 论文 | 一句话 | 链接 | 影响力 |
 |---|---|---|---|---|
@@ -195,7 +195,6 @@
 | 2025-10-20 | [ReXMoE: Reusing Experts with Minimal Overhead in Mixture-of-Experts](https://arxiv.org/abs/2510.17483)<br><sub>Zheyue Tan 等</sub> | ReXMoE 让每层的 MoE 路由器从相邻多层组成的专家池中选择专家，使同一专家可在多个深度复用，并在训练中逐步扩大候选池；在 MoE-2.3BA0.3B 上，以 4 层为一组复用专家的 ReXMoE 把下游平均准确率从 49.15% 提高到 50.23%。 | [论文](https://arxiv.org/abs/2510.17483) | 引用 11 · HF 点赞 0 |
 | 2025-06-23 | [Chain-of-Experts: Unlocking the Communication Power of Mixture-of-Experts Models](https://arxiv.org/abs/2506.18945)<br><sub>Zihan Wang 等</sub> | Chain-of-Experts 在每个 MoE 层内迭代，每次迭代用专属路由器在该层的专家中为 token 重新选择专家；在固定计算量下，它把数学验证损失从标准 MoE 的 1.20 降到 1.12，2x 迭代即可匹配 3x 专家选择数的效果，内存占用比其他扩展策略低 17.6-42%。 | [论文](https://arxiv.org/abs/2506.18945) · [代码](https://github.com/ZihanWang314/coe) | 引用 13 · star 233 · HF 点赞 43 |
 | 2025-05-03 | [Intra-Layer Recurrence in Transformers for Language Modeling](https://arxiv.org/abs/2505.01855)<br><sub>Anthony Nguyen 等 · Canadian AI 2025</sub> | Intra-Layer Recurrence（ILR）按逐层复用表在一次前向中重复执行 LLaMA 式解码器的单个层；复用靠前的层收益最大，复用表 [4,2,1,1] 使小模型困惑度在 NoPE 下从 16.57 降至 14.62，在 ALiBi 下从 14.38 降至 13.63。 | [论文](https://arxiv.org/abs/2505.01855) · [代码](https://github.com/ant-8/Layer-Recurrent-Transformers) | 引用 5 · star 7 · HF 点赞 0 |
-| 2025-03-13 | [Fixed-Point RNNs: Interpolating from Diagonal to Dense](https://arxiv.org/abs/2503.10799)<br><sub>Sajad Movahedi 等 · NeurIPS 2025</sub> | Fixed-Point RNN 把稠密线性 RNN 表示为可并行的对角线性 RNN 的不动点并迭代至收敛，使迭代次数在参数量不变时权衡表达力与效率；它在状态追踪基准 A5 和 S5 上取得最优结果，在复制等任务上与基线相当。 | [论文](https://arxiv.org/abs/2503.10799) · [代码](https://github.com/dr-faustus/fp-rnn) | 引用 14 · star 4 · HF 点赞 1 |
 | 2025-02-11 | [Recursive Inference Scaling: A Winning Path to Scalable Inference in Language and Multimodal Systems](https://arxiv.org/abs/2502.07503)<br><sub>Ibrahim Alabdulmohsin 等</sub> | RINS 把模型分成两个等大的块，先让第一个块对自身输出递归应用多次，再送入第二个块；在训练计算量相同时，它在语言建模上优于 +55 种其他递归变体，改善了数据 scaling law 的渐近极限和指数，并使 SigLIP-B/16 的 0-shot ImageNet 准确率提升 +2%。 | [论文](https://arxiv.org/abs/2502.07503) | 引用 15 |
 | 2025-02-10 | [Implicit Language Models are RNNs: Balancing Parallelization and Expressivity](https://arxiv.org/abs/2502.07827)<br><sub>Mark Schöne 等</sub> | 隐式 Mamba2 和 Llama3 模型把整个层栈自迭代到近似不动点，获得类似 RNN 的非线性状态转移，能解决 S5 word problem；采用先限定迭代步数、再放开迭代的课程训练，规模达到 1.3B 参数、207B token，在标准基准上优于对应的显式模型。 | [论文](https://arxiv.org/abs/2502.07827) · [代码](https://github.com/microsoft/implicit_languagemodels) | 引用 31 · star 9 · HF 点赞 1 · HN 得分 1 |
 | 2025-02-07 | **Huginn**：[Scaling up Test-Time Compute with Latent Reasoning: A Recurrent Depth Approach](https://arxiv.org/abs/2502.05171) · **[精读卡](docs/zh/2502.05171.md)**<br><sub>Jonas Geiping 等</sub> | 用随机采样的核心块迭代次数预训练 3.5B 的 prelude-core-coda Transformer，测试时多迭代核心块即可增加算力。 | [论文](https://arxiv.org/abs/2502.05171) · [代码](https://github.com/seal-rg/recurrent-pretraining) · [权重](https://huggingface.co/tomg-group-umd/huginn-0125) | 引用 590 · star 1,000 · HF 点赞 162 · HN 得分 150 |
@@ -495,7 +494,7 @@
 | 局部（前段、后段或子模块） | [12 篇](docs/zh/design-space.md#partial--fixed) |  | [2 篇](docs/zh/design-space.md#partial--curriculum) | [5 篇](docs/zh/design-space.md#partial--adaptive) |
 | 分层（不同频率的耦合循环） | [8 篇](docs/zh/design-space.md#hierarchical--fixed) |  |  |  |
 | 跨 token 错位或并行 | **[PLT](docs/zh/2510.24824.md)**, [+9](docs/zh/design-space.md#shifted-parallel--fixed) | [3 篇](docs/zh/design-space.md#shifted-parallel--sampled) | [1 篇](docs/zh/design-space.md#shifted-parallel--curriculum) |  |
-| 隐式不动点 | [1 篇](docs/zh/design-space.md#implicit--fixed) | [1 篇](docs/zh/design-space.md#implicit--sampled) | [1 篇](docs/zh/design-space.md#implicit--curriculum) | [2 篇](docs/zh/design-space.md#implicit--adaptive) |
+| 隐式不动点 | [1 篇](docs/zh/design-space.md#implicit--fixed) | [1 篇](docs/zh/design-space.md#implicit--sampled) | [1 篇](docs/zh/design-space.md#implicit--curriculum) | [1 篇](docs/zh/design-space.md#implicit--adaptive) |
 
 ## 开放问题
 

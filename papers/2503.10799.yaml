@@ -8,7 +8,7 @@ links:
   paper: https://arxiv.org/abs/2503.10799
   code: https://github.com/dr-faustus/fp-rnn
 category: architecture/placement
-focus: core
+focus: related
 facets:
   placement: implicit
   depth_train: adaptive
