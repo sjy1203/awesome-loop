@@ -7,6 +7,7 @@ authors: [Yichen You, Tianyu Fu, Aosong Feng, Xingtai Lv, Xuefei Ning, Ning Ding
 links:
   paper: https://arxiv.org/abs/2609.35748
   code: https://github.com/thu-nics/TaH
+  weights: [https://huggingface.co/nics-efc/TaH2-1.7B-max2]
 category: depth
 focus: core
 facets:

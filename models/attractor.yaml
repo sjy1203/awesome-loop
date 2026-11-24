@@ -1,0 +1,46 @@
+id: attractor
+name: Attractor
+paper: "2605.12466"
+hf:
+  - jacobfa1/attractor-140m
+  - jacobfa1/attractor-370m
+  - jacobfa1/attractor-770m
+params: "140M / 370M / 770M"
+tokens: "11.2B / 29.6B / 61.6B"
+context: "2048"
+passes:
+  default: "6-64, 6-64, 6-32 solver iterations (stops at tol)"
+  range: "min_iter, max_iter and tol; paper evaluates T = 0-8"
+kv: n/a
+license: mit
+inference: [custom]
+notes:
+  en: >-
+    Language models pretrained on FineWeb-Edu. A causal Transformer backbone of 7 / 15 / 35 layers proposes an output
+    embedding, and a weight-tied attractor head of 1 / 2 / 2 Transformer blocks is solved for a fixed point starting
+    from that proposal, with the proposal added back at every step; the result is decoded with the tied unembedding.
+    The loop is therefore a solver run: Anderson acceleration applies the head between min_iter and max_iter times and
+    stops once the relative residual drops below tol, so the pass count varies with the input, and
+    generate(num_steps=N) in the GitHub receval/models/attractor.py overrides max_iter. The repos hold a PyTorch state
+    dict (model.pt), a config.json saved under the EQLM class name (an alias of Attractor in the code) and
+    tokenizer.json; the cards' snippet only builds an untrained model from the named config, while
+    attractor.from_pretrained(<repo>) or ModelingAttractor.from_pretrained(<repo>) from the GitHub package loads the
+    weights. During generation only the backbone keeps a KV cache; the attractor head is re-run over the whole context
+    for every new token, so nothing is cached per solver iteration. The paper reports that quality already peaks at
+    T = 1 and that T = 0 (backbone only) is at or near the converged value (Figure 7). The 370M config.json sets
+    min_iter 6 where paper Table 8 and the GitHub named config give 8, and the 770M config.json sets backward_type
+    onestep where both give Anderson. The GitHub code is MIT-licensed, like the cards.
+  zh: >-
+    在 FineWeb-Edu 上预训练的语言模型。因果 Transformer backbone（7 / 15 / 35 层）先给出输出嵌入，权重共享的 attractor head（1 / 2 / 2 个 Transformer block）以该提议为起点求解不动点，每一步都把提议加回输入，结果用共享的 unembedding 解码。因此这里的循环是一次求解：Anderson 加速在 min_iter 到 max_iter 次之间反复调用 head，相对残差低于 tol 即停止，遍数随输入变化；GitHub 中 receval/models/attractor.py 的 generate(num_steps=N) 可覆盖 max_iter。仓库里是 PyTorch state dict（model.pt）、以 EQLM 类名保存的 config.json（代码中 EQLM 是 Attractor 的别名）和 tokenizer.json；模型卡的示例代码只按命名配置构建未训练的模型，加载权重要用 GitHub 包中的 attractor.from_pretrained(<repo>) 或 ModelingAttractor.from_pretrained(<repo>)。生成时只有 backbone 保留 KV cache，attractor head 每生成一个 token 都要在完整上下文上重新运行，求解迭代不缓存任何 KV。论文报告质量在 T = 1 时已达峰值，T = 0（只用 backbone）也已达到或接近收敛值（Figure 7）。370M 的 config.json 把 min_iter 设为 6，而论文 Table 8 和 GitHub 命名配置为 8；770M 的 config.json 把 backward_type 设为 onestep，而两者都写 Anderson。GitHub 代码为 MIT license，与模型卡一致。
+ref: >-
+  HF API of the three repos (author jacobfa1, cardData.license mit, files model.pt, config.json, tokenizer.json) and
+  their model cards (sizes, usage snippet, links to the paper and jacobfa/Attractor); config.json (n_backbone_layers
+  7 / 15 / 35, n_fp_blocks 1 / 2 / 2, solver anderson, min_iter, max_iter, tol, block_size 2048, _class_name
+  EQLMConfig); GitHub README (model table, HF links, MIT) and code: attractor/__init__.py (from_pretrained reads
+  config.json and model.pt), attractor/models/attractor/attractor.py and solvers.py (head input y + c, Anderson
+  stopping rule), receval/models/attractor.py (generate with num_steps; KV cache spans only the backbone, the head is
+  re-run over the full context each step), attractor/configs and launch_configs (min_iter 8 at 370M, backward_type
+  anderson at 770M, max_tokens); paper Section 3.2 (tolerance and T_max are inference-time settings, KV caching in the
+  backbone), Section 4.1 and Table 9 (FineWeb-Edu; 11.2B / 29.6B / 61.6B training tokens, not on the cards), Tables 7
+  and 8 (layers, sequence length 2048, solver settings) and Figure 7 (T = 0-8).
+added: "2026-11-24"

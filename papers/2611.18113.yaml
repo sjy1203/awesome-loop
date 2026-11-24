@@ -7,6 +7,7 @@ authors: [Ziyang Zhang, Yubin Jing, Yuyao Li, Haofan Wang, Yichen Gong]
 links:
   paper: https://arxiv.org/abs/2611.18113
   code: https://github.com/myboker/concertina
+  weights: [https://huggingface.co/myboker/Concertina-2.27B]
 category: training
 focus: core
 facets:

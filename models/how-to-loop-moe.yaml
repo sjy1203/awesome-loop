@@ -1,0 +1,46 @@
+id: how-to-loop-moe
+name: Foil (How to Loop MoE)
+paper: "2609.35751"
+hf: [ShourenWSR/how-to-loop-moe]
+params: "553.7M each"
+tokens: "100B each (FineWeb-Edu sample-100BT)"
+context: "4096"
+passes:
+  default: "16, 8, 4, 2 (Foil-1, Foil-2, Foil-3, Base; num_stacks)"
+  range: "fixed (num_stacks is built into the weights)"
+kv: n/a
+license: apache-2.0
+inference: [transformers-remote-code]
+notes:
+  en: >-
+    The paper's four main looped MoE language models, one per folder, each with 553.7M parameters, hidden size 1024,
+    16 attention heads and top-2 routing, trained on 100B FineWeb-Edu (sample-100BT) tokens with the SmolLM2
+    tokenizer. Each has one MoE layer with 8 experts before the loop and one after it, around a looped block of D layers
+    run L times, 18 executed layers in all: Foil-1 has 64 experts per layer, 1 layer and 16 passes, Foil-2 32, 2 and 8,
+    Foil-3 16, 4 and 4, and Base 8, 8 and 2. All four folders are looped variants: the experts and routers are
+    shared across passes while every pass has its own attention weights, and Base is the unflattened looped baseline;
+    the paper's tied-attention controls (Base-tied, proto-Foil) are not in this repo, and the paper has no non-looped
+    control at equal parameters and compute (Appendix J). Flattening halves the layers, doubles the experts per layer
+    and doubles the passes, so expert parameters and expert calls per token stay fixed; the card says the released
+    weights are the final step (254,313) of each run. Load a folder with AutoModelForCausalLM.from_pretrained(repo,
+    subfolder=..., trust_remote_code=True); the card warns that labels are not shifted inside the model, that the
+    returned loss includes the router auxiliary losses, and that attention masks with padding are refused, so batched
+    generation with left padding does not work. The pass count is fixed by num_stacks in config.json, which also sets
+    how many per-pass attention sets are stored. The modeling code has no KV cache: it turns use_cache off and
+    recomputes the whole prefix at every generation step. Intermediate checkpoints are in ShourenWSR/loopmoe-U4_100B,
+    -U3_100B, -U2_100B and -U1_100B (Foil-1, Foil-2, Foil-3, Base).
+  zh: >-
+    论文的四个主要循环 MoE 语言模型，每个目录一个，均为 553.7M 参数、hidden size 1024、16 个注意力头、top-2 路由，用 SmolLM2 tokenizer 在 100B FineWeb-Edu（sample-100BT）token 上训练。每个模型在循环前后各有一个 8 专家的 MoE 层，中间是由 D 层组成、跑 L 遍的循环块，展开后共执行 18 层：Foil-1 每层 64 个专家、1 层、16 遍，Foil-2 为 32、2、8，Foil-3 为 16、4、4，Base 为 8、8、2。四个目录都是循环模型：专家和路由器在各遍之间共享，每一遍有自己的注意力权重，Base 是未展平的循环基线；论文中共享注意力的对照模型（Base-tied、proto-Foil）不在这个仓库里，论文也没有等参数、等计算量的不循环对照（Appendix J）。展平把层数减半、每层专家数加倍、遍数加倍，因此专家参数和每 token 的专家调用次数保持不变；模型卡说发布的权重是每次训练的最后一步（254,313）。用 AutoModelForCausalLM.from_pretrained(repo, subfolder=..., trust_remote_code=True) 加载某个目录；模型卡提醒，模型内部不对 labels 做移位，返回的 loss 包含路由辅助损失，含 padding 的 attention mask 会被拒绝，因此不支持左填充的批量生成。遍数由 config.json 的 num_stacks 固定，它同时决定存储多少套逐遍注意力参数。建模代码没有 KV cache：它关闭 use_cache，每个生成步都重新计算整个前缀。各次训练的中间 checkpoint 在 ShourenWSR/loopmoe-U4_100B、-U3_100B、-U2_100B 和 -U1_100B（对应 Foil-1、Foil-2、Foil-3、Base）。
+ref: >-
+  Model card (four folders and their looped shapes, 553.7M parameters, head and tail MoE layers with 8 experts, top-2,
+  hidden size 1024, 16 heads, untied attention, 18 unrolled layers, context 4096, SmolLM2 tokenizer, 100B FineWeb-Edu
+  tokens, trust_remote_code usage, label and padding caveats, final step 254,313, intermediate-checkpoint repos,
+  Apache-2.0); HF API (cardData.license apache-2.0, uploader ShourenWSR with full name Shouren Wang, the first author)
+  and the GitHub README of SR-A-W/how-to-loop-moe (links this repo); each folder's config.json (num_stacks 16 / 8 / 4 /
+  2, num_layers_in_stack 1 / 2 / 4 / 8, num_experts 64 / 32 / 16 / 8, per_pass_attention true, context_length 4096,
+  unrolled_depth 18); modeling_loop_lm.py (one attention set per pass with shared norms, router and experts;
+  _supports_cache_class False, use_cache False and full-prefix recomputation; padding masks refused); paper (arXiv v1)
+  Section 2.2 (Foil-1 / Foil-2 / Foil-3 and Base, 553.7M each), Section 3.1 (100B-token results), Appendix C
+  (sample-100BT, SmolLM2 tokenizer, context 4,096, 100.0B tokens at step 254,313, Table 3 parameter counts) and
+  Appendix J (no non-looped control).
+added: "2026-11-24"

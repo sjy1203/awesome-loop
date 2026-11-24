@@ -7,6 +7,7 @@ authors: [Giulianno Vollmer]
 links:
   paper: https://arxiv.org/abs/2610.37903
   code: https://github.com/lernex/dromos
+  weights: [https://huggingface.co/Lernex/Metis-1.6-Logos, https://huggingface.co/Lernex/Metis-1.6-Praxis]
 category: training
 focus: core
 facets:

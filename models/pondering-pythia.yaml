@@ -1,0 +1,42 @@
+id: pondering-pythia
+name: PonderingPythia
+paper: "2505.20674"
+hf: [zeng123/PonderingPythia-1.4B, zeng123/PonderingPythia-2.8B]
+params: "1.4B / 2.8B"
+tokens: "300B (Pile) each"
+context: "2048"
+passes:
+  default: "4 per token (pondering_steps 3 + final pass)"
+  range: "fixed (trained with 3 pondering steps)"
+kv: n/a
+license: apache-2.0
+inference: [custom]
+notes:
+  en: >-
+    PonderingPythia-1.4B and -2.8B (PonderPythia in the paper) are GPT-NeoX models with the Pythia architecture,
+    pretrained from scratch with PonderLM on 300B Pile tokens; both model cards contain only the license, and the GitHub
+    README serves as the release note. For every position the model runs the whole network, turns the predicted
+    distribution into a probability-weighted sum of token embeddings, adds it to the input embeddings and runs the
+    network again; pondering_steps 3 gives three such pondering passes plus the final pass that produces the logits. The
+    paper describes a top-100 approximation of the weighted sum, but the released forward computes it over the full
+    vocabulary (use_topk=False). The step count is fixed in training and inference for these models (paper Section 4.3),
+    and the paper notes that inference cost grows roughly linearly with the number of pondering steps.
+    modeling_gpt_neox.py calls every pass with past_key_values=None, so no KV cache is reused between tokens; with
+    use_cache false in config.json, generation recomputes all four passes over the full prefix for each new token.
+    config.json has no auto_map, so AutoModelForCausalLM loads the stock GPTNeoXForCausalLM and runs a single pass;
+    pondering needs the modeling_gpt_neox.py shipped in the repos, which the GitHub code patches into transformers when
+    --ponderinglm true is set.
+  zh: >-
+    PonderingPythia-1.4B 和 -2.8B（论文中称 PonderPythia）是 Pythia 架构的 GPT-NeoX 模型，用 PonderLM 在 300B token 的 Pile 上从头预训练；两个模型卡都只有 license 字段，发布说明在 GitHub README 中。每个位置先跑一遍完整网络，把预测分布变成按概率加权的 token 嵌入之和，加到输入嵌入上，再跑一遍网络；pondering_steps 3 表示三遍这样的 pondering 前向，再加一遍输出 logits 的最终前向。论文描述的加权和用 top-100 近似，但官方代码的 forward 在整个词表上计算（use_topk=False）。这两个模型在训练和推理时使用固定步数（论文 Section 4.3），论文也指出推理开销大致随 pondering 步数线性增长。modeling_gpt_neox.py 的每一遍都以 past_key_values=None 调用，token 之间不复用 KV cache；config.json 中 use_cache 为 false，生成时每个新 token 都要在完整前缀上重跑全部四遍。config.json 没有 auto_map，用 AutoModelForCausalLM 会加载 transformers 自带的 GPTNeoXForCausalLM，只跑一遍；pondering 需要仓库中附带的 modeling_gpt_neox.py，GitHub 代码在设置 --ponderinglm true 时把它替换进 transformers。
+ref: >-
+  HF API of both repos (cardData.license apache-2.0; the cards hold only the license) and config.json (ponderinglm
+  true, pondering_steps 3, mutiply_pondering_steps true, scale_embeds true, no auto_map, use_cache false,
+  max_position_embeddings 2048); modeling_gpt_neox.py in both repos, identical to
+  src/llamafactory/model/modeling/modeling_gpt_neox.py on GitHub (three pondering passes and a final pass,
+  full-vocabulary weighted embedding with use_topk=False, past_key_values=None on every pass); GitHub README (release of
+  the two checkpoints, 300B Pile tokens), src/llamafactory/model/loader.py (replaces GPTNeoXForCausalLM when ponderinglm
+  is set) and experiments_jobs/train_from_scratch_on_pile (cutoff_len 2048, pondering_steps 3); paper header (GitHub
+  and zeng123/PonderingPythia-2.8B links), Abstract and Table 1 (PonderPythia-1.4B and 2.8B, 300B tokens), Section 2
+  (s=3, top-K with K=100), Section 3.2 (trained from scratch with Pythia's context length), Section 4.3 (steps fixed in
+  training and inference), Appendix C.1 (inference overhead roughly linear in the number of steps).
+added: "2026-11-24"

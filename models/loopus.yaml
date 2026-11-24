@@ -1,0 +1,55 @@
+id: loopus
+name: LoopUS
+paper: "2605.11011"
+hf:
+  - Thrillcrazyer/Qwen3_1.7B_LoopUS
+  - Thrillcrazyer/Qwen3_1.7B_LoopUS_SFT
+  - Thrillcrazyer/Qwen3-4B_LoopUS
+  - Thrillcrazyer/Qwen3-8B_LoopUS
+  - Thrillcrazyer/Phi4_LoopUS
+  - Thrillcrazyer/TinyLlama_v1.1_LoopUS
+params: "1.7B / 1.7B / 4B / 8B / 14B / 1.1B"
+tokens: "3B (FineWeb-Edu) each; the SFT repo adds UltraChat 200k"
+context: "1024 (training context length)"
+passes:
+  default: "up to 20 (config N; 100 for the 4B), confidence exit"
+  range: "--n-recursion (scripts default to 8; the paper uses 8)"
+kv: per-pass
+license: apache-2.0
+inference: [custom]
+notes:
+  en: >-
+    LoopUS post-trains a pretrained LLM into an encoder (first layers), a looped reasoning block (the middle layers) and
+    a decoder (last layer); only the reasoning block repeats, a selective gate mixes each pass's output with the previous
+    state, and a confidence head can stop the loop early. The layer splits in config.json are encoder 0-1 and decoder 27
+    for Qwen3-1.7B, 0-1 and 35 for Qwen3-4B, 0-7 and 35 for Qwen3-8B (the paper lists encoder layers 0-5), 0-5 and 39 for
+    Phi-4, and 0 and 21 for TinyLlama. The paper trains each model on 3B FineWeb-Edu tokens at context 1024 with 20 loop
+    steps per batch, of which 5 sampled depths receive gradients; Qwen3_1.7B_LoopUS_SFT is the 1.7B model fine-tuned on
+    UltraChat 200k for one epoch, which the GitHub README says does not work perfectly yet. The cards name
+    Qwen/Qwen3-1.7B-Base, Qwen3-4B-Base and Qwen3-8B-Base as base models, while config.json (base_model_name_or_path) and
+    the paper use Qwen/Qwen3-1.7B, Qwen3-4B and Qwen3-8B; the other bases are microsoft/phi-4 and TinyLlama/TinyLlama_v1.1.
+    config.json sets the loop budget N (20, or 100 for the 4B) and q_threshold 0.9, but chat.py, generate.py and
+    LoopUS-eval override N with --n-recursion (default 8), and chat.py also sets the threshold to 0.6, the value the paper
+    uses for standard inference. modeling_lds.py keeps separate KV caches for the encoder, the decoder and each recursion
+    depth; after an early exit only the caches of the depths that ran are passed to the next decoding step, so deeper
+    depths start again from an empty cache. Loading needs the GitHub code (LDSForCausalLM, model_type lds,
+    transformers>=5.0.0); the 4B and Phi-4 cards' example commands point to Qwen3_1.7B_LoopUS_SFT, and the 8B card uses
+    the non-existent name Thrillcrazyer/Qwen3_8B_LoopUS. Other lds-type repos under the account, such as the
+    LoopUS_Qwen3-1.7B_Ver2 series and LoopUS_EXAONE-4.0-1.2B, have no model card and no link from the paper, the project
+    page or the GitHub repo, and are not listed.
+  zh: >-
+    LoopUS 把预训练 LLM 后训练成 encoder（前几层）、循环的推理块（中间各层）和 decoder（最后一层）；只有推理块重复执行，selective gate 把每一遍的输出与上一遍的状态混合，confidence head 可以提前停止循环。config.json 中的层划分为：Qwen3-1.7B 的 encoder 为第 0-1 层、decoder 为第 27 层；Qwen3-4B 为 0-1 层和 35 层；Qwen3-8B 为 0-7 层和 35 层（论文写的 encoder 是 0-5 层）；Phi-4 为 0-5 层和 39 层；TinyLlama 为第 0 层和第 21 层。论文中每个模型都在 3B token 的 FineWeb-Edu 上训练，上下文长度 1024，每个 batch 跑 20 步循环，其中随机抽取 5 个深度计算梯度；Qwen3_1.7B_LoopUS_SFT 是 1.7B 模型在 UltraChat 200k 上 SFT 一个 epoch 的版本，GitHub README 说它还不能完美工作。模型卡写的基座是 Qwen/Qwen3-1.7B-Base、Qwen3-4B-Base 和 Qwen3-8B-Base，而 config.json（base_model_name_or_path）和论文用的是 Qwen/Qwen3-1.7B、Qwen3-4B 和 Qwen3-8B；另外两个基座是 microsoft/phi-4 和 TinyLlama/TinyLlama_v1.1。config.json 设定循环上限 N（20，4B 为 100）和 q_threshold 0.9，但 chat.py、generate.py 和 LoopUS-eval 会用 --n-recursion（默认 8）覆盖 N，chat.py 还把阈值设为 0.6，与论文的标准推理设置相同。modeling_lds.py 为 encoder、decoder 和每个循环深度分别保存 KV cache；提前退出时，只有实际运行过的深度的 cache 会传给下一步解码，更深的深度重新从空 cache 开始。加载需要 GitHub 代码（LDSForCausalLM，model_type lds，transformers>=5.0.0）；4B 和 Phi-4 模型卡的示例命令指向 Qwen3_1.7B_LoopUS_SFT，8B 模型卡用的是不存在的名字 Thrillcrazyer/Qwen3_8B_LoopUS。该账号下其他 lds 类型的仓库（如 LoopUS_Qwen3-1.7B_Ver2 系列和 LoopUS_EXAONE-4.0-1.2B）没有模型卡，论文、项目页和 GitHub 仓库也没有链接它们，因此未列出。
+ref: >-
+  HF API for author Thrillcrazyer (repo list, cardData.license apache-2.0, base_model metadata) and the LoopUS
+  collection; model cards of the six repos (GitHub, project page and paper links, chat.py commands); config.json of each
+  repo (model_type lds, encoder, reasoning and decoder layer indices, N, q_threshold 0.9, base_model_name_or_path); HF
+  redirects of the GitHub README's old names (Qwen1.7_LoopUS and Qwen3-1.7B_ver0.2_5000 to Qwen3_1.7B_LoopUS,
+  SFT_LDS_QWEN1.7B to Qwen3_1.7B_LoopUS_SFT; Qwen3_8B_LoopUS does not resolve); GitHub README (HF badge, SFT on UltraChat
+  200k for 1 epoch), models/modeling_lds.py (one DynamicCache per recursion depth, cache list cut to the executed depths,
+  q_head halting), utils/inference.py, chat.py, generate.py and evaluate.py (--n-recursion default 8, chat.py threshold
+  0.6) and pyproject.toml (transformers>=5.0.0); the project page linked from the paper (links the GitHub repo and
+  Qwen3_1.7B_LoopUS) and the GitHub profile of Thrillcrazyer (Taekhyun Park, first author); paper Section 3.1
+  (architecture), Section 4.1 and Appendices A.1-A.3 (3B FineWeb-Edu tokens, context 1024, B=20 with K=5, layer splits,
+  inference budget 8 with threshold 0.6), Tables 1 and 2 (Qwen 1.7B, 4B, 8B, Phi-4 14B, TinyLlama 1.1B), Section 4.4 and
+  Figure 5 (depths up to 100), Appendix A.4 (separate cache per refinement depth).
+added: "2026-11-24"

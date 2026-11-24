@@ -1,0 +1,27 @@
+id: sensenova-loop-9b
+tier: radar
+title: "SenseNova-Loop-9B: Deeper Computation with Fewer Parameters"
+date: "2026-11-17"
+venue: Hugging Face model card
+authors: [SenseNova]
+links:
+  paper: https://huggingface.co/sensenova/SenseNova-Loop-9B
+  code: https://github.com/OpenSenseNova/SenseNova-Loop
+  weights:
+    - https://huggingface.co/sensenova/SenseNova-Loop-9B
+    - https://huggingface.co/sensenova/SenseNova-Loop-9B-Preview
+category: architecture/state
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: per-pass
+tldr:
+  en: >-
+    Model card for SenseNova-Loop-9B, a multimodal model of approximately 9B parameters (text and images in, text out)
+    that runs decoder layers 4-27 twice with shared weights and two-stream mHC residual mixing, so 32 stored layers give
+    56 layer executions; in a loop-scaling study with matched training and inference loops, 3 or 4 loops gave the best
+    results.
+  zh: >-
+    SenseNova-Loop-9B 的模型卡：约 9B 参数的多模态模型（输入文本和图像，输出文本），第 4-27 层共享权重跑两遍，循环块内用双流 mHC 混合残差，32 层存储权重每次前向执行 56 次层计算；在训练与推理遍数一致的循环 scaling 实验中，3 或 4 遍效果最好。
+added: "2026-11-24"

@@ -1,0 +1,46 @@
+id: depth-recurrent-convergence
+name: Depth-Recurrent Transformer (S1)
+paper: "2607.14427"
+hf: [joelogan/depth-recurrent-convergence]
+params: "85.6M (state dict)"
+active_params: "~57.3M per forward at r = 1"
+tokens: "12.9B (12,900,106,240)"
+context: "2048 (training sequence length)"
+passes:
+  default: "8 (training mean; loops= is required per call)"
+  range: "loops per call; paper evaluates 1-32, no gain beyond 8"
+kv: n/a
+license: mit
+inference: [custom]
+notes:
+  en: >-
+    A single research checkpoint (S1, step 49209): a Llama-style model whose shape follows SmolLM2-135M, with 2 prelude
+    blocks, a weight-tied core of 4 blocks and 2 coda blocks, trained with one seed on 12.9B FineWeb-Edu tokens with the
+    SmolLM2 tokenizer. Following the Huginn recipe, the recurrent state starts from Gaussian noise, the prelude output is
+    concatenated with the state and projected by a linear adapter on every loop, the core blocks use sandwich norms,
+    and training sampled one loop count per step (log-normal around 8, at most 32) with backpropagation through the
+    last 8 loops. The card gives 85.6M parameters (state dict, which lists the tied embedding and LM head matrices as
+    two entries) and ~57.3M active per forward at r = 1; the paper gives 57.3M total and 29.0M unique non-embedding
+    parameters (Table 1) and calls it a 135M-class model because its per-token compute at the training-mean depth is
+    comparable to a 135M dense model. model.pt is a torch.save dict (config and state_dict) that loads with build_model
+    from src/model.py in the GitHub repo, and the loop count is the required loops= argument of forward. The release
+    has no generation helper and no KV cache: forward scores a whole sequence, and the paper's evaluation is
+    teacher-forced and leaves KV caching for per-token exits untested. Because the state is drawn from noise on every
+    call, outputs vary between calls unless the seed is fixed; the paper's allocation study switches to zero
+    initialization for reproducible exits, and its training-free convergence exit (stop a token once its output
+    distribution stops changing) is a post-hoc policy in bench/allocate.py, not part of forward.
+  zh: >-
+    单个研究用 checkpoint（S1，step 49209）：Llama 风格的模型，形状沿用 SmolLM2-135M，由 2 个 prelude block、4 个权重共享的核心 block 和 2 个 coda block 组成，用 SmolLM2 tokenizer 在 12.9B FineWeb-Edu token 上以单个随机种子训练。按 Huginn 的做法，循环状态从高斯噪声初始化，每一遍都把 prelude 输出与状态拼接后经线性 adapter 投影，核心 block 使用 sandwich norm；训练时每步采样一个循环次数（以 8 为中心的对数正态分布，最多 32），只对最后 8 遍反向传播。模型卡给出 85.6M 参数（state dict，其中共享的 embedding 和 LM head 矩阵作为两项列出）和 r = 1 时每次前向约 57.3M 激活参数；论文给出 57.3M 总参数和 29.0M 唯一非 embedding 参数（Table 1），并称其为 135M 级模型，因为它在训练平均深度下每 token 的计算量与 135M 的 dense 模型相当。model.pt 是 torch.save 保存的字典（config 和 state_dict），用 GitHub 仓库 src/model.py 中的 build_model 加载，循环次数是 forward 的必填参数 loops=。这次发布没有生成函数，也没有 KV cache：forward 对整段序列打分；论文的评测是 teacher-forced，没有测试逐 token 退出时的 KV cache 处理。由于每次调用都从噪声初始化状态，不固定随机种子时输出会随调用变化；论文的分配实验改用零初始化，以便得到可复现的退出决策，其无需训练的收敛退出（输出分布不再变化时停止该 token）是 bench/allocate.py 中的事后策略，不在 forward 里。
+ref: >-
+  Model card (step 49209, FineWeb-Edu, 12.9B / 12,900,106,240 training tokens, 85.6M parameters (state dict), ~57.3M
+  active at r=1, loading with src.model.build_model and loops=8, benchmark commands with loops 1-32); HF API
+  (cardData.license mit, uploader joelogan with full name Joe Logan, the sole author) and the GitHub README of
+  jlognn/depth-recurrent-convergence (links this checkpoint, MIT); the config stored in model.pt (identical to
+  configs/s1-recursive-4090.json: seq_len 2048, n_prelude 2, n_core 4, n_coda 2, recur.rbar 8, r_max 32, bptt_k 8, no
+  state_init key so noise initialization; separate embed.weight and head.weight entries) and src/model.py
+  (RecursiveLM.forward(idx, loops) without a default, no generate or KV cache); bench/allocate.py (zero-initialized
+  convergence exit); paper (arXiv v1) Abstract and Section 4 (135M-class, shape follows SmolLM2-135M, 29.0M unique
+  non-embedding and 57.3M total parameters), Section 3 (architecture, loop sampling, truncated BPTT), Table 1 (sequence
+  length 2048), Table 2 (loops 1-32) and Section 6 (single seed, no gain beyond the training mean, teacher-forced
+  evaluation, KV caching untested).
+added: "2026-11-24"

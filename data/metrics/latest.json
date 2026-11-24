@@ -1,6 +1,22 @@
 {
  "date": "2026-11-24",
  "models": {
+  "Amr-Hegazy/grt-large-isoflop": {
+   "downloads": 20,
+   "likes": 0
+  },
+  "Amr-Hegazy/grt-large-isoparam": {
+   "downloads": 23,
+   "likes": 1
+  },
+  "Amr-Hegazy/grt-medium-isoflop": {
+   "downloads": 20,
+   "likes": 0
+  },
+  "Amr-Hegazy/grt-medium-isoparam": {
+   "downloads": 21,
+   "likes": 0
+  },
   "ByteDance/Ouro-1.4B": {
    "downloads": 24355,
    "likes": 167
@@ -16,6 +32,90 @@
   "ByteDance/Ouro-2.6B-Thinking": {
    "downloads": 8349,
    "likes": 160
+  },
+  "IQuestLab/IQuest-Coder-V1-40B-Loop-Instruct": {
+   "downloads": 1097,
+   "likes": 331
+  },
+  "IQuestLab/IQuest-Coder-V1-40B-Loop-Thinking": {
+   "downloads": 208,
+   "likes": 18
+  },
+  "Lernex/Metis-1.6-Logos": {
+   "downloads": 544,
+   "likes": 0
+  },
+  "Lernex/Metis-1.6-Logos-Base": {
+   "downloads": 21,
+   "likes": 0
+  },
+  "Lernex/Metis-1.6-Logos-FP8": {
+   "downloads": 47,
+   "likes": 0
+  },
+  "Lernex/Metis-1.6-Logos-GGUF": {
+   "downloads": 1789,
+   "likes": 1
+  },
+  "Lernex/Metis-1.6-Logos-MLX-4bit": {
+   "downloads": 69,
+   "likes": 0
+  },
+  "Lernex/Metis-1.6-Logos-MLX-8bit": {
+   "downloads": 75,
+   "likes": 0
+  },
+  "Lernex/Metis-1.6-Logos-NVFP4": {
+   "downloads": 33,
+   "likes": 0
+  },
+  "Lernex/Metis-1.6-Praxis": {
+   "downloads": 628,
+   "likes": 1
+  },
+  "Lernex/Metis-1.6-Praxis-Base": {
+   "downloads": 29,
+   "likes": 0
+  },
+  "Lernex/Metis-1.6-Praxis-FP8": {
+   "downloads": 39,
+   "likes": 0
+  },
+  "Lernex/Metis-1.6-Praxis-GGUF": {
+   "downloads": 753,
+   "likes": 0
+  },
+  "Lernex/Metis-1.6-Praxis-MLX-4bit": {
+   "downloads": 69,
+   "likes": 0
+  },
+  "Lernex/Metis-1.6-Praxis-MLX-8bit": {
+   "downloads": 61,
+   "likes": 0
+  },
+  "Lernex/Metis-1.6-Praxis-NVFP4": {
+   "downloads": 40,
+   "likes": 0
+  },
+  "Multilingual-Multimodal-NLP/LoopCoder-V2": {
+   "downloads": 616,
+   "likes": 52
+  },
+  "Nanbeige/Nanbeige4.2-3B": {
+   "downloads": 55312,
+   "likes": 865
+  },
+  "Nanbeige/Nanbeige4.2-3B-Base": {
+   "downloads": 956,
+   "likes": 64
+  },
+  "Nanbeige/Nanbeige4.2-3B-FP8": {
+   "downloads": 298,
+   "likes": 12
+  },
+  "Nanbeige/Nanbeige4.2-3B-GPTQ-Int8": {
+   "downloads": 246,
+   "likes": 7
   },
   "SandyResearch/parcae-1.3b": {
    "downloads": 366,
@@ -33,6 +133,130 @@
    "downloads": 143,
    "likes": 4
   },
+  "ShourenWSR/how-to-loop-moe": {
+   "downloads": 0,
+   "likes": 0
+  },
+  "Thrillcrazyer/Phi4_LoopUS": {
+   "downloads": 42,
+   "likes": 1
+  },
+  "Thrillcrazyer/Qwen3-4B_LoopUS": {
+   "downloads": 59,
+   "likes": 2
+  },
+  "Thrillcrazyer/Qwen3-8B_LoopUS": {
+   "downloads": 47,
+   "likes": 1
+  },
+  "Thrillcrazyer/Qwen3_1.7B_LoopUS": {
+   "downloads": 199,
+   "likes": 3
+  },
+  "Thrillcrazyer/Qwen3_1.7B_LoopUS_SFT": {
+   "downloads": 52,
+   "likes": 2
+  },
+  "Thrillcrazyer/TinyLlama_v1.1_LoopUS": {
+   "downloads": 23,
+   "likes": 1
+  },
+  "TierFlow/LoopVL": {
+   "downloads": 593,
+   "likes": 6
+  },
+  "ai-forever/OrbitLM-1.8B-Thinking": {
+   "downloads": 9,
+   "likes": 5
+  },
+  "amazon/ALoDLM-1.7B": {
+   "downloads": 734,
+   "likes": 13
+  },
+  "amazon/ALoDLM-8B": {
+   "downloads": 995,
+   "likes": 67
+  },
+  "armenjeddi/LoopFormer-2block-12iterations": {
+   "downloads": 31,
+   "likes": 0
+  },
+  "armenjeddi/LoopFormer-3block-8iterations": {
+   "downloads": 82,
+   "likes": 1
+  },
+  "armenjeddi/LoopFormer-3block-8iterations-FineWeb300K": {
+   "downloads": 38,
+   "likes": 0
+  },
+  "btzyd/Accordion-6B-A0.5B-Base-32K": {
+   "downloads": 515,
+   "likes": 0
+  },
+  "btzyd/Accordion-6B-A0.5B-Base-8K": {
+   "downloads": 514,
+   "likes": 0
+  },
+  "btzyd/Accordion-6B-A0.5B-RL": {
+   "downloads": 513,
+   "likes": 0
+  },
+  "btzyd/Accordion-6B-A0.5B-SFT": {
+   "downloads": 507,
+   "likes": 0
+  },
+  "danish-foundation-models/DFM-Mimir": {
+   "downloads": 2852,
+   "likes": 86
+  },
+  "danish-foundation-models/DFM-Mimir-GGUF": {
+   "downloads": 599,
+   "likes": 0
+  },
+  "danish-foundation-models/DFM-Mimir-v1.5": {
+   "downloads": 2337,
+   "likes": 7
+  },
+  "danish-foundation-models/DFM-Mimir-v1.5-GGUF": {
+   "downloads": 1109,
+   "likes": 3
+  },
+  "jacobfa1/attractor-140m": {
+   "downloads": 36,
+   "likes": 1
+  },
+  "jacobfa1/attractor-370m": {
+   "downloads": 21,
+   "likes": 0
+  },
+  "jacobfa1/attractor-770m": {
+   "downloads": 27,
+   "likes": 2
+  },
+  "joelogan/depth-recurrent-convergence": {
+   "downloads": 0,
+   "likes": 0
+  },
+  "myboker/Concertina-2.27B": {
+   "downloads": 98,
+   "likes": 3
+  },
+  "nics-efc/TaH-plus-1.7B": {
+   "downloads": 121,
+   "likes": 2
+  },
+  "nics-efc/TaH2-1.7B-max2": {
+   "downloads": 381,
+   "likes": 1
+  },
+  "nics-efc/TaH2-1.7B-max4": {
+   "downloads": 41,
+   "likes": 0
+  },
+  "nics-efc/TaH2-1.7B-max8": {
+   "downloads": 109,
+   "likes": 0
+  },
   "nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-BF16": {
    "downloads": 13467,
    "likes": 278
@@ -48,6 +272,38 @@
   "nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-NVFP4": {
    "downloads": 46460,
    "likes": 33
+  },
+  "osunlp/ARLoop-0.6B": {
+   "downloads": 2545,
+   "likes": 5
+  },
+  "osunlp/ARLoop-1.2B": {
+   "downloads": 2836,
+   "likes": 9
+  },
+  "osunlp/PreNormLoop-0.6B": {
+   "downloads": 1972,
+   "likes": 2
+  },
+  "sapientinc/HRM-Text-1B": {
+   "downloads": 3179,
+   "likes": 838
+  },
+  "sensenova/SenseNova-Loop-9B": {
+   "downloads": 2696,
+   "likes": 661
+  },
+  "sensenova/SenseNova-Loop-9B-AWQ": {
+   "downloads": 977,
+   "likes": 23
+  },
+  "sensenova/SenseNova-Loop-9B-GGUF": {
+   "downloads": 105485,
+   "likes": 228
+  },
+  "sensenova/SenseNova-Loop-9B-Preview": {
+   "downloads": 6250,
+   "likes": 320
   },
   "smcleish/Recurrent-Llama-3.2-train-recurrence-16": {
    "downloads": 79,
@@ -119,11 +375,11 @@
   },
   "thinkingmachines/Inkling-2-Mini": {
    "downloads": 69042,
-   "likes": 5627
+   "likes": 5650
   },
   "thinkingmachines/TML-d24-varloop-research": {
    "downloads": 2564,
-   "likes": 84
+   "likes": 89
   },
   "tomg-group-umd/huginn-0125": {
    "downloads": 22356,
@@ -168,6 +424,34 @@
   "tomg-group-umd/step-00041728-recurrence_full_512_0": {
    "downloads": 29,
    "likes": 0
+  },
+  "yhx12/LatentLoop": {
+   "downloads": 0,
+   "likes": 1
+  },
+  "zeng123/PonderLM-2-Pythia-1.4b": {
+   "downloads": 67,
+   "likes": 3
+  },
+  "zeng123/PonderLM-2-Pythia-410m": {
+   "downloads": 43,
+   "likes": 3
+  },
+  "zeng123/PonderingPythia-1.4B": {
+   "downloads": 11,
+   "likes": 1
+  },
+  "zeng123/PonderingPythia-2.8B": {
+   "downloads": 19,
+   "likes": 1
+  },
+  "zitian-gao/Loopie-20B-A2B-preview": {
+   "downloads": 965,
+   "likes": 5
+  },
+  "zitian-gao/Loopie-6B-A0.6B-preview": {
+   "downloads": 825,
+   "likes": 6
   }
  },
  "papers": {
@@ -2001,6 +2285,15 @@
    "influential": 0,
    "openalex_citations": 2,
    "s2_citations": 2
+  },
+  "2603.16733": {
+   "citations": 19,
+   "citations_source": "openalex",
+   "hf_upvotes": 16,
+   "hn_points": 0,
+   "influential": 1,
+   "openalex_citations": 19,
+   "s2_citations": 6
   },
   "2603.19714": {
    "citations": 12,
@@ -4897,7 +5190,7 @@
   "2610.26030": {
    "citations": 2,
    "citations_source": "semanticscholar",
-   "hf_upvotes": 32,
+   "hf_upvotes": 33,
    "hn_points": 0,
    "influential": 0,
    "institutions": [
@@ -5871,11 +6164,14 @@
   "2611.30205": {
    "hn_points": 0
   },
+  "sensenova-loop-9b": {
+   "hn_points": 6
+  },
   "tml-inkling-2-mini": {
    "hn_points": 1481
   },
   "zai-glm-5-4": {
-   "hn_points": 1138
+   "hn_points": 1143
   }
  },
  "repos": {
@@ -5918,6 +6214,10 @@
   "EricQiu6/MoRE": {
    "pushed_at": "2026-09-24T19:17:55Z",
    "stars": 1
+  },
+  "IQuestLab/IQuest-Coder-V1": {
+   "pushed_at": "2026-03-02T11:58:44Z",
+   "stars": 1392
   },
   "IVIPLab/LBNet": {
    "pushed_at": "2022-07-26T15:20:48Z",
@@ -5983,6 +6283,10 @@
   "OpenSenseNova/Looped-DiT": {
    "pushed_at": "2026-10-30T04:33:41Z",
    "stars": 112
+  },
+  "OpenSenseNova/SenseNova-Loop": {
+   "pushed_at": "2026-11-18T10:03:54Z",
+   "stars": 294
   },
   "Prefrontal-AI/CRAM": {
    "pushed_at": "2026-11-13T17:54:06Z",
@@ -6433,7 +6737,7 @@
   },
   "sapientinc/HRM-Text": {
    "pushed_at": "2026-09-21T21:24:01Z",
-   "stars": 2350
+   "stars": 2351
   },
   "schneiderkamplab/HRM-Text": {
    "pushed_at": "2026-11-17T08:57:46Z",

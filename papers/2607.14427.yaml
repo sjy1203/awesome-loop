@@ -7,6 +7,7 @@ authors: [Joe Logan]
 links:
   paper: https://arxiv.org/abs/2607.14427
   code: https://github.com/jlognn/depth-recurrent-convergence
+  weights: [https://huggingface.co/joelogan/depth-recurrent-convergence]
 category: depth
 focus: core
 facets:

@@ -6,6 +6,7 @@ venue: arXiv
 authors: [Yuekun Yao, Yupei Du, Dawei Zhu, Huan Sun]
 links:
   paper: https://arxiv.org/abs/2611.05234
+  weights: [https://huggingface.co/osunlp/ARLoop-1.2B]
 category: architecture/state
 focus: core
 facets:

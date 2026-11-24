@@ -7,6 +7,7 @@ authors: [Taekhyun Park, Yongjae Lee, Dohee Kim, Hyerim Bae]
 links:
   paper: https://arxiv.org/abs/2605.11011
   code: https://github.com/Thrillcrazyer/LoopUS
+  weights: [https://huggingface.co/Thrillcrazyer/Qwen3_1.7B_LoopUS]
 category: training
 focus: core
 facets:

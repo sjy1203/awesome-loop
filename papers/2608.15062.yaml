@@ -6,6 +6,7 @@ venue: arXiv
 authors: [Amr Hegazy, Amr Alanwar, Mostafa Elhoushi]
 links:
   paper: https://arxiv.org/abs/2608.15062
+  weights: [https://huggingface.co/Amr-Hegazy/grt-medium-isoparam]
 category: architecture/state
 focus: core
 facets:

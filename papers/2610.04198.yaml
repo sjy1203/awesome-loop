@@ -7,6 +7,7 @@ authors: [Liancheng Fang, Zhuowei Li, Youngeun Kim, Tianchen Zhao, Rajat Koner, 
 links:
   paper: https://arxiv.org/abs/2610.04198
   code: https://github.com/amazon-science/ALoDLM
+  weights: [https://huggingface.co/amazon/ALoDLM-8B]
 category: depth
 focus: core
 facets:

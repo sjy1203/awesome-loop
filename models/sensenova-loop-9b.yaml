@@ -1,0 +1,49 @@
+id: sensenova-loop-9b
+name: SenseNova-Loop-9B
+paper: sensenova-loop-9b
+org: [SenseNova]
+hf: [sensenova/SenseNova-Loop-9B, sensenova/SenseNova-Loop-9B-Preview, sensenova/SenseNova-Loop-9B-AWQ, sensenova/SenseNova-Loop-9B-GGUF]
+params: "approximately 9B"
+active_params: "approximately 14.6B inference-equivalent (2 passes)"
+tokens: not stated
+context: "512K (Preview: up to 262,144 tokens)"
+passes:
+  default: "2"
+  range: "fixed (eval_count must match training); the card's study trains 1-4"
+kv: per-pass
+license: apache-2.0
+inference: [transformers-remote-code, vllm, sglang, gguf]
+notes:
+  en: >-
+    SenseNova-Loop-9B is a multimodal model that takes text and images and generates text; its modeling code builds on
+    the Qwen3.5 multimodal classes in transformers, and config.json has a 27-layer vision encoder. The 32-layer decoder
+    runs layers 0-3 once, the shared block of layers 4-27 twice and layers 28-31 once, giving 56 layer executions per
+    forward pass; every four-layer group has three linear-attention layers and one full-attention layer. Inside the
+    looped block, two-stream mHC reads from and writes to two residual streams through learned mappings, with a
+    Sinkhorn-normalized mixing map (20 iterations); in the code the streams are formed at layer 4 and averaged after
+    layer 27 on each pass, so the second pass takes the first pass's output. The modeling code gives each of the 56 layer
+    executions its own cache slot, so full-attention KV and linear-attention states are stored per pass. The configs set
+    loop_settings to start 4, end 28, counts [2] and eval_count 2, and the code rejects an eval_count that differs from
+    counts; the card's loop-scaling study, with matched training and inference loops from 1 to 4, found 3 or 4 loops
+    best, while both releases use 2 for inference efficiency. The card gives no training token count; it describes
+    training on text, images, code and tool-use trajectories with context extended to 512K tokens, while the Preview
+    card gives up to 262,144 tokens and the AWQ config.json lists max_position_embeddings 262144. Transformers loading
+    uses trust_remote_code (the card cites a checked Preview environment with Transformers 5.18.0); vLLM and SGLang
+    support sits in unmerged PRs (vllm-project/vllm#64832, sgl-project/sglang#47281), the GGUF files need the
+    OpenSenseNova/llama.cpp fork, and the card also documents LightLLM. Next to the BF16 checkpoints are an AWQ 4-bit
+    repo with optional MTP draft weights and a GGUF repo (BF16, Q8_0, Q5_K_M, Q4_K_M and a vision projector);
+    sensenova/SenseNova-Loop-9B-DFlash2 is a separate 967M-parameter, five-layer speculative-decoding draft model and is
+    not listed in hf.
+  zh: >-
+    SenseNova-Loop-9B 是多模态模型，输入文本和图像、输出文本；其 modeling 代码基于 transformers 中的 Qwen3.5 多模态类，config.json 中的视觉编码器为 27 层。32 层解码器先跑一遍第 0-3 层，再把共享的第 4-27 层跑两遍，最后跑一遍第 28-31 层，每次前向执行 56 次层计算；每四层一组，含三层线性注意力和一层全注意力。循环块内的双流 mHC 通过可学习映射读写两路残差流，混合矩阵经 Sinkhorn 归一化（20 次迭代）；代码中每一遍都在第 4 层展开两路流、在第 27 层之后取平均，所以第二遍以第一遍的输出为输入。modeling 代码为 56 次层计算各分配一个 cache 槽位，全注意力的 KV 和线性注意力的状态都按遍分别存储。config 中 loop_settings 为 start 4、end 28、counts [2]、eval_count 2，代码会拒绝与 counts 不一致的 eval_count；模型卡的循环 scaling 实验让训练与推理遍数一致、取 1 到 4 遍，3 或 4 遍最好，两个版本出于推理效率都默认用 2 遍。模型卡没有给训练 token 数，只说训练数据含文本、图像、代码和工具调用轨迹，上下文扩展到 512K token；Preview 模型卡写的是最长 262,144 token，AWQ 的 config.json 中 max_position_embeddings 为 262144。用 transformers 加载需要 trust_remote_code（模型卡引用的已核验 Preview 环境为 Transformers 5.18.0）；vLLM 和 SGLang 的支持还在未合入的 PR 中（vllm-project/vllm#64832、sgl-project/sglang#47281），GGUF 文件需要 OpenSenseNova/llama.cpp 的 fork，模型卡也给了 LightLLM 的部署方法。BF16 权重之外还有附可选 MTP draft 权重的 AWQ 4-bit 仓库，以及 GGUF 仓库（BF16、Q8_0、Q5_K_M、Q4_K_M 及视觉投影器）；sensenova/SenseNova-Loop-9B-DFlash2 是单独的 967M 参数、五层的投机解码 draft 模型，未列入 hf。
+ref: >-
+  Model card (README.md and README_CN.md) of sensenova/SenseNova-Loop-9B: News (2026-11-17 release, 2026-11-18 AWQ and
+  GGUF), Model Highlights, Model Specifications (approximately 9B total and approximately 14.6B inference-equivalent
+  parameters, text and images in, [4, 28) / 2, 56 executions, 512K context), Hybrid Attention, Two-Stream mHC, Loop
+  Scaling, Get Started and Deployment; Preview card (training context up to 262,144 tokens); config.json of the 9B and
+  Preview repos (loop_settings start 4, end 28, counts [2], eval_count 2; mhc streams 2, iterations 20; vision_config
+  depth 27); AWQ config.json (max_position_embeddings 262144); modeling_sensenova_loop.py (execution_plan, one cache
+  slot per layer visit, mHC enter/leave); GitHub docs/inference.md (56 execution-cache slots); AWQ, GGUF and DFlash2
+  cards; HF API (cardData license apache-2.0, sensenova model list); GitHub API (vllm-project/vllm#64832 and
+  sgl-project/sglang#47281 open).
+added: "2026-11-24"

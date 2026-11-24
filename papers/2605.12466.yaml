@@ -7,6 +7,7 @@ authors: [Jacob Fein-Ashley, Paria Rashidinejad]
 links:
   paper: https://arxiv.org/abs/2605.12466
   code: https://github.com/jacobfa/Attractor
+  weights: [https://huggingface.co/jacobfa1/attractor-140m]
 category: architecture/placement
 focus: core
 facets:

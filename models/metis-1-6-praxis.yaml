@@ -1,0 +1,58 @@
+id: metis-1-6-praxis
+name: Metis-1.6 Praxis
+paper: "2610.37903"
+org: [Lernex]
+hf:
+  - Lernex/Metis-1.6-Praxis
+  - Lernex/Metis-1.6-Praxis-Base
+  - Lernex/Metis-1.6-Praxis-FP8
+  - Lernex/Metis-1.6-Praxis-NVFP4
+  - Lernex/Metis-1.6-Praxis-MLX-4bit
+  - Lernex/Metis-1.6-Praxis-MLX-8bit
+  - Lernex/Metis-1.6-Praxis-GGUF
+params: "2.94B"
+active_params: "0.46B per pass; 927,204,204 per token over both passes (paper Table 1)"
+tokens: "804.76B pretraining; 1,022.77B with context extension and SFT"
+context: "131,072 (extended from 4,096)"
+passes:
+  default: "2"
+  range: "fixed (paper Section 3: exactly two passes in training and inference)"
+kv: per-pass
+license: apache-2.0
+inference: [transformers-remote-code, vllm, sglang, gguf, custom]
+notes:
+  en: >-
+    Praxis is the smaller of the two Metis-1.6 models, built from scratch by Lernex: Metis-1.6-Praxis-Base is the
+    pretrained base and Metis-1.6-Praxis the post-trained reasoning model, which thinks by default and answers directly
+    with enable_thinking=False. Its 12 layers are Mamba-2 except for attention without positional encoding at layers 4
+    and 8, and each ends in a latent MoE with 128 routed experts (4 per token) and one shared expert; the whole stack runs
+    twice per token with shared weights, a depth memory lets pass 2 read what pass 1 wrote, and each attention layer adds
+    a pass-indexed rank-8 update to its QKV projection. Pretraining used 804.76B tokens and context extension 18.00B
+    tokens (4,096 to 131,072), followed by 120.00B tokens of cold-start SFT and 80.02B of overall SFT, with no RL stage.
+    config.json sets num_passes 2 (max_passes 5), and the paper says every token takes exactly two passes in training and
+    inference; the halting head left in the checkpoint does not affect the released model. modeling_metis16.py and Dromos
+    keep one decode state per (layer, pass): each attention layer stores separate keys and values for each pass, and each
+    Mamba-2 layer keeps a separate conv and SSM state for each pass, so nothing is shared between passes and the cache
+    cannot be cropped. The BF16 repos load in Transformers 4.57 or newer with trust_remote_code, in vLLM 0.31 through the
+    vllm-metis plugin, in SGLang 0.5.22 or newer through sglang-metis, and in the authors' Dromos engine; FP8 runs in
+    Dromos, vLLM and SGLang, NVFP4 only in Dromos, the GGUF files in llama.cpp b12089 or newer, and the MLX builds in
+    mlx-lm with trust_remote_code. The Base card says the vLLM, SGLang and llama.cpp paths were validated on the
+    post-trained weights, and a 0.60B-parameter hashed n-gram memory used in pretraining was removed before release
+    because the model had closed its gates.
+  zh: >-
+    Praxis 是 Metis-1.6 两个模型中较小的一个，由 Lernex 从头训练：Metis-1.6-Praxis-Base 是预训练基座，Metis-1.6-Praxis 是后训练的推理模型，默认先思考，设置 enable_thinking=False 时直接作答。它的 12 层除第 4、8 层为不带位置编码的注意力层外都是 Mamba-2，每层末尾是 latent MoE（128 个路由专家，每 token 选 4 个，外加 1 个共享专家）；整个层栈以共享权重对每个 token 跑两遍，depth memory 让第二遍读取第一遍写下的内容，每个注意力层在 QKV 投影上加一个按遍索引的 rank-8 更新。预训练 804.76B token，上下文扩展 18.00B token（从 4,096 到 131,072），之后是 120.00B token 的 cold-start SFT 和 80.02B token 的 overall SFT，没有 RL 阶段。config.json 中 num_passes 为 2（max_passes 为 5），论文说每个 token 在训练和推理中都恰好跑两遍；checkpoint 中残留的 halting head 不影响发布的模型。modeling_metis16.py 和 Dromos 按（层，遍）各存一份解码状态：每个注意力层每遍各存一份 key/value，每个 Mamba-2 层每遍各存一份 conv 状态和 SSM 状态，遍与遍之间不共享，且 cache 不能裁剪。BF16 仓库可用 Transformers 4.57 及以上版本加 trust_remote_code 加载，也可通过 vllm-metis 插件在 vLLM 0.31、通过 sglang-metis 在 SGLang 0.5.22 及以上版本运行，或用作者自己写的 Dromos 引擎；FP8 可在 Dromos、vLLM 和 SGLang 中运行，NVFP4 只能在 Dromos 中运行，GGUF 文件需 llama.cpp b12089 及以上版本，MLX 版本用 mlx-lm 加 trust_remote_code。Base 模型卡说 vLLM、SGLang 和 llama.cpp 的支持是在后训练权重上验证的；预训练时用过的 0.60B 参数 hashed n-gram memory 因模型已关闭其门控，在发布前被移除。
+ref: >-
+  Model card of Lernex/Metis-1.6-Praxis (intro: 2.94B parameters, 0.46B per pass, 131,072-token context, Apache 2.0;
+  Run it table naming the FP8, NVFP4, MLX-4bit, MLX-8bit and GGUF repos and their engines; Dromos, Transformers
+  (trust_remote_code, transformers 4.57+), vLLM (vllm==0.31.*, vllm-metis), SGLang (sglang-metis, SGLang 0.5.22+, a Mamba
+  state per layer and pass) and llama.cpp (b12089+, ggml-org/llama.cpp#31134, merged 2026-11-03 per the GitHub API)
+  sections; Architecture; Training table: 804.76B, 18.00B, 120.00B, 80.02B, total 1,022.77B, no RL stage);
+  Metis-1.6-Praxis-Base card (Architecture table; plugins validated on the post-trained weights); FP8, NVFP4, MLX and
+  GGUF cards (supported engines); config.json (num_passes 2, max_passes 5, attention_layer_indices [4, 8],
+  max_position_embeddings 131072); configuration_metis16.py docstring (fixed num_passes=2 policy); modeling_metis16.py
+  (Metis16Cache keyed by (layer, pass) for keys and values and for Mamba conv and SSM states; crop raises an error);
+  Dromos docs/ARCHITECTURE.md and engine/model/metis.h (state per (pass, layer)); paper Section 3 with footnote 1
+  (exactly two passes; unused halting head) and Table 1 (2,943,303,100 total, 463,602,102 active per pass, 927,204,204
+  per token); HF API of the seven repos (cardData.license apache-2.0) and the Lernex Metis-1.6 and Metis-1.6 Base
+  collections.
+added: "2026-11-24"

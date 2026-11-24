@@ -7,6 +7,7 @@ authors: [Ahmadreza Jeddi, Marco Ciccone, Babak Taati]
 links:
   paper: https://arxiv.org/abs/2602.11451
   code: https://github.com/armenjeddi/loopformer
+  weights: [https://huggingface.co/armenjeddi/LoopFormer-3block-8iterations]
 category: depth
 focus: core
 facets:

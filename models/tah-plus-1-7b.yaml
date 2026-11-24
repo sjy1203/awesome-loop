@@ -1,0 +1,45 @@
+id: tah-plus-1-7b
+name: TaH-plus-1.7B
+paper: "2511.08577"
+org: [Tsinghua-NICS-EFC]
+hf: [nics-efc/TaH-plus-1.7B]
+params: "1.76B (1.72B backbone + LoRA + decider)"
+tokens: "SFT on 100K Mixture-of-Thoughts samples (480M tokens)"
+context: "8192 (training length); max_position_embeddings 32768"
+passes:
+  default: "up to 2 (per-token decider, threshold 0.9)"
+  range: "max_iter cap and decider threshold; paper also tests a cap of 1"
+kv: per-pass
+license: apache-2.0
+inference: [custom]
+notes:
+  en: >-
+    TaH-plus-1.7B is Qwen3-1.7B-Base fine-tuned with Think-at-Hard on 100K Open-R1 Mixture-of-Thoughts samples (math,
+    code and science). "plus" is the paper's TaH+ variant: it keeps all 28 layers and adds a LoRA adapter and an MLP
+    iteration decider (under 3% extra parameters), while plain TaH prunes one layer to match the baseline's size and has
+    no released checkpoint. Every token first runs the unmodified backbone; tokens whose continue probability exceeds the
+    decider threshold (0.9) run a second full pass with LoRA enabled, fed with a top-100 softmax mix of token embeddings
+    from the first pass's logits, and the logits of the two passes are added. Training has two stages: backbone and LoRA
+    are trained with oracle labels that mark tokens a reference Qwen3-1.7B mispredicts, then the decider is trained with
+    the backbone frozen. The released TaHCache keeps one KV slot per layer and iteration, and duo-causal attention lets a
+    query at depth d attend to positions up to its own at depths up to d. The loop runs through the tah package from the
+    GitHub repo (TaHForCausalLM, Python 3.10, transformers 4.52.4), whose TaH backend the README calls a token-by-token
+    Python loop for research; config.json declares a plain Qwen3ForCausalLM, so AutoModelForCausalLM loads only the
+    single-pass backbone without LoRA and decider. nics-efc/Standard-1.7B in the same collection is the single-iteration
+    baseline trained on the same data and is not listed; nics-efc/TaH-plus-0.6B and Standard-0.6B have no model card and
+    are not linked from the paper, the collection or the GitHub repo, so they are not listed either.
+  zh: >-
+    TaH-plus-1.7B 是用 Think-at-Hard 在 100K 条 Open-R1 Mixture-of-Thoughts 样本（数学、代码、科学）上微调的 Qwen3-1.7B-Base。plus 对应论文中的 TaH+：保留全部 28 层，另加 LoRA adapter 和 MLP 迭代决策器（额外参数不到 3%）；普通 TaH 会剪掉一层以对齐基线参数量，没有发布 checkpoint。每个 token 先跑一遍原始主干；继续概率超过决策器阈值（0.9）的 token 再跑第二遍完整前向，此时启用 LoRA，输入是用第一遍 logits 的 top-100 softmax 对 token 嵌入加权求和得到的向量，两遍的 logits 相加。训练分两阶段：先用 oracle 标签（参考模型 Qwen3-1.7B 预测错的 token）训练主干和 LoRA，再冻结主干训练决策器。官方代码中的 TaHCache 按层和迭代各存一份 KV，duo-causal attention 让第 d 遍的 query 关注不晚于自身位置、深度不超过 d 的 KV。循环通过 GitHub 仓库中的 tah 包运行（TaHForCausalLM，Python 3.10，transformers 4.52.4），README 称其 TaH 后端是面向研究的逐 token Python 循环；config.json 写的是普通 Qwen3ForCausalLM，用 AutoModelForCausalLM 只能加载不带 LoRA 和决策器的单遍主干。同一 collection 中的 nics-efc/Standard-1.7B 是用相同数据训练的单遍基线，未列出；nics-efc/TaH-plus-0.6B 和 Standard-0.6B 没有模型卡，论文、collection 和 GitHub 仓库都没有链接它们，因此也未列出。
+ref: >-
+  Model card of nics-efc/TaH-plus-1.7B (base model Qwen/Qwen3-1.7B-Base, dataset open-r1/Mixture-of-Thoughts, math,
+  code and science data, under 3% extra parameters, GitHub pointer) and HF API (cardData.license apache-2.0;
+  safetensors.total 1,720,574,976 counts only the backbone file); tah_config.json (max_iter 2, MLPIterDecider threshold
+  0.9, input_updater_kwargs topk 100, LoRA r 16) and config.json (Qwen3ForCausalLM, 28 layers, max_position_embeddings
+  32768); nics-efc TaH collection and model list (Standard-1.7B card; TaH-plus-0.6B and Standard-0.6B outside the
+  collection, without cards); GitHub README (100K OpenR1 samples, TaH vs TaH+ pruning, two-stage training, tah backend,
+  Python 3.10) and pyproject.toml (transformers 4.52.4); tah/model/tah_model.py and tah/model/causal_cache.py (LoRA from
+  the second iteration, top-k embedding mix, additive logits, TaHCache keyed by layer and iteration, duo-causal mask);
+  paper v4 Table 9 (1.76B total), Section 5.3 (two-stage training), Section 6.1 (TaH+ unpruned, threshold 0.9) and
+  Appendix A.1.1 (100K samples, 480M tokens, 8192 max sequence length), Figure 3 and Appendix A.4.1 (one KV cache per
+  iteration depth), Table 7 and Figure 6 (inference depth 1, threshold sweep).
+added: "2026-11-24"

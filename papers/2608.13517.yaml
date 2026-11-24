@@ -7,6 +7,7 @@ authors: [Peter Schneider-Kamp, Jacob Nielsen, Gianluca Barmina, Danial Namazifa
 links:
   paper: https://arxiv.org/abs/2608.13517
   code: https://github.com/schneiderkamplab/HRM-Text
+  weights: [https://huggingface.co/danish-foundation-models/DFM-Mimir-v1.5]
 category: training
 focus: core
 facets:

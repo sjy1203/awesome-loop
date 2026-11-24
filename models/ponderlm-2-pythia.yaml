@@ -1,0 +1,43 @@
+id: ponderlm-2-pythia
+name: PonderLM-2-Pythia
+paper: "2509.23184"
+hf: [zeng123/PonderLM-2-Pythia-1.4b, zeng123/PonderLM-2-Pythia-410m]
+params: "1.4B / 410M"
+tokens: "300B (Pile) each"
+context: "2048"
+passes:
+  default: "2 per token (one latent thought)"
+  range: "fixed (decoding runs one latent thought)"
+kv: per-pass
+license: apache-2.0
+inference: [transformers-remote-code]
+notes:
+  en: >-
+    PonderLM-2-Pythia-1.4b and -410m are GPT-NeoX models with the Pythia architecture (24 layers) pretrained with
+    PonderLM-2 on 300B Pile tokens. For every token the model first runs a normal forward pass, then feeds that
+    position's last hidden state back into the same network as a latent thought at the same position id, and predicts the
+    next token from this second pass (num_latent_thoughts 1). In training, and for the prompt at inference, the latent
+    thoughts of all positions are solved in parallel by Jacobi iterations over the interleaved token and thought sequence
+    (num_jacobi_iterations 4 at inference; the paper samples 2 or 3 per training instance). With use_cache=True, as in
+    the card example, the token pass and the thought pass each append a KV entry for the same position, so the cache holds
+    two entries per token, which the paper's Appendix I describes as doubling the KV cache. The decoding branch of the
+    released modeling_gpt_neox.py always runs exactly one latent thought, so num_latent_thoughts cannot be raised at
+    inference; the longer thought chains in the paper come from separately trained models that are not released. Because
+    thoughts reuse their token's position id, the 2048-token context is not shortened (paper Section 3.4). The cards load
+    the models with AutoModelForCausalLM and trust_remote_code=True; the GitHub repo also contains LLaMA code and the
+    PonderLM, Loop and Pause baselines, but its README lists only these two checkpoints.
+  zh: >-
+    PonderLM-2-Pythia-1.4b 和 -410m 是 Pythia 架构（24 层）的 GPT-NeoX 模型，用 PonderLM-2 在 300B token 的 Pile 上预训练。每个 token 先正常跑一遍前向，再把该位置的最后隐藏状态作为 latent thought、以相同的 position id 送回同一个网络，用第二遍的输出预测下一个 token（num_latent_thoughts 1）。训练时以及推理处理 prompt 时，所有位置的 latent thought 通过在 token 与 thought 交错序列上的 Jacobi 迭代并行求解（推理时 num_jacobi_iterations 为 4；论文训练时每个样本随机取 2 或 3）。按模型卡示例设置 use_cache=True 时，token 遍和 thought 遍会在同一位置各追加一条 KV，因此每个 token 在 cache 中占两条，论文 Appendix I 称之为 KV cache 翻倍。官方 modeling_gpt_neox.py 的解码分支总是只跑一个 latent thought，因此推理时不能调大 num_latent_thoughts；论文中更长的 thought 链来自另行训练、未发布的模型。由于 thought 复用其 token 的 position id，2048 的上下文长度不会缩短（论文 Section 3.4）。模型卡用 AutoModelForCausalLM 加 trust_remote_code=True 加载；GitHub 仓库还包含 LLaMA 代码以及 PonderLM、Loop 和 Pause 基线，但其 README 只列出这两个 checkpoint。
+ref: >-
+  Model cards of both repos (Pythia architecture, 1.4 B and 410 M parameters, 24 layers, context length 2048, 300 B
+  Pile tokens on the 1.4b card, AutoModelForCausalLM with trust_remote_code=True and use_cache=True, sibling checkpoint,
+  GitHub and paper links) and HF API (cardData.license apache-2.0, dataset monology/pile-uncopyrighted); config.json
+  (num_latent_thoughts 1, num_jacobi_iterations 4, random_jacobi_iterations true, auto_map to
+  modeling_gpt_neox.GPTNeoXForCausalLM, use_cache false); modeling_gpt_neox.py, the same file in both repos (prefill
+  with Jacobi refinement over the interleaved sequence, decoding with one token pass and one latent-thought pass that
+  both write to the DynamicCache, thoughts given their token's position ids); GitHub README (released checkpoints, flag
+  meanings, baselines, auto_map inference); paper Section 3.1 (inference), Section 3.2 (Jacobi iterations, K from {2,3}
+  in training), Section 3.4 (position ids and context window), Table 2 (PonderLM-2-Pythia-410M and 1.4B, 300B tokens),
+  Section 4.7 and Appendix G (longer thought chains in separately trained models), Appendix I (KV cache doubled with one
+  latent thought per token).
+added: "2026-11-24"

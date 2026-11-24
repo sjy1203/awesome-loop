@@ -1,0 +1,48 @@
+id: loopie-6b-a0-6b-preview
+name: Loopie-6B-A0.6B-preview
+paper: "2607.16051"
+org: [IQuest Research]
+hf: [zitian-gao/Loopie-6B-A0.6B-preview]
+params: "6B"
+active_params: "0.6B"
+tokens: "3T pretraining + 1.26T annealing (paper Section 3)"
+context: "131072 (YaRN factor 16 over 8192)"
+passes:
+  default: "2 (layer_loop_times)"
+  range: "fixed (Section 2.8 compares separately trained models)"
+kv: per-pass
+license: mit
+inference: [custom]
+notes:
+  en: >-
+    Post-trained reasoning MoE from IQuest Research, trained from scratch; the card calls it a preview optimized mainly
+    for math and science reasoning, and its benchmark table matches the paper's Section 4.3 comparison for
+    Loopie-6B-A0.6B Thinking. Each of the 18 stored Qwen3-MoE layers (128 experts, 8 per token) runs twice in place
+    before the next layer (layer-loop, layer_loop_times 2); the paper's layer-loop versus model-loop comparison
+    (Figure 2) and its ablation without layer-loop (Figure 5) use Loopie-6B-A0.6B. The card gives no token count;
+    Section 3 describes 3T tokens of stage-1 pretraining for both Loopie models (about 2.28T in Section 3.4: about 570B
+    unique Nemotron-CC-v2-HQ tokens for four epochs) and 1.26T tokens of annealing, followed by supervised pre-training
+    on 2T tokens with 131072-token sequences and RL with 32K, then 64K, response limits. The card installs the
+    authors' forks of transformers and vLLM (github.com/zitian-gao/transformers and github.com/zitian-gao/vllm);
+    config.json declares model_type qwen3_moe, and the upstream Qwen3-MoE code has no layer_loop_times setting. The
+    vLLM fork reads layer_loop_times and gives each pass its own attention layer and KV cache; the transformers fork
+    hard-codes two passes per decoder layer, and both passes write to the same cache layer index. The safetensors
+    count is 7,095,644,160 parameters (BF16), while the paper gives 6B.
+  zh: >-
+    IQuest Research 发布的后训练推理 MoE 模型，从头训练；模型卡称其为 preview 版本，主要针对数学和科学推理优化，卡上的评测表与论文 Section 4.3 中 Loopie-6B-A0.6B Thinking 的对比数值一致。18 个存储的 Qwen3-MoE 层（128 个专家，每 token 激活 8 个）各自原地连续运行两遍后再进入下一层（layer-loop，layer_loop_times 2）；论文中 layer-loop 与 model-loop 的对比（Figure 2）和去掉 layer-loop 的消融（Figure 5）都用 Loopie-6B-A0.6B。模型卡没有给出 token 数；Section 3 写两个 Loopie 模型的第一阶段预训练为 3T token（Section 3.4 写约 2.28T：约 570B 个不重复的 Nemotron-CC-v2-HQ token 训练四个 epoch），再加 1.26T token 退火，之后是 2T token、序列长度 131072 的 supervised pre-training，以及回复长度上限先 32K 后 64K 的 RL。模型卡要求安装作者的 transformers 和 vLLM 分支（github.com/zitian-gao/transformers 和 github.com/zitian-gao/vllm）；config.json 声明 model_type 为 qwen3_moe，而上游 Qwen3-MoE 代码没有 layer_loop_times 设置。vLLM 分支读取 layer_loop_times，为每一遍单独建注意力层和 KV cache；transformers 分支在 decoder 层内写死两遍，两遍写入同一个 cache 层索引。safetensors 统计为 7,095,644,160 个参数（BF16），论文写的是 6B。
+ref: >-
+  Model card of zitian-gao/Loopie-6B-A0.6B-preview (trained by IQuest Research; preview optimized for math and science
+  reasoning; benchmark table without a token count; Transformers and vLLM sections installing
+  github.com/zitian-gao/transformers and github.com/zitian-gao/vllm) and config.json (model_type qwen3_moe,
+  layer_loop_times 2, model_loop_times 1, num_hidden_layers 18, num_experts 128, num_experts_per_tok 8,
+  max_position_embeddings 131072, rope_scaling yarn factor 16.0 with original_max_position_embeddings 8192); HF API
+  (cardData.license mit, safetensors.total 7,095,644,160); paper (arXiv v3) header (links to this repo and the
+  megatron-lm, transformers and vllm forks), Abstract (6B with 0.6B active), Section 2.1 (layer-loop order), Figures 2
+  and 5 (layer-loop vs model-loop, layer-loop ablation on Loopie-6B-A0.6B), Section 2.8 (choice of two loop steps;
+  loop-count sweep on separately trained models), Sections 3 and 3.4 (3T stage 1 for both models, about 2.28T over four
+  epochs, 1.26T annealing), Section 4 and Table 8 (2T-token SPT, sequence length 131072), Section 4.2 (32K and 64K RL
+  stages), Section 4.3 (comparison table for Loopie-6B-A0.6B Thinking) and Table 4 (layer-loop times 2, 18 layers); kv
+  from vllm/model_executor/models/qwen3_moe.py in zitian-gao/vllm (an extra Attention per loop step with virtual layer
+  index layer_idx × layer_loop_times + loop_idx) and src/transformers/models/qwen3_moe/modeling_qwen3_moe.py in
+  zitian-gao/transformers (for i in range(2) around attention and MoE, cache update with the same layer_idx).
+added: "2026-11-24"

@@ -1,0 +1,53 @@
+id: nanbeige4-2-3b
+name: Nanbeige4.2-3B
+paper: "2607.22083"
+org: [Nanbeige LLM Lab, Boss Zhipin]
+hf:
+  - Nanbeige/Nanbeige4.2-3B
+  - Nanbeige/Nanbeige4.2-3B-Base
+  - Nanbeige/Nanbeige4.2-3B-FP8
+  - Nanbeige/Nanbeige4.2-3B-GPTQ-Int8
+params: "4B (3B non-embedding)"
+tokens: "28T (pretraining)"
+context: "262,144 (Base config: 131,072)"
+passes:
+  default: "2 (num_loops)"
+  range: "fixed; Section 2.1 chose two passes from pretraining experiments"
+kv: per-pass
+license: apache-2.0
+inference: [transformers-remote-code, vllm, sglang, gguf]
+notes:
+  en: >-
+    Nanbeige4.2-3B-Base is pretrained from scratch on 28T tokens; Nanbeige4.2-3B is the post-trained agentic and
+    reasoning model built on it (SFT in 64K, 128K and 256K context stages, then RLHF over think and non-think
+    responses, length-controlled reasoning RL and agentic RL), with thinking enabled by default in the chat template.
+    The whole 22-layer stack runs twice (num_loops 2), and the final norm is applied after each pass. In Section 2.1,
+    training the loop from scratch beat upcycling a standard Transformer, two passes gave the best trade-off, and a
+    variant that shares the KV cache across passes halves it but gained less, so the release keeps a separate KV per
+    pass. modeling_nanbeige.py stores pass k of layer i at cache index i + k × num_physical_layers; it also contains
+    LoopSplit, mHC with depth attention, n-gram embeddings and a loop_share_kv option, all off in the released
+    configs. The card asks for transformers==4.45.1 with trust_remote_code and points to Nanbeige forks of SGLang,
+    vLLM, llama.cpp and Ollama; upstream support was later merged in llama.cpp (ggml-org/llama.cpp#25994), SGLang
+    (sgl-project/sglang#32151) and vLLM through its Transformers backend (vllm-project/vllm#56071, v0.30.0), each with
+    separate KV slots per loop. The FP8 and GPTQ-Int8 repos are quantizations of the post-trained model.
+    Nanbeige4.2-3B-DSpark is a separate 5-layer draft model (847,946,241 parameters by safetensors count) for DSpark
+    speculative decoding of Nanbeige4.2-3B in the forked SGLang and vLLM, so it is not listed. The safetensors count of
+    the BF16 repos is 4,169,800,704 parameters.
+  zh: >-
+    Nanbeige4.2-3B-Base 在 28T token 上从头预训练；Nanbeige4.2-3B 是在其基础上后训练的 agentic 与推理模型（SFT 分 64K、128K、256K 三个上下文阶段，之后依次做覆盖 think 与 non-think 回复的 RLHF、带长度控制的推理 RL 和 agentic RL），chat template 默认开启 thinking。整个 22 层的层栈运行两遍（num_loops 2），每一遍结束后都会经过最终 norm。论文 Section 2.1 中，从头训练循环结构优于把标准 Transformer upcycle 成循环结构，两遍是最好的折中；跨遍共享 KV cache 的变体能把 KV 减半，但提升较小，因此发布版本每一遍各存一份 KV。modeling_nanbeige.py 把第 i 层第 k 遍的 KV 存在 cache 索引 i + k × num_physical_layers；文件里还包含 LoopSplit、带 depth attention 的 mHC、n-gram embedding 和 loop_share_kv 选项，在发布的 config 中都未启用。模型卡要求 transformers==4.45.1 并开启 trust_remote_code，并给出 Nanbeige 维护的 SGLang、vLLM、llama.cpp 和 Ollama 分支；之后上游也合入了支持：llama.cpp（ggml-org/llama.cpp#25994）、SGLang（sgl-project/sglang#32151），以及通过 Transformers 后端的 vLLM（vllm-project/vllm#56071，v0.30.0），每遍循环都有独立的 KV 槽位。FP8 和 GPTQ-Int8 仓库是后训练模型的量化版。Nanbeige4.2-3B-DSpark 是单独的 5 层草稿模型（safetensors 统计 847,946,241 个参数），用于在 Nanbeige 分支的 SGLang 和 vLLM 中对 Nanbeige4.2-3B 做 DSpark 投机解码，因此未列出。BF16 仓库的 safetensors 统计为 4,169,800,704 个参数。
+ref: >-
+  Model cards of Nanbeige/Nanbeige4.2-3B (Total Params 4B, Non-embedding Params 3B; Looped Transformer; context up to
+  262,144 tokens; enable_thinking on by default; Quickstart: transformers==4.45.1 with trust_remote_code, SGLang branch
+  nbg42, vLLM, llama.cpp and Ollama branches nanbeige42), Nanbeige4.2-3B-Base (trained from scratch; training data
+  expanded from 23T to 28T tokens), -FP8 and -GPTQ-Int8 (quantized repositories of Nanbeige4.2-3B) and -DSpark (DSpark
+  weights used alongside Nanbeige4.2-3B for faster inference; config.json Qwen3DSparkModel with 5 layers); config.json
+  of the four listed repos (num_loops 2, num_hidden_layers 22, max_position_embeddings 262144, Base 131072); HF API
+  (cardData.license apache-2.0 for all five repos; safetensors.total 4,169,800,704, DSpark 847,946,241);
+  modeling_nanbeige.py (_get_loop_cache_layer_idx returns layer_idx + loop_idx × physical layers; one vLLM attention
+  dispatch per loop; loop_share_kv, enable_double_loop_split, enable_mhc and enable_depth_attention default off; final
+  norm inside the loop unless skip_loop_final_norm) for kv; paper Abstract and Section 2.2 (28T tokens), Section 2.1
+  (one extra pass through the same stack, from-scratch vs upcycling, loop depth selection, KV-sharing variant not
+  used), Table 1 (4B total, 3B non-embedding) and Section 3.2 (SFT context stages, RLHF, reasoning RL, agentic RL);
+  upstream support in ggml-org/llama.cpp#25994 (separate KV slots), sgl-project/sglang#32151 (unique layer_id per loop
+  for the KV cache) and vllm-project/vllm#56071 (vLLM v0.30.0 release notes, docs/models/supported_models.md).
+added: "2026-11-24"

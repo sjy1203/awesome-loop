@@ -1,0 +1,45 @@
+id: loopcoder-v2
+name: LoopCoder-V2
+paper: "2606.18023"
+hf: [Multilingual-Multimodal-NLP/LoopCoder-V2]
+params: "7B"
+tokens: "18T"
+context: "131072 (max_position_embeddings)"
+passes:
+  default: "2"
+  range: "fixed (the paper trains each loop count separately)"
+kv: first-pass
+license: apache-2.0
+inference: [custom]
+notes:
+  en: >-
+    Instruction-tuned 7B dense code model based on the Parallel Loop Transformer (PLT), trained from scratch on 18T
+    tokens of text and code (1:1, more than 100 programming languages) and then fine-tuned on 6M instruction examples.
+    Its 14 shared layers run twice (plt_num_loops 2); the paper trained separate models at 1, 2, 3 and 4 loops, each
+    evaluated at its training loop count, and only the two-loop instruction model is released. Before the second loop,
+    the first loop's hidden states are shifted right by one token and added to the token embeddings (cross-loop
+    position offset), so loops of neighbouring tokens can run concurrently in one forward pass. In the second loop each
+    attention layer mixes, through a per-head gate, full attention over the first loop's KV cache with 64-token
+    sliding-window attention over the second loop's own keys and values, so only the first loop keeps a full-length
+    cache. The HF repository has configuration and tokenizer code but no modeling file, and its auto_map lists only
+    AutoConfig, although the GitHub README shows a transformers snippet with trust_remote_code. The card's inference
+    path is the vLLM build at yxing-bj/vllm, which adds IQuestPLTCoderForCausalLM, used with transformers==4.57.1 and
+    the --trust-remote-code flag. The safetensors total is 7,615,749,680 parameters; the card says approximately 7B.
+  zh: >-
+    基于 Parallel Loop Transformer（PLT）的 7B dense 指令微调代码模型，在 18T token 的文本和代码数据（1:1，超过 100 种编程语言）上从头训练，再用 6M 条指令数据做 SFT。14 个共享层跑两遍（plt_num_loops 为 2）；论文分别训练了 1、2、3、4 遍的模型，各自按训练遍数评测，只发布了两遍的指令模型。第二遍之前，第一遍的隐状态右移一个 token 后与 token 嵌入相加（cross-loop position offset），使相邻 token 的不同遍可以在同一次前向中并行计算。第二遍中每个注意力层用逐头门控混合两路注意力：对第一遍 KV cache 的全注意力，以及对第二遍自身 key/value 的 64 token 滑窗注意力，因此只有第一遍保存全长缓存。HF 仓库里有配置和 tokenizer 代码，但没有 modeling 文件，auto_map 只列出 AutoConfig，尽管 GitHub README 给出了带 trust_remote_code 的 transformers 示例。模型卡给出的推理方式是 yxing-bj/vllm 上的 vLLM 构建（其中加入了 IQuestPLTCoderForCausalLM），配合 transformers==4.57.1 和 --trust-remote-code 参数使用。safetensors 参数总数为 7,615,749,680；模型卡写的是约 7B。
+ref: >-
+  Model card (7B instruction-tuned PLT code model; Model Details table: approximately 7B parameters, 14 shared layers,
+  max position embeddings 131072, PLT loops 2, PLT window size 64; Highlights: from scratch on 18T tokens, cross-loop
+  position offsets and shared-KV gated sliding-window attention; Usage: vLLM from yxing-bj/vllm with
+  transformers==4.57.1 and --trust-remote-code; Training Data section); HF API (cardData.license apache-2.0,
+  safetensors.total 7,615,749,680, file list with configuration and tokenizer code only, auto_map with AutoConfig
+  only; the org's model search for Loop returns only this repo); config.json (plt_num_loops 2, plt_window_size
+  [64, 0], num_hidden_layers 14, max_position_embeddings 131072) and the configuration_iquestpltcoder.py docstring
+  (loop 0 stores KV caches, loops 1+ run mixed attention); paper front page (HF link), Section 2.2 and Algorithm 1
+  (first-loop KV shared with later loops, w = 64 window over the current loop's KV, one-token CLP shift), Section 3.1
+  (18T tokens, 1:1 text and code, matched training and inference loop counts, R = 1-4, SFT on 6M examples) and
+  Table 5 (about 7B, 18T); vllm/model_executor/models/iquest_loopcoder.py and registry.py in yxing-bj/vllm (loop 0
+  attention owns the full cache, later loops read it without new keys and add a sliding_window = 64 cache;
+  IQuestPLTCoderForCausalLM registered); GitHub CSJianYang/LoopCoder README (links the HF repo, lists one model,
+  transformers snippet).
+added: "2026-11-24"

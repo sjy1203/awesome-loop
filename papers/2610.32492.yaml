@@ -6,6 +6,7 @@ venue: arXiv
 authors: [Yudong Zhang, Wei Ding, Kaili Zheng, Yuchen Ding, Zhenyu Zhang]
 links:
   paper: https://arxiv.org/abs/2610.32492
+  weights: [https://huggingface.co/btzyd/Accordion-6B-A0.5B-RL]
 category: depth
 focus: core
 facets:

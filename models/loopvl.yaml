@@ -1,0 +1,49 @@
+id: loopvl
+name: LoopVL-1B
+paper: "2609.38426"
+org: [TierFlow]
+hf: [TierFlow/LoopVL]
+params: "1B"
+tokens: "0.14T across all stages (75B text pretraining)"
+context: "8,192"
+passes:
+  default: "H2L3: [L×3→H]×2, 128 layer calls"
+  range: "H_cycles and L_cycles; paper tests 12 schedules"
+kv: n/a
+license: "not stated on the card (repo includes LICENSE-Penguin.txt)"
+inference: [custom]
+notes:
+  en: >-
+    LoopVL-1B is an image-text-to-text model: a frozen Penguin-VL vision encoder and a two-layer projector feed a
+    recurrent language backbone that the authors pretrained from scratch with the HRM-Text framework and data, not
+    HRM-Text's released checkpoint. The backbone has two 16-layer stacks, L and H, with separate weights; the default H2L3
+    schedule runs L three times and then H, twice (L→L→L→H→L→L→L→H), for 128 layer applications per forward pass, and at
+    the start of each cycle a gated visual anchor from the projected image embeddings is added back into the H state.
+    Training used 75B text pretraining tokens, 0.33B for visual alignment, 49B for multimodal mid-training, 16.81B for SFT
+    and 0.006B for GRPO RL, listed as 0.14T in paper Tables 1 and 2. H_cycles and L_cycles in config.json set the
+    schedule; paper Table 4 tested 12 inference schedules on this checkpoint, and H2L3, the training schedule, scored best
+    on all five benchmarks. The released runtime keeps no KV cache: greedy_generate recomputes the whole recurrent
+    sequence for every new token with use_cache=False. The Hub repo holds only weights and configuration; inference needs
+    the custom loader in the GitHub runtime/ directory with transformers 5.15.1 (not AutoModel or vLLM), the mixed
+    BF16/FP32 weights must not be cast to one dtype, and the card recommends direct answers except on math. The model card
+    states no license and the HF API has no license field; the repo ships LICENSE-Penguin.txt, Tencent's license terms for
+    Penguin-VL, whose clause 0 says Penguin-VL is not intended for use within the European Union, while the GitHub code is
+    Apache-2.0 and its THIRD_PARTY_NOTICES.md says relocating the Penguin notice does not assign a new license to the
+    model weights. The paper names the model LoopVL-1B, and the safetensors file, which includes the vision encoder,
+    holds 1,628,587,779 parameters (HF API).
+  zh: >-
+    LoopVL-1B 是图文到文本的模型：冻结的 Penguin-VL 视觉编码器和两层 projector 把图像特征送入循环语言骨干，该骨干由作者用 HRM-Text 的开源框架和数据从头预训练，没有使用 HRM-Text 发布的 checkpoint。骨干包含 L 和 H 两个 16 层的层栈，权重互不共享；默认的 H2L3 调度先跑三遍 L 再跑一遍 H，共两轮（L→L→L→H→L→L→L→H），每次前向执行 128 次层计算，每轮开始时把来自投影后图像 embedding 的门控视觉锚点重新加回 H 状态。训练用了 75B token 的文本预训练、0.33B 的视觉对齐、49B 的多模态 mid-training、16.81B 的 SFT 和 0.006B 的 GRPO RL，论文 Table 1 和 Table 2 记为 0.14T。config.json 中的 H_cycles 和 L_cycles 决定调度；论文 Table 4 在这个 checkpoint 上测试了 12 种推理调度，与训练一致的 H2L3 在全部五个基准上得分最高。发布的推理代码不使用 KV cache：greedy_generate 每生成一个 token 都以 use_cache=False 重算整个循环序列。Hub 仓库只有权重和配置；推理需要 GitHub 仓库 runtime/ 目录中的自带加载器和 transformers 5.15.1（不能用 AutoModel 或 vLLM），BF16/FP32 混合精度的权重不能整体转成一种 dtype，模型卡建议除数学题外直接作答。模型卡没有写 license，HF API 也没有 license 字段；仓库附带 LICENSE-Penguin.txt，即腾讯的 Penguin-VL 许可条款，其第 0 条写明 Penguin-VL 不打算在欧盟境内使用；GitHub 代码为 Apache-2.0，其 THIRD_PARTY_NOTICES.md 说迁移 Penguin 的声明不会给模型权重赋予新的 license。论文称该模型为 LoopVL-1B，包含视觉编码器的 safetensors 文件共有 1,628,587,779 个参数（HF API）。
+ref: >-
+  Paper arXiv 2609.38426v2: header (Code github.com/Tier-Flow/LoopVL; Models LoopVL-1B at huggingface.co/TierFlow/LoopVL
+  and ModelScope Eternity123/LoopVL), Section 2.1 (two 16-layer L/H stacks, H2L3 schedule, 128 layer calls, visual
+  anchor and gate), Sections 3 and 4 (75B, 0.33B, 49B, 16.81B and 0.006B tokens), Tables 1 and 2 (0.14T training
+  tokens, LoopVL 1B), Section 5.3 and Table 4 (inference schedule sweep), Section 6.2 (HRM-Text framework and data, not
+  its checkpoint); Hugging Face papers page of 2609.38426 (githubRepo Tier-Flow/LoopVL, projectPage TierFlow/LoopVL);
+  model card (custom GitHub loader, H2L3 and 128 layer applications, mixed BF16/FP32 weights, direct-answer tip, no
+  license statement); config.json (H_cycles 2, L_cycles 3, num_layers_per_stack 16, num_hidden_layers 128, inference
+  max_seq_len 8192 and use_cache false); HF API (no cardData.license, safetensors.total 1,628,587,779); LICENSE-Penguin.txt
+  in the HF repo (Tencent Penguin-VL terms, clause 0); GitHub README, model/MODEL_SETUP.md, runtime/README.md and
+  runtime/requirements.txt (custom loader only, transformers==5.15.1), THIRD_PARTY_NOTICES.md and the GitHub API
+  (Apache-2.0 code license); runtime/hrm_penguin/generation.py (greedy_generate recomputes the sequence each step with
+  use_cache=False).
+added: "2026-11-24"

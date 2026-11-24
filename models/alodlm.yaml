@@ -1,0 +1,53 @@
+id: alodlm
+name: ALoDLM
+paper: "2610.04198"
+org: [Amazon]
+hf: [amazon/ALoDLM-8B, amazon/ALoDLM-1.7B]
+params: "8B / 1.7B"
+tokens: "5B-token SFT corpus (8 epochs at 8B)"
+context: "4,096 (training length)"
+passes:
+  default: "up to 4, adaptive exit (max_depth 4)"
+  range: "1-4 per denoising step, set by the exit gate and q"
+kv: per-pass
+license: cc-by-nc-4.0
+inference: [custom]
+notes:
+  en: >-
+    Diffusion language models converted from Qwen3-8B and Qwen3-1.7B by direct supervised fine-tuning, with no
+    continued pretraining, on a 5B-token corpus of math, code and instruction data in the WeDLM block-diffusion
+    framework (eight epochs at 8B). ALoDLM-8B splits its 36 layers into a 10-layer prelude, a shared 16-layer recurrent
+    core (layers 10-25) and a 10-layer coda, and ALoDLM-1.7B loops all 28 layers; both run at most four passes
+    (alodlm_config.json max_depth 4). Decoding fills a 16-token window of mask tokens after the committed text; after
+    each core pass the model reads out token predictions (through the coda at 8B) and a learned exit gate
+    (exit_gate.pt) gives each unresolved token a halting probability. A token commits when its entropy plus a position
+    penalty is below tau (in left1 mode, used for the paper's Table 1, the leftmost token commits each pass), committed
+    tokens re-enter later passes as token embeddings, and the pass loop ends when the mean cumulative halting
+    probability of the uncommitted tokens reaches q, when all tokens are committed, or after four passes. Recurrent
+    layers keep a separate KV cache for each depth while prelude and coda layers keep one; prefill computes all four
+    depths for the prompt, and depths that a window did not reach reuse the last computed depth. The models run only
+    with the authors' code: the portable decoder alodlm-generate (PyTorch 2.8.0, transformers 4.56.1) or the bundled
+    nano-vLLM/WeDLM engine alodlm-generate-optimized (PyTorch 2.10.0, transformers 5.5.4, vLLM 0.19.1 kernels);
+    standard transformers generate() and vllm serve do not run the recurrent decoder or the exit gate. The weights are
+    CC BY-NC 4.0 (non-commercial), and the WeDLM-derived code in the repository keeps WeDLM's terms, which include a
+    territorial restriction. Safetensors totals are 8,190,735,360 and 2,031,739,904 parameters, plus the exit gate in
+    exit_gate.pt.
+  zh: >-
+    由 Qwen3-8B 和 Qwen3-1.7B 转换而来的扩散语言模型：在 WeDLM block-diffusion 框架下直接 SFT，不做继续预训练，语料为 5B token 的数学、代码和指令数据（8B 训练八个 epoch）。ALoDLM-8B 把 36 层分为 10 层 prelude、16 层共享循环核心（第 10-25 层）和 10 层 coda，ALoDLM-1.7B 则循环全部 28 层；两者最多跑四遍（alodlm_config.json 中 max_depth 为 4）。解码时在已提交文本之后放一个 16 token 的 mask 窗口；每遍核心计算后读出 token 预测（8B 经过 coda），学习到的 exit gate（exit_gate.pt）给每个未确定 token 一个停止概率。熵加位置惩罚低于 tau 的 token 被提交（left1 模式下每遍提交最左边的一个 token，论文 Table 1 用的就是此模式），已提交 token 以 token 嵌入进入后续各遍；当未提交 token 的平均累计停止概率达到 q、全部 token 已提交或跑满四遍时，内循环结束。循环层为每个深度各存一份 KV，prelude 和 coda 层只存一份；prefill 为 prompt 计算全部四个深度，窗口未执行到的深度沿用最后一个已计算深度的 KV。只能用作者的代码运行：便携解码器 alodlm-generate（PyTorch 2.8.0、transformers 4.56.1），或自带的 nano-vLLM/WeDLM 引擎 alodlm-generate-optimized（PyTorch 2.10.0、transformers 5.5.4、vLLM 0.19.1 kernel）；标准 transformers generate() 和 vllm serve 不会运行循环解码器和 exit gate。权重采用 CC BY-NC 4.0（非商用），仓库中源自 WeDLM 的代码保留 WeDLM 的条款，其中含地域限制。safetensors 参数总数为 8,190,735,360 和 2,031,739,904，另有 exit_gate.pt 中的 exit gate。
+ref: >-
+  Model cards of both repos (developed at Amazon, initialized from Qwen3-1.7B and Qwen3-8B, training-data description;
+  Evaluation: 16-token window, q = 0.4 at 1.7B and 0.5 at 8B, tau inactive, one token per pass; Getting started:
+  optimized and portable inference, a standard Transformers pipeline omits the recurrent decoding and exit gate;
+  License and attribution: CC BY-NC 4.0, Qwen3 bases under Apache 2.0); HF API (cardData.license cc-by-nc-4.0,
+  safetensors.total, exit_gate.pt and alodlm_config.json in both repos); alodlm_config.json (8B: loop_start 10,
+  loop_end 26, max_depth 4; 1.7B: loop_start 0, loop_end 28, max_depth 4) and config.json (Qwen3ForCausalLM,
+  max_position_embeddings 40960); paper Sections 1, 4.1 and 4.2 (direct SFT on a 5B-token corpus without CPT, K = 4,
+  core layers), Section 3.1 and Algorithm 1 (inner loop, entropy-based commitment, mean cumulative halt threshold q,
+  forced exit at depth K), Appendix B.1 (depth-specific KV buffers for the recurrent core, matching-depth lookup with
+  deepest-available fallback, one buffer per prelude or coda layer, 84 buffer pairs at 8B), Table 2 and Appendix D.1
+  (layer ranges, 4,096 packed sequence length, WeDLM framework, eight epochs and 34,512 steps at 8B), Section 5 (KV
+  cache built for the full recurrent depth at prefill); GitHub amazon-science/ALoDLM (README; docs/inference.md:
+  cache layout, early-stop depth filling, transformers generate() and vllm serve lack the decoder; docs/method.md;
+  alodlm/inference.py: PrefixCache keyed by layer and depth inside [loop_start, loop_end), DecodeConfig defaults q 0.5,
+  tau 0.4, window 16; optimized/README.md; NOTICE and LICENSE with the WeDLM terms).
+added: "2026-11-24"

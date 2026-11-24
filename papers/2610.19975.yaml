@@ -6,6 +6,7 @@ venue: arXiv
 authors: [Zefeng He, Yunkai Chai, Xiaoyang Chen, Tong Zhu, Zongliang Wu, Yun Luo, Yafu Li, Yu Cheng]
 links:
   paper: https://arxiv.org/abs/2610.19975
+  weights: [https://huggingface.co/yhx12/LatentLoop]
 category: architecture/placement
 focus: core
 facets:

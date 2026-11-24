@@ -6,6 +6,7 @@ venue: arXiv
 authors: [Andrei Marchenko, Viacheslav Bezrukov, Oleg Kashurin, Inessa Fedorova, Dmitry Bocharov, Yuliana Shakhvalieva, Maria Tikhonova, Valerii Ternovskii]
 links:
   paper: https://arxiv.org/abs/2610.00673
+  weights: [https://huggingface.co/ai-forever/OrbitLM-1.8B-Thinking]
 category: training
 focus: core
 facets:

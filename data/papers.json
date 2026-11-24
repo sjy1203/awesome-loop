@@ -2833,7 +2833,10 @@
    ],
    "links": {
     "paper": "https://arxiv.org/abs/2505.20674",
-    "code": "https://github.com/LUMIA-Group/PonderingLM"
+    "code": "https://github.com/LUMIA-Group/PonderingLM",
+    "weights": [
+     "https://huggingface.co/zeng123/PonderingPythia-1.4B"
+    ]
    },
    "category": "architecture/state",
    "focus": "core",
@@ -3424,7 +3427,10 @@
    ],
    "links": {
     "paper": "https://arxiv.org/abs/2509.23184",
-    "code": "https://github.com/LUMIA-Group/PonderLM-2"
+    "code": "https://github.com/LUMIA-Group/PonderLM-2",
+    "weights": [
+     "https://huggingface.co/zeng123/PonderLM-2-Pythia-1.4b"
+    ]
    },
    "category": "architecture/state",
    "focus": "core",
@@ -4572,7 +4578,10 @@
    ],
    "links": {
     "paper": "https://arxiv.org/abs/2511.08577",
-    "code": "https://github.com/thu-nics/TaH"
+    "code": "https://github.com/thu-nics/TaH",
+    "weights": [
+     "https://huggingface.co/nics-efc/TaH-plus-1.7B"
+    ]
    },
    "category": "depth",
    "focus": "core",
@@ -5229,7 +5238,10 @@
    ],
    "links": {
     "paper": "https://arxiv.org/abs/2602.11451",
-    "code": "https://github.com/armenjeddi/loopformer"
+    "code": "https://github.com/armenjeddi/loopformer",
+    "weights": [
+     "https://huggingface.co/armenjeddi/LoopFormer-3block-8iterations"
+    ]
    },
    "category": "depth",
    "focus": "core",
@@ -5572,6 +5584,73 @@
    "tldr": {
     "en": "SCORE replaces stacked layers with one shared block applied for a fixed number of steps through the contractive update ht+1 = (1 - dt) * ht + dt * F(ht); on GNNs for ESOL, MLPs and nanoGPT it generally speeds convergence while cutting parameters, and simple Euler steps give the best cost trade-off.",
     "zh": "SCORE 用一个共享块按固定步数迭代取代逐层堆叠，采用收缩式更新 ht+1 = (1 - dt) * ht + dt * F(ht)；在 ESOL 上的 GNN、MLP 和 nanoGPT 中，它通常加快收敛并减少参数，简单的 Euler 积分在计算成本与性能之间折中最好。"
+   },
+   "added": "2026-11-24"
+  },
+  {
+   "id": "2603.16733",
+   "tier": "radar",
+   "title": "IQuest-Coder-V1 Technical Report",
+   "date": "2026-03-17",
+   "venue": "arXiv",
+   "authors": [
+    "Jian Yang",
+    "Wei Zhang",
+    "Shawn Guo",
+    "Zhengmao Ye",
+    "Lin Jing",
+    "Shark Liu",
+    "Yizhi Li",
+    "Jiajun Wu",
+    "Cening Liu",
+    "X. Ma",
+    "Yuyang Song",
+    "Siwei Wu",
+    "Yuwen Li",
+    "L. Liao",
+    "T. Zheng",
+    "Ziling Huang",
+    "Zelong Huang",
+    "Che Liu",
+    "Yan Xing",
+    "Renyuan Li",
+    "Qingsong Cai",
+    "Hanxu Yan",
+    "Siyue Wang",
+    "Shikai Li",
+    "Jason Klein Liu",
+    "An Huang",
+    "Yongsheng Kang",
+    "Jinxing Zhang",
+    "Chuan Hao",
+    "Haowen Wang",
+    "Weicheng Gu",
+    "Ran Tao",
+    "Mingjie Tang",
+    "Peihao Wu",
+    "Jianzhou Wang",
+    "Xianglong Liu",
+    "Weifeng Lv",
+    "Bryan Dai"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2603.16733",
+    "code": "https://github.com/IQuestLab/IQuest-Coder-V1",
+    "weights": [
+     "https://huggingface.co/IQuestLab/IQuest-Coder-V1-40B-Loop-Instruct",
+     "https://huggingface.co/IQuestLab/IQuest-Coder-V1-40B-Loop-Thinking"
+    ]
+   },
+   "category": "training",
+   "focus": "core",
+   "facets": {
+    "placement": "whole-stack",
+    "depth_train": "fixed",
+    "kv": "first-pass"
+   },
+   "tldr": {
+    "en": "Technical report for the IQuest-Coder-V1 dense code models (7B-40B), whose 40B Loop variants run all 80 layers twice with shared parameters, the second iteration gating between global attention over first-iteration KV and local attention; 40B-Loop-Instruct scores 76.2 on SWE-bench Verified against 70.4 for the non-looped 40B-Instruct.",
+    "zh": "IQuest-Coder-V1 dense 代码模型系列（7B-40B）的技术报告；其中 40B Loop 版本以共享参数把全部 80 层跑两遍，第二遍用门控混合对第一遍 KV 的全局注意力和局部注意力；40B-Loop-Instruct 在 SWE-bench Verified 上得 76.2，不循环的 40B-Instruct 为 70.4。"
    },
    "added": "2026-11-24"
   },
@@ -6920,7 +6999,10 @@
    ],
    "links": {
     "paper": "https://arxiv.org/abs/2605.11011",
-    "code": "https://github.com/Thrillcrazyer/LoopUS"
+    "code": "https://github.com/Thrillcrazyer/LoopUS",
+    "weights": [
+     "https://huggingface.co/Thrillcrazyer/Qwen3_1.7B_LoopUS"
+    ]
    },
    "category": "training",
    "focus": "core",
@@ -6973,7 +7055,10 @@
    ],
    "links": {
     "paper": "https://arxiv.org/abs/2605.12466",
-    "code": "https://github.com/jacobfa/Attractor"
+    "code": "https://github.com/jacobfa/Attractor",
+    "weights": [
+     "https://huggingface.co/jacobfa1/attractor-140m"
+    ]
    },
    "category": "architecture/placement",
    "focus": "core",
@@ -7207,7 +7292,10 @@
    ],
    "links": {
     "paper": "https://arxiv.org/abs/2605.20613",
-    "code": "https://github.com/sapientinc/HRM-Text"
+    "code": "https://github.com/sapientinc/HRM-Text",
+    "weights": [
+     "https://huggingface.co/sapientinc/HRM-Text-1B"
+    ]
    },
    "category": "training",
    "focus": "core",
@@ -7890,7 +7978,10 @@
     "Bryan Dai"
    ],
    "links": {
-    "paper": "https://arxiv.org/abs/2606.18023"
+    "paper": "https://arxiv.org/abs/2606.18023",
+    "weights": [
+     "https://huggingface.co/Multilingual-Multimodal-NLP/LoopCoder-V2"
+    ]
    },
    "category": "understanding",
    "focus": "core",
@@ -8424,7 +8515,10 @@
    ],
    "links": {
     "paper": "https://arxiv.org/abs/2607.14427",
-    "code": "https://github.com/jlognn/depth-recurrent-convergence"
+    "code": "https://github.com/jlognn/depth-recurrent-convergence",
+    "weights": [
+     "https://huggingface.co/joelogan/depth-recurrent-convergence"
+    ]
    },
    "category": "depth",
    "focus": "core",
@@ -8510,7 +8604,11 @@
     "Bryan Dai"
    ],
    "links": {
-    "paper": "https://arxiv.org/abs/2607.16051"
+    "paper": "https://arxiv.org/abs/2607.16051",
+    "weights": [
+     "https://huggingface.co/zitian-gao/Loopie-20B-A2B-preview",
+     "https://huggingface.co/zitian-gao/Loopie-6B-A0.6B-preview"
+    ]
    },
    "category": "scaling",
    "focus": "core",
@@ -8780,7 +8878,10 @@
     "Zongqiang Li"
    ],
    "links": {
-    "paper": "https://arxiv.org/abs/2607.22083"
+    "paper": "https://arxiv.org/abs/2607.22083",
+    "weights": [
+     "https://huggingface.co/Nanbeige/Nanbeige4.2-3B"
+    ]
    },
    "category": "training",
    "focus": "core",
@@ -9340,7 +9441,10 @@
    ],
    "links": {
     "paper": "https://arxiv.org/abs/2608.13517",
-    "code": "https://github.com/schneiderkamplab/HRM-Text"
+    "code": "https://github.com/schneiderkamplab/HRM-Text",
+    "weights": [
+     "https://huggingface.co/danish-foundation-models/DFM-Mimir-v1.5"
+    ]
    },
    "category": "training",
    "focus": "core",
@@ -9464,7 +9568,10 @@
     "Mostafa Elhoushi"
    ],
    "links": {
-    "paper": "https://arxiv.org/abs/2608.15062"
+    "paper": "https://arxiv.org/abs/2608.15062",
+    "weights": [
+     "https://huggingface.co/Amr-Hegazy/grt-medium-isoparam"
+    ]
    },
    "category": "architecture/state",
    "focus": "core",
@@ -11078,7 +11185,10 @@
    ],
    "links": {
     "paper": "https://arxiv.org/abs/2609.35748",
-    "code": "https://github.com/thu-nics/TaH"
+    "code": "https://github.com/thu-nics/TaH",
+    "weights": [
+     "https://huggingface.co/nics-efc/TaH2-1.7B-max2"
+    ]
    },
    "category": "depth",
    "focus": "core",
@@ -11112,7 +11222,10 @@
    ],
    "links": {
     "paper": "https://arxiv.org/abs/2609.35751",
-    "code": "https://github.com/SR-A-W/how-to-loop-moe"
+    "code": "https://github.com/SR-A-W/how-to-loop-moe",
+    "weights": [
+     "https://huggingface.co/ShourenWSR/how-to-loop-moe"
+    ]
    },
    "category": "architecture/placement",
    "focus": "core",
@@ -11386,7 +11499,10 @@
    ],
    "links": {
     "paper": "https://arxiv.org/abs/2609.38426",
-    "code": "https://github.com/Tier-Flow/LoopVL"
+    "code": "https://github.com/Tier-Flow/LoopVL",
+    "weights": [
+     "https://huggingface.co/TierFlow/LoopVL"
+    ]
    },
    "category": "architecture/placement",
    "focus": "core",
@@ -11594,7 +11710,10 @@
     "Valerii Ternovskii"
    ],
    "links": {
-    "paper": "https://arxiv.org/abs/2610.00673"
+    "paper": "https://arxiv.org/abs/2610.00673",
+    "weights": [
+     "https://huggingface.co/ai-forever/OrbitLM-1.8B-Thinking"
+    ]
    },
    "category": "training",
    "focus": "core",
@@ -11808,7 +11927,10 @@
    ],
    "links": {
     "paper": "https://arxiv.org/abs/2610.04198",
-    "code": "https://github.com/amazon-science/ALoDLM"
+    "code": "https://github.com/amazon-science/ALoDLM",
+    "weights": [
+     "https://huggingface.co/amazon/ALoDLM-8B"
+    ]
    },
    "category": "depth",
    "focus": "core",
@@ -13023,7 +13145,10 @@
     "Yu Cheng"
    ],
    "links": {
-    "paper": "https://arxiv.org/abs/2610.19975"
+    "paper": "https://arxiv.org/abs/2610.19975",
+    "weights": [
+     "https://huggingface.co/yhx12/LatentLoop"
+    ]
    },
    "category": "architecture/placement",
    "focus": "core",
@@ -14010,7 +14135,10 @@
     "Zhenyu Zhang"
    ],
    "links": {
-    "paper": "https://arxiv.org/abs/2610.32492"
+    "paper": "https://arxiv.org/abs/2610.32492",
+    "weights": [
+     "https://huggingface.co/btzyd/Accordion-6B-A0.5B-RL"
+    ]
    },
    "category": "depth",
    "focus": "core",
@@ -14297,7 +14425,11 @@
    ],
    "links": {
     "paper": "https://arxiv.org/abs/2610.37903",
-    "code": "https://github.com/lernex/dromos"
+    "code": "https://github.com/lernex/dromos",
+    "weights": [
+     "https://huggingface.co/Lernex/Metis-1.6-Logos",
+     "https://huggingface.co/Lernex/Metis-1.6-Praxis"
+    ]
    },
    "category": "training",
    "focus": "core",
@@ -14793,7 +14925,10 @@
     "Huan Sun"
    ],
    "links": {
-    "paper": "https://arxiv.org/abs/2611.05234"
+    "paper": "https://arxiv.org/abs/2611.05234",
+    "weights": [
+     "https://huggingface.co/osunlp/ARLoop-1.2B"
+    ]
    },
    "category": "architecture/state",
    "focus": "core",
@@ -15699,7 +15834,10 @@
    ],
    "links": {
     "paper": "https://arxiv.org/abs/2611.18113",
-    "code": "https://github.com/myboker/concertina"
+    "code": "https://github.com/myboker/concertina",
+    "weights": [
+     "https://huggingface.co/myboker/Concertina-2.27B"
+    ]
    },
    "category": "training",
    "focus": "core",
@@ -16472,6 +16610,36 @@
    "tldr": {
     "en": "PackLoop speeds up concurrent self-speculative decoding of looped LMs by speculating only inside rows (one request on one loop) that already read that loop's KV cache; it is exact in FP32, and across 164 load points it beats the best existing schedule at 161 (median 1.25x, up to 1.76x).",
     "zh": "PackLoop 针对并发场景下循环语言模型的自推测解码，只在本来就要读取该循环 KV cache 的行（一个请求在一个循环上前进）内做推测；它在 FP32 下与自回归解码逐 token 一致，在 164 个负载点中有 161 个快于逐点挑选的最佳现有调度（中位数 1.25x，最高 1.76x）。"
+   },
+   "added": "2026-11-24"
+  },
+  {
+   "id": "sensenova-loop-9b",
+   "tier": "radar",
+   "title": "SenseNova-Loop-9B: Deeper Computation with Fewer Parameters",
+   "date": "2026-11-17",
+   "venue": "Hugging Face model card",
+   "authors": [
+    "SenseNova"
+   ],
+   "links": {
+    "paper": "https://huggingface.co/sensenova/SenseNova-Loop-9B",
+    "code": "https://github.com/OpenSenseNova/SenseNova-Loop",
+    "weights": [
+     "https://huggingface.co/sensenova/SenseNova-Loop-9B",
+     "https://huggingface.co/sensenova/SenseNova-Loop-9B-Preview"
+    ]
+   },
+   "category": "architecture/state",
+   "focus": "core",
+   "facets": {
+    "placement": "prelude-core-coda",
+    "depth_train": "fixed",
+    "kv": "per-pass"
+   },
+   "tldr": {
+    "en": "Model card for SenseNova-Loop-9B, a multimodal model of approximately 9B parameters (text and images in, text out) that runs decoder layers 4-27 twice with shared weights and two-stream mHC residual mixing, so 32 stored layers give 56 layer executions; in a loop-scaling study with matched training and inference loops, 3 or 4 loops gave the best results.",
+    "zh": "SenseNova-Loop-9B 的模型卡：约 9B 参数的多模态模型（输入文本和图像，输出文本），第 4-27 层共享权重跑两遍，循环块内用双流 mHC 混合残差，32 层存储权重每次前向执行 56 次层计算；在训练与推理遍数一致的循环 scaling 实验中，3 或 4 遍效果最好。"
    },
    "added": "2026-11-24"
   },

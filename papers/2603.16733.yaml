@@ -1,0 +1,26 @@
+id: "2603.16733"
+tier: radar
+title: "IQuest-Coder-V1 Technical Report"
+date: "2026-03-17"
+venue: arXiv
+authors: [Jian Yang, Wei Zhang, Shawn Guo, Zhengmao Ye, Lin Jing, Shark Liu, Yizhi Li, Jiajun Wu, Cening Liu, X. Ma, Yuyang Song, Siwei Wu, Yuwen Li, L. Liao, T. Zheng, Ziling Huang, Zelong Huang, Che Liu, Yan Xing, Renyuan Li, Qingsong Cai, Hanxu Yan, Siyue Wang, Shikai Li, Jason Klein Liu, An Huang, Yongsheng Kang, Jinxing Zhang, Chuan Hao, Haowen Wang, Weicheng Gu, Ran Tao, Mingjie Tang, Peihao Wu, Jianzhou Wang, Xianglong Liu, Weifeng Lv, Bryan Dai]
+links:
+  paper: https://arxiv.org/abs/2603.16733
+  code: https://github.com/IQuestLab/IQuest-Coder-V1
+  weights:
+    - https://huggingface.co/IQuestLab/IQuest-Coder-V1-40B-Loop-Instruct
+    - https://huggingface.co/IQuestLab/IQuest-Coder-V1-40B-Loop-Thinking
+category: training
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: first-pass
+tldr:
+  en: >-
+    Technical report for the IQuest-Coder-V1 dense code models (7B-40B), whose 40B Loop variants run all 80 layers twice
+    with shared parameters, the second iteration gating between global attention over first-iteration KV and local
+    attention; 40B-Loop-Instruct scores 76.2 on SWE-bench Verified against 70.4 for the non-looped 40B-Instruct.
+  zh: >-
+    IQuest-Coder-V1 dense 代码模型系列（7B-40B）的技术报告；其中 40B Loop 版本以共享参数把全部 80 层跑两遍，第二遍用门控混合对第一遍 KV 的全局注意力和局部注意力；40B-Loop-Instruct 在 SWE-bench Verified 上得 76.2，不循环的 40B-Instruct 为 70.4。
+added: "2026-11-24"

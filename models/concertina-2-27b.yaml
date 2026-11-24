@@ -1,0 +1,44 @@
+id: concertina-2-27b
+name: Concertina-2.27B
+paper: "2611.18113"
+hf: [myboker/Concertina-2.27B]
+params: "2.27B"
+tokens: "22B (distilled from Qwen3-4B)"
+context: "40,960 (config, from Qwen3-4B); distilled at 1,024"
+passes:
+  default: "2"
+  range: "fixed (fold_group 2 in config.json is built into the weights)"
+kv: per-pass
+license: apache-2.0
+inference: [transformers-remote-code]
+notes:
+  en: >-
+    Concertina-2.27B is a compressed student of Qwen/Qwen3-4B: every two adjacent teacher layers are folded into one
+    shared block that runs twice, giving 18 unique blocks × 2 loop steps and the teacher's effective depth of 36. Each
+    linear map of a block starts from the weight of the first layer of its pair; the second step adds a rank-64
+    correction initialized from the truncated SVD of the difference between the two layers and scaled per token by a
+    gate, and each step keeps the RMSNorm weights of the layer it replaces. All parameters were then distilled from
+    Qwen3-4B with forward KL plus 0.25 times cross-entropy on 22B tokens (35% math, 55% knowledge-oriented data, 10%
+    general web text) in 1,024-token sequences. The loop count is fixed by the checkpoint's structure (fold_group 2 and
+    fold_rank 64 in config.json), and the paper's N=3 fold of Qwen3-8B (3.68B) has no released checkpoint. Each loop step
+    uses the KV-cache slot of the original layer it replaces, so the model keeps the teacher's 36 per-layer KV caches,
+    and the GitHub self-test checks that cached and uncached generation match. Loading needs trust_remote_code; the card
+    says it is tested with transformers 4.57 and 5.6, and versions older than 4.56 take torch_dtype instead of dtype. The
+    card's example is plain greedy text completion and does not describe chat or thinking use; the paper's limitations
+    note that folding keeps the teacher's forward FLOPs and KV cache.
+  zh: >-
+    Concertina-2.27B 是 Qwen/Qwen3-4B 的压缩学生模型：教师模型每两个相邻层折叠成一个跑两遍的共享块，得到 18 个独立块 × 2 个循环步，有效深度与教师相同，为 36 层。每个块的线性层从其所在层对中第一层的权重开始；第二步加一个 rank-64 修正，用两层权重之差的截断 SVD 初始化，并由逐 token 的门控缩放；每一步保留其所替代层的 RMSNorm 权重。之后全部参数从 Qwen3-4B 蒸馏，损失为前向 KL 加 0.25 倍交叉熵，共 22B token（35% 数学、55% 知识类数据、10% 通用网页文本），序列长度 1,024。循环次数由 checkpoint 的结构决定（config.json 中 fold_group 为 2，fold_rank 为 64）；论文中把 Qwen3-8B 按 N=3 折叠的模型（3.68B）没有发布 checkpoint。每个循环步使用其所替代原始层的 KV cache 槽位，因此模型保留教师的 36 层 KV cache，GitHub 自测会检查有无 cache 时生成结果一致。加载需要 trust_remote_code；模型卡说已在 transformers 4.57 和 5.6 上测试，4.56 之前的版本要用 torch_dtype 代替 dtype。模型卡的示例是贪心解码的纯文本续写，没有介绍对话或思考模式的用法；论文的局限性一节指出，折叠后前向 FLOPs 和 KV cache 与完整深度的教师相同。
+ref: >-
+  Model card (intro: built from the weights of Qwen3-4B and distilled on 22B tokens, links to arXiv 2611.18113 and
+  github.com/myboker/concertina; Model section and table: 2.27B parameters, 18 × 2 unique blocks and loop steps,
+  effective depth 36, KV cache same as Qwen3-4B; Usage: trust_remote_code, transformers 4.57 and 5.6, one cache slot per
+  loop step; License: Apache 2.0); HF API (cardData.license apache-2.0, base_model Qwen/Qwen3-4B, safetensors.total
+  2,273,787,896; uploader myboker is a user account with full name ziyang zhang, the first author); config.json
+  (fold_group 2, fold_rank 64, fold_gate true, num_hidden_layers 36, max_position_embeddings 40960, the same value as in
+  Qwen/Qwen3-4B's config.json); concertina.py
+  (LoopBlock runs the shared layer once per step and sets self_attn.layer_idx to the original layer id) and
+  modeling_concertina.py; paper Section 3.1 (N=2 gives 18 blocks and 2.27B), Section 3.4 (KL plus 0.25 cross-entropy),
+  Section 4.1 (22B tokens, data mix, sequences of 1024 tokens), Table 1 (22B distillation tokens), Section 4.8 (Qwen3-8B
+  folded with N=3 into 3.68B) and Appendix D (forward FLOPs and KV cache of the full-depth teacher); GitHub README
+  (released model, self-test of cached versus uncached generation).
+added: "2026-11-24"

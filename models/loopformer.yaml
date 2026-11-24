@@ -1,0 +1,46 @@
+id: loopformer
+name: LoopFormer
+paper: "2602.11451"
+hf:
+  - armenjeddi/LoopFormer-3block-8iterations
+  - armenjeddi/LoopFormer-2block-12iterations
+  - armenjeddi/LoopFormer-3block-8iterations-FineWeb300K
+params: "278,169,600 / 223,635,456 / 278,169,600 (safetensors)"
+tokens: "~25B (deduplicated Pile) / ~25B / not stated"
+context: "1024"
+passes:
+  default: "8, 12, 8 (steps)"
+  range: "any budget M up to L via steps; paper evaluates M = 2, 4, 8"
+kv: n/a
+license: "not stated (no model cards)"
+inference: [transformers-remote-code]
+notes:
+  en: >-
+    LoopFormer loops a stack of k Transformer blocks (3 or 2 here; width 2048, 32 heads) that makes up the whole model
+    between the embeddings and the LM head. Each loop is conditioned on the normalized time t and the step size Δt
+    through adaLN-style scales and residual gates, and training adds a sampled shorter trajectory with a
+    shortcut-consistency loss so that fewer loops still give usable outputs. Per the paper, the 3⊗8 and 2⊗12 models
+    were trained for 50,000 steps on a deduplicated subset of The Pile (about 25B tokens), and the repos ship a GPT-2
+    tokenizer; the -FineWeb300K repo is not described in the paper or the GitHub README, so its data and token count
+    are not stated. The repos have no model card; config.json maps AutoModelForCausalLM to
+    modeling_loopformer.LoopFormerGPTForCausalLM, so they load with trust_remote_code=True, and GPT.from_pretrained in
+    the GitHub models/loopformer.py loads them the same way. The loop count is the length of the steps list passed to
+    forward or generate (step sizes summing to 1, for example steps=[0.25]*4 for four loops; the paper's main results
+    use uniform steps 1/M); without it the 3-block models run 8 equal steps and the 2-block model 12.
+    modeling_loopformer.py has no KV cache: every forward pass recomputes the whole sequence through all loops.
+    armenjeddi/NanoGPT-Base24-FineWeb300K in the same collection is the non-looped 24-layer baseline and is not
+    listed. The GitHub code is an MIT-licensed nanoGPT fork.
+  zh: >-
+    LoopFormer 把 k 个 Transformer block（此处为 3 或 2 个；宽度 2048，32 个 head）组成的堆栈反复循环，这个堆栈就是 embedding 与 LM head 之间的全部模型。每一遍以归一化时间 t 和步长 Δt 为条件，通过 adaLN 式的缩放和残差门控调制；训练时还额外采样一条更短的轨迹并加 shortcut-consistency 损失，使少跑几遍也能得到可用的输出。按论文，3⊗8 和 2⊗12 模型在去重后的 The Pile 子集上训练了 50,000 步（约 25B token），仓库附带 GPT-2 tokenizer；-FineWeb300K 仓库在论文和 GitHub README 中都没有描述，其数据和 token 数未说明。这些仓库没有模型卡；config.json 把 AutoModelForCausalLM 映射到 modeling_loopformer.LoopFormerGPTForCausalLM，因此要用 trust_remote_code=True 加载，GitHub 中 models/loopformer.py 的 GPT.from_pretrained 也是这样加载。循环次数就是传给 forward 或 generate 的 steps 列表长度（各步长之和为 1，例如 steps=[0.25]*4 表示四遍；论文主要结果用均匀步长 1/M）；不传时 3-block 模型跑 8 个等长步，2-block 模型跑 12 个。modeling_loopformer.py 没有 KV cache：每次前向都把整个序列重新跑过所有循环。同一 collection 里的 armenjeddi/NanoGPT-Base24-FineWeb300K 是不循环的 24 层基线，未列出。GitHub 代码是采用 MIT license 的 nanoGPT fork。
+ref: >-
+  HF API of the three repos (author armenjeddi, no cardData and no README, safetensors totals 278,169,600 /
+  223,635,456 / 278,169,600) and the LoopFormer collection (models trained in the ICLR 2026 paper, also holding
+  NanoGPT-Base24-FineWeb300K); config.json (auto_map to modeling_loopformer.py, no loop key); modeling_loopformer.py
+  (n_layer 3 or 2, n_embd 2048, n_head 32, block_size 1024, default steps [1/8]*8 or [1/12]*12, steps passed through
+  generate, no KV cache); tokenizer_config.json (GPT2Tokenizer, model_max_length 1024); GitHub README (official
+  implementation, link to the collection), LICENSE (MIT) and models/loopformer.py (GPT.from_pretrained through
+  AutoModelForCausalLM with trust_remote_code=True); paper Section 3.3 (budget M <= L at inference), Section 4 and
+  Appendix A (deduplicated Pile, 50,000 steps, ~25B tokens, d = 2048, 32 heads, context 1024, uniform steps at
+  inference; no parameter counts), Table 1 and Figures 2, 3 and 6 (evaluated budgets). Nothing in the paper or the
+  GitHub repo describes the -FineWeb300K variant.
+added: "2026-11-24"

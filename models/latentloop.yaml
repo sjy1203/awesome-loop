@@ -1,0 +1,49 @@
+id: latentloop
+name: LatentLoop
+paper: "2610.19975"
+hf: [yhx12/LatentLoop]
+params: "1.3B / 3B / 7B"
+active_params: "0.2B / 0.5B / 1B (approximate, paper Table 2)"
+tokens: "40.0975B / 69.6538B / 139.7123B (reference budgets 40B / 70B / 140B)"
+context: "4096"
+passes:
+  default: "2 (middle layers visited twice, the first visit on a 2x compressed sequence)"
+  range: "fixed"
+kv: per-pass
+license: apache-2.0
+inference: [custom]
+notes:
+  en: >-
+    Base MoE language models for text continuation at three sizes, one per subfolder (1.3B-40B, 3B-70B, 7B-140B, named
+    by reference token budget), trained from scratch on FineWeb-Edu sample350BT with the 32K TinyLlama tokenizer; no
+    instruction tuning or chat template. The 12 / 16 / 20 stored layers form entry, middle and exit blocks of a
+    quarter, a half and a quarter of the layers, and the middle block is visited twice, giving 18 / 24 / 30 executed
+    layers. The visits are asymmetric: the first runs on a latent sequence in which each pair of adjacent token states
+    is averaged, and its increment is rescaled by two learned per-channel vectors and written back to the last token of
+    the pair and to the next token, so an update only reaches positions after its whole source pair; the second visit
+    runs on the full sequence. Only the MoE routers and experts are shared between the visits and each visit has its
+    own attention parameters; width, attention dimensions, stored experts (75 / 75 / 76 per layer, 8 active) and
+    training steps were set so that stored parameters, KV cache, FLOPs per step and training FLOPs stay within 1% of an
+    MoE baseline and an ordinary looped MoE. inference.py (also in the GitHub code) loads one subfolder with
+    load_pretrained(..., subfolder=...), keeps the FP32 weights and uses BF16 autocast on CUDA; its generate() is greedy
+    with batch size one. The loader keeps one KV cache per layer execution, so the two visits never share K/V even
+    where weights are shared; the first visit's cache covers the compressed sequence, and an unfinished token pair and
+    the last writeback update are held in small buffers during decoding. The visit count is fixed at two. The params
+    column gives the card's size labels; each subfolder's training_summary.json gives 1,299,003,368 / 3,194,972,016 /
+    6,858,742,008 parameters, matching paper Table 6.
+  zh: >-
+    三个规模的 MoE 基座语言模型，用于文本续写，每个子目录一个（1.3B-40B、3B-70B、7B-140B，以参考 token 预算命名），在 FineWeb-Edu sample350BT 上用 32K TinyLlama tokenizer 从头训练，没有指令微调，也没有 chat template。12 / 16 / 20 个存储层分为入口、中间和出口三段，分别占层数的四分之一、二分之一和四分之一，中间段访问两次，执行层数为 18 / 24 / 30。两次访问不对称：第一次在潜在序列上运行，该序列把相邻两个 token 的状态取平均，其增量经两组可学习的逐通道系数缩放后，写回该 token 对的最后一个 token 和下一个 token，因此更新只会到达整个源 token 对之后的位置；第二次访问在完整序列上运行。两次访问之间只共享 MoE 的路由器和专家，每次访问有自己的注意力参数；宽度、注意力维度、每层存储的专家数（75 / 75 / 76，激活 8 个）和训练步数都经过调整，使存储参数、KV cache、每步 FLOPs 和训练 FLOPs 与 MoE 基线及普通循环 MoE 的差距都在 1% 以内。仓库中的 inference.py（GitHub 代码中也有）用 load_pretrained(..., subfolder=...) 加载一个子目录，保留 FP32 权重，在 CUDA 上用 BF16 autocast；其 generate() 是 batch size 为 1 的贪心解码。加载器为每次层执行各存一份 KV cache，所以即使权重共享，两次访问也不共用 K/V；第一次访问的 cache 覆盖压缩后的序列，解码时未凑齐的 token 对和最近一次写回的更新保存在小缓冲区中。访问次数固定为两次。params 列是模型卡的规模标签；各子目录 training_summary.json 给出的参数量为 1,299,003,368 / 3,194,972,016 / 6,858,742,008，与论文 Table 6 一致。
+ref: >-
+  Model card (base models, approximate total-parameter size labels, reference and actual token counts 40.0975B /
+  69.6538B / 139.7123B, context 4096, FineWeb-Edu sample350BT, TinyLlama tokenizer, loader with separate KV state per
+  visit, apache-2.0); HF API (cardData.license apache-2.0, uploader yhx12 with full name Zefeng He, the first author) and
+  the GitHub README of lcqysl/LatentLoop (links this repo); each subfolder's training_summary.json (parameter_count,
+  training_prediction_tokens, context_length 4096) and model_config.json (n_layer 12 / 16 / 20, num_experts 75 / 75 /
+  76, num_experts_per_tok 8, block_size 4096); model/config.py (layer_order, loop_start, loop_end), model/model.py
+  (compressed first visit, attn_repeat for the second visit, shared SparseMoE, kv_caches indexed by layer execution),
+  model/latent.py (pair mean, ScaledDecoder, causal writeback) and inference.py (greedy batch-1 generate); paper (arXiv
+  v1) Section 1 (budgets matched within 1%), Section 2.1 (entry / middle / exit of L/4, L/2, L/4 layers), Sections
+  3.2-3.4 (k = 2 compression, scaled decoder, shared MoE with independent attention, separate KV caches), Table 2
+  (approximate total / active sizes), Appendix A Tables 6 and 8 (layers 12/18, 16/24, 20/30; total parameters; actual
+  tokens) and Appendix B (data, tokenizer, cached decoding indexed by layer execution).
+added: "2026-11-24"

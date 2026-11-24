@@ -1,0 +1,47 @@
+id: arloop
+name: ARLoop
+paper: "2611.05234"
+org: [OSU NLP Group]
+hf: [osunlp/ARLoop-1.2B, osunlp/ARLoop-0.6B, osunlp/PreNormLoop-0.6B]
+params: "1.2B / 0.6B / 0.6B"
+tokens: "500B / 180B / 180B"
+context: "4096"
+passes:
+  default: "3"
+  range: "fixed (all three were trained with a fixed R = 3)"
+kv: per-pass
+license: apache-2.0
+inference: [transformers-remote-code, custom]
+notes:
+  en: >-
+    ARLoop-1.2B and ARLoop-0.6B are base pretrained models (no instruction tuning) trained from scratch; all 24 (1.2B)
+    or 18 (0.6B) physical layers run three times (config loop_count 3), giving 72 or 54 effective layers. Each sublayer
+    reads an attention-weighted mix over depth of the input embedding and the three most recent residual blocks
+    (attention residuals with a sliding window, sw_blocks 3), and every effective sublayer has its own learned query
+    (attnres_queries), so the checkpoints fit loop_count 3 only. PreNormLoop-0.6B is the paper's baseline: the same
+    18-layer, three-loop model and 180B-token budget with standard PreNorm residuals and no attention residuals.
+    Pretraining follows a SmolLM-style three-stage recipe on FineWeb-Edu, FineMath and Stack-Edu with more math, code
+    and reasoning data in the later stages; intermediate checkpoints are available as step-XXXXXX revisions. The
+    released modeling code stores a separate KV entry for every effective layer, i.e. one per loop. The cards load the
+    models with trust_remote_code and pin transformers==5.12.1 (1.2B) or 5.22.0 (both 0.6B models); the GitHub
+    repository also has a vLLM 0.25.1 plugin, used by its evaluation scripts, that accepts only the ARLoopForCausalLM
+    releases. Safetensors totals are 1,208,655,360, 583,138,944 and 582,804,096 parameters (FP32), and the GitHub code
+    is MIT-licensed.
+  zh: >-
+    ARLoop-1.2B 和 ARLoop-0.6B 是从头训练的预训练基座模型（未做指令微调），全部 24 层（1.2B）或 18 层（0.6B）物理层循环三遍（config 中 loop_count 为 3），有效层数为 72 或 54。每个子层的输入是对输入嵌入和最近三个残差块在深度方向上的注意力加权混合（带滑窗的 attention residuals，sw_blocks 为 3），每个有效子层都有自己学习到的 query（attnres_queries），因此 checkpoint 只适用于 loop_count 3。PreNormLoop-0.6B 是论文的基线：同样是 18 层、循环三遍、180B token 的预算，但使用标准 PreNorm 残差，没有 attention residuals。预训练沿用 SmolLM 式的三阶段配方，数据为 FineWeb-Edu、FineMath 和 Stack-Edu，后期阶段增加数学、代码和推理数据；中间 checkpoint 以 step-XXXXXX revision 提供。官方 modeling 代码为每个有效层各存一份 KV，即每遍循环各一份。模型卡用 trust_remote_code 加载，并固定 transformers==5.12.1（1.2B）或 5.22.0（两个 0.6B 模型）；GitHub 仓库另有一个供评测脚本使用的 vLLM 0.25.1 插件，只接受 ARLoopForCausalLM 版本。safetensors 参数总数分别为 1,208,655,360、583,138,944 和 582,804,096（FP32），GitHub 代码为 MIT 许可。
+ref: >-
+  Model cards of the three repos (base pretrained model; 500B-token 1.2B run and 180B-token 0.6B runs; Architecture
+  tables: 24 or 18 physical layers shared across 3 recurrent passes, context length 4096, 3 recent residual blocks;
+  Load and generate sections with trust_remote_code and transformers==5.12.1 or 5.22.0; Training checkpoints tables;
+  PreNormLoop card: baseline for ARLoop with PreNorm residuals and no attention-residual routing); HF API
+  (cardData.license apache-2.0 for all three, safetensors.total); config.json (loop_count 3, physical_layers 24 / 18,
+  num_hidden_layers 72 / 54, sw_blocks 3, max_position_embeddings 4096); modeling_arloop.py and modeling_baseline.py
+  (cache.update with effective = loop * physical_layers + i, attnres_queries sized 2 * num_hidden_layers); paper
+  Section 5 and Table 12 (sizes, fixed R = 3, 500B / 180B training tokens, 4,096 context, embedding plus three recent
+  blocks), Appendix B.1 (three-stage data recipe), Section 6 and Appendix D (fixed recurrence; no gain beyond the
+  training recurrence in the controlled models); GitHub OSU-NLP-Group/ARLoop (README, pyproject.toml with
+  vllm==0.25.1 and the vllm.general_plugins entry point, loopedlm/vllm/largescale_arloop.py: each effective
+  recurrence x layer has its own paged KV-cache slot, loopedlm/vllm/checkpoint.py: HF input must be
+  ARLoopForCausalLM; MIT license per the GitHub API). The paper's model links osunlp/ARLoop-1.3B and
+  osunlp/ARLoop-baseline-0.6B redirect to osunlp/ARLoop-1.2B and osunlp/PreNormLoop-0.6B.
+added: "2026-11-24"

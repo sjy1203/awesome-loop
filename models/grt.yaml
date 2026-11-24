@@ -1,0 +1,51 @@
+id: grt
+name: GRT (Gated Recurrent Transformer)
+paper: "2608.15062"
+hf:
+  - Amr-Hegazy/grt-medium-isoparam
+  - Amr-Hegazy/grt-medium-isoflop
+  - Amr-Hegazy/grt-large-isoparam
+  - Amr-Hegazy/grt-large-isoflop
+params: "~169M / ~358M / ~778M / ~287M"
+tokens: "~9.8B each (CCCC Filtered)"
+context: "1024"
+passes:
+  default: "4, 4, 6, 6 (trained depth R; n is set per call)"
+  range: "n up to the trained R; paper evaluates k = 0-4 / 0-6"
+kv: n/a
+license: cc-by-4.0
+inference: [custom]
+notes:
+  en: >-
+    GRT is a nanoGPT-based prelude, shared core and coda model written p+n×R+c: at each of the R steps the state plus
+    Gaussian noise is concatenated with the prelude output, projected back to the model width, run through the n
+    shared blocks and blended into the residual stream by an elementwise sigmoid gate. All four were trained for 20,000
+    steps (~9.8B tokens) on common-pile/cccc_filtered with the GPT-2 tokenizer; in the paper, isoFLOP models run fewer
+    unique blocks more times to match a dense GPT-2 model's forward FLOPs, and isoParam models keep the dense model's
+    number of unique blocks and spend more FLOPs (Table 1). The two medium repos appear swapped: grt-medium-isoparam
+    holds the 2+5×4+2 model (config.json n_layer 5, card val loss 2.8956) that the paper and the GitHub configs call
+    isoFLOP, and grt-medium-isoflop holds the 2+20×4+2 isoParam model (n_layer 20, 2.7632); their cards' Regime rows,
+    the GitHub README table and the HF collection follow the repo names. params uses the cards' values; paper Table 1
+    gives 127M for 2+5×4+2, 357M for 2+20×4+2, 779M for 3+30×6+3 and 293M for 1+5×6+5. The cards load ckpt.pt with
+    model.py from the GitHub repo; the loop count is n in model.generate(..., n=...) or sample.py --recurrent_depth,
+    GPT.forward runs one recurrence when n is not given, and the GitHub README says any value up to the trained R (4
+    medium, 6 large) can be used, although the cards' example passes n=6 to all four. model.py has no KV cache, so
+    generate() re-runs the whole context through every recurrence for each new token; the paper describes one KV cache
+    per recurrence step as the naive decoding setup and also tests reusing only the first or last step's cache or
+    averaging K/V across steps (Figure 7, Table 4). model.py adds the state and gate noise (noise_std 0.1) on every
+    forward call, including eval mode, although its comment says training only. The GitHub repository has no LICENSE
+    file; the cards say cc-by-4.0.
+  zh: >-
+    GRT 基于 nanoGPT，结构为 prelude、共享核心和 coda，记作 p+n×R+c：R 步中的每一步把状态加上高斯噪声后与 prelude 输出拼接，投影回模型宽度，经过 n 个共享 block，再由逐元素 sigmoid 门控混入残差流。四个模型都在 common-pile/cccc_filtered 上用 GPT-2 tokenizer 训练了 20,000 步（约 9.8B token）；按论文 Table 1，isoFLOP 模型用更少的唯一 block 重复更多次，以匹配 dense GPT-2 模型的前向 FLOPs，isoParam 模型保持与 dense 模型相同的唯一 block 数，代价是更多 FLOPs。两个 medium 仓库看起来装反了：grt-medium-isoparam 里是论文和 GitHub 配置称为 isoFLOP 的 2+5×4+2 模型（config.json 中 n_layer 为 5，模型卡 val loss 2.8956），grt-medium-isoflop 里是 isoParam 的 2+20×4+2 模型（n_layer 为 20，2.7632）；它们模型卡中的 Regime 一栏、GitHub README 表格和 HF collection 都按仓库名描述。params 用的是模型卡的数值；论文 Table 1 给出 2+5×4+2 为 127M、2+20×4+2 为 357M、3+30×6+3 为 779M、1+5×6+5 为 293M。模型卡用 GitHub 仓库的 model.py 加载 ckpt.pt；循环次数由 model.generate(..., n=...) 或 sample.py --recurrent_depth 的 n 设定，不传 n 时 GPT.forward 只跑一步循环；GitHub README 说可以用不超过训练时 R 的任意值（medium 为 4，large 为 6），但模型卡示例对四个模型都传 n=6。model.py 没有 KV cache，generate() 每生成一个 token 都要把完整上下文重新跑过每一步循环；论文把每个循环步各存一份 KV cache 描述为朴素的解码方式，并测试了只复用首步或末步的 cache 以及跨步平均 K/V（Figure 7，Table 4）。model.py 在每次前向中都加入状态噪声和门控噪声（noise_std 为 0.1），eval 模式也不例外，尽管代码注释说只在训练时使用。GitHub 仓库没有 LICENSE 文件；模型卡写的是 cc-by-4.0。
+ref: >-
+  HF API of the four repos (author Amr-Hegazy, cardData.license cc-by-4.0) and their model cards (Regime, Config,
+  Parameters ~169M / ~358M / ~778M / ~287M, context length 1024, ~9.8B CCCC Filtered training tokens, usage with
+  model.py and n=6); config.json (n_layer, n_layers_prelude, n_layers_coda, block_size 1024, noise_std 0.1, no
+  recurrence key) and the model.safetensors headers (5 / 20 / 30 / 5 shared blocks); HF paper page (author Amr Hegazy
+  claimed by the Amr-Hegazy account, code link) and the Gated Recurrent Transformer (GRT) collection; GitHub README
+  (checkpoint table, p+n×R+c notation, --recurrent_depth note), config/*.py (recurrence_max 4 and 6) and model.py
+  (forward defaults to one recurrence; generate() has no KV cache, hence kv n/a; noise applied without a training
+  check); paper (arXiv v4) Table 1 (regimes, parameters), Section 4 and Appendix A Table 5 (20,000 steps, ~9.8B tokens,
+  T = 1024, R per configuration), Figure 3 (early exit at k = 0-6), KV Cache Sharing paragraph, Figure 7 and Table 4
+  (the naive decoding setup keeps one KV cache per recurrence step; first / last / averaged sharing).
+added: "2026-11-24"

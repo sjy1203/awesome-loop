@@ -7,6 +7,7 @@ authors: [Boyi Zeng, Shixiang Song, Siyuan Huang, Yixuan Wang, He Li, Ziwei He, 
 links:
   paper: https://arxiv.org/abs/2505.20674
   code: https://github.com/LUMIA-Group/PonderingLM
+  weights: [https://huggingface.co/zeng123/PonderingPythia-1.4B]
 category: architecture/state
 focus: core
 facets:

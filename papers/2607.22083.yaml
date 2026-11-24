@@ -6,6 +6,7 @@ venue: arXiv
 authors: [Nanbeige Lab, Chen Yang, Chengrui Huang, Fufeng Lan, Hanhui Chen, Hao Zhou, Huatong Song, Jiaqi Cao, Jiaying Zhu, Jinlin Niu, Kai Wang, Lisheng Huang, Qiliang Liang, Ran Le, Ruixiang Feng, Shuang Sun, Tao Gu, Tao Zhang, Tianyu Luo, Yang Song, Yun Xing, Yuntao Wen, Ziyao Xu, Zongchao Chen, Zongqiang Li]
 links:
   paper: https://arxiv.org/abs/2607.22083
+  weights: [https://huggingface.co/Nanbeige/Nanbeige4.2-3B]
 category: training
 focus: core
 facets:

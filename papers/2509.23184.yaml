@@ -7,6 +7,7 @@ authors: [Boyi Zeng, He Li, Shixiang Song, Yixuan Wang, Zitong Wang, Ziwei He, X
 links:
   paper: https://arxiv.org/abs/2509.23184
   code: https://github.com/LUMIA-Group/PonderLM-2
+  weights: [https://huggingface.co/zeng123/PonderLM-2-Pythia-1.4b]
 category: architecture/state
 focus: core
 facets:

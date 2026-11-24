@@ -6,7 +6,7 @@ English · [简体中文](../zh/design-space.md) · [Back to the list](../../REA
 
 Every core paper with a stated loop placement and training depth, grouped by cell.
 
-## <a id="whole-stack--fixed"></a>whole stack × fixed (76)
+## <a id="whole-stack--fixed"></a>whole stack × fixed (77)
 
 - 2026-11-21 · [When do stored facts become available in looped transformers?](https://arxiv.org/abs/2611.28808)
 - 2026-11-20 · [Model Carving: Training Transformers That Optimize Their Own Topology](https://arxiv.org/abs/2611.27962)
@@ -62,6 +62,7 @@ Every core paper with a stated loop placement and training depth, grouped by cel
 - 2026-05-08 · [Memory-Efficient Looped Transformer: Decoupling Compute from Memory in Looped Language Models](https://arxiv.org/abs/2605.07721)
 - 2026-05-07 · [Transformers Efficiently Perform In-Context Logistic Regression via Normalized Gradient Descent](https://arxiv.org/abs/2605.06609)
 - 2026-04-09 · [Loop, Think, & Generalize: Implicit Reasoning in Recurrent-Depth Transformers](https://arxiv.org/abs/2604.07822)
+- 2026-03-17 · [IQuest-Coder-V1 Technical Report](https://arxiv.org/abs/2603.16733)
 - 2026-03-11 · [SCORE: Replacing Layer Stacking with Contractive Recurrent Depth](https://arxiv.org/abs/2603.10544)
 - 2026-02-09 · [Looping Back to Move Forward: Recursive Transformers for Efficient and Flexible Large Multimodal Models](https://arxiv.org/abs/2602.09080)
 - 2026-01-31 · [Beyond What Seems Necessary: Hidden Gains from Scaling Training-Time Reasoning Length under Outcome Supervision](https://arxiv.org/abs/2602.00927)
@@ -139,10 +140,11 @@ Every core paper with a stated loop placement and training depth, grouped by cel
 - 2018-12-05 · [Attending to Mathematical Language with Transformers](https://arxiv.org/abs/1812.02825)
 - 2018-07-10 · [Universal Transformers](https://arxiv.org/abs/1807.03819)
 
-## <a id="prelude-core-coda--fixed"></a>middle core (prelude-core-coda) × fixed (31)
+## <a id="prelude-core-coda--fixed"></a>middle core (prelude-core-coda) × fixed (32)
 
 - 2026-11-23 · [GLM-5.4: Toward Generalized Coding with Our First Loop Transformer](https://z.ai/blog/glm-5.4) · **[deep card](zai-glm-5-4.md)**
 - 2026-11-20 · [Introducing Inkling 2 Mini](https://thinkingmachines.ai/news/inkling-2-mini/) · **[deep card](tml-inkling-2-mini.md)**
+- 2026-11-17 · [SenseNova-Loop-9B: Deeper Computation with Fewer Parameters](https://huggingface.co/sensenova/SenseNova-Loop-9B)
 - 2026-11-04 · [Loopback Transformer: Towards a Unified View of Residual Looped Transformers](https://arxiv.org/abs/2611.07226)
 - 2026-10-24 · [One Model, Two Paths: Balancing Single-Pass and Looped Performance in Language Models](https://arxiv.org/abs/2610.33517)
 - 2026-10-23 · [LSTM-Style Looped Transformers with Shared KV Caches](https://arxiv.org/abs/2610.33360)

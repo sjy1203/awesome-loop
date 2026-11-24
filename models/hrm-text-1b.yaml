@@ -1,0 +1,45 @@
+id: hrm-text-1b
+name: HRM-Text-1B
+paper: "2605.20613"
+org: [Sapient Intelligence]
+hf: [sapientinc/HRM-Text-1B]
+params: "1B"
+tokens: "40B unique, 60B in total"
+context: "4096 (max sequence length)"
+passes:
+  default: "8 module calls (H_cycles 2, L_cycles 3)"
+  range: "fixed (no other setting documented)"
+kv: per-pass
+license: apache-2.0
+inference: [transformers, vllm]
+notes:
+  en: >-
+    Pre-alignment base checkpoint from Sapient Intelligence, trained from scratch with a response-only task-completion
+    loss on instruction-response pairs and a PrefixLM mask; it is not instruction-tuned or chat-aligned, is English
+    only and was not trained on code. Two separate 16-layer Transformer stacks, a fast L module and a slow H module,
+    work on the same input embeddings with additive state injection: each of the H_cycles = 2 outer cycles runs the L
+    module L_cycles = 3 times and then the H module once. Training sampled 40B unique tokens from a 176.5B-token
+    open-source corpus for 60B training tokens in total; gradients first flow through the last two recurrent steps and
+    later through the last five, and the released weights are the EMA checkpoint. The model type hrm_text is native in
+    transformers>=5.9.0, and the card asks for token_type_ids that mark the prompt as one bidirectional prefix block,
+    since attention otherwise falls back to causal. The transformers code gives every stack call its own KV-cache
+    slots (num_layers_per_stack × H_cycles × (L_cycles + 1) in total); vLLM added HrmTextForCausalLM in v0.24.0
+    (vllm-project/vllm#43098) with one KV slot per recurrence step, while the GitHub README still lists vLLM support as
+    in progress. The safetensors count is 1,182,795,264 parameters (BF16).
+  zh: >-
+    Sapient Intelligence 发布的预对齐（pre-alignment）基座 checkpoint，从头训练，在指令-回复对上只对回复计算 task-completion 损失，并使用 PrefixLM mask；未做指令微调或对话对齐，只支持英文，也没有用代码数据训练。两个独立的 16 层 Transformer 栈（快速的 L 模块和慢速的 H 模块）作用于同一份输入嵌入，状态以加法注入：H_cycles = 2 个外层循环中，每个先运行 L 模块 L_cycles = 3 次，再运行 H 模块一次。训练从 176.5B token 的开源语料中采样 40B 个不重复 token，总训练量 60B token；梯度起初只反传最后两个循环步，之后扩展到最后五步，发布的权重是 EMA checkpoint。模型类型 hrm_text 在 transformers>=5.9.0 中原生支持；模型卡要求传入 token_type_ids，把整个 prompt 标为一个双向 prefix 块，否则注意力会退回纯因果。transformers 代码为每次栈调用分配独立的 KV cache 槽位（共 num_layers_per_stack × H_cycles × (L_cycles + 1) 个）；vLLM 在 v0.24.0 加入 HrmTextForCausalLM（vllm-project/vllm#43098），每个循环步各占一个 KV 槽位，而 GitHub README 仍写着 vLLM 支持在开发中。safetensors 统计为 1,182,795,264 个参数（BF16）。
+ref: >-
+  Model card of sapientinc/HRM-Text-1B (intro: 1 B parameters, trained from scratch, H and L modules iterating for
+  H_cycles × (L_cycles + 1) steps with additive injection; Disclaimer: pre-alignment, not instruction-tuned;
+  Requirements: transformers >= 5.9.0; Model details: ~1 B, 16 layers per H / L stack, H_cycles × L_cycles 2 × 3, max
+  sequence length 4096, 40 B training unique tokens; PrefixLM mask: token_type_ids; Limitations: English only, no code
+  data; License) and config.json (H_cycles 2, L_cycles 3, L_bp_cycles [0, 3], max_position_embeddings 4096); HF API
+  (cardData.license apache-2.0, safetensors.total 1,182,795,264); paper Section 2 (two high-level cycles of three L
+  updates and one H update; gradients through the final two, then five, steps), Section 3.1 text under Table 1 (H2L3
+  gives 8 total H/L module steps), Section 4.1 (176.5B-token corpus, 40B unique tokens, 60B total) and Section 4.3
+  (16 layers per module, context size 4,096, released weights are the EMA checkpoint); kv from transformers
+  modeling_hrm_text.py (cache slot (h × (L_cycles + 1) + l) × num_layers_per_stack + layer, one per stack call) and
+  vllm-project/vllm#43098; vllm from the vLLM v0.24.0 release notes and docs/models/supported_models.md
+  (HrmTextForCausalLM, sapientinc/HRM-Text-1B); GitHub README of sapientinc/HRM-Text (Status: native vLLM support in
+  progress; simple_inference_engine.py loads FSDP2 training checkpoints, not the HF export, so custom is not listed).
+added: "2026-11-24"

@@ -6,6 +6,7 @@ venue: arXiv
 authors: [Zitian Gao, Yilong Chen, Yihao Xiao, Xinyu Yang, Ran Tao, Joey Zhou, Bryan Dai]
 links:
   paper: https://arxiv.org/abs/2607.16051
+  weights: [https://huggingface.co/zitian-gao/Loopie-20B-A2B-preview, https://huggingface.co/zitian-gao/Loopie-6B-A0.6B-preview]
 category: scaling
 focus: core
 facets:

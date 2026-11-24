@@ -2,6 +2,214 @@
  "schema": "schema/model.schema.json",
  "models": [
   {
+   "id": "accordion-6b-a0-5b",
+   "name": "Accordion-6B-A0.5B",
+   "paper": "2610.32492",
+   "hf": [
+    "btzyd/Accordion-6B-A0.5B-RL",
+    "btzyd/Accordion-6B-A0.5B-SFT",
+    "btzyd/Accordion-6B-A0.5B-Base-32K",
+    "btzyd/Accordion-6B-A0.5B-Base-8K"
+   ],
+   "params": "6.0B",
+   "active_params": "0.54B (non-embedding, one unlooped pass)",
+   "tokens": "3.6T, plus 50B at 32K context, then SFT and RL",
+   "context": "32K / 32K / 32K / 8K",
+   "passes": {
+    "default": "1 (loop_k 0)",
+    "range": "loop_k 0, 3, 6, 9 or 12 (24-36 layer executions)"
+   },
+   "kv": "per-pass",
+   "license": "other (not named on the cards)",
+   "inference": [
+    "transformers-remote-code",
+    "vllm"
+   ],
+   "notes": {
+    "en": "Accordion is a 24-layer MoE (128 routed experts with top-8 routing plus one shared expert) trained from scratch and released at four stages: Base-8K after 3.6T tokens, Base-32K after 50B more tokens at 32K context, SFT on reasoning conversations with thinking traces, and RL, which the cards call the final model (three RL domain experts merged, then 10 steps of multi-teacher on-policy distillation). Looping repeats single layers in place: with budget k, the first k of layers 7-18 each run a second time right after their first pass, with the second pass scaled by a zero-initialised per-channel tanh gate and routed with a separate expert-selection bias. Training sampled k from {0, 3, 6, 9, 12} for each micro-batch, giving 24 to 36 layer executions per token; config.json sets loop_k 0, loop_generate takes loop_k per call and the SFT and RL card examples use loop_k 12, while other k values or layer sets (loop_layers_active) run but were never trained. Every layer execution keeps its own KV-cache slot, so at k = 12 the cache is 1.5 times its k = 0 size. In transformers the remote code must generate with loop_generate because model.generate() is not supported; vLLM serving needs vllm==0.24.0 plus the authors' accordion-vllm plugin and runs one budget per engine, set by LOOPMOE_K. The cards give ≈6.0B total and ≈0.54B active non-embedding parameters; the paper gives 6.03B and 0.54B (0.74B including the output head), and the safetensors total is 6,027,376,128. The cards set license: other without naming a license, while the GitHub code (Accordion-Loop) is Apache-2.0.",
+    "zh": "Accordion 是从头训练的 24 层 MoE（128 个路由专家取 top-8，另加 1 个共享专家），按四个阶段发布：3.6T token 后的 Base-8K，再用 50B token 在 32K 上下文继续训练的 Base-32K，在带思考轨迹的推理对话上 SFT 的版本，以及模型卡称为最终模型的 RL 版（三个 RL 领域专家合并后，再做 10 步多教师 on-policy 蒸馏）。循环方式是单层原地重复：预算为 k 时，第 7-18 层中的前 k 层在第一遍之后立即再跑一遍，第二遍输出乘以零初始化的逐通道 tanh 门控，路由时使用单独的专家选择 bias。训练时每个 micro-batch 从 {0, 3, 6, 9, 12} 中采样 k，对应每 token 24 到 36 次层计算；config.json 中 loop_k 为 0，loop_generate 每次调用可指定 loop_k，SFT 和 RL 模型卡的示例用 loop_k 12；其他 k 值或层组合（loop_layers_active）可以运行，但从未训练过。每次层计算各有一个 KV cache 槽位，k = 12 时缓存是 k = 0 时的 1.5 倍。在 transformers 中必须用远程代码里的 loop_generate 生成，不支持 model.generate()；vLLM 部署需要 vllm==0.24.0 加作者的 accordion-vllm 插件，每个引擎只跑一个预算，由 LOOPMOE_K 设定。模型卡给出约 6.0B 总参数和约 0.54B 激活非嵌入参数，论文给出 6.03B 和 0.54B（含输出头为 0.74B），safetensors 总数为 6,027,376,128。模型卡的 license 为 other，没有写明具体许可；GitHub 代码（Accordion-Loop）为 Apache-2.0。"
+   },
+   "ref": "Model cards of the four repos (≈6.0B total and ≈0.54B active non-embedding parameters; layers 7-18 loopable; k in {0, 3, 6, 9, 12} with 24-36 layer executions; Model family table with stages and 8K or 32K context; RL card: final model and its RL, merge and distillation steps; Base-8K card: 3T, 0.15T and 0.45T tokens, 3.6T in total; Base-32K card: 50B tokens, 5,960 steps; SFT card: 8,614 steps on reasoning-style conversations; Architecture section: each layer execution keeps its own KV cache, ×1.5 at k = 12; Usage: trust_remote_code, loop_generate, model.generate() not supported, vLLM plugin with LOOPMOE_K, untrained budgets run but are generally worse); HF API (cardData.license other with no license_name or license_link, safetensors.total 6,027,376,128, base_model chain Base-8K, Base-32K, SFT, RL); config.json (loop_layers 7-18, loop_budgets [0, 3, 6, 9, 12], loop_k 0, max_position_embeddings 32768 or 8192); modeling_loopmoe.py (LoopCache with one slot per layer execution; plan() takes the first k loopable layers); paper Section 2.1 (fixed-prefix layer looping, tanh gates, per-pass balancing bias, KV storage (L+k)/L), Sections 3.1-3.2 and Tables 4-5 (3.0T, 150B and 450B stages, 50B context extension, 6.03B total and 0.54B active, 0.74B with the output head); GitHub btzyd/Accordion-Loop (README model table, vllm_plugin README and accordion_vllm/model.py with a separate vLLM Attention instance per layer execution and vllm==0.24.0, Apache-2.0 LICENSE). Authorship: the btzyd GitHub profile is Yudong Zhang (Tsinghua University), the paper's first author and arXiv submitter, and the cards link the paper and btzyd/Accordion-Loop, which links the btzyd HF collection of these four repos.",
+   "added": "2026-11-24"
+  },
+  {
+   "id": "alodlm",
+   "name": "ALoDLM",
+   "paper": "2610.04198",
+   "org": [
+    "Amazon"
+   ],
+   "hf": [
+    "amazon/ALoDLM-8B",
+    "amazon/ALoDLM-1.7B"
+   ],
+   "params": "8B / 1.7B",
+   "tokens": "5B-token SFT corpus (8 epochs at 8B)",
+   "context": "4,096 (training length)",
+   "passes": {
+    "default": "up to 4, adaptive exit (max_depth 4)",
+    "range": "1-4 per denoising step, set by the exit gate and q"
+   },
+   "kv": "per-pass",
+   "license": "cc-by-nc-4.0",
+   "inference": [
+    "custom"
+   ],
+   "notes": {
+    "en": "Diffusion language models converted from Qwen3-8B and Qwen3-1.7B by direct supervised fine-tuning, with no continued pretraining, on a 5B-token corpus of math, code and instruction data in the WeDLM block-diffusion framework (eight epochs at 8B). ALoDLM-8B splits its 36 layers into a 10-layer prelude, a shared 16-layer recurrent core (layers 10-25) and a 10-layer coda, and ALoDLM-1.7B loops all 28 layers; both run at most four passes (alodlm_config.json max_depth 4). Decoding fills a 16-token window of mask tokens after the committed text; after each core pass the model reads out token predictions (through the coda at 8B) and a learned exit gate (exit_gate.pt) gives each unresolved token a halting probability. A token commits when its entropy plus a position penalty is below tau (in left1 mode, used for the paper's Table 1, the leftmost token commits each pass), committed tokens re-enter later passes as token embeddings, and the pass loop ends when the mean cumulative halting probability of the uncommitted tokens reaches q, when all tokens are committed, or after four passes. Recurrent layers keep a separate KV cache for each depth while prelude and coda layers keep one; prefill computes all four depths for the prompt, and depths that a window did not reach reuse the last computed depth. The models run only with the authors' code: the portable decoder alodlm-generate (PyTorch 2.8.0, transformers 4.56.1) or the bundled nano-vLLM/WeDLM engine alodlm-generate-optimized (PyTorch 2.10.0, transformers 5.5.4, vLLM 0.19.1 kernels); standard transformers generate() and vllm serve do not run the recurrent decoder or the exit gate. The weights are CC BY-NC 4.0 (non-commercial), and the WeDLM-derived code in the repository keeps WeDLM's terms, which include a territorial restriction. Safetensors totals are 8,190,735,360 and 2,031,739,904 parameters, plus the exit gate in exit_gate.pt.",
+    "zh": "由 Qwen3-8B 和 Qwen3-1.7B 转换而来的扩散语言模型：在 WeDLM block-diffusion 框架下直接 SFT，不做继续预训练，语料为 5B token 的数学、代码和指令数据（8B 训练八个 epoch）。ALoDLM-8B 把 36 层分为 10 层 prelude、16 层共享循环核心（第 10-25 层）和 10 层 coda，ALoDLM-1.7B 则循环全部 28 层；两者最多跑四遍（alodlm_config.json 中 max_depth 为 4）。解码时在已提交文本之后放一个 16 token 的 mask 窗口；每遍核心计算后读出 token 预测（8B 经过 coda），学习到的 exit gate（exit_gate.pt）给每个未确定 token 一个停止概率。熵加位置惩罚低于 tau 的 token 被提交（left1 模式下每遍提交最左边的一个 token，论文 Table 1 用的就是此模式），已提交 token 以 token 嵌入进入后续各遍；当未提交 token 的平均累计停止概率达到 q、全部 token 已提交或跑满四遍时，内循环结束。循环层为每个深度各存一份 KV，prelude 和 coda 层只存一份；prefill 为 prompt 计算全部四个深度，窗口未执行到的深度沿用最后一个已计算深度的 KV。只能用作者的代码运行：便携解码器 alodlm-generate（PyTorch 2.8.0、transformers 4.56.1），或自带的 nano-vLLM/WeDLM 引擎 alodlm-generate-optimized（PyTorch 2.10.0、transformers 5.5.4、vLLM 0.19.1 kernel）；标准 transformers generate() 和 vllm serve 不会运行循环解码器和 exit gate。权重采用 CC BY-NC 4.0（非商用），仓库中源自 WeDLM 的代码保留 WeDLM 的条款，其中含地域限制。safetensors 参数总数为 8,190,735,360 和 2,031,739,904，另有 exit_gate.pt 中的 exit gate。"
+   },
+   "ref": "Model cards of both repos (developed at Amazon, initialized from Qwen3-1.7B and Qwen3-8B, training-data description; Evaluation: 16-token window, q = 0.4 at 1.7B and 0.5 at 8B, tau inactive, one token per pass; Getting started: optimized and portable inference, a standard Transformers pipeline omits the recurrent decoding and exit gate; License and attribution: CC BY-NC 4.0, Qwen3 bases under Apache 2.0); HF API (cardData.license cc-by-nc-4.0, safetensors.total, exit_gate.pt and alodlm_config.json in both repos); alodlm_config.json (8B: loop_start 10, loop_end 26, max_depth 4; 1.7B: loop_start 0, loop_end 28, max_depth 4) and config.json (Qwen3ForCausalLM, max_position_embeddings 40960); paper Sections 1, 4.1 and 4.2 (direct SFT on a 5B-token corpus without CPT, K = 4, core layers), Section 3.1 and Algorithm 1 (inner loop, entropy-based commitment, mean cumulative halt threshold q, forced exit at depth K), Appendix B.1 (depth-specific KV buffers for the recurrent core, matching-depth lookup with deepest-available fallback, one buffer per prelude or coda layer, 84 buffer pairs at 8B), Table 2 and Appendix D.1 (layer ranges, 4,096 packed sequence length, WeDLM framework, eight epochs and 34,512 steps at 8B), Section 5 (KV cache built for the full recurrent depth at prefill); GitHub amazon-science/ALoDLM (README; docs/inference.md: cache layout, early-stop depth filling, transformers generate() and vllm serve lack the decoder; docs/method.md; alodlm/inference.py: PrefixCache keyed by layer and depth inside [loop_start, loop_end), DecodeConfig defaults q 0.5, tau 0.4, window 16; optimized/README.md; NOTICE and LICENSE with the WeDLM terms).",
+   "added": "2026-11-24"
+  },
+  {
+   "id": "arloop",
+   "name": "ARLoop",
+   "paper": "2611.05234",
+   "org": [
+    "OSU NLP Group"
+   ],
+   "hf": [
+    "osunlp/ARLoop-1.2B",
+    "osunlp/ARLoop-0.6B",
+    "osunlp/PreNormLoop-0.6B"
+   ],
+   "params": "1.2B / 0.6B / 0.6B",
+   "tokens": "500B / 180B / 180B",
+   "context": "4096",
+   "passes": {
+    "default": "3",
+    "range": "fixed (all three were trained with a fixed R = 3)"
+   },
+   "kv": "per-pass",
+   "license": "apache-2.0",
+   "inference": [
+    "transformers-remote-code",
+    "custom"
+   ],
+   "notes": {
+    "en": "ARLoop-1.2B and ARLoop-0.6B are base pretrained models (no instruction tuning) trained from scratch; all 24 (1.2B) or 18 (0.6B) physical layers run three times (config loop_count 3), giving 72 or 54 effective layers. Each sublayer reads an attention-weighted mix over depth of the input embedding and the three most recent residual blocks (attention residuals with a sliding window, sw_blocks 3), and every effective sublayer has its own learned query (attnres_queries), so the checkpoints fit loop_count 3 only. PreNormLoop-0.6B is the paper's baseline: the same 18-layer, three-loop model and 180B-token budget with standard PreNorm residuals and no attention residuals. Pretraining follows a SmolLM-style three-stage recipe on FineWeb-Edu, FineMath and Stack-Edu with more math, code and reasoning data in the later stages; intermediate checkpoints are available as step-XXXXXX revisions. The released modeling code stores a separate KV entry for every effective layer, i.e. one per loop. The cards load the models with trust_remote_code and pin transformers==5.12.1 (1.2B) or 5.22.0 (both 0.6B models); the GitHub repository also has a vLLM 0.25.1 plugin, used by its evaluation scripts, that accepts only the ARLoopForCausalLM releases. Safetensors totals are 1,208,655,360, 583,138,944 and 582,804,096 parameters (FP32), and the GitHub code is MIT-licensed.",
+    "zh": "ARLoop-1.2B 和 ARLoop-0.6B 是从头训练的预训练基座模型（未做指令微调），全部 24 层（1.2B）或 18 层（0.6B）物理层循环三遍（config 中 loop_count 为 3），有效层数为 72 或 54。每个子层的输入是对输入嵌入和最近三个残差块在深度方向上的注意力加权混合（带滑窗的 attention residuals，sw_blocks 为 3），每个有效子层都有自己学习到的 query（attnres_queries），因此 checkpoint 只适用于 loop_count 3。PreNormLoop-0.6B 是论文的基线：同样是 18 层、循环三遍、180B token 的预算，但使用标准 PreNorm 残差，没有 attention residuals。预训练沿用 SmolLM 式的三阶段配方，数据为 FineWeb-Edu、FineMath 和 Stack-Edu，后期阶段增加数学、代码和推理数据；中间 checkpoint 以 step-XXXXXX revision 提供。官方 modeling 代码为每个有效层各存一份 KV，即每遍循环各一份。模型卡用 trust_remote_code 加载，并固定 transformers==5.12.1（1.2B）或 5.22.0（两个 0.6B 模型）；GitHub 仓库另有一个供评测脚本使用的 vLLM 0.25.1 插件，只接受 ARLoopForCausalLM 版本。safetensors 参数总数分别为 1,208,655,360、583,138,944 和 582,804,096（FP32），GitHub 代码为 MIT 许可。"
+   },
+   "ref": "Model cards of the three repos (base pretrained model; 500B-token 1.2B run and 180B-token 0.6B runs; Architecture tables: 24 or 18 physical layers shared across 3 recurrent passes, context length 4096, 3 recent residual blocks; Load and generate sections with trust_remote_code and transformers==5.12.1 or 5.22.0; Training checkpoints tables; PreNormLoop card: baseline for ARLoop with PreNorm residuals and no attention-residual routing); HF API (cardData.license apache-2.0 for all three, safetensors.total); config.json (loop_count 3, physical_layers 24 / 18, num_hidden_layers 72 / 54, sw_blocks 3, max_position_embeddings 4096); modeling_arloop.py and modeling_baseline.py (cache.update with effective = loop * physical_layers + i, attnres_queries sized 2 * num_hidden_layers); paper Section 5 and Table 12 (sizes, fixed R = 3, 500B / 180B training tokens, 4,096 context, embedding plus three recent blocks), Appendix B.1 (three-stage data recipe), Section 6 and Appendix D (fixed recurrence; no gain beyond the training recurrence in the controlled models); GitHub OSU-NLP-Group/ARLoop (README, pyproject.toml with vllm==0.25.1 and the vllm.general_plugins entry point, loopedlm/vllm/largescale_arloop.py: each effective recurrence x layer has its own paged KV-cache slot, loopedlm/vllm/checkpoint.py: HF input must be ARLoopForCausalLM; MIT license per the GitHub API). The paper's model links osunlp/ARLoop-1.3B and osunlp/ARLoop-baseline-0.6B redirect to osunlp/ARLoop-1.2B and osunlp/PreNormLoop-0.6B.",
+   "added": "2026-11-24"
+  },
+  {
+   "id": "attractor",
+   "name": "Attractor",
+   "paper": "2605.12466",
+   "hf": [
+    "jacobfa1/attractor-140m",
+    "jacobfa1/attractor-370m",
+    "jacobfa1/attractor-770m"
+   ],
+   "params": "140M / 370M / 770M",
+   "tokens": "11.2B / 29.6B / 61.6B",
+   "context": "2048",
+   "passes": {
+    "default": "6-64, 6-64, 6-32 solver iterations (stops at tol)",
+    "range": "min_iter, max_iter and tol; paper evaluates T = 0-8"
+   },
+   "kv": "n/a",
+   "license": "mit",
+   "inference": [
+    "custom"
+   ],
+   "notes": {
+    "en": "Language models pretrained on FineWeb-Edu. A causal Transformer backbone of 7 / 15 / 35 layers proposes an output embedding, and a weight-tied attractor head of 1 / 2 / 2 Transformer blocks is solved for a fixed point starting from that proposal, with the proposal added back at every step; the result is decoded with the tied unembedding. The loop is therefore a solver run: Anderson acceleration applies the head between min_iter and max_iter times and stops once the relative residual drops below tol, so the pass count varies with the input, and generate(num_steps=N) in the GitHub receval/models/attractor.py overrides max_iter. The repos hold a PyTorch state dict (model.pt), a config.json saved under the EQLM class name (an alias of Attractor in the code) and tokenizer.json; the cards' snippet only builds an untrained model from the named config, while attractor.from_pretrained(<repo>) or ModelingAttractor.from_pretrained(<repo>) from the GitHub package loads the weights. During generation only the backbone keeps a KV cache; the attractor head is re-run over the whole context for every new token, so nothing is cached per solver iteration. The paper reports that quality already peaks at T = 1 and that T = 0 (backbone only) is at or near the converged value (Figure 7). The 370M config.json sets min_iter 6 where paper Table 8 and the GitHub named config give 8, and the 770M config.json sets backward_type onestep where both give Anderson. The GitHub code is MIT-licensed, like the cards.",
+    "zh": "在 FineWeb-Edu 上预训练的语言模型。因果 Transformer backbone（7 / 15 / 35 层）先给出输出嵌入，权重共享的 attractor head（1 / 2 / 2 个 Transformer block）以该提议为起点求解不动点，每一步都把提议加回输入，结果用共享的 unembedding 解码。因此这里的循环是一次求解：Anderson 加速在 min_iter 到 max_iter 次之间反复调用 head，相对残差低于 tol 即停止，遍数随输入变化；GitHub 中 receval/models/attractor.py 的 generate(num_steps=N) 可覆盖 max_iter。仓库里是 PyTorch state dict（model.pt）、以 EQLM 类名保存的 config.json（代码中 EQLM 是 Attractor 的别名）和 tokenizer.json；模型卡的示例代码只按命名配置构建未训练的模型，加载权重要用 GitHub 包中的 attractor.from_pretrained(<repo>) 或 ModelingAttractor.from_pretrained(<repo>)。生成时只有 backbone 保留 KV cache，attractor head 每生成一个 token 都要在完整上下文上重新运行，求解迭代不缓存任何 KV。论文报告质量在 T = 1 时已达峰值，T = 0（只用 backbone）也已达到或接近收敛值（Figure 7）。370M 的 config.json 把 min_iter 设为 6，而论文 Table 8 和 GitHub 命名配置为 8；770M 的 config.json 把 backward_type 设为 onestep，而两者都写 Anderson。GitHub 代码为 MIT license，与模型卡一致。"
+   },
+   "ref": "HF API of the three repos (author jacobfa1, cardData.license mit, files model.pt, config.json, tokenizer.json) and their model cards (sizes, usage snippet, links to the paper and jacobfa/Attractor); config.json (n_backbone_layers 7 / 15 / 35, n_fp_blocks 1 / 2 / 2, solver anderson, min_iter, max_iter, tol, block_size 2048, _class_name EQLMConfig); GitHub README (model table, HF links, MIT) and code: attractor/__init__.py (from_pretrained reads config.json and model.pt), attractor/models/attractor/attractor.py and solvers.py (head input y + c, Anderson stopping rule), receval/models/attractor.py (generate with num_steps; KV cache spans only the backbone, the head is re-run over the full context each step), attractor/configs and launch_configs (min_iter 8 at 370M, backward_type anderson at 770M, max_tokens); paper Section 3.2 (tolerance and T_max are inference-time settings, KV caching in the backbone), Section 4.1 and Table 9 (FineWeb-Edu; 11.2B / 29.6B / 61.6B training tokens, not on the cards), Tables 7 and 8 (layers, sequence length 2048, solver settings) and Figure 7 (T = 0-8).",
+   "added": "2026-11-24"
+  },
+  {
+   "id": "concertina-2-27b",
+   "name": "Concertina-2.27B",
+   "paper": "2611.18113",
+   "hf": [
+    "myboker/Concertina-2.27B"
+   ],
+   "params": "2.27B",
+   "tokens": "22B (distilled from Qwen3-4B)",
+   "context": "40,960 (config, from Qwen3-4B); distilled at 1,024",
+   "passes": {
+    "default": "2",
+    "range": "fixed (fold_group 2 in config.json is built into the weights)"
+   },
+   "kv": "per-pass",
+   "license": "apache-2.0",
+   "inference": [
+    "transformers-remote-code"
+   ],
+   "notes": {
+    "en": "Concertina-2.27B is a compressed student of Qwen/Qwen3-4B: every two adjacent teacher layers are folded into one shared block that runs twice, giving 18 unique blocks × 2 loop steps and the teacher's effective depth of 36. Each linear map of a block starts from the weight of the first layer of its pair; the second step adds a rank-64 correction initialized from the truncated SVD of the difference between the two layers and scaled per token by a gate, and each step keeps the RMSNorm weights of the layer it replaces. All parameters were then distilled from Qwen3-4B with forward KL plus 0.25 times cross-entropy on 22B tokens (35% math, 55% knowledge-oriented data, 10% general web text) in 1,024-token sequences. The loop count is fixed by the checkpoint's structure (fold_group 2 and fold_rank 64 in config.json), and the paper's N=3 fold of Qwen3-8B (3.68B) has no released checkpoint. Each loop step uses the KV-cache slot of the original layer it replaces, so the model keeps the teacher's 36 per-layer KV caches, and the GitHub self-test checks that cached and uncached generation match. Loading needs trust_remote_code; the card says it is tested with transformers 4.57 and 5.6, and versions older than 4.56 take torch_dtype instead of dtype. The card's example is plain greedy text completion and does not describe chat or thinking use; the paper's limitations note that folding keeps the teacher's forward FLOPs and KV cache.",
+    "zh": "Concertina-2.27B 是 Qwen/Qwen3-4B 的压缩学生模型：教师模型每两个相邻层折叠成一个跑两遍的共享块，得到 18 个独立块 × 2 个循环步，有效深度与教师相同，为 36 层。每个块的线性层从其所在层对中第一层的权重开始；第二步加一个 rank-64 修正，用两层权重之差的截断 SVD 初始化，并由逐 token 的门控缩放；每一步保留其所替代层的 RMSNorm 权重。之后全部参数从 Qwen3-4B 蒸馏，损失为前向 KL 加 0.25 倍交叉熵，共 22B token（35% 数学、55% 知识类数据、10% 通用网页文本），序列长度 1,024。循环次数由 checkpoint 的结构决定（config.json 中 fold_group 为 2，fold_rank 为 64）；论文中把 Qwen3-8B 按 N=3 折叠的模型（3.68B）没有发布 checkpoint。每个循环步使用其所替代原始层的 KV cache 槽位，因此模型保留教师的 36 层 KV cache，GitHub 自测会检查有无 cache 时生成结果一致。加载需要 trust_remote_code；模型卡说已在 transformers 4.57 和 5.6 上测试，4.56 之前的版本要用 torch_dtype 代替 dtype。模型卡的示例是贪心解码的纯文本续写，没有介绍对话或思考模式的用法；论文的局限性一节指出，折叠后前向 FLOPs 和 KV cache 与完整深度的教师相同。"
+   },
+   "ref": "Model card (intro: built from the weights of Qwen3-4B and distilled on 22B tokens, links to arXiv 2611.18113 and github.com/myboker/concertina; Model section and table: 2.27B parameters, 18 × 2 unique blocks and loop steps, effective depth 36, KV cache same as Qwen3-4B; Usage: trust_remote_code, transformers 4.57 and 5.6, one cache slot per loop step; License: Apache 2.0); HF API (cardData.license apache-2.0, base_model Qwen/Qwen3-4B, safetensors.total 2,273,787,896; uploader myboker is a user account with full name ziyang zhang, the first author); config.json (fold_group 2, fold_rank 64, fold_gate true, num_hidden_layers 36, max_position_embeddings 40960, the same value as in Qwen/Qwen3-4B's config.json); concertina.py (LoopBlock runs the shared layer once per step and sets self_attn.layer_idx to the original layer id) and modeling_concertina.py; paper Section 3.1 (N=2 gives 18 blocks and 2.27B), Section 3.4 (KL plus 0.25 cross-entropy), Section 4.1 (22B tokens, data mix, sequences of 1024 tokens), Table 1 (22B distillation tokens), Section 4.8 (Qwen3-8B folded with N=3 into 3.68B) and Appendix D (forward FLOPs and KV cache of the full-depth teacher); GitHub README (released model, self-test of cached versus uncached generation).",
+   "added": "2026-11-24"
+  },
+  {
+   "id": "depth-recurrent-convergence",
+   "name": "Depth-Recurrent Transformer (S1)",
+   "paper": "2607.14427",
+   "hf": [
+    "joelogan/depth-recurrent-convergence"
+   ],
+   "params": "85.6M (state dict)",
+   "active_params": "~57.3M per forward at r = 1",
+   "tokens": "12.9B (12,900,106,240)",
+   "context": "2048 (training sequence length)",
+   "passes": {
+    "default": "8 (training mean; loops= is required per call)",
+    "range": "loops per call; paper evaluates 1-32, no gain beyond 8"
+   },
+   "kv": "n/a",
+   "license": "mit",
+   "inference": [
+    "custom"
+   ],
+   "notes": {
+    "en": "A single research checkpoint (S1, step 49209): a Llama-style model whose shape follows SmolLM2-135M, with 2 prelude blocks, a weight-tied core of 4 blocks and 2 coda blocks, trained with one seed on 12.9B FineWeb-Edu tokens with the SmolLM2 tokenizer. Following the Huginn recipe, the recurrent state starts from Gaussian noise, the prelude output is concatenated with the state and projected by a linear adapter on every loop, the core blocks use sandwich norms, and training sampled one loop count per step (log-normal around 8, at most 32) with backpropagation through the last 8 loops. The card gives 85.6M parameters (state dict, which lists the tied embedding and LM head matrices as two entries) and ~57.3M active per forward at r = 1; the paper gives 57.3M total and 29.0M unique non-embedding parameters (Table 1) and calls it a 135M-class model because its per-token compute at the training-mean depth is comparable to a 135M dense model. model.pt is a torch.save dict (config and state_dict) that loads with build_model from src/model.py in the GitHub repo, and the loop count is the required loops= argument of forward. The release has no generation helper and no KV cache: forward scores a whole sequence, and the paper's evaluation is teacher-forced and leaves KV caching for per-token exits untested. Because the state is drawn from noise on every call, outputs vary between calls unless the seed is fixed; the paper's allocation study switches to zero initialization for reproducible exits, and its training-free convergence exit (stop a token once its output distribution stops changing) is a post-hoc policy in bench/allocate.py, not part of forward.",
+    "zh": "单个研究用 checkpoint（S1，step 49209）：Llama 风格的模型，形状沿用 SmolLM2-135M，由 2 个 prelude block、4 个权重共享的核心 block 和 2 个 coda block 组成，用 SmolLM2 tokenizer 在 12.9B FineWeb-Edu token 上以单个随机种子训练。按 Huginn 的做法，循环状态从高斯噪声初始化，每一遍都把 prelude 输出与状态拼接后经线性 adapter 投影，核心 block 使用 sandwich norm；训练时每步采样一个循环次数（以 8 为中心的对数正态分布，最多 32），只对最后 8 遍反向传播。模型卡给出 85.6M 参数（state dict，其中共享的 embedding 和 LM head 矩阵作为两项列出）和 r = 1 时每次前向约 57.3M 激活参数；论文给出 57.3M 总参数和 29.0M 唯一非 embedding 参数（Table 1），并称其为 135M 级模型，因为它在训练平均深度下每 token 的计算量与 135M 的 dense 模型相当。model.pt 是 torch.save 保存的字典（config 和 state_dict），用 GitHub 仓库 src/model.py 中的 build_model 加载，循环次数是 forward 的必填参数 loops=。这次发布没有生成函数，也没有 KV cache：forward 对整段序列打分；论文的评测是 teacher-forced，没有测试逐 token 退出时的 KV cache 处理。由于每次调用都从噪声初始化状态，不固定随机种子时输出会随调用变化；论文的分配实验改用零初始化，以便得到可复现的退出决策，其无需训练的收敛退出（输出分布不再变化时停止该 token）是 bench/allocate.py 中的事后策略，不在 forward 里。"
+   },
+   "ref": "Model card (step 49209, FineWeb-Edu, 12.9B / 12,900,106,240 training tokens, 85.6M parameters (state dict), ~57.3M active at r=1, loading with src.model.build_model and loops=8, benchmark commands with loops 1-32); HF API (cardData.license mit, uploader joelogan with full name Joe Logan, the sole author) and the GitHub README of jlognn/depth-recurrent-convergence (links this checkpoint, MIT); the config stored in model.pt (identical to configs/s1-recursive-4090.json: seq_len 2048, n_prelude 2, n_core 4, n_coda 2, recur.rbar 8, r_max 32, bptt_k 8, no state_init key so noise initialization; separate embed.weight and head.weight entries) and src/model.py (RecursiveLM.forward(idx, loops) without a default, no generate or KV cache); bench/allocate.py (zero-initialized convergence exit); paper (arXiv v1) Abstract and Section 4 (135M-class, shape follows SmolLM2-135M, 29.0M unique non-embedding and 57.3M total parameters), Section 3 (architecture, loop sampling, truncated BPTT), Table 1 (sequence length 2048), Table 2 (loops 1-32) and Section 6 (single seed, no gain beyond the training mean, teacher-forced evaluation, KV caching untested).",
+   "added": "2026-11-24"
+  },
+  {
+   "id": "dfm-mimir",
+   "name": "DFM Mimir",
+   "paper": "2608.13517",
+   "org": [
+    "Danish Foundation Models"
+   ],
+   "hf": [
+    "danish-foundation-models/DFM-Mimir-v1.5",
+    "danish-foundation-models/DFM-Mimir",
+    "danish-foundation-models/DFM-Mimir-v1.5-GGUF",
+    "danish-foundation-models/DFM-Mimir-GGUF"
+   ],
+   "params": "1.787B",
+   "tokens": "103B / ~70.5B per epoch (v1.5 / v1); total not stated",
+   "context": "4,096",
+   "passes": {
+    "default": "8 module calls (H_cycles 2, L_cycles 3)",
+    "range": "L_cycles 1-5 degrade gracefully; H_cycles 1 or 3 break it (paper, v1)"
+   },
+   "kv": "per-pass",
+   "license": "apache-2.0",
+   "inference": [
+    "transformers",
+    "vllm",
+    "gguf"
+   ],
+   "notes": {
+    "en": "Danish and English chat models (Gemma 4 tokenizer and chat template) from Danish Foundation Models, trained from random initialization on instruction, reasoning, tool-use, multilingual and synthetic data without web-scale pretraining. v1 was trained on 161 datasets of about 70.5B tokens per epoch; v1.5 continues the v1 run on later mixtures, ending with DFM11 (103,214,604,702 sampled tokens per epoch), and is the EMA checkpoint at step 2,877,261. Both use the HRM-Text layout of two 16-layer stacks applied as LLLHLLLH (H_cycles 2, L_cycles 3); v1 backpropagates through the last five module applications and v1.5 through all eight, which is the only difference between the two config.json files (L_bp_cycles). In the paper's test-time sweep on v1, changing the number of L applications (1-5) degrades scores gracefully, while 1 or 3 H cycles break the model. The cards ask for a PrefixLM attention mask and, for v1.5, a transformers or vLLM build with native hrm_text support; the upstream transformers and vLLM implementations keep one KV slot per stack call. The official GGUF repos (BF16, Q8_0, Q4_K_M) need the DFM Mimir app or the schneiderkamplab llama.cpp fork; the GGUF cards make no claim of compatibility with stock llama.cpp or Ollama. The v1 card calls the model ~1B, the v1.5 card gives 1,786,775,040 total parameters (0.981B without the input embedding and output head) and the paper gives 1.78B; the v1 card lists 1,750,000 training steps, where the paper gives 1.65M steps for v1 and 1.2M further steps for v1.5. The schneiderkamplab FP8, AWQ-FP4 and FP4-MLX quantizations of v1 are not listed, since neither the model cards nor the paper present them as official releases.",
+    "zh": "Danish Foundation Models 发布的丹麦语和英语对话模型（使用 Gemma 4 tokenizer 和 chat template），从随机初始化开始，在指令、推理、工具调用、多语言和合成数据上训练，没有 web 规模的预训练。v1 在 161 个数据集上训练，每个 epoch 约 70.5B token；v1.5 在 v1 的基础上用后续数据混合继续训练，最后一个混合为 DFM11（每个 epoch 103,214,604,702 个采样 token），发布的是第 2,877,261 步的 EMA checkpoint。两者都采用 HRM-Text 结构：两个 16 层的栈按 LLLHLLLH 顺序执行（H_cycles 2，L_cycles 3）；v1 只反传最后五次模块调用，v1.5 反传全部八次，这也是两份 config.json 唯一的区别（L_bp_cycles）。论文在 v1 上做的测试时扫描显示，改变 L 的调用次数（1-5）时分数平缓下降，而 H 设为 1 或 3 时模型失效。模型卡要求使用 PrefixLM 注意力 mask，v1.5 模型卡还要求使用原生支持 hrm_text 的 transformers 或 vLLM 版本；上游 transformers 和 vLLM 的实现为每次栈调用各存一份 KV。官方 GGUF 仓库（BF16、Q8_0、Q4_K_M）需要 DFM Mimir 应用或 schneiderkamplab 的 llama.cpp 分支；GGUF 模型卡不声称兼容原版 llama.cpp 或 Ollama。v1 模型卡称其约 1B，v1.5 模型卡给出总参数 1,786,775,040（不含输入嵌入和输出头为 0.981B），论文给出 1.78B；v1 模型卡写训练 1,750,000 步，论文则写 v1 训练 1.65M 步、v1.5 再继续训练 1.2M 步。schneiderkamplab 发布的 v1 FP8、AWQ-FP4 和 FP4-MLX 量化版未列出，因为模型卡和论文都没有把它们作为官方版本。"
+   },
+   "ref": "Model cards of danish-foundation-models/DFM-Mimir (1-billion-parameter, trained from scratch, 161 datasets, approximately 70.479 billion tokens per epoch; Model details: ~1B, 16 layers, context length 4,096, 1,750,000 training steps, ~70.5B tokens per epoch, Apache 2.0; Usage instructions: Gemma4 tokenizer and chat template, PrefixLM attention mask) and DFM-Mimir-v1.5 (final epoch-10 EMA checkpoint at 2,877,261 steps continuing v1; 0.981B non-embedding/head and 1.787B total parameters; Model details: total 1,786,775,040, H / L cycles 2 / 3 with six L and two H executions, context 4,096, DFM11 103,214,604,702 sampled tokens; Usage instructions: Transformers/vLLM build with native hrm_text support); both config.json files (H_cycles 2, L_cycles 3, L_bp_cycles [0, 3] vs [3, 3], max_position_embeddings 4096); HF API of the four listed repos (cardData.license apache-2.0, 1,786,775,040 parameters) and the two GGUF cards (Official GGUF conversions; DFM Mimir app or schneiderkamplab/llama.cpp fork); paper (arXiv v3) Abstract (1.78B, 70.5B and 103B tokens per epoch, links to both safetensors repos), Section 3 (LLLHLLLH, 1.38B non-embedding and 0.40B embedding parameters, backpropagation through five vs all eight steps, 1.65M and 1.2M steps), Table 9 (32 layers split between H and L, H cycles 2, L cycles 3) and Section 6 / Table 5 (test-time recurrence sweep); kv from transformers modeling_hrm_text.py (one cache slot per stack call) and vllm-project/vllm#43098 (vLLM v0.24.0); the schneiderkamplab FP8, AWQ-FP4 and FP4-MLX repos were checked through their cards and HF API (base_model DFM-Mimir; not referenced by the DFM-Mimir cards or the paper).",
+   "added": "2026-11-24"
+  },
+  {
    "id": "dory1-0-4b",
    "name": "Dory1.0-4B",
    "paper": "2611.03998",
@@ -32,6 +240,91 @@
     "zh": "NVIDIA 于 2026 年 10 月 16 日发布的循环 normalized-GPT，sliding-window 注意力层与全注意力层交替。层栈分为输入、循环、输出三组，共享的循环块重复运行，每一遍都重新注入输入。预训练 6T token（前约 4.5T 用 NVFP4，其余用 BF16），再用 300B token 把上下文扩到 256K；在 vLLM 中推理模式始终开启。模型卡推荐默认两遍循环，追求最小计算量时用一遍，更看重准确率时用四遍。默认缓存为每遍各存一份 KV；把 recurrent_kv_cache_mode 设为 last_loop 后，每个循环注意力层只保留一份缓存。vLLM 支持在 vllm-project/vllm#60149，llama.cpp 支持在 ggml-org/llama.cpp#30306，目前都需要从这两个 PR 构建。BF16 checkpoint 之外还发布了 NVFP4、MXFP8 和 GGUF（Q5_K_M）版本。"
    },
    "ref": "Model card of nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-BF16 (Total Parameters 4B, Context Length up to 256K, OpenMDW License 1.1, Release Date October 16, 2026, architecture figure caption, Training Data Size 6T + 300B, NVFP4 for the first ~4.5T tokens, Choosing the Loop Count, Reducing the KV Cache Memory Overhead, vLLM and llama.cpp sections, quantized versions); config.json (n_recurrent_loops 2, recurrent_kv_cache_mode per_loop); HF API of the four repos (license openmdw-1.1).",
+   "added": "2026-11-24"
+  },
+  {
+   "id": "grt",
+   "name": "GRT (Gated Recurrent Transformer)",
+   "paper": "2608.15062",
+   "hf": [
+    "Amr-Hegazy/grt-medium-isoparam",
+    "Amr-Hegazy/grt-medium-isoflop",
+    "Amr-Hegazy/grt-large-isoparam",
+    "Amr-Hegazy/grt-large-isoflop"
+   ],
+   "params": "~169M / ~358M / ~778M / ~287M",
+   "tokens": "~9.8B each (CCCC Filtered)",
+   "context": "1024",
+   "passes": {
+    "default": "4, 4, 6, 6 (trained depth R; n is set per call)",
+    "range": "n up to the trained R; paper evaluates k = 0-4 / 0-6"
+   },
+   "kv": "n/a",
+   "license": "cc-by-4.0",
+   "inference": [
+    "custom"
+   ],
+   "notes": {
+    "en": "GRT is a nanoGPT-based prelude, shared core and coda model written p+n×R+c: at each of the R steps the state plus Gaussian noise is concatenated with the prelude output, projected back to the model width, run through the n shared blocks and blended into the residual stream by an elementwise sigmoid gate. All four were trained for 20,000 steps (~9.8B tokens) on common-pile/cccc_filtered with the GPT-2 tokenizer; in the paper, isoFLOP models run fewer unique blocks more times to match a dense GPT-2 model's forward FLOPs, and isoParam models keep the dense model's number of unique blocks and spend more FLOPs (Table 1). The two medium repos appear swapped: grt-medium-isoparam holds the 2+5×4+2 model (config.json n_layer 5, card val loss 2.8956) that the paper and the GitHub configs call isoFLOP, and grt-medium-isoflop holds the 2+20×4+2 isoParam model (n_layer 20, 2.7632); their cards' Regime rows, the GitHub README table and the HF collection follow the repo names. params uses the cards' values; paper Table 1 gives 127M for 2+5×4+2, 357M for 2+20×4+2, 779M for 3+30×6+3 and 293M for 1+5×6+5. The cards load ckpt.pt with model.py from the GitHub repo; the loop count is n in model.generate(..., n=...) or sample.py --recurrent_depth, GPT.forward runs one recurrence when n is not given, and the GitHub README says any value up to the trained R (4 medium, 6 large) can be used, although the cards' example passes n=6 to all four. model.py has no KV cache, so generate() re-runs the whole context through every recurrence for each new token; the paper describes one KV cache per recurrence step as the naive decoding setup and also tests reusing only the first or last step's cache or averaging K/V across steps (Figure 7, Table 4). model.py adds the state and gate noise (noise_std 0.1) on every forward call, including eval mode, although its comment says training only. The GitHub repository has no LICENSE file; the cards say cc-by-4.0.",
+    "zh": "GRT 基于 nanoGPT，结构为 prelude、共享核心和 coda，记作 p+n×R+c：R 步中的每一步把状态加上高斯噪声后与 prelude 输出拼接，投影回模型宽度，经过 n 个共享 block，再由逐元素 sigmoid 门控混入残差流。四个模型都在 common-pile/cccc_filtered 上用 GPT-2 tokenizer 训练了 20,000 步（约 9.8B token）；按论文 Table 1，isoFLOP 模型用更少的唯一 block 重复更多次，以匹配 dense GPT-2 模型的前向 FLOPs，isoParam 模型保持与 dense 模型相同的唯一 block 数，代价是更多 FLOPs。两个 medium 仓库看起来装反了：grt-medium-isoparam 里是论文和 GitHub 配置称为 isoFLOP 的 2+5×4+2 模型（config.json 中 n_layer 为 5，模型卡 val loss 2.8956），grt-medium-isoflop 里是 isoParam 的 2+20×4+2 模型（n_layer 为 20，2.7632）；它们模型卡中的 Regime 一栏、GitHub README 表格和 HF collection 都按仓库名描述。params 用的是模型卡的数值；论文 Table 1 给出 2+5×4+2 为 127M、2+20×4+2 为 357M、3+30×6+3 为 779M、1+5×6+5 为 293M。模型卡用 GitHub 仓库的 model.py 加载 ckpt.pt；循环次数由 model.generate(..., n=...) 或 sample.py --recurrent_depth 的 n 设定，不传 n 时 GPT.forward 只跑一步循环；GitHub README 说可以用不超过训练时 R 的任意值（medium 为 4，large 为 6），但模型卡示例对四个模型都传 n=6。model.py 没有 KV cache，generate() 每生成一个 token 都要把完整上下文重新跑过每一步循环；论文把每个循环步各存一份 KV cache 描述为朴素的解码方式，并测试了只复用首步或末步的 cache 以及跨步平均 K/V（Figure 7，Table 4）。model.py 在每次前向中都加入状态噪声和门控噪声（noise_std 为 0.1），eval 模式也不例外，尽管代码注释说只在训练时使用。GitHub 仓库没有 LICENSE 文件；模型卡写的是 cc-by-4.0。"
+   },
+   "ref": "HF API of the four repos (author Amr-Hegazy, cardData.license cc-by-4.0) and their model cards (Regime, Config, Parameters ~169M / ~358M / ~778M / ~287M, context length 1024, ~9.8B CCCC Filtered training tokens, usage with model.py and n=6); config.json (n_layer, n_layers_prelude, n_layers_coda, block_size 1024, noise_std 0.1, no recurrence key) and the model.safetensors headers (5 / 20 / 30 / 5 shared blocks); HF paper page (author Amr Hegazy claimed by the Amr-Hegazy account, code link) and the Gated Recurrent Transformer (GRT) collection; GitHub README (checkpoint table, p+n×R+c notation, --recurrent_depth note), config/*.py (recurrence_max 4 and 6) and model.py (forward defaults to one recurrence; generate() has no KV cache, hence kv n/a; noise applied without a training check); paper (arXiv v4) Table 1 (regimes, parameters), Section 4 and Appendix A Table 5 (20,000 steps, ~9.8B tokens, T = 1024, R per configuration), Figure 3 (early exit at k = 0-6), KV Cache Sharing paragraph, Figure 7 and Table 4 (the naive decoding setup keeps one KV cache per recurrence step; first / last / averaged sharing).",
+   "added": "2026-11-24"
+  },
+  {
+   "id": "how-to-loop-moe",
+   "name": "Foil (How to Loop MoE)",
+   "paper": "2609.35751",
+   "hf": [
+    "ShourenWSR/how-to-loop-moe"
+   ],
+   "params": "553.7M each",
+   "tokens": "100B each (FineWeb-Edu sample-100BT)",
+   "context": "4096",
+   "passes": {
+    "default": "16, 8, 4, 2 (Foil-1, Foil-2, Foil-3, Base; num_stacks)",
+    "range": "fixed (num_stacks is built into the weights)"
+   },
+   "kv": "n/a",
+   "license": "apache-2.0",
+   "inference": [
+    "transformers-remote-code"
+   ],
+   "notes": {
+    "en": "The paper's four main looped MoE language models, one per folder, each with 553.7M parameters, hidden size 1024, 16 attention heads and top-2 routing, trained on 100B FineWeb-Edu (sample-100BT) tokens with the SmolLM2 tokenizer. Each has one MoE layer with 8 experts before the loop and one after it, around a looped block of D layers run L times, 18 executed layers in all: Foil-1 has 64 experts per layer, 1 layer and 16 passes, Foil-2 32, 2 and 8, Foil-3 16, 4 and 4, and Base 8, 8 and 2. All four folders are looped variants: the experts and routers are shared across passes while every pass has its own attention weights, and Base is the unflattened looped baseline; the paper's tied-attention controls (Base-tied, proto-Foil) are not in this repo, and the paper has no non-looped control at equal parameters and compute (Appendix J). Flattening halves the layers, doubles the experts per layer and doubles the passes, so expert parameters and expert calls per token stay fixed; the card says the released weights are the final step (254,313) of each run. Load a folder with AutoModelForCausalLM.from_pretrained(repo, subfolder=..., trust_remote_code=True); the card warns that labels are not shifted inside the model, that the returned loss includes the router auxiliary losses, and that attention masks with padding are refused, so batched generation with left padding does not work. The pass count is fixed by num_stacks in config.json, which also sets how many per-pass attention sets are stored. The modeling code has no KV cache: it turns use_cache off and recomputes the whole prefix at every generation step. Intermediate checkpoints are in ShourenWSR/loopmoe-U4_100B, -U3_100B, -U2_100B and -U1_100B (Foil-1, Foil-2, Foil-3, Base).",
+    "zh": "论文的四个主要循环 MoE 语言模型，每个目录一个，均为 553.7M 参数、hidden size 1024、16 个注意力头、top-2 路由，用 SmolLM2 tokenizer 在 100B FineWeb-Edu（sample-100BT）token 上训练。每个模型在循环前后各有一个 8 专家的 MoE 层，中间是由 D 层组成、跑 L 遍的循环块，展开后共执行 18 层：Foil-1 每层 64 个专家、1 层、16 遍，Foil-2 为 32、2、8，Foil-3 为 16、4、4，Base 为 8、8、2。四个目录都是循环模型：专家和路由器在各遍之间共享，每一遍有自己的注意力权重，Base 是未展平的循环基线；论文中共享注意力的对照模型（Base-tied、proto-Foil）不在这个仓库里，论文也没有等参数、等计算量的不循环对照（Appendix J）。展平把层数减半、每层专家数加倍、遍数加倍，因此专家参数和每 token 的专家调用次数保持不变；模型卡说发布的权重是每次训练的最后一步（254,313）。用 AutoModelForCausalLM.from_pretrained(repo, subfolder=..., trust_remote_code=True) 加载某个目录；模型卡提醒，模型内部不对 labels 做移位，返回的 loss 包含路由辅助损失，含 padding 的 attention mask 会被拒绝，因此不支持左填充的批量生成。遍数由 config.json 的 num_stacks 固定，它同时决定存储多少套逐遍注意力参数。建模代码没有 KV cache：它关闭 use_cache，每个生成步都重新计算整个前缀。各次训练的中间 checkpoint 在 ShourenWSR/loopmoe-U4_100B、-U3_100B、-U2_100B 和 -U1_100B（对应 Foil-1、Foil-2、Foil-3、Base）。"
+   },
+   "ref": "Model card (four folders and their looped shapes, 553.7M parameters, head and tail MoE layers with 8 experts, top-2, hidden size 1024, 16 heads, untied attention, 18 unrolled layers, context 4096, SmolLM2 tokenizer, 100B FineWeb-Edu tokens, trust_remote_code usage, label and padding caveats, final step 254,313, intermediate-checkpoint repos, Apache-2.0); HF API (cardData.license apache-2.0, uploader ShourenWSR with full name Shouren Wang, the first author) and the GitHub README of SR-A-W/how-to-loop-moe (links this repo); each folder's config.json (num_stacks 16 / 8 / 4 / 2, num_layers_in_stack 1 / 2 / 4 / 8, num_experts 64 / 32 / 16 / 8, per_pass_attention true, context_length 4096, unrolled_depth 18); modeling_loop_lm.py (one attention set per pass with shared norms, router and experts; _supports_cache_class False, use_cache False and full-prefix recomputation; padding masks refused); paper (arXiv v1) Section 2.2 (Foil-1 / Foil-2 / Foil-3 and Base, 553.7M each), Section 3.1 (100B-token results), Appendix C (sample-100BT, SmolLM2 tokenizer, context 4,096, 100.0B tokens at step 254,313, Table 3 parameter counts) and Appendix J (no non-looped control).",
+   "added": "2026-11-24"
+  },
+  {
+   "id": "hrm-text-1b",
+   "name": "HRM-Text-1B",
+   "paper": "2605.20613",
+   "org": [
+    "Sapient Intelligence"
+   ],
+   "hf": [
+    "sapientinc/HRM-Text-1B"
+   ],
+   "params": "1B",
+   "tokens": "40B unique, 60B in total",
+   "context": "4096 (max sequence length)",
+   "passes": {
+    "default": "8 module calls (H_cycles 2, L_cycles 3)",
+    "range": "fixed (no other setting documented)"
+   },
+   "kv": "per-pass",
+   "license": "apache-2.0",
+   "inference": [
+    "transformers",
+    "vllm"
+   ],
+   "notes": {
+    "en": "Pre-alignment base checkpoint from Sapient Intelligence, trained from scratch with a response-only task-completion loss on instruction-response pairs and a PrefixLM mask; it is not instruction-tuned or chat-aligned, is English only and was not trained on code. Two separate 16-layer Transformer stacks, a fast L module and a slow H module, work on the same input embeddings with additive state injection: each of the H_cycles = 2 outer cycles runs the L module L_cycles = 3 times and then the H module once. Training sampled 40B unique tokens from a 176.5B-token open-source corpus for 60B training tokens in total; gradients first flow through the last two recurrent steps and later through the last five, and the released weights are the EMA checkpoint. The model type hrm_text is native in transformers>=5.9.0, and the card asks for token_type_ids that mark the prompt as one bidirectional prefix block, since attention otherwise falls back to causal. The transformers code gives every stack call its own KV-cache slots (num_layers_per_stack × H_cycles × (L_cycles + 1) in total); vLLM added HrmTextForCausalLM in v0.24.0 (vllm-project/vllm#43098) with one KV slot per recurrence step, while the GitHub README still lists vLLM support as in progress. The safetensors count is 1,182,795,264 parameters (BF16).",
+    "zh": "Sapient Intelligence 发布的预对齐（pre-alignment）基座 checkpoint，从头训练，在指令-回复对上只对回复计算 task-completion 损失，并使用 PrefixLM mask；未做指令微调或对话对齐，只支持英文，也没有用代码数据训练。两个独立的 16 层 Transformer 栈（快速的 L 模块和慢速的 H 模块）作用于同一份输入嵌入，状态以加法注入：H_cycles = 2 个外层循环中，每个先运行 L 模块 L_cycles = 3 次，再运行 H 模块一次。训练从 176.5B token 的开源语料中采样 40B 个不重复 token，总训练量 60B token；梯度起初只反传最后两个循环步，之后扩展到最后五步，发布的权重是 EMA checkpoint。模型类型 hrm_text 在 transformers>=5.9.0 中原生支持；模型卡要求传入 token_type_ids，把整个 prompt 标为一个双向 prefix 块，否则注意力会退回纯因果。transformers 代码为每次栈调用分配独立的 KV cache 槽位（共 num_layers_per_stack × H_cycles × (L_cycles + 1) 个）；vLLM 在 v0.24.0 加入 HrmTextForCausalLM（vllm-project/vllm#43098），每个循环步各占一个 KV 槽位，而 GitHub README 仍写着 vLLM 支持在开发中。safetensors 统计为 1,182,795,264 个参数（BF16）。"
+   },
+   "ref": "Model card of sapientinc/HRM-Text-1B (intro: 1 B parameters, trained from scratch, H and L modules iterating for H_cycles × (L_cycles + 1) steps with additive injection; Disclaimer: pre-alignment, not instruction-tuned; Requirements: transformers >= 5.9.0; Model details: ~1 B, 16 layers per H / L stack, H_cycles × L_cycles 2 × 3, max sequence length 4096, 40 B training unique tokens; PrefixLM mask: token_type_ids; Limitations: English only, no code data; License) and config.json (H_cycles 2, L_cycles 3, L_bp_cycles [0, 3], max_position_embeddings 4096); HF API (cardData.license apache-2.0, safetensors.total 1,182,795,264); paper Section 2 (two high-level cycles of three L updates and one H update; gradients through the final two, then five, steps), Section 3.1 text under Table 1 (H2L3 gives 8 total H/L module steps), Section 4.1 (176.5B-token corpus, 40B unique tokens, 60B total) and Section 4.3 (16 layers per module, context size 4,096, released weights are the EMA checkpoint); kv from transformers modeling_hrm_text.py (cache slot (h × (L_cycles + 1) + l) × num_layers_per_stack + layer, one per stack call) and vllm-project/vllm#43098; vllm from the vLLM v0.24.0 release notes and docs/models/supported_models.md (HrmTextForCausalLM, sapientinc/HRM-Text-1B); GitHub README of sapientinc/HRM-Text (Status: native vLLM support in progress; simple_inference_engine.py loads FSDP2 training checkpoints, not the HF export, so custom is not listed).",
    "added": "2026-11-24"
   },
   {
@@ -102,6 +395,384 @@
    },
    "ref": "HF API (cardData license apache-2.0) and model card sections 1-3 (26.4B / 3.4B active / 5.4B effective at three passes, 1M context, about 20GB NVFP4 + MXFP8 checkpoint, SGLang, vLLM, Hugging Face and GGUF support); config.json (loop_config core_start 6, core_end 18, num_passes 3, is_varloop false); Thinking Machines Lab blog (Monitorability of looped transformers: only a fixed number of looping passes; Pruning and healing: 1T tokens; Training Inkling 2 Mini: 2.2T RL tokens); Hugging Face blog (transformers usage; each layer visit keeps its own KV)",
    "added": "2026-11-23"
+  },
+  {
+   "id": "iquest-coder-v1-40b-loop",
+   "name": "IQuest-Coder-V1-40B-Loop",
+   "paper": "2603.16733",
+   "org": [
+    "IQuest Research"
+   ],
+   "hf": [
+    "IQuestLab/IQuest-Coder-V1-40B-Loop-Instruct",
+    "IQuestLab/IQuest-Coder-V1-40B-Loop-Thinking"
+   ],
+   "params": "40B",
+   "tokens": "12T+ pre-training and 600B mid-training (LoopCoder PDF)",
+   "context": "128K",
+   "passes": {
+    "default": "2",
+    "range": "fixed (loop_num)"
+   },
+   "kv": "first-pass",
+   "license": "iquestcoder (Modified MIT License)",
+   "inference": [
+    "transformers-remote-code",
+    "vllm"
+   ],
+   "notes": {
+    "en": "IQuest-Coder-V1-40B-Loop-Instruct and -Loop-Thinking are dense 40B code models (80 layers, hidden size 5120, 40 query and 8 KV heads, 76,800-token vocabulary) that run the whole layer stack twice with shared parameters (loop_num 2). In the second iteration each attention layer mixes global attention over the first iteration's keys and values with local attention over the second iteration's own recent keys and values, weighted per head by a sigmoid gate computed from the query. The released cache keeps the full first-iteration KV plus only the last loop_window_size tokens of second-iteration KV; loop_window_size is 64 in the Loop-Instruct config and 8192 in the Loop-Thinking config. The report's text mentions position-shifted hidden states in the first iteration but also says the token shifting of Parallel Loop Transformer is omitted, and the released code passes the first iteration's output straight into the second. The loop models follow the same pre-training, 32K and 128K mid-training, and SFT plus RL pipeline as the dense models; the LoopCoder PDF in the GitHub repo adds that the loop was initialized by folding a pre-trained dense checkpoint, gives 12T+ pre-training tokens and calls the model 40B-A80B, although its Table 1 also lists 80B activated parameters for the dense 40B models. The Loop-Thinking card calls that model a research-oriented experimental prototype that is not intended to reach state-of-the-art benchmark results. Both repos load with trust_remote_code (the Loop-Instruct card recommends transformers==4.56.0, the Loop-Thinking card transformers>=4.52.4), vLLM support came with vllm-project/vllm#31575 (merged January 2026), and IQuestLab has published no quantized Loop checkpoints. HF lists the license as other with the name iquestcoder; the Loop-Instruct card links the Modified MIT License of IQuest-Coder-V1-40B-Instruct, which asks commercial products to display \"IQuest Coder\", while the LICENSE file in the Loop-Thinking repo is empty.",
+    "zh": "IQuest-Coder-V1-40B-Loop-Instruct 和 -Loop-Thinking 是 dense 40B 代码模型（80 层，hidden size 5120，40 个 query 头和 8 个 KV 头，词表 76,800），以共享参数把整个层栈跑两遍（loop_num 2）。第二遍中每个注意力层把对第一遍 key/value 的全局注意力和对第二遍自身近期 key/value 的局部注意力混合起来，权重由 query 算出的逐头 sigmoid 门控决定。发布的 cache 保留第一遍的完整 KV，第二遍的 KV 只保留最后 loop_window_size 个 token；Loop-Instruct 的 config 中 loop_window_size 为 64，Loop-Thinking 为 8192。报告正文提到第一遍使用位置偏移的隐状态，但又说省略了 Parallel Loop Transformer 的 token 偏移；发布的代码直接把第一遍的输出送入第二遍。Loop 模型与 dense 模型走同一套流程：预训练、32K 和 128K 两段 mid-training、SFT 加 RL；GitHub 仓库中的 LoopCoder PDF 补充说循环由折叠的预训练 dense checkpoint 初始化，预训练 12T+ token，并称模型为 40B-A80B，但其 Table 1 把 dense 40B 模型也列为 80B 激活参数。Loop-Thinking 模型卡称它是面向研究的实验原型，并不追求各基准上的最优成绩。两个仓库都需 trust_remote_code 加载（Loop-Instruct 模型卡推荐 transformers==4.56.0，Loop-Thinking 模型卡写 transformers>=4.52.4），vLLM 支持来自 2026 年 1 月合入的 vllm-project/vllm#31575，IQuestLab 没有发布 Loop 的量化版本。HF 上的许可证为 other，名称为 iquestcoder；Loop-Instruct 模型卡链接到 IQuest-Coder-V1-40B-Instruct 的 Modified MIT License，要求商用产品显示「IQuest Coder」，而 Loop-Thinking 仓库里的 LICENSE 文件是空的。"
+   },
+   "ref": "Model cards of both repos (Model Overview table: 40B, 80 (2 iterations), 128K; Architecture Features: shared parameters across two iterations; Quickstart transformers versions; vLLM PR link; Loop-Thinking highlight and Limitations); config.json of both repos (loop_num 2, loop_window_size 64 / 8192, max_position_embeddings 131072); modeling_iquestloopcoder.py (loop over all num_hidden_layers; IQuestLoopCoderCache with a shared cache for loop 1 and a local window cache for loop 2+; LoopGateProjection); HF API (cardData license other, license_name iquestcoder; IQuestLab model list) and the LICENSE files; arXiv 2603.16733v1 Section 2.1 and Tables 1 and 7; papers/LoopCoder_arxiv.pdf in github.com/IQuestLab/IQuest-Coder-V1 (abstract and Section 6: 40B-A80B, 12T+ tokens; Section 2.2: dense-to-loop folding; Table 1; Table 2: 600B mid-training tokens); vllm-project/vllm#31575 (merged 2026-01-08).",
+   "added": "2026-11-24"
+  },
+  {
+   "id": "latentloop",
+   "name": "LatentLoop",
+   "paper": "2610.19975",
+   "hf": [
+    "yhx12/LatentLoop"
+   ],
+   "params": "1.3B / 3B / 7B",
+   "active_params": "0.2B / 0.5B / 1B (approximate, paper Table 2)",
+   "tokens": "40.0975B / 69.6538B / 139.7123B (reference budgets 40B / 70B / 140B)",
+   "context": "4096",
+   "passes": {
+    "default": "2 (middle layers visited twice, the first visit on a 2x compressed sequence)",
+    "range": "fixed"
+   },
+   "kv": "per-pass",
+   "license": "apache-2.0",
+   "inference": [
+    "custom"
+   ],
+   "notes": {
+    "en": "Base MoE language models for text continuation at three sizes, one per subfolder (1.3B-40B, 3B-70B, 7B-140B, named by reference token budget), trained from scratch on FineWeb-Edu sample350BT with the 32K TinyLlama tokenizer; no instruction tuning or chat template. The 12 / 16 / 20 stored layers form entry, middle and exit blocks of a quarter, a half and a quarter of the layers, and the middle block is visited twice, giving 18 / 24 / 30 executed layers. The visits are asymmetric: the first runs on a latent sequence in which each pair of adjacent token states is averaged, and its increment is rescaled by two learned per-channel vectors and written back to the last token of the pair and to the next token, so an update only reaches positions after its whole source pair; the second visit runs on the full sequence. Only the MoE routers and experts are shared between the visits and each visit has its own attention parameters; width, attention dimensions, stored experts (75 / 75 / 76 per layer, 8 active) and training steps were set so that stored parameters, KV cache, FLOPs per step and training FLOPs stay within 1% of an MoE baseline and an ordinary looped MoE. inference.py (also in the GitHub code) loads one subfolder with load_pretrained(..., subfolder=...), keeps the FP32 weights and uses BF16 autocast on CUDA; its generate() is greedy with batch size one. The loader keeps one KV cache per layer execution, so the two visits never share K/V even where weights are shared; the first visit's cache covers the compressed sequence, and an unfinished token pair and the last writeback update are held in small buffers during decoding. The visit count is fixed at two. The params column gives the card's size labels; each subfolder's training_summary.json gives 1,299,003,368 / 3,194,972,016 / 6,858,742,008 parameters, matching paper Table 6.",
+    "zh": "三个规模的 MoE 基座语言模型，用于文本续写，每个子目录一个（1.3B-40B、3B-70B、7B-140B，以参考 token 预算命名），在 FineWeb-Edu sample350BT 上用 32K TinyLlama tokenizer 从头训练，没有指令微调，也没有 chat template。12 / 16 / 20 个存储层分为入口、中间和出口三段，分别占层数的四分之一、二分之一和四分之一，中间段访问两次，执行层数为 18 / 24 / 30。两次访问不对称：第一次在潜在序列上运行，该序列把相邻两个 token 的状态取平均，其增量经两组可学习的逐通道系数缩放后，写回该 token 对的最后一个 token 和下一个 token，因此更新只会到达整个源 token 对之后的位置；第二次访问在完整序列上运行。两次访问之间只共享 MoE 的路由器和专家，每次访问有自己的注意力参数；宽度、注意力维度、每层存储的专家数（75 / 75 / 76，激活 8 个）和训练步数都经过调整，使存储参数、KV cache、每步 FLOPs 和训练 FLOPs 与 MoE 基线及普通循环 MoE 的差距都在 1% 以内。仓库中的 inference.py（GitHub 代码中也有）用 load_pretrained(..., subfolder=...) 加载一个子目录，保留 FP32 权重，在 CUDA 上用 BF16 autocast；其 generate() 是 batch size 为 1 的贪心解码。加载器为每次层执行各存一份 KV cache，所以即使权重共享，两次访问也不共用 K/V；第一次访问的 cache 覆盖压缩后的序列，解码时未凑齐的 token 对和最近一次写回的更新保存在小缓冲区中。访问次数固定为两次。params 列是模型卡的规模标签；各子目录 training_summary.json 给出的参数量为 1,299,003,368 / 3,194,972,016 / 6,858,742,008，与论文 Table 6 一致。"
+   },
+   "ref": "Model card (base models, approximate total-parameter size labels, reference and actual token counts 40.0975B / 69.6538B / 139.7123B, context 4096, FineWeb-Edu sample350BT, TinyLlama tokenizer, loader with separate KV state per visit, apache-2.0); HF API (cardData.license apache-2.0, uploader yhx12 with full name Zefeng He, the first author) and the GitHub README of lcqysl/LatentLoop (links this repo); each subfolder's training_summary.json (parameter_count, training_prediction_tokens, context_length 4096) and model_config.json (n_layer 12 / 16 / 20, num_experts 75 / 75 / 76, num_experts_per_tok 8, block_size 4096); model/config.py (layer_order, loop_start, loop_end), model/model.py (compressed first visit, attn_repeat for the second visit, shared SparseMoE, kv_caches indexed by layer execution), model/latent.py (pair mean, ScaledDecoder, causal writeback) and inference.py (greedy batch-1 generate); paper (arXiv v1) Section 1 (budgets matched within 1%), Section 2.1 (entry / middle / exit of L/4, L/2, L/4 layers), Sections 3.2-3.4 (k = 2 compression, scaled decoder, shared MoE with independent attention, separate KV caches), Table 2 (approximate total / active sizes), Appendix A Tables 6 and 8 (layers 12/18, 16/24, 20/30; total parameters; actual tokens) and Appendix B (data, tokenizer, cached decoding indexed by layer execution).",
+   "added": "2026-11-24"
+  },
+  {
+   "id": "loopcoder-v2",
+   "name": "LoopCoder-V2",
+   "paper": "2606.18023",
+   "hf": [
+    "Multilingual-Multimodal-NLP/LoopCoder-V2"
+   ],
+   "params": "7B",
+   "tokens": "18T",
+   "context": "131072 (max_position_embeddings)",
+   "passes": {
+    "default": "2",
+    "range": "fixed (the paper trains each loop count separately)"
+   },
+   "kv": "first-pass",
+   "license": "apache-2.0",
+   "inference": [
+    "custom"
+   ],
+   "notes": {
+    "en": "Instruction-tuned 7B dense code model based on the Parallel Loop Transformer (PLT), trained from scratch on 18T tokens of text and code (1:1, more than 100 programming languages) and then fine-tuned on 6M instruction examples. Its 14 shared layers run twice (plt_num_loops 2); the paper trained separate models at 1, 2, 3 and 4 loops, each evaluated at its training loop count, and only the two-loop instruction model is released. Before the second loop, the first loop's hidden states are shifted right by one token and added to the token embeddings (cross-loop position offset), so loops of neighbouring tokens can run concurrently in one forward pass. In the second loop each attention layer mixes, through a per-head gate, full attention over the first loop's KV cache with 64-token sliding-window attention over the second loop's own keys and values, so only the first loop keeps a full-length cache. The HF repository has configuration and tokenizer code but no modeling file, and its auto_map lists only AutoConfig, although the GitHub README shows a transformers snippet with trust_remote_code. The card's inference path is the vLLM build at yxing-bj/vllm, which adds IQuestPLTCoderForCausalLM, used with transformers==4.57.1 and the --trust-remote-code flag. The safetensors total is 7,615,749,680 parameters; the card says approximately 7B.",
+    "zh": "基于 Parallel Loop Transformer（PLT）的 7B dense 指令微调代码模型，在 18T token 的文本和代码数据（1:1，超过 100 种编程语言）上从头训练，再用 6M 条指令数据做 SFT。14 个共享层跑两遍（plt_num_loops 为 2）；论文分别训练了 1、2、3、4 遍的模型，各自按训练遍数评测，只发布了两遍的指令模型。第二遍之前，第一遍的隐状态右移一个 token 后与 token 嵌入相加（cross-loop position offset），使相邻 token 的不同遍可以在同一次前向中并行计算。第二遍中每个注意力层用逐头门控混合两路注意力：对第一遍 KV cache 的全注意力，以及对第二遍自身 key/value 的 64 token 滑窗注意力，因此只有第一遍保存全长缓存。HF 仓库里有配置和 tokenizer 代码，但没有 modeling 文件，auto_map 只列出 AutoConfig，尽管 GitHub README 给出了带 trust_remote_code 的 transformers 示例。模型卡给出的推理方式是 yxing-bj/vllm 上的 vLLM 构建（其中加入了 IQuestPLTCoderForCausalLM），配合 transformers==4.57.1 和 --trust-remote-code 参数使用。safetensors 参数总数为 7,615,749,680；模型卡写的是约 7B。"
+   },
+   "ref": "Model card (7B instruction-tuned PLT code model; Model Details table: approximately 7B parameters, 14 shared layers, max position embeddings 131072, PLT loops 2, PLT window size 64; Highlights: from scratch on 18T tokens, cross-loop position offsets and shared-KV gated sliding-window attention; Usage: vLLM from yxing-bj/vllm with transformers==4.57.1 and --trust-remote-code; Training Data section); HF API (cardData.license apache-2.0, safetensors.total 7,615,749,680, file list with configuration and tokenizer code only, auto_map with AutoConfig only; the org's model search for Loop returns only this repo); config.json (plt_num_loops 2, plt_window_size [64, 0], num_hidden_layers 14, max_position_embeddings 131072) and the configuration_iquestpltcoder.py docstring (loop 0 stores KV caches, loops 1+ run mixed attention); paper front page (HF link), Section 2.2 and Algorithm 1 (first-loop KV shared with later loops, w = 64 window over the current loop's KV, one-token CLP shift), Section 3.1 (18T tokens, 1:1 text and code, matched training and inference loop counts, R = 1-4, SFT on 6M examples) and Table 5 (about 7B, 18T); vllm/model_executor/models/iquest_loopcoder.py and registry.py in yxing-bj/vllm (loop 0 attention owns the full cache, later loops read it without new keys and add a sliding_window = 64 cache; IQuestPLTCoderForCausalLM registered); GitHub CSJianYang/LoopCoder README (links the HF repo, lists one model, transformers snippet).",
+   "added": "2026-11-24"
+  },
+  {
+   "id": "loopformer",
+   "name": "LoopFormer",
+   "paper": "2602.11451",
+   "hf": [
+    "armenjeddi/LoopFormer-3block-8iterations",
+    "armenjeddi/LoopFormer-2block-12iterations",
+    "armenjeddi/LoopFormer-3block-8iterations-FineWeb300K"
+   ],
+   "params": "278,169,600 / 223,635,456 / 278,169,600 (safetensors)",
+   "tokens": "~25B (deduplicated Pile) / ~25B / not stated",
+   "context": "1024",
+   "passes": {
+    "default": "8, 12, 8 (steps)",
+    "range": "any budget M up to L via steps; paper evaluates M = 2, 4, 8"
+   },
+   "kv": "n/a",
+   "license": "not stated (no model cards)",
+   "inference": [
+    "transformers-remote-code"
+   ],
+   "notes": {
+    "en": "LoopFormer loops a stack of k Transformer blocks (3 or 2 here; width 2048, 32 heads) that makes up the whole model between the embeddings and the LM head. Each loop is conditioned on the normalized time t and the step size Δt through adaLN-style scales and residual gates, and training adds a sampled shorter trajectory with a shortcut-consistency loss so that fewer loops still give usable outputs. Per the paper, the 3⊗8 and 2⊗12 models were trained for 50,000 steps on a deduplicated subset of The Pile (about 25B tokens), and the repos ship a GPT-2 tokenizer; the -FineWeb300K repo is not described in the paper or the GitHub README, so its data and token count are not stated. The repos have no model card; config.json maps AutoModelForCausalLM to modeling_loopformer.LoopFormerGPTForCausalLM, so they load with trust_remote_code=True, and GPT.from_pretrained in the GitHub models/loopformer.py loads them the same way. The loop count is the length of the steps list passed to forward or generate (step sizes summing to 1, for example steps=[0.25]*4 for four loops; the paper's main results use uniform steps 1/M); without it the 3-block models run 8 equal steps and the 2-block model 12. modeling_loopformer.py has no KV cache: every forward pass recomputes the whole sequence through all loops. armenjeddi/NanoGPT-Base24-FineWeb300K in the same collection is the non-looped 24-layer baseline and is not listed. The GitHub code is an MIT-licensed nanoGPT fork.",
+    "zh": "LoopFormer 把 k 个 Transformer block（此处为 3 或 2 个；宽度 2048，32 个 head）组成的堆栈反复循环，这个堆栈就是 embedding 与 LM head 之间的全部模型。每一遍以归一化时间 t 和步长 Δt 为条件，通过 adaLN 式的缩放和残差门控调制；训练时还额外采样一条更短的轨迹并加 shortcut-consistency 损失，使少跑几遍也能得到可用的输出。按论文，3⊗8 和 2⊗12 模型在去重后的 The Pile 子集上训练了 50,000 步（约 25B token），仓库附带 GPT-2 tokenizer；-FineWeb300K 仓库在论文和 GitHub README 中都没有描述，其数据和 token 数未说明。这些仓库没有模型卡；config.json 把 AutoModelForCausalLM 映射到 modeling_loopformer.LoopFormerGPTForCausalLM，因此要用 trust_remote_code=True 加载，GitHub 中 models/loopformer.py 的 GPT.from_pretrained 也是这样加载。循环次数就是传给 forward 或 generate 的 steps 列表长度（各步长之和为 1，例如 steps=[0.25]*4 表示四遍；论文主要结果用均匀步长 1/M）；不传时 3-block 模型跑 8 个等长步，2-block 模型跑 12 个。modeling_loopformer.py 没有 KV cache：每次前向都把整个序列重新跑过所有循环。同一 collection 里的 armenjeddi/NanoGPT-Base24-FineWeb300K 是不循环的 24 层基线，未列出。GitHub 代码是采用 MIT license 的 nanoGPT fork。"
+   },
+   "ref": "HF API of the three repos (author armenjeddi, no cardData and no README, safetensors totals 278,169,600 / 223,635,456 / 278,169,600) and the LoopFormer collection (models trained in the ICLR 2026 paper, also holding NanoGPT-Base24-FineWeb300K); config.json (auto_map to modeling_loopformer.py, no loop key); modeling_loopformer.py (n_layer 3 or 2, n_embd 2048, n_head 32, block_size 1024, default steps [1/8]*8 or [1/12]*12, steps passed through generate, no KV cache); tokenizer_config.json (GPT2Tokenizer, model_max_length 1024); GitHub README (official implementation, link to the collection), LICENSE (MIT) and models/loopformer.py (GPT.from_pretrained through AutoModelForCausalLM with trust_remote_code=True); paper Section 3.3 (budget M <= L at inference), Section 4 and Appendix A (deduplicated Pile, 50,000 steps, ~25B tokens, d = 2048, 32 heads, context 1024, uniform steps at inference; no parameter counts), Table 1 and Figures 2, 3 and 6 (evaluated budgets). Nothing in the paper or the GitHub repo describes the -FineWeb300K variant.",
+   "added": "2026-11-24"
+  },
+  {
+   "id": "loopie-20b-a2b-preview",
+   "name": "Loopie-20B-A2B-preview",
+   "paper": "2607.16051",
+   "org": [
+    "IQuest Research"
+   ],
+   "hf": [
+    "zitian-gao/Loopie-20B-A2B-preview"
+   ],
+   "params": "20B",
+   "active_params": "2B",
+   "tokens": "3.5T (pretraining)",
+   "context": "131072 (YaRN factor 16 over 8192)",
+   "passes": {
+    "default": "2 (layer_loop_times)",
+    "range": "fixed (Section 2.8 compares separately trained models)"
+   },
+   "kv": "per-pass",
+   "license": "mit",
+   "inference": [
+    "custom"
+   ],
+   "notes": {
+    "en": "Post-trained reasoning MoE from IQuest Research, trained from scratch; the card calls it a preview optimized mainly for math and science reasoning, and its benchmark table matches the paper's Table 3 for Loopie-20B-A2B Thinking. Each of the 27 stored Qwen3-MoE layers (128 experts, 8 per token) runs twice in place before the next layer (layer-loop, layer_loop_times 2), instead of repeating the whole stack. The card and Table 3 give 3.5T pretraining tokens, while Section 3 describes 3T tokens of stage-1 pretraining (about 2.28T in Section 3.4: about 570B unique Nemotron-CC-v2-HQ tokens for four epochs) and 1.26T tokens of annealing; supervised pre-training on 2T tokens with 131072-token sequences and RL with 32K, then 64K, response limits follow. The card installs the authors' forks of transformers and vLLM (github.com/zitian-gao/transformers and github.com/zitian-gao/vllm); config.json declares model_type qwen3_moe, and the upstream Qwen3-MoE code has no layer_loop_times setting. The vLLM fork reads layer_loop_times and gives each pass its own attention layer and KV cache; the transformers fork hard-codes two passes per decoder layer, and both passes write to the same cache layer index. The safetensors count is 21,093,121,152 parameters (BF16).",
+    "zh": "IQuest Research 发布的后训练推理 MoE 模型，从头训练；模型卡称其为 preview 版本，主要针对数学和科学推理优化，卡上的评测表与论文 Table 3 中 Loopie-20B-A2B Thinking 的数值一致。27 个存储的 Qwen3-MoE 层（128 个专家，每 token 激活 8 个）各自原地连续运行两遍后再进入下一层（layer-loop，layer_loop_times 2），而不是重复整个层栈。模型卡和 Table 3 给出 3.5T 预训练 token；Section 3 则写第一阶段预训练 3T token（Section 3.4 写约 2.28T：约 570B 个不重复的 Nemotron-CC-v2-HQ token 训练四个 epoch）加 1.26T token 退火；之后是 2T token、序列长度 131072 的 supervised pre-training，以及回复长度上限先 32K 后 64K 的 RL。模型卡要求安装作者的 transformers 和 vLLM 分支（github.com/zitian-gao/transformers 和 github.com/zitian-gao/vllm）；config.json 声明 model_type 为 qwen3_moe，而上游 Qwen3-MoE 代码没有 layer_loop_times 设置。vLLM 分支读取 layer_loop_times，为每一遍单独建注意力层和 KV cache；transformers 分支在 decoder 层内写死两遍，两遍写入同一个 cache 层索引。safetensors 统计为 21,093,121,152 个参数（BF16）。"
+   },
+   "ref": "Model card of zitian-gao/Loopie-20B-A2B-preview (trained by IQuest Research; 20B total parameters with 2B activation MoE, preview optimized for math and science reasoning; benchmark table with 3.5T pre-training tokens; Transformers and vLLM sections installing github.com/zitian-gao/transformers and github.com/zitian-gao/vllm) and config.json (model_type qwen3_moe, layer_loop_times 2, model_loop_times 1, num_hidden_layers 27, num_experts 128, num_experts_per_tok 8, max_position_embeddings 131072, rope_scaling yarn factor 16 with original_max_position_embeddings 8192); HF API (cardData.license mit, safetensors.total 21,093,121,152); paper (arXiv v3) header (links to this repo and the megatron-lm, transformers and vllm forks), Abstract (20B with 2B active), Section 2.1 (layer-loop order), Section 2.8 (choice of two loop steps; loop-count sweep on separately trained models), Sections 3 and 3.4 (3T stage 1, about 2.28T over four epochs, 1.26T annealing), Section 4 and Table 8 (2T-token SPT, sequence length 131072), Section 4.2 (32K and 64K RL stages), Table 3 (Loopie-20B-A2B Thinking, 3.5T) and Table 4 (layer-loop times 2, 27 layers); kv from vllm/model_executor/models/qwen3_moe.py in zitian-gao/vllm (an extra Attention per loop step with virtual layer index layer_idx × layer_loop_times + loop_idx) and src/transformers/models/qwen3_moe/modeling_qwen3_moe.py in zitian-gao/transformers (for i in range(2) around attention and MoE, cache update with the same layer_idx).",
+   "added": "2026-11-24"
+  },
+  {
+   "id": "loopie-6b-a0-6b-preview",
+   "name": "Loopie-6B-A0.6B-preview",
+   "paper": "2607.16051",
+   "org": [
+    "IQuest Research"
+   ],
+   "hf": [
+    "zitian-gao/Loopie-6B-A0.6B-preview"
+   ],
+   "params": "6B",
+   "active_params": "0.6B",
+   "tokens": "3T pretraining + 1.26T annealing (paper Section 3)",
+   "context": "131072 (YaRN factor 16 over 8192)",
+   "passes": {
+    "default": "2 (layer_loop_times)",
+    "range": "fixed (Section 2.8 compares separately trained models)"
+   },
+   "kv": "per-pass",
+   "license": "mit",
+   "inference": [
+    "custom"
+   ],
+   "notes": {
+    "en": "Post-trained reasoning MoE from IQuest Research, trained from scratch; the card calls it a preview optimized mainly for math and science reasoning, and its benchmark table matches the paper's Section 4.3 comparison for Loopie-6B-A0.6B Thinking. Each of the 18 stored Qwen3-MoE layers (128 experts, 8 per token) runs twice in place before the next layer (layer-loop, layer_loop_times 2); the paper's layer-loop versus model-loop comparison (Figure 2) and its ablation without layer-loop (Figure 5) use Loopie-6B-A0.6B. The card gives no token count; Section 3 describes 3T tokens of stage-1 pretraining for both Loopie models (about 2.28T in Section 3.4: about 570B unique Nemotron-CC-v2-HQ tokens for four epochs) and 1.26T tokens of annealing, followed by supervised pre-training on 2T tokens with 131072-token sequences and RL with 32K, then 64K, response limits. The card installs the authors' forks of transformers and vLLM (github.com/zitian-gao/transformers and github.com/zitian-gao/vllm); config.json declares model_type qwen3_moe, and the upstream Qwen3-MoE code has no layer_loop_times setting. The vLLM fork reads layer_loop_times and gives each pass its own attention layer and KV cache; the transformers fork hard-codes two passes per decoder layer, and both passes write to the same cache layer index. The safetensors count is 7,095,644,160 parameters (BF16), while the paper gives 6B.",
+    "zh": "IQuest Research 发布的后训练推理 MoE 模型，从头训练；模型卡称其为 preview 版本，主要针对数学和科学推理优化，卡上的评测表与论文 Section 4.3 中 Loopie-6B-A0.6B Thinking 的对比数值一致。18 个存储的 Qwen3-MoE 层（128 个专家，每 token 激活 8 个）各自原地连续运行两遍后再进入下一层（layer-loop，layer_loop_times 2）；论文中 layer-loop 与 model-loop 的对比（Figure 2）和去掉 layer-loop 的消融（Figure 5）都用 Loopie-6B-A0.6B。模型卡没有给出 token 数；Section 3 写两个 Loopie 模型的第一阶段预训练为 3T token（Section 3.4 写约 2.28T：约 570B 个不重复的 Nemotron-CC-v2-HQ token 训练四个 epoch），再加 1.26T token 退火，之后是 2T token、序列长度 131072 的 supervised pre-training，以及回复长度上限先 32K 后 64K 的 RL。模型卡要求安装作者的 transformers 和 vLLM 分支（github.com/zitian-gao/transformers 和 github.com/zitian-gao/vllm）；config.json 声明 model_type 为 qwen3_moe，而上游 Qwen3-MoE 代码没有 layer_loop_times 设置。vLLM 分支读取 layer_loop_times，为每一遍单独建注意力层和 KV cache；transformers 分支在 decoder 层内写死两遍，两遍写入同一个 cache 层索引。safetensors 统计为 7,095,644,160 个参数（BF16），论文写的是 6B。"
+   },
+   "ref": "Model card of zitian-gao/Loopie-6B-A0.6B-preview (trained by IQuest Research; preview optimized for math and science reasoning; benchmark table without a token count; Transformers and vLLM sections installing github.com/zitian-gao/transformers and github.com/zitian-gao/vllm) and config.json (model_type qwen3_moe, layer_loop_times 2, model_loop_times 1, num_hidden_layers 18, num_experts 128, num_experts_per_tok 8, max_position_embeddings 131072, rope_scaling yarn factor 16.0 with original_max_position_embeddings 8192); HF API (cardData.license mit, safetensors.total 7,095,644,160); paper (arXiv v3) header (links to this repo and the megatron-lm, transformers and vllm forks), Abstract (6B with 0.6B active), Section 2.1 (layer-loop order), Figures 2 and 5 (layer-loop vs model-loop, layer-loop ablation on Loopie-6B-A0.6B), Section 2.8 (choice of two loop steps; loop-count sweep on separately trained models), Sections 3 and 3.4 (3T stage 1 for both models, about 2.28T over four epochs, 1.26T annealing), Section 4 and Table 8 (2T-token SPT, sequence length 131072), Section 4.2 (32K and 64K RL stages), Section 4.3 (comparison table for Loopie-6B-A0.6B Thinking) and Table 4 (layer-loop times 2, 18 layers); kv from vllm/model_executor/models/qwen3_moe.py in zitian-gao/vllm (an extra Attention per loop step with virtual layer index layer_idx × layer_loop_times + loop_idx) and src/transformers/models/qwen3_moe/modeling_qwen3_moe.py in zitian-gao/transformers (for i in range(2) around attention and MoE, cache update with the same layer_idx).",
+   "added": "2026-11-24"
+  },
+  {
+   "id": "loopus",
+   "name": "LoopUS",
+   "paper": "2605.11011",
+   "hf": [
+    "Thrillcrazyer/Qwen3_1.7B_LoopUS",
+    "Thrillcrazyer/Qwen3_1.7B_LoopUS_SFT",
+    "Thrillcrazyer/Qwen3-4B_LoopUS",
+    "Thrillcrazyer/Qwen3-8B_LoopUS",
+    "Thrillcrazyer/Phi4_LoopUS",
+    "Thrillcrazyer/TinyLlama_v1.1_LoopUS"
+   ],
+   "params": "1.7B / 1.7B / 4B / 8B / 14B / 1.1B",
+   "tokens": "3B (FineWeb-Edu) each; the SFT repo adds UltraChat 200k",
+   "context": "1024 (training context length)",
+   "passes": {
+    "default": "up to 20 (config N; 100 for the 4B), confidence exit",
+    "range": "--n-recursion (scripts default to 8; the paper uses 8)"
+   },
+   "kv": "per-pass",
+   "license": "apache-2.0",
+   "inference": [
+    "custom"
+   ],
+   "notes": {
+    "en": "LoopUS post-trains a pretrained LLM into an encoder (first layers), a looped reasoning block (the middle layers) and a decoder (last layer); only the reasoning block repeats, a selective gate mixes each pass's output with the previous state, and a confidence head can stop the loop early. The layer splits in config.json are encoder 0-1 and decoder 27 for Qwen3-1.7B, 0-1 and 35 for Qwen3-4B, 0-7 and 35 for Qwen3-8B (the paper lists encoder layers 0-5), 0-5 and 39 for Phi-4, and 0 and 21 for TinyLlama. The paper trains each model on 3B FineWeb-Edu tokens at context 1024 with 20 loop steps per batch, of which 5 sampled depths receive gradients; Qwen3_1.7B_LoopUS_SFT is the 1.7B model fine-tuned on UltraChat 200k for one epoch, which the GitHub README says does not work perfectly yet. The cards name Qwen/Qwen3-1.7B-Base, Qwen3-4B-Base and Qwen3-8B-Base as base models, while config.json (base_model_name_or_path) and the paper use Qwen/Qwen3-1.7B, Qwen3-4B and Qwen3-8B; the other bases are microsoft/phi-4 and TinyLlama/TinyLlama_v1.1. config.json sets the loop budget N (20, or 100 for the 4B) and q_threshold 0.9, but chat.py, generate.py and LoopUS-eval override N with --n-recursion (default 8), and chat.py also sets the threshold to 0.6, the value the paper uses for standard inference. modeling_lds.py keeps separate KV caches for the encoder, the decoder and each recursion depth; after an early exit only the caches of the depths that ran are passed to the next decoding step, so deeper depths start again from an empty cache. Loading needs the GitHub code (LDSForCausalLM, model_type lds, transformers>=5.0.0); the 4B and Phi-4 cards' example commands point to Qwen3_1.7B_LoopUS_SFT, and the 8B card uses the non-existent name Thrillcrazyer/Qwen3_8B_LoopUS. Other lds-type repos under the account, such as the LoopUS_Qwen3-1.7B_Ver2 series and LoopUS_EXAONE-4.0-1.2B, have no model card and no link from the paper, the project page or the GitHub repo, and are not listed.",
+    "zh": "LoopUS 把预训练 LLM 后训练成 encoder（前几层）、循环的推理块（中间各层）和 decoder（最后一层）；只有推理块重复执行，selective gate 把每一遍的输出与上一遍的状态混合，confidence head 可以提前停止循环。config.json 中的层划分为：Qwen3-1.7B 的 encoder 为第 0-1 层、decoder 为第 27 层；Qwen3-4B 为 0-1 层和 35 层；Qwen3-8B 为 0-7 层和 35 层（论文写的 encoder 是 0-5 层）；Phi-4 为 0-5 层和 39 层；TinyLlama 为第 0 层和第 21 层。论文中每个模型都在 3B token 的 FineWeb-Edu 上训练，上下文长度 1024，每个 batch 跑 20 步循环，其中随机抽取 5 个深度计算梯度；Qwen3_1.7B_LoopUS_SFT 是 1.7B 模型在 UltraChat 200k 上 SFT 一个 epoch 的版本，GitHub README 说它还不能完美工作。模型卡写的基座是 Qwen/Qwen3-1.7B-Base、Qwen3-4B-Base 和 Qwen3-8B-Base，而 config.json（base_model_name_or_path）和论文用的是 Qwen/Qwen3-1.7B、Qwen3-4B 和 Qwen3-8B；另外两个基座是 microsoft/phi-4 和 TinyLlama/TinyLlama_v1.1。config.json 设定循环上限 N（20，4B 为 100）和 q_threshold 0.9，但 chat.py、generate.py 和 LoopUS-eval 会用 --n-recursion（默认 8）覆盖 N，chat.py 还把阈值设为 0.6，与论文的标准推理设置相同。modeling_lds.py 为 encoder、decoder 和每个循环深度分别保存 KV cache；提前退出时，只有实际运行过的深度的 cache 会传给下一步解码，更深的深度重新从空 cache 开始。加载需要 GitHub 代码（LDSForCausalLM，model_type lds，transformers>=5.0.0）；4B 和 Phi-4 模型卡的示例命令指向 Qwen3_1.7B_LoopUS_SFT，8B 模型卡用的是不存在的名字 Thrillcrazyer/Qwen3_8B_LoopUS。该账号下其他 lds 类型的仓库（如 LoopUS_Qwen3-1.7B_Ver2 系列和 LoopUS_EXAONE-4.0-1.2B）没有模型卡，论文、项目页和 GitHub 仓库也没有链接它们，因此未列出。"
+   },
+   "ref": "HF API for author Thrillcrazyer (repo list, cardData.license apache-2.0, base_model metadata) and the LoopUS collection; model cards of the six repos (GitHub, project page and paper links, chat.py commands); config.json of each repo (model_type lds, encoder, reasoning and decoder layer indices, N, q_threshold 0.9, base_model_name_or_path); HF redirects of the GitHub README's old names (Qwen1.7_LoopUS and Qwen3-1.7B_ver0.2_5000 to Qwen3_1.7B_LoopUS, SFT_LDS_QWEN1.7B to Qwen3_1.7B_LoopUS_SFT; Qwen3_8B_LoopUS does not resolve); GitHub README (HF badge, SFT on UltraChat 200k for 1 epoch), models/modeling_lds.py (one DynamicCache per recursion depth, cache list cut to the executed depths, q_head halting), utils/inference.py, chat.py, generate.py and evaluate.py (--n-recursion default 8, chat.py threshold 0.6) and pyproject.toml (transformers>=5.0.0); the project page linked from the paper (links the GitHub repo and Qwen3_1.7B_LoopUS) and the GitHub profile of Thrillcrazyer (Taekhyun Park, first author); paper Section 3.1 (architecture), Section 4.1 and Appendices A.1-A.3 (3B FineWeb-Edu tokens, context 1024, B=20 with K=5, layer splits, inference budget 8 with threshold 0.6), Tables 1 and 2 (Qwen 1.7B, 4B, 8B, Phi-4 14B, TinyLlama 1.1B), Section 4.4 and Figure 5 (depths up to 100), Appendix A.4 (separate cache per refinement depth).",
+   "added": "2026-11-24"
+  },
+  {
+   "id": "loopvl",
+   "name": "LoopVL-1B",
+   "paper": "2609.38426",
+   "org": [
+    "TierFlow"
+   ],
+   "hf": [
+    "TierFlow/LoopVL"
+   ],
+   "params": "1B",
+   "tokens": "0.14T across all stages (75B text pretraining)",
+   "context": "8,192",
+   "passes": {
+    "default": "H2L3: [L×3→H]×2, 128 layer calls",
+    "range": "H_cycles and L_cycles; paper tests 12 schedules"
+   },
+   "kv": "n/a",
+   "license": "not stated on the card (repo includes LICENSE-Penguin.txt)",
+   "inference": [
+    "custom"
+   ],
+   "notes": {
+    "en": "LoopVL-1B is an image-text-to-text model: a frozen Penguin-VL vision encoder and a two-layer projector feed a recurrent language backbone that the authors pretrained from scratch with the HRM-Text framework and data, not HRM-Text's released checkpoint. The backbone has two 16-layer stacks, L and H, with separate weights; the default H2L3 schedule runs L three times and then H, twice (L→L→L→H→L→L→L→H), for 128 layer applications per forward pass, and at the start of each cycle a gated visual anchor from the projected image embeddings is added back into the H state. Training used 75B text pretraining tokens, 0.33B for visual alignment, 49B for multimodal mid-training, 16.81B for SFT and 0.006B for GRPO RL, listed as 0.14T in paper Tables 1 and 2. H_cycles and L_cycles in config.json set the schedule; paper Table 4 tested 12 inference schedules on this checkpoint, and H2L3, the training schedule, scored best on all five benchmarks. The released runtime keeps no KV cache: greedy_generate recomputes the whole recurrent sequence for every new token with use_cache=False. The Hub repo holds only weights and configuration; inference needs the custom loader in the GitHub runtime/ directory with transformers 5.15.1 (not AutoModel or vLLM), the mixed BF16/FP32 weights must not be cast to one dtype, and the card recommends direct answers except on math. The model card states no license and the HF API has no license field; the repo ships LICENSE-Penguin.txt, Tencent's license terms for Penguin-VL, whose clause 0 says Penguin-VL is not intended for use within the European Union, while the GitHub code is Apache-2.0 and its THIRD_PARTY_NOTICES.md says relocating the Penguin notice does not assign a new license to the model weights. The paper names the model LoopVL-1B, and the safetensors file, which includes the vision encoder, holds 1,628,587,779 parameters (HF API).",
+    "zh": "LoopVL-1B 是图文到文本的模型：冻结的 Penguin-VL 视觉编码器和两层 projector 把图像特征送入循环语言骨干，该骨干由作者用 HRM-Text 的开源框架和数据从头预训练，没有使用 HRM-Text 发布的 checkpoint。骨干包含 L 和 H 两个 16 层的层栈，权重互不共享；默认的 H2L3 调度先跑三遍 L 再跑一遍 H，共两轮（L→L→L→H→L→L→L→H），每次前向执行 128 次层计算，每轮开始时把来自投影后图像 embedding 的门控视觉锚点重新加回 H 状态。训练用了 75B token 的文本预训练、0.33B 的视觉对齐、49B 的多模态 mid-training、16.81B 的 SFT 和 0.006B 的 GRPO RL，论文 Table 1 和 Table 2 记为 0.14T。config.json 中的 H_cycles 和 L_cycles 决定调度；论文 Table 4 在这个 checkpoint 上测试了 12 种推理调度，与训练一致的 H2L3 在全部五个基准上得分最高。发布的推理代码不使用 KV cache：greedy_generate 每生成一个 token 都以 use_cache=False 重算整个循环序列。Hub 仓库只有权重和配置；推理需要 GitHub 仓库 runtime/ 目录中的自带加载器和 transformers 5.15.1（不能用 AutoModel 或 vLLM），BF16/FP32 混合精度的权重不能整体转成一种 dtype，模型卡建议除数学题外直接作答。模型卡没有写 license，HF API 也没有 license 字段；仓库附带 LICENSE-Penguin.txt，即腾讯的 Penguin-VL 许可条款，其第 0 条写明 Penguin-VL 不打算在欧盟境内使用；GitHub 代码为 Apache-2.0，其 THIRD_PARTY_NOTICES.md 说迁移 Penguin 的声明不会给模型权重赋予新的 license。论文称该模型为 LoopVL-1B，包含视觉编码器的 safetensors 文件共有 1,628,587,779 个参数（HF API）。"
+   },
+   "ref": "Paper arXiv 2609.38426v2: header (Code github.com/Tier-Flow/LoopVL; Models LoopVL-1B at huggingface.co/TierFlow/LoopVL and ModelScope Eternity123/LoopVL), Section 2.1 (two 16-layer L/H stacks, H2L3 schedule, 128 layer calls, visual anchor and gate), Sections 3 and 4 (75B, 0.33B, 49B, 16.81B and 0.006B tokens), Tables 1 and 2 (0.14T training tokens, LoopVL 1B), Section 5.3 and Table 4 (inference schedule sweep), Section 6.2 (HRM-Text framework and data, not its checkpoint); Hugging Face papers page of 2609.38426 (githubRepo Tier-Flow/LoopVL, projectPage TierFlow/LoopVL); model card (custom GitHub loader, H2L3 and 128 layer applications, mixed BF16/FP32 weights, direct-answer tip, no license statement); config.json (H_cycles 2, L_cycles 3, num_layers_per_stack 16, num_hidden_layers 128, inference max_seq_len 8192 and use_cache false); HF API (no cardData.license, safetensors.total 1,628,587,779); LICENSE-Penguin.txt in the HF repo (Tencent Penguin-VL terms, clause 0); GitHub README, model/MODEL_SETUP.md, runtime/README.md and runtime/requirements.txt (custom loader only, transformers==5.15.1), THIRD_PARTY_NOTICES.md and the GitHub API (Apache-2.0 code license); runtime/hrm_penguin/generation.py (greedy_generate recomputes the sequence each step with use_cache=False).",
+   "added": "2026-11-24"
+  },
+  {
+   "id": "metis-1-6-logos",
+   "name": "Metis-1.6 Logos",
+   "paper": "2610.37903",
+   "org": [
+    "Lernex"
+   ],
+   "hf": [
+    "Lernex/Metis-1.6-Logos",
+    "Lernex/Metis-1.6-Logos-Base",
+    "Lernex/Metis-1.6-Logos-FP8",
+    "Lernex/Metis-1.6-Logos-NVFP4",
+    "Lernex/Metis-1.6-Logos-MLX-4bit",
+    "Lernex/Metis-1.6-Logos-MLX-8bit",
+    "Lernex/Metis-1.6-Logos-GGUF"
+   ],
+   "params": "10.23B",
+   "active_params": "1.18B per pass; 2.36B per token across both passes (paper Section 3)",
+   "tokens": "804.76B pretraining; 1,022.70B with context extension and SFT",
+   "context": "131,072 (extended from 4,096)",
+   "passes": {
+    "default": "2",
+    "range": "fixed (paper Section 3: exactly two passes in training and inference)"
+   },
+   "kv": "per-pass",
+   "license": "apache-2.0",
+   "inference": [
+    "transformers-remote-code",
+    "vllm",
+    "sglang",
+    "gguf",
+    "custom"
+   ],
+   "notes": {
+    "en": "Logos is the larger of the two Metis-1.6 models, built from scratch by Lernex: Metis-1.6-Logos-Base is the pretrained base and Metis-1.6-Logos the post-trained reasoning model, which thinks by default and answers directly with enable_thinking=False. Its 20 layers are Mamba-2 except for attention without positional encoding at layers 5, 10 and 15, and each ends in a latent MoE with 192 routed experts (4 per token) and one shared expert; the whole stack runs twice per token with shared weights, a depth memory lets pass 2 read what pass 1 wrote, and each attention layer adds a pass-indexed rank-8 update to its QKV projection. Pretraining used 804.76B tokens and context extension 17.94B tokens (4,096 to 131,072), followed by 120.00B tokens of cold-start SFT and 80.00B of overall SFT; the card says RL was also run but shortened the reasoning at the cost of breadth, so the release is the end of SFT. config.json sets num_passes 2 (max_passes 5), and the paper says every token takes exactly two passes in training and inference; the halting head left in the checkpoint does not affect the released model. modeling_metis16.py keeps one decode state per (layer, pass), 34 Mamba states and 6 key/value caches for Logos: the 3 attention layers store separate keys and values for each pass and each Mamba-2 layer keeps a separate conv and SSM state for each pass, so nothing is shared between passes and the cache cannot be cropped. The BF16 repos load in Transformers 4.57 or newer with trust_remote_code, in vLLM 0.31 through the vllm-metis plugin, in SGLang 0.5.22 or newer through sglang-metis, and in the authors' Dromos engine; FP8 runs in Dromos, vLLM and SGLang, NVFP4 only in Dromos, the GGUF files in llama.cpp b12089 or newer, and the MLX builds in mlx-lm with trust_remote_code. The Base card says the vLLM, SGLang and llama.cpp paths were validated on the post-trained weights, and a 1.77B-parameter hashed n-gram memory used in pretraining was removed before release because the model had closed its gates.",
+    "zh": "Logos 是 Metis-1.6 两个模型中较大的一个，由 Lernex 从头训练：Metis-1.6-Logos-Base 是预训练基座，Metis-1.6-Logos 是后训练的推理模型，默认先思考，设置 enable_thinking=False 时直接作答。它的 20 层除第 5、10、15 层为不带位置编码的注意力层外都是 Mamba-2，每层末尾是 latent MoE（192 个路由专家，每 token 选 4 个，外加 1 个共享专家）；整个层栈以共享权重对每个 token 跑两遍，depth memory 让第二遍读取第一遍写下的内容，每个注意力层在 QKV 投影上加一个按遍索引的 rank-8 更新。预训练 804.76B token，上下文扩展 17.94B token（从 4,096 到 131,072），之后是 120.00B token 的 cold-start SFT 和 80.00B token 的 overall SFT；模型卡说也做过 RL，但 RL 以牺牲广度为代价缩短了推理，所以发布的是 SFT 结束时的模型。config.json 中 num_passes 为 2（max_passes 为 5），论文说每个 token 在训练和推理中都恰好跑两遍；checkpoint 中残留的 halting head 不影响发布的模型。modeling_metis16.py 按（层，遍）各存一份解码状态，Logos 共 34 份 Mamba 状态和 6 份 key/value cache：3 个注意力层每遍各存一份 key/value，每个 Mamba-2 层每遍各存一份 conv 状态和 SSM 状态，遍与遍之间不共享，且 cache 不能裁剪。BF16 仓库可用 Transformers 4.57 及以上版本加 trust_remote_code 加载，也可通过 vllm-metis 插件在 vLLM 0.31、通过 sglang-metis 在 SGLang 0.5.22 及以上版本运行，或用作者自己写的 Dromos 引擎；FP8 可在 Dromos、vLLM 和 SGLang 中运行，NVFP4 只能在 Dromos 中运行，GGUF 文件需 llama.cpp b12089 及以上版本，MLX 版本用 mlx-lm 加 trust_remote_code。Base 模型卡说 vLLM、SGLang 和 llama.cpp 的支持是在后训练权重上验证的；预训练时用过的 1.77B 参数 hashed n-gram memory 因模型已关闭其门控，在发布前被移除。"
+   },
+   "ref": "Model card of Lernex/Metis-1.6-Logos (intro: 10.23B parameters, 1.18B per pass, 131,072-token context, Apache 2.0; Run it table naming the FP8, NVFP4, MLX-4bit, MLX-8bit and GGUF repos and their engines; Dromos, Transformers (trust_remote_code, transformers 4.57+), vLLM (vllm==0.31.*, vllm-metis), SGLang (sglang-metis, SGLang 0.5.22+, a Mamba state per layer and pass) and llama.cpp (b12089+, ggml-org/llama.cpp#31134, merged 2026-11-03 per the GitHub API) sections; Architecture; Training table: 804.76B, 17.94B, 120.00B, 80.00B, total 1,022.70B, and the note on the unreleased RL stage); Metis-1.6-Logos-Base card (Architecture table: 822.69B tokens, 131,072 at inference, trained up to 163,840; plugins validated on the post-trained weights); FP8, NVFP4, MLX and GGUF cards (supported engines); config.json (num_passes 2, max_passes 5, attention_layer_indices [5, 10, 15], max_position_embeddings 131072); configuration_metis16.py docstring (fixed num_passes=2 policy); modeling_metis16.py (module docstring: one Mamba state and one key/value cache per (layer, pass), 34 and 6 for Logos; Metis16Cache keyed by (layer, pass); crop raises an error); Dromos docs/ARCHITECTURE.md (state per (pass, layer)); paper Section 3 with footnote 1 (exactly two passes; 2.36B touched per token; unused halting head), Table 1 (10,225,455,737 total, 1,180,486,515 active per pass) and Table 3 (released model is overall_sft, end cursor 1,022,704,091,713); HF API of the seven repos (cardData.license apache-2.0) and the Lernex Metis-1.6 and Metis-1.6 Base collections.",
+   "added": "2026-11-24"
+  },
+  {
+   "id": "metis-1-6-praxis",
+   "name": "Metis-1.6 Praxis",
+   "paper": "2610.37903",
+   "org": [
+    "Lernex"
+   ],
+   "hf": [
+    "Lernex/Metis-1.6-Praxis",
+    "Lernex/Metis-1.6-Praxis-Base",
+    "Lernex/Metis-1.6-Praxis-FP8",
+    "Lernex/Metis-1.6-Praxis-NVFP4",
+    "Lernex/Metis-1.6-Praxis-MLX-4bit",
+    "Lernex/Metis-1.6-Praxis-MLX-8bit",
+    "Lernex/Metis-1.6-Praxis-GGUF"
+   ],
+   "params": "2.94B",
+   "active_params": "0.46B per pass; 927,204,204 per token over both passes (paper Table 1)",
+   "tokens": "804.76B pretraining; 1,022.77B with context extension and SFT",
+   "context": "131,072 (extended from 4,096)",
+   "passes": {
+    "default": "2",
+    "range": "fixed (paper Section 3: exactly two passes in training and inference)"
+   },
+   "kv": "per-pass",
+   "license": "apache-2.0",
+   "inference": [
+    "transformers-remote-code",
+    "vllm",
+    "sglang",
+    "gguf",
+    "custom"
+   ],
+   "notes": {
+    "en": "Praxis is the smaller of the two Metis-1.6 models, built from scratch by Lernex: Metis-1.6-Praxis-Base is the pretrained base and Metis-1.6-Praxis the post-trained reasoning model, which thinks by default and answers directly with enable_thinking=False. Its 12 layers are Mamba-2 except for attention without positional encoding at layers 4 and 8, and each ends in a latent MoE with 128 routed experts (4 per token) and one shared expert; the whole stack runs twice per token with shared weights, a depth memory lets pass 2 read what pass 1 wrote, and each attention layer adds a pass-indexed rank-8 update to its QKV projection. Pretraining used 804.76B tokens and context extension 18.00B tokens (4,096 to 131,072), followed by 120.00B tokens of cold-start SFT and 80.02B of overall SFT, with no RL stage. config.json sets num_passes 2 (max_passes 5), and the paper says every token takes exactly two passes in training and inference; the halting head left in the checkpoint does not affect the released model. modeling_metis16.py and Dromos keep one decode state per (layer, pass): each attention layer stores separate keys and values for each pass, and each Mamba-2 layer keeps a separate conv and SSM state for each pass, so nothing is shared between passes and the cache cannot be cropped. The BF16 repos load in Transformers 4.57 or newer with trust_remote_code, in vLLM 0.31 through the vllm-metis plugin, in SGLang 0.5.22 or newer through sglang-metis, and in the authors' Dromos engine; FP8 runs in Dromos, vLLM and SGLang, NVFP4 only in Dromos, the GGUF files in llama.cpp b12089 or newer, and the MLX builds in mlx-lm with trust_remote_code. The Base card says the vLLM, SGLang and llama.cpp paths were validated on the post-trained weights, and a 0.60B-parameter hashed n-gram memory used in pretraining was removed before release because the model had closed its gates.",
+    "zh": "Praxis 是 Metis-1.6 两个模型中较小的一个，由 Lernex 从头训练：Metis-1.6-Praxis-Base 是预训练基座，Metis-1.6-Praxis 是后训练的推理模型，默认先思考，设置 enable_thinking=False 时直接作答。它的 12 层除第 4、8 层为不带位置编码的注意力层外都是 Mamba-2，每层末尾是 latent MoE（128 个路由专家，每 token 选 4 个，外加 1 个共享专家）；整个层栈以共享权重对每个 token 跑两遍，depth memory 让第二遍读取第一遍写下的内容，每个注意力层在 QKV 投影上加一个按遍索引的 rank-8 更新。预训练 804.76B token，上下文扩展 18.00B token（从 4,096 到 131,072），之后是 120.00B token 的 cold-start SFT 和 80.02B token 的 overall SFT，没有 RL 阶段。config.json 中 num_passes 为 2（max_passes 为 5），论文说每个 token 在训练和推理中都恰好跑两遍；checkpoint 中残留的 halting head 不影响发布的模型。modeling_metis16.py 和 Dromos 按（层，遍）各存一份解码状态：每个注意力层每遍各存一份 key/value，每个 Mamba-2 层每遍各存一份 conv 状态和 SSM 状态，遍与遍之间不共享，且 cache 不能裁剪。BF16 仓库可用 Transformers 4.57 及以上版本加 trust_remote_code 加载，也可通过 vllm-metis 插件在 vLLM 0.31、通过 sglang-metis 在 SGLang 0.5.22 及以上版本运行，或用作者自己写的 Dromos 引擎；FP8 可在 Dromos、vLLM 和 SGLang 中运行，NVFP4 只能在 Dromos 中运行，GGUF 文件需 llama.cpp b12089 及以上版本，MLX 版本用 mlx-lm 加 trust_remote_code。Base 模型卡说 vLLM、SGLang 和 llama.cpp 的支持是在后训练权重上验证的；预训练时用过的 0.60B 参数 hashed n-gram memory 因模型已关闭其门控，在发布前被移除。"
+   },
+   "ref": "Model card of Lernex/Metis-1.6-Praxis (intro: 2.94B parameters, 0.46B per pass, 131,072-token context, Apache 2.0; Run it table naming the FP8, NVFP4, MLX-4bit, MLX-8bit and GGUF repos and their engines; Dromos, Transformers (trust_remote_code, transformers 4.57+), vLLM (vllm==0.31.*, vllm-metis), SGLang (sglang-metis, SGLang 0.5.22+, a Mamba state per layer and pass) and llama.cpp (b12089+, ggml-org/llama.cpp#31134, merged 2026-11-03 per the GitHub API) sections; Architecture; Training table: 804.76B, 18.00B, 120.00B, 80.02B, total 1,022.77B, no RL stage); Metis-1.6-Praxis-Base card (Architecture table; plugins validated on the post-trained weights); FP8, NVFP4, MLX and GGUF cards (supported engines); config.json (num_passes 2, max_passes 5, attention_layer_indices [4, 8], max_position_embeddings 131072); configuration_metis16.py docstring (fixed num_passes=2 policy); modeling_metis16.py (Metis16Cache keyed by (layer, pass) for keys and values and for Mamba conv and SSM states; crop raises an error); Dromos docs/ARCHITECTURE.md and engine/model/metis.h (state per (pass, layer)); paper Section 3 with footnote 1 (exactly two passes; unused halting head) and Table 1 (2,943,303,100 total, 463,602,102 active per pass, 927,204,204 per token); HF API of the seven repos (cardData.license apache-2.0) and the Lernex Metis-1.6 and Metis-1.6 Base collections.",
+   "added": "2026-11-24"
+  },
+  {
+   "id": "nanbeige4-2-3b",
+   "name": "Nanbeige4.2-3B",
+   "paper": "2607.22083",
+   "org": [
+    "Nanbeige LLM Lab",
+    "Boss Zhipin"
+   ],
+   "hf": [
+    "Nanbeige/Nanbeige4.2-3B",
+    "Nanbeige/Nanbeige4.2-3B-Base",
+    "Nanbeige/Nanbeige4.2-3B-FP8",
+    "Nanbeige/Nanbeige4.2-3B-GPTQ-Int8"
+   ],
+   "params": "4B (3B non-embedding)",
+   "tokens": "28T (pretraining)",
+   "context": "262,144 (Base config: 131,072)",
+   "passes": {
+    "default": "2 (num_loops)",
+    "range": "fixed; Section 2.1 chose two passes from pretraining experiments"
+   },
+   "kv": "per-pass",
+   "license": "apache-2.0",
+   "inference": [
+    "transformers-remote-code",
+    "vllm",
+    "sglang",
+    "gguf"
+   ],
+   "notes": {
+    "en": "Nanbeige4.2-3B-Base is pretrained from scratch on 28T tokens; Nanbeige4.2-3B is the post-trained agentic and reasoning model built on it (SFT in 64K, 128K and 256K context stages, then RLHF over think and non-think responses, length-controlled reasoning RL and agentic RL), with thinking enabled by default in the chat template. The whole 22-layer stack runs twice (num_loops 2), and the final norm is applied after each pass. In Section 2.1, training the loop from scratch beat upcycling a standard Transformer, two passes gave the best trade-off, and a variant that shares the KV cache across passes halves it but gained less, so the release keeps a separate KV per pass. modeling_nanbeige.py stores pass k of layer i at cache index i + k × num_physical_layers; it also contains LoopSplit, mHC with depth attention, n-gram embeddings and a loop_share_kv option, all off in the released configs. The card asks for transformers==4.45.1 with trust_remote_code and points to Nanbeige forks of SGLang, vLLM, llama.cpp and Ollama; upstream support was later merged in llama.cpp (ggml-org/llama.cpp#25994), SGLang (sgl-project/sglang#32151) and vLLM through its Transformers backend (vllm-project/vllm#56071, v0.30.0), each with separate KV slots per loop. The FP8 and GPTQ-Int8 repos are quantizations of the post-trained model. Nanbeige4.2-3B-DSpark is a separate 5-layer draft model (847,946,241 parameters by safetensors count) for DSpark speculative decoding of Nanbeige4.2-3B in the forked SGLang and vLLM, so it is not listed. The safetensors count of the BF16 repos is 4,169,800,704 parameters.",
+    "zh": "Nanbeige4.2-3B-Base 在 28T token 上从头预训练；Nanbeige4.2-3B 是在其基础上后训练的 agentic 与推理模型（SFT 分 64K、128K、256K 三个上下文阶段，之后依次做覆盖 think 与 non-think 回复的 RLHF、带长度控制的推理 RL 和 agentic RL），chat template 默认开启 thinking。整个 22 层的层栈运行两遍（num_loops 2），每一遍结束后都会经过最终 norm。论文 Section 2.1 中，从头训练循环结构优于把标准 Transformer upcycle 成循环结构，两遍是最好的折中；跨遍共享 KV cache 的变体能把 KV 减半，但提升较小，因此发布版本每一遍各存一份 KV。modeling_nanbeige.py 把第 i 层第 k 遍的 KV 存在 cache 索引 i + k × num_physical_layers；文件里还包含 LoopSplit、带 depth attention 的 mHC、n-gram embedding 和 loop_share_kv 选项，在发布的 config 中都未启用。模型卡要求 transformers==4.45.1 并开启 trust_remote_code，并给出 Nanbeige 维护的 SGLang、vLLM、llama.cpp 和 Ollama 分支；之后上游也合入了支持：llama.cpp（ggml-org/llama.cpp#25994）、SGLang（sgl-project/sglang#32151），以及通过 Transformers 后端的 vLLM（vllm-project/vllm#56071，v0.30.0），每遍循环都有独立的 KV 槽位。FP8 和 GPTQ-Int8 仓库是后训练模型的量化版。Nanbeige4.2-3B-DSpark 是单独的 5 层草稿模型（safetensors 统计 847,946,241 个参数），用于在 Nanbeige 分支的 SGLang 和 vLLM 中对 Nanbeige4.2-3B 做 DSpark 投机解码，因此未列出。BF16 仓库的 safetensors 统计为 4,169,800,704 个参数。"
+   },
+   "ref": "Model cards of Nanbeige/Nanbeige4.2-3B (Total Params 4B, Non-embedding Params 3B; Looped Transformer; context up to 262,144 tokens; enable_thinking on by default; Quickstart: transformers==4.45.1 with trust_remote_code, SGLang branch nbg42, vLLM, llama.cpp and Ollama branches nanbeige42), Nanbeige4.2-3B-Base (trained from scratch; training data expanded from 23T to 28T tokens), -FP8 and -GPTQ-Int8 (quantized repositories of Nanbeige4.2-3B) and -DSpark (DSpark weights used alongside Nanbeige4.2-3B for faster inference; config.json Qwen3DSparkModel with 5 layers); config.json of the four listed repos (num_loops 2, num_hidden_layers 22, max_position_embeddings 262144, Base 131072); HF API (cardData.license apache-2.0 for all five repos; safetensors.total 4,169,800,704, DSpark 847,946,241); modeling_nanbeige.py (_get_loop_cache_layer_idx returns layer_idx + loop_idx × physical layers; one vLLM attention dispatch per loop; loop_share_kv, enable_double_loop_split, enable_mhc and enable_depth_attention default off; final norm inside the loop unless skip_loop_final_norm) for kv; paper Abstract and Section 2.2 (28T tokens), Section 2.1 (one extra pass through the same stack, from-scratch vs upcycling, loop depth selection, KV-sharing variant not used), Table 1 (4B total, 3B non-embedding) and Section 3.2 (SFT context stages, RLHF, reasoning RL, agentic RL); upstream support in ggml-org/llama.cpp#25994 (separate KV slots), sgl-project/sglang#32151 (unique layer_id per loop for the KV cache) and vllm-project/vllm#56071 (vLLM v0.30.0 release notes, docs/models/supported_models.md).",
+   "added": "2026-11-24"
+  },
+  {
+   "id": "orbitlm-1-8b-thinking",
+   "name": "OrbitLM-1.8B-Thinking",
+   "paper": "2610.00673",
+   "org": [
+    "ai-forever"
+   ],
+   "hf": [
+    "ai-forever/OrbitLM-1.8B-Thinking"
+   ],
+   "params": "1.86B",
+   "tokens": "1.5T (1.48T in the paper), plus 14.7B SFT and RL",
+   "context": "32,768",
+   "passes": {
+    "default": "4",
+    "range": "1-4 (exit_at_step=k-1 in generate; hf_overrides total_ut_steps in vLLM)"
+   },
+   "kv": "per-pass",
+   "license": "apache-2.0",
+   "inference": [
+    "transformers-remote-code",
+    "vllm"
+   ],
+   "notes": {
+    "en": "OrbitLM-1.8B-Thinking is a reasoning chat model for Russian and English (thinking on by default, tool calling), trained from scratch with the Qwen3 tokenizer and then given SFT for chat and GRPO RL on math and code. It uses the Ouro-1.4B layout: one stack of 24 layers (hidden size 2048, 16 heads with no grouped KV) runs four times per token with an exit gate after each pass; it has 1.86B parameters (1.23B in the shared layers, 0.62B in untied embedding and output matrices) and applies 5.24B per generated token. It is the larger run that arXiv v2 of the paper adds in Section 5.4 and Appendix K: 1.26T tokens at 4K context, then 220B at 16K and 32K, 1.48T in total, which the card's introduction gives as 1.5T; the paper's controlled 1.4B LoopLM trained on 310B tokens and its Looped Qwen conversion of Qwen3-1.7B-Base are different models with no checkpoints on ai-forever's Hugging Face account. total_ut_steps is 4 in config.json; generate(..., exit_at_step=k-1) answers from pass k, and vLLM always runs all four passes unless hf_overrides sets a lower total_ut_steps. Each pass keeps its own keys and values, 96 layer entries per token or 0.75 MiB per token in bf16, in both modelling_ouro.py and the vLLM plugin; paper Appendix K reports that reusing the last pass's cache drifted on long reasoning traces, while sharing the cache of passes 2-4 halved it with a 3.7-point drop on 300 GSM8K problems. Loading needs trust_remote_code on transformers 4.56 or later; vLLM 0.26 and older include the Ouro architecture, and newer releases need the vllm_plugin folder in the model repo (checked with vLLM 0.34). Prompts start with <|endoftext|> as in training. The card describes the RL loss as weighted over every pass by the exit gate, while paper Table 28 lists GRPO on the final iteration.",
+    "zh": "OrbitLM-1.8B-Thinking 是面向俄语和英语的推理对话模型（默认开启思考，支持工具调用），用 Qwen3 tokenizer 从头训练，之后做了对话 SFT 和数学、代码上的 GRPO RL。它沿用 Ouro-1.4B 的结构：一个 24 层的层栈（hidden size 2048，16 个注意力头，不用 grouped KV）对每个 token 跑四遍，每遍之后有一个 exit gate；参数量 1.86B（共享层 1.23B，不共享的 embedding 和输出矩阵 0.62B），按每遍重复计算共享层，每生成一个 token 作用 5.24B 参数。它是论文 arXiv v2 在 Section 5.4 和 Appendix K 中新增的较大规模训练：先在 4K 上下文训练 1.26T token，再在 16K 和 32K 上训练 220B，共 1.48T，模型卡开头写作 1.5T；论文中受控实验的 1.4B LoopLM（310B token）以及由 Qwen3-1.7B-Base 转换来的 Looped Qwen 是另外的模型，ai-forever 的 Hugging Face 账号上没有它们的 checkpoint。config.json 中 total_ut_steps 为 4；generate(..., exit_at_step=k-1) 用第 k 遍的输出作答，vLLM 总是跑满四遍，除非用 hf_overrides 调低 total_ut_steps。每一遍各存一份 key/value，每个 token 有 96 个层条目，bf16 下每 token 0.75 MiB，modelling_ouro.py 和 vLLM 插件都是如此；论文 Appendix K 报告复用最后一遍的 cache 会在长推理轨迹上漂移，而让第 2-4 遍共享 cache 可把 cache 减半，300 道 GSM8K 题上下降 3.7 分。加载需要 trust_remote_code 和 transformers 4.56 及以上版本；vLLM 0.26 及更早版本内置 Ouro 架构，更新的版本需要安装模型仓库里的 vllm_plugin 目录（在 vLLM 0.34 上验证过）。与训练时一样，prompt 以 <|endoftext|> 开头。模型卡说 RL 损失按 exit gate 对每一遍加权，而论文 Table 28 写的是在最后一遍上做 GRPO。"
+   },
+   "ref": "Model card (intro: 24 layers run four times, 1.86B parameters, 5.24B applied per token, 1.5T tokens, links to arXiv 2610.00673 and github.com/ai-forever/OrbitLM; Model details: 1.23B + 0.62B, hidden size 2048, 16 heads with no grouped KV, Qwen3 tokenizer, 32,768-token context with RoPE base 4,000,000; KV paragraph: each pass keeps its own keys and values, 96 layer entries per token; Training table: 419B, 839B, 200B and 20B tokens, 14.7B SFT, RL step 90 of 150; Evaluation table: 1.48T pretraining tokens; Usage: trust_remote_code, transformers 4.56 to 5.23, exit_at_step, vLLM 0.26 and older native and the plugin for later releases, hf_overrides total_ut_steps; License: Apache 2.0); config.json (total_ut_steps 4, use_exit_gate true, early_exit_threshold 1.0, max_position_embeddings 32768, rope_theta 4000000); modelling_ouro.py (UniversalTransformerCache indexed by current_ut * num_hidden_layers + layer_idx; exit_at_step and exit_threshold); vllm_plugin/orbit_vllm/ouro.py (one attention cache per recurrent step); HF API (cardData.license apache-2.0; safetensors.total 1,855,655,937, stored as F32; author=ai-forever search for Orbit returns only this repo); arXiv 2610.00673v2 header (Model: OrbitLM-1.8B-Thinking), Section 5.4 (1.86B, T=4, 1.26T plus 220B, 1.48T total), Section 5.5 and Appendix K (separate keys and values per iteration, KV-sharing results, Table 28 training stages), while v1 has no OrbitLM section; GitHub README (links only this model; Apache-2.0).",
+   "added": "2026-11-24"
   },
   {
    "id": "ouro-1-4b",
@@ -190,6 +861,60 @@
    },
    "ref": "HF API and model cards of the four repos (sizes, base-model note, parcae-lm usage, Recurrence 8, no license field) and their config.json (mean_recurrence 8, block_size 2048); GitHub README (model table, tokenizer) and GitHub API (MIT); paper Table 18 (context 2,048), Table 21 (training tokens, not given on the cards) and Appendix O (evaluation at T = 1-16); receval/models/parcae.py and parcae_lm/utils/cache.py in the GitHub repo (default num_steps and the per-step \"full\" cache).",
    "added": "2026-11-23"
+  },
+  {
+   "id": "pondering-pythia",
+   "name": "PonderingPythia",
+   "paper": "2505.20674",
+   "hf": [
+    "zeng123/PonderingPythia-1.4B",
+    "zeng123/PonderingPythia-2.8B"
+   ],
+   "params": "1.4B / 2.8B",
+   "tokens": "300B (Pile) each",
+   "context": "2048",
+   "passes": {
+    "default": "4 per token (pondering_steps 3 + final pass)",
+    "range": "fixed (trained with 3 pondering steps)"
+   },
+   "kv": "n/a",
+   "license": "apache-2.0",
+   "inference": [
+    "custom"
+   ],
+   "notes": {
+    "en": "PonderingPythia-1.4B and -2.8B (PonderPythia in the paper) are GPT-NeoX models with the Pythia architecture, pretrained from scratch with PonderLM on 300B Pile tokens; both model cards contain only the license, and the GitHub README serves as the release note. For every position the model runs the whole network, turns the predicted distribution into a probability-weighted sum of token embeddings, adds it to the input embeddings and runs the network again; pondering_steps 3 gives three such pondering passes plus the final pass that produces the logits. The paper describes a top-100 approximation of the weighted sum, but the released forward computes it over the full vocabulary (use_topk=False). The step count is fixed in training and inference for these models (paper Section 4.3), and the paper notes that inference cost grows roughly linearly with the number of pondering steps. modeling_gpt_neox.py calls every pass with past_key_values=None, so no KV cache is reused between tokens; with use_cache false in config.json, generation recomputes all four passes over the full prefix for each new token. config.json has no auto_map, so AutoModelForCausalLM loads the stock GPTNeoXForCausalLM and runs a single pass; pondering needs the modeling_gpt_neox.py shipped in the repos, which the GitHub code patches into transformers when --ponderinglm true is set.",
+    "zh": "PonderingPythia-1.4B 和 -2.8B（论文中称 PonderPythia）是 Pythia 架构的 GPT-NeoX 模型，用 PonderLM 在 300B token 的 Pile 上从头预训练；两个模型卡都只有 license 字段，发布说明在 GitHub README 中。每个位置先跑一遍完整网络，把预测分布变成按概率加权的 token 嵌入之和，加到输入嵌入上，再跑一遍网络；pondering_steps 3 表示三遍这样的 pondering 前向，再加一遍输出 logits 的最终前向。论文描述的加权和用 top-100 近似，但官方代码的 forward 在整个词表上计算（use_topk=False）。这两个模型在训练和推理时使用固定步数（论文 Section 4.3），论文也指出推理开销大致随 pondering 步数线性增长。modeling_gpt_neox.py 的每一遍都以 past_key_values=None 调用，token 之间不复用 KV cache；config.json 中 use_cache 为 false，生成时每个新 token 都要在完整前缀上重跑全部四遍。config.json 没有 auto_map，用 AutoModelForCausalLM 会加载 transformers 自带的 GPTNeoXForCausalLM，只跑一遍；pondering 需要仓库中附带的 modeling_gpt_neox.py，GitHub 代码在设置 --ponderinglm true 时把它替换进 transformers。"
+   },
+   "ref": "HF API of both repos (cardData.license apache-2.0; the cards hold only the license) and config.json (ponderinglm true, pondering_steps 3, mutiply_pondering_steps true, scale_embeds true, no auto_map, use_cache false, max_position_embeddings 2048); modeling_gpt_neox.py in both repos, identical to src/llamafactory/model/modeling/modeling_gpt_neox.py on GitHub (three pondering passes and a final pass, full-vocabulary weighted embedding with use_topk=False, past_key_values=None on every pass); GitHub README (release of the two checkpoints, 300B Pile tokens), src/llamafactory/model/loader.py (replaces GPTNeoXForCausalLM when ponderinglm is set) and experiments_jobs/train_from_scratch_on_pile (cutoff_len 2048, pondering_steps 3); paper header (GitHub and zeng123/PonderingPythia-2.8B links), Abstract and Table 1 (PonderPythia-1.4B and 2.8B, 300B tokens), Section 2 (s=3, top-K with K=100), Section 3.2 (trained from scratch with Pythia's context length), Section 4.3 (steps fixed in training and inference), Appendix C.1 (inference overhead roughly linear in the number of steps).",
+   "added": "2026-11-24"
+  },
+  {
+   "id": "ponderlm-2-pythia",
+   "name": "PonderLM-2-Pythia",
+   "paper": "2509.23184",
+   "hf": [
+    "zeng123/PonderLM-2-Pythia-1.4b",
+    "zeng123/PonderLM-2-Pythia-410m"
+   ],
+   "params": "1.4B / 410M",
+   "tokens": "300B (Pile) each",
+   "context": "2048",
+   "passes": {
+    "default": "2 per token (one latent thought)",
+    "range": "fixed (decoding runs one latent thought)"
+   },
+   "kv": "per-pass",
+   "license": "apache-2.0",
+   "inference": [
+    "transformers-remote-code"
+   ],
+   "notes": {
+    "en": "PonderLM-2-Pythia-1.4b and -410m are GPT-NeoX models with the Pythia architecture (24 layers) pretrained with PonderLM-2 on 300B Pile tokens. For every token the model first runs a normal forward pass, then feeds that position's last hidden state back into the same network as a latent thought at the same position id, and predicts the next token from this second pass (num_latent_thoughts 1). In training, and for the prompt at inference, the latent thoughts of all positions are solved in parallel by Jacobi iterations over the interleaved token and thought sequence (num_jacobi_iterations 4 at inference; the paper samples 2 or 3 per training instance). With use_cache=True, as in the card example, the token pass and the thought pass each append a KV entry for the same position, so the cache holds two entries per token, which the paper's Appendix I describes as doubling the KV cache. The decoding branch of the released modeling_gpt_neox.py always runs exactly one latent thought, so num_latent_thoughts cannot be raised at inference; the longer thought chains in the paper come from separately trained models that are not released. Because thoughts reuse their token's position id, the 2048-token context is not shortened (paper Section 3.4). The cards load the models with AutoModelForCausalLM and trust_remote_code=True; the GitHub repo also contains LLaMA code and the PonderLM, Loop and Pause baselines, but its README lists only these two checkpoints.",
+    "zh": "PonderLM-2-Pythia-1.4b 和 -410m 是 Pythia 架构（24 层）的 GPT-NeoX 模型，用 PonderLM-2 在 300B token 的 Pile 上预训练。每个 token 先正常跑一遍前向，再把该位置的最后隐藏状态作为 latent thought、以相同的 position id 送回同一个网络，用第二遍的输出预测下一个 token（num_latent_thoughts 1）。训练时以及推理处理 prompt 时，所有位置的 latent thought 通过在 token 与 thought 交错序列上的 Jacobi 迭代并行求解（推理时 num_jacobi_iterations 为 4；论文训练时每个样本随机取 2 或 3）。按模型卡示例设置 use_cache=True 时，token 遍和 thought 遍会在同一位置各追加一条 KV，因此每个 token 在 cache 中占两条，论文 Appendix I 称之为 KV cache 翻倍。官方 modeling_gpt_neox.py 的解码分支总是只跑一个 latent thought，因此推理时不能调大 num_latent_thoughts；论文中更长的 thought 链来自另行训练、未发布的模型。由于 thought 复用其 token 的 position id，2048 的上下文长度不会缩短（论文 Section 3.4）。模型卡用 AutoModelForCausalLM 加 trust_remote_code=True 加载；GitHub 仓库还包含 LLaMA 代码以及 PonderLM、Loop 和 Pause 基线，但其 README 只列出这两个 checkpoint。"
+   },
+   "ref": "Model cards of both repos (Pythia architecture, 1.4 B and 410 M parameters, 24 layers, context length 2048, 300 B Pile tokens on the 1.4b card, AutoModelForCausalLM with trust_remote_code=True and use_cache=True, sibling checkpoint, GitHub and paper links) and HF API (cardData.license apache-2.0, dataset monology/pile-uncopyrighted); config.json (num_latent_thoughts 1, num_jacobi_iterations 4, random_jacobi_iterations true, auto_map to modeling_gpt_neox.GPTNeoXForCausalLM, use_cache false); modeling_gpt_neox.py, the same file in both repos (prefill with Jacobi refinement over the interleaved sequence, decoding with one token pass and one latent-thought pass that both write to the DynamicCache, thoughts given their token's position ids); GitHub README (released checkpoints, flag meanings, baselines, auto_map inference); paper Section 3.1 (inference), Section 3.2 (Jacobi iterations, K from {2,3} in training), Section 3.4 (position ids and context window), Table 2 (PonderLM-2-Pythia-410M and 1.4B, 300B tokens), Section 4.7 and Appendix G (longer thought chains in separately trained models), Appendix I (KV cache doubled with one latent thought per token).",
+   "added": "2026-11-24"
   },
   {
    "id": "recurrent-llama-3-2",
@@ -282,6 +1007,102 @@
    },
    "ref": "Model cards (num_steps example, trust_remote_code, apache-2.0, based on huginn-0125); HF API (repo existence, license tags) and the Retrofitting Recurrence collection; paper Section 3 (context 1024, layer choice), Sections 4.3.2 and 4.4 (tokens), Tables 3 and 6 (test recurrences), Table 8 (parameters); HuginnDynamicCache in the repos' raven_modeling_minimal.py (KV keyed by recurrence step).",
    "added": "2026-11-23"
+  },
+  {
+   "id": "sensenova-loop-9b",
+   "name": "SenseNova-Loop-9B",
+   "paper": "sensenova-loop-9b",
+   "org": [
+    "SenseNova"
+   ],
+   "hf": [
+    "sensenova/SenseNova-Loop-9B",
+    "sensenova/SenseNova-Loop-9B-Preview",
+    "sensenova/SenseNova-Loop-9B-AWQ",
+    "sensenova/SenseNova-Loop-9B-GGUF"
+   ],
+   "params": "approximately 9B",
+   "active_params": "approximately 14.6B inference-equivalent (2 passes)",
+   "tokens": "not stated",
+   "context": "512K (Preview: up to 262,144 tokens)",
+   "passes": {
+    "default": "2",
+    "range": "fixed (eval_count must match training); the card's study trains 1-4"
+   },
+   "kv": "per-pass",
+   "license": "apache-2.0",
+   "inference": [
+    "transformers-remote-code",
+    "vllm",
+    "sglang",
+    "gguf"
+   ],
+   "notes": {
+    "en": "SenseNova-Loop-9B is a multimodal model that takes text and images and generates text; its modeling code builds on the Qwen3.5 multimodal classes in transformers, and config.json has a 27-layer vision encoder. The 32-layer decoder runs layers 0-3 once, the shared block of layers 4-27 twice and layers 28-31 once, giving 56 layer executions per forward pass; every four-layer group has three linear-attention layers and one full-attention layer. Inside the looped block, two-stream mHC reads from and writes to two residual streams through learned mappings, with a Sinkhorn-normalized mixing map (20 iterations); in the code the streams are formed at layer 4 and averaged after layer 27 on each pass, so the second pass takes the first pass's output. The modeling code gives each of the 56 layer executions its own cache slot, so full-attention KV and linear-attention states are stored per pass. The configs set loop_settings to start 4, end 28, counts [2] and eval_count 2, and the code rejects an eval_count that differs from counts; the card's loop-scaling study, with matched training and inference loops from 1 to 4, found 3 or 4 loops best, while both releases use 2 for inference efficiency. The card gives no training token count; it describes training on text, images, code and tool-use trajectories with context extended to 512K tokens, while the Preview card gives up to 262,144 tokens and the AWQ config.json lists max_position_embeddings 262144. Transformers loading uses trust_remote_code (the card cites a checked Preview environment with Transformers 5.18.0); vLLM and SGLang support sits in unmerged PRs (vllm-project/vllm#64832, sgl-project/sglang#47281), the GGUF files need the OpenSenseNova/llama.cpp fork, and the card also documents LightLLM. Next to the BF16 checkpoints are an AWQ 4-bit repo with optional MTP draft weights and a GGUF repo (BF16, Q8_0, Q5_K_M, Q4_K_M and a vision projector); sensenova/SenseNova-Loop-9B-DFlash2 is a separate 967M-parameter, five-layer speculative-decoding draft model and is not listed in hf.",
+    "zh": "SenseNova-Loop-9B 是多模态模型，输入文本和图像、输出文本；其 modeling 代码基于 transformers 中的 Qwen3.5 多模态类，config.json 中的视觉编码器为 27 层。32 层解码器先跑一遍第 0-3 层，再把共享的第 4-27 层跑两遍，最后跑一遍第 28-31 层，每次前向执行 56 次层计算；每四层一组，含三层线性注意力和一层全注意力。循环块内的双流 mHC 通过可学习映射读写两路残差流，混合矩阵经 Sinkhorn 归一化（20 次迭代）；代码中每一遍都在第 4 层展开两路流、在第 27 层之后取平均，所以第二遍以第一遍的输出为输入。modeling 代码为 56 次层计算各分配一个 cache 槽位，全注意力的 KV 和线性注意力的状态都按遍分别存储。config 中 loop_settings 为 start 4、end 28、counts [2]、eval_count 2，代码会拒绝与 counts 不一致的 eval_count；模型卡的循环 scaling 实验让训练与推理遍数一致、取 1 到 4 遍，3 或 4 遍最好，两个版本出于推理效率都默认用 2 遍。模型卡没有给训练 token 数，只说训练数据含文本、图像、代码和工具调用轨迹，上下文扩展到 512K token；Preview 模型卡写的是最长 262,144 token，AWQ 的 config.json 中 max_position_embeddings 为 262144。用 transformers 加载需要 trust_remote_code（模型卡引用的已核验 Preview 环境为 Transformers 5.18.0）；vLLM 和 SGLang 的支持还在未合入的 PR 中（vllm-project/vllm#64832、sgl-project/sglang#47281），GGUF 文件需要 OpenSenseNova/llama.cpp 的 fork，模型卡也给了 LightLLM 的部署方法。BF16 权重之外还有附可选 MTP draft 权重的 AWQ 4-bit 仓库，以及 GGUF 仓库（BF16、Q8_0、Q5_K_M、Q4_K_M 及视觉投影器）；sensenova/SenseNova-Loop-9B-DFlash2 是单独的 967M 参数、五层的投机解码 draft 模型，未列入 hf。"
+   },
+   "ref": "Model card (README.md and README_CN.md) of sensenova/SenseNova-Loop-9B: News (2026-11-17 release, 2026-11-18 AWQ and GGUF), Model Highlights, Model Specifications (approximately 9B total and approximately 14.6B inference-equivalent parameters, text and images in, [4, 28) / 2, 56 executions, 512K context), Hybrid Attention, Two-Stream mHC, Loop Scaling, Get Started and Deployment; Preview card (training context up to 262,144 tokens); config.json of the 9B and Preview repos (loop_settings start 4, end 28, counts [2], eval_count 2; mhc streams 2, iterations 20; vision_config depth 27); AWQ config.json (max_position_embeddings 262144); modeling_sensenova_loop.py (execution_plan, one cache slot per layer visit, mHC enter/leave); GitHub docs/inference.md (56 execution-cache slots); AWQ, GGUF and DFlash2 cards; HF API (cardData license apache-2.0, sensenova model list); GitHub API (vllm-project/vllm#64832 and sgl-project/sglang#47281 open).",
+   "added": "2026-11-24"
+  },
+  {
+   "id": "tah-plus-1-7b",
+   "name": "TaH-plus-1.7B",
+   "paper": "2511.08577",
+   "org": [
+    "Tsinghua-NICS-EFC"
+   ],
+   "hf": [
+    "nics-efc/TaH-plus-1.7B"
+   ],
+   "params": "1.76B (1.72B backbone + LoRA + decider)",
+   "tokens": "SFT on 100K Mixture-of-Thoughts samples (480M tokens)",
+   "context": "8192 (training length); max_position_embeddings 32768",
+   "passes": {
+    "default": "up to 2 (per-token decider, threshold 0.9)",
+    "range": "max_iter cap and decider threshold; paper also tests a cap of 1"
+   },
+   "kv": "per-pass",
+   "license": "apache-2.0",
+   "inference": [
+    "custom"
+   ],
+   "notes": {
+    "en": "TaH-plus-1.7B is Qwen3-1.7B-Base fine-tuned with Think-at-Hard on 100K Open-R1 Mixture-of-Thoughts samples (math, code and science). \"plus\" is the paper's TaH+ variant: it keeps all 28 layers and adds a LoRA adapter and an MLP iteration decider (under 3% extra parameters), while plain TaH prunes one layer to match the baseline's size and has no released checkpoint. Every token first runs the unmodified backbone; tokens whose continue probability exceeds the decider threshold (0.9) run a second full pass with LoRA enabled, fed with a top-100 softmax mix of token embeddings from the first pass's logits, and the logits of the two passes are added. Training has two stages: backbone and LoRA are trained with oracle labels that mark tokens a reference Qwen3-1.7B mispredicts, then the decider is trained with the backbone frozen. The released TaHCache keeps one KV slot per layer and iteration, and duo-causal attention lets a query at depth d attend to positions up to its own at depths up to d. The loop runs through the tah package from the GitHub repo (TaHForCausalLM, Python 3.10, transformers 4.52.4), whose TaH backend the README calls a token-by-token Python loop for research; config.json declares a plain Qwen3ForCausalLM, so AutoModelForCausalLM loads only the single-pass backbone without LoRA and decider. nics-efc/Standard-1.7B in the same collection is the single-iteration baseline trained on the same data and is not listed; nics-efc/TaH-plus-0.6B and Standard-0.6B have no model card and are not linked from the paper, the collection or the GitHub repo, so they are not listed either.",
+    "zh": "TaH-plus-1.7B 是用 Think-at-Hard 在 100K 条 Open-R1 Mixture-of-Thoughts 样本（数学、代码、科学）上微调的 Qwen3-1.7B-Base。plus 对应论文中的 TaH+：保留全部 28 层，另加 LoRA adapter 和 MLP 迭代决策器（额外参数不到 3%）；普通 TaH 会剪掉一层以对齐基线参数量，没有发布 checkpoint。每个 token 先跑一遍原始主干；继续概率超过决策器阈值（0.9）的 token 再跑第二遍完整前向，此时启用 LoRA，输入是用第一遍 logits 的 top-100 softmax 对 token 嵌入加权求和得到的向量，两遍的 logits 相加。训练分两阶段：先用 oracle 标签（参考模型 Qwen3-1.7B 预测错的 token）训练主干和 LoRA，再冻结主干训练决策器。官方代码中的 TaHCache 按层和迭代各存一份 KV，duo-causal attention 让第 d 遍的 query 关注不晚于自身位置、深度不超过 d 的 KV。循环通过 GitHub 仓库中的 tah 包运行（TaHForCausalLM，Python 3.10，transformers 4.52.4），README 称其 TaH 后端是面向研究的逐 token Python 循环；config.json 写的是普通 Qwen3ForCausalLM，用 AutoModelForCausalLM 只能加载不带 LoRA 和决策器的单遍主干。同一 collection 中的 nics-efc/Standard-1.7B 是用相同数据训练的单遍基线，未列出；nics-efc/TaH-plus-0.6B 和 Standard-0.6B 没有模型卡，论文、collection 和 GitHub 仓库都没有链接它们，因此也未列出。"
+   },
+   "ref": "Model card of nics-efc/TaH-plus-1.7B (base model Qwen/Qwen3-1.7B-Base, dataset open-r1/Mixture-of-Thoughts, math, code and science data, under 3% extra parameters, GitHub pointer) and HF API (cardData.license apache-2.0; safetensors.total 1,720,574,976 counts only the backbone file); tah_config.json (max_iter 2, MLPIterDecider threshold 0.9, input_updater_kwargs topk 100, LoRA r 16) and config.json (Qwen3ForCausalLM, 28 layers, max_position_embeddings 32768); nics-efc TaH collection and model list (Standard-1.7B card; TaH-plus-0.6B and Standard-0.6B outside the collection, without cards); GitHub README (100K OpenR1 samples, TaH vs TaH+ pruning, two-stage training, tah backend, Python 3.10) and pyproject.toml (transformers 4.52.4); tah/model/tah_model.py and tah/model/causal_cache.py (LoRA from the second iteration, top-k embedding mix, additive logits, TaHCache keyed by layer and iteration, duo-causal mask); paper v4 Table 9 (1.76B total), Section 5.3 (two-stage training), Section 6.1 (TaH+ unpruned, threshold 0.9) and Appendix A.1.1 (100K samples, 480M tokens, 8192 max sequence length), Figure 3 and Appendix A.4.1 (one KV cache per iteration depth), Table 7 and Figure 6 (inference depth 1, threshold sweep).",
+   "added": "2026-11-24"
+  },
+  {
+   "id": "tah2-1-7b",
+   "name": "TaH2-1.7B",
+   "paper": "2609.35748",
+   "org": [
+    "Tsinghua-NICS-EFC"
+   ],
+   "hf": [
+    "nics-efc/TaH2-1.7B-max2",
+    "nics-efc/TaH2-1.7B-max4",
+    "nics-efc/TaH2-1.7B-max8"
+   ],
+   "params": "1.7B backbone + 46.16M updater and decider",
+   "tokens": "3.4B (3 epochs over 273K post-training samples)",
+   "context": "16,384 (training length); max_position_embeddings 32768",
+   "passes": {
+    "default": "up to 2, 4, 8 (max2, max4, max8; decider threshold 0.5)",
+    "range": "tah_max_iter overrides the cap; paper runs max8 at 4, 8 and 12"
+   },
+   "kv": "per-pass",
+   "license": "apache-2.0",
+   "inference": [
+    "custom"
+   ],
+   "notes": {
+    "en": "Three post-trained versions of Qwen3-1.7B-Base that share one recipe and differ only in max_iter, the most full 28-layer passes a token may take: 2, 4 or 8 (the depth ceiling M of the paper, set at training time and read from tah_config.json). After each pass a learned iteration decider (threshold 0.5) decides per token whether to run another pass; later passes take the output of a small MLP updater that reinjects the token embedding and maps the previous final hidden state back to the input space, and the output mixes the passes' predictions by their stopping probabilities (stop_prob_mix). Backbone, updater and decider are trained jointly for three epochs on the 1.7B subset of nics-efc/TaH2-amteam-tool (math, code, science and tool-use prompts with responses regenerated by Qwen3-8B), using online labels that mark whether another pass lowers the next-token loss. Each iteration depth keeps its own KV cache, and a query at depth m attends to executed states at earlier or equal positions and depths up to m. The paper reports that M=2 gives the best accuracy-compute trade-off while M=4 and 8 reach higher peak accuracy; on AIME24-26 the mean depth is 1.23, 1.49 and 2.22 for the three models (Table 12). Inference needs the tah2 package from the GitHub repo, either TaHForCausalLM or the bundled engine adapted from mini-SGLang; the max2 card's snippet imports the older tah package, which lacks the Qwen3MLPIterDecider and input updater these checkpoints use, while the max4 and max8 cards use tah2. nics-efc/TaH2-1.7B-Standard is the single-pass baseline trained on the same data and is not listed; the paper's 4B and 8B TaH2 models are not on the Hub.",
+    "zh": "三个模型都由 Qwen3-1.7B-Base 按同一配方后训练得到，区别只在 max_iter，即每个 token 最多跑几遍完整的 28 层：2、4 或 8（即论文中的深度上限 M，训练时设定，推理时从 tah_config.json 读取）。每跑完一遍，学习得到的迭代决策器（阈值 0.5）逐 token 决定是否再跑一遍；后续各遍的输入来自一个小型 MLP updater，它重新注入 token 嵌入，并把上一遍的最终隐藏状态映射回输入空间；输出按各遍的停止概率混合各遍的预测（stop_prob_mix）。主干、updater 和决策器在 nics-efc/TaH2-amteam-tool 的 1.7B 子集（数学、代码、科学和工具调用 prompt，回答由 Qwen3-8B 重新生成）上联合训练三个 epoch，在线标签标出再跑一遍能否降低 next-token loss。每个迭代深度各存一份 KV cache，深度 m 的 query 关注位置不晚于自身、深度不超过 m 的已执行状态。论文称 M=2 的准确率与计算量权衡最好，M=4 和 8 的峰值准确率更高；在 AIME24-26 上三个模型的平均深度分别为 1.23、1.49 和 2.22（Table 12）。推理需要 GitHub 仓库中的 tah2 包，可用 TaHForCausalLM 或改编自 mini-SGLang 的自带引擎；max2 的模型卡示例导入的是旧的 tah 包，它没有这些 checkpoint 所用的 Qwen3MLPIterDecider 和 input updater，max4 和 max8 的模型卡用的是 tah2。nics-efc/TaH2-1.7B-Standard 是用相同数据训练的单遍基线，未列出；论文中的 4B 和 8B TaH2 模型没有发布到 Hub。"
+   },
+   "ref": "Model cards of the three repos (at most two, four or eight iterations per token, duo attention, decider threshold 0.5, stop_prob_mix, 1.7B subset of TaH2 AMTeam Tool, loading snippets) and HF API (cardData.license apache-2.0; safetensors.total 1,720,574,976 counts only the backbone file); tah_config.json (max_iter 2/4/8, Qwen3MLPIterDecider threshold 0.5, Qwen3MLPUpdater, iter_attention_mode duo, weighted_hidden_method stop_prob_mix) and config.json (Qwen3ForCausalLM, 28 layers, max_position_embeddings 32768); nics-efc TaH2 collection and the TaH2-1.7B-Standard card (standard single-pass Qwen3-1.7B); GitHub README (checkpoint table, bundled mini-SGLang engine, --tah_max_iter override, data table with 273,195 samples and 1,099,413,406 train tokens for the 1.7B subset, recipes sft_tah, sft_tah_max4 and sft_tah_max8) and tah2/minisgl/README.md (tah_max_iter, --tah-max-iter); tah2/model/causal_cache.py and tah2/minisgl/models/tah_qwen3.py (KV kept per iteration depth, updater inputs); tah/model/iter_decider.py (no Qwen3MLPIterDecider in the old package); paper Section 4.1 (architecture), Section 5.1 (273K samples, three epochs, 16,384-token context, 3.4B tokens, 32K evaluation length, threshold 0.5), Section 5.2 (M=2 trade-off, higher peaks for M=4 and 8), Table 7 (1720.57M backbone, 20.98M updater, 25.18M decider), Appendix A.2.1 (each iteration keeps its own KV cache), Appendix B.2 and Table 12 (inference ceilings 4, 8 and 12; mean depths), Section 5.3 (4B and 8B models).",
+   "added": "2026-11-24"
   },
   {
    "id": "tml-d24-varloop-research",

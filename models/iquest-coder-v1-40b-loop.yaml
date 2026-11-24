@@ -1,0 +1,47 @@
+id: iquest-coder-v1-40b-loop
+name: IQuest-Coder-V1-40B-Loop
+paper: "2603.16733"
+org: [IQuest Research]
+hf: [IQuestLab/IQuest-Coder-V1-40B-Loop-Instruct, IQuestLab/IQuest-Coder-V1-40B-Loop-Thinking]
+params: "40B"
+tokens: "12T+ pre-training and 600B mid-training (LoopCoder PDF)"
+context: "128K"
+passes:
+  default: "2"
+  range: "fixed (loop_num)"
+kv: first-pass
+license: "iquestcoder (Modified MIT License)"
+inference: [transformers-remote-code, vllm]
+notes:
+  en: >-
+    IQuest-Coder-V1-40B-Loop-Instruct and -Loop-Thinking are dense 40B code models (80 layers, hidden size 5120, 40
+    query and 8 KV heads, 76,800-token vocabulary) that run the whole layer stack twice with shared parameters (loop_num
+    2). In the second iteration each attention layer mixes global attention over the first iteration's keys and values
+    with local attention over the second iteration's own recent keys and values, weighted per head by a sigmoid gate
+    computed from the query. The released cache keeps the full first-iteration KV plus only the last loop_window_size
+    tokens of second-iteration KV; loop_window_size is 64 in the Loop-Instruct config and 8192 in the Loop-Thinking
+    config. The report's text mentions position-shifted hidden states in the first iteration but also says the token
+    shifting of Parallel Loop Transformer is omitted, and the released code passes the first iteration's output straight
+    into the second. The loop models follow the same pre-training, 32K and 128K mid-training, and SFT plus RL pipeline
+    as the dense models; the LoopCoder PDF in the GitHub repo adds that the loop was initialized by folding a
+    pre-trained dense checkpoint, gives 12T+ pre-training tokens and calls the model 40B-A80B, although its Table 1 also
+    lists 80B activated parameters for the dense 40B models. The Loop-Thinking card calls that model a
+    research-oriented experimental prototype that is not intended to reach state-of-the-art benchmark results. Both
+    repos load with trust_remote_code (the Loop-Instruct card recommends transformers==4.56.0, the Loop-Thinking card
+    transformers>=4.52.4), vLLM support came with vllm-project/vllm#31575 (merged January 2026), and IQuestLab has
+    published no quantized Loop checkpoints. HF lists the license as other with the name iquestcoder; the Loop-Instruct
+    card links the Modified MIT License of IQuest-Coder-V1-40B-Instruct, which asks commercial products to display
+    "IQuest Coder", while the LICENSE file in the Loop-Thinking repo is empty.
+  zh: >-
+    IQuest-Coder-V1-40B-Loop-Instruct 和 -Loop-Thinking 是 dense 40B 代码模型（80 层，hidden size 5120，40 个 query 头和 8 个 KV 头，词表 76,800），以共享参数把整个层栈跑两遍（loop_num 2）。第二遍中每个注意力层把对第一遍 key/value 的全局注意力和对第二遍自身近期 key/value 的局部注意力混合起来，权重由 query 算出的逐头 sigmoid 门控决定。发布的 cache 保留第一遍的完整 KV，第二遍的 KV 只保留最后 loop_window_size 个 token；Loop-Instruct 的 config 中 loop_window_size 为 64，Loop-Thinking 为 8192。报告正文提到第一遍使用位置偏移的隐状态，但又说省略了 Parallel Loop Transformer 的 token 偏移；发布的代码直接把第一遍的输出送入第二遍。Loop 模型与 dense 模型走同一套流程：预训练、32K 和 128K 两段 mid-training、SFT 加 RL；GitHub 仓库中的 LoopCoder PDF 补充说循环由折叠的预训练 dense checkpoint 初始化，预训练 12T+ token，并称模型为 40B-A80B，但其 Table 1 把 dense 40B 模型也列为 80B 激活参数。Loop-Thinking 模型卡称它是面向研究的实验原型，并不追求各基准上的最优成绩。两个仓库都需 trust_remote_code 加载（Loop-Instruct 模型卡推荐 transformers==4.56.0，Loop-Thinking 模型卡写 transformers>=4.52.4），vLLM 支持来自 2026 年 1 月合入的 vllm-project/vllm#31575，IQuestLab 没有发布 Loop 的量化版本。HF 上的许可证为 other，名称为 iquestcoder；Loop-Instruct 模型卡链接到 IQuest-Coder-V1-40B-Instruct 的 Modified MIT License，要求商用产品显示「IQuest Coder」，而 Loop-Thinking 仓库里的 LICENSE 文件是空的。
+ref: >-
+  Model cards of both repos (Model Overview table: 40B, 80 (2 iterations), 128K; Architecture Features: shared
+  parameters across two iterations; Quickstart transformers versions; vLLM PR link; Loop-Thinking highlight and
+  Limitations); config.json of both repos (loop_num 2, loop_window_size 64 / 8192, max_position_embeddings 131072);
+  modeling_iquestloopcoder.py (loop over all num_hidden_layers; IQuestLoopCoderCache with a shared cache for loop 1 and
+  a local window cache for loop 2+; LoopGateProjection); HF API (cardData license other, license_name iquestcoder;
+  IQuestLab model list) and the LICENSE files; arXiv 2603.16733v1 Section 2.1 and Tables 1 and 7;
+  papers/LoopCoder_arxiv.pdf in github.com/IQuestLab/IQuest-Coder-V1 (abstract and Section 6: 40B-A80B, 12T+ tokens;
+  Section 2.2: dense-to-loop folding; Table 1; Table 2: 600B mid-training tokens); vllm-project/vllm#31575 (merged
+  2026-01-08).
+added: "2026-11-24"

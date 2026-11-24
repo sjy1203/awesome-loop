@@ -1,0 +1,49 @@
+id: orbitlm-1-8b-thinking
+name: OrbitLM-1.8B-Thinking
+paper: "2610.00673"
+org: [ai-forever]
+hf: [ai-forever/OrbitLM-1.8B-Thinking]
+params: "1.86B"
+tokens: "1.5T (1.48T in the paper), plus 14.7B SFT and RL"
+context: "32,768"
+passes:
+  default: "4"
+  range: "1-4 (exit_at_step=k-1 in generate; hf_overrides total_ut_steps in vLLM)"
+kv: per-pass
+license: apache-2.0
+inference: [transformers-remote-code, vllm]
+notes:
+  en: >-
+    OrbitLM-1.8B-Thinking is a reasoning chat model for Russian and English (thinking on by default, tool calling),
+    trained from scratch with the Qwen3 tokenizer and then given SFT for chat and GRPO RL on math and code. It uses the
+    Ouro-1.4B layout: one stack of 24 layers (hidden size 2048, 16 heads with no grouped KV) runs four times per token with
+    an exit gate after each pass; it has 1.86B parameters (1.23B in the shared layers, 0.62B in untied embedding and
+    output matrices) and applies 5.24B per generated token. It is the larger run that arXiv v2 of the paper adds in
+    Section 5.4 and Appendix K: 1.26T tokens at 4K context, then 220B at 16K and 32K, 1.48T in total, which the card's
+    introduction gives as 1.5T; the paper's controlled 1.4B LoopLM trained on 310B tokens and its Looped Qwen conversion
+    of Qwen3-1.7B-Base are different models with no checkpoints on ai-forever's Hugging Face account. total_ut_steps is 4
+    in config.json; generate(..., exit_at_step=k-1) answers from pass k, and vLLM always runs all four passes unless
+    hf_overrides sets a lower total_ut_steps. Each pass keeps its own keys and values, 96 layer entries per token or 0.75
+    MiB per token in bf16, in both modelling_ouro.py and the vLLM plugin; paper Appendix K reports that reusing the last
+    pass's cache drifted on long reasoning traces, while sharing the cache of passes 2-4 halved it with a 3.7-point drop
+    on 300 GSM8K problems. Loading needs trust_remote_code on transformers 4.56 or later; vLLM 0.26 and older include the
+    Ouro architecture, and newer releases need the vllm_plugin folder in the model repo (checked with vLLM 0.34). Prompts
+    start with <|endoftext|> as in training. The card describes the RL loss as weighted over every pass by the exit gate,
+    while paper Table 28 lists GRPO on the final iteration.
+  zh: >-
+    OrbitLM-1.8B-Thinking 是面向俄语和英语的推理对话模型（默认开启思考，支持工具调用），用 Qwen3 tokenizer 从头训练，之后做了对话 SFT 和数学、代码上的 GRPO RL。它沿用 Ouro-1.4B 的结构：一个 24 层的层栈（hidden size 2048，16 个注意力头，不用 grouped KV）对每个 token 跑四遍，每遍之后有一个 exit gate；参数量 1.86B（共享层 1.23B，不共享的 embedding 和输出矩阵 0.62B），按每遍重复计算共享层，每生成一个 token 作用 5.24B 参数。它是论文 arXiv v2 在 Section 5.4 和 Appendix K 中新增的较大规模训练：先在 4K 上下文训练 1.26T token，再在 16K 和 32K 上训练 220B，共 1.48T，模型卡开头写作 1.5T；论文中受控实验的 1.4B LoopLM（310B token）以及由 Qwen3-1.7B-Base 转换来的 Looped Qwen 是另外的模型，ai-forever 的 Hugging Face 账号上没有它们的 checkpoint。config.json 中 total_ut_steps 为 4；generate(..., exit_at_step=k-1) 用第 k 遍的输出作答，vLLM 总是跑满四遍，除非用 hf_overrides 调低 total_ut_steps。每一遍各存一份 key/value，每个 token 有 96 个层条目，bf16 下每 token 0.75 MiB，modelling_ouro.py 和 vLLM 插件都是如此；论文 Appendix K 报告复用最后一遍的 cache 会在长推理轨迹上漂移，而让第 2-4 遍共享 cache 可把 cache 减半，300 道 GSM8K 题上下降 3.7 分。加载需要 trust_remote_code 和 transformers 4.56 及以上版本；vLLM 0.26 及更早版本内置 Ouro 架构，更新的版本需要安装模型仓库里的 vllm_plugin 目录（在 vLLM 0.34 上验证过）。与训练时一样，prompt 以 <|endoftext|> 开头。模型卡说 RL 损失按 exit gate 对每一遍加权，而论文 Table 28 写的是在最后一遍上做 GRPO。
+ref: >-
+  Model card (intro: 24 layers run four times, 1.86B parameters, 5.24B applied per token, 1.5T tokens, links to arXiv
+  2610.00673 and github.com/ai-forever/OrbitLM; Model details: 1.23B + 0.62B, hidden size 2048, 16 heads with no grouped
+  KV, Qwen3 tokenizer, 32,768-token context with RoPE base 4,000,000; KV paragraph: each pass keeps its own keys and
+  values, 96 layer entries per token; Training table: 419B, 839B, 200B and 20B tokens, 14.7B SFT, RL step 90 of 150;
+  Evaluation table: 1.48T pretraining tokens; Usage: trust_remote_code, transformers 4.56 to 5.23, exit_at_step, vLLM
+  0.26 and older native and the plugin for later releases, hf_overrides total_ut_steps; License: Apache 2.0);
+  config.json (total_ut_steps 4, use_exit_gate true, early_exit_threshold 1.0, max_position_embeddings 32768,
+  rope_theta 4000000); modelling_ouro.py (UniversalTransformerCache indexed by current_ut * num_hidden_layers +
+  layer_idx; exit_at_step and exit_threshold); vllm_plugin/orbit_vllm/ouro.py (one attention cache per recurrent step);
+  HF API (cardData.license apache-2.0; safetensors.total 1,855,655,937, stored as F32; author=ai-forever search for
+  Orbit returns only this repo); arXiv 2610.00673v2 header (Model: OrbitLM-1.8B-Thinking), Section 5.4 (1.86B, T=4,
+  1.26T plus 220B, 1.48T total), Section 5.5 and Appendix K (separate keys and values per iteration, KV-sharing results,
+  Table 28 training stages), while v1 has no OrbitLM section; GitHub README (links only this model; Apache-2.0).
+added: "2026-11-24"
