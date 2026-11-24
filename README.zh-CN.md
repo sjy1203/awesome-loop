@@ -37,20 +37,20 @@
 
 ## TOP-10 必读榜
 
-| # | 论文 | 分数 | 年均引用 | Star | 下载（30 天） | 点赞 |
-|---:|---|---:|---:|---:|---:|---:|
-| 1 | **Huginn**：[Scaling up Test-Time Compute with Latent Reasoning: A Recurrent Depth Approach](https://arxiv.org/abs/2502.05171) · **[精读卡](docs/zh/2502.05171.md)**<br><sub>2025 · Jonas Geiping 等</sub> | **91** | 330 | 998 | 22,435 | 634 |
-| 2 | **Ouro (LoopLM)**：[Scaling Latent Reasoning via Looped Language Models](https://arxiv.org/abs/2510.25741) · **[精读卡](docs/zh/2510.25741.md)**<br><sub>2025 · Rui-Jie Zhu 等</sub> | **73** | 250 | - | 59,421 | 711 |
-| 3 | [Parcae: Scaling Laws For Stable Looped Language Models](https://arxiv.org/abs/2604.12946) · **[精读卡](docs/zh/2604.12946.md)**<br><sub>2026 · Hayden Prairie 等</sub> | **66** | 89 | 195 | 1,728 | 29 |
-| 4 | [Teaching Pretrained Language Models to Think Deeper with Retrofitted Recurrence](https://arxiv.org/abs/2511.07384) · **[精读卡](docs/zh/2511.07384.md)**<br><sub>2025 · Sean McLeish 等</sub> | **64** | 76 | 72 | 4,351 | 29 |
-| 5 | **MoR**：[Mixture-of-Recursions: Learning Dynamic Recursive Depths for Adaptive Token-Level Computation](https://arxiv.org/abs/2507.10524) · **[精读卡](docs/zh/2507.10524.md)**<br><sub>2025 · Sangmin Bae 等 · NeurIPS 2025</sub> | **61** | 150 | 652 | - | 79 |
-| 6 | [Deep Equilibrium Models](https://arxiv.org/abs/1909.01377)<br><sub>2019 · Shaojie Bai 等 · NeurIPS 2019</sub> | **54** | 153 | 815 | - | 1 |
-| 7 | [HRM-Text: Efficient Pretraining Beyond Scaling](https://arxiv.org/abs/2605.20613)<br><sub>2026 · Guan Wang 等</sub> | **50** | 16 | 2,348 | - | 100 |
-| 8 | [LoopFormer: Elastic-Depth Looped Transformers for Latent Reasoning via Shortcut Modulation](https://arxiv.org/abs/2602.11451)<br><sub>2026 · Ahmadreza Jeddi 等 · ICLR 2026</sub> | **49** | 95 | 66 | - | 18 |
-| 9 | [Looped Transformers are Better at Learning Learning Algorithms](https://arxiv.org/abs/2311.12424)<br><sub>2023 · Liu Yang 等 · ICLR 2024</sub> | **42** | 68 | 74 | - | 1 |
-| 10 | [MoEUT: Mixture-of-Experts Universal Transformers](https://arxiv.org/abs/2405.16039)<br><sub>2024 · Róbert Csordás 等 · NeurIPS 2024</sub> | **40** | 36 | 93 | - | 3 |
+| # | 论文 | 年均引用 | 总引用 | Star | 下载（30 天） |
+|---:|---|---:|---:|---:|---:|
+| 1 | **Huginn**：[Scaling up Test-Time Compute with Latent Reasoning: A Recurrent Depth Approach](https://arxiv.org/abs/2502.05171) · **[精读卡](docs/zh/2502.05171.md)**<br><sub>2025-02-07 · Jonas Geiping 等</sub> | **330** | 590 | 998 | 22,435 |
+| 2 | **Ouro (LoopLM)**：[Scaling Latent Reasoning via Looped Language Models](https://arxiv.org/abs/2510.25741) · **[精读卡](docs/zh/2510.25741.md)**<br><sub>2025-10-29 · Rui-Jie Zhu 等</sub> | **250** | 267 | - | 59,421 |
+| 3 | [Reasoning with Latent Thoughts: On the Power of Looped Transformers](https://arxiv.org/abs/2502.17416)<br><sub>2025-02-24 · Nikunj Saunshi 等 · ICLR 2025</sub> | **193** | 337 | - | - |
+| 4 | [Deep Equilibrium Models](https://arxiv.org/abs/1909.01377)<br><sub>2019-09-03 · Shaojie Bai 等 · NeurIPS 2019</sub> | **153** | 1,104 | 815 | - |
+| 5 | **MoR**：[Mixture-of-Recursions: Learning Dynamic Recursive Depths for Adaptive Token-Level Computation](https://arxiv.org/abs/2507.10524) · **[精读卡](docs/zh/2507.10524.md)**<br><sub>2025-07-14 · Sangmin Bae 等 · NeurIPS 2025</sub> | **150** | 204 | 652 | - |
+| 6 | [Universal Transformers](https://arxiv.org/abs/1807.03819)<br><sub>2018-07-10 · Mostafa Dehghani 等 · ICLR 2019</sub> | **147** | 1,233 | - | - |
+| 7 | [LoopFormer: Elastic-Depth Looped Transformers for Latent Reasoning via Shortcut Modulation](https://arxiv.org/abs/2602.11451)<br><sub>2026-02-11 · Ahmadreza Jeddi 等 · ICLR 2026</sub> | **95** | 95 | 66 | - |
+| 8 | [Parcae: Scaling Laws For Stable Looped Language Models](https://arxiv.org/abs/2604.12946) · **[精读卡](docs/zh/2604.12946.md)**<br><sub>2026-04-14 · Hayden Prairie 等</sub> | **89** | 89 | 195 | 1,728 |
+| 9 | [Looped Transformers as Programmable Computers](https://arxiv.org/abs/2301.13196)<br><sub>2023-01-30 · Angeliki Giannou 等</sub> | **87** | 330 | - | - |
+| 10 | [Teaching Pretrained Language Models to Think Deeper with Retrofitted Recurrence](https://arxiv.org/abs/2511.07384) · **[精读卡](docs/zh/2511.07384.md)**<br><sub>2025-11-10 · Sean McLeish 等</sub> | **76** | 79 | 72 | 4,351 |
 
-<sub>不限年份的核心论文（循环 Transformer 语言模型），按影响力分数（满分 100）排名：年均引用占 40%（取 Semantic Scholar 和 OpenAlex 中较高的引用数，除以发表至今的年数，不满一年按一年算），官方代码的 GitHub star 占 20%，开源模型近 30 天的 Hugging Face 下载量占 20%，点赞占 20%（Hugging Face 论文点赞和模型点赞，加上 Hacker News 得分）。每项先取对数，再除以核心论文中这一项的最大值，单项第一的论文拿满这一项的权重。数据截至 2026-11-23。</sub>
+<sub>不限年份的核心论文（循环 Transformer 语言模型），按年均引用排名：总引用数（取 Semantic Scholar 和 OpenAlex 中较高的一个）除以首个公开版本到 2026-11-23 的年数，不满一年按一年算。官方代码的 GitHub star 和开源权重近 30 天的 Hugging Face 下载量只作参考，不影响排名。</sub>
 
 ## 这份清单的特点
 

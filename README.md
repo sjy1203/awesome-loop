@@ -37,20 +37,20 @@ Quarterly count of arXiv papers whose title or abstract contains a loop phrase (
 
 ## Top 10 must-read
 
-| # | Paper | Score | Citations / year | Stars | Downloads (30 days) | Likes |
-|---:|---|---:|---:|---:|---:|---:|
-| 1 | **Huginn**: [Scaling up Test-Time Compute with Latent Reasoning: A Recurrent Depth Approach](https://arxiv.org/abs/2502.05171) · **[deep card](docs/en/2502.05171.md)**<br><sub>2025 · Jonas Geiping et al.</sub> | **91** | 330 | 998 | 22,435 | 634 |
-| 2 | **Ouro (LoopLM)**: [Scaling Latent Reasoning via Looped Language Models](https://arxiv.org/abs/2510.25741) · **[deep card](docs/en/2510.25741.md)**<br><sub>2025 · Rui-Jie Zhu et al.</sub> | **73** | 250 | - | 59,421 | 711 |
-| 3 | [Parcae: Scaling Laws For Stable Looped Language Models](https://arxiv.org/abs/2604.12946) · **[deep card](docs/en/2604.12946.md)**<br><sub>2026 · Hayden Prairie et al.</sub> | **66** | 89 | 195 | 1,728 | 29 |
-| 4 | [Teaching Pretrained Language Models to Think Deeper with Retrofitted Recurrence](https://arxiv.org/abs/2511.07384) · **[deep card](docs/en/2511.07384.md)**<br><sub>2025 · Sean McLeish et al.</sub> | **64** | 76 | 72 | 4,351 | 29 |
-| 5 | **MoR**: [Mixture-of-Recursions: Learning Dynamic Recursive Depths for Adaptive Token-Level Computation](https://arxiv.org/abs/2507.10524) · **[deep card](docs/en/2507.10524.md)**<br><sub>2025 · Sangmin Bae et al. · NeurIPS 2025</sub> | **61** | 150 | 652 | - | 79 |
-| 6 | [Deep Equilibrium Models](https://arxiv.org/abs/1909.01377)<br><sub>2019 · Shaojie Bai et al. · NeurIPS 2019</sub> | **54** | 153 | 815 | - | 1 |
-| 7 | [HRM-Text: Efficient Pretraining Beyond Scaling](https://arxiv.org/abs/2605.20613)<br><sub>2026 · Guan Wang et al.</sub> | **50** | 16 | 2,348 | - | 100 |
-| 8 | [LoopFormer: Elastic-Depth Looped Transformers for Latent Reasoning via Shortcut Modulation](https://arxiv.org/abs/2602.11451)<br><sub>2026 · Ahmadreza Jeddi et al. · ICLR 2026</sub> | **49** | 95 | 66 | - | 18 |
-| 9 | [Looped Transformers are Better at Learning Learning Algorithms](https://arxiv.org/abs/2311.12424)<br><sub>2023 · Liu Yang et al. · ICLR 2024</sub> | **42** | 68 | 74 | - | 1 |
-| 10 | [MoEUT: Mixture-of-Experts Universal Transformers](https://arxiv.org/abs/2405.16039)<br><sub>2024 · Róbert Csordás et al. · NeurIPS 2024</sub> | **40** | 36 | 93 | - | 3 |
+| # | Paper | Citations / year | Citations | Stars | Downloads (30 days) |
+|---:|---|---:|---:|---:|---:|
+| 1 | **Huginn**: [Scaling up Test-Time Compute with Latent Reasoning: A Recurrent Depth Approach](https://arxiv.org/abs/2502.05171) · **[deep card](docs/en/2502.05171.md)**<br><sub>2025-02-07 · Jonas Geiping et al.</sub> | **330** | 590 | 998 | 22,435 |
+| 2 | **Ouro (LoopLM)**: [Scaling Latent Reasoning via Looped Language Models](https://arxiv.org/abs/2510.25741) · **[deep card](docs/en/2510.25741.md)**<br><sub>2025-10-29 · Rui-Jie Zhu et al.</sub> | **250** | 267 | - | 59,421 |
+| 3 | [Reasoning with Latent Thoughts: On the Power of Looped Transformers](https://arxiv.org/abs/2502.17416)<br><sub>2025-02-24 · Nikunj Saunshi et al. · ICLR 2025</sub> | **193** | 337 | - | - |
+| 4 | [Deep Equilibrium Models](https://arxiv.org/abs/1909.01377)<br><sub>2019-09-03 · Shaojie Bai et al. · NeurIPS 2019</sub> | **153** | 1,104 | 815 | - |
+| 5 | **MoR**: [Mixture-of-Recursions: Learning Dynamic Recursive Depths for Adaptive Token-Level Computation](https://arxiv.org/abs/2507.10524) · **[deep card](docs/en/2507.10524.md)**<br><sub>2025-07-14 · Sangmin Bae et al. · NeurIPS 2025</sub> | **150** | 204 | 652 | - |
+| 6 | [Universal Transformers](https://arxiv.org/abs/1807.03819)<br><sub>2018-07-10 · Mostafa Dehghani et al. · ICLR 2019</sub> | **147** | 1,233 | - | - |
+| 7 | [LoopFormer: Elastic-Depth Looped Transformers for Latent Reasoning via Shortcut Modulation](https://arxiv.org/abs/2602.11451)<br><sub>2026-02-11 · Ahmadreza Jeddi et al. · ICLR 2026</sub> | **95** | 95 | 66 | - |
+| 8 | [Parcae: Scaling Laws For Stable Looped Language Models](https://arxiv.org/abs/2604.12946) · **[deep card](docs/en/2604.12946.md)**<br><sub>2026-04-14 · Hayden Prairie et al.</sub> | **89** | 89 | 195 | 1,728 |
+| 9 | [Looped Transformers as Programmable Computers](https://arxiv.org/abs/2301.13196)<br><sub>2023-01-30 · Angeliki Giannou et al.</sub> | **87** | 330 | - | - |
+| 10 | [Teaching Pretrained Language Models to Think Deeper with Retrofitted Recurrence](https://arxiv.org/abs/2511.07384) · **[deep card](docs/en/2511.07384.md)**<br><sub>2025-11-10 · Sean McLeish et al.</sub> | **76** | 79 | 72 | 4,351 |
 
-<sub>Core papers of any year (looped or recurrent-depth Transformer language models), ranked by an impact score out of 100: citations per year since publication 40% (the higher of the Semantic Scholar and OpenAlex counts; a paper younger than a year counts as one year), GitHub stars of the official code 20%, Hugging Face downloads of the released models in the last 30 days 20%, and likes 20% (Hugging Face paper upvotes and model likes plus Hacker News points). Each count is log-scaled and divided by the largest value among core papers, so the paper that leads on a signal gets that signal's full weight. Counts as of 2026-11-23.</sub>
+<sub>Core papers of any year (looped or recurrent-depth Transformer language models), ranked by citations per year: total citations (the higher of the Semantic Scholar and OpenAlex counts) divided by the years from the first public version to 2026-11-23, counting at least one year. GitHub stars of the official code and Hugging Face downloads of the released weights in the last 30 days are shown for reference and do not affect the order.</sub>
 
 ## What this list adds
 

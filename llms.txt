@@ -17,20 +17,20 @@ Ranked by likes plus GitHub stars per day since release. Core = looped or recurr
 - [Folding Language Models into Themselves](https://arxiv.org/abs/2611.18113): 0.6 per day; released 2026-11-13; likes 0, stars 6.
 - [LoopFill: Pipelined Multi-Token Speculative Decoding for Looped Transformers](https://arxiv.org/abs/2611.19649): 0.6 per day; released 2026-11-14; likes 5, stars 0.
 
-## Top 10 must-read: core papers of any year
+## Top 10 must-read: core papers of any year, by citations per year
 
-Impact score out of 100: citations per year 40%, stars 20%, downloads 20%, likes 20%; each count log-scaled and divided by the maximum among core papers. Likes are Hugging Face paper upvotes and model likes plus Hacker News points.
+Citations per year = total citations (the higher of Semantic Scholar and OpenAlex) divided by the years since the first public version, at least one. Stars and 30-day downloads are context only.
 
-- [Scaling up Test-Time Compute with Latent Reasoning: A Recurrent Depth Approach](https://arxiv.org/abs/2502.05171): score 91; citations 590 (330 per year), stars 998, downloads (30 days) 22435, likes 634.
-- [Scaling Latent Reasoning via Looped Language Models](https://arxiv.org/abs/2510.25741): score 73; citations 267 (250 per year), stars 0, downloads (30 days) 59421, likes 711.
-- [Parcae: Scaling Laws For Stable Looped Language Models](https://arxiv.org/abs/2604.12946): score 66; citations 89 (89 per year), stars 195, downloads (30 days) 1728, likes 29.
-- [Teaching Pretrained Language Models to Think Deeper with Retrofitted Recurrence](https://arxiv.org/abs/2511.07384): score 64; citations 79 (76 per year), stars 72, downloads (30 days) 4351, likes 29.
-- [Mixture-of-Recursions: Learning Dynamic Recursive Depths for Adaptive Token-Level Computation](https://arxiv.org/abs/2507.10524): score 61; citations 204 (150 per year), stars 652, downloads (30 days) 0, likes 79.
-- [Deep Equilibrium Models](https://arxiv.org/abs/1909.01377): score 54; citations 1104 (153 per year), stars 815, downloads (30 days) 0, likes 1.
-- [HRM-Text: Efficient Pretraining Beyond Scaling](https://arxiv.org/abs/2605.20613): score 50; citations 16 (16 per year), stars 2348, downloads (30 days) 0, likes 100.
-- [LoopFormer: Elastic-Depth Looped Transformers for Latent Reasoning via Shortcut Modulation](https://arxiv.org/abs/2602.11451): score 49; citations 95 (95 per year), stars 66, downloads (30 days) 0, likes 18.
-- [Looped Transformers are Better at Learning Learning Algorithms](https://arxiv.org/abs/2311.12424): score 42; citations 204 (68 per year), stars 74, downloads (30 days) 0, likes 1.
-- [MoEUT: Mixture-of-Experts Universal Transformers](https://arxiv.org/abs/2405.16039): score 40; citations 89 (36 per year), stars 93, downloads (30 days) 0, likes 3.
+- [Scaling up Test-Time Compute with Latent Reasoning: A Recurrent Depth Approach](https://arxiv.org/abs/2502.05171): 330 citations per year (590 since 2025-02-07); stars 998, downloads (30 days) 22435.
+- [Scaling Latent Reasoning via Looped Language Models](https://arxiv.org/abs/2510.25741): 250 citations per year (267 since 2025-10-29); stars 0, downloads (30 days) 59421.
+- [Reasoning with Latent Thoughts: On the Power of Looped Transformers](https://arxiv.org/abs/2502.17416): 193 citations per year (337 since 2025-02-24); stars 0, downloads (30 days) 0.
+- [Deep Equilibrium Models](https://arxiv.org/abs/1909.01377): 153 citations per year (1104 since 2019-09-03); stars 815, downloads (30 days) 0.
+- [Mixture-of-Recursions: Learning Dynamic Recursive Depths for Adaptive Token-Level Computation](https://arxiv.org/abs/2507.10524): 150 citations per year (204 since 2025-07-14); stars 652, downloads (30 days) 0.
+- [Universal Transformers](https://arxiv.org/abs/1807.03819): 147 citations per year (1233 since 2018-07-10); stars 0, downloads (30 days) 0.
+- [LoopFormer: Elastic-Depth Looped Transformers for Latent Reasoning via Shortcut Modulation](https://arxiv.org/abs/2602.11451): 95 citations per year (95 since 2026-02-11); stars 66, downloads (30 days) 0.
+- [Parcae: Scaling Laws For Stable Looped Language Models](https://arxiv.org/abs/2604.12946): 89 citations per year (89 since 2026-04-14); stars 195, downloads (30 days) 1728.
+- [Looped Transformers as Programmable Computers](https://arxiv.org/abs/2301.13196): 87 citations per year (330 since 2023-01-30); stars 0, downloads (30 days) 0.
+- [Teaching Pretrained Language Models to Think Deeper with Retrofitted Recurrence](https://arxiv.org/abs/2511.07384): 76 citations per year (79 since 2025-11-10); stars 72, downloads (30 days) 4351.
 
 ## Deep cards
 

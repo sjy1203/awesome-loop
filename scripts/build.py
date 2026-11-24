@@ -11,7 +11,6 @@ import argparse
 import datetime
 import html
 import json
-import math
 import os
 import sys
 import urllib.parse
@@ -30,8 +29,6 @@ FACETS = ("placement", "sharing", "depth_train", "depth_test", "injection", "kv"
 STANCE_MARK = {"supports": "+", "against": "-", "partial": "~"}
 MILESTONES = [("1807.03819", "Universal Transformers"), ("2502.05171", "Huginn"), ("2510.25741", "Ouro"),
               ("tml-inkling-2-mini", "Inkling 2 Mini"), ("zai-glm-5-4", "GLM-5.4")]
-# Impact score weights for the top-10 list; likes = HF paper upvotes + HF model likes + Hacker News points.
-SCORE_WEIGHTS = (("cites_per_year", 0.4), ("stars", 0.2), ("downloads", 0.2), ("likes", 0.2))
 TREND_DAYS = 30  # the trending list covers papers released this many days before the metrics date
 RELATED = [("Awesome Loop Models (huskydoge)", "https://github.com/huskydoge/Awesome-Loop-Models"),
            ("Awesome Loop Transformers (Mrkkew)", "https://github.com/Mrkkew/Awesome-Loop-Transformers"),
@@ -52,15 +49,12 @@ UI = {
                 ("Top 10", "top-10-must-read"), ("Deep cards", "deep-cards"), ("All papers", "all-papers"),
                 ("Design space", "design-space"), ("Open questions", "open-questions"), ("Open models", "open-models")],
         "must_head": "Top 10 must-read",
-        "must_note": ("Core papers of any year (looped or recurrent-depth Transformer language models), ranked by an "
-                      "impact score out of 100: citations per year since "
-                      "publication 40% (the higher of the Semantic Scholar and OpenAlex counts; a paper younger than "
-                      "a year counts as one year), GitHub stars of the official code 20%, Hugging Face downloads of "
-                      "the released models in the last 30 days 20%, and likes 20% (Hugging Face paper upvotes and "
-                      "model likes plus Hacker News points). Each count is log-scaled and divided by the largest value "
-                      "among core papers, so the paper that leads on a signal gets that signal's full weight. Counts "
-                      "as of {date}."),
-        "cols_must": ["#", "Paper", "Score", "Citations / year", "Stars", "Downloads (30 days)", "Likes"],
+        "must_note": ("Core papers of any year (looped or recurrent-depth Transformer language models), ranked by "
+                      "citations per year: total citations (the higher of the Semantic Scholar and OpenAlex counts) "
+                      "divided by the years from the first public version to {date}, counting at least one year. "
+                      "GitHub stars of the official code and Hugging Face downloads of the released weights in the "
+                      "last 30 days are shown for reference and do not affect the order."),
+        "cols_must": ["#", "Paper", "Citations / year", "Citations", "Stars", "Downloads (30 days)"],
         "hot_head": "Trending in the last 30 days",
         "hot_note": ("Core papers (looped or recurrent-depth Transformer language models) released from {start} to "
                      "{date}, ranked by likes and GitHub stars per day since release. Likes are "
@@ -171,11 +165,10 @@ UI = {
         "nav": [("论文数量", "论文数量趋势"), ("趋势榜", "最新趋势榜"), ("必读榜", "top-10-必读榜"), ("精读卡", "精读卡"),
                 ("全部论文", "全部论文"), ("设计空间", "设计空间"), ("开放问题", "开放问题"), ("开源模型", "开源模型")],
         "must_head": "TOP-10 必读榜",
-        "must_note": ("不限年份的核心论文（循环 Transformer 语言模型），按影响力分数（满分 100）排名：年均引用占 40%（取 Semantic Scholar 和 OpenAlex "
-                      "中较高的引用数，除以发表至今的年数，不满一年按一年算），官方代码的 GitHub star 占 20%，开源模型近 "
-                      "30 天的 Hugging Face 下载量占 20%，点赞占 20%（Hugging Face 论文点赞和模型点赞，加上 Hacker News "
-                      "得分）。每项先取对数，再除以核心论文中这一项的最大值，单项第一的论文拿满这一项的权重。数据截至 {date}。"),
-        "cols_must": ["#", "论文", "分数", "年均引用", "Star", "下载（30 天）", "点赞"],
+        "must_note": ("不限年份的核心论文（循环 Transformer 语言模型），按年均引用排名：总引用数（取 Semantic Scholar 和 "
+                      "OpenAlex 中较高的一个）除以首个公开版本到 {date} 的年数，不满一年按一年算。官方代码的 GitHub star "
+                      "和开源权重近 30 天的 Hugging Face 下载量只作参考，不影响排名。"),
+        "cols_must": ["#", "论文", "年均引用", "总引用", "Star", "下载（30 天）"],
         "hot_head": "最新趋势榜",
         "hot_note": ("{start} 至 {date} 发布的核心论文（循环 Transformer 语言模型），按发布以来日均点赞和 "
                      "GitHub star 排名。点赞包括 Hugging Face 论文点赞和模型点赞，以及 Hacker News 得分。这么新的论文"
@@ -661,15 +654,10 @@ def signals(ctx, p):
             "downloads": sum(m.get("downloads", 0) for m in models), "likes": likes}
 
 
-def impact_ranking(ctx):
-    """[(score, paper, signals)] for core papers with score > 0, best first.
-
-    score = 100 * sum over signals of weight * log(1 + count) / log(1 + largest count among core papers).
-    """
-    sig = [(p, signals(ctx, p)) for p in ctx.papers if p["focus"] == "core"]
-    top = {k: max(math.log1p(s[k]) for _, s in sig) for k, _ in SCORE_WEIGHTS}
-    ranked = [(100 * sum(w * math.log1p(s[k]) / top[k] for k, w in SCORE_WEIGHTS if top[k]), p, s) for p, s in sig]
-    return sorted((r for r in ranked if r[0] > 0), key=lambda r: (-r[0], r[1]["id"]))
+def cited_ranking(ctx):
+    """[(paper, signals)] for core papers with citations, by citations per year, best first."""
+    sig = [(p, signals(ctx, p)) for p in ctx.core]
+    return sorted(((p, s) for p, s in sig if s["citations"]), key=lambda r: (-r[1]["cites_per_year"], r[0]["id"]))
 
 
 def hot_ranking(ctx):
@@ -687,14 +675,13 @@ def hot_ranking(ctx):
 
 def must_read(ctx, lang, n=10):
     ui = UI[lang]
-    ranked = impact_ranking(ctx)[:n] if ctx.metrics.get("date") else []
+    ranked = cited_ranking(ctx)[:n] if ctx.metrics.get("date") else []
     if not ranked:
         return []
-    out = [f"## {ui['must_head']}", ""] + table_head(ui["cols_must"], right={0, 2, 3, 4, 5, 6})
-    for i, (score, p, s) in enumerate(ranked, 1):
-        out.append(row([i, paper_cell(p, lang, f"{p['date'][:4]} · {byline(p, lang)}"), f"**{score:.0f}**",
-                        count(round(s["cites_per_year"])), count(s["stars"]), count(s["downloads"]),
-                        count(s["likes"])]))
+    out = [f"## {ui['must_head']}", ""] + table_head(ui["cols_must"], right={0, 2, 3, 4, 5})
+    for i, (p, s) in enumerate(ranked, 1):
+        out.append(row([i, paper_cell(p, lang, f"{p['date']} · {byline(p, lang)}"), f"**{s['cites_per_year']:,.0f}**",
+                        count(s["citations"]), count(s["stars"]), count(s["downloads"])]))
     return out + ["", f"<sub>{ui['must_note'].format(date=ctx.metrics['date'])}</sub>", ""]
 
 
@@ -894,14 +881,12 @@ def llms(ctx, cards_en, questions_en):
                 "Transformer language models (field `focus` in papers.json); related papers are not ranked.", ""]
         out += [f"- [{p['title']}]({p['links']['paper']}): {per_day(rate)} per day; released {p['date']}; "
                 f"likes {s['likes']}, stars {s['stars']}." for rate, p, s in hot_ranking(ctx)[:10]]
-        out += ["", "## Top 10 must-read: core papers of any year", "",
-                "Impact score out of 100: " + ", ".join(f"{k.replace('cites_', 'citations ').replace('_', ' ')} "
-                                                        f"{w:.0%}" for k, w in SCORE_WEIGHTS) +
-                "; each count log-scaled and divided by the maximum among core papers. Likes are Hugging Face paper "
-                "upvotes and model likes plus Hacker News points.", ""]
-        out += [f"- [{p['title']}]({p['links']['paper']}): score {score:.0f}; citations {s['citations']} "
-                f"({s['cites_per_year']:.0f} per year), stars {s['stars']}, downloads (30 days) {s['downloads']}, "
-                f"likes {s['likes']}." for score, p, s in impact_ranking(ctx)[:10]]
+        out += ["", "## Top 10 must-read: core papers of any year, by citations per year", "",
+                "Citations per year = total citations (the higher of Semantic Scholar and OpenAlex) divided by the "
+                "years since the first public version, at least one. Stars and 30-day downloads are context only.", ""]
+        out += [f"- [{p['title']}]({p['links']['paper']}): {s['cites_per_year']:.0f} citations per year "
+                f"({s['citations']} since {p['date']}); stars {s['stars']}, downloads (30 days) {s['downloads']}."
+                for p, s in cited_ranking(ctx)[:10]]
         out.append("")
     out += ["## Deep cards", ""]
     for p in sorted(ctx.deep, key=lambda p: p["date"], reverse=True):
