@@ -1,0 +1,18 @@
+id: "2604.14442"
+tier: radar
+title: "Hierarchical vs. Flat Iteration in Shared-Weight Transformers"
+date: "2026-04-15"
+venue: arXiv
+authors: [Sang-Il Han]
+links:
+  paper: https://arxiv.org/abs/2604.14442
+category: architecture/placement
+focus: core
+facets:
+  placement: hierarchical
+  depth_train: fixed
+  kv: per-pass
+tldr:
+  en: HRM-LM replaces independent Transformer layers with a two-speed recurrent pair shared across steps, a Fast module every step and a Slow module every T steps; at ≈1.2B parameters on OpenWebText, a flat Universal Transformer (UniTF) plateaus at ≈7.6 nats across five runs while HRM-LM converges to 4.18.
+  zh: HRM-LM 用跨步共享参数的两速循环模块对替代独立 Transformer 层：Fast 模块每步运行，Slow 模块每 T 步运行；在 OpenWebText 上约 1.2B 参数规模下，扁平迭代的 Universal Transformer（UniTF）在五次运行中都停在 ≈7.6 nats，而 HRM-LM 收敛到 4.18。
+added: "2026-11-24"

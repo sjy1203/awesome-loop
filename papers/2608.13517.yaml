@@ -1,0 +1,19 @@
+id: "2608.13517"
+tier: radar
+title: "Mimir: A Sub-2B Hierarchical Reasoning Model Trained on Permissible Data Punches Above Its Weight Class"
+date: "2026-08-13"
+venue: arXiv
+authors: [Peter Schneider-Kamp, Jacob Nielsen, Gianluca Barmina, Danial Namazifard, Annemette Brok Pirchert, Kenneth Enevoldsen, Lukas Galke Poech]
+links:
+  paper: https://arxiv.org/abs/2608.13517
+  code: https://github.com/schneiderkamplab/HRM-Text
+category: training
+focus: core
+facets:
+  placement: hierarchical
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Mimir is a 1.78B HRM-Text model whose low- and high-level stacks are applied repeatedly in an interleaved schedule, trained from scratch on 161 permissible datasets; across 20 benchmarks Mimir v1.5 has the best average of all sub-2B models in every domain, beating HRM-Text 1B, Ouro 1.4B and Ouro 2.6B.
+  zh: Mimir 是基于 HRM-Text 的 1.78B 模型，其低层栈和高层栈按交错顺序重复应用，并在 161 个符合许可要求的数据集上从头训练；在 20 个基准上，Mimir v1.5 在每个领域的平均分都是所有 2B 以下模型中最高的，超过 HRM-Text 1B、Ouro 1.4B 和 Ouro 2.6B。
+added: "2026-11-24"

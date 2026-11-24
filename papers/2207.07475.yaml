@@ -1,0 +1,18 @@
+id: "2207.07475"
+tier: radar
+title: "Stable Invariant Models via Koopman Spectra"
+date: "2022-07-15"
+venue: Neural Networks 2023
+authors: [Takuya Konishi, Yoshinobu Kawahara]
+links:
+  paper: https://arxiv.org/abs/2207.07475
+category: theory
+focus: related
+facets:
+  placement: implicit
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: SIM describes the weight-tied, infinitely deep dynamics of DEQs via Koopman and Perron-Frobenius spectra, giving models trained like feedforward networks (single-tier SIMs use three transformations) that converge to a fixed point or a broader invariant set; SIMs match or beat DEQs on several tasks.
+  zh: SIM 用 Koopman 与 Perron-Frobenius 算子的谱刻画 DEQ 权重共享、无限深的动力学，得到可像前馈网络一样训练、收敛到不动点或更一般不变集的模型（single-tier SIM 只需三步变换）；SIM 在多项任务上与 DEQ 相当或更好。
+added: "2026-11-24"

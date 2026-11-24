@@ -1,0 +1,19 @@
+id: "2607.14427"
+tier: radar
+title: "Per-Token Fixed-Point Convergence in Depth-Recurrent Transformers"
+date: "2026-07-15"
+venue: arXiv
+authors: [Joe Logan]
+links:
+  paper: https://arxiv.org/abs/2607.14427
+  code: https://github.com/jlognn/depth-recurrent-convergence
+category: depth
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: sampled
+  kv: n/a
+tldr:
+  en: In a 135M-class depth-recurrent Transformer trained with randomized recursion counts, each token's state converges to a fixed point; a training-free exit that halts a token once its output stabilizes attains uniform depth-8 quality at 4.94 average loops, while a trained linear router gives no reduction.
+  zh: 用随机循环次数训练的 135M 级深度循环 Transformer，其循环状态会收敛到逐 token 的不动点；一种无需训练、在 token 输出稳定后即停止该 token 的规则，以平均 4.94 次循环达到统一深度 8 的质量，而训练得到的线性路由器没有减少任何深度。
+added: "2026-11-24"

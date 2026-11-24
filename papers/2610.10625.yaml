@@ -1,0 +1,18 @@
+id: "2610.10625"
+tier: radar
+title: "Safe at One Loop, Risky at Another: Aligning Safety Across Recurrent Depths in Looped Language Models"
+date: "2026-10-07"
+venue: arXiv
+authors: [Yi Wang, Xiuyuan Qi, Dongqi Han, Dongsheng Li, Wenjie Wang]
+links:
+  paper: https://arxiv.org/abs/2610.10625
+category: safety
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Jailbreaks on Ouro LoopLMs can succeed more at deeper recurrent depths and transfer across depths; SafeBridge adds depth-specific control of shared layers, selective state bridging and joint cross-depth safety supervision, cutting matched- and cross-depth attack success while improving general utility.
+  zh: 对 Ouro 循环语言模型的越狱攻击在更深的循环深度上可能更易成功，且可在深度间迁移；SafeBridge 为共享层加入深度专属控制、选择性状态桥接和跨深度联合安全监督，降低同深度与跨深度攻击的成功率，同时提升通用能力。
+added: "2026-11-24"

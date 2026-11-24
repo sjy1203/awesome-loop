@@ -1,0 +1,19 @@
+id: "2402.14905"
+tier: radar
+title: "MobileLLM: Optimizing Sub-billion Parameter Language Models for On-Device Use Cases"
+date: "2024-02-22"
+venue: ICML 2024
+authors: [Zechun Liu, Changsheng Zhao, Forrest Iandola, Chen Lai, Yuandong Tian, Igor Fedorov, Yunyang Xiong, Ernie Chang, Yangyang Shi, Raghuraman Krishnamoorthi, Liangzhen Lai, Vikas Chandra]
+links:
+  paper: https://arxiv.org/abs/2402.14905
+  code: https://github.com/facebookresearch/MobileLLM
+category: architecture/placement
+focus: related
+facets:
+  placement: n/a
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: MobileLLM builds deep-and-thin sub-billion LMs with embedding sharing and grouped-query attention, gaining 2.7%/4.3% accuracy over prior 125M/350M models; MobileLLM-LS computes each Transformer block twice in a row (immediate block-wise weight sharing), adding 0.7%/0.8% with no increase in model size.
+  zh: MobileLLM 用深而窄的结构、embedding 共享和 grouped-query attention 构建十亿参数以下的 LM，准确率比此前的 125M/350M 模型高 2.7%/4.3%；MobileLLM-LS 让每个 Transformer 块紧接着连续计算两次（相邻块权重共享），在不增加模型大小的情况下再提高 0.7%/0.8%。
+added: "2026-11-24"

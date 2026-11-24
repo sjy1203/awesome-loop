@@ -1,0 +1,18 @@
+id: "2510.18431"
+tier: radar
+title: "ScaleNet: Scaling up Pretrained Neural Networks with Incremental Parameters"
+date: "2025-10-21"
+venue: IEEE TIP
+authors: [Zhiwei Hao, Jianyuan Guo, Li Shen, Kai Han, Yehui Tang, Han Hu, Yunhe Wang]
+links:
+  paper: https://arxiv.org/abs/2510.18431
+category: applications
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: ScaleNet deepens pretrained ViTs by inserting layers that share parameter tensors with corresponding pretrained layers, plus small parallel adapters per layer; a 2× depth-scaled DeiT-Base gains 7.42% accuracy over training from scratch on ImageNet-1K with only one-third of the training epochs.
+  zh: ScaleNet 向预训练 ViT 插入新层，每个新层与对应的预训练层共享参数张量，并为每层加入少量并行 adapter 参数；在 ImageNet-1K 上，深度扩展 2× 的 DeiT-Base 比从头训练准确率高 7.42%，且只需三分之一的训练轮数。
+added: "2026-11-24"

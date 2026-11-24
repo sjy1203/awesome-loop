@@ -1,0 +1,18 @@
+id: "2611.29171"
+tier: radar
+title: "What Makes Recurrence Generalize Across Lengths?"
+date: "2026-11-22"
+venue: NeurIPS 2026 AXIOM Workshop
+authors: [Yoonsung Jung, Sunghun Jung, Louise Nayeong Koh, Yongjun Choi]
+links:
+  paper: https://arxiv.org/abs/2611.29171
+category: understanding
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: curriculum
+  kv: n/a
+tldr:
+  en: On state tracking, recurrent Transformers extrapolate with atomic operation tokens, while multi-token templates and absolute positional encoding limit them; scaling the recurrent operator reaches 35.1% exact match on 20-40 operations after training on 2-10, where larger fixed-depth Transformers stay at 0%.
+  zh: 在状态追踪任务上，循环 Transformer 使用原子操作 token 时能够外推，多 token 模板和绝对位置编码则会限制外推；扩大循环算子后，只在 2-10 步操作上训练即可在 20-40 步上达到 35.1% 的精确匹配率，更大的固定深度 Transformer 仍为 0%。
+added: "2026-11-24"

@@ -1,0 +1,18 @@
+id: "2309.15659"
+tier: radar
+title: "Federated Deep Equilibrium Learning: Harnessing Compact Global Representations to Enhance Personalization"
+date: "2023-09-27"
+venue: CIKM 2024
+authors: [Long Tan Le, Tuan Dung Nguyen, Tung-Anh Nguyen, Choong Seon Hong, Suranga Seneviratne, Wei Bao, Nguyen H. Tran]
+links:
+  paper: https://arxiv.org/abs/2309.15659
+category: applications
+focus: related
+facets:
+  placement: implicit
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: FeDEQ gives federated clients a shared deep equilibrium layer, solved by fixed-point iteration, followed by personalized explicit layers, jointly trained via ADMM; it matches state-of-the-art personalized FL while cutting communication by up to 4 times and training memory by 1.5 times.
+  zh: FeDEQ 让联邦学习各客户端共享一个用不动点迭代求解的深度均衡层，其后接本地个性化显式层，并用 ADMM 联合训练；它与最先进的个性化联邦学习方法性能相当，同时把通信量最多减少 4 倍、训练内存占用减少 1.5 倍。
+added: "2026-11-24"

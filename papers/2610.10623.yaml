@@ -1,0 +1,18 @@
+id: "2610.10623"
+tier: radar
+title: "Recurrent Self-Improvement: Dynamic Cross-Loop On-Policy Distillation for Looped Language Models"
+date: "2026-10-07"
+venue: arXiv
+authors: [Yi Wang, Rui Qian, Yu Li, Haoyang Yao, Wenjie Wang]
+links:
+  paper: https://arxiv.org/abs/2610.10623
+category: training
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: LoopOPD post-trains a looped LM by distilling its frozen terminal-loop policy into an intermediate-loop student on the student's own rollouts, and D-LoopOPD refreshes that teacher as the shared weights update; on Ouro-2.6B-Thinking, D-LoopOPD raises terminal-loop AIME 2024 Avg@16 from 62.08 to 71.67.
+  zh: LoopOPD 在学生自己生成的 rollout 上，把循环语言模型冻结的最后一遍循环策略蒸馏给中间一遍循环的学生策略，D-LoopOPD 则随共享参数更新不断刷新这个教师；在 Ouro-2.6B-Thinking 上，D-LoopOPD 把最后一遍循环的 AIME 2024 Avg@16 从 62.08 提高到 71.67。
+added: "2026-11-24"

@@ -1,0 +1,19 @@
+id: "2609.33144"
+tier: radar
+title: "Beyond the Training Horizon: Mechanisms and Limits of Length Generalization in Looped Transformers"
+date: "2026-09-27"
+venue: arXiv
+authors: [Jia Liang, Xi Jin, Liangming Pan]
+links:
+  paper: https://arxiv.org/abs/2609.33144
+  code: https://github.com/jialiang19/looped-transformer-mechanism-lengthGen
+category: understanding
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: "Compares two looped Transformers: MR-Loop updates an intermediate state at a fixed readout, DR-Loop propagates intermediate states along an advancing frontier; both degrade at greater depths, and live-consumed and fresh-aged residual directions causally control computation beyond the training horizon."
+  zh: 对比两种循环 Transformer 的机制：MR-Loop 在固定读出位置更新中间状态，DR-Loop 沿推进的计算前沿传递中间状态；两者在更深的步数上都会失效，live-consumed 与 fresh-aged 两类残差方向因果地控制信息能否参与后续计算，包括超出训练范围时。
+added: "2026-11-24"

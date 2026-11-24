@@ -1,0 +1,18 @@
+id: "2601.09588"
+tier: radar
+title: "Energy-Entropy Regularization: The True Power of Minimal Looped Transformers"
+date: "2026-01-14"
+venue: arXiv
+authors: [Wai-Lun Lam]
+links:
+  paper: https://arxiv.org/abs/2601.09588
+category: training
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Energy-Entropy Regularization uses Tsallis entropy and Hamiltonian dynamics to reshape the loss landscape of single-head looped Transformers; with it, a single-head looped Transformer with model dimension d = 8 solves the induction head task with input sequence length of 1000 tokens.
+  zh: Energy-Entropy Regularization 利用 Tsallis 熵和哈密顿动力学重塑单头循环 Transformer 的损失地形；借助它，模型维度 d = 8 的单头循环 Transformer 能在输入序列长度为 1000 个 token 时解决 induction head 任务。
+added: "2026-11-24"

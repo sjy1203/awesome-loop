@@ -1,0 +1,18 @@
+id: "2606.29983"
+tier: radar
+title: "Stabilizing Extrapolation in Looped Transformers via Learned Stochastic Stopping"
+date: "2026-06-29"
+venue: NeurIPS 2026
+authors: [Hsun-Yu Kuo, El Mahdi Chayti, Patrik Reizinger, Wieland Brendel, Martin Jaggi]
+links:
+  paper: https://arxiv.org/abs/2606.29983
+category: depth
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: Traces OOD variance in looped Transformers' length generalization to a spurious correlation between sequence length and loop count; random training loop counts reduce it, and learned stochastic stopping (RL-Halting) often improves the accuracy-stability trade-off on binary addition, Dyck-1, Unique Set and Copy.
+  zh: 把循环 Transformer 在长度泛化上分布外方差高的问题归因于序列长度与循环次数之间的虚假相关；训练时随机化循环次数可降低这一方差，学习得到的随机停止（RL-Halting）在 binary addition、Dyck-1、Unique Set 和 Copy 上常能改善准确率与稳定性之间的权衡。
+added: "2026-11-24"

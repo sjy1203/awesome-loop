@@ -1,0 +1,18 @@
+id: "2602.17993"
+tier: radar
+title: "Turbo Connection: Reasoning as Information Flow from Higher to Lower Layers"
+date: "2026-02-20"
+venue: arXiv
+authors: [Mohan Tang, Sidi Lu]
+links:
+  paper: https://arxiv.org/abs/2602.17993
+category: architecture/state
+focus: core
+facets:
+  placement: shifted-parallel
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: TurboConn routes dense residual connections from higher-layer hidden states of token t into lower layers of token t+1 in fine-tuned pretrained LLMs; it gains 0.9% to over 10% on GSM8K, Parity and multi-step arithmetic, and lifts Qwen-3-1.7B on Parity from 53.78% to 100%.
+  zh: TurboConn 在微调预训练 LLM 时，把 token t 多个高层的隐藏状态通过密集残差连接送入 token t+1 的低层；它在 GSM8K、Parity 和多步算术上提升 0.9% 到 10% 以上，并把 Qwen-3-1.7B 在 Parity 上的准确率从 53.78% 提高到 100%。
+added: "2026-11-24"

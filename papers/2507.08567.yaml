@@ -1,0 +1,18 @@
+id: "2507.08567"
+tier: radar
+title: "AbbIE: Autoregressive Block-Based Iterative Encoder for Efficient Sequence Modeling"
+date: "2025-07-11"
+venue: arXiv
+authors: [Preslav Aleksandrov, Meghdad Kurmanji, Fernando Garcia Redondo, David O'Shea, William Shen, Alex Iacob, Lorenzo Sani, Xinchi Qiu, Nicola Cancedda, Nicholas D. Lane]
+links:
+  paper: https://arxiv.org/abs/2507.08567
+category: architecture/state
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: AbbIE loops a middle Body of Transformer blocks between a Head and a Tail, carrying the input through the residual stream; trained with only 2 iterations, it upward generalizes to more test-time iterations, improving zero-shot in-context learning by up to 12% and perplexity by up to 5% at up to 350M parameters.
+  zh: AbbIE 在 Head 和 Tail 之间循环一个由 Transformer 块组成的 Body，并借助残差流携带输入；训练时只用 2 次迭代，测试时能向上泛化到更多迭代，在最大 350M 参数的模型上，zero-shot 上下文学习任务最多提升 12%，语言困惑度最多改善 5%。
+added: "2026-11-24"

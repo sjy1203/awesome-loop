@@ -1,0 +1,18 @@
+id: "2510.13117"
+tier: radar
+title: "On the Reasoning Abilities of Masked Diffusion Language Models"
+date: "2025-10-15"
+venue: arXiv
+authors: [Anej Svete, Ashish Sabharwal]
+links:
+  paper: https://arxiv.org/abs/2510.13117
+category: theory
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: Proves that in the finite-precision log-width setting masked diffusion language models are equivalent to polynomially-padded looped transformers, which repeat a middle block of layers; MDMs can also solve all problems CoT transformers can and are more efficient on some classes, including regular languages.
+  zh: 证明在有限精度、对数宽度设定下，掩码扩散语言模型（MDM）与重复中间层块的多项式填充循环 Transformer 等价；MDM 还能解决 CoT Transformer 可解的所有问题，并在包括正则语言在内的某些问题类上效率更高。
+added: "2026-11-24"

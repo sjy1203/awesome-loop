@@ -1,0 +1,18 @@
+id: "2505.19458"
+tier: radar
+title: "Recurrent Self-Attention Dynamics: An Energy-Agnostic Perspective from Jacobians"
+date: "2025-05-26"
+venue: NeurIPS 2025
+authors: [Akiyoshi Tomihari, Ryo Karakida]
+links:
+  paper: https://arxiv.org/abs/2505.19458
+category: applications
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: "Jacobian analysis of looped self-attention (AKOrN and ItrSA, mostly on Sudoku): normalization curbs SA's Lipschitzness and complex Jacobian eigenvalues, normalized dynamics sit near a critical state that signals high inference performance, and Jacobians yield regularizers and a pseudo-energy."
+  zh: 通过 Jacobian 分析循环自注意力（AKOrN 和 ItrSA，主要在 Sudoku 上）：归一化抑制了自注意力的 Lipschitz 性和 Jacobian 的复特征值，归一化后的动力学接近临界状态，这种临界性预示着较高的推理性能；Jacobian 视角还给出了训练正则化方法和用于监控推理动力学的伪能量。
+added: "2026-11-24"

@@ -1,0 +1,19 @@
+id: "1812.02825"
+tier: radar
+title: "Attending to Mathematical Language with Transformers"
+date: "2018-12-05"
+venue: arXiv
+authors: [Artit Wangperawong]
+links:
+  paper: https://arxiv.org/abs/1812.02825
+  code: https://github.com/artitw/tensor2tensor
+category: theory
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: On character-level evaluation of math expressions with symbolic variables, a standard Transformer, a Universal Transformer with recurrence and an adaptive Universal Transformer with recurrence and adaptive computation time reach test accuracies as high as 76.1%, 78.8% and 84.9%.
+  zh: 在带符号变量的字符级数学表达式求值任务上，标准 Transformer、带循环的 Universal Transformer 和带循环与自适应计算时间的自适应 Universal Transformer 的测试准确率最高分别达到 76.1%、78.8% 和 84.9%。
+added: "2026-11-24"

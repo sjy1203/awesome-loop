@@ -1,0 +1,19 @@
+id: "2210.06425"
+tier: radar
+title: "MiniALBERT: Model Distillation via Parameter-Efficient Recursive Transformers"
+date: "2022-10-12"
+venue: arXiv
+authors: [Mohammadmahdi Nouriborji, Omid Rohanian, Samaneh Kouchaki, David A. Clifton]
+links:
+  paper: https://arxiv.org/abs/2210.06425
+  code: https://github.com/nlpie-research/MiniALBERT
+category: training
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: MiniALBERT distills fully parameterised LMs such as BERT into a compact recursive student that reuses one shared Transformer layer at every iteration, optionally with per-iteration bottleneck adapters; students with no more than 18M parameters perform competitively on general and biomedical NLP tasks.
+  zh: MiniALBERT 把 BERT 等全参数语言模型蒸馏成紧凑的递归学生模型，每次迭代都复用同一个共享 Transformer 层，并可为每次迭代加入 bottleneck adapter；参数不超过 18M 的学生模型在通用和生物医学 NLP 任务上表现有竞争力。
+added: "2026-11-24"

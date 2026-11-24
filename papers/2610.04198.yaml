@@ -1,0 +1,19 @@
+id: "2610.04198"
+tier: radar
+title: "ALoDLM: Adaptively Looped Diffusion Language Models"
+date: "2026-10-03"
+venue: arXiv
+authors: [Liancheng Fang, Zhuowei Li, Youngeun Kim, Tianchen Zhao, Rajat Koner, Jiaye Wu, Linghan Xu, Xuanbai Chen, Xiang Xu, Zheng Zhang, Jakub Zablocki, Nishant Sankaran, Yifan Xing]
+links:
+  paper: https://arxiv.org/abs/2610.04198
+  code: https://github.com/amazon-science/ALoDLM
+category: depth
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: adaptive
+  kv: per-pass
+tldr:
+  en: ALoDLM converts Qwen3 into a diffusion language model whose recurrent core gives unresolved tokens extra passes while confident tokens commit as context, with exit schedules learned through a NELBO; at 1.7B and 8B it beats all evaluated DLMs and the AR baselines in average score on eleven benchmarks.
+  zh: ALoDLM 把 Qwen3 转换为扩散语言模型：循环核心对未确定的 token 继续做额外循环精炼，已确定的 token 作为离散上下文提交，退出调度通过 NELBO 学习；在 1.7B 和 8B 规模上，它在十一个基准上的平均分超过所有评测的 DLM 和对应的 AR 基线。
+added: "2026-11-24"

@@ -1,0 +1,18 @@
+id: "2610.22075"
+tier: radar
+title: "Retrofitting Recurrent Vision-Language Models from Pretrained Backbones"
+date: "2026-10-15"
+venue: arXiv
+authors: [Madhav Iyengar, Andreas Geiger, Hilde Kühne]
+links:
+  paper: https://arxiv.org/abs/2610.22075
+category: training
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: per-pass
+tldr:
+  en: Retrofits TinyLLaVA-1.4B into a recurrent VLM by pruning language-backbone layers and looping a subset of the rest through a linear adapter, recovered with three-stage training and distillation; it beats the unpruned baseline trained on the same recovery data while storing 23.3% fewer language parameters.
+  zh: 把 TinyLLaVA-1.4B 改造成循环视觉语言模型：剪掉语言骨干中的部分层，经线性 adapter 循环剩余层中的一段，并用三阶段恢复训练和蒸馏恢复性能；它优于用相同恢复数据训练的未剪枝基线，同时语言参数少 23.3%。
+added: "2026-11-24"

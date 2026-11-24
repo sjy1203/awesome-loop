@@ -1,0 +1,18 @@
+id: "2510.10089"
+tier: radar
+title: "What Makes Looped Transformers Perform Better Than Non-Recursive Ones"
+date: "2025-10-11"
+venue: arXiv
+authors: [Zixuan Gong, Yong Liu, Jiaye Teng]
+links:
+  paper: https://arxiv.org/abs/2510.10089
+category: understanding
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: curriculum
+  kv: n/a
+tldr:
+  en: The paper attributes the advantage of looped Transformers (Looped-Attn) over non-recursive ones to a conjectured landscape-level bias toward steep River-V-Valleys, and proposes SHIFT, which trains Single-Attn first and then switches to Looped-Attn to accelerate training with comparable performance.
+  zh: 该文把循环 Transformer（Looped-Attn）优于非循环 Transformer 的原因归结为一种推测的损失地形偏置，即偏向陡峭的 River-V-Valley；并提出 SHIFT，先训练 Single-Attn 再切换到 Looped-Attn，在性能相当的情况下加快训练。
+added: "2026-11-24"

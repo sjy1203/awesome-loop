@@ -1,0 +1,19 @@
+id: "2610.25646"
+tier: radar
+title: "Spherical Fixed-Point Reasoners: Adaptive Loop Halting on the Hypersphere"
+date: "2026-10-19"
+venue: arXiv
+authors: [Arber Zela, Artavazd Maranjyan, Pol Puigdemont, David Berghaus, Valentyn Boreiko, Volkan Cevher]
+links:
+  paper: https://arxiv.org/abs/2610.25646
+  code: https://github.com/arberzela/sfprm
+category: applications
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: SFPRM runs FPRM's damped fixed-point loop of a weight-tied nGPT block on the unit hypersphere, so injection, damping and halting become geodesic operations with proven convergence; it reaches 96.6%, 87.9% and 59.1% test accuracy on Sudoku-Extreme, Maze-Hard and Mini-ARC, outperforming FPRM.
+  zh: SFPRM 把 FPRM 中权重共享 nGPT 块的阻尼不动点循环放到单位超球面上运行，使输入注入、阻尼和停止都成为测地线操作，并证明了收敛性；它在 Sudoku-Extreme、Maze-Hard 和 Mini-ARC 上的测试准确率分别为 96.6%、87.9% 和 59.1%，超过 FPRM。
+added: "2026-11-24"

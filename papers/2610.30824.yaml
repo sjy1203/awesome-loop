@@ -1,0 +1,18 @@
+id: "2610.30824"
+tier: radar
+title: "Loop to Look Better: Learning Adaptive Depth for Question-Guided Perception in Vision-Language Models"
+date: "2026-10-22"
+venue: arXiv
+authors: [Wencheng Ye, Anning Hu, Hongye Fang, Tianyi Wang, Junchi Yan]
+links:
+  paper: https://arxiv.org/abs/2610.30824
+category: applications
+focus: related
+facets:
+  placement: encoder
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: LoopLook loops a middle-to-late window of a pretrained VLM's vision encoder with question-conditioned modulation, a learned exit gate and token-wise Mixture-of-Looks over loop states; across four backbones it gains up to 8.6% on MMStar and 8.1% on HallusionBench while adding 5.1-6.5% to time to first token.
+  zh: LoopLook 在预训练 VLM 的视觉编码器中循环中后段的一个层窗口，配合问题条件调制、学习的退出门和按 token 的 Mixture-of-Looks 融合各次循环的状态；在四个主干上，MMStar 最多提升 8.6%，HallusionBench 最多提升 8.1%，首 token 时间（TTFT）仅增加 5.1-6.5%。
+added: "2026-11-24"

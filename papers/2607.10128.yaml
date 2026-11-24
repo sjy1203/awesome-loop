@@ -1,0 +1,18 @@
+id: "2607.10128"
+tier: radar
+title: "Energy-guided Recursive Model"
+date: "2026-07-11"
+venue: arXiv
+authors: [Yifei Zhao, Ying Tang]
+links:
+  paper: https://arxiv.org/abs/2607.10128
+category: applications
+focus: related
+facets:
+  placement: n/a
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: ERM uses Hopfield-type memories of valid local and global structures to assign energies to a recursive model's candidate trajectories, which guide selection and suggest an effective recurrent depth; it reaches 98.97% on Sudoku, 88.04% on PPBench and 99.30% on Maze, and cuts RedPajama-V2 perplexity by 1.74%.
+  zh: ERM 用记录有效局部与全局结构的 Hopfield 型记忆为递归模型的候选轨迹赋予能量，用来选择候选并给出有效的递归深度范围；在 Sudoku 上达到 98.97%，PPBench 上达到 88.04%，Maze 上达到 99.30%，并把 RedPajama-V2 困惑度降低 1.74%。
+added: "2026-11-24"

@@ -1,0 +1,19 @@
+id: "2510.12773"
+tier: radar
+title: "Dr.LLM: Dynamic Layer Routing in LLMs"
+date: "2025-10-14"
+venue: ICLR 2026
+authors: [Ahmed Heakl, Martin Gubri, Salman Khan, Sangdoo Yun, Seong Joon Oh]
+links:
+  paper: https://arxiv.org/abs/2510.12773
+  code: https://github.com/parameterlab/dr-llm
+category: depth
+focus: core
+facets:
+  placement: n/a
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: Dr.LLM equips a frozen pretrained LLM with lightweight per-layer routers that skip, execute, or repeat each block, trained on MCTS-derived layer configurations; on ARC and DART it improves accuracy by up to +3.4%p while saving 5 layers per example on average.
+  zh: Dr.LLM 为冻结的预训练 LLM 的每一层配备轻量路由器，决定跳过、执行还是重复该块，路由器用 MCTS 搜得的层配置训练；在 ARC 和 DART 上，它把准确率最多提高 +3.4%p，同时平均每个样本少执行 5 层。
+added: "2026-11-24"

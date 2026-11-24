@@ -1,0 +1,18 @@
+id: "2608.22117"
+tier: radar
+title: "TANGO: Treating Tokens as Operators"
+date: "2026-08-22"
+venue: arXiv
+authors: [Joshua Nunley]
+links:
+  paper: https://arxiv.org/abs/2608.22117
+category: architecture/placement
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: TANGO merges attention and FFN in a looped model's shared block into one operator where attention-averaged source-token gates scale destination features; at matched parameters and data it has the lowest mean test NLL in all 16 settings, and its development loss never rises from depth 4 to 8 to 16.
+  zh: TANGO 把循环模型共享块中的注意力和 FFN 合并为一个算子：注意力对各源 token 的门控取平均，再用来缩放目标位置的特征；在参数量和训练数据相同时，它在全部 16 个设置中平均测试 NLL 最低，深度从 4 增至 8 再到 16 时其开发集损失从未上升。
+added: "2026-11-24"

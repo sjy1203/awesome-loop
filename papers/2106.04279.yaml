@@ -1,0 +1,18 @@
+id: "2106.04279"
+tier: radar
+title: "Staircase Attention for Recurrent Processing of Sequences"
+date: "2021-06-08"
+venue: arXiv
+authors: [Da Ju, Stephen Roller, Sainbayar Sukhbaatar, Jason Weston]
+links:
+  paper: https://arxiv.org/abs/2106.04279
+category: architecture/state
+focus: core
+facets:
+  placement: shifted-parallel
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Staircase attention runs a shared Transformer core chunk by chunk, carrying backward tokens so each token passes through the core N times (Ladder repeats it on the full sequence); at equal parameters it solves tracking tasks Transformers fail and lowers language-modeling and dialogue perplexity.
+  zh: Staircase attention 让共享的 Transformer 核心逐 chunk 处理序列，并在步与步之间传递 backward token，使每个 token 经过核心 N 次（Ladder 变体则在完整序列上重复该核心）；参数量相同时，它能解决 Transformer 做不到的追踪任务，并降低语言建模和对话任务的困惑度。
+added: "2026-11-24"

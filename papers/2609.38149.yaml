@@ -1,0 +1,19 @@
+id: "2609.38149"
+tier: radar
+title: "Pretraining Latent Information Feedback Transformers with Teacher Supervision"
+date: "2026-09-29"
+venue: arXiv
+authors: [Dor Tirosh, Ido Amos, Mor Geva]
+links:
+  paper: https://arxiv.org/abs/2609.38149
+  code: https://github.com/dortirosh1/LIFT
+category: architecture/state
+focus: core
+facets:
+  placement: shifted-parallel
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: LIFT feeds each position's predicted state, a next-token distribution, back as input at the next position and trains in parallel on states precomputed by a pretrained teacher LM; from 135M to 1B parameters it beats standard Transformers at matched tokens and is on par with or ahead of compute-matched ones.
+  zh: LIFT 把每个位置预测的状态（下一 token 分布）作为输入送回下一个位置，训练时使用预训练教师 LM 预先算好的状态，因此可在各位置上并行；在 135M 到 1B 参数规模上，它在 token 数相同时优于标准 Transformer，并与算力相同的 Transformer 持平或更好。
+added: "2026-11-24"

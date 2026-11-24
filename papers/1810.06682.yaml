@@ -1,0 +1,19 @@
+id: "1810.06682"
+tier: radar
+title: "Trellis Networks for Sequence Modeling"
+date: "2018-10-15"
+venue: ICLR 2019
+authors: [Shaojie Bai, J. Zico Kolter, Vladlen Koltun]
+links:
+  paper: https://arxiv.org/abs/1810.06682
+  code: https://github.com/locuslab/trellisnet
+category: architecture/placement
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: TrellisNet is a temporal convolutional network whose weights are tied across depth and whose input is injected into every layer, generalizing truncated RNNs; it outperforms the then state of the art on word- and character-level language modeling and long-term memory stress tests.
+  zh: TrellisNet 是一种在深度方向上绑定权重、并把输入直接注入每一层的时间卷积网络，可看作截断 RNN 的推广；它在词级和字符级语言建模以及长期记忆压力测试上超过了当时的最佳方法。
+added: "2026-11-24"

@@ -1,0 +1,18 @@
+id: "2609.36653"
+tier: radar
+title: "Scheduling Recursive Reasoning in Looped Transformers"
+date: "2026-09-29"
+venue: arXiv
+authors: [Boyuan Wang, Chengyao Yu, Jiaxi Ren, Hongxin Wei, Bingyi Jing, Yuxin Tao]
+links:
+  paper: https://arxiv.org/abs/2609.36653
+category: architecture/state
+focus: core
+facets:
+  placement: n/a
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: TAPS adapts the scale of each recurrent update online from the balance of persistent progress and fluctuation, instead of a fixed unit scale; training-free, it improves TRM on Sudoku and Maze and Ouro and Huginn on language benchmarks, and with training it reaches up to 1.56 times wall-clock speedup at matched accuracy.
+  zh: TAPS 依据持续进展与波动的平衡在线调整每次循环更新的步长，取代固定的单位步长；无需重新训练即可提升 TRM 在数独和迷宫上、Ouro 和 Huginn 在语言基准上的准确率，结合训练时在准确率持平的情况下最高带来 1.56 倍的实际运行时间加速。
+added: "2026-11-24"

@@ -1,0 +1,18 @@
+id: "2501.15665"
+tier: radar
+title: "StagFormer: Time Staggering Transformer Decoding for RunningLayers In Parallel"
+date: "2025-01-26"
+venue: arXiv
+authors: [Dylan Cutler, Arun Kandoor, Nishanth Dikkala, Nikunj Saunshi, Xin Wang, Rina Panigrahy]
+links:
+  paper: https://arxiv.org/abs/2501.15665
+category: systems
+focus: core
+facets:
+  placement: shifted-parallel
+  depth_train: fixed
+  kv: per-pass
+tldr:
+  en: StagFormer lets a later Transformer stack see earlier-stack outputs only for past tokens, so stacks run in parallel during decoding; when its 2 staggered 18-layer stacks share all weights except cross-attention, it reaches 3.896 Pile perplexity vs 4.026 for the 18-layer and 3.780 for the 36-layer baseline.
+  zh: StagFormer 让后一个 Transformer 栈只能看到前一个栈对过去 token 的输出，使各栈在解码时并行执行；当 2 个交错的 18 层栈共享除 cross-attention 外的全部权重时，Pile 困惑度为 3.896，18 层和 36 层基线分别为 4.026 和 3.780。
+added: "2026-11-24"

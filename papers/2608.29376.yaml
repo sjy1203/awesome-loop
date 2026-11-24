@@ -1,0 +1,19 @@
+id: "2608.29376"
+tier: radar
+title: "Evaluating Tiny Recursive Models Across Training for Code Generation"
+date: "2026-08-29"
+venue: CASCON 2026
+authors: [Anjani Sirivella, Aanisha Newaz, Glaucia Melo]
+links:
+  paper: https://arxiv.org/abs/2608.29376
+  code: https://doi.org/10.5281/zenodo.21347848
+category: understanding
+focus: core
+facets:
+  placement: hierarchical
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Compares a ~28M-parameter autoregressive Tiny Recursive Model (TRM-AR) that reuses one two-layer block with parameter- and depth-matched Transformers on Python code generation; it beats the parameter-matched control at roughly 175 times its per-step cost, but the depth-matched model fits and generates better.
+  zh: 在 Python 代码生成任务上，比较约 28M 参数、反复使用同一个两层块的自回归 Tiny Recursive Model（TRM-AR）与参数匹配、深度匹配的 Transformer；TRM-AR 优于参数匹配对照，但每步成本约为后者的 175 倍，而深度匹配模型的拟合与生成都更好。
+added: "2026-11-24"

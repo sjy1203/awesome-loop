@@ -1,0 +1,18 @@
+id: "2610.00673"
+tier: radar
+title: "Closing the Loop: Practical Training Recipes for Looped Language Models"
+date: "2026-09-30"
+venue: arXiv
+authors: [Andrei Marchenko, Viacheslav Bezrukov, Oleg Kashurin, Inessa Fedorova, Dmitry Bocharov, Yuliana Shakhvalieva, Maria Tikhonova, Valerii Ternovskii]
+links:
+  paper: https://arxiv.org/abs/2610.00673
+category: training
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: Closing the Loop trains a 1.4B looped LM from scratch on 310B tokens instead of Ouro's 7.7T, beating a parameter-matched dense model on all 12 benchmarks (+14 points on GSM8K, +10 on MATH, +22 on DROP), and converts Qwen3-1.7B-Base into Looped Qwen with one learned input-mixing scalar and a smoothed exit loss.
+  zh: Closing the Loop 用 310B token（Ouro 用 7.7T）从头训练 1.4B 循环语言模型，在全部 12 个基准上超过参数匹配的稠密模型（GSM8K +14 分、MATH +10、DROP +22），并只用一个可学习的输入混合标量和平滑退出损失把 Qwen3-1.7B-Base 转换为 Looped Qwen。
+added: "2026-11-24"

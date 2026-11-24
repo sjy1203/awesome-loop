@@ -1,0 +1,18 @@
+id: "2602.05359"
+tier: radar
+title: "Multimodal Latent Reasoning via Hierarchical Visual Cues Injection"
+date: "2026-02-05"
+venue: arXiv
+authors: [Yiming Zhang, Qiangyu Yan, Borui Jiang, Kai Han]
+links:
+  paper: https://arxiv.org/abs/2602.05359
+category: architecture/state
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: sampled
+  kv: n/a
+tldr:
+  en: HIVE builds a multimodal model on Huginn's recurrent core and injects ViT features from layers 6, 12, 18 and 24 into the first recurrent iterations, one tier per step; on ScienceQA-Img accuracy rises from 32.82% at r=1 to 91.57% at r=32, vs 89.39% without hierarchical cues.
+  zh: HIVE 在 Huginn 的循环核心块上构建多模态模型，把 ViT 第 6、12、18、24 层的特征注入前几次循环迭代，每步一层；在 ScienceQA-Img 上，准确率从 r=1 时的 32.82% 升至 r=32 时的 91.57%，不用层级视觉线索时为 89.39%。
+added: "2026-11-24"

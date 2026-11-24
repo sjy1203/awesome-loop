@@ -1,0 +1,18 @@
+id: "2605.03999"
+tier: radar
+title: "RD-ViT: Recurrent-Depth Vision Transformer for Semantic Segmentation with Reduced Data Dependence Extending the Recurrent-Depth Transformer Architecture to Dense Prediction"
+date: "2026-05-05"
+venue: arXiv
+authors: [Renjie He]
+links:
+  paper: https://arxiv.org/abs/2605.03999
+category: applications
+focus: related
+facets:
+  placement: prelude-core-coda
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: RD-ViT replaces a ViT's unique blocks with one shared block looped T times between prelude and coda blocks, with LTI-stable injection and ACT halting; on ACDC cardiac MRI it beats standard ViT at 10% training data (Dice 0.774 vs 0.762), and its 3D MoE variant reaches Dice 0.812 with 3.0M parameters.
+  zh: RD-ViT 用一个在 prelude 与 coda 之间循环 T 次的共享块替代 ViT 中各不相同的 Transformer 块，并加入 LTI 稳定注入和 ACT 停止机制；在 ACDC 心脏 MRI 分割上，它在 10% 训练数据时优于标准 ViT（Dice 0.774 vs 0.762），3D MoE 版本以 3.0M 参数达到 Dice 0.812。
+added: "2026-11-24"

@@ -1,0 +1,18 @@
+id: "2409.01531"
+tier: radar
+title: "On the Design Space Between Transformers and Recursive Neural Nets"
+date: "2024-09-03"
+venue: arXiv
+authors: [Jishnu Ray Chowdhury, Cornelia Caragea]
+links:
+  paper: https://arxiv.org/abs/2409.01531
+category: theory
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: Formalizes Neural Data Routers, a Universal Transformer variant sharing parameters across layers, and Continuous Recursive Neural Networks as repeated application of one shared function, showing these strong algorithmic generalizers bridge Transformers and recursive neural nets, and discusses limits.
+  zh: 把 Neural Data Router（一种跨层共享参数的 Universal Transformer 变体）和 Continuous Recursive Neural Network 都形式化为同一个共享函数的反复应用，说明这两个算法泛化能力很强的模型是连接 Transformer 与递归神经网络的桥梁模型，并讨论了它们的局限。
+added: "2026-11-24"

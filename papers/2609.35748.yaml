@@ -1,0 +1,19 @@
+id: "2609.35748"
+tier: radar
+title: "Improving Test-Time Scaling with Adaptive Looped Transformers"
+date: "2026-09-28"
+venue: arXiv
+authors: [Yichen You, Tianyu Fu, Aosong Feng, Xingtai Lv, Xuefei Ning, Ning Ding, Yu Wang]
+links:
+  paper: https://arxiv.org/abs/2609.35748
+  code: https://github.com/thu-nics/TaH
+category: depth
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: per-pass
+tldr:
+  en: TaH2 post-trains a looped Qwen3 backbone jointly with a token-level iteration decider supervised by online lookahead depth labels, so only tokens that benefit get extra iterations; on AIME it raises the accuracy-compute slope by 53% (2.74 vs. 1.79) over the non-looped baseline.
+  zh: TaH2 对循环的 Qwen3 骨干和 token 级迭代决策器进行联合后训练，决策器由在线前瞻深度标签监督，只让受益的 token 获得额外迭代；在 AIME 上，它相对非循环基线把准确率-计算斜率提高 53%（2.74 vs. 1.79）。
+added: "2026-11-24"

@@ -1,0 +1,18 @@
+id: "2605.26106"
+tier: radar
+title: "Looped Diffusion Language Models"
+date: "2026-05-25"
+venue: arXiv
+authors: [Sanghyun Lee, Chunsan Hong, Seungryong Kim, Jonghyun Lee, Jongho Park, Dongmin Park]
+links:
+  paper: https://arxiv.org/abs/2605.26106
+category: architecture/placement
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: sampled
+  kv: n/a
+tldr:
+  en: LoopMDM loops a few early-middle layers of a masked diffusion language model, sampling the loop count in training; it matches same-size MDMs with up to 3.3× fewer training FLOPs, beats them by up to 8.5 points on GSM8K, and scales inference compute by adding loops.
+  zh: LoopMDM 循环掩码扩散语言模型中靠前的几个中间层，训练时随机采样循环次数；它达到同规模 MDM 的性能所需的训练 FLOPs 最多少 3.3×，在 GSM8K 上最多高出 8.5 分，并能通过增加循环次数扩展推理计算。
+added: "2026-11-24"

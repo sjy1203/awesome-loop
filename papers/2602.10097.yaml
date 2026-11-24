@@ -1,0 +1,19 @@
+id: "2602.10097"
+tier: radar
+title: "Step-resolved data attribution for looped transformers"
+date: "2026-02-10"
+venue: arXiv
+authors: [Georgios Kaissis, David Mildenberger, Juan Felipe Gomez, Martin J. Menten, Eleni Triantafillou]
+links:
+  paper: https://arxiv.org/abs/2602.10097
+  code: https://github.com/gkaissis/step-decomposed-influence-oss
+category: understanding
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: Step-Decomposed Influence (SDI) unrolls a looped Transformer to split TracIn data attribution into per-iteration influence scores, using TensorSketch so per-example gradients are never materialised; on looped GPT-style models and algorithmic tasks it matches full-gradient baselines with low error.
+  zh: Step-Decomposed Influence（SDI）展开循环 Transformer 的循环计算，把 TracIn 数据归因拆成每次循环迭代各自的影响分数，并用不显式生成逐样本梯度的 TensorSketch 实现；在循环 GPT 式模型和算法任务上，它与全梯度基线结果一致且误差很低。
+added: "2026-11-24"

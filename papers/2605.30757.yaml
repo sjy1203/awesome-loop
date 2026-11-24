@@ -1,0 +1,18 @@
+id: "2605.30757"
+tier: radar
+title: "Chain-of-Thought and Compressed Looped Transformers: A Memory-Budget Separation"
+date: "2026-05-29"
+venue: arXiv
+authors: [Haozhou Zhang]
+links:
+  paper: https://arxiv.org/abs/2605.30757
+category: theory
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Proves that a looped Transformer whose recurrent state is a small set of latent slots remains a small-space reasoner however long it runs, so under a standard complexity assumption it cannot decide P-complete problems that polynomial-length CoT can; loops carrying state at every input position avoid this limit.
+  zh: 证明循环状态只有少量隐变量槽位的循环 Transformer 无论运行多少步都仍是小空间推理器，因此在标准复杂度假设下无法判定多项式长度 CoT 能判定的 P 完全问题；在每个输入位置都保存状态的循环不受此限制。
+added: "2026-11-24"

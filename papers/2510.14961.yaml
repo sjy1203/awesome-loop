@@ -1,0 +1,19 @@
+id: "2510.14961"
+tier: radar
+title: "Efficient Parallel Samplers for Recurrent-Depth Models and Their Connection to Diffusion Language Models"
+date: "2025-10-16"
+venue: arXiv
+authors: [Jonas Geiping, Xinyu Yang, Guinan Su]
+links:
+  paper: https://arxiv.org/abs/2510.14961
+  code: https://github.com/seal-rg/recurrent-pretraining
+category: systems
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: n/a
+  kv: last-pass
+tldr:
+  en: A diffusion forcing sampler for recurrent-depth models decodes new tokens at every forward pass and keeps refining their latent states in parallel through the recurrence; applied to an existing 3.5B recurrent-depth Transformer without any tuning, it gives up to a 5x speedup.
+  zh: 为循环深度模型设计的 diffusion forcing 采样器在每次前向时都解码新 token，并通过循环并行地继续细化这些 token 的潜状态；无需任何调参直接用于现有的 3.5B 循环深度 Transformer，最高带来 5x 加速。
+added: "2026-11-24"

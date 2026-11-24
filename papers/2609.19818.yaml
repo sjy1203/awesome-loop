@@ -1,0 +1,18 @@
+id: "2609.19818"
+tier: radar
+title: "CoReLoop: Parameter-Efficient Controlled Recurrent Refinement for Audio Deepfake Detection"
+date: "2026-09-17"
+venue: arXiv
+authors: [Kunyu Feng, Yuxiang Wang, Li Wang, Wan Lin, Zhizheng Wu]
+links:
+  paper: https://arxiv.org/abs/2609.19818
+category: applications
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: sampled
+  kv: n/a
+tldr:
+  en: CoReLoop loops a frozen SSL audio deepfake detector's encoder on its own output, adding loop-specific LoRA and light modules that adapt recurrent inputs, regulate state updates and align outputs; on the 24-layer model two passes cut pooled EER from 4.85% to 3.74% while training about 11M of 598M parameters.
+  zh: CoReLoop 把冻结的 SSL 音频深度伪造检测器的编码器输出回送为下一次输入，用循环专属 LoRA 和轻量模块适配循环输入、调节状态更新并对齐输出；在 24 层模型上，两次前向把汇总 EER 从 4.85% 降到 3.74%，只训练 598M 参数中的约 11M。
+added: "2026-11-24"

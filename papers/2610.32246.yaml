@@ -1,0 +1,18 @@
+id: "2610.32246"
+tier: radar
+title: "Do Halting Heads Really Save Compute in Looped Language Models?"
+date: "2026-10-23"
+venue: arXiv
+authors: [Tsung-Han Wu, Minsuk Heo, Kenny Tan]
+links:
+  paper: https://arxiv.org/abs/2610.32246
+category: depth
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: adaptive
+  kv: per-pass
+tldr:
+  en: Pretraining looped LMs up to 1.3B parameters, the paper finds halting heads trained on a mix of all iterations predict under half the iterations while tokens still run almost every iteration, and in batched generation, which waits for the slowest token, a model without a head is almost as good at that cost.
+  zh: 该文从头预训练最大 1.3B 参数的循环语言模型，发现用所有迭代混合训练的停止头预测 token 只需不到一半的迭代，但 token 实际几乎跑满所有迭代；在需等待最慢 token 的批量生成中，不带停止头的模型在同等开销下几乎一样好。
+added: "2026-11-24"

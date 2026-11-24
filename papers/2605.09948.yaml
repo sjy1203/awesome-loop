@@ -1,0 +1,18 @@
+id: "2605.09948"
+tier: radar
+title: "LoopVLA: Learning Sufficiency in Recurrent Refinement for Vision-Language-Action Models"
+date: "2026-05-11"
+venue: arXiv
+authors: [Boyang Shen, Kaixiang Yang, Hao Wang, Qiuyu Yu, Qiang Xie, Qiang Li, Zhiwei Wang]
+links:
+  paper: https://arxiv.org/abs/2605.09948
+category: applications
+focus: related
+facets:
+  placement: partial
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: LoopVLA iterates a shared Transformer block over multimodal tokens, producing a candidate action and a learned sufficiency score at each iteration to decide when to stop; on LIBERO, LIBERO-Plus and VLA-Arena it reduces parameters by 45% and improves inference throughput by up to 1.7 times.
+  zh: LoopVLA 用共享的 Transformer 块反复细化多模态 token，每次迭代都输出候选动作和学习得到的充分性分数来决定何时停止；在 LIBERO、LIBERO-Plus 和 VLA-Arena 上，它把参数量减少 45%，推理吞吐量最多提升 1.7 倍。
+added: "2026-11-24"

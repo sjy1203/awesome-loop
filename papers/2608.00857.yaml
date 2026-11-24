@@ -1,0 +1,19 @@
+id: "2608.00857"
+tier: radar
+title: "REIMU: Efficient Heterogeneous Hierarchical Reasoning for SSL-Based Speech Deepfake Detection"
+date: "2026-08-01"
+venue: arXiv
+authors: [Kwok-Ho Ng, Tingting Song, Bingwen Feng, Peiya Li]
+links:
+  paper: https://arxiv.org/abs/2608.00857
+  code: https://github.com/saki-ciallo/REIMU-SDD
+category: applications
+focus: related
+facets:
+  placement: hierarchical
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: On SSL features for speech deepfake detection, REIMU finds that weight-shared recurrence and HRM-style hierarchy alone do not beat single-pass backbones on ASVspoof 2019 and 2021, but a heterogeneous HRM with self-attention and linear-attention modules stays competitive with 10.8% fewer downstream parameters.
+  zh: REIMU 在基于 SSL 特征的语音深度伪造检测上发现，权重共享循环和 HRM 式层级分解本身在 ASVspoof 2019 和 2021 上并不优于单次前向骨干，而由自注意力与线性注意力模块组成的异构 HRM 在下游参数少 10.8% 的情况下仍有竞争力。
+added: "2026-11-24"

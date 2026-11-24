@@ -1,0 +1,18 @@
+id: "2609.33540"
+tier: radar
+title: "Reasoning on the Simplex: Geometric Fixed-Point Models"
+date: "2026-09-27"
+venue: arXiv
+authors: [Talgat Daulbaev, Ilya Glazkov, Maxim Rakhuba, Ivan Oseledets]
+links:
+  paper: https://arxiv.org/abs/2609.33540
+category: applications
+focus: related
+facets:
+  placement: implicit
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: GFPR iterates a weight-tied map on categorical beliefs over a product of simplices, whose argmax is the answer at every step; at about 7M parameters it reaches 95.1% on Sudoku-Extreme and 92.0% on Maze-Hard, and a 201M language model with 24 Picard steps beats GPT-2 small on four zero-shot tasks.
+  zh: GFPR 在单纯形乘积上的类别信念场上迭代权重共享映射，每一步的 argmax 即为答案；约 7M 参数时，它在 Sudoku-Extreme 上达到 95.1%、Maze-Hard 上达到 92.0%，用同一更新训练的 201M 语言模型在 24 步 Picard 迭代下于四项零样本任务上超过 GPT-2 small。
+added: "2026-11-24"

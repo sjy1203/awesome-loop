@@ -1,0 +1,18 @@
+id: "2610.08830"
+tier: radar
+title: "MoR-MLLM: Mixture of Recursions for Efficient Multimodal Large Language Models"
+date: "2026-09-27"
+venue: arXiv
+authors: [Pengcheng Zheng, Chaoning Zhang, Jiaxin Yan, Sihan Cao, Jianwei Zhang, Xudong Wang, Jiaquan Zhang, Jewon Lee, Tae-Ho Kim, Yang Yang, Heng Tao Shen]
+links:
+  paper: https://arxiv.org/abs/2610.08830
+category: depth
+focus: core
+facets:
+  placement: n/a
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: MoR-MLLM brings Mixture-of-Recursions to multimodal LLMs, giving each token an adaptive recursion depth, trained with a three-stage MoR-Tuning strategy and an entropy-regularized routing loss; versus recent tiny MLLMs it cuts training memory and computation while keeping vision-language performance.
+  zh: MoR-MLLM 把 Mixture-of-Recursions 引入多模态大模型，为每个 token 自适应分配递归深度，并用三阶段 MoR-Tuning 策略和鼓励路由多样性的熵正则化损失稳定训练；与近期的小型 MLLM 相比，它降低了训练显存和计算量，同时在多种视觉语言任务上保持高性能。
+added: "2026-11-24"

@@ -1,0 +1,19 @@
+id: "2610.16427"
+tier: radar
+title: "Resample the Answer: Where to Spend Test-Time Compute in Recursive Reasoning"
+date: "2026-10-12"
+venue: arXiv
+authors: [Maxime Illouz]
+links:
+  paper: https://arxiv.org/abs/2610.16427
+  code: https://github.com/MaximeILL/GAR
+category: applications
+focus: related
+facets:
+  placement: hierarchical
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: Gated Answer Resampling resamples the answer state y of a Tiny Recursive Model and restarts only puzzles its halting head rejects; with at most 64 restarts per puzzle and no training, it lifts TRM from 85.9% to 99.4% on Sudoku-Extreme and from 68.8% to 85.6% on Pencil Puzzle Bench validation.
+  zh: Gated Answer Resampling（GAR）对 Tiny Recursive Model 的答案状态 y 重新采样，只重启被模型自身 halting head 拒绝的谜题；每个谜题最多重启 64 次且无需训练，就把 TRM 在 Sudoku-Extreme 上的准确率从 85.9% 提高到 99.4%，在 Pencil Puzzle Bench 验证集上从 68.8% 提高到 85.6%。
+added: "2026-11-24"

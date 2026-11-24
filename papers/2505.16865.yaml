@@ -1,0 +1,19 @@
+id: "2505.16865"
+tier: radar
+title: "LARES: Latent Reasoning for Sequential Recommendation"
+date: "2025-05-22"
+venue: arXiv
+authors: [Enze Liu, Bowen Zheng, Xiaolei Wang, Wayne Xin Zhao, Jinpeng Wang, Sheng Chen, Ji-Rong Wen]
+links:
+  paper: https://arxiv.org/abs/2505.16865
+  code: https://anonymous.4open.science/r/LARES-E458/
+category: applications
+focus: related
+facets:
+  placement: partial
+  depth_train: sampled
+  kv: n/a
+tldr:
+  en: LARES iterates a core-block after a pre-block so every latent reasoning step refines all item tokens of a user sequence, training with self-supervised alignment and then RL; it beats all baselines on four datasets and raises FMLP-Rec's NDCG@10 by 15.3% on Instrument and 21.4% on Scientific.
+  zh: LARES 在 pre-block 之后循环迭代 core-block，每个潜在推理步都精炼用户序列中的全部物品 token，先做自监督对齐预训练再做 RL 后训练；它在四个数据集上超过所有基线，并把 FMLP-Rec 在 Instrument 和 Scientific 上的 NDCG@10 分别提升 15.3% 和 21.4%。
+added: "2026-11-24"

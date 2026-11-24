@@ -1,0 +1,18 @@
+id: "2609.12531"
+tier: radar
+title: "Temporal Recurrence Favors Fewer Layers"
+date: "2026-09-11"
+venue: arXiv
+authors: [Ivan Anokhin, Johan Obando-Ceron, Irina Rish, Sebastian Risi]
+links:
+  paper: https://arxiv.org/abs/2609.12531
+category: scaling
+focus: core
+facets:
+  placement: shifted-parallel
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: Sweeps within-step depth, expert width and expert count at matched per-step compute for models that carry latent state across steps (the Transformer feeds its final residual stream into the first layer at the next token); on Sokoban and FineWeb, recurrence shifts the best observed allocation toward substantially fewer layers.
+  zh: 针对在步与步之间传递潜在状态的模型（其中 Transformer 把最终残差流送入下一个 token 的第一层），在每步算力大致相同的条件下扫描每步内的层数、专家宽度和每层专家数；在 Sokoban 和 FineWeb 上，循环使最佳观测分配明显偏向更少的层。
+added: "2026-11-24"

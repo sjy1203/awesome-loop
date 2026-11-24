@@ -1,0 +1,18 @@
+id: "2610.02383"
+tier: radar
+title: "The Surprising Effectiveness of Shared Memory in Looped Transformers"
+date: "2026-10-01"
+venue: arXiv
+authors: [Giovanni Monea, Keshav Ramji, Yousef El-Kurdi, Luis A. Lastras, Yoav Artzi, Nathan Godey, Ramón Fernandez Astudillo]
+links:
+  paper: https://arxiv.org/abs/2610.02383
+category: systems
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: first-pass
+tldr:
+  en: LPT pretrains looped LMs where only the first recursion writes a KV cache and later recursions read it plus a short local window; at 150M-1B parameters with five recursions, the hybrid variant cuts FineWeb-Edu validation perplexity by 1.12-1.82 versus a same-size standard Transformer with 76-79% less context memory.
+  zh: LPT 预训练的循环语言模型只让第一次递归写入 KV cache，后续递归读取它并只保留一个短的局部窗口；在 150M-1B 参数、五次递归下，混合变体在 FineWeb-Edu 上的验证困惑度比同规模标准 Transformer 低 1.12-1.82，上下文内存少用 76-79%。
+added: "2026-11-24"

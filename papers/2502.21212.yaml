@@ -1,0 +1,18 @@
+id: "2502.21212"
+tier: radar
+title: "Transformers Learn to Implement Multi-step Gradient Descent with Chain of Thought"
+date: "2025-02-28"
+venue: ICLR 2025
+authors: [Jianhao Huang, Zixuan Wang, Jason D. Lee]
+links:
+  paper: https://arxiv.org/abs/2502.21212
+category: theory
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Proves that with CoT a one-layer linear Transformer learns multi-step gradient descent in context, but without CoT only one step; the same technique shows looped Transformers reach strictly lower asymptotic loss than a non-looped one-layer Transformer on in-context linear regression when L≥2.
+  zh: 证明借助 CoT，单层线性 Transformer 能在上下文中学会多步梯度下降，不用 CoT 时只能执行一步；用同样的技术还证明，在上下文线性回归中，当 L≥2 时循环 Transformer 的渐近损失严格低于不循环的单层 Transformer。
+added: "2026-11-24"

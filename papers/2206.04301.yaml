@@ -1,0 +1,18 @@
+id: "2206.04301"
+tier: radar
+title: "Unveiling Transformers with LEGO: a synthetic reasoning task"
+date: "2022-06-09"
+venue: arXiv
+authors: [Yi Zhang, Arturs Backurs, Sébastien Bubeck, Ronen Eldan, Suriya Gunasekar, Tal Wagner]
+links:
+  paper: https://arxiv.org/abs/2206.04301
+category: understanding
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: "Introduces the LEGO chain-of-reasoning task and compares BERT with weight-tied ALBERT: trained on variables #0-#5, ALBERT reaches near-perfect accuracy on #6 and #7, probing shows it progresses more like a for-loop, and sampling depth between 6 and 12 during training further improves length extrapolation."
+  zh: "提出 LEGO 链式推理任务，并比较 BERT 与跨层权重共享的 ALBERT：只用变量 #0-#5 训练时，ALBERT 在 #6 和 #7 上接近满分，探针显示其逐层推进更像 for 循环；训练时在 6 到 12 之间随机采样深度可进一步改善长度外推。"
+added: "2026-11-24"

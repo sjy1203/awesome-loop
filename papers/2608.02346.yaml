@@ -1,0 +1,18 @@
+id: "2608.02346"
+tier: radar
+title: "Loop-Mamba: A Loop Mamba with Degradation-Aware and Shared Memory for Old Photo Restoration"
+date: "2026-08-03"
+venue: arXiv
+authors: [Runci Bai, Yucheng Xin, Pu Wang, Yongcong Wang, Chen Wu, Dianjie Lu, Guijuan Zhang, Pengwen Dai, Guangwei Gao, Siyuan Yao, Zhuoran Zheng]
+links:
+  paper: https://arxiv.org/abs/2608.02346
+category: applications
+focus: related
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Loop-Mamba restores old photos by repeatedly applying a degradation-guided Mamba state-evolution operator with shared structural memory to one persistent restoration state, 3 cycles by default; on SynOld it has the best PSNR (30.13), SSIM, FSIM and ODRS among compared methods with fewer FLOPs and MACs.
+  zh: Loop-Mamba 在老照片修复中反复用退化引导的 Mamba 状态演化算子和共享结构记忆更新同一个持久的修复状态（默认 3 个循环）；在 SynOld 上，它的 PSNR（30.13）、SSIM、FSIM 和 ODRS 在对比方法中最好，且 FLOPs 和 MACs 更少。
+added: "2026-11-24"

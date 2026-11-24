@@ -1,0 +1,18 @@
+id: "2410.11268"
+tier: radar
+title: "Bypassing the Exponential Dependency: Looped Transformers Efficiently Learn In-context by Multi-step Gradient Descent"
+date: "2024-10-15"
+venue: AISTATS 2025
+authors: [Bo Chen, Xiaoyu Li, Yingyu Liang, Zhenmei Shi, Zhao Song]
+links:
+  paper: https://arxiv.org/abs/2410.11268
+category: theory
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: "Proves that linear looped Transformers implement multi-step gradient descent efficiently for in-context learning on linear vector generation: with a constant input condition number, e.g. n = O(d), they reach small error, avoiding the n = exp(Ω(T)) examples earlier results needed for T loops."
+  zh: 证明线性循环 Transformer 在线性向量生成任务的 in-context learning 中能高效实现多步梯度下降：只要输入数据的条件数为常数（例如 n = O(d)），就能达到较小误差，不再需要以往结果对 T 次循环所要求的 n = exp(Ω(T)) 个上下文示例。
+added: "2026-11-24"

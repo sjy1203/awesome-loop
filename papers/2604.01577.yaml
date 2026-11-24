@@ -1,0 +1,18 @@
+id: "2604.01577"
+tier: radar
+title: "Exploration of Fast-Slow Latent Recurrence for Train-Short, Test-Long Generalization"
+date: "2026-04-02"
+venue: arXiv
+authors: [Shota Takashiro, Masanori Koyama, Takeru Miyato, Yusuke Iwasawa, Yutaka Matsuo, Kohei Hayashi]
+links:
+  paper: https://arxiv.org/abs/2604.01577
+category: applications
+focus: related
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: FSRM applies a weight-shared recurrent core several times per observation and carries the latent state across the stream without reset; trained on Dyck sequences of length ≤40, it keeps ≈80% token accuracy up to length 10^5 and generalizes OOD better than recurrent, state-space and Transformer baselines.
+  zh: FSRM 对每个观测用权重共享的循环核心做多次潜在更新，并把潜在状态不经重置地沿数据流传递；在长度 ≤40 的 Dyck 序列上训练后，它在长度 10^5 时仍保持 ≈80% 的 token 准确率，OOD 泛化优于循环、状态空间和 Transformer 基线。
+added: "2026-11-24"

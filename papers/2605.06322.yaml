@@ -1,0 +1,19 @@
+id: "2605.06322"
+tier: radar
+title: "SMolLM: Small Language Models Learn Small Molecular Grammar"
+date: "2026-05-07"
+venue: arXiv
+authors: [Akhil Jindal, Harang Ju]
+links:
+  paper: https://arxiv.org/abs/2605.06322
+  code: https://github.com/akhljndl/smollm
+category: applications
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: SMolLM, a 53K-parameter weight-shared Transformer, generates novel SMILES with 95% validity on ZINC-250K, outperforming a standard GPT with 10 times more parameters; across passes the same block resolves brackets first, rings second and valence last.
+  zh: SMolLM 是 53K 参数的权重共享 Transformer，在 ZINC-250K 上生成新 SMILES 的有效率为 95%，优于参数多 10 倍的标准 GPT；同一个块在逐次循环中先解决括号，再解决环，最后解决化合价。
+added: "2026-11-24"

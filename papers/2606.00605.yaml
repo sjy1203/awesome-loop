@@ -1,0 +1,18 @@
+id: "2606.00605"
+tier: radar
+title: "Looped Transformers with Layer Normalization Provably Learn the Power Method"
+date: "2026-05-30"
+venue: arXiv
+authors: [Lyumin Wu, Chenyang Zhang, Yuan Cao]
+links:
+  paper: https://arxiv.org/abs/2606.00605
+category: theory
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Proves that a looped linear Transformer with layer normalization, trained by gradient descent only for principal component prediction, converges to the power method, each self-attention layer performing one power iteration; a Transformer without LN cannot exactly learn it even with layerwise guidance.
+  zh: 证明带 layer normalization（LN）的循环线性 Transformer 只以主成分预测为目标、用梯度下降训练时，会收敛到幂迭代法（power method），每个 self-attention 层执行一次幂迭代；不带 LN 的 Transformer 即使有逐层指导也无法精确学到该方法。
+added: "2026-11-24"

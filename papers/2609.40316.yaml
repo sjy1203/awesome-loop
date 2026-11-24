@@ -1,0 +1,18 @@
+id: "2609.40316"
+tier: radar
+title: "Scaling Laws for Looped Mixture of Experts"
+date: "2026-09-30"
+venue: arXiv
+authors: [Yanbei Chen, Anirudh Goyal, Raghuraman Krishnamoorthi]
+links:
+  paper: https://arxiv.org/abs/2609.40316
+category: scaling
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Loop Scaling Laws jointly model recurrence, MoE sparsity, model size and data; looping the middle block gives ~2x total-parameter efficiency on reasoning and sparsity ~3x active-parameter efficiency, and at trillion-token scale a looped MoE matches a ~2x larger non-looped MoE on reasoning at matched compute.
+  zh: Loop Scaling Laws 联合建模循环、MoE 稀疏度、模型规模和数据量；循环中间块在推理任务上带来 ~2x 的总参数效率，稀疏带来 ~3x 的激活参数效率；在万亿 token 规模和相同训练算力下，循环 MoE 在推理基准上追平规模大 ~2x 的非循环 MoE。
+added: "2026-11-24"

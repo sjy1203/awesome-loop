@@ -1,0 +1,18 @@
+id: "2610.30066"
+tier: radar
+title: "Looped Uniform Diffusion Language Models"
+date: "2026-10-21"
+venue: arXiv
+authors: [Saiteja Utpala, Chieh-Hsin Lai, Yuki Mitsufuji, Praneeth Vepakomma]
+links:
+  paper: https://arxiv.org/abs/2610.30066
+category: training
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: sampled
+  kv: n/a
+tldr:
+  en: Looped UDLMs repeat a two-block slice of the denoiser in each denoising step, reaching the validation NLL of a non-looped UDLM trained on about 0.5 trillion tokens with up to 2.8x fewer training FLOPs on OpenWebText and 3.3x fewer on FineWeb-Edu, and up to 9.8% lower generation perplexity at matched NFE.
+  zh: Looped UDLM 在每个去噪步内重复执行去噪器中由两个 Transformer 块组成的切片；它们以最多少 2.8x 的训练 FLOPs（OpenWebText）和少 3.3x 的训练 FLOPs（FineWeb-Edu）达到在约 0.5 万亿个 token 上训练的不循环 UDLM 的验证 NLL，并在相同 NFE 下把生成困惑度最多降低 9.8%。
+added: "2026-11-24"

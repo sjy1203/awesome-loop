@@ -1,0 +1,18 @@
+id: "2609.26487"
+tier: radar
+title: "When Recursive Models Finish Computing"
+date: "2026-09-22"
+venue: arXiv
+authors: [Hare Krishna, Shubham Singh, Stephen Ebert, Hao-Yu Sun]
+links:
+  paper: https://arxiv.org/abs/2609.26487
+category: applications
+focus: related
+facets:
+  placement: hierarchical
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: Extending attention- and MLP-based Tiny Recursive Models from their nominal 16 steps to 512 raises cumulative exact-solve accuracy on 1,000 hard Sudoku puzzles from 59.2% to 87.5% and from 74.4% to 91.9%; completed states are locally contractive along the trajectory while their Jacobians keep strongly expanding directions.
+  zh: 把基于注意力和基于 MLP 的 Tiny Recursive Model 从名义的 16 步递归延长到 512 步，在 1,000 道高难度数独上的累计完全求解准确率分别从 59.2% 升到 87.5%、从 74.4% 升到 91.9%；完成计算的状态沿轨迹方向局部收缩，而其 Jacobian 仍保留强烈扩张的方向。
+added: "2026-11-24"

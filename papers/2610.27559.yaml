@@ -1,0 +1,19 @@
+id: "2610.27559"
+tier: radar
+title: "Exploring Recurrent-Depth Language Models for Multitask Clinical Text Processing"
+date: "2026-10-20"
+venue: arXiv
+authors: [Xi Yang, Guodong Liu, Cheng Peng, Kaleb Smith, Yingying Zhang, Xing He, Yi Guo, Jiang Bian, Haoteng Tang, Yonghui Wu]
+links:
+  paper: https://arxiv.org/abs/2610.27559
+  code: https://github.com/uf-hobi-informatics-lab/Med-Flan
+category: training
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Jointly fine-tunes recurrent-depth LMs (Ouro fixed at four recurrent steps, and HRM-Text-1B) and Qwen3 baselines on 9 clinical NLP datasets; across 13 datasets Ouro-1.4B-Thinking beats Qwen3-1.7B on 11, and Ouro-2.6B-Thinking is competitive with Qwen3-8B on most tasks.
+  zh: 在 9 个临床 NLP 数据集上联合微调循环深度语言模型（固定四个循环步的 Ouro，以及 HRM-Text-1B）和 Qwen3 基线；在 13 个数据集中，Ouro-1.4B-Thinking 在 11 个上超过 Qwen3-1.7B，Ouro-2.6B-Thinking 在多数任务上与 Qwen3-8B 相当。
+added: "2026-11-24"

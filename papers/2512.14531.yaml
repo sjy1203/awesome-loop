@@ -1,0 +1,19 @@
+id: "2512.14531"
+tier: radar
+title: "VersatileFFN: Achieving Parameter Efficiency in LLMs via Adaptive Wide-and-Deep Reuse"
+date: "2025-12-16"
+venue: arXiv
+authors: [Ying Nie, Kai Han, Hongguang Li, Hang Zhou, Tianyu Guo, Enhua Wu, Xinghao Chen, Yunhe Wang]
+links:
+  paper: https://arxiv.org/abs/2512.14531
+  code: https://github.com/huawei-noah/noah-research/tree/master/VersatileFFN
+category: architecture/placement
+focus: core
+facets:
+  placement: partial
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: VersatileFFN reuses one FFN both as sub-experts (width path) and recursively with a learned per-token loop count (depth path), mixed by a difficulty-aware gate; at the 1.21B scale it reaches 60.47% average zero-shot accuracy versus 59.65% for MoE and 60.05% for 6-Loop.
+  zh: VersatileFFN 用同一个 FFN 既构造子专家（宽度路径），又按 token 学习循环次数递归应用（深度路径），并用难度感知门控融合两条路径；在 1.21B 规模上，其平均 zero-shot 准确率为 60.47%，高于 MoE 的 59.65% 和 6-Loop 的 60.05%。
+added: "2026-11-24"

@@ -1,0 +1,18 @@
+id: "2610.05538"
+tier: radar
+title: "LiFT: Loop Flow Transformers"
+date: "2026-10-04"
+venue: arXiv
+authors: [Mohammad Mahdi Derakhshani, Pedro M. P. Curvo, Gertjan J. Burghouts, Jan-Willem van de Meent, Cees G. M. Snoek]
+links:
+  paper: https://arxiv.org/abs/2610.05538
+category: applications
+focus: related
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: LiFT loops a shared DiT core and trains each step toward a point on a straight path from the initial estimate to the flow-matching target, indexed by continuous depth, so it can loop past training depth; on ImageNet 256x256, LiFT-L/2 beats DiT-XL/2 by 3.34 FID with approximately 60% fewer parameters.
+  zh: LiFT 循环使用共享的 DiT 核心，让每一步逼近从初始估计到 flow-matching 目标的直线路径上由连续深度坐标索引的点，因此可以循环到超出训练深度；在 ImageNet 256x256 上，LiFT-L/2 的 FID 比 DiT-XL/2 低 3.34，参数约少 60%。
+added: "2026-11-24"

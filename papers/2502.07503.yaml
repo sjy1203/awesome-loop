@@ -1,0 +1,18 @@
+id: "2502.07503"
+tier: radar
+title: "Recursive Inference Scaling: A Winning Path to Scalable Inference in Language and Multimodal Systems"
+date: "2025-02-11"
+venue: arXiv
+authors: [Ibrahim Alabdulmohsin, Xiaohua Zhai]
+links:
+  paper: https://arxiv.org/abs/2502.07503
+category: architecture/placement
+focus: core
+facets:
+  placement: partial
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: RINS splits a model into two equal blocks and recursively applies the first to its own output before the second; at matched training compute it outperforms +55 other recursion variants in language modeling, improves data scaling exponents and limits, and adds +2% 0-shot ImageNet accuracy for SigLIP-B/16.
+  zh: RINS 把模型分成两个等大的块，先让第一个块对自身输出递归应用多次，再送入第二个块；在训练计算量相同时，它在语言建模上优于 +55 种其他递归变体，改善了数据 scaling law 的渐近极限和指数，并使 SigLIP-B/16 的 0-shot ImageNet 准确率提升 +2%。
+added: "2026-11-24"

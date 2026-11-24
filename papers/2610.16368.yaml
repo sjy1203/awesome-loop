@@ -1,0 +1,19 @@
+id: "2610.16368"
+tier: radar
+title: "LoopQuant: Accurate and Efficient Post-Training Quantization for Looped Transformers"
+date: "2026-10-12"
+venue: arXiv
+authors: [Zhixiong Zhao, Zukang Xu, Xing Hu, Lifeng Liu, Guangyu Sun, Dawei Yang]
+links:
+  paper: https://arxiv.org/abs/2610.16368
+  code: https://github.com/Kishon-zzx/LoopQuant
+category: systems
+focus: core
+facets:
+  placement: n/a
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: LoopQuant is a loop-aware PTQ framework for looped LMs that shares a quantization-friendly representation across loops and allocates activation precision per loop; on Ouro-2.6B its W4A4 surpasses all W4A8 baselines, cuts model memory by 65.3% and decodes 1.7 times faster than BF16.
+  zh: LoopQuant 是面向循环语言模型的 loop-aware PTQ 框架，在各循环间学习共享的易量化表示，并按循环分配激活精度；在 Ouro-2.6B 上，其 W4A4 超过所有 W4A8 基线，模型内存减少 65.3%，解码速度达到 BF16 的 1.7 倍。
+added: "2026-11-24"

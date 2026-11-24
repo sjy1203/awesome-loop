@@ -1,0 +1,19 @@
+id: "2609.38426"
+tier: radar
+title: "LoopVL: Recurrent Visual Intelligence"
+date: "2026-09-29"
+venue: arXiv
+authors: [Zhe Qian, Ziyang Gong, Zhongxing Xu, Hehan Li, Zhonghua Wang, Hanmeng Liu, Liwei Qian, Xin Pei, Peizhi Xu, Fei Luo, Mingxuan Wang, Xue Yang, Shiwei liu, Yanbiao Ma, Junchi Yan, Jungong Han]
+links:
+  paper: https://arxiv.org/abs/2609.38426
+  code: https://github.com/Tier-Flow/LoopVL
+category: architecture/placement
+focus: core
+facets:
+  placement: hierarchical
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: LoopVL-1B runs a joint vision-language state through two shared 16-layer stacks in an [L×3→H]×2 schedule (128 layer calls); trained from scratch on 0.14T tokens, it outperforms a range of similarly sized and larger non-recurrent models on multimodal understanding and visual reasoning benchmarks.
+  zh: LoopVL-1B 让统一的视觉-语言状态按 [L×3→H]×2 的顺序反复经过两个共享的 16 层 Transformer 栈，每次前向共 128 次层调用；它用 0.14T token 从头训练，在多模态理解和视觉推理基准上超过一系列规模相近或更大的非循环模型。
+added: "2026-11-24"

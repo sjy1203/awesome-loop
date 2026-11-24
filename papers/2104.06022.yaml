@@ -1,0 +1,18 @@
+id: "2104.06022"
+tier: radar
+title: "Lessons on Parameter Sharing across Layers in Transformers"
+date: "2021-04-13"
+venue: SustaiNLP 2023
+authors: [Sho Takase, Shun Kiyono]
+links:
+  paper: https://arxiv.org/abs/2104.06022
+category: architecture/placement
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: The paper builds an N-layer Transformer encoder-decoder from M independent layers assigned by sequence, cycle or cycle (rev), relaxing Universal Transformers' one-layer sharing; on WMT English-to-German with M=6 and N=12, all three train faster than Universal Transformers with slightly better BLEU.
+  zh: 论文用 M 个独立层构建 N 层 Transformer 编码器-解码器，按 sequence、cycle 或 cycle (rev) 分配各层参数，放宽了 Universal Transformer 所有层共享一层的做法；在 WMT 英德翻译上取 M=6、N=12 时，三种策略的训练速度都快于 Universal Transformer，BLEU 也略高。
+added: "2026-11-24"

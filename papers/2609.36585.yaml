@@ -1,0 +1,18 @@
+id: "2609.36585"
+tier: radar
+title: "Transformers Stop Thinking Too Early, and a Tiny LoRA Fixes It"
+date: "2026-09-29"
+venue: arXiv
+authors: [Zehao Jin, Ruixuan Deng, Junran Wang]
+links:
+  paper: https://arxiv.org/abs/2609.36585
+category: understanding
+focus: core
+facets:
+  placement: n/a
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: Thirteen base models reliably follow only 1.4-3.6 lines of in-context references and extra pretrained loops add little; a rank-8 LoRA at one early layer, weights frozen, lifts Qwen3-8B from 15.5% to 99% on 24-line chains and lets Ouro-1.4B reach 60 lines after four loops and at least 160 after eight.
+  zh: 十三个预训练基础模型只能可靠地追踪 1.4-3.6 行上下文引用，预训练模型的额外循环帮助不大；冻结全部权重、只在一个早期层加 rank-8 LoRA，就能把 Qwen3-8B 在 24 行链上的精确准确率从 15.5% 提高到 99%，并让 Ouro-1.4B 在四次循环后追踪 60 行、八次循环后至少 160 行。
+added: "2026-11-24"

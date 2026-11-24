@@ -1,0 +1,19 @@
+id: "2509.23184"
+tier: radar
+title: "PonderLM-2: Pretraining LLM with Latent Thoughts in Continuous Space"
+date: "2025-09-27"
+venue: arXiv
+authors: [Boyi Zeng, He Li, Shixiang Song, Yixuan Wang, Zitong Wang, Ziwei He, Xinbing Wang, Zhouhan Lin]
+links:
+  paper: https://arxiv.org/abs/2509.23184
+  code: https://github.com/LUMIA-Group/PonderLM-2
+category: architecture/state
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: per-pass
+tldr:
+  en: PonderLM-2 feeds each position's last hidden state back into the same model as a latent thought, with the same positional encoding, to predict the next token; at identical inference cost, PonderLM-2-Pythia-1.4B pretrained on 300B Pile tokens surpasses vanilla Pythia-2.8B trained on the same data.
+  zh: PonderLM-2 把当前位置的最后隐藏状态作为潜在思维、以相同的位置编码送回同一个模型来预测下一个 token；在相同推理成本下，用 Pile 的 300B token 预训练的 PonderLM-2-Pythia-1.4B 超过用相同数据训练的 vanilla Pythia-2.8B。
+added: "2026-11-24"

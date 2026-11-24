@@ -1,0 +1,18 @@
+id: "2609.36636"
+tier: radar
+title: "What Makes Recurrence Effective in Looped Language Models?"
+date: "2026-09-29"
+venue: arXiv
+authors: [Xinlin Zhuang, Siyuan Wang, Imran Razzak, Weiyang Liu]
+links:
+  paper: https://arxiv.org/abs/2609.36636
+category: understanding
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: "Pretrains looped LMs with a fixed loop count and tests them below, at and beyond it: extra loops help reasoning but hurt knowledge, non-recurrent output layers add robustness to under-unrolling, and channel-wise history-state injection with timestep conditioning better preserves knowledge under extended unrolling."
+  zh: 以固定循环次数从头预训练循环语言模型，并在少于、等于和超过训练循环次数时测试：额外循环有助于推理但损害知识类任务，非循环的输出层提高了循环次数不足时的稳健性，按通道的历史状态注入加 timestep 条件化在延长展开时能更好地保留知识。
+added: "2026-11-24"

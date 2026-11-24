@@ -1,0 +1,18 @@
+id: "2611.27823"
+tier: radar
+title: "Mixture of Latent Recursions for Low-Rank Adaptation"
+date: "2026-11-20"
+venue: arXiv
+authors: [Weixun Luo, Ye Mao, Ranran Huang, Junpeng Jing, Krystian Mikolajczyk]
+links:
+  paper: https://arxiv.org/abs/2611.27823
+category: depth
+focus: core
+facets:
+  placement: partial
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: MoLR recursively refines each token's LoRA down-projected latent with one shared transformation, and a threshold router decides per token whether to recurse again; fine-tuning Llama-3.2-3B on reasoning tasks, it averages 61.21 versus 59.21 for LoRA with negligible parameter overhead.
+  zh: MoLR 用一个共享变换对每个 token 经 LoRA 降维后的潜在表示做递归细化，并由基于阈值的路由器逐 token 决定是否继续递归；在 Llama-3.2-3B 的推理任务微调中平均得分 61.21，高于 LoRA 的 59.21，参数开销可忽略。
+added: "2026-11-24"

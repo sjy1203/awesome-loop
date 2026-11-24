@@ -1,0 +1,18 @@
+id: "2606.20737"
+tier: radar
+title: "Repeated Shared Access Enables Grokking, but Edit Propagation Depends on an Addressable Memory"
+date: "2026-06-17"
+venue: arXiv
+authors: [Yanan Niu]
+links:
+  paper: https://arxiv.org/abs/2606.20737
+category: understanding
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Crossing loop recurrence with shared memory on synthetic knowledge-graph QA, looped recomputation and memory rereading both cross the OOD grokking barrier a dense transformer fails, but a factual edit reaches 2-hop queries mainly with memory (LMC 0.78-0.92, Dense+Mem 0.71-0.96), weakly in Loop (0.04-0.30).
+  zh: 在合成知识图谱问答上交叉比较循环递归与共享记忆：循环重算和反复读取记忆都能跨过 dense Transformer 跨不过的 OOD grokking 门槛，但单条事实编辑向 2-hop 问题的传播主要依赖记忆（LMC 0.78-0.92，Dense+Mem 0.71-0.96），在 Loop 中很弱（0.04-0.30）。
+added: "2026-11-24"

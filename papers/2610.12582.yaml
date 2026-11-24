@@ -1,0 +1,18 @@
+id: "2610.12582"
+tier: radar
+title: "One Model to Loop Them All: Elastic Latent Recurrence for Language Models"
+date: "2026-10-08"
+venue: arXiv
+authors: [Faisal Ladhak, Shantanu Acharya, Santiago Akle Serano, Simeng Sun, Boris Ginsburg, Krishna C Puvvada]
+links:
+  paper: https://arxiv.org/abs/2610.12582
+category: training
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: sampled
+  kv: last-pass
+tldr:
+  en: ELR trains looped LMs without the one-loop tax using a gated state update, loop counts mixed within each optimizer update and loop-index and budget conditioning; on 4B dense and 30B-A3B MoE hybrids, one loop is 0.52 points below and 1.04 above the matched baseline (ten-task average), and four loops add 7.25 and 4.75 points.
+  zh: ELR 用带学习步长的门控状态更新、在每次优化器更新内混合多种循环次数、并以循环序号和预算为条件来训练循环语言模型，避免单循环时落后于同规模非循环模型；在 4B dense 和 30B-A3B MoE 混合模型上，单循环时十项任务平均分别比匹配基线低 0.52 分和高 1.04 分，四次循环再提高 7.25 和 4.75 分。
+added: "2026-11-24"

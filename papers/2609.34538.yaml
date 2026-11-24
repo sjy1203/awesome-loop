@@ -1,0 +1,18 @@
+id: "2609.34538"
+tier: radar
+title: "Shallow Queries, Mature Values: Depth-Asynchronous Self-Speculation for Looped Transformers"
+date: "2026-09-28"
+venue: arXiv
+authors: [Guanghao Li, Zihan Su, Hao Yu, Jinyang Jiang, Tao Ren, Zehao Li, Feng Lu, Ming Tang, Chun Yuan]
+links:
+  paper: https://arxiv.org/abs/2609.34538
+category: systems
+focus: core
+facets:
+  placement: n/a
+  depth_train: n/a
+  kv: per-pass
+tldr:
+  en: DAS lets shallow-depth drafts in looped Transformers read full-depth values of the verified prefix (Mature-V) at no extra recurrent cost; DAS-Wave adds parallel refinement, progressive block growth and a full-depth verifier, reaching 4.00-6.96× mean throughput speedup over full-depth autoregressive decoding.
+  zh: DAS 让循环 Transformer 的浅层草稿直接读取已验证前缀的全深度 value（Mature-V），无需额外的循环计算；DAS-Wave 再加入并行精炼、渐进式块增长和独立的全深度验证器，相对全深度自回归解码取得 4.00-6.96× 的平均吞吐加速。
+added: "2026-11-24"

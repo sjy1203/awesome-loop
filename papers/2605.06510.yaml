@@ -1,0 +1,19 @@
+id: "2605.06510"
+tier: radar
+title: "Is One Layer Enough? Understanding Inference Dynamics in Tabular Foundation Models"
+date: "2026-05-07"
+venue: ICML 2026
+authors: [Amir Rezaei Balef, Mykhailo Koshil, Katharina Eggensperger]
+links:
+  paper: https://arxiv.org/abs/2605.06510
+  code: https://github.com/amirbalef/is_one_layer_enough
+category: applications
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Studying layerwise dynamics in 6 tabular in-context learning models, the paper finds substantial depthwise redundancy that suggests iterative refinement; as a proof of concept, a single Transformer block looped six times uses only 20% of the original model's parameters with comparable performance.
+  zh: 论文分析 6 个表格上下文学习模型的逐层动态，发现深度方向存在大量冗余，提示推理过程在做迭代精炼；作为概念验证，单个 Transformer 块循环六次的模型只用原模型 20% 的参数就取得相当的性能。
+added: "2026-11-24"

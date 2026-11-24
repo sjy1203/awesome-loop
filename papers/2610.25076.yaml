@@ -1,0 +1,19 @@
+id: "2610.25076"
+tier: radar
+title: "P2N: Reusing Deep Representations for Greater Effective Depth"
+date: "2026-10-18"
+venue: arXiv
+authors: [Yiqin Hao, Boyi Zeng, Zitong Wang, He Li, Shixiang Song, Feichen Song, Yifan Liu, Ran Tao, Bryan Dai, Zhouhan Lin]
+links:
+  paper: https://arxiv.org/abs/2610.25076
+  code: https://github.com/LUMIA-Group/P2N
+category: architecture/state
+focus: core
+facets:
+  placement: shifted-parallel
+  depth_train: sampled
+  kv: n/a
+tldr:
+  en: P2N adds the previous token's middle-core output to the current token's core input, extending effective depth across tokens for one vector addition per decoding step, trained with parallel Jacobi updates; at 1.5B parameters it lifts GSM8K accuracy by over 10 percentage points at nearly unchanged decoding latency.
+  zh: P2N 把上一个 token 中间层核心的输出加到当前 token 的核心输入上，每个解码步只多一次向量加法即可跨 token 延伸有效深度，训练时用并行 Jacobi 更新；在 1.5B 参数规模下，GSM8K 准确率提高超过 10 个百分点，解码延迟几乎不变。
+added: "2026-11-24"

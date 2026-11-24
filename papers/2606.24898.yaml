@@ -1,0 +1,19 @@
+id: "2606.24898"
+tier: radar
+title: "Dense Supervision Is Not Enough: The Readout Blind Spot in Looped Language Models"
+date: "2026-06-12"
+venue: arXiv
+authors: [Rituraj Sharma, Tu Vu]
+links:
+  paper: https://arxiv.org/abs/2606.24898
+  code: https://github.com/Rituraj003/readout-blind-spot
+category: training
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Per-loop cross-entropy through RMSNorm readouts cannot see hidden-state scale, so 44M and 129M looped Transformers without inter-loop normalization reach final norms in the thousands or tens of thousands; scale-visible readouts or norm penalties keep norms in the tens and lower perplexity at matched inference depth.
+  zh: 经 RMSNorm 读出的逐循环交叉熵看不到隐状态尺度，因此没有循环间归一化的 44M 和 129M 循环 Transformer 的最终隐状态范数会增长到数千甚至数万；可见尺度的读出或范数惩罚能把范数控制在几十，并在相同推理深度下降低困惑度。
+added: "2026-11-24"

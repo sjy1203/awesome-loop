@@ -1,0 +1,18 @@
+id: "2602.08100"
+tier: radar
+title: "Emergent Search and Backtracking in Latent Reasoning Models"
+date: "2026-02-08"
+venue: arXiv
+authors: [Jasmine Cui, Charles Ye]
+links:
+  paper: https://arxiv.org/abs/2602.08100
+category: understanding
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: sampled
+  kv: n/a
+tldr:
+  en: Decoding looped Huginn-0125's answer beliefs at every recurrence step on multiple-choice QA reveals exploration, tentative commitment, then convergence or backtracking; backtracking occurs in 32% of instances with a 34% accuracy gain, and implausible distractors shorten exploration by 54%.
+  zh: 在多选问答上逐个循环步解码循环模型 Huginn-0125 对各选项的预测概率，发现隐空间中的搜索过程：先探索，再暂时押注领先选项，最后收敛或回溯；32% 的实例出现回溯，比未回溯实例准确率高 34%，把干扰项换成不合理选项后探索阶段缩短 54%。
+added: "2026-11-24"

@@ -1,0 +1,19 @@
+id: "2110.07732"
+tier: radar
+title: "The Neural Data Router: Adaptive Control Flow in Transformers Improves Systematic Generalization"
+date: "2021-10-14"
+venue: ICLR 2022
+authors: [Róbert Csordás, Kazuki Irie, Jürgen Schmidhuber]
+links:
+  paper: https://arxiv.org/abs/2110.07732
+  code: https://github.com/robertcsordas/ndr
+category: architecture/state
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Neural Data Router adds a copy gate, which lets a column skip a step, and geometric attention to a Transformer with shared layer weights; it reaches 100% length generalization accuracy on compositional table lookup and near-perfect accuracy on simple arithmetic and a ListOps variant.
+  zh: Neural Data Router 在层间共享权重的 Transformer 中加入可让某列跳过一步的 copy gate 和几何注意力（geometric attention）；它在组合查表任务上达到 100% 的长度泛化准确率，在简单算术任务和一个 ListOps 变体上准确率接近完美。
+added: "2026-11-24"

@@ -1,0 +1,19 @@
+id: "2610.01981"
+tier: radar
+title: "Universal interpolation for deep residual self-attention networks"
+date: "2026-10-01"
+venue: arXiv
+authors: [Sibylle Marcotte, Joan Bruna]
+links:
+  paper: https://arxiv.org/abs/2610.01981
+  code: https://github.com/sibyllema/attention_universality
+category: theory
+focus: core
+facets:
+  placement: n/a
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: "Proves universal interpolation for deep residual softmax attention under strong parameter reuse: two frozen single-head blocks with Gaussian-initialized projections, with only their order, signs and durations chosen per task, map any N sequences of n tokens to any other N, at continuous and finite depth."
+  zh: 证明强参数复用下深层残差 softmax 自注意力的通用插值性：两个投影矩阵为高斯初始化的冻结单头注意力块，只需按任务设定其应用顺序、符号和持续时长，就能把任意 N 条含 n 个 token 的序列映射为任意另外 N 条序列，在连续深度和有限深度下均成立。
+added: "2026-11-24"

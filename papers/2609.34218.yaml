@@ -1,0 +1,19 @@
+id: "2609.34218"
+tier: radar
+title: "Loop Dropout: Regularizing Shared Updates in Looped Language Models"
+date: "2026-09-28"
+venue: arXiv
+authors: [Zirui Zhu, Hailun Xu, Xuanlei Zhao, Yong Liu, Yingxuan Ren, Kanchan Sarkar, Kun Xu, Yang You]
+links:
+  paper: https://arxiv.org/abs/2609.34218
+  code: https://github.com/NUS-HPC-AI-Lab/loop-dropout
+category: training
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Loop Dropout randomly masks a shared LoRA adapter's application at individual loops of a looped LM and rescales kept applications by inverse survival probability; fine-tuning Ouro-1.4B on math, it raises MATH-500 accuracy from 38.87% with LoRA to 47.53%, keeping standard LoRA inference.
+  zh: Loop Dropout 在循环语言模型的各次循环中随机屏蔽共享 LoRA 适配器的应用，并按存活概率的倒数缩放保留的应用；在 Ouro-1.4B 上做数学微调时，它把 MATH-500 准确率从 LoRA 的 38.87% 提高到 47.53%，推理时仍为标准 LoRA。
+added: "2026-11-24"

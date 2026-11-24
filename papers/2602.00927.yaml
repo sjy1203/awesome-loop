@@ -1,0 +1,18 @@
+id: "2602.00927"
+tier: radar
+title: "Beyond What Seems Necessary: Hidden Gains from Scaling Training-Time Reasoning Length under Outcome Supervision"
+date: "2026-01-31"
+venue: arXiv
+authors: [Yihao Xue, Allan Zhang, Jianhao Huang, Amit Sahai, Baharan Mirzasoleiman]
+links:
+  paper: https://arxiv.org/abs/2602.00927
+category: theory
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Shows in theory and experiments that under outcome-only supervision, OOD performance keeps improving as training-time reasoning length (looped-Transformer loop count, RL token budget) grows past ID saturation; on a synthetic induction task, ID accuracy saturates around 2 loops while OOD accuracy keeps rising.
+  zh: 从理论和实验两方面表明，在仅有结果监督时，随着训练时推理长度（循环 Transformer 的循环次数、RL 的 token 预算）增加，OOD 性能在 ID 性能饱和后仍持续提升；在一个合成归纳任务上，ID 准确率在约 2 次循环时饱和，而 OOD 准确率继续上升。
+added: "2026-11-24"

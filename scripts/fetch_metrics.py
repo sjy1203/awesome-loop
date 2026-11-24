@@ -4,6 +4,7 @@
 Sources (public APIs, no login): Semantic Scholar (citations, influential citations), OpenAlex (citations,
 institutions), Hugging Face papers (upvotes), GitHub (stars of linked code repos), Hugging Face models
 (downloads in the last 30 days, likes), Hacker News search by Algolia (points of stories linking the paper).
+When the GitHub API refuses a repo (rate limit), its star count from the Hugging Face paper page is used instead.
 `citations` is the higher of the Semantic Scholar and OpenAlex counts. A value that fails to fetch keeps its
 previous value. A history snapshot is written when the newest one is at least 7 days old, so a daily run keeps one
 snapshot per week.
@@ -115,6 +116,7 @@ def main():
         oa = get_json(f"https://api.openalex.org/works/doi:10.48550/arXiv.{a}" + (f"?{oa_params}" if oa_params else ""))
         return a, oa, get_json(f"https://huggingface.co/api/papers/{a}")
 
+    hf_stars = {}
     with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:
         extras = list(pool.map(paper_extras, arxiv))
     for a, oa, hf in extras:
@@ -131,6 +133,8 @@ def main():
                 m["institutions"] = insts
         if hf and hf.get("upvotes") is not None:
             m["hf_upvotes"] = hf["upvotes"]
+        if hf and hf.get("githubRepo") and hf.get("githubStars") is not None and gh_repo(hf["githubRepo"].rstrip("/")):
+            hf_stars[gh_repo(hf["githubRepo"].rstrip("/")).lower()] = hf["githubStars"]
         # The two indexes sometimes split a paper into several records; the higher count is the better-merged one.
         counts = [(m[k], src) for k, src in (("s2_citations", "semanticscholar"), ("openalex_citations", "openalex"))
                   if m.get(k) is not None]
@@ -147,6 +151,8 @@ def main():
     for r, res in gh:
         if res and res.get("stargazers_count") is not None:
             out["repos"][r] = {"stars": res["stargazers_count"], "pushed_at": res.get("pushed_at")}
+        elif r.lower() in hf_stars:  # GitHub API refused (rate limit): Hugging Face's copy of the same repo's count
+            out["repos"][r] = {"stars": hf_stars[r.lower()], "stars_source": "huggingface"}
     for r, res in hfm:
         if res:
             out["models"][r] = {"downloads": res.get("downloads", 0), "likes": res.get("likes", 0)}

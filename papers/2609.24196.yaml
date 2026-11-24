@@ -1,0 +1,19 @@
+id: "2609.24196"
+tier: radar
+title: "LoopCD: Loop-wise Contrastive Decoding for Improving Reasoning in Looped Language Models"
+date: "2026-09-21"
+venue: EMNLP 2026
+authors: [Byeongho Yu, Junhyuk So, Eunhyeok Park]
+links:
+  paper: https://arxiv.org/abs/2609.24196
+  code: https://github.com/hoeng4/LoopCD
+category: systems
+focus: core
+facets:
+  placement: n/a
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: LoopCD contrasts the logits of an earlier loop iteration with those of the final iteration when decoding from looped LMs, refining uncertain hard tokens without training; it improves Huginn-0125 and Ouro-1.4B on arithmetic reasoning, code generation and question answering with negligible overhead.
+  zh: LoopCD 在循环语言模型解码时，用较早一次循环迭代的 logits 与最后一次迭代的 logits 做对比，无需训练即可修正不确定的难 token；它在算术推理、代码生成和问答任务上提升了 Huginn-0125 和 Ouro-1.4B 的表现，额外开销可忽略。
+added: "2026-11-24"

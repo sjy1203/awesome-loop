@@ -1,0 +1,19 @@
+id: "2610.24135"
+tier: radar
+title: "Inside the Loop: A Mechanistic Study of Looped Transformers on Permutation Traversal"
+date: "2026-10-16"
+venue: NeurIPS 2026
+authors: [Magnus Sesodia, Juil Sock, Philip Torr, Christian Schroeder de Witt]
+links:
+  paper: https://arxiv.org/abs/2610.24135
+  code: https://github.com/magnus-sesodia/insidetheloop
+category: understanding
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: On directed permutation traversal, a four-layer block looped eight times solves the task in every seed while an identically trained untied transformer of equal effective depth never does; probing shows the looped model steps through intermediate nodes in a staircase that adapts to its iteration budget.
+  zh: 在有向置换遍历任务上，四层块循环八次的模型在每个种子下都能解出任务，而训练方式相同、有效深度相同的非共享 Transformer 从未解出；探针显示循环模型逐步推进中间节点，形成随迭代预算调整的阶梯。
+added: "2026-11-24"

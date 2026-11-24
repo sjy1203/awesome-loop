@@ -1,0 +1,18 @@
+id: "2605.00206"
+tier: radar
+title: "State Stream Transformer (SST) V2: Parallel Training of Nonlinear Recurrence for Latent Space Reasoning"
+date: "2026-04-30"
+venue: arXiv
+authors: [Thea Aviss]
+links:
+  paper: https://arxiv.org/abs/2605.00206
+category: architecture/state
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: n/a
+  kv: last-pass
+tldr:
+  en: SST V2 adds an FFN-driven latent state stream at every decoder layer, carried across positions and across repeated full-stack passes on one token; co-trained into a 27B backbone, with an oracle picking one to four passes per token it reaches a 61.11% GPQA-Diamond capacity bound, +15.15 points over a matched baseline.
+  zh: SST V2 在每个解码器层加入由 FFN 驱动的潜在状态流，状态在位置之间以及同一 token 上重复运行整个层栈时传递；共训练进 27B 主干后，由 oracle 为每个 token 选择一到四次前向，它在 GPQA-Diamond 上的能力上界为 61.11%，比匹配的微调基线高 15.15 个百分点。
+added: "2026-11-24"

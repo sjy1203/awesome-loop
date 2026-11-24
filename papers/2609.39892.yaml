@@ -1,0 +1,19 @@
+id: "2609.39892"
+tier: radar
+title: "Shared Weights, Selected Computations: How Looped Transformers Route What Each Loop Does"
+date: "2026-09-30"
+venue: arXiv
+authors: [Jiaju Wu, Yi Hu, Muhan Zhang]
+links:
+  paper: https://arxiv.org/abs/2609.39892
+  code: https://github.com/wjjpku/howloop
+category: understanding
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: "In looped Transformers trained on graph walks, each loop need not perform the same step: predictions advance by varying numbers of graph steps, and a learned linear map J on the entering hidden state steers a frozen loop to different transitions, which activation patching traces to attention routing."
+  zh: 在图游走任务上训练的循环 Transformer 中，每次循环不一定执行同一步：预测每次前进的图步数不同；对进入循环的隐藏状态施加学习得到的线性映射 J，可把冻结的循环引向不同转移，activation patching 表明这一效果经由注意力路由实现。
+added: "2026-11-24"

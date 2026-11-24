@@ -1,0 +1,18 @@
+id: "2607.16237"
+tier: radar
+title: "Quantizing Recursive Reasoning Models"
+date: "2026-06-25"
+venue: arXiv
+authors: [Thorir Mar Ingolfsson, Wajeeha Tahir, Anna Tegon, Lionnus Kesting, Gamze İslamoğlu, Luca Benini]
+links:
+  paper: https://arxiv.org/abs/2607.16237
+category: applications
+focus: related
+facets:
+  placement: hierarchical
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: Quantizing weight-tied recursive puzzle reasoners (TRM, EqR) shows that per-tensor 4-bit activations let a systematic bias accumulate over reuse, cutting Sudoku exact accuracy from 84.1% to 0.0%; per-block activation scaling with MXInt4 restores accuracy across architectures and transfers to ARC-AGI.
+  zh: 对权重共享的递归谜题推理模型（TRM、EqR）做量化发现，按张量的 4-bit 激活量化会让系统性偏差随复用累积，使 Sudoku 精确解准确率从 84.1% 降到 0.0%；采用 MXInt4 的按块激活缩放可在各架构上恢复准确率，并能迁移到 ARC-AGI。
+added: "2026-11-24"

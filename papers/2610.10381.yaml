@@ -1,0 +1,18 @@
+id: "2610.10381"
+tier: radar
+title: "ResidualQuant: KV Cache Quantization for Looped Transformers with 2-Bit Residuals"
+date: "2026-10-07"
+venue: arXiv
+authors: [Heejun Kim, Junyoung Lee, SangLyul Cho, Dongsu Han, Insu Han, Sehoon Kim]
+links:
+  paper: https://arxiv.org/abs/2610.10381
+category: systems
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: n/a
+  kv: compressed
+tldr:
+  en: ResidualQuant keeps a looped Transformer's final-loop KV as reference and stores other loops as low-precision residuals, with least-square scaling, rotation and loop-wise mixed precision; it stays close to BF16 accuracy, cuts theoretical KV storage by 80.7% and improves peak throughput by up to 5.38x.
+  zh: ResidualQuant 以循环 Transformer 末遍的 KV 为参照，把其余各遍的 KV 存成低精度残差，并结合最小二乘缩放、旋转量化和按循环的混合精度；准确率接近 BF16，理论 KV 存储减少 80.7%，峰值吞吐最高提升至 5.38x。
+added: "2026-11-24"

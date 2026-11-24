@@ -1,0 +1,19 @@
+id: "2608.13987"
+tier: radar
+title: "Nanbeige4.2-3B on Apple Silicon: Fixing Deployment Bugs and Decreasing Looped Transformer Memory Overhead"
+date: "2026-08-14"
+venue: arXiv
+authors: [John T. Halloran]
+links:
+  paper: https://arxiv.org/abs/2608.13987
+  code: https://github.com/johnhalloran321/Nanbeige4.2-3B-mps-fix
+category: systems
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: per-pass
+tldr:
+  en: Fixes five bugs that stop the Nanbeige4.2-3B looped Transformer (one layer stack run twice) from running on Apple Silicon, and adds chunked prefill against its doubled peak attention memory, extending allowable context width by 2.7× on 32 GiB; the patched model completes up to 30% of MCPMark-subset tasks.
+  zh: 修复五个使循环 Transformer Nanbeige4.2-3B（同一层栈运行两遍）无法在 Apple Silicon 上运行的 bug，并用 chunked prefill 缓解层复用带来的双倍峰值注意力内存，在 32 GiB 共享内存上把可用上下文长度扩大 2.7×；修复后的模型在 MCPMark 子集上最多完成 30% 的任务。
+added: "2026-11-24"

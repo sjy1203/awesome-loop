@@ -1,0 +1,18 @@
+id: "2605.16343"
+tier: radar
+title: "LoopQ: Quantization for Looped Language Models"
+date: "2026-05-08"
+venue: arXiv
+authors: [Rui Fang, Hsi-Wen Chen, Chia-Ming Cheng, Ming-Syan Chen]
+links:
+  paper: https://arxiv.org/abs/2605.16343
+category: systems
+focus: core
+facets:
+  placement: n/a
+  depth_train: n/a
+  kv: compressed
+tldr:
+  en: LoopQ quantizes looped LMs with one shared quantized backbone plus loop-aware activation scaling, cross-loop state alignment and trajectory-aware calibration; under W4A4 it achieves a 67.8% average relative improvement in five-task mean accuracy across four backbones over the strongest static PTQ baseline.
+  zh: LoopQ 对循环语言模型做训练后量化，保留一个共享的量化主干，并加入循环感知的激活缩放、跨循环状态对齐和轨迹感知校准；在 W4A4 下，相比最强的静态 PTQ 基线，它在四个主干上的五任务平均准确率平均相对提升 67.8%。
+added: "2026-11-24"

@@ -1,0 +1,18 @@
+id: "2609.19934"
+tier: radar
+title: "Beyond Depth Truncation: Controlled Evaluation of Depth Utilization in Recursive Language Models"
+date: "2026-09-17"
+venue: arXiv
+authors: [Ha Van Dau, Thanh Tung Khuat, Nguyen Thanh Dung]
+links:
+  paper: https://arxiv.org/abs/2609.19934
+category: understanding
+focus: core
+facets:
+  placement: n/a
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: The Depth Control Protocol decomposes depth-truncation curves of depth-recurrent LMs; on the 542.8M Sona model the 1.4251 nat naive depth effect splits into 47.9% block applications, -2.8% distinct depth and 54.8% inter-block composition, and sampled-depth training removes the calibration confounder.
+  zh: Depth Control Protocol 对深度循环语言模型的深度截断曲线进行分解；在 542.8M 参数的 Sona 模型上，1.4251 nat 的朴素深度效应拆分为 47.9% 的块执行次数、-2.8% 的不同深度和 54.8% 的块间组合，而采样深度训练能消除校准混杂因素。
+added: "2026-11-24"

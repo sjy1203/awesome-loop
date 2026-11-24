@@ -1,0 +1,19 @@
+id: "2609.37432"
+tier: radar
+title: "Looped Actor: Depth-Recurrent Reasoning Models for Reinforcement Learning"
+date: "2026-09-29"
+venue: arXiv
+authors: [T. Konstantin Rusch, Tim Seyde, Jared Boyer, Zach J. Patterson, Daniela Rus]
+links:
+  paper: https://arxiv.org/abs/2609.37432
+  code: https://github.com/camail-official/LoopedActor
+category: applications
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: Looped Actor, an RL policy, applies a shared Transformer block toward a fixed point and halts once its action distribution stabilizes; on 22 tasks in six environments it matches or beats an untied baseline with 16× more parameters, and on Boxoban its loop count grows with the pushes left.
+  zh: Looped Actor 是一种强化学习策略，反复应用共享的 Transformer 块让潜在表示趋向不动点，并在动作分布稳定时停止循环；在六个环境的 22 个任务上，它达到或超过参数多 16× 的非共享基线，在 Boxoban 上循环次数随剩余推箱次数增加。
+added: "2026-11-24"

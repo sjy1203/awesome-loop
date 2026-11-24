@@ -1,0 +1,19 @@
+id: "2609.18176"
+tier: radar
+title: "MoRE: Mixture of Reused Experts"
+date: "2026-09-16"
+venue: COLM 2026
+authors: [Eric S. Qiu, Utku Umur Acikalin, Justin Lovelace, Christian Belardi, Arjun B. Mulchandani, Carla P. Gomes, Kilian Q. Weinberger]
+links:
+  paper: https://arxiv.org/abs/2609.18176
+  code: https://github.com/EricQiu6/MoRE
+category: architecture/placement
+focus: core
+facets:
+  placement: partial
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: MoRE shares MoE expert pools across groups of adjacent layers, keeping per-layer routers and a learnable depth embedding before routing; at 114M-1.15B parameters it gets lower perplexity and stronger downstream results than standard MoEs and weight-sharing architectures at matched compute and parameters.
+  zh: MoRE 让相邻层组共享 MoE 专家池，每层保留自己的 router，并在路由前加入可学习的深度嵌入；在 114M-1.15B 参数规模上，它在计算量和参数量相同的条件下，比标准 MoE 和最先进的权重共享架构困惑度更低、下游表现更强。
+added: "2026-11-24"

@@ -1,0 +1,19 @@
+id: "2610.18174"
+tier: radar
+title: "Looped Reasoning Finishes Earlier Than You Think"
+date: "2026-10-13"
+venue: arXiv
+authors: [Sumin Park, T. Konstantin Rusch]
+links:
+  paper: https://arxiv.org/abs/2610.18174
+  code: https://github.com/camail-official/Quotient_Recurrent_Reasoner_QRR
+category: applications
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Since slowly decaying oscillatory modes bottleneck convergence in looped reasoners, QRR adds an exact per-token phase-rotation symmetry to FPRM's recurrent Transformer block; it converges stably and faster in quotient space and matches or beats recent recurrent reasoners on Sudoku, Maze and Mini-ARC.
+  zh: 该文发现缓慢衰减的振荡模态会拖慢循环推理模型的收敛，并提出 QRR：在 FPRM 的循环 Transformer 块上施加逐 token 的精确相位旋转对称性；它在商空间中收敛更稳定、更快，在 Sudoku、Maze 和 Mini-ARC 上达到或超过近期的循环推理模型。
+added: "2026-11-24"

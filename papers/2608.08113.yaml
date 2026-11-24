@@ -1,0 +1,19 @@
+id: "2608.08113"
+tier: radar
+title: "Think Deep, Speak Once: Relit, A Recursive Latent Implicit Transformer Framework"
+date: "2026-08-08"
+venue: arXiv
+authors: [Abhishek Panwar, Maheep Singh, Saksham Bansal]
+links:
+  paper: https://arxiv.org/abs/2608.08113
+  code: https://github.com/mdgspace/Think-Deep-Speak-Once-ReLIT
+category: training
+focus: core
+facets:
+  placement: partial
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: ReLIT places a trainable recursive Transformer block with learned halting between a frozen TinyLlama-1.1B backbone and its frozen LM head, refining a latent state over iterations; training only this block, it reaches 98.60% accuracy on ProofWriter and 97.60% on RuleTaker.
+  zh: ReLIT 在冻结的 TinyLlama-1.1B 主干和冻结的 LM head 之间放入一个可训练、带学习式停止的递归 Transformer 块，通过多次迭代细化潜在状态；只训练这个块，它在 ProofWriter 上达到 98.60% 的准确率，在 RuleTaker 上达到 97.60%。
+added: "2026-11-24"

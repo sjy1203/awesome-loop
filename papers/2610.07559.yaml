@@ -1,0 +1,18 @@
+id: "2610.07559"
+tier: radar
+title: "TAFFY: A Task-Adaptive Tabular Foundation Model with In-Context Diversity"
+date: "2026-10-06"
+venue: arXiv
+authors: [Zijian Li, Xiangchen Song, Gongxu Luo, Jie Qiao, Ruichu Cai, Zhenhao Chen, Xinshuai Dong, Fan Feng, Guangyi Chen, Kun Zhang]
+links:
+  paper: https://arxiv.org/abs/2610.07559
+category: applications
+focus: related
+facets:
+  placement: partial
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: TAFFY, a tabular foundation model, loops a shared ICL Transformer stack over contextual representations with a task-conditioned gate on the final update, and pretrains on contexts mixing causally related environments; it attains the lowest average rank across six classification and five regression benchmark datasets.
+  zh: TAFFY 是一个表格基础模型，它在上下文表示上循环应用共享的 ICL Transformer 堆栈，用任务条件化门控调节最后一次更新，并在混合多个因果相关环境的上下文上预训练；它在六个分类和五个回归基准数据集上取得最低的平均排名。
+added: "2026-11-24"

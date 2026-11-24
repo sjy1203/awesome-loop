@@ -1,0 +1,19 @@
+id: "2610.11570"
+tier: radar
+title: "Scaling to Tens of Thousands of Test-Time Iterations with Loop-Native Attention Residuals"
+date: "2026-10-08"
+venue: arXiv
+authors: [Pengxiang Li, Dilxat Muhtar, Di He, Guinan Su, Lu Yin, Shiwei Liu]
+links:
+  paper: https://arxiv.org/abs/2610.11570
+  code: https://github.com/pixeli99/InfiLoop
+category: applications
+focus: related
+facets:
+  placement: hierarchical
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: InfiLoop swaps the carry-last state update of looped reasoners for a loop-native residual that weights past states by content and learned decay in constant memory; a 7M-parameter model reaches 97.9% exact accuracy on Sudoku-Extreme and 13.6% pass@2 on ARC-AGI-2, improving beyond 20,000 effective steps.
+  zh: InfiLoop 用一种循环原生的残差连接替换循环推理器中只传递最新状态（carry-last）的更新：按内容和可学习的衰减对过去的状态加权，且内存恒定；7M 参数的模型在 Sudoku-Extreme 上达到 97.9% 的精确准确率，在 ARC-AGI-2 上达到 13.6% pass@2，测试时循环超过 20,000 个有效步后仍在提升。
+added: "2026-11-24"

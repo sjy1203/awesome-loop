@@ -1,0 +1,18 @@
+id: "2510.17483"
+tier: radar
+title: "ReXMoE: Reusing Experts with Minimal Overhead in Mixture-of-Experts"
+date: "2025-10-20"
+venue: arXiv
+authors: [Zheyue Tan, Zhiyuan Li, Tao Yuan, Dong Zhou, Weilin Liu, Yueqing Zhuang, Yadong Li, Guowei Niu, Cheng Qin, Zhuyu Yao, Congyi Liu, Haiyang Xu, Boxun Li, Guohao Dai, Bo Zhao, Yu Wang]
+links:
+  paper: https://arxiv.org/abs/2510.17483
+category: architecture/placement
+focus: core
+facets:
+  placement: partial
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: ReXMoE lets each MoE router pick experts from a group of adjacent layers, so one expert can be reused at several depths, and grows the candidate pool during training; on MoE-2.3BA0.3B, the 4-layer-group ReXMoE raises average downstream accuracy from 49.15% to 50.23%.
+  zh: ReXMoE 让每层的 MoE 路由器从相邻多层组成的专家池中选择专家，使同一专家可在多个深度复用，并在训练中逐步扩大候选池；在 MoE-2.3BA0.3B 上，以 4 层为一组复用专家的 ReXMoE 把下游平均准确率从 49.15% 提高到 50.23%。
+added: "2026-11-24"

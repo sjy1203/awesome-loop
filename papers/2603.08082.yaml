@@ -1,0 +1,19 @@
+id: "2603.08082"
+tier: radar
+title: "Tiny Autoregressive Recursive Models"
+date: "2026-03-09"
+venue: ICLR 2026 RSI Workshop
+authors: [Paulius Rauba, Claudio Fanconi, Mihaela van der Schaar]
+links:
+  paper: https://arxiv.org/abs/2603.08082
+  code: https://github.com/pauliusrauba/autoregressive-TRM
+category: architecture/state
+focus: core
+facets:
+  placement: hierarchical
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Adapts TRM's nested two-stream refinement to causal next-token decoders and compares it with untied depth and Universal Transformer variants at matched block passes on character-level algorithmic tasks; some two-level refinement baselines are strong, but the full Autoregressive TRM gives no reliable gains.
+  zh: 把 TRM 的双流嵌套细化改造成因果 next-token 解码器，在 block 计算次数相同的条件下，于字符级算法任务上与非共享深度和 Universal Transformer 变体比较；部分两级细化基线表现很强，但完整的 Autoregressive TRM 没有带来可靠提升。
+added: "2026-11-24"

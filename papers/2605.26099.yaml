@@ -1,0 +1,18 @@
+id: "2605.26099"
+tier: radar
+title: "Do Language Models Need Sleep? Offline Recurrence for Improved Online Inference"
+date: "2026-05-25"
+venue: arXiv
+authors: [Sangyun Lee, Sean McLeish, Tom Goldstein, Giulia Fanti]
+links:
+  paper: https://arxiv.org/abs/2605.26099
+category: architecture/state
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: An SSM-attention hybrid 'sleeps' before evicting its KV cache, looping its whole block stack N times over the accumulated context to update SSM fast weights, then predicts in one pass; on a cellular-automaton task the no-loop model stays near 10% exact accuracy, while three and four sleep loops exceed 30%.
+  zh: SSM-attention 混合模型在清空 KV cache 前进入“睡眠”，在累积的上下文上把整个层栈循环 N 次以更新 SSM 快速权重，之后用单次前向完成预测；在元胞自动机任务上，不循环的模型精确准确率约为 10%，三次和四次睡眠循环则超过 30%。
+added: "2026-11-24"

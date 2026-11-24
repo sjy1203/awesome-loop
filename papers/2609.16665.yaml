@@ -1,0 +1,18 @@
+id: "2609.16665"
+tier: radar
+title: "Right Direction, Wrong Step: Geometric Analysis of Finite-Step Failure in Looped Transformers"
+date: "2026-09-15"
+venue: arXiv
+authors: [Zhihao Guo, Zonghan Wu, Haizhou Du, Huan Huo, Yilei Shao, Athanasios V. Vasilakos, Qingsong Wen]
+links:
+  paper: https://arxiv.org/abs/2609.16665
+category: understanding
+focus: core
+facets:
+  placement: n/a
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: Analyzing Ouro-1.4B, Ouro-2.6B and Huginn-0125, the paper finds that harmful extra loop iterations often move in a locally helpful direction but take too large a step; a fixed quarter step recovers positive reference utility for 72.2–83.2% of selected failures across four settings.
+  zh: 论文分析 Ouro-1.4B、Ouro-2.6B 和 Huginn-0125，发现造成损害的额外循环迭代往往方向在局部有益但步长过大；固定取四分之一步长，可在四种设置中让 72.2–83.2% 的选定失败样本恢复正的参考效用。
+added: "2026-11-24"

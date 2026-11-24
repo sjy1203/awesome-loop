@@ -1,0 +1,19 @@
+id: "2609.19107"
+tier: radar
+title: "How Model Growth, Recursion, and Boundary Operators Influence Scaling Exponents"
+date: "2026-09-16"
+venue: arXiv
+authors: [Zixi Chen, Akshay Vegesna, Samip Dahal, Andrew Gordon Wilson]
+links:
+  paper: https://arxiv.org/abs/2609.19107
+  code: https://github.com/qlabs-eng/scaling-exponents
+category: scaling
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: curriculum
+  kv: n/a
+tldr:
+  en: In prelude-core-coda looped Transformers, growing the number of core passes during training, with or without shared weights, and a normalize-and-inject boundary operator raise pre-training scaling exponents; a 7.4B untied growth model matches GPT-3 13B on CORE with roughly 20× less compute.
+  zh: 在 prelude-core-coda 结构的循环 Transformer 中，训练过程中增加核心块的遍数（无论是否共享权重）以及先归一化再注入的边界算子都能提高预训练的 scaling 指数；一个 7.4B 的不共享权重增长模型用少约 20× 的算力在 CORE 上追平 GPT-3 13B。
+added: "2026-11-24"

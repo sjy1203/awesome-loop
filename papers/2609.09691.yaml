@@ -1,0 +1,19 @@
+id: "2609.09691"
+tier: radar
+title: "Looped GPT-BERT: Trading Parameters for Computation in Small Language Modeling"
+date: "2026-09-09"
+venue: arXiv
+authors: [Tingshuo Fan, Hongtao Mu, Tianyu Zhou, Hansen Liu, Tao Ji]
+links:
+  paper: https://arxiv.org/abs/2609.09691
+  code: https://github.com/Survivor613/BabyLM-2026
+category: scaling
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Looped GPT-BERT runs four physical layers for twelve traversals with GPT-BERT's MNTP and CLM objectives in BabyLM 2026 Strict-small; the 12.18M-parameter 4×12 model scores 71.19 on BLiMP, near GPT-BERT causal-focus at 71.66 and above GPT-2 at 65.23, but trails both on GLUE.
+  zh: Looped GPT-BERT 在 BabyLM 2026 Strict-small 设置下结合 GPT-BERT 的 MNTP 与 CLM 目标，让四个物理层循环十二遍；12.18M 参数的 4×12 模型 BLiMP 得分 71.19，接近 GPT-BERT causal-focus 的 71.66，高于 GPT-2 的 65.23，但 GLUE 低于两者。
+added: "2026-11-24"

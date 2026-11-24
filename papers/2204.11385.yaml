@@ -1,0 +1,19 @@
+id: "2204.11385"
+tier: radar
+title: "DRT: A Lightweight Single Image Deraining Recursive Transformer"
+date: "2022-04-25"
+venue: arXiv
+authors: [Yuanchu Liang, Saeed Anwar, Yang Liu]
+links:
+  paper: https://arxiv.org/abs/2204.11385
+  code: https://github.com/YC-Liang/DRT
+category: applications
+focus: related
+facets:
+  placement: n/a
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: DRT builds a lightweight image-deraining Transformer from recursive blocks that reapply shared Swin Transformer blocks with residual connections; it uses only 1.3% of the parameters of the best-performing deraining model while beating state-of-the-art methods on Rain100L by at least 0.33 dB.
+  zh: DRT 用递归块构建轻量的图像去雨 Transformer，每个递归块带残差连接并反复调用共享的 Swin Transformer 块；它的参数量只有当前最佳去雨模型的 1.3%，在 Rain100L 上比现有最优方法至少高 0.33 dB。
+added: "2026-11-24"

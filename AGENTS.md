@@ -74,3 +74,7 @@ language, layer sharing used only to save parameters (ALBERT), and every `adjace
 
 For each entry in `data/candidates.json`, either add `papers/<id>.yaml` (radar or deep), or add the id to
 `data/rejected.txt` with a short reason. `scripts/discover.py` drops triaged ids from the queue on its next run.
+
+The phrase search misses loop papers that describe the method in other words. From time to time, also check papers
+that cite, or are cited by, at least two core papers in the collection (Semantic Scholar references and citations),
+and triage the ones whose title or abstract mentions loops, recurrence, layer reuse or adaptive depth.

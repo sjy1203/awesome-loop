@@ -1,0 +1,19 @@
+id: "2609.21605"
+tier: radar
+title: "Trading Depth for Time in Recurrent Transformers"
+date: "2026-09-18"
+venue: arXiv
+authors: [Zeyi Huang, Xuehai He, Yelong Shen, Yong Jae Lee]
+links:
+  paper: https://arxiv.org/abs/2609.21605
+  code: https://github.com/OoDBag/Latent_recurrent_transformer
+category: scaling
+focus: core
+facets:
+  placement: shifted-parallel
+  depth_train: sampled
+  kv: last-pass
+tldr:
+  en: Adds a latent thought token after each vocabulary token of a Latent Recurrent Transformer, refining the state again through the shared backbone; at matched training FLOPs it beats PonderLM-2, overtakes a two-loop Transformer as compute grows, and recovers on average 89% of the gains of doubling LRT depth.
+  zh: 在 Latent Recurrent Transformer 的每个词表 token 后插入一个潜在思考 token，让隐藏状态再经同一主干细化一次；训练 FLOPs 相同时，它优于 PonderLM-2，并随算力增加超过两遍循环 Transformer，平均收回 LRT 深度加倍所带来收益的 89%。
+added: "2026-11-24"

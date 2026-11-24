@@ -1,0 +1,19 @@
+id: "2608.18230"
+tier: radar
+title: "Allocating Recurrent Compute in Looped Language Models"
+date: "2026-08-18"
+venue: arXiv
+authors: [Ruhai Lin, Yiyang Guo, Rui-Jie Zhu, Hao Ye, Jason K. Eshraghian]
+links:
+  paper: https://arxiv.org/abs/2608.18230
+  code: https://github.com/ruhai-lin/MixerLoop
+category: architecture/placement
+focus: core
+facets:
+  placement: partial
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: MixerLoop repeats each Gated DeltaNet mixer while applying the dense FFN once per layer; it surpasses full-block recurrence on aggregate CORE at 15M and keeps 41.5% of full-block recurrence's CORE improvement at 110M while cutting recurrent-backbone projection FLOPs by 45.9%.
+  zh: MixerLoop 在每层中重复执行 Gated DeltaNet mixer，而 dense FFN 只执行一次；它在 15M 规模的总体 CORE 上超过整块循环，在 110M 规模保留整块循环 41.5% 的 CORE 提升，同时把循环主干的投影 FLOPs 减少 45.9%。
+added: "2026-11-24"

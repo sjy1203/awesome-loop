@@ -1,0 +1,18 @@
+id: "1708.04116"
+tier: radar
+title: "Early Improving Recurrent Elastic Highway Network"
+date: "2017-08-14"
+venue: arXiv
+authors: [Hyunsin Park, Chang D. Yoo]
+links:
+  paper: https://arxiv.org/abs/1708.04116
+category: depth
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: EI-REHN adds an ACT-style elastic gate to Recurrent Highway Networks to set the recurrence depth per input, and a hypernetwork that updates intermediate-layer weights instead of sharing them; it beats other recurrent networks on synthetic regression, activity recognition and Penn Treebank language modeling.
+  zh: EI-REHN 为 Recurrent Highway Network 加入 ACT 式弹性门，按每个输入设定循环深度，并用 hypernetwork 更新各中间循环层的权重而不是共享权重；它在合成数据回归、人体活动识别和 Penn Treebank 语言建模上优于其他循环网络。
+added: "2026-11-24"

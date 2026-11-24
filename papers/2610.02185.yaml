@@ -1,0 +1,18 @@
+id: "2610.02185"
+tier: radar
+title: "Decoding Looped Transformers Better for (Almost) Free"
+date: "2026-10-01"
+venue: arXiv
+authors: [Weihao Liu, Huangjie Zheng, Tianrong Chen, Rohit Dilip, Richard He Bai, Yizhu Jiao, Yuyang Wang, Ruixiang Zhang]
+links:
+  paper: https://arxiv.org/abs/2610.02185
+category: systems
+focus: core
+facets:
+  placement: n/a
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: LoopCD, a training-free contrastive decoder, contrasts a looped Transformer's final prediction with an earlier recurrent pass; it lifts Ouro-2.6B-Thinking's AIME 2024 pass@1 from 61.88% to 73.33%, and at half the loops matches or exceeds full-depth unguided baselines while cutting forward FLOPs by 22.5% to 48.2%.
+  zh: LoopCD 是免训练的对比解码方法，用循环 Transformer 较早一遍循环的预测与最终预测作对比来选 token；它把 Ouro-2.6B-Thinking 的 AIME 2024 pass@1 从 61.88% 提高到 73.33%，循环次数减半时仍能达到或超过未引导的全深度基线，前向 FLOPs 减少 22.5% 到 48.2%。
+added: "2026-11-24"

@@ -1,0 +1,18 @@
+id: "2606.31796"
+tier: radar
+title: "CHERRY: Compressed Hierarchical Experts with Recurrent Representational Yield"
+date: "2026-06-30"
+venue: arXiv
+authors: [Dohyeon Kwon, Youngjin Park]
+links:
+  paper: https://arxiv.org/abs/2606.31796
+category: training
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: CHERRY merges adjacent layers of a 48-layer Korean language model into 6 unique blocks, unrolls the middle layers as a recurrent core and heals the result with selected-token supervision; the 227M model reaches loss 2.934 vs 2.926 for a 566M dense model, and MoEE fusion of compressed models reaches 2.789.
+  zh: CHERRY 把 48 层韩语语言模型的相邻层合并为 6 个独立块，将中间层作为循环核心展开，并用选定 token 监督修复性能；227M 模型的损失为 2.934，566M 稠密模型为 2.926，压缩模型经 MoEE 融合后达到 2.789。
+added: "2026-11-24"

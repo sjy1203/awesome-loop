@@ -1,0 +1,19 @@
+id: "2610.10395"
+tier: radar
+title: "Executing Causal Structure Learning with Linear-Attention Transformers"
+date: "2026-10-07"
+venue: arXiv
+authors: [Amartya Roy, Sayar Karmakar]
+links:
+  paper: https://arxiv.org/abs/2610.10395
+  code: https://github.com/Amartya-Roy/Amartya-Roy-Executing-Causal-Structure-Learning-with-Linear-Attention-Transformers
+category: theory
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Builds a fixed-weight linear-attention Transformer block that exactly performs one update of an acyclicity-constrained continuous causal-discovery method, so repeated blocks reproduce its trajectory; the multiplier must be carried between updates, and trained attention models do not reliably execute it.
+  zh: 构造一个固定权重的线性注意力 Transformer 块，其一次前向传播精确执行带无环约束的连续因果发现方法的一步更新，重复该块即可复现其优化轨迹；在更新之间保留乘子是精确执行的必要条件，而经过训练的普通注意力模型无法可靠地执行该更新。
+added: "2026-11-24"

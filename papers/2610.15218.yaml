@@ -1,0 +1,18 @@
+id: "2610.15218"
+tier: radar
+title: "Running Fewer Loops Removes Refusal Behaviour in Recurrent-Depth Language Models"
+date: "2026-10-10"
+venue: arXiv
+authors: [Seyedarmin Azizi, Erfan Baghaei Potraghloo, Arya Fayyazi, Saeid Shokoufa, Massoud Pedram]
+links:
+  paper: https://arxiv.org/abs/2610.15218
+category: safety
+focus: core
+facets:
+  placement: n/a
+  depth_train: sampled
+  kv: n/a
+tldr:
+  en: At half its trained depth Ouro-1.4B-Thinking keeps 89% of its GSM8K accuracy, but its harmful-request help rate rises from 0.038 to 0.205 although a linear classifier still detects harm after one loop (ROC AUC 0.967); training at random depths keeps Huginn-0125 at or below 0.040 from 1 to 32 loops.
+  zh: 在训练深度的一半时，Ouro-1.4B-Thinking 保留 89% 的 GSM8K 准确率，但协助有害请求的比例从 0.038 升至 0.205，而线性分类器在一次循环后仍能读出请求是否有害（ROC AUC 0.967）；以随机深度训练使 Huginn-0125 在 1 到 32 次循环的每个深度上有害协助率都不超过 0.040。
+added: "2026-11-24"

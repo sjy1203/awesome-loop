@@ -1,0 +1,18 @@
+id: "2610.28489"
+tier: radar
+title: "Asymmetric Looped Transformers: Fixed Global Representations for an Iterative Decoder"
+date: "2026-10-20"
+venue: arXiv
+authors: [Cheng Liang, Tengfei Zhang, Wenjie DU, Jianyu Wu, Changlian Ma, Shuchen Pu, Ya Zhang, Yanfeng Wang, Zhouhan Lin]
+links:
+  paper: https://arxiv.org/abs/2610.28489
+category: architecture/placement
+focus: core
+facets:
+  placement: decoder
+  depth_train: fixed
+  kv: single-global
+tldr:
+  en: AsymLoop runs a causal encoder once to produce per-layer Global KV fixed across iterations, while a weight-tied decoder loops and attends jointly to it and to Local KV from its evolving state; at 1B it lifts average zero-shot accuracy on seven commonsense benchmarks from 49.58% for Full Loop to 50.85%.
+  zh: AsymLoop 让因果编码器只运行一次，生成各层在迭代间保持不变的 Global KV，权重共享的解码器循环执行，并在同一个 softmax 中同时关注 Global KV 和由当前状态生成的 Local KV；在 1B 规模上，七个常识推理基准的平均 zero-shot 准确率从 Full Loop 的 49.58% 提高到 50.85%。
+added: "2026-11-24"

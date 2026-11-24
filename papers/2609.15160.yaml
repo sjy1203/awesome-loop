@@ -1,0 +1,19 @@
+id: "2609.15160"
+tier: radar
+title: "T-LoopFormer: Token-Level Elastic-Depth Looped Transformers with Dynamic Routing"
+date: "2026-09-14"
+venue: arXiv
+authors: [Mingqian Yu, Wenpeng Zhang, Shaobo Cui, Peilin Zhao]
+links:
+  paper: https://arxiv.org/abs/2609.15160
+  code: https://github.com/YuMingQian1234/T-LoopFormer
+category: depth
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: per-pass
+tldr:
+  en: T-LoopFormer's router gives each token its own number of loops through a shared block based on its initial hidden state, and a recursion-wise KV cache keeps per-loop entries only for active tokens; it decodes 2.24× faster than LoopFormer and has the lowest decoding latency among baselines.
+  zh: T-LoopFormer 的路由器根据每个 token 的初始隐状态为其分配通过共享块的循环次数，recursion-wise KV cache 只为仍在该次循环中的 token 保存逐循环的 KV；其解码速度比 LoopFormer 快 2.24×，解码延迟在各基线中最低。
+added: "2026-11-24"

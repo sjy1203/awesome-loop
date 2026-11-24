@@ -1,0 +1,19 @@
+id: "2609.01117"
+tier: radar
+title: "Latent Recurrent Thoughts: Recurrent Refinement of Proposed Latents for Reasoning with Frozen LLMs"
+date: "2026-09-01"
+venue: arXiv
+authors: [Zhaoliang Chen, Jie Fu]
+links:
+  paper: https://arxiv.org/abs/2609.01117
+  code: https://github.com/czl-david/latent-recurrent-thoughts
+category: architecture/placement
+focus: core
+facets:
+  placement: partial
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: LRT feeds a frozen Qwen3-8B decoder latents that a task-dedicated proposer drafts and a tiny TRM-style recurrent reasoner refines over many steps; it beats prior frozen-decoder continuous-space reasoning methods and, at a small fraction of its inference compute, non-thinking-mode CoT prompting.
+  zh: LRT 冻结 Qwen3-8B 解码器，由任务专用的提议网络生成初始潜变量，再由一个很小的 TRM 式循环推理器多步细化后输入解码器；它优于已有的冻结解码器连续空间推理方法，并以非思考模式 CoT 提示一小部分的推理算力超过后者。
+added: "2026-11-24"

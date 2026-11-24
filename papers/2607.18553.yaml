@@ -1,0 +1,19 @@
+id: "2607.18553"
+tier: radar
+title: "Operational Proto-Introspection in Looped Language Models: Reading Correctness Before the Answer"
+date: "2026-07-20"
+venue: arXiv
+authors: [Jan Kirin]
+links:
+  paper: https://arxiv.org/abs/2607.18553
+  code: https://github.com/VykosMolt/Branching-Looped-Transformer
+category: understanding
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: per-pass
+tldr:
+  en: "Probes the per-loop hidden states of the 2.6B looped model Ouro-RLTT: from the first 48 reasoning tokens a probe predicts answer correctness with AUROC 0.758 versus 0.515 for token confidence, prefers the correct of two answers 74% of the time, and ranks answers well at layer 8 by the third loop."
+  zh: 探测 2.6B 循环模型 Ouro-RLTT 每次循环的隐藏状态：读取前 48 个推理 token 的探针预测答案是否正确的 AUROC 为 0.758，token 置信度为 0.515；在同一问题的两个答案中，探针有 74% 的情况给正确答案更高分；到第三次循环时，第 8 层的答案排序探针已与最后几层一样准。
+added: "2026-11-24"

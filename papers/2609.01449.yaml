@@ -1,0 +1,18 @@
+id: "2609.01449"
+tier: radar
+title: "Diffusion as a Training Curriculum for Timestep-Free Iterative Reasoning"
+date: "2026-09-01"
+venue: NeurIPS 2026 Beyond Next Token Prediction Workshop
+authors: [Mariia Drozdova, Aidan Sirbu, Pietro Miotti, Robert Obryk, Mayalen Etcheverry, Eyvind Niklasson, Blake Richards]
+links:
+  paper: https://arxiv.org/abs/2609.01449
+category: applications
+focus: related
+facets:
+  placement: hierarchical
+  depth_train: sampled
+  kv: n/a
+tldr:
+  en: A timestep-free diffusion denoiser with a persistent hidden state, built from a looped block reused at every step, becomes an anytime solver that improves with inference depth, reaching 99.90% exact solve on Sudoku-Extreme and 98.93% on Maze-Unique; annealed corruption matters mainly as a training curriculum.
+  zh: 该文为去掉时间步条件的扩散去噪器加入持久隐藏状态，并在每一步复用同一个循环块，得到随推理深度持续提升的 anytime 求解器：Sudoku-Extreme 精确求解率达 99.90%，Maze-Unique 达 98.93%；有序退火加噪主要作为训练课程起作用。
+added: "2026-11-24"

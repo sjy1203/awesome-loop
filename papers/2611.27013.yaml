@@ -1,0 +1,19 @@
+id: "2611.27013"
+tier: radar
+title: "Loop-OPF: Solver-Informed Learning for Optimal Power Flow with Inference-Time Topology Adaptivity"
+date: "2026-11-20"
+venue: arXiv
+authors: [Mohamad Chehade, Hao Zhu]
+links:
+  paper: https://arxiv.org/abs/2611.27013
+  code: https://github.com/MFHChehade/loop-opf
+category: applications
+focus: related
+facets:
+  placement: implicit
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: Loop-OPF builds its layers from primal-dual hybrid gradient iterations for DC-OPF, learns PDHG parameters without solution labels and trains as a DEQ, so its fixed point is optimal and feasible; one trained model adapts to unseen outages on IEEE 300-bus and PEGASE 1354-, 2869- and 9241-bus networks.
+  zh: Loop-OPF 用原始-对偶混合梯度（PDHG）迭代构建网络层来求解 DC-OPF，无需 OPF 解标签即可学习 PDHG 参数，并按 DEQ 训练，使其不动点输出最优且可行；同一个训练好的模型可直接适应未见过的线路或发电机故障，在 IEEE 300 节点和 PEGASE 1354、2869、9241 节点系统上得到验证。
+added: "2026-11-24"

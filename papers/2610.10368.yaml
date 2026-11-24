@@ -1,0 +1,18 @@
+id: "2610.10368"
+tier: radar
+title: "Input-Blind Controls Produce Substantial Oracle Headroom for Layer Programs in Multiple-Choice Evaluation"
+date: "2026-10-07"
+venue: arXiv
+authors: [Yibei Guo, Rui Liu]
+links:
+  paper: https://arxiv.org/abs/2610.10368
+category: understanding
+focus: core
+facets:
+  placement: n/a
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: For 32 layer-skipping and repetition programs on Qwen3-4B-Base and Llama-3.1-8B, input-blind controls give 10.2-11.8 and 15.6-19.4 percentage points of oracle headroom with shared option order, above the real programs' 9.0 and 10.1, so headroom does not establish a layer-specific benefit.
+  zh: 在 Qwen3-4B-Base 和 Llama-3.1-8B 上比较 32 个跳层与重复层程序，选项顺序共享时，输入无关的对照扰动给出 10.2-11.8 和 15.6-19.4 个百分点的 oracle headroom，超过真实程序的 9.0 和 10.1，因此 headroom 不能证明所选层计算带来特定收益。
+added: "2026-11-24"

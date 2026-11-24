@@ -1,0 +1,18 @@
+id: "2512.12880"
+tier: radar
+title: "Improving Recursive Transformers with Mixture of LoRAs"
+date: "2025-12-14"
+venue: arXiv
+authors: [Mohammadmahdi Nouriborji, Morteza Rohanian, Omid Rohanian]
+links:
+  paper: https://arxiv.org/abs/2512.12880
+category: architecture/placement
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: ModernALBERT, a recursive Transformer encoder sharing layer parameters within groups, adds token-routed LoRA experts inside the shared FFN (Mixture of LoRAs); its 50M to 120M models are state of the art among compact models on GLUE, SQuAD-v2 and BEIR and surpass larger fully parameterised baselines.
+  zh: ModernALBERT 是按组共享层参数的递归 Transformer encoder，它在共享 FFN 内部加入按 token 路由的 LoRA 专家（Mixture of LoRAs）；50M 到 120M 的模型在 GLUE、SQuAD-v2 和 BEIR 上达到紧凑模型中的最好水平，并超过更大的全参数基线。
+added: "2026-11-24"

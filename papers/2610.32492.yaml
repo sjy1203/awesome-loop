@@ -1,0 +1,18 @@
+id: "2610.32492"
+tier: radar
+title: "Accordion: Elastic-Depth Inference via Fixed-Prefix Layer Looping"
+date: "2026-10-23"
+venue: arXiv
+authors: [Yudong Zhang, Wei Ding, Kaili Zheng, Yuchen Ding, Zhenyu Zhang]
+links:
+  paper: https://arxiv.org/abs/2610.32492
+category: depth
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: sampled
+  kv: per-pass
+tldr:
+  en: Accordion, an MoE LLM, serves five inference budgets by repeating a fixed prefix of single layers in a middle window, sampling one budget per micro-batch; after 3.6T tokens, more depth lifts Accordion-6B-A0.5B's 37-task macro-average by 3.01 points, with the middle budget capturing 89% of the gain.
+  zh: Accordion 是一个 MoE LLM，通过重复中间窗口内固定前缀的若干单层来提供五种推理预算，训练时每个 micro-batch 采样一种预算；经过 3.6T token 预训练后，增加推理深度使 Accordion-6B-A0.5B 在 37 个任务上的五类宏平均提高 3.01 个百分点，中间预算获得其中 89% 的提升。
+added: "2026-11-24"

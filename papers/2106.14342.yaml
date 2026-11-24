@@ -1,0 +1,19 @@
+id: "2106.14342"
+tier: radar
+title: "Stabilizing Equilibrium Models by Jacobian Regularization"
+date: "2021-06-28"
+venue: ICML 2021
+authors: [Shaojie Bai, Vladlen Koltun, J. Zico Kolter]
+links:
+  paper: https://arxiv.org/abs/2106.14342
+  code: https://github.com/locuslab/deq
+category: training
+focus: core
+facets:
+  placement: implicit
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: Regularizing the Jacobian of the DEQ fixed-point update stabilizes forward and backward convergence; on WikiText-103 a Pre-LN DEQ-Transformer that diverges without it reaches 24.5 perplexity, and DEQ-Transformer training time falls from 3.1× to 1.5× that of Transformer-XL.
+  zh: 对 DEQ 不动点更新的 Jacobian 做正则化，可以稳定前向和反向收敛；在 WikiText-103 上，不加正则时会发散的 Pre-LN DEQ-Transformer 达到 24.5 的困惑度，DEQ-Transformer 的训练时间从 Transformer-XL 的 3.1× 降到 1.5×。
+added: "2026-11-24"

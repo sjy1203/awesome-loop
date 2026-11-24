@@ -1,0 +1,18 @@
+id: "2608.06727"
+tier: radar
+title: "bioMoR: Biology-Guided Mixture-of-Recursions for Effective Genomic Learning"
+date: "2026-08-07"
+venue: arXiv
+authors: [Koushik Howlader, Tirtho Roy, Md Tauhidul Islam, Wei Le]
+links:
+  paper: https://arxiv.org/abs/2608.06727
+category: applications
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: bioMoR applies Mixture-of-Recursions to omics data, adding biological-graph knowledge to embeddings, attention and the router that sets each gene or pathway token's recursion depth; across eight benchmarks it raises average macro-F1 by 8.2 percentage points over the best biology-agnostic MoR baseline.
+  zh: bioMoR 把 Mixture-of-Recursions 用于组学数据，在 token 嵌入、注意力以及决定每个基因或通路 token 递归深度的路由器中加入生物知识图谱；在八个基准上，它的平均 macro-F1 比最强的不含生物知识的 MoR 基线高 8.2 个百分点。
+added: "2026-11-24"

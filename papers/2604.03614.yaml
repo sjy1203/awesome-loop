@@ -1,0 +1,18 @@
+id: "2604.03614"
+tier: radar
+title: "One-Shot Localisation of the Global Minimum of a Noisy One-Dimensional Function: A Controlled Comparison of an Iterative Neural Minimizer, Set Transformers and Classical Estimators"
+date: "2026-04-04"
+venue: arXiv
+authors: [Qusay Muzaffar, David Levin, Michael Werman]
+links:
+  paper: https://arxiv.org/abs/2604.03614
+category: applications
+focus: related
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: The Neural Function Minimizer runs a weight-tied read-iterate-update loop for fifteen steps, moving a position and re-reading twenty noisy samples of a one-dimensional function; its regret is 2.90 and 3.12 points of the range lower than a same-size one-pass Set Transformer's (one and two heads).
+  zh: Neural Function Minimizer 让权重共享的读取-迭代-更新循环运行 15 步，每步移动位置并重新读取一维函数的 20 个带噪样本；与同等规模、单次前向的 Set Transformer 相比，它在一个和两个输出头下的 regret 分别低 2.90 和 3.12 个点（按值域计）。
+added: "2026-11-24"

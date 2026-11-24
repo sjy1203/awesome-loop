@@ -1,0 +1,18 @@
+id: "1905.06638"
+tier: radar
+title: "Latent Universal Task-Specific BERT"
+date: "2019-05-16"
+venue: arXiv
+authors: [Alon Rozental, Zohar Kelrich, Daniel Fleischer]
+links:
+  paper: https://arxiv.org/abs/1905.06638
+category: architecture/placement
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: Latent Universal Task-Specific BERT replaces BERT's stacked self-attention blocks with one recurring three-layer block plus ACT, as in the Universal Transformer; on tweets the Universal Model has 46.3M parameters versus 110.1M for the base model, with masked LM accuracy 0.508 versus 0.507.
+  zh: Latent Universal Task-Specific BERT 仿照 Universal Transformer，把 BERT 依次堆叠的自注意力块换成一个循环使用的三层块并加入 ACT；在推文上，Universal Model 有 46.3M 参数（基础模型为 110.1M），masked LM 准确率为 0.508（基础模型为 0.507）。
+added: "2026-11-24"

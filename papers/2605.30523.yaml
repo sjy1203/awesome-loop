@@ -1,0 +1,18 @@
+id: "2605.30523"
+tier: radar
+title: "Revisiting Padded Transformer Expressivity: Which Architectural Choices Matter and Which Don't"
+date: "2026-05-28"
+venue: arXiv
+authors: [Anej Svete, William Merrill, Ryan Cotterell, Ashish Sabharwal]
+links:
+  paper: https://arxiv.org/abs/2605.30523
+category: theory
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: "The paper shows that padded Transformers' expressivity is robust to attention type, width and uniformity, depending mainly on precision and depth; looping adds circuit-like sequential processing: log^d N-looped constant-precision Transformers reach FO-uniform AC^d, growing-precision ones FO-uniform TC^d."
+  zh: 论文证明 padded Transformer 的表达能力对注意力类型、宽度和一致性假设都很稳健，主要取决于数值精度和深度；循环带来类似电路的顺序处理，log^d N 次循环的常数精度 Transformer 达到 FO-uniform AC^d，增长精度的则达到 FO-uniform TC^d。
+added: "2026-11-24"

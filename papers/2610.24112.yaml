@@ -1,0 +1,18 @@
+id: "2610.24112"
+tier: radar
+title: "Looped GNNs Beyond Fixed Depth: Graph Size Generalization and Parameter-Efficient Adaptation"
+date: "2026-10-16"
+venue: arXiv
+authors: [Zhiyang Wang, Zhishang Luo, Yusu Wang]
+links:
+  paper: https://arxiv.org/abs/2610.24112
+category: applications
+focus: related
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Looped GNNs reuse a pretrained processor beyond its training depth to generalize to larger graphs; Loop-Freeze-Steer freezes the processor and trains a small controller between iterations, and synthetic tasks and chip placement show its accuracy–trainable-parameter trade-off.
+  zh: Looped GNN 在超出训练深度时继续重复使用预训练的处理器，以泛化到更大的图；Loop-Freeze-Steer 冻结该处理器，只在迭代之间训练一个小控制器，合成任务和芯片布局实验展示了它在准确率与可训练参数量之间的权衡。
+added: "2026-11-24"

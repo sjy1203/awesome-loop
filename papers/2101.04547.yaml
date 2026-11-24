@@ -1,0 +1,18 @@
+id: "2101.04547"
+tier: radar
+title: "Of Non-Linearity and Commutativity in BERT"
+date: "2021-01-12"
+venue: IJCNN 2021
+authors: [Sumu Zhao, Damian Pascual, Gino Brunner, Roger Wattenhofer]
+links:
+  paper: https://arxiv.org/abs/2101.04547
+category: understanding
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Analyzing BERT, the paper finds its layers largely commutative, mainly due to skip connections; ALBERT-like models that repeat one fine-tuned layer 12 times fall to random guessing but improve after 3 more fine-tuning epochs, which the authors take as support for recurrent and weight-shared Transformers.
+  zh: 论文分析 BERT，发现其各层在很大程度上可交换，主要源于跳跃连接；把一个微调后的层重复 12 次得到的 ALBERT 式模型起初退化为随机猜测，再微调 3 个 epoch 后明显改善，作者据此解释循环和权重共享 Transformer 的良好表现。
+added: "2026-11-24"

@@ -1,0 +1,19 @@
+id: "2207.02536"
+tier: radar
+title: "Transformers discover an elementary calculation system exploiting local attention and grid-like problem representation"
+date: "2022-07-06"
+venue: arXiv
+authors: [Samuel Cognolato, Alberto Testolin]
+links:
+  paper: https://arxiv.org/abs/2207.02536
+  code: https://github.com/CognacS/tag-cat
+category: applications
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: A Universal Transformer with local attention over a grid-like memory and a PonderNet-style halting transformer learns multi-digit addition and place value alignment; trained on up to 4 operands of up to 10 digits, a variant reaches 0.99 sequence accuracy on 2-term additions of 1000-digit numbers.
+  zh: 一种 Universal Transformer 在网格式记忆上使用局部注意力，并配有 PonderNet 式停止 Transformer，学会了多位数加法和按数位对齐；在最多 4 个操作数、每个最多 10 位的数据上训练后，其一个变体在两个 1000 位数相加上达到 0.99 的序列准确率。
+added: "2026-11-24"

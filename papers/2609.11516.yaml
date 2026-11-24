@@ -1,0 +1,18 @@
+id: "2609.11516"
+tier: radar
+title: "LoopVAE: Recurrent Depth Across Scales for Visual Tokenization"
+date: "2026-09-10"
+venue: arXiv
+authors: [Zhiying Lu]
+links:
+  paper: https://arxiv.org/abs/2609.11516
+category: applications
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: LoopVAE reuses one scale- and loop-conditioned four-block core across all scales and loops of a visual tokenizer's encoder and decoder (28 block applications each); on ImageNet-256 the 29M-parameter CNN reaches 0.28 rFID and 32.54 dB PSNR with approximately 65% fewer parameters than 84M reference VAEs.
+  zh: LoopVAE 在视觉 tokenizer 的编码器和解码器中各用一个以尺度和循环步为条件的四块核心，在所有尺度和循环步上复用（各执行 28 次块计算）；在 ImageNet-256 上，29M 参数的 CNN 达到 0.28 rFID 和 32.54 dB PSNR，参数比 84M 的参考 VAE 少约 65%。
+added: "2026-11-24"

@@ -1,0 +1,18 @@
+id: "2610.02741"
+tier: radar
+title: "On the Chain-of-Thought Monitorability of Looped Language Models"
+date: "2026-10-02"
+venue: arXiv
+authors: [Han Wang, Ishwar B Balappanawar, Huan Zhang]
+links:
+  paper: https://arxiv.org/abs/2610.02741
+category: safety
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: Across eight MonitorBench tasks, raising Ouro-1.4B-Thinking's loop depth from T=4 to T=8 lowers stress-test CoT monitorability on some tasks (Logic 77.9% to 41.8% under Direct Concealment), but looped LMs are not systematically less monitorable than non-looped LMs matched on size or depth.
+  zh: 在 MonitorBench 的八个任务上，把 Ouro-1.4B-Thinking 的循环深度从 T=4 提高到 T=8 会降低部分任务在压力测试下的 CoT 可监控性（Direct Concealment 下 Logic 从 77.9% 降到 41.8%），但循环语言模型并不比规模或深度匹配的非循环模型系统性地更难监控。
+added: "2026-11-24"

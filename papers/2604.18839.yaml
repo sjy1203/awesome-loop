@@ -1,0 +1,19 @@
+id: "2604.18839"
+tier: radar
+title: "One Step Forward and K Steps Back: Better Reasoning with Denoising Recursion Models"
+date: "2026-04-20"
+venue: arXiv
+authors: [Chris Cameron, Wangzheng Wang, Nikita Ivanov, Ashmita Bhattacharyya, Didier Chételat, Yingxue Zhang]
+links:
+  paper: https://arxiv.org/abs/2604.18839
+  code: https://github.com/wwwwwwwwz/DenoisingRecursionModels
+category: applications
+focus: related
+facets:
+  placement: hierarchical
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Denoising Recursion Models mask the target and train a weight-tied TRM-style transformer to undo the corruption over multiple recursive steps, giving a curriculum of intermediate states; on ARC2-Eval with NVARC pretraining, the 14M DRM reaches 24.9 pass@2 versus 21.8 for TRM and 22.6 for the 4B NVARC LLM.
+  zh: Denoising Recursion Models 用掩码噪声破坏目标，再训练权重共享的 TRM 式 Transformer 在多个递归步内还原，从而提供中间状态的课程；在 ARC2-Eval 上（NVARC 数据预训练），14M 的 DRM pass@2 为 24.9，TRM 为 21.8，4B 的 NVARC LLM 为 22.6。
+added: "2026-11-24"

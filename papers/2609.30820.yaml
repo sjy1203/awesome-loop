@@ -1,0 +1,18 @@
+id: "2609.30820"
+tier: radar
+title: "Quantizing Looped Transformers: Feedback Exposure and Calibration Blindness"
+date: "2026-09-25"
+venue: arXiv
+authors: [Nux Li]
+links:
+  paper: https://arxiv.org/abs/2609.30820
+category: systems
+focus: core
+facets:
+  placement: n/a
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: In post-training quantization of looped Transformers, per-channel INT4 on Huginn-3.5B fails mainly at the non-residual loop-entry adapter and one-step GPTQ is worse than RTN on five of nine checkpoints; accumulating GPTQ's Hessian across recurrence steps beats both on all nine and recovers bf16-level accuracy on Huginn.
+  zh: 在循环 Transformer 的训练后量化中，Huginn-3.5B 的 per-channel INT4 主要在没有残差通路的 loop 入口 adapter 处失效，单步 GPTQ 在九个 checkpoint 中有五个不如 RTN；把 GPTQ 的 Hessian 在各递归步上累积后，在全部九个 checkpoint 上都优于两者，并在 Huginn 上恢复到 bf16 水平的准确率。
+added: "2026-11-24"

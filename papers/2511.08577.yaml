@@ -1,0 +1,19 @@
+id: "2511.08577"
+tier: radar
+title: "Think-at-Hard: Dynamic Looped Transformers for Improved Reasoning"
+date: "2025-11-11"
+venue: ICML 2026
+authors: [Tianyu Fu, Yichen You, Zekai Chen, Guohao Dai, Huazhong Yang, Yu Wang]
+links:
+  paper: https://arxiv.org/abs/2511.08577
+  code: https://github.com/thu-nics/TaH
+category: depth
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: per-pass
+tldr:
+  en: TaH re-iterates a Qwen3 backbone only on tokens that a lightweight neural decider flags as likely wrong, using duo-causal attention over earlier positions and shallower iterations; at identical parameter counts it beats always-iterate baselines by 3.8-4.4% while skipping iterations on 93% of tokens.
+  zh: TaH 只在轻量神经决策器判定可能出错的 token 上让 Qwen3 主干再迭代，并用 duo-causal attention 关注之前的位置和更浅的迭代深度；参数量相同时，它比每个 token 都迭代的基线高 3.8-4.4%，同时 93% 的 token 跳过迭代。
+added: "2026-11-24"

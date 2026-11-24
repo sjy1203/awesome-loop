@@ -1,0 +1,19 @@
+id: "2108.12284"
+tier: radar
+title: "The Devil is in the Detail: Simple Tricks Improve Systematic Generalization of Transformers"
+date: "2021-08-26"
+venue: EMNLP 2021
+authors: [Róbert Csordás, Kazuki Irie, Jürgen Schmidhuber]
+links:
+  paper: https://arxiv.org/abs/2108.12284
+  code: https://github.com/robertcsordas/transformer_generalization
+category: understanding
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Revisits simple configuration choices, including Universal Transformer variants with weights shared across layers; a relative-position Universal Transformer reaches 85% on the PCFG productivity split versus 50% previously reported, and universal variants beat standard ones except on COGS and CFQ MCD 1.
+  zh: 重新审视若干简单的配置选择，其中包括跨层共享权重的 Universal Transformer 变体；使用相对位置编码的 Universal Transformer 在 PCFG productivity 划分上达到 85%，此前报告为 50%；除 COGS 和 CFQ MCD 1 外，universal 变体均优于标准 Transformer。
+added: "2026-11-24"

@@ -1,0 +1,18 @@
+id: "2601.19551"
+tier: radar
+title: "Scale-Consistent State-Space Dynamics via Fractal of Stationary Transformations"
+date: "2026-01-27"
+venue: arXiv
+authors: [Geunhyeok Yu, Hyoseok Hwang]
+links:
+  paper: https://arxiv.org/abs/2601.19551
+category: applications
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: FROST iterates one weight-tied ResNet or ViT transition as a contractive, self-similar state-space update so intermediate states approximate the final one, making ranking-based halting stable; on CIFAR-100, accuracy rises from 45.39% at average depth 4.37 to 61.99% at full depth 16.00.
+  zh: FROST 把同一个权重共享的 ResNet 或 ViT 变换迭代为收缩、自相似的状态空间更新，使中间状态逼近最终表示，从而让基于排序的停止机制稳定可用；在 CIFAR-100 上，准确率从平均深度 4.37 时的 45.39% 升至完整深度 16.00 时的 61.99%。
+added: "2026-11-24"

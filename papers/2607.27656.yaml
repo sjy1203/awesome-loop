@@ -1,0 +1,18 @@
+id: "2607.27656"
+tier: radar
+title: "Looped Transformers with Source-Centered State Evolution"
+date: "2026-07-30"
+venue: arXiv
+authors: [Bum Jun Kim, Kohei Hayashi, Shunsuke Kamiya, Masanori Koyama, Yusuke Iwasawa, Yutaka Matsuo]
+links:
+  paper: https://arxiv.org/abs/2607.27656
+category: architecture/state
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: sampled
+  kv: n/a
+tldr:
+  en: "SCSE removes repeated input injection from looped Transformers: the shared block evolves only the hidden state's deviation from a learned input-conditioned anchor, kept an exact fixed point by a zero-deviation mask, which improves the controlled recurrent quality frontier on WikiText, web-text and LAMBADA."
+  zh: SCSE 去掉了循环 Transformer 每一步重复的输入注入：共享块只演化隐藏状态相对于可学习的输入条件锚点的偏差，零偏差掩码保证锚点是精确的不动点；它在 WikiText、网页文本和 LAMBADA 基准上改善了受控的循环质量前沿。
+added: "2026-11-24"

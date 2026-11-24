@@ -1,0 +1,19 @@
+id: "2610.01153"
+tier: radar
+title: "Looping Beyond Twice: A Scalable Recipe for Looped Mixture-of-Experts"
+date: "2026-10-01"
+venue: arXiv
+authors: [Di He, Pengxiang Li, Da Chang, Qingyan Meng, Lu Yin, Shiwei Liu]
+links:
+  paper: https://arxiv.org/abs/2610.01153
+  code: https://github.com/hed-ucas/LOOM
+category: architecture/state
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: LOOM loops a whole MoE decoder with residual scaling, input-embedding re-injection every loop, per-loop routers over shared experts and a Looping Residual; under near-iso-FLOP the 700M model performs best at 5 loops, cutting perplexity from 18.36 to 16.54 over the non-looped baseline.
+  zh: LOOM 循环整个 MoE 解码器，并采用残差缩放、每次循环重新注入输入嵌入、在共享专家之上为每次循环配独立路由器，以及 Looping Residual；在接近等 FLOPs 的条件下，700M 模型在 5 次循环时表现最好，相对不循环基线把困惑度从 18.36 降到 16.54。
+added: "2026-11-24"

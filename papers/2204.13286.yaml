@@ -1,0 +1,19 @@
+id: "2204.13286"
+tier: radar
+title: "Lightweight Bimodal Network for Single-Image Super-Resolution via Symmetric CNN and Recursive Transformer"
+date: "2022-04-28"
+venue: IJCAI 2022
+authors: [Guangwei Gao, Zhengxue Wang, Juncheng Li, Wenjie Li, Yi Yu, Tieyong Zeng]
+links:
+  paper: https://arxiv.org/abs/2204.13286
+  code: https://github.com/IVIPLab/LBNet
+category: applications
+focus: related
+facets:
+  placement: partial
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: LBNet pairs a parameter-shared Symmetric CNN with a Recursive Transformer whose two Transformer modules each feed their output back as input S times, for lightweight super-resolution; on Set5 ×4, recursing each module 2 times raises PSNR from 32.23 to 32.29 with parameters unchanged at 741.7K.
+  zh: LBNet 面向轻量单图超分辨率，把参数共享的 Symmetric CNN 与 Recursive Transformer 结合，后者的两个 Transformer 模块各自把输出当作新输入循环 S 次；在 Set5 ×4 上，每个模块递归 2 次使 PSNR 从 32.23 升至 32.29，参数量仍为 741.7K。
+added: "2026-11-24"

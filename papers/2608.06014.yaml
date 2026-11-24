@@ -1,0 +1,18 @@
+id: "2608.06014"
+tier: radar
+title: "Iterate or Widen? When Test-Time Refinement Helps LiDAR Scene Completion: A Controlled Study of Evidence Geometry, Training Coverage, and Compute"
+date: "2026-08-06"
+venue: arXiv
+authors: [Shijie Hao, Weining Zhang]
+links:
+  paper: https://arxiv.org/abs/2608.06014
+category: applications
+focus: related
+facets:
+  placement: partial
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: For LiDAR scene completion, a 0.53M-parameter weight-tied multigrid refiner iterated on a frozen one-shot predictor beats a parameter-matched wider predictor by 0.911 mIoU points under contiguous angular removal, but adds only 0.300 under 75% thinning, where observation-family augmentation adds 5.975.
+  zh: 在 LiDAR 语义场景补全中，一个 0.53M 参数、每步复用同一组权重的多重网格细化器作用于冻结的单次预测器，在连续角度区域移除下比参数量匹配的更宽单次预测器高 0.911 个 mIoU 点，但在 75% 独立稀疏化下只多 0.300 个点，而观测族数据增强可多 5.975 个点。
+added: "2026-11-24"

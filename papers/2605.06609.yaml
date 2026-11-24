@@ -1,0 +1,18 @@
+id: "2605.06609"
+tier: radar
+title: "Transformers Efficiently Perform In-Context Logistic Regression via Normalized Gradient Descent"
+date: "2026-05-07"
+venue: arXiv
+authors: [Chenyang Zhang, Yuan Cao]
+links:
+  paper: https://arxiv.org/abs/2605.06609
+category: theory
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Constructs softmax transformers whose layers each run one normalized gradient descent step for in-context logistic regression, and proves that training one self-attention layer under one-step gradient descent supervision and looping it yields such a model, with convergence and OOD guarantees.
+  zh: 构造出每层执行一步归一化梯度下降、用于 in-context 逻辑回归的 softmax Transformer，并证明用一步梯度下降监督训练单个自注意力层再循环应用即可得到这种模型，同时给出收敛和分布外泛化保证。
+added: "2026-11-24"

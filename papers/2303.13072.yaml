@@ -1,0 +1,18 @@
+id: "2303.13072"
+tier: radar
+title: "Beyond Universal Transformer: block reusing with adaptor in Transformer for automatic speech recognition"
+date: "2023-03-23"
+venue: arXiv
+authors: [Haoyu Tang, Zhaoyi Liu, Chang Zeng, Xinfeng Li]
+links:
+  paper: https://arxiv.org/abs/2303.13072
+category: applications
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: BRST reuses one Transformer block 12 times in the encoder and one 6 times in the decoder of a CTC-attention speech recognizer, adding a small adapter module (ADM) after each reuse; on AISHELL-1 it reaches 9.3%/6.63% CER with 7.6M/8.3M parameters without/with the ADM.
+  zh: BRST 在 CTC-attention 语音识别 Transformer 中让编码器的一个块重复 12 次、解码器的一个块重复 6 次，并在每次复用后加入少量参数的适配器模块（ADM）；在 AISHELL-1 上，不加和加 ADM 时分别以 7.6M/8.3M 参数取得 9.3%/6.63% 的 CER。
+added: "2026-11-24"

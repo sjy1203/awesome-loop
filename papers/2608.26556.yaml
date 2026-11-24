@@ -1,0 +1,18 @@
+id: "2608.26556"
+tier: radar
+title: "Dynamical phase selection controls compute scaling in looped transformers"
+date: "2026-08-27"
+venue: arXiv
+authors: [Gunn Kim]
+links:
+  paper: https://arxiv.org/abs/2608.26556
+category: understanding
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: Looped transformers that iterate one weight-tied attention-plus-MLP block and reach identical accuracy realize distinct dynamical phases depending on initialization; the fold phase gives the workload tail P(τ>N) ∼ N^-2, while in the Neimark-Sacker phase this fold scaling law disappears.
+  zh: 迭代同一个权重共享 attention-plus-MLP 块、准确率相同的循环 Transformer 会因初始化不同形成不同的动力学相；fold 相给出 P(τ>N) ∼ N^-2 的负载尾部，而在 Neimark-Sacker 相中这一 fold 标度律消失。
+added: "2026-11-24"

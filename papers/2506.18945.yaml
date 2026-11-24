@@ -1,0 +1,19 @@
+id: "2506.18945"
+tier: radar
+title: "Chain-of-Experts: Unlocking the Communication Power of Mixture-of-Experts Models"
+date: "2025-06-23"
+venue: arXiv
+authors: [Zihan Wang, Rui Pan, Jiarui Yao, Robert Csordas, Linjie Li, Lu Yin, Jiajun Wu, Tong Zhang, Manling Li, Shiwei Liu]
+links:
+  paper: https://arxiv.org/abs/2506.18945
+  code: https://github.com/ZihanWang314/coe
+category: architecture/placement
+focus: core
+facets:
+  placement: partial
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Chain-of-Experts iterates each MoE layer, re-routing tokens among its experts with a dedicated router per iteration; under fixed compute it cuts math validation loss from 1.20 to 1.12 versus standard MoE, and 2x iterations match 3x expert selections with 17.6-42% less memory than other scaling strategies.
+  zh: Chain-of-Experts 在每个 MoE 层内迭代，每次迭代用专属路由器在该层的专家中为 token 重新选择专家；在固定计算量下，它把数学验证损失从标准 MoE 的 1.20 降到 1.12，2x 迭代即可匹配 3x 专家选择数的效果，内存占用比其他扩展策略低 17.6-42%。
+added: "2026-11-24"

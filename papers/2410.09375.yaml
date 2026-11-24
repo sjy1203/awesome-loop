@@ -1,0 +1,18 @@
+id: "2410.09375"
+tier: radar
+title: "Looped ReLU MLPs May Be All You Need as Practical Programmable Computers"
+date: "2024-10-12"
+venue: AISTATS 2025
+authors: [Yingyu Liang, Zhizhou Sha, Zhenmei Shi, Zhao Song, Yufa Zhou]
+links:
+  paper: https://arxiv.org/abs/2410.09375
+category: theory
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: Proves by construction that a looped 23-layer ReLU-MLP can emulate the SUBLEQ instruction and so act as a programmable computer, more efficiently than a looped Transformer, indicating that simple modules are more expressive than expected.
+  zh: 通过构造证明，循环的 23 层 ReLU-MLP 能模拟 SUBLEQ 指令，从而作为可编程计算机运行，且比循环 Transformer 更高效，说明简单模块的表达能力强于此前预期。
+added: "2026-11-24"

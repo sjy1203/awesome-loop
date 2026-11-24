@@ -1,0 +1,18 @@
+id: "2610.21594"
+tier: radar
+title: "LoopAhead: Speculating Ahead for Faster Decoding in Looped Language Models"
+date: "2026-10-15"
+venue: arXiv
+authors: [Zixuan Liu, Nan Xue, Rui Bao, Yuhang Xu, Xiaofeng Cao, Jiangchao Yao, Zhiyong Chen]
+links:
+  paper: https://arxiv.org/abs/2610.21594
+category: systems
+focus: core
+facets:
+  placement: n/a
+  depth_train: n/a
+  kv: per-pass
+tldr:
+  en: LoopAhead drafts several future tokens from a looped LM's early-loop states with a lightweight drafter, uses deeper-loop feedback to pause or continue branches, and lets the full-depth model verify, reaching up to 7.82x decoding speedup over autoregressive decoding while preserving the output distribution.
+  zh: LoopAhead 用轻量的前瞻 drafter 基于循环语言模型的早期循环状态起草多个未来 token，用更深循环的反馈决定继续或暂停各草稿分支，再由完整深度模型验证；在保持输出分布不变的情况下，解码速度最高达到自回归解码的 7.82 倍。
+added: "2026-11-24"

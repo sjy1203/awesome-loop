@@ -1,0 +1,19 @@
+id: "2610.28871"
+tier: radar
+title: "How Much Gradient Does Truncated Backprop Lose in Looped Transformers?"
+date: "2026-10-20"
+venue: arXiv
+authors: [Aur Shalev Merin]
+links:
+  paper: https://arxiv.org/abs/2610.28871
+  code: https://github.com/Aur-Shalev-Merin/lost-gradient-looped-transformers
+category: training
+focus: core
+facets:
+  placement: n/a
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: Across nine looped LMs, the weight gradient lost by backpropagating through only the last k loops barely changes with loop count (within about 0.03 from 32 to 64 loops); on Ouro keeping two of four loops still loses 81% of the final output's gradient, and the lost share falls by 0.07-0.22 within 300 fine-tuning steps.
+  zh: 在九个循环语言模型上，只对最后 k 次循环反向传播所丢失的权重梯度几乎不随循环次数变化（从 32 到 64 次循环变化约在 0.03 以内）；在 Ouro 上，保留四次循环中的两次仍会丢失最终输出 81% 的梯度，而微调 300 步内丢失比例下降 0.07-0.22。
+added: "2026-11-24"

@@ -1,0 +1,19 @@
+id: "2103.12803"
+tier: radar
+title: "JFB: Jacobian-Free Backpropagation for Implicit Networks"
+date: "2021-03-23"
+venue: arXiv
+authors: [Samy Wu Fung, Howard Heaton, Qiuwei Li, Daniel McKenzie, Stanley Osher, Wotao Yin]
+links:
+  paper: https://arxiv.org/abs/2103.12803
+  code: https://github.com/howardheaton/fixed_point_networks
+category: training
+focus: related
+facets:
+  placement: implicit
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: JFB trains implicit networks, which infer by solving a fixed-point equation, by omitting the Jacobian term from backpropagation, keeping training memory fixed; on MNIST, SVHN and CIFAR-10 they are competitive with feedforward and prior implicit networks of the same parameter count.
+  zh: JFB 训练通过求解不动点方程进行推理的隐式网络，在反向传播中省略 Jacobian 项，使训练内存保持固定；在 MNIST、SVHN 和 CIFAR-10 上，这些隐式网络与参数量相同的前馈网络和已有隐式网络表现相当。
+added: "2026-11-24"

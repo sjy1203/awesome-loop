@@ -68,7 +68,7 @@ UI = {
         "trend_caption": ("Quarterly count of arXiv papers whose title or abstract contains a loop phrase (phrases and "
                           "counts in [data/trend.json](data/trend.json)); the last quarter is partial. Keyword "
                           "matches are a proxy for activity in the field, not a curated count."),
-        "ds_more": "{n} papers",
+        "ds_more": "{n} papers", "ds_more_1": "1 paper",
         "ds_title": "Design space",
         "ds_note": "Every core paper with a stated loop placement and training depth, grouped by cell.",
         "diff_head": "What this list adds",
@@ -179,7 +179,7 @@ UI = {
         "trend_sub": "标题或摘要含 looped transformer、recurrent depth 等关键词 · 最后一个季度未满",
         "trend_caption": ("每季度标题或摘要含 Loop 关键词的 arXiv 论文数（关键词和数据见 [data/trend.json](data/trend.json)），"
                           "最后一个季度未满。关键词匹配反映领域热度，不是人工筛选后的数量。"),
-        "ds_more": "{n} 篇",
+        "ds_more": "{n} 篇", "ds_more_1": "1 篇",
         "ds_title": "设计空间",
         "ds_note": "所有写明了循环位置和训练遍数的核心论文，按格子分组。",
         "diff_head": "这份清单的特点",
@@ -585,7 +585,8 @@ def design_space(ctx, lang):
             rest = len(hits) - len(deep)
             link = f"docs/{lang}/design-space.md#{r}--{c}"
             if rest:
-                deep.append(f"[+{rest}]({link})" if deep else f"[{ui['ds_more'].format(n=rest)}]({link})")
+                more = ui["ds_more_1"] if rest == 1 else ui["ds_more"].format(n=rest)
+                deep.append(f"[+{rest}]({link})" if deep else f"[{more}]({link})")
             cells.append(", ".join(deep))
         out.append(row([ctx.label("placement", r, lang)] + cells))
     return out + [""]

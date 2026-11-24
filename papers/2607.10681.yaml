@@ -1,0 +1,19 @@
+id: "2607.10681"
+tier: radar
+title: "Spectral Margins and Memory Routing in Looped Transformers"
+date: "2026-07-12"
+venue: arXiv
+authors: [Matthias M. M. Buehlmaier]
+links:
+  paper: https://arxiv.org/abs/2607.10681
+  code: https://github.com/clojure-finance/mythjure
+category: understanding
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: In a small LayerNorm-based Parcae loop, fixed points are stable because the Jacobian's spectral radius stays below 1, though its distance from 1 shrinks as the carry nears 1; on multi-hop copy, carries frozen at 0.5, 0.02 or 0 match a learned carry at fixed depth, but with sampled depth 0.02 and 0 fail to train.
+  zh: 在一个基于 LayerNorm 的小型 Parcae 循环中，不动点之所以稳定，是因为 Jacobian 的谱半径保持在 1 以下，但它与 1 的距离随 carry 趋近 1 而缩小；在多跳复制任务上，固定深度训练时冻结在 0.5、0.02 或 0 的 carry 与可学习 carry 效果相当，而采样深度训练时 0.02 和 0 无法训练成功。
+added: "2026-11-24"

@@ -1,0 +1,18 @@
+id: "2611.30205"
+tier: radar
+title: "PackLoop: Row-Packed Self-Speculative Decoding for Looped Language Models under Concurrency"
+date: "2026-11-23"
+venue: arXiv
+authors: [Runguo Li, Dezhen Lu]
+links:
+  paper: https://arxiv.org/abs/2611.30205
+category: systems
+focus: core
+facets:
+  placement: n/a
+  depth_train: n/a
+  kv: per-pass
+tldr:
+  en: PackLoop speeds up concurrent self-speculative decoding of looped LMs by speculating only inside rows (one request on one loop) that already read that loop's KV cache; it is exact in FP32, and across 164 load points it beats the best existing schedule at 161 (median 1.25x, up to 1.76x).
+  zh: PackLoop 针对并发场景下循环语言模型的自推测解码，只在本来就要读取该循环 KV cache 的行（一个请求在一个循环上前进）内做推测；它在 FP32 下与自回归解码逐 token 一致，在 164 个负载点中有 161 个快于逐点挑选的最佳现有调度（中位数 1.25x，最高 1.76x）。
+added: "2026-11-24"

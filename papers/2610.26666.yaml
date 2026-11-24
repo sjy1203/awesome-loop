@@ -1,0 +1,18 @@
+id: "2610.26666"
+tier: radar
+title: "Nested Shared-Operator Recursion on ARC-AGI-1: An Empirical Study of HRM, TRM and URM"
+date: "2026-10-19"
+venue: arXiv
+authors: [Sara Neri, Eugenio Gaeta, Andrea Ceschini, Andrea Facchinetti, Giuseppe Fico]
+links:
+  paper: https://arxiv.org/abs/2610.26666
+category: applications
+focus: related
+facets:
+  placement: hierarchical
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: Adds to HRM, TRM and URM a persistent intermediate state that the same operator updates after repeated fast-state updates, at matched parameter counts; on ARC-AGI-1 under a single-GPU budget, the nested variants show no consistent advantage, and exact solving stays near zero for all configurations.
+  zh: 在参数量匹配的条件下，为 HRM、TRM 和 URM 增加一个持久的中间状态，由同一算子在多次快速状态更新之后对其更新；在单 GPU 预算的 ARC-AGI-1 实验中，嵌套变体没有表现出一致优势，所有配置的精确求解率都接近零。
+added: "2026-11-24"

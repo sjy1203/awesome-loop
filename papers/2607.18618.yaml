@@ -1,0 +1,18 @@
+id: "2607.18618"
+tier: radar
+title: "LatentMT: Machine Translation with Latent Reasoning"
+date: "2026-07-21"
+venue: arXiv
+authors: [Wei-Rui Chen, Samar M. Magdy, Chiyu Zhang, Wenhui Zhu, Zhipeng Wang, Muhammad Abdul-Mageed]
+links:
+  paper: https://arxiv.org/abs/2607.18618
+category: training
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: LatentMT trains per-language-pair LoRA adapters on a frozen 2.6B-parameter looped LM (Ouro-2.6B-Thinking) run at a fixed number of recurrent steps; across 32 translation directions it matches models three to five times larger, and gains from more steps saturate after the early steps.
+  zh: LatentMT 在冻结的 2.6B 参数循环语言模型（Ouro-2.6B-Thinking）上为每个语言对训练 LoRA adapter，并固定循环步数；在 32 个翻译方向上，它的表现与大三到五倍的模型相当，增加循环步数的收益在前几步之后很快饱和。
+added: "2026-11-24"

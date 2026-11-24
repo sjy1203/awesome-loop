@@ -1,0 +1,19 @@
+id: "2610.05265"
+tier: radar
+title: "Loopy: Low-Bit Quantization Framework for Looped Language Models"
+date: "2026-10-04"
+venue: arXiv
+authors: [Zeyu Li, Yipu Zhang, Jintao Cheng, Xin Li, Wei Zhnag]
+links:
+  paper: https://arxiv.org/abs/2610.05265
+  code: https://github.com/Shameless0817/Loopy-review
+category: systems
+focus: core
+facets:
+  placement: n/a
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: Loopy quantizes the shared core of looped LMs after training, picking channel-scaling and rotation configurations by final prediction loss at the target deployment depth, with calibration windows going to promising candidates; on Ouro-1.4B under W4A4 it cuts LAMBADA perplexity by 36.5% versus SpinQuant.
+  zh: Loopy 对循环语言模型的共享核心做训练后量化，按目标部署深度下的最终预测损失选择通道缩放和正交旋转配置，并把校准窗口分配给有希望的候选；在 Ouro-1.4B 的 W4A4 设置下，它的 LAMBADA 困惑度比 SpinQuant 降低 36.5%。
+added: "2026-11-24"

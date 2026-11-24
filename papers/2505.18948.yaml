@@ -1,0 +1,18 @@
+id: "2505.18948"
+tier: radar
+title: "Exact Expressive Power of Transformers with Padding"
+date: "2025-05-25"
+venue: NeurIPS 2025
+authors: [William Merrill, Ashish Sabharwal]
+links:
+  paper: https://arxiv.org/abs/2505.18948
+category: theory
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: Proves that averaging-hard-attention transformers with polynomial padding recognize exactly FO-uniform TC^0, and that looping a middle block O(log^d n) times raises this to exactly FO-uniform TC^d, so polylogarithmic looping with polynomial padding reaches FO-uniform NC.
+  zh: 证明带多项式 padding 的 averaging-hard-attention Transformer 恰好识别 FO-uniform TC^0，把中间层块循环 O(log^d n) 次后恰好识别 FO-uniform TC^d，因此多对数次循环加多项式 padding 可达到 FO-uniform NC。
+added: "2026-11-24"

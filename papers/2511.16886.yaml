@@ -1,0 +1,18 @@
+id: "2511.16886"
+tier: radar
+title: "Latent Reasoning in TRMs is Secretly a Policy Improvement Operator"
+date: "2025-11-21"
+venue: arXiv
+authors: [Arip Asadulaev, Rayan Banerjee, Fakhri Karray, Martin Takac]
+links:
+  paper: https://arxiv.org/abs/2511.16886
+category: applications
+focus: related
+facets:
+  placement: hierarchical
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Frames latent recursion in Tiny Recursive Models as policy improvement and supervises each recursive step with an intermediate target from a discrete diffusion schedule, dropping the halting head; on TRM this avoids dead compute and cuts total forward passes by 18x while maintaining performance.
+  zh: 把 Tiny Recursive Model 的潜在递归形式化为策略改进，并用离散扩散调度生成的中间目标监督每个递归步，去掉了停止头；在 TRM 上这避免了无效计算，在保持性能的同时把前向传播总次数减少 18x。
+added: "2026-11-24"

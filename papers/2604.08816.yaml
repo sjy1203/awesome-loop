@@ -1,0 +1,19 @@
+id: "2604.08816"
+tier: radar
+title: "Loom: A Scalable Analytical Neural Computer Architecture"
+date: "2026-04-09"
+venue: arXiv
+authors: [Mehmet Kerem Turkcan]
+links:
+  paper: https://arxiv.org/abs/2604.08816
+  code: https://github.com/mkturkcan/Loom
+category: theory
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: "Loom runs C programs inside a looped Transformer with analytically derived weights: each pass through 8 layers executes one instruction of a 22-opcode set, repeating until the program counter reaches zero; the default d = 155, n = 1024 machine has 4.7 million parameters and 928 instruction slots."
+  zh: Loom 在权重经解析推导的循环 Transformer 中运行由 C 编译的程序：每次通过 8 层执行 22 个操作码指令集中的一条指令，反复迭代直到程序计数器归零；默认配置 d = 155、n = 1024 有 4.7M 参数和 928 个指令槽。
+added: "2026-11-24"

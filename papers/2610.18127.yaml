@@ -1,0 +1,18 @@
+id: "2610.18127"
+tier: radar
+title: "Monitoring latent reasoning in looped language models"
+date: "2026-10-13"
+venue: arXiv
+authors: [Pawel Olszowiec, Paulina Tomaszewska, Maciej Żelaszczyk, Michal Byra, Neo Christopher Chung]
+links:
+  paper: https://arxiv.org/abs/2610.18127
+category: understanding
+focus: core
+facets:
+  placement: n/a
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: Five interpretability lenses on eight looped LMs from four families show carry-loop models (Ouro, LoopUS) predict best within their training depth and lose answers, language or refusals under noise, while re-read-loop models (Parcae, Rec-OLMo, Huginn) improve or plateau with more iterations and are unaffected by noise.
+  zh: 研究用五种机制可解释性视角考察四个系列的八个循环语言模型，发现 carry loop 模型（Ouro、LoopUS）在训练深度内预测最好，注入噪声后会丢失答案、语言能力或拒答对齐，而 re-read loop 模型（Parcae、Rec-OLMo、Huginn）随迭代增多而提升或持平，且不受噪声影响。
+added: "2026-11-24"

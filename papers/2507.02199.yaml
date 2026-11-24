@@ -1,0 +1,19 @@
+id: "2507.02199"
+tier: radar
+title: "Latent Chain-of-Thought? Decoding the Depth-Recurrent Transformer"
+date: "2025-07-02"
+venue: COLM 2025 Workshop on the Application of LLM Explainability to Reasoning and Planning
+authors: [Wenquan Lu, Yuechuan Yang, Kyle Lee, Yanshu Li, Enqi Liu]
+links:
+  paper: https://arxiv.org/abs/2507.02199
+  code: https://github.com/wenquanlu/huginn-latent-cot
+category: understanding
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: sampled
+  kv: n/a
+tldr:
+  en: Probing Huginn-3.5B with Logit Lens and Coda Lens on arithmetic finds little evidence of latent CoT and probing results that shift sharply across recurrent blocks; on GSM8K without CoT, 4 to 32 recurrent steps lift accuracy only from 3.11 to 4.93, far below 24.87/38.13 with explicit CoT.
+  zh: 用 Logit Lens 和 Coda Lens 在算术任务上探测 Huginn-3.5B，几乎找不到 latent CoT 的证据，且探测结果在不同循环块之间差异很大；在不用 CoT 的 GSM8K 上，循环步数从 4 增到 32 只让准确率从 3.11 升到 4.93，远低于显式 CoT 的 24.87/38.13。
+added: "2026-11-24"

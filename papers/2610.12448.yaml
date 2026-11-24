@@ -1,0 +1,18 @@
+id: "2610.12448"
+tier: radar
+title: "One Block, Multiple Depths: Recurrent Vision Transformers with Depth-Programmed Experts"
+date: "2026-10-08"
+venue: arXiv
+authors: [Adrian Bulat, Yassine Ouali, Georgios Tzimiropoulos]
+links:
+  paper: https://arxiv.org/abs/2610.12448
+category: applications
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: sampled
+  kv: n/a
+tldr:
+  en: reViT reuses one Transformer block across a vision encoder's depth, with each depth's FFN a convex combination of shared experts programmed by normalized depth; trained from scratch, reViT-B/16 attains DeiT III accuracy with about 70% fewer stored parameters, and one checkpoint runs at multiple depths.
+  zh: reViT 在视觉编码器的整个深度上复用同一个 Transformer 块，每个深度的 FFN 是共享专家的凸组合，组合系数由归一化深度决定；从头训练的 reViT-B/16 以少约 70% 的存储参数达到 DeiT III 的准确率，且同一个 checkpoint 可在多个深度下运行。
+added: "2026-11-24"

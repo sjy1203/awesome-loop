@@ -1,0 +1,19 @@
+id: "2509.25239"
+tier: radar
+title: "A Formal Comparison Between Chain of Thought and Latent Thought"
+date: "2025-09-25"
+venue: ICML 2026
+authors: [Kevin Xu, Issei Sato]
+links:
+  paper: https://arxiv.org/abs/2509.25239
+  code: https://github.com/kevin671/cot-vs-loop
+category: theory
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: "Formally compares looped Transformers (latent thought) with chain of thought: latent thought admits more efficient parallel computation than inherently sequential CoT, while CoT's stochastic decoding enables approximate counting and sampling, indicating which tasks suit depth-driven recursion."
+  zh: 形式化比较循环 Transformer 中的 latent thought 与思维链：latent thought 比本质上串行的 CoT 更能高效并行计算，而 CoT 借助随机解码可以做近似计数和采样，由此指出哪些任务更适合深度递归。
+added: "2026-11-24"

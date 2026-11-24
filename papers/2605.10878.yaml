@@ -1,0 +1,18 @@
+id: "2605.10878"
+tier: radar
+title: "Minimum Neural Weight Norm = Kolmogorov Complexity"
+date: "2026-05-11"
+venue: arXiv
+authors: [Tiberiu Musat]
+links:
+  paper: https://arxiv.org/abs/2605.10878
+category: theory
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: Proves that in looped neural networks with constant-precision weights (stated for a looped Transformer block), the smallest weight norm of a network computing a function is asymptotically equivalent to its Kolmogorov complexity divided by its logarithm, linking norm minimization to algorithmic simplicity.
+  zh: 证明在常数精度权重的循环神经网络中（定理以循环 Transformer 块表述），计算某函数的网络的最小权重范数渐近等价于该函数的 Kolmogorov 复杂度除以其对数，从而把范数最小化与算法简单性联系起来。
+added: "2026-11-24"

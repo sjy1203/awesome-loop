@@ -1,0 +1,18 @@
+id: "2601.00923"
+tier: radar
+title: "Context Collapse: In-Context Learning and Model Collapse"
+date: "2026-01-01"
+venue: arXiv
+authors: [Josef Ott]
+links:
+  paper: https://arxiv.org/abs/2601.00923
+category: theory
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: For in-context linear regression with a linear Transformer whose layers all share one weight matrix, the thesis reduces the forward pass to preconditioned gradient descent and proves the optimal solution gains a skew-symmetric component above a critical context length; it also studies model collapse.
+  zh: 论文研究各层共享同一权重矩阵的线性 Transformer 做上下文线性回归，把其前向计算化归为预条件梯度下降，证明上下文长度超过临界值后最优解会出现斜对称分量；论文还研究了模型坍缩。
+added: "2026-11-24"

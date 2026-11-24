@@ -1,0 +1,18 @@
+id: "2508.15553"
+tier: radar
+title: "Deep Equilibrium Convolutional Sparse Coding for Hyperspectral Image Denoising"
+date: "2025-08-21"
+venue: arXiv
+authors: [Jin Ye, Jingran Wang, Fengchao Xiong, Jingzhou Chen, Yuntao Qian]
+links:
+  paper: https://arxiv.org/abs/2508.15553
+category: applications
+focus: related
+facets:
+  placement: implicit
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: DECSC casts the proximal-gradient iterations of convolutional sparse coding, with an embedded Swin Transformer, as one weight-tied layer solved to a fixed point by Anderson acceleration; on 50 ICVL test HSIs with non-i.i.d. Gaussian noise of σ in [0, 95], its 45.64 PSNR is the best among compared methods.
+  zh: DECSC 把卷积稀疏编码模型的近端梯度迭代（内嵌 Swin Transformer）写成一个权重共享层，用 Anderson 加速求解其不动点；在 ICVL 的 50 幅测试高光谱图像上，面对 σ 取 [0, 95] 的非独立同分布高斯噪声，PSNR 达到 45.64，为对比方法中最高。
+added: "2026-11-24"

@@ -1,0 +1,19 @@
+id: "2403.00720"
+tier: radar
+title: "Subhomogeneous Deep Equilibrium Models"
+date: "2024-03-01"
+venue: arXiv
+authors: [Pietro Sittoni, Francesco Tudisco]
+links:
+  paper: https://arxiv.org/abs/2403.00720
+  code: https://github.com/COMPiLELab/SubDEQ
+category: theory
+focus: related
+facets:
+  placement: implicit
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: Proves that deep equilibrium models built from subhomogeneous operators have unique fixed points, via nonlinear Perron-Frobenius theory and weaker weight assumptions than monotone-operator DEQs; SubDEQs need fewer fixed-point iterations than MonDEQ and are tested on feedforward, convolutional and graph networks.
+  zh: 利用非线性 Perron-Frobenius 理论，证明由次齐次算子构成的深度均衡模型存在唯一不动点，所需的权重假设弱于 monotone-operator DEQ；由此得到的 SubDEQ 比 MonDEQ 需要更少的不动点迭代，并在前馈、卷积和图神经网络上做了验证。
+added: "2026-11-24"

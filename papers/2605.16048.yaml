@@ -1,0 +1,18 @@
+id: "2605.16048"
+tier: radar
+title: "Reshape and Recur: Improving SSMs with Input Reshaping and Depth Recurrence"
+date: "2026-05-15"
+venue: arXiv
+authors: [Mónika Farsang, Ramin Hasani, Daniela Rus, Radu Grosu]
+links:
+  paper: https://arxiv.org/abs/2605.16048
+category: applications
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Reshape and Recur reuses SSM blocks periodically across depth in LRU, S5, LinOSS and LrcSSM on time-series tasks; one block applied 6 times cuts parameters by 5.3-5.9× while staying competitive, and adaptive inference typically picks 2 to 5 repetitions while maintaining classification performance.
+  zh: Reshape and Recur 在 LRU、S5、LinOSS 和 LrcSSM 中沿深度周期性复用 SSM 块处理时间序列任务；单个块重复 6 次可把参数量减少 5.3-5.9×，性能仍有竞争力，自适应推理通常选择 2 到 5 次重复，同时保持分类性能。
+added: "2026-11-24"

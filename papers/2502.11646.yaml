@@ -1,0 +1,18 @@
+id: "2502.11646"
+tier: radar
+title: "Hyper-SET: Designing Transformers via Hyperspherical Energy Minimization"
+date: "2025-02-17"
+venue: arXiv
+authors: [Yunzhe Hu, Difan Zou, Dong Xu]
+links:
+  paper: https://arxiv.org/abs/2502.11646
+category: applications
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Hyper-SET derives a weight-shared recurrent-depth Transformer layer from iterative energy minimization on the hypersphere; with fewer parameters it is competitive or better on Sudoku, image classification and masked image modeling, and gains more than a Transformer when Sudoku test iterations grow to 2× training.
+  zh: Hyper-SET 从超球面上的迭代能量最小化推导出一个权重共享的循环深度 Transformer 层；它以更少的参数在 Sudoku、图像分类和掩码图像建模上取得相当或更好的结果，并且当 Sudoku 测试迭代次数增至训练时的 2× 时，提升幅度大于 Transformer。
+added: "2026-11-24"

@@ -1,0 +1,18 @@
+id: "2310.08866"
+tier: radar
+title: "Adaptivity and Modularity for Efficient Generalization Over Task Complexity"
+date: "2023-10-13"
+venue: arXiv
+authors: [Samira Abnar, Omid Saremi, Laurent Dinh, Shantel Wilson, Miguel Angel Bautista, Chen Huang, Vimal Thilak, Etai Littwin, Jiatao Gu, Josh Susskind, Samy Bengio]
+links:
+  paper: https://arxiv.org/abs/2310.08866
+category: architecture/placement
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: Hyper-UT, a Universal Transformer with per-token ACT, uses hyper-modules to build each layer's weights from a weight-embedding pool shared across layers; it generalizes better to more computation steps on conditional pointer value retrieval and matches ViT on image recognition with over 70% average savings.
+  zh: Hyper-UT 在带逐 token ACT 的 Universal Transformer 中加入超网络模块，由跨层共享的权重嵌入池生成每层权重；在条件指针取值（C-PVR）任务上它对更多计算步数泛化得更好，在图像识别上与 ViT 性能相当，平均节省超过 70% 的计算。
+added: "2026-11-24"

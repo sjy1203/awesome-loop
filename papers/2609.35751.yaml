@@ -1,0 +1,19 @@
+id: "2609.35751"
+tier: radar
+title: "How to Loop MoE: Flatten the Experts, Untie the Attention"
+date: "2026-09-28"
+venue: arXiv
+authors: [Shouren Wang, Chuang Ma, Mohsen Hariri, Debargha Ganguly, Wang Yang, Xiaoqing Tong, Qianying Liu, Xiaotian Han, Vipin Chaudhary]
+links:
+  paper: https://arxiv.org/abs/2609.35751
+  code: https://github.com/SR-A-W/how-to-loop-moe
+category: architecture/placement
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: per-pass
+tldr:
+  en: Foil loops an MoE core whose experts and routers are shared across passes while each pass gets its own attention, and flattens it into fewer, wider layers with more passes at fixed expert parameters and compute; at 100B tokens the most flattened Foil ends 0.012 nat below the unflattened looped baseline.
+  zh: Foil 循环一个 MoE 核心块，专家和路由器在各遍之间共享、每遍有独立的注意力，并在专家参数和计算量固定时把它展平为层数更少、每层更宽、遍数更多的结构；在 100B token 时，展平程度最高的 Foil 比未展平的循环基线低 0.012 nat。
+added: "2026-11-24"

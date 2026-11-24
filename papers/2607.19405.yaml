@@ -1,0 +1,19 @@
+id: "2607.19405"
+tier: radar
+title: "Reproducing Recurrent Transformers: The CoTFormer"
+date: "2026-07-07"
+venue: arXiv
+authors: [Aras Kavuncu, Bryan Vullo, Alberto Berni]
+links:
+  paper: https://arxiv.org/abs/2607.19405
+  code: https://github.com/COMP6258-Reproducibility-Challenge/CoTFormer
+category: understanding
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: per-pass
+tldr:
+  en: "Reproduces CoTFormer, which reapplies weight-tied layers while keeping earlier repeats attendable: perplexity results reproduce, adaptive-depth claims are less clean, and looping helps p-hop induction (roughly 0.66 vs 0.4676 test accuracy for a 1×1 Transformer) but not OOD shifted-start counting."
+  zh: 复现 CoTFormer（重复应用权重共享的层，并让后续重复能关注之前各次重复的状态）：困惑度结果可以复现，自适应深度的结论不够干净；循环有助于 p-hop induction（测试准确率约 0.66，1×1 Transformer 为 0.4676），但对分布外的 shifted-start 计数没有帮助。
+added: "2026-11-24"

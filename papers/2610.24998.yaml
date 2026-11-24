@@ -1,0 +1,18 @@
+id: "2610.24998"
+tier: radar
+title: "Block Recursive Transformers for Structured Parameter Sharing"
+date: "2026-10-18"
+venue: EMNLP 2026 Findings
+authors: [Josep Marques, Hyunyoung A. Cho, Youngeun Kim, Youjia Zhang, Aecheon Jung, Kyuhong Shim, Sungeun Hong]
+links:
+  paper: https://arxiv.org/abs/2610.24998
+category: architecture/placement
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Block Recursive Transformers split the shared core between independent first and last layers into contiguous blocks and repeat each block before moving to the next; in decoder-only models up to 1.7B parameters this improves validation NLL and downstream accuracy over static recursive sharing baselines.
+  zh: Block Recursive Transformers 把首尾独立层之间的共享核心划分为若干连续块，每个块重复执行后再进入下一个块；在最大 1.7B 参数的 decoder-only 模型上，这种方式的验证 NLL 和下游准确率都优于静态递归共享基线。
+added: "2026-11-24"

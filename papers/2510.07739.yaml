@@ -1,0 +1,19 @@
+id: "2510.07739"
+tier: radar
+title: "MeSH: Memory-as-State-Highways for Recursive Transformers"
+date: "2025-10-09"
+venue: ICLR 2026
+authors: [Chengting Yu, Xiaobo Shu, Yadao Wang, Yizhen Zhang, Haoyi Wu, Jiaang Li, Rujiao Long, Ziheng Chen, Yuchi Xu, Wenbo Su, Bo Zheng]
+links:
+  paper: https://arxiv.org/abs/2510.07739
+  code: https://github.com/LivingFutureLab/MeSH
+category: architecture/state
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: MeSH gives recursive Transformers an explicit memory buffer and lightweight routers that vary computation across iterations; on Pythia (160M-6.9B) it beats recursive baselines, and at 1.4B it tops the larger non-recursive model by +1.06% average downstream accuracy with 33% fewer non-embedding parameters.
+  zh: MeSH 把循环 Transformer 的状态管理外置到显式记忆缓冲区，并用轻量路由器让各次迭代的计算有所区分；在 Pythia（160M-6.9B）上它稳定优于循环基线，在 1.4B 规模上以少 33% 的非 embedding 参数超过更大的非循环模型，平均下游准确率提高 +1.06%。
+added: "2026-11-24"

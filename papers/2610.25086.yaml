@@ -1,0 +1,19 @@
+id: "2610.25086"
+tier: radar
+title: "Dual-Slot: From Serial Loops to Parallel Slots in Language Models"
+date: "2026-10-18"
+venue: arXiv
+authors: [Yiqin Hao, Zitong Wang, Boyi Zeng, He Li, Shixiang Song, Feichen Song, Yifan Liu, Ran Tao, Bryan Dai, Zhouhan Lin]
+links:
+  paper: https://arxiv.org/abs/2610.25086
+  code: https://github.com/LUMIA-Group/Dual-Slot
+category: architecture/state
+focus: core
+facets:
+  placement: shifted-parallel
+  depth_train: fixed
+  kv: per-pass
+tldr:
+  en: Dual-Slot runs a looped middle block's two loops as parallel latent and prediction slots, the latter adding the previous token's latent state, trained via Jacobi iterations; the 1B dense model cuts Pile validation perplexity from 7.25 to 7.00 and keeps 93.1-96.5% of vanilla decoding throughput.
+  zh: Dual-Slot 把循环中间块的两次循环改成并行的潜在槽和预测槽，预测槽加入上一个 token 的潜在状态，训练时用 Jacobi 迭代并行细化；1B 稠密模型的 Pile 验证困惑度从 7.25 降到 7.00，同时保留 93.1-96.5% 的原始解码吞吐量。
+added: "2026-11-24"

@@ -50,3 +50,87 @@
 2605.10207  # Coconut-style hidden-state feedback for recommendation, with no layer reuse inside a forward pass. It has...
 2606.01243  # Coconut-style latent reasoning with no loop. It is not compared with looped models and has only 8 citations
 2606.06479  # trains sequence RNNs whose memory runs across tokens, not across depth
+1602.08210  # RNN recurrence over time steps; no layer reuse across depth
+1608.05859  # ties input and output word embeddings; no layer reused across depth
+1901.07786  # Applies off-the-shelf Universal Transformer to headlines; depth recurrence never studied.
+1905.01996  # RNN with deep per-step transitions using distinct weights; sequence recurrence only
+1906.02792  # Video captioning with off-the-shelf Universal Transformer; recurrence incidental, not studied
+1911.09238  # Math paper on linear recurrence relations and Benford's law; no neural networks.
+2001.02613  # ConvLSTM recurrence across video frames; no layer reuse across depth
+2001.04077  # Hybrid ResNet and Universal Transformer branches for time series; recurrence is incidental.
+2001.05308  # tree decoder reapplies the whole model per parent node; no depth loop
+2002.03629  # Jacobi fixed-point solver for ordinary feedforward computation; no layer reused across depth
+2006.09719  # paraphrase corpus paper; Universal Transformer only used as an off-the-shelf generator
+2010.04383  # dynamic graph fusion is central; weight-tied GCN layers are a secondary parameter saver
+2106.10002  # duplicate of 1807.05353
+2107.00967  # Tree-structured CKY span composition like Tree-LSTMs, not depth recurrence of layers
+2108.10986  # Universal Transformer is one component of a sentence-ordering pipeline; recurrence not studied.
+2203.00281  # Tree-recursive composition over spans with a pruning parser; no depth recurrence.
+2207.10551  # general architecture scaling study; Universal Transformer is only one of ten models
+2301.02195  # autoformalization task; Universal Transformer is only the backbone, recurrence not studied
+2303.12335  # Universal Transformer is only the transceiver backbone; contribution is memory and dynamic transmission.
+2306.09615  # pose model centered on kinematic priors; its two-round output refinement is secondary
+2307.10779  # Tree-structured recursive cell composes tokens (RvNN); no depth recurrence over same representations.
+2308.14395  # 'universal' means general-purpose here; no layer reuse across depth
+2312.01423  # Universal Transformer backbone is incidental; contribution is RL alternate learning
+2312.06703  # 'Universal' means one framework for segmentation and detection; no layer reuse.
+2405.07905  # pathology ViT foundation model; 'Universal' names the embedding goal, no layer reuse
+2406.14045  # time-series LLM toolbox and benchmark; no layer is reused across depth
+2409.19044  # Gradual stacking copies layers to initialize growth; trained layers untied, loop link conjectured
+2410.13166  # Learned KV-cache memory management; 'universal' means architecture-agnostic, no layer reuse
+2412.02699  # 'Universal' means one network for all objects; no layer reuse across depth
+2505.15778  # Training-free soft-token latent reasoning; no layer reuse across depth
+2505.19245  # duplicate of 2509.25239
+2505.19815  # Meta-learning view of CoT reasoning trajectories; no layer reuse or looping
+2506.15329  # depth theory of semi-supervised ICL; LoopTabFM reruns the full model with pseudo-labels
+2507.07996  # duplicate of 2606.06574
+2509.05915  # duplicate of 2410.20672 and 2507.10524; PhD thesis compiling them with early-exit work
+2509.21716  # parallel fixed-point evaluation of sequential recursions such as RNNs; no layer reused across depth
+2509.24238  # adds latent steering vectors to frozen hidden states; no layer reused across depth
+2510.03206  # continuous-discrete diffusion LM; looped Transformers serve only as theoretical comparison
+2510.07745  # parallel test-time scaling for Coconut/CODI/CoLaR latent CoT; no layer reuse
+2511.02826  # Pathology ViT foundation models; no looped or weight-shared layers
+2512.08819  # depth growth copies layers that then train untied; no layer reused within a forward pass
+2601.14487  # GRU recurrence across forecast time steps; no layer reused across depth
+2601.18830  # CNN plus stacked LSTM/GRU over time for ECG; sequence recurrence only
+2601.21420  # token-to-concept compression MoE; layer looping is only one compute-reallocation option
+2602.08640  # Approximation theory for time-evolving dynamical systems; recurrence over time, not depth
+2603.04948  # test-time gradient descent on token logits with repeated full-model calls; no layer reuse
+2604.03190  # Boosting attention rounds use separate learned projections; no layer reuse across depth
+2605.05113  # signal propagation in sequence-level linear recurrences; no layer reuse across depth
+2605.05222  # per-token skipping over separate blocks; no layer reused across depth
+2605.09968  # Operator framework for stopping rules; recursive language models here are repeated model calls.
+2605.17842  # Newton-style layer-parallel solver for ordinary Transformers; the model has no depth loop.
+2605.22504  # Coconut-style latent steps in a driving VLA; no layer reused within a pass
+2605.31423  # Fixed-weight universality via input embeddings; weight-tied looped variant is only a side extension.
+2606.05014  # Cross-layer value mixing for standard decoders; looped Transformers get only a one-paragraph extension.
+2606.08357  # diffusion LM refining discrete drafts via repeated full-model calls; no layer reuse
+2606.10184  # GRPO for Coconut-style continuous latent reasoning; no layer reuse across depth
+2606.16112  # Norm-agnostic residuals with Mixture-of-Depths layer skipping; no layers are reused.
+2606.17524  # RL controller iteratively edits final hidden states; no Transformer layers reused across depth.
+2606.19101  # recurrent units run over time; its recurrent depth means stacked layers, not reuse
+2607.04277  # Position paper on introspection for recursive self-improvement; no layer reuse studied
+2607.08186  # Sequence-length expansion with extra token streams; no layer reuse or hidden-state feedback.
+2607.17710  # LM called repeatedly in an external planning loop; no layer reuse within a pass
+2608.01534  # repeated full-model calls refining a serialized candidate solution; no latent loop
+2608.16085  # probing-methodology study; the recurrent-depth model is only a testbed, recurrence not analyzed
+2609.13747  # continuous-thought superposition theory; Coconut-style latent tokens, no layer reuse or looped model
+2609.13807  # Conceptual readout-head design for standard Transformers; looped models appear only in one discussion section.
+2609.15545  # Induction-circuit analysis of hybrid LMs; looped recurrence is only one minor test setting.
+2609.35643  # Coconut-style continuous-thought feedback without layer reuse; paper excludes looped Transformers
+2609.36159  # Training objective for latent thoughts across agents; adjacent latent reasoning without layer reuse.
+2609.37351  # neuro-symbolic deduction; iterated rule propagation is incidental to the grounding contribution
+2609.39109  # Cross-layer routing of stored block outputs for PEFT RL; backbone layers run once.
+2610.01685  # Memory propagated across construction steps (repeated policy calls); no layer reuse within a forward pass
+2610.04862  # multi-agent inference system; looped Transformer appears only as a research task
+2610.09179  # depth encoding for standard Transformers; looped models appear only in one transfer test
+2610.14413  # coarse-graining evaluation protocol for replacing skipped blocks; recursion only in a synthetic prototype
+2610.15081  # Rule-transfer benchmark on Sudoku-like worlds; HRM-style recurrent model is only the testbed
+2610.19627  # recurrent depth-based means a GRU policy on depth images; no layer reuse
+2610.23991  # Number theory on linear recurrence sequence decompositions; no neural networks or loops.
+2610.24766  # Multi-token prediction reusing the final layer per future token; drafter-style, not depth recurrence.
+2610.28540  # Next-latent prediction theory over token positions; recurrent depth only cited as an instance
+2610.31692  # Soft-token feedback through whole pretrained LMs; no layer reuse within a forward pass.
+2611.16270  # shares an input reference across layers; each layer keeps its own weights
+2611.27087  # Canonical-state auxiliary supervision for standard Transformers; no layer reuse or loop.
+2611.28285  # Markovian-state design proposal; dual-loop Transformer is only proposed, never trained or evaluated.

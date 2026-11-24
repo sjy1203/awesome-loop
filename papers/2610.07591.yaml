@@ -1,0 +1,19 @@
+id: "2610.07591"
+tier: radar
+title: "Recurrent Looped Transformer"
+date: "2026-10-06"
+venue: arXiv
+authors: [Yifan Zhang, Jichen Feng, Shihan Qin, Sun-Yuan Kung, Mengdi Wang]
+links:
+  paper: https://arxiv.org/abs/2610.07591
+  code: https://github.com/yifanzhang-pro/recurrent-looped-tranformer
+category: architecture/state
+focus: core
+facets:
+  placement: decoder
+  depth_train: n/a
+  kv: single-global
+tldr:
+  en: RLT splits its layers into a parallel causal encoder and a recurrent decoder fed the previous token's final decoder state; trained on at most 40 bits, two splits reach 100% parity accuracy at 256 bits, and on swap-based S_5 at eight times the training length it reaches 97% versus under 1% for a Transformer.
+  zh: RLT 把各层分为并行的因果编码器和循环解码器，解码器还接收前一 token 的最终解码器状态；在最多 40 位上训练后，两种层划分在 256 位奇偶校验上达到 100% 准确率，在八倍训练长度的基于交换的 S_5 置换跟踪上达到 97%，而 Transformer 不到 1%。
+added: "2026-11-24"

@@ -1,0 +1,19 @@
+id: "2605.17811"
+tier: radar
+title: "One Model, Two Roles: Emergent Specialization in a Shared Recurrent Transformer"
+date: "2026-05-18"
+venue: NeurIPS 2026
+authors: [Jucheng Shen, Barbara Su, Anastasios Kyrillidis]
+links:
+  paper: https://arxiv.org/abs/2605.17811
+  code: https://github.com/juchengshen/air
+category: applications
+focus: related
+facets:
+  placement: hierarchical
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: AIR reuses one Transformer for both latent updates of an HRM/TRM-style reasoner and injects the input only into L-updates; on Sudoku-Extreme and Maze, z_H acts as a committed proposal state while z_L keeps local uncertainty, and specialization needs the shared model to tell the two update types apart.
+  zh: AIR 在 HRM/TRM 式推理器中用同一个 Transformer 完成两种隐状态更新，只在 L 更新中注入输入；在 Sudoku-Extreme 和 Maze 上，z_H 表现为已确定的候选解状态，z_L 保留局部不确定性，而角色分化要求共享模型能区分两类更新。
+added: "2026-11-24"

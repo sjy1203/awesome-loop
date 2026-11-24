@@ -1,0 +1,18 @@
+id: "2610.04751"
+tier: radar
+title: "Dynamic Routing as a New Dimension for Test-time Versatility of LLMs"
+date: "2026-10-03"
+venue: arXiv
+authors: [Michal Štefánik, Marek Kadlčík, Josef Kuchař, Michal Spiegel]
+links:
+  paper: https://arxiv.org/abs/2610.04751
+category: depth
+focus: core
+facets:
+  placement: n/a
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: Training-free dynamic routing fits programs that skip layers or repeat blocks of a frozen LLM's layers from 3 or 10 demonstrations, with the model's confidence arbitrating; it gains on average over MMLU's 49 tasks, doubles a 7B model's ARC-AGI accuracy where its CoT fails, and complements CoT.
+  zh: 无需训练的动态路由从 3 或 10 个示例中为冻结的 LLM 拟合跳过某些层或重复若干层块的执行程序，并由模型自身的置信度仲裁；它在 MMLU 的 49 个任务上平均带来提升，在 CoT 失效的 ARC-AGI 上让一个 7B 模型的准确率翻倍，并与 CoT 互补。
+added: "2026-11-24"

@@ -1,0 +1,18 @@
+id: "2512.19941"
+tier: radar
+title: "Block-Recurrent Dynamics in Vision Transformers"
+date: "2025-12-23"
+venue: arXiv
+authors: [Mozes Jacobs, Thomas Fel, Richard Hakim, Alessandra Brondetta, Demba Ba, T. Andy Keller]
+links:
+  paper: https://arxiv.org/abs/2512.19941
+category: applications
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Raptor rewrites pretrained ViTs as a few weight-tied blocks, each applied recurrently over a contiguous phase of depth; with only 2 blocks it recovers 96% of DINOv2 ImageNet-1k linear probe accuracy at equivalent runtime, and its depth dynamics converge into class-dependent angular basins.
+  zh: Raptor 把预训练 ViT 改写为少数几个权重共享块，每个块在一段连续的深度阶段内循环应用；仅用 2 个块、在相同运行时间下即可恢复 DINOv2 ImageNet-1k linear probe 准确率的 96%，其深度动力学会收敛到与类别相关的角度吸引盆。
+added: "2026-11-24"

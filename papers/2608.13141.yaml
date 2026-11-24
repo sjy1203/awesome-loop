@@ -1,0 +1,18 @@
+id: "2608.13141"
+tier: radar
+title: "MergeOver: Post-Training Token Merging for Recursive Vision Transformers"
+date: "2026-08-13"
+venue: arXiv
+authors: [Junseo Kim, Uraz Odyurt, Amirreza Yousefzadeh]
+links:
+  paper: https://arxiv.org/abs/2608.13141
+category: applications
+focus: related
+facets:
+  placement: n/a
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: MergeOver adds Token Merging to the weight-shared Sliced Recursive Transformer without retraining, merging at each stage's first block and keeping length fixed across its recursions; on ImageNet-1K top-1 drops 1.47 percentage points while GPU peak activation memory falls 37.3% and 38.4% at batch sizes 1 and 16.
+  zh: MergeOver 无需重新训练，把 Token Merging 加入递归共享权重的 Sliced Recursive Transformer：在每个 stage 的第一个块合并 token，并在之后的递归迭代中保持序列长度不变；在 ImageNet-1K 上 top-1 准确率下降 1.47 个百分点，batch size 为 1 和 16 时 GPU 峰值激活内存分别降低 37.3% 和 38.4%。
+added: "2026-11-24"

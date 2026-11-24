@@ -1,0 +1,18 @@
+id: "2610.10996"
+tier: radar
+title: "Invariant-Measure Reasoners: Stable Representations for Latent Reasoning"
+date: "2026-10-07"
+venue: arXiv
+authors: [Yuto Inui, Takuya Konishi, Yoshinobu Kawahara]
+links:
+  paper: https://arxiv.org/abs/2610.10996
+category: applications
+focus: related
+facets:
+  placement: n/a
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: ImR predicts from the prediction head's output averaged along a recurrent block's latent trajectory, approximating its invariant measure, rather than from the final state; head-only fine-tuning and from-scratch training reduce prediction instability and improve accuracy in many maze and Sudoku settings.
+  zh: ImR 不再用最终潜在状态做预测，而是用循环块潜在状态的不变测度下预测头输出的期望（沿轨迹取平均来估计）；只微调预测头和从头训练两种方式都在许多迷宫和 Sudoku 设置中降低了预测不稳定性并提高了准确率。
+added: "2026-11-24"

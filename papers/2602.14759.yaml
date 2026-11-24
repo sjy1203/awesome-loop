@@ -1,0 +1,19 @@
+id: "2602.14759"
+tier: radar
+title: "Inner Loop Inference for Pretrained Transformers: Unlocking Latent Capabilities Without Training"
+date: "2026-02-16"
+venue: arXiv
+authors: [Jonathan Lys, Vincent Gripon, Bastien Pasdeloup, Axel Marmoret, Lukas Mauch, Fabien Cardinaux, Ghouthi Boukli Hacene]
+links:
+  paper: https://arxiv.org/abs/2602.14759
+  code: https://github.com/jonathanlys01/looped-transformer
+category: training
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: Inner looping re-applies a middle block range of frozen pretrained LMs at inference, interpolating looped states with earlier ones to limit distribution shift; on Gemma 2-2B, looping layers 10–13 with uniform interpolation raises GSM8K from 25.02 to 26.00, while Llama 3-8B responds less consistently.
+  zh: Inner looping 在推理时对冻结的预训练语言模型重复应用中间的一段层，并把循环状态与之前的状态插值以减轻分布偏移；在 Gemma 2-2B 上用均匀插值循环第 10–13 层，GSM8K 从 25.02 提升到 26.00，而 Llama 3-8B 的效果波动较大。
+added: "2026-11-24"

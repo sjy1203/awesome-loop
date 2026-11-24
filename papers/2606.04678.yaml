@@ -1,0 +1,18 @@
+id: "2606.04678"
+tier: radar
+title: "Test-Time Compute Scaling for ASR with Depth-Conditioned Looped Transformers"
+date: "2026-06-03"
+venue: arXiv
+authors: [Yacouba Kaloga, Shashi Kumar, Shakeel A. Sheikh, Driss Khalil, Petr Motlicek, Ina Kodrasi]
+links:
+  paper: https://arxiv.org/abs/2606.04678
+category: applications
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: LARM loops a shared Transformer block as an ASR acoustic encoder, adding sparse CTC checkpoints, supervision-clock embeddings, FiLM depth conditioning and delayed soft-posterior feedback; on LibriSpeech it improves WER as inference loops increase and is competitive with deeper unshared-parameter baselines.
+  zh: LARM 把共享的 Transformer 块循环用作 ASR 声学编码器，并加入稀疏 CTC 检查点、监督时钟嵌入、FiLM 深度调制和延迟软后验反馈；在 LibriSpeech 上，WER 随推理循环次数增加而改善，性能与更深的不共享参数基线相当。
+added: "2026-11-24"

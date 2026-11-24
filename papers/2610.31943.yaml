@@ -1,0 +1,18 @@
+id: "2610.31943"
+tier: radar
+title: "Agreement rather than normalisation keeps depth reusable in looped language models"
+date: "2026-10-22"
+venue: arXiv
+authors: [Ivan Viakhirev, Kirill Borodin, Maxim Abramov, Grach Mkrtchian]
+links:
+  paper: https://arxiv.org/abs/2610.31943
+category: understanding
+focus: core
+facets:
+  placement: n/a
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Removing state normalisation between loop steps drops Ouro-1.4B and Ouro-2.6B to zero accuracy by the trained budget on a balanced binary task, yet 19M-parameter looped models trained without it are never worse and extrapolate better, pointing to train-inference loop agreement as what keeps depth reusable.
+  zh: 去掉循环步之间的状态归一化后，Ouro-1.4B 和 Ouro-2.6B 在平衡二分类任务上到训练预算深度时准确率降为零，而不带该归一化从头训练的 19M 参数循环模型从不更差且外推更好，说明保持深度可复用的是训练与推理时循环的一致性。
+added: "2026-11-24"

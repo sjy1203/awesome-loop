@@ -1,0 +1,18 @@
+id: "2610.19552"
+tier: radar
+title: "Test-Time Forecasting: Recurrent Depth Enables In-Context Dynamics Prediction"
+date: "2026-10-14"
+venue: arXiv
+authors: [Jeffrey B. Lai, John Quinn, Anthony Bao, William Gilpin]
+links:
+  paper: https://arxiv.org/abs/2610.19552
+category: applications
+focus: related
+facets:
+  placement: prelude-core-coda
+  depth_train: sampled
+  kv: n/a
+tldr:
+  en: Linking linear attention to (extended) dynamic mode decomposition, shows looped transformers can emulate dynamical-system propagators in context; Test-Time Forecasting uses gradient-descent iterations as recurrent depth, and small models trained on ODEs and PDEs generalize to out-of-distribution dynamics.
+  zh: 通过联系线性注意力与（扩展）动态模态分解，表明循环 Transformer 能在上下文中模拟动力系统的传播算子；Test-Time Forecasting 把梯度下降迭代当作循环深度，在 ODE 和 PDE 上训练的小模型能泛化到分布外的动力学。
+added: "2026-11-24"

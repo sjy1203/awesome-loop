@@ -1,0 +1,18 @@
+id: "2610.18649"
+tier: radar
+title: "Tiny Recursive Message Passing"
+date: "2026-10-13"
+venue: arXiv
+authors: [Tommaso Salvatori, Matteo Forasassi, Alexis Toumi, Giovanni de Felice]
+links:
+  paper: https://arxiv.org/abs/2610.18649
+category: applications
+focus: related
+facets:
+  placement: hierarchical
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: Applies TRM-style deep supervision, truncated recursion and deduction lattices to recursive message-passing networks; a 16k-parameter model reaches about 99% test accuracy on Sudoku-Extreme after about 10 minutes of H100 training, and models transfer zero-shot to larger N-queens and SAT instances.
+  zh: 把 TRM 式的深度监督、截断递归和 deduction lattice 用于递归消息传递网络；一个 16k 参数的模型在 H100 上训练约 10 分钟即可在 Sudoku-Extreme 上达到约 99% 的测试准确率，模型还能零样本迁移到更大的 N-queens 和 SAT 实例。
+added: "2026-11-24"

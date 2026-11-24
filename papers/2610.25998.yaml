@@ -1,0 +1,18 @@
+id: "2610.25998"
+tier: radar
+title: "Internalizing Chain-of-thought into Looped Transformers"
+date: "2026-10-19"
+venue: arXiv
+authors: [Kehang Zhou, Pinyan Lu]
+links:
+  paper: https://arxiv.org/abs/2610.25998
+category: theory
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: n/a
+  kv: per-pass
+tldr:
+  en: Constructs constant-bit-size looped Transformers that apply one shared decoder block L times per generated token, reading per-iteration KV caches; simulating a time-t(n), space-s(n) Turing machine, they cut both context window and CoT tokens by a factor of L versus the unlooped queue-machine simulation.
+  zh: 构造常数位宽的循环 Transformer：每生成一个 token 就把同一个共享解码器块应用 L 次，并读取每次迭代各自的 KV cache；在模拟时间 t(n)、空间 s(n) 的图灵机时，与不循环的队列机模拟相比，它们把上下文窗口和 CoT token 数都缩小 L 倍。
+added: "2026-11-24"

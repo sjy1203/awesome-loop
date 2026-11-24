@@ -1,0 +1,18 @@
+id: "2607.25915"
+tier: radar
+title: "Penelope: Localized Latent Recurrence for Efficient Structured Reasoning"
+date: "2026-07-28"
+venue: arXiv
+authors: [Yutong Chen, Shouqian Shi, Xinran Liu, Haochen Wang, Jiaying Wang, Tianxing Xu, Yuanxi Wang, Zirui Ding]
+links:
+  paper: https://arxiv.org/abs/2607.25915
+category: architecture/placement
+focus: core
+facets:
+  placement: partial
+  depth_train: curriculum
+  kv: first-pass
+tldr:
+  en: Penelope makes a pretrained decoder-only Transformer run its lower layers once and then loop only a late interval (layers [11,16) of Llama-3.2-1B) over fixed-size memory states; after a CoT-to-latent curriculum, its accuracy is competitive with established latent-reasoning models at lower measured latency.
+  zh: Penelope 让预训练的 decoder-only Transformer 下层只运行一次，之后只在固定大小的记忆状态上循环一个靠后的区间（Llama-3.2-1B 的 [11,16) 层）；经 CoT 到潜在推理的渐进课程训练后，其准确率与已有潜在推理模型相当，实测延迟更低。
+added: "2026-11-24"

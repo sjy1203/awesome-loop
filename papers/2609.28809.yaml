@@ -1,0 +1,18 @@
+id: "2609.28809"
+tier: radar
+title: "Stream Recursion Model (SRM)"
+date: "2026-09-23"
+venue: arXiv
+authors: [Asael Sorensen, Charles Brock, David Chamberlain, Jennifer Minnich, Matthew Hoffman, Ramyaa Ramyaa]
+links:
+  paper: https://arxiv.org/abs/2609.28809
+category: architecture/state
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: SRM, an HRM variant built for interpretability, recursively refines multiple latent streams with a weight-tied layer function and learned stream-wise attention; on OpenWebText SRM-base reaches training loss 3.18 with 68M parameters at 7 times the compute time, versus 3.20 for a 124M GPT-2.
+  zh: SRM 是为可解释性设计的 HRM 变体，用权重共享的层函数和可学习的 stream-wise attention 递归精炼多条潜在流；在 OpenWebText 上，68M 参数的 SRM-base 以 7 倍计算时间达到 3.18 的训练损失，124M 参数的 GPT-2 为 3.20。
+added: "2026-11-24"

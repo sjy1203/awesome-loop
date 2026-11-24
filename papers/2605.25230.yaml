@@ -1,0 +1,19 @@
+id: "2605.25230"
+tier: radar
+title: "Boosting Inference with Guided Reasoning: Stochastic Exploration for Recursive Models"
+date: "2026-05-24"
+venue: NeurIPS 2026
+authors: [Andrew Corbett, Archit Sood, Anna Tzatzopoulou, Sai-Aakash Ramesh, Tim Dodwell]
+links:
+  paper: https://arxiv.org/abs/2605.25230
+  code: https://github.com/digiLab-ai/bigr
+category: applications
+focus: related
+facets:
+  placement: hierarchical
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: "Views TRM inference as approximate inference over latent trajectories: noise in the inner recursion proposes neighbouring trajectories, which the model's early-stopping head reweights in a particle filter; without retraining, Sudoku-Extreme exact-solve accuracy rises from 85.9% to 98.0% and PPBench from 62.5% to 77.9%."
+  zh: 把 TRM 的推理视为对潜在推理轨迹的近似推断：在内层递归中注入噪声以提出相邻轨迹，再用模型自带的提前停止头在粒子滤波中对其重新加权；无需重新训练，Sudoku-Extreme 的精确求解率从 85.9% 提高到 98.0%，PPBench 从 62.5% 提高到 77.9%。
+added: "2026-11-24"

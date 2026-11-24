@@ -1,0 +1,18 @@
+id: "2609.21383"
+tier: radar
+title: "Prediction Dynamics in Depth-Recurrent Language Models"
+date: "2026-09-18"
+venue: arXiv
+authors: [Xinyue Luo, Fei Yu]
+links:
+  paper: https://arxiv.org/abs/2609.21383
+category: understanding
+focus: core
+facets:
+  placement: n/a
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: Analyzing how Huginn-3.5B and Ouro-1.4B change answer scores across recurrent depth, the paper derives a sharp margin characterization; accounting for update direction and competitor pairing reduces the mean earliest qualifying depth by a further 22.5-34.4% of the total depth beyond translation removal.
+  zh: 分析 Huginn-3.5B 和 Ouro-1.4B 的答案分数如何随循环深度变化，并推导出精确的 margin 刻画；考虑更新方向和竞争项配对后，平均最早合格深度在去除平移之外还能再减少总深度的 22.5-34.4%。
+added: "2026-11-24"

@@ -1,0 +1,18 @@
+id: "2610.05109"
+tier: radar
+title: "LoopMoEVR: Loop-Based Degradation-Aware Mixture-of-Experts for Unified UHD Video Restoration"
+date: "2026-10-04"
+venue: arXiv
+authors: [Yucheng Xin, Runci Bai, Yongcong Wang, Guangwei Gao, Jiao Liu, Dianjie Lu, Linwei Fan, Zhuoran Zheng]
+links:
+  paper: https://arxiv.org/abs/2610.05109
+category: applications
+focus: related
+facets:
+  placement: prelude-core-coda
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: LoopMoEVR loops two parameter-shared MoE layers between a video encoder and decoder, conditioned on degradation and video state, with a depth predictor setting the loop count; with approximately 0.884M parameters, one model handles four UHD video restoration tasks with the highest mean PSNR on UHV-4K-AIO.
+  zh: LoopMoEVR 在视频编码器和解码器之间循环执行两个参数共享的 MoE 层，以退化信息和视频状态为条件，并由深度预测器为每个输入选择循环次数；它只有约 0.884M 参数，单个模型即可处理四种 UHD 视频复原任务，并在 UHV-4K-AIO 上取得最高的平均 PSNR。
+added: "2026-11-24"

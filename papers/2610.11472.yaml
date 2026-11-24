@@ -1,0 +1,18 @@
+id: "2610.11472"
+tier: radar
+title: "From Chain-of-Thought to Loops: Non-Autoregressive Latent Reasoning via Looped Transformers"
+date: "2026-10-08"
+venue: arXiv
+authors: [Gerard Grau García, Arnau Padrés Masdemont, Niccolò Grillo, Jordi Ros-Giralt, Arash Behboodi, Victor Conchello Vendrell]
+links:
+  paper: https://arxiv.org/abs/2610.11472
+category: training
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: LLoCoT loops the full Qwen3-1.7B-Base backbone over a fixed workspace of latent slots, then samples all latent thoughts in parallel to condition answer decoding; on HumanEval and MBPP it matches explicit-CoT Reasoning SFT while cutting time to the first answer token by approximately 36×.
+  zh: LLoCoT 在固定的潜在槽位工作区上循环复用完整的 Qwen3-1.7B-Base 主干，再并行采样全部潜在思维来引导答案解码；在 HumanEval 和 MBPP 上，它与显式 CoT 的 Reasoning SFT 表现相当，首个答案 token 的时间缩短约 36×。
+added: "2026-11-24"

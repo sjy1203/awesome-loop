@@ -1,0 +1,18 @@
+id: "2410.21698"
+tier: radar
+title: "On the Role of Depth and Looping for In-Context Learning with Task Diversity"
+date: "2024-10-29"
+venue: arXiv
+authors: [Khashayar Gatmiry, Nikunj Saunshi, Sashank J. Reddi, Stefanie Jegelka, Sanjiv Kumar]
+links:
+  paper: https://arxiv.org/abs/2410.21698
+category: theory
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: For in-context linear regression with condition numbers in [1, κ], proves log(κ) (or √κ) lower bounds on linear attention layers; multilayer Transformers attain them yet are not robust even to O(e^{-L}) shifts, while Looped Transformers attain them, are provably robust, and alone have loss monotonic in depth.
+  zh: 针对条件数位于 [1, κ] 的 in-context 线性回归，证明需要 log(κ)（或 √κ）层线性注意力的下界；多层 Transformer 能达到该下界，但连小至 O(e^{-L}) 的分布偏移都不鲁棒；循环 Transformer 表达能力相当、可证明鲁棒，且只有它的损失随深度单调变化。
+added: "2026-11-24"

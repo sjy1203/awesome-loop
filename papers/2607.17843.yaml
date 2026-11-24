@@ -1,0 +1,18 @@
+id: "2607.17843"
+tier: radar
+title: "Mobius Learning: Cyclic Depth Folding in Transformers"
+date: "2026-07-20"
+venue: arXiv
+authors: [Tongtian Zhu]
+links:
+  paper: https://arxiv.org/abs/2607.17843
+category: architecture/placement
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Mobius Learning runs each worker's data through a looped Transformer's block groups in a cyclically shifted order, so every group trains in shallow and deep roles; with a 124M modded GPT-2 on 2.5B FineWeb tokens, it reaches lower validation loss than a fixed-order looped Transformer at 6, 10 and 15 passes.
+  zh: Mobius Learning 让不同 worker 的数据以循环移位的块顺序依次经过循环 Transformer 的各个块组，使每个块组同时在浅层和深层角色上得到训练；在用 2.5B FineWeb token 训练的 124M modded GPT-2 上，它在 6、10 和 15 遍时的验证损失低于固定顺序的循环 Transformer。
+added: "2026-11-24"

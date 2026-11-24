@@ -1,0 +1,18 @@
+id: "2610.33360"
+tier: radar
+title: "LSTM-Style Looped Transformers with Shared KV Caches"
+date: "2026-10-23"
+venue: arXiv
+authors: [Andreas Kirsch]
+links:
+  paper: https://arxiv.org/abs/2610.33360
+category: systems
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: single-global
+tldr:
+  en: An LSTM-style looped Transformer shares one KV cache across its recurrent core, cutting persistent cache sets from fifteen to four and, at width 1024, using 40.4% fewer parameters than an untied control; a consistency loss in the final 10% of training removes 81–89% of the continuation-loss penalty.
+  zh: 一种 LSTM 式循环 Transformer 在整个循环核心中共享同一个 KV cache，把持久缓存组数从十五组减到四组，宽度 1024 时参数比不共享权重的对照少 40.4%；在训练最后 10% 的 token 预算中加入一致性损失，可消除 81–89% 的续写损失惩罚。
+added: "2026-11-24"

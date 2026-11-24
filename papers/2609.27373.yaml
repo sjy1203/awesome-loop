@@ -1,0 +1,19 @@
+id: "2609.27373"
+tier: radar
+title: "Attention Routing Stabilizes Early: Working-Set Inference for Recurrent Language Models"
+date: "2026-09-23"
+venue: arXiv
+authors: [Ke Wan, Chen Chen]
+links:
+  paper: https://arxiv.org/abs/2609.27373
+  code: https://github.com/tbn5pj/WISE_code
+category: systems
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: n/a
+  kv: per-pass
+tldr:
+  en: WISE, training-free, uses full attention in early recurrent steps of a recurrent-depth LM to find a block-sparse working set and reuses that support later; it largely preserves full-attention multi-hop QA performance, with up to a 1.76x late-step attention speedup over native FlashAttention at 4K context.
+  zh: WISE 无需训练：在循环深度语言模型的前几个循环步中用完整注意力找出块稀疏的工作集，之后的循环步复用这一注意力支撑；它在多跳 QA 上基本保持完整注意力的性能，并在 4K 上下文下使后期步注意力比原生 FlashAttention 最多快 1.76x。
+added: "2026-11-24"

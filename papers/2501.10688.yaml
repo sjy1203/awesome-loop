@@ -1,0 +1,18 @@
+id: "2501.10688"
+tier: radar
+title: "Neural Algorithmic Reasoning for Hypergraphs with Looped Transformers"
+date: "2025-01-18"
+venue: arXiv
+authors: [Zekai Huang, Yingyu Liang, Zhenmei Shi, Zhao Song, Zhen Zhuang]
+links:
+  paper: https://arxiv.org/abs/2501.10688
+category: theory
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: "Proves by construction that a looped Transformer with constant layers and constant feature dimensions simulates hypergraph algorithms: Dijkstra, BFS and DFS through a mechanism that degrades the incidence matrix to an adjacency matrix, and Helly's algorithm through a hyperedge-aware encoding."
+  zh: 通过构造证明，循环 Transformer 只需常数层数和常数特征维度即可模拟超图算法：借助把关联矩阵退化为邻接矩阵的机制模拟 Dijkstra、BFS 和 DFS，借助感知超边的编码方案模拟 Helly 算法。
+added: "2026-11-24"

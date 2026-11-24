@@ -1,0 +1,18 @@
+id: "2608.02050"
+tier: radar
+title: "TextNCA: Neural Cellular Automata for Language Modeling via Hierarchical Local Attention"
+date: "2026-08-03"
+venue: arXiv
+authors: [Avni Mittal, Avinash Anand, Ashutosh Kumar, Dikshant Kukreja, Kritarth Prasad, Sushane Dulloo, Erik Cambria, Timothy Liu, Zhengkui Wang, Rajiv Ratn Shah]
+links:
+  paper: https://arxiv.org/abs/2608.02050
+category: understanding
+focus: core
+facets:
+  placement: n/a
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: TextNCA cascades three stages (windows 8, 32, 128) that each iterate shared-weight causal windowed attention; at roughly 30M parameters on WikiText-103 it reaches 60.3 PPL vs 52.8 for Transformer-6L, a non-iterating model with the same schedule comes within +4.1 PPL, and iteration is best at T_s=4.
+  zh: TextNCA 级联三个阶段（窗口 8、32、128），每个阶段迭代共享权重的因果窗口注意力；在 WikiText-103 上约 30M 参数时 PPL 为 60.3，Transformer-6L 为 52.8，采用相同调度但不迭代的模型与它相差不超过 +4.1 PPL，迭代次数在 T_s=4 时最优。
+added: "2026-11-24"

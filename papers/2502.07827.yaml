@@ -1,0 +1,19 @@
+id: "2502.07827"
+tier: radar
+title: "Implicit Language Models are RNNs: Balancing Parallelization and Expressivity"
+date: "2025-02-10"
+venue: arXiv
+authors: [Mark Schöne, Babak Rahmani, Heiner Kremer, Fabian Falck, Hitesh Ballani, Jannes Gladrow]
+links:
+  paper: https://arxiv.org/abs/2502.07827
+  code: https://github.com/microsoft/implicit_languagemodels
+category: architecture/placement
+focus: core
+facets:
+  placement: implicit
+  depth_train: curriculum
+  kv: n/a
+tldr:
+  en: Implicit Mamba2 and Llama3 models self-iterate the stack to an approximate fixed point, gaining RNN-like non-linear state transitions that solve the S5 word problem; with a bounded-then-free iteration curriculum up to 1.3B parameters and 207B tokens, they beat explicit counterparts on standard benchmarks.
+  zh: 隐式 Mamba2 和 Llama3 模型把整个层栈自迭代到近似不动点，获得类似 RNN 的非线性状态转移，能解决 S5 word problem；采用先限定迭代步数、再放开迭代的课程训练，规模达到 1.3B 参数、207B token，在标准基准上优于对应的显式模型。
+added: "2026-11-24"

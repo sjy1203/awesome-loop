@@ -1,0 +1,18 @@
+id: "2608.29160"
+tier: radar
+title: "Training-Free Hidden-State Refinement for Flow-Matching Image Generators"
+date: "2026-08-29"
+venue: arXiv
+authors: [Yuanyi Yan, Xinzhe Rao, Canyu Shen, Yang Chen, Yunlu Chen, Meng Tang, Teng Long, Vincent Tao Hu]
+links:
+  paper: https://arxiv.org/abs/2608.29160
+category: applications
+focus: related
+facets:
+  placement: partial
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: A training-free method repeats selected transformer layers inside each denoising call of frozen flow-matching image generators, controlling token scope, sampling-progress gating and Loop Guidance; on Scale-RAE DiT2.4B, Loop Guidance raises GenEval from 0.4471 to 0.5691 and DPG-Bench from 0.7656 to 0.8053.
+  zh: 一种无需训练的方法在冻结的 flow-matching 图像生成器每次去噪调用中重复执行选定的 Transformer 层，并控制 token 范围、采样进度门控和 Loop Guidance；在 Scale-RAE DiT2.4B 上，Loop Guidance 把 GenEval 从 0.4471 提高到 0.5691，把 DPG-Bench 从 0.7656 提高到 0.8053。
+added: "2026-11-24"

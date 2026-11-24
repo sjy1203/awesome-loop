@@ -1,0 +1,18 @@
+id: "2610.13041"
+tier: radar
+title: "RAMP: Recurrent Adaptive Mixed Precision for Efficient Prefill in Recurrent-Depth Language Models"
+date: "2026-10-09"
+venue: arXiv
+authors: [Ke Wan, Chen Chen]
+links:
+  paper: https://arxiv.org/abs/2610.13041
+category: systems
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: sampled
+  kv: n/a
+tldr:
+  en: RAMP runs the first 24 of Huginn-0125's 32 recurrent steps with FP8 weight-and-activation computation and the last 8 in BF16, as earlier quantization error is attenuated by later steps; up to 4K context it keeps near-full-precision prefill quality with up to 1.16× first-prefill speedup on an NVIDIA H100.
+  zh: RAMP 让 Huginn-0125 的 32 个循环步中前 24 步用 FP8 权重与激活计算、后 8 步恢复 BF16，因为较早引入的量化误差会被后续循环步衰减；在最长 4K 的上下文中，它保持接近全精度的 prefill 质量，在 NVIDIA H100 上首次 prefill 最多加速 1.16×。
+added: "2026-11-24"

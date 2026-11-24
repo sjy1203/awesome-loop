@@ -1,0 +1,18 @@
+id: "2608.18171"
+tier: radar
+title: "Looped Language Models Improve Compositional Tool Calling"
+date: "2026-08-17"
+venue: arXiv
+authors: [Andrei Cristian Popescu, Haitz Sáez de Ocáriz Borde, Pietro Liò]
+links:
+  paper: https://arxiv.org/abs/2608.18171
+category: understanding
+focus: core
+facets:
+  placement: n/a
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: Evaluates native (Ouro) and retrofitted (Llama-3.2-1B, OLMo-2-1B) looped LMs on API-Bank, BFCL and NESTful with matched fine-tuning; looping mainly helps compositional, dependency-aware tool calls, multi-step accuracy generally rises with depth, and adaptive inference gives a better compute-performance trade-off.
+  zh: 在相同监督微调配方下，用 API-Bank、BFCL 和 NESTful 评测原生（Ouro）与改造（Llama-3.2-1B、OLMo-2-1B）的循环语言模型；循环主要提升组合式、依赖感知的工具调用，多步工具调用准确率通常随循环深度提高，自适应推理的计算与性能权衡更好。
+added: "2026-11-24"

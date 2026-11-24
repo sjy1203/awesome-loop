@@ -1,0 +1,19 @@
+id: "2610.23225"
+tier: radar
+title: "ReLaDrift: Recurrent Language Generation via Drifting for Test-Time Scaling"
+date: "2026-10-16"
+venue: arXiv
+authors: [Yuki Otsuka, Daisuke Oba, Naoaki Okazaki]
+links:
+  paper: https://arxiv.org/abs/2610.23225
+  code: https://github.com/Yuki-Ots/ReLaDrift
+category: training
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: sampled
+  kv: n/a
+tldr:
+  en: ReLaDrift reuses one Drifting Model over rounds to draft from noise and refine in continuous latent space, trained with a sampled round count and a final-round-only loss; on Sudoku Hard and GSM8K it trades test-time compute for quality, competitive with or better than diffusion and flow LMs.
+  zh: ReLaDrift 多轮复用同一个 Drifting Model：先从噪声生成初稿，再在连续隐空间中迭代细化；训练时随机采样轮数，只在最后一轮计算损失并停止此前各轮的梯度；在 Sudoku Hard 和 GSM8K 上，它可用更多测试时计算换取更好的生成质量，与扩散和 flow 语言模型相当或更优。
+added: "2026-11-24"

@@ -1,0 +1,18 @@
+id: "2402.13572"
+tier: radar
+title: "AlgoFormer: An Efficient Transformer Framework with Algorithmic Structures"
+date: "2024-02-21"
+venue: TMLR 2025
+authors: [Yihang Gao, Chuanyang Zheng, Enze Xie, Han Shi, Tianyang Hu, Yu Li, Michael K. Ng, Zhenguo Li, Zhaoqiang Liu]
+links:
+  paper: https://arxiv.org/abs/2402.13572
+category: theory
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: AlgoFormer puts a weight-shared looped transformer between a pre- and a post-transformer, mirroring preprocess-iterate-postprocess algorithms; constructions show it can run gradient descent and Newton's method, and on IWSLT 2015 German-English it scores 14.72 BLEU versus 9.30 standard and 10.56 vanilla looped.
+  zh: AlgoFormer 在前置 Transformer 与后置 Transformer 之间放一个权重共享的循环 Transformer，对应先预处理、再迭代、后处理的算法结构；构造性结果表明它能执行梯度下降和牛顿法，在 IWSLT 2015 德英翻译上 BLEU 为 14.72，标准 Transformer 为 9.30，普通循环 Transformer 为 10.56。
+added: "2026-11-24"

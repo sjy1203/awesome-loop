@@ -1,0 +1,19 @@
+id: "2602.03297"
+tier: radar
+title: "Lipschitz Multiscale Deep Equilibrium Models: A Theoretically Guaranteed and Accelerated Approach"
+date: "2026-02-03"
+venue: AISTATS 2026
+authors: [Naoki Sato, Hideaki Iiduka]
+links:
+  paper: https://arxiv.org/abs/2602.03297
+  code: https://github.com/iiduka-researches/Lipschitz_mdeq
+category: applications
+focus: related
+facets:
+  placement: implicit
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: Lipschitz MDEQ modifies the multiscale DEQ so hyperparameters set the Lipschitz constant of its weight-tied fixed-point mapping, guaranteeing forward and backward fixed-point convergence; on CIFAR-10 classification it gives up to a 4.75× speed-up for a minor drop in accuracy.
+  zh: Lipschitz MDEQ 改造多尺度 DEQ，让超参数决定其权重共享不动点映射的 Lipschitz 常数，从而保证前向和反向传播中的不动点收敛；在 CIFAR-10 图像分类上最高带来 4.75× 加速，代价是准确率略有下降。
+added: "2026-11-24"

@@ -1,0 +1,18 @@
+id: "2606.18208"
+tier: radar
+title: "Looped World Models"
+date: "2026-06-16"
+venue: arXiv
+authors: [Hongyuan Adam Lu, Z. L. Victor Wei, Qun Zhang, Jinrui Zeng, Bowen Cao, Lingwei Meng, Mocheng Li, Zezhong Wang, Haonan Yin, Naifu Xue, Minyu Chen, Cenyuan Zhang, Zefan Zhang, Hao Wei, Jiawei Zhou, Haoran Xu, Hao Yang, Ronglai Zuo, Tongda Xu, Yonghao Li, Jian Chen, Hebin Wang, Zeyu Gao, Yang Li, Wei Zhao, Qimin Zhong, Siqi Liu, Yumeng Zhang, Leyan Cui, Zhangyu Wang, Wai Lam]
+links:
+  paper: https://arxiv.org/abs/2606.18208
+category: applications
+focus: related
+facets:
+  placement: prelude-core-coda
+  depth_train: sampled
+  kv: n/a
+tldr:
+  en: LoopWM refines latent environment states by iterating a parameter-shared Transformer block between a prelude and coda, with a spectrally constrained update and Poisson-sampled loop counts; on ScienceWorld text world modelling, the about 1B-parameter model beats claude-opus-4-6-max by 21.2% on EM.
+  zh: LoopWM 在 prelude 和 coda 之间迭代一个参数共享的 Transformer 块来精炼潜在环境状态，采用谱约束的状态更新和按 Poisson 分布采样的循环次数；在 ScienceWorld 文本世界建模任务上，这个约 1B 参数的模型在 EM 上比 claude-opus-4-6-max 高 21.2%。
+added: "2026-11-24"

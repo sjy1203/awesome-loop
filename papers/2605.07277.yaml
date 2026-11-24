@@ -1,0 +1,18 @@
+id: "2605.07277"
+tier: radar
+title: "Bifurcation Models: Learning Set-Valued Solution Maps with Weight-Tied Dynamics"
+date: "2026-05-08"
+venue: arXiv
+authors: [Caleb Jore, Jialin Liu]
+links:
+  paper: https://arxiv.org/abs/2605.07277
+category: theory
+focus: related
+facets:
+  placement: implicit
+  depth_train: curriculum
+  kv: n/a
+tldr:
+  en: Bifurcation models iterate a weight-tied update so different initializations converge to different stable equilibria; the paper proves this represents broad set-valued maps with locally Lipschitz branches, and on frustrated Ising models the dynamics find multiple valid equilibria without branch labels.
+  zh: Bifurcation 模型反复迭代同一个权重共享的更新，让不同初始化收敛到不同的稳定平衡点；论文证明这种方式能表示分支局部 Lipschitz 的广泛集值映射，并且在受挫 Ising 模型上，该动力学无需分支标签就能找到多个有效平衡点。
+added: "2026-11-24"

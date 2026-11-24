@@ -1,0 +1,19 @@
+id: "2609.40305"
+tier: radar
+title: "Looped Diffusion Transformer"
+date: "2026-09-30"
+venue: arXiv
+authors: [Yong Xien Chng, Tianyi Chen, Wenwen Tong, Haiwen Diao, Zhongang Cai, Lei Yang, Ziwei Liu, Lewei Lu, Dahua Lin, Gao Huang]
+links:
+  paper: https://arxiv.org/abs/2609.40305
+  code: https://github.com/OpenSenseNova/Looped-DiT
+category: applications
+focus: related
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Looped-DiT repeats shared middle Transformer blocks within each denoising step of a text-to-image diffusion Transformer, adding deep supervision across loops and self-modulating attention; a 260M-parameter looped model surpasses a model 6.5x larger on multiple benchmarks with 4.9x lower inference compute.
+  zh: Looped-DiT 在文生图扩散 Transformer 的每个去噪步内重复运行共享的中间 Transformer 块，并采用跨循环深度监督和自调制注意力；260M 参数的循环模型在多个文生图基准上超过大 6.5x 的模型，推理计算量低 4.9x。
+added: "2026-11-24"

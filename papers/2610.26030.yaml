@@ -1,0 +1,18 @@
+id: "2610.26030"
+tier: radar
+title: "Truncate or Not? A Scaling Study of Looped Transformers with Truncated Backpropagation"
+date: "2026-10-19"
+venue: arXiv
+authors: [Xuyuan Xiong, Siyu Chen, Zihan Shao, Yue Su, Weiyang Jin, Ping Luo, Zhuoran Yang, Xihui Liu]
+links:
+  paper: https://arxiv.org/abs/2610.26030
+category: scaling
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Over nearly 600 runs, a fitted scaling law for looped transformers favors full BPTT over truncation when forward and backward loops are jointly optimized; two fully trained loops get lower validation loss than the compute-optimal non-looped model with about 27% fewer non-embedding parameters and 8% more compute.
+  zh: 基于近 600 次训练拟合的循环 Transformer scaling law 显示，在联合优化前向和反向循环次数时，完整 BPTT 优于截断；两个完整训练的循环在非 embedding 参数少约 27%、算力只多 8% 的情况下，验证损失低于算力最优的非循环模型。
+added: "2026-11-24"

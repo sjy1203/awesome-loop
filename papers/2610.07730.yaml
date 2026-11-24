@@ -1,0 +1,18 @@
+id: "2610.07730"
+tier: radar
+title: "SanSi: A Looped Typed Decision Model for System 1.5 Thinking"
+date: "2026-10-06"
+venue: arXiv
+authors: [Shuyu Gan, Young-Jun Lee, Dongyeop Kang]
+links:
+  paper: https://arxiv.org/abs/2610.07730
+category: training
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: SanSi turns the pretrained looped LM Ouro into a typed decision model that reads option probabilities after every loop, each trained with a proper scoring rule; on 10,027 test decisions it reaches 72.0% accuracy, 13.5 points above a non-looped model of the same shape trained with the same recipe.
+  zh: SanSi 把预训练循环语言模型 Ouro 改造成 typed decision model，每次循环后读出各选项概率，并用 proper scoring rule 训练每次循环；在 10,027 个测试决策上准确率为 72.0%，比同形状、同配方训练的非循环模型高 13.5 个点。
+added: "2026-11-24"

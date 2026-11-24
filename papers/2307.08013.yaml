@@ -1,0 +1,18 @@
+id: "2307.08013"
+tier: radar
+title: "Revisiting Implicit Models: Sparsity Trade-offs Capability in Weight-tied Model for Vision Tasks"
+date: "2023-07-16"
+venue: arXiv
+authors: [Haobo Song, Soumajit Majumder, Tao Lin]
+links:
+  paper: https://arxiv.org/abs/2307.08013
+category: applications
+focus: related
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Revisiting implicit models on vision tasks, the paper finds weight-tied models, which reuse one layer across depth, more effective, stable and efficient than DEQ variants, adds distinct sparse masks to the tied layers to raise capacity, and gives depth, width and sparsity guidelines.
+  zh: 该文在视觉任务上重新审视隐式模型，发现跨深度重复使用同一层的权重共享模型比 DEQ 变体更有效、更稳定、更高效；它为共享层加入不同的稀疏掩码以提升模型容量，并给出深度、宽度和稀疏度的选择指南。
+added: "2026-11-24"

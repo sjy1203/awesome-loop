@@ -1,0 +1,18 @@
+id: "2012.13563"
+tier: radar
+title: "Implicit Feature Pyramid Network for Object Detection"
+date: "2020-12-25"
+venue: arXiv
+authors: [Tiancai Wang, Xiangyu Zhang, Jian Sun]
+links:
+  paper: https://arxiv.org/abs/2012.13563
+category: applications
+focus: related
+facets:
+  placement: implicit
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: i-FPN replaces a detector's stacked cross-scale FPN blocks with the fixed point of one weight-shared transformation, solved DEQ-style with a residual-like iteration; on MS COCO it adds +3.4, +3.2, +3.5, +4.2, +3.2 mAP to ResNet-50-FPN RetinaNet, Faster-RCNN, FCOS, ATSS and AutoAssign.
+  zh: i-FPN 把检测器中堆叠的跨尺度 FPN 块换成同一个权重共享变换的不动点，按 DEQ 方式求解并采用类残差迭代；在 MS COCO 上，它让基于 ResNet-50-FPN 的 RetinaNet、Faster-RCNN、FCOS、ATSS 和 AutoAssign 分别提升 +3.4、+3.2、+3.5、+4.2、+3.2 mAP。
+added: "2026-11-24"

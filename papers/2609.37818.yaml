@@ -1,0 +1,18 @@
+id: "2609.37818"
+tier: radar
+title: "Thinking in Depth, Speaking Directly: Recurrent Latent Reasoning for Paralinguistically Grounded Spoken Dialogue"
+date: "2026-09-29"
+venue: arXiv
+authors: [Shengbo Cai, Yuxiang Wang, Jingran Xie, Zhisheng Zhang, Shun Lei, Di Cao, Teddy Sun, Zhiyong Wu]
+links:
+  paper: https://arxiv.org/abs/2609.37818
+category: training
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: per-pass
+tldr:
+  en: LoopSLM loops layers L9–11 of Qwen2.5-Omni-7B four times, re-anchoring each pass to acoustic memory, with two-stage CoT-to-response training; against the CoT-SFT baseline it gains over 20 points in reasoning accuracy while generating 64.5% fewer tokens at half the latency.
+  zh: LoopSLM 把 Qwen2.5-Omni-7B 的 L9–11 层循环执行四次，并让每一遍重新锚定到声学记忆，采用从 CoT 到直接回复的两阶段训练；与 CoT-SFT 基线相比，推理准确率提高超过 20 分，同时生成的 token 少 64.5%，延迟减半。
+added: "2026-11-24"

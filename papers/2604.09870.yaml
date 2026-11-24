@@ -1,0 +1,19 @@
+id: "2604.09870"
+tier: radar
+title: "Reading Human Preference from Looped Transformer Internal States"
+date: "2026-04-10"
+venue: arXiv
+authors: [Jan Kirin]
+links:
+  paper: https://arxiv.org/abs/2604.09870
+  code: https://github.com/VykosMolt/Hidden-State-Evaluator
+category: understanding
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: Probes hidden states of the looped Ouro-2.6B-Thinking, which runs its layers four times per token, for human preference on HH-RLHF; a linear probe picks the preferred reply 61.5% of the time and a nonlinear network scoring each reply separately 64.9%, so preference is readable but faint.
+  zh: 在 HH-RLHF 数据上用探针读取循环模型 Ouro-2.6B-Thinking（每个 token 把各层运行四遍）隐藏状态中的人类偏好；线性探针选中被偏好回复的比例为 61.5%，逐条回复打分的小型非线性网络为 64.9%，偏好可以读出但信号很弱。
+added: "2026-11-24"

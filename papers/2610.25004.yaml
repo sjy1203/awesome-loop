@@ -1,0 +1,18 @@
+id: "2610.25004"
+tier: radar
+title: "UpLoop: Upcycling Large Language Models with Gated Loop"
+date: "2026-10-18"
+venue: arXiv
+authors: [Tieyuan Chen, Huabin Liu, Yingtao Zhang, Shijie Li, Tengyu Pan, Weiyao Lin, Jianguo Li]
+links:
+  paper: https://arxiv.org/abs/2610.25004
+category: training
+focus: core
+facets:
+  placement: n/a
+  depth_train: curriculum
+  kv: per-pass
+tldr:
+  en: UpLoop upcycles a pretrained non-looped LLM by looping each selected middle layer locally, with learned hidden-wise gates on the attention and MLP residual writes of later loops; starting from Qwen3-4B Base with SFT, it improves the 20-benchmark average by 6.17% at R=3, past the common two-loop saturation.
+  zh: UpLoop 把预训练的非循环 LLM 中选定的中间层各自就地循环，并对后续循环的 attention 和 MLP 残差写入施加按隐藏维度学习的门控；从 Qwen3-4B Base 出发经 SFT 后，R=3 时 20 个基准的平均准确率提升 6.17%，突破了常见的两遍循环饱和。
+added: "2026-11-24"

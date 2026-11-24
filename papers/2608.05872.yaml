@@ -1,0 +1,19 @@
+id: "2608.05872"
+tier: radar
+title: "MACRO: Markov Chain Routing of Transformer Layers"
+date: "2026-08-06"
+venue: arXiv
+authors: [Paweł Batorski, Abtin Pourhadi, Akylgali Aitaza, Przemysław Spurek, Paul Swoboda]
+links:
+  paper: https://arxiv.org/abs/2608.05872
+  code: https://github.com/Batorskq/MACRO
+category: depth
+focus: core
+facets:
+  placement: n/a
+  depth_train: adaptive
+  kv: per-pass
+tldr:
+  en: MACRO learns a task-specific Markov policy over skip, repeat and hidden-state-addition moves through a frozen LLM's layers, decoded with top-k Viterbi; it gains +5.0% average accuracy over unrouted baselines and +7.2% over Dr. LLM while cutting route-search time 9.4x (from 14.8 to 1.6 hours).
+  zh: MACRO 在冻结 LLM 的各层之上学习任务级 Markov 策略，支持跳层、重复层和隐藏状态相加，并用 top-k Viterbi 解码路由；它比未路由基线平均准确率高 +5.0%，比 Dr. LLM 高 +7.2%，路由搜索时间缩短 9.4x（从 14.8 小时降到 1.6 小时）。
+added: "2026-11-24"

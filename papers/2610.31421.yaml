@@ -1,0 +1,18 @@
+id: "2610.31421"
+tier: radar
+title: "How Depth Growth and Looping Shape In-Context Learning in Language Models"
+date: "2026-10-22"
+venue: arXiv
+authors: [Ferdinand Kapl, Kaitlin Maile, Stefan Bauer, Johannes von Oswald]
+links:
+  paper: https://arxiv.org/abs/2610.31421
+category: understanding
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Compares dense, depth-grown and looped language models up to 3B parameters plus controlled tasks; grown and looped models rely more on context, acquire ICL earlier and retain it more strongly than a full-depth dense reference, and lean more on induction-ranked heads for few-shot performance.
+  zh: 在最大 3B 参数的语言模型和受控任务上比较稠密、深度增长和循环模型；与全深度稠密参照相比，增长和循环模型更依赖上下文信息，更早习得 ICL 且保持得更牢，few-shot 表现也更依赖按 induction 排名的注意力头。
+added: "2026-11-24"

@@ -1,0 +1,18 @@
+id: "2509.23314"
+tier: radar
+title: "Two-Scale Latent Dynamics for Recurrent-Depth Transformers"
+date: "2025-09-27"
+venue: arXiv
+authors: [Francesco Pappone, Donato Crisostomi, Emanuele Rodolà]
+links:
+  paper: https://arxiv.org/abs/2509.23314
+category: understanding
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: sampled
+  kv: n/a
+tldr:
+  en: In looped blocks of a recurrent-depth Transformer, steps grow smaller and more orthogonal over training while states drift more across blocks; exiting on the second-order difference in step size beats Geiping et al.'s KL-divergence exit and a first-order rule in performance, stability and time-efficiency.
+  zh: 在循环深度 Transformer 的循环块内，随着训练进行，每步更新越来越小且彼此越来越正交，而跨块时状态漂移更大；基于步长二阶差分的退出规则在性能、稳定性和时间效率上优于 Geiping 等人的 KL 散度退出和一阶规则。
+added: "2026-11-24"

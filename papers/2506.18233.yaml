@@ -1,0 +1,19 @@
+id: "2506.18233"
+tier: radar
+title: "Beyond Parameters: Exploring Virtual Logic Depth for Scaling Laws"
+date: "2025-06-23"
+venue: arXiv
+authors: [Ruike Zhu, Hanwen Zhang, Kevin Li, Tianyu Shi, Yiqun Duan, Chi Wang, Tianyi Zhou, Arindam Banerjee, Zengyi Qin]
+links:
+  paper: https://arxiv.org/abs/2506.18233
+  code: https://anonymous.4open.science/r/virtual_logical_depth-8024/
+category: scaling
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Virtual logical depth reuses layers in sequence, cycle or inverse-cycle patterns to add effective depth without new parameters; knowledge capacity stays nearly unchanged while reasoning improves, e.g. the cycle pattern raises a 4-layer model's accuracy from 46.3% to 70.7% with a VLD factor of 5.
+  zh: 虚拟逻辑深度（VLD）按顺序、循环或逆循环模式复用层，在不增加参数的情况下增加有效深度；知识容量几乎不变而推理能力提升，例如循环模式在 VLD 因子为 5 时把 4 层模型的准确率从 46.3% 提高到 70.7%。
+added: "2026-11-24"

@@ -1,0 +1,18 @@
+id: "2204.13492"
+tier: radar
+title: "Representation Recycling for Streaming Video Analysis"
+date: "2022-04-28"
+venue: Neurocomputing
+authors: [Can Ufuk Ertenli, Ramazan Gokberk Cinbis, Emre Akbas]
+links:
+  paper: https://arxiv.org/abs/2204.13492
+category: applications
+focus: related
+facets:
+  placement: implicit
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: StreamDEQ computes per-frame video representations as fixed points of an implicit (DEQ) network, starting each frame's fixed-point iterations from the previous frame's representation; on video segmentation, detection and pose estimation it matches the baseline's accuracy with 2-4x higher throughput.
+  zh: StreamDEQ 把每帧视频表示定义为隐式（DEQ）网络的不动点，并以上一帧的表示作为本帧不动点迭代的起点；在视频语义分割、视频目标检测和视频人体姿态估计上，它与基线精度相当，吞吐量提升 2-4x。
+added: "2026-11-24"

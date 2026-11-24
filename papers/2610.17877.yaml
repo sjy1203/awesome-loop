@@ -1,0 +1,18 @@
+id: "2610.17877"
+tier: radar
+title: "LoopREG: Representation Supervision Enables Test-Time Recurrent Depth in Diffusion Transformers"
+date: "2026-10-13"
+venue: arXiv
+authors: [Zipeng Wang, Anping Xiong, Jing Zhang, Xiaoya Zhu, Yi Jiang, Yanbing Xiao, Zige Zeng, Zezhou Chen, Xiang Liu, Huan Hu, Ping Chen, Kai Wang, Zhaoxiang Liu, Shiguo Lian, Ye LV, Fang Zhao, Huanlin Gao, Zhengrui Huang, Bo Shen, Yuren You]
+links:
+  paper: https://arxiv.org/abs/2610.17877
+category: applications
+focus: related
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: LoopREG reuses one diffusion Transformer block at the state that REG aligns to a pretrained visual encoder and adds visits at inference; on ImageNet 256 x 256 it lowers SiT-B/2 FID from 15.08 to 4.91 at 400K training steps, and in a checkpoint trained with two visits one extra visit improves FID from 14.71 to 5.34.
+  zh: LoopREG 在 REG 用预训练视觉编码器监督的表示位置反复使用同一个扩散 Transformer 块，推理时增加访问次数；在 ImageNet 256 x 256 上，400K 训练步时把 SiT-B/2 的 FID 从 15.08 降到 4.91，用两次访问训练的检查点在推理时多一次访问可把 FID 从 14.71 降到 5.34。
+added: "2026-11-24"

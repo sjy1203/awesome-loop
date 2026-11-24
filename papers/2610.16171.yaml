@@ -1,0 +1,18 @@
+id: "2610.16171"
+tier: radar
+title: "DeepThink: A Conceptual Model for Knowledge-Addressable Recurrent Language Modeling"
+date: "2026-10-12"
+venue: arXiv
+authors: [Weiguo Chen]
+links:
+  paper: https://arxiv.org/abs/2610.16171
+category: architecture/placement
+focus: core
+facets:
+  placement: n/a
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: "DeepThink is a conceptual framework, without experiments, for recurrent language models: at each step a Knowledge Activator picks Knowledge Bank units to assemble a Shared Thinking Operator; for compatible templates, an existing fixed-depth model can be realized exactly under a fixed schedule."
+  zh: DeepThink 是一个面向循环语言模型的概念框架（没有实验）：每一步由 Knowledge Activator 从 Knowledge Bank 中选出知识单元，组装成 Shared Thinking Operator 来更新状态；对兼容的模板，已有的固定深度模型可以在固定调度下被精确实现。
+added: "2026-11-24"

@@ -1,0 +1,18 @@
+id: "2510.07358"
+tier: radar
+title: "Encode, Think, Decode: Scaling test-time reasoning with recursive latent thoughts"
+date: "2025-10-08"
+venue: arXiv
+authors: [Yeskendir Koishekenov, Aldo Lipani, Nicola Cancedda]
+links:
+  paper: https://arxiv.org/abs/2510.07358
+category: training
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Encode-Think-Decode (ETD) mid-trains OLMo-2 1B Base to iterate a 4-layer block of reasoning-relevant layers between 7 encoder and 5 decoder layers, adding no parameters or data; it gains on 17 reasoning benchmarks, including +28.4% relative accuracy on GSM8K and +36% on MATH.
+  zh: Encode-Think-Decode（ETD）在 mid-training 阶段训练 OLMo-2 1B Base 循环一个位于 7 层编码器和 5 层解码器之间、与推理相关的 4 层块，不增加参数和数据；它在 17 个推理基准上带来提升，其中 GSM8K 相对准确率提高 +28.4%，MATH 提高 +36%。
+added: "2026-11-24"

@@ -1,0 +1,18 @@
+id: "2609.36108"
+tier: radar
+title: "LoopICL: Looping a single transformer block to solve tabular tasks"
+date: "2026-09-28"
+venue: arXiv
+authors: [Amir Rezaei Balef, Katharina Eggensperger]
+links:
+  paper: https://arxiv.org/abs/2609.36108
+category: applications
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: LoopICL loops a single Transformer block with coupled cell and row streams for tabular in-context learning, varying loop counts in pre-training and exiting with a learned gate; at the same FLOPs it performs competitively with TabICLv2 on TabArena and TALENT while using nearly 90% fewer parameters.
+  zh: LoopICL 循环单个 Transformer 块，以耦合的 cell 流和 row 流做表格 in-context learning，预训练时改变循环次数，并用学习到的退出门自动退出；在相同 FLOPs 下，它在 TabArena 和 TALENT 上与 TabICLv2 相当，参数量少近 90%。
+added: "2026-11-24"

@@ -1,0 +1,18 @@
+id: "2605.07588"
+tier: radar
+title: "Revisiting Transformer Layer Parameterization Through Causal Energy Minimization"
+date: "2026-05-08"
+venue: arXiv
+authors: [Jin Xu, Camille Couturier, Victor Rühle, Saravan Rajmohan, James Hensman]
+links:
+  paper: https://arxiv.org/abs/2605.07588
+category: architecture/placement
+focus: core
+facets:
+  placement: partial
+  depth_train: fixed
+  kv: first-pass
+tldr:
+  en: CEM casts weight-tied attention and gated MLPs as gradient steps on energy functions and repeats these steps within a layer; T=2 consistently improves on T=1, recursive CEM attention can beat the Llama baseline with fewer parameters, and simply reapplying the same block gives little or no gain.
+  zh: CEM 把权重绑定的注意力和门控 MLP 视为能量函数上的梯度步，并在同一层内重复这些步；T=2 稳定优于 T=1，递归 CEM 注意力能以更少参数超过 Llama 基线，而简单地重复使用同一个块几乎没有收益。
+added: "2026-11-24"

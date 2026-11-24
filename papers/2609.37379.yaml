@@ -1,0 +1,18 @@
+id: "2609.37379"
+tier: radar
+title: "Looped Transformers as Optimizers"
+date: "2026-09-29"
+venue: arXiv
+authors: [Yulong Huang, Chen Jiang, Zhanpeng Zhou, Hongtao Zhang, Tianyu Li, Tianyu He, Xiangyu Zhang, Bojun Cheng]
+links:
+  paper: https://arxiv.org/abs/2609.37379
+category: architecture/state
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: per-pass
+tldr:
+  en: Viewing the looped hidden state as a fast weight updated by local gradient steps, the paper derives loop transitions from a projection, objective and optimizer rule; its OperLoop beats the compared looped and non-looped baselines in average generative performance at matched training FLOPs.
+  zh: 该文把循环隐藏状态视为由局部梯度步更新的 fast weight，由投影、局部目标和优化器更新规则推导循环转移；据此设计的 OperLoop 在训练 FLOPs 相同时，平均生成性能超过对比的循环与非循环基线。
+added: "2026-11-24"

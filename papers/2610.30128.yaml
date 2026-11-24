@@ -1,0 +1,19 @@
+id: "2610.30128"
+tier: radar
+title: "Think Harder Where It Matters: Item-Level Adaptive Recursion for Sequential Recommendation"
+date: "2026-10-21"
+venue: arXiv
+authors: [Zhanshuo Cao, Jiakai Tang, Yuqi Zhou, Sunhao Dai, Jun Xu]
+links:
+  paper: https://arxiv.org/abs/2610.30128
+  code: https://github.com/Elpmis117/LoopRec
+category: applications
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: LoopRec recursively applies a single weight-shared block in sequential recommenders, with a lightweight gate at each recursion boundary deciding exit or continue for every item; on public benchmarks with four backbone families it consistently outperforms matched fixed-depth counterparts.
+  zh: LoopRec 在序列推荐模型中递归应用单个权重共享块，并在每次递归边界用轻量门控为每个 item 独立决定退出或继续；在公开基准上，基于四类 backbone 的实验中它稳定优于对应的固定深度模型。
+added: "2026-11-24"

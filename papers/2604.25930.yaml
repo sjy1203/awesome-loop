@@ -1,0 +1,18 @@
+id: "2604.25930"
+tier: radar
+title: "Associative-State Universal Transformers: Sparse Retrieval Meets Structured Recurrence"
+date: "2026-04-01"
+venue: arXiv
+authors: [Liu Xiao]
+links:
+  paper: https://arxiv.org/abs/2604.25930
+category: architecture/placement
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: UniMatrix, a Universal Transformer style byte-level LM, reuses one shared matrix-state recurrent block across depth; it slightly beats a parameter-matched Transformer on WikiText-2 (5.084 and 5.083 vs 5.124 bits-per-byte) but stays near chance on associative recall until sparse pointer retrieval reaches 75.6 percent.
+  zh: UniMatrix 是 Universal Transformer 式的字节级 LM，在深度上反复复用同一个共享的矩阵状态循环块；在 WikiText-2 上它略优于参数匹配的 Transformer（5.084 和 5.083 对 5.124 bits-per-byte），但在联想回忆上接近随机水平，直到加入稀疏指针检索后才达到 75.6%。
+added: "2026-11-24"

@@ -1,0 +1,18 @@
+id: "2608.24136"
+tier: radar
+title: "Steering Recurrent Reasoners at Inference Time with Readout Feedback"
+date: "2026-08-25"
+venue: arXiv
+authors: [Shunsuke Kamiya, Masanori Koyama, Seongcheol Jeong, Fumiya Uchiyama, Kenji Kubo, Kohei Hayashi, Masahiro Suzuki, Yutaka Matsuo]
+links:
+  paper: https://arxiv.org/abs/2608.24136
+category: applications
+focus: related
+facets:
+  placement: n/a
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: Readout Feedback (RoFB) feeds a recurrent reasoner's intermediate readout probabilities back into its latent dynamics as token-wise pairwise coupling forces at test time; on Sudoku and Maze with AKOrN, ItrSA++ and TRM it clearly helps four of six model-task pairs, beyond what more steps or trajectories reach.
+  zh: Readout Feedback（RoFB）在测试时把循环推理模型的中间读出概率转换为逐 token 的成对耦合力，回送到其潜在动力学中；在 Sudoku 和 Maze 上用 AKOrN、ItrSA++ 和 TRM 测试，它在六个模型-任务组合中的四个明显提升，超过单纯增加步数或多轨迹选择所能达到的效果。
+added: "2026-11-24"

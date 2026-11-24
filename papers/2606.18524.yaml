@@ -1,0 +1,18 @@
+id: "2606.18524"
+tier: radar
+title: "Loop-$μ$P: Residual Scaling and Hyperparameter Transfer in Looped Transformers"
+date: "2026-06-16"
+venue: arXiv
+authors: [Shaowen Wang, Bingrui Li, Tansheng Zhu, Ge Zhang, Wenhao Huang, Shen Yan, Jian Li]
+links:
+  paper: https://arxiv.org/abs/2606.18524
+category: training
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Loop-μP scales each residual branch of a looped Transformer by 1/N for N loops, combined with Depth-μP's L^{-1/2} for depth L, since a shared layer adds positively correlated increments every loop; in language modeling the smallest model's tuned base learning rate stays best for up to 8 loops and 384 executed layers.
+  zh: Loop-μP 指出共享层在每次循环都加入正相关的增量，因此把循环 Transformer 的每个残差分支按循环次数 N 乘以 1/N，并与 Depth-μP 针对深度 L 的 L^{-1/2} 因子结合；在语言建模中，在最小模型上调好的基础学习率在最多 8 次循环、执行深度最多 384 层时仍然最优。
+added: "2026-11-24"

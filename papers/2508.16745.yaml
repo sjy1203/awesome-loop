@@ -1,0 +1,19 @@
+id: "2508.16745"
+tier: radar
+title: "Beyond Memorization: Extending Reasoning Depth with Recurrence, Memory and Test-Time Compute Scaling"
+date: "2025-08-22"
+venue: arXiv
+authors: [Ivan Rodkin, Daniil Orel, Konstantin Smirnov, Arman Bolatov, Bilal Elbouardi, Besher Hassan, Yuri Kuratov, Aydar Bulatov, Preslav Nakov, Timothy Baldwin, Artem Shelmanov, Mikhail Burtsev]
+links:
+  paper: https://arxiv.org/abs/2508.16745
+  code: https://github.com/RodkinIvan/associative-recurrent-memory-transformer/tree/ACT
+category: understanding
+focus: core
+facets:
+  placement: n/a
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: On a 1D cellular-automata benchmark with disjoint train and test rules, 4-layer Transformers, LSTMs and SSMs fail as more reasoning steps are needed; Adaptive Computation Time, repeating layers until a learned halt, adds roughly +1 depth of state prediction without new parameters, while GRPO and CoT go further.
+  zh: 在训练与测试规则互不重叠的一维元胞自动机基准上，4 层 Transformer、LSTM 和 SSM 在所需推理步数增加时失效；Adaptive Computation Time 重复执行层直到学到的停止信号触发，在不增加参数的情况下把状态预测深度提高约 +1 步，GRPO 和 CoT 则能推得更远。
+added: "2026-11-24"

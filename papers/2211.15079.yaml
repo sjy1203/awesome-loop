@@ -1,0 +1,18 @@
+id: "2211.15079"
+tier: radar
+title: "Lightweight and Flexible Deep Equilibrium Learning for CSI Feedback in FDD Massive MIMO"
+date: "2022-11-28"
+venue: arXiv
+authors: [Yifan Ma, Wentao Yu, Xianghao Yu, Jun Zhang, Shenghui Song, Khaled B. Letaief]
+links:
+  paper: https://arxiv.org/abs/2211.15079
+category: applications
+focus: related
+facets:
+  placement: implicit
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: Builds CSI feedback for FDD massive MIMO from implicit equilibrium blocks, fixed-point iterations with parameters shared across iterations that mimic an infinite-depth network; it matches benchmarks at much-reduced complexity, and the number of forward iterations can follow users' computation capability.
+  zh: 用隐式均衡块构建 FDD 大规模 MIMO 的 CSI 反馈方案：该块由不动点迭代定义，各次迭代共享可训练参数，以模拟无限深网络；它以大幅降低的复杂度达到与基准相当的性能，前向迭代次数可按用户算力调整。
+added: "2026-11-24"

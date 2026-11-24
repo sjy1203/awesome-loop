@@ -1,0 +1,19 @@
+id: "2410.18077"
+tier: radar
+title: "ALTA: Compiler-Based Analysis of Transformers"
+date: "2024-10-23"
+venue: TMLR 2025
+authors: [Peter Shaw, James Cohan, Jacob Eisenstein, Kenton Lee, Jonathan Berant, Kristina Toutanova]
+links:
+  paper: https://arxiv.org/abs/2410.18077
+  code: https://github.com/google-deepmind/alta
+category: theory
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: ALTA compiles programs with loops into Transformers whose layers share all attention and MLP weights, including Universal Transformers with dynamic halting; it builds length-invariant parity and addition and a SCAN solution, and uses execution-trace supervision to study why end-to-end training misses them.
+  zh: ALTA 把带循环的程序编译成各层共享全部注意力和 MLP 权重的 Transformer，包括带动态停止的 Universal Transformer；它构造出与长度无关的奇偶校验和加法算法以及 SCAN 的解法，并用执行轨迹监督研究端到端训练为何学不到这些算法。
+added: "2026-11-24"

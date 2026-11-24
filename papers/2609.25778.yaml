@@ -1,0 +1,18 @@
+id: "2609.25778"
+tier: radar
+title: "Statistical Gains from Looped Estimation under Parameter Budgets"
+date: "2026-09-22"
+venue: arXiv
+authors: [Xinyu Tian, Xiaotong Shen]
+links:
+  paper: https://arxiv.org/abs/2609.25778
+category: theory
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Looping one shared block lets residual feedforward networks and post-LN Transformers attain the minimax polynomial rate for Hölder targets up to logarithmic factors with a fixed number of bounded parameters, while at large fixed budgets the best untied family's worst-case risk stays bounded away from zero.
+  zh: 循环同一个共享块使残差前馈网络和 post-LN Transformer 只用固定数量的有界参数，就能对 Hölder 光滑目标达到极小极大多项式速率（至多相差对数因子）；而在足够大的固定预算下，最优的不共享参数网络族的最坏情况风险始终有正的下界。
+added: "2026-11-24"

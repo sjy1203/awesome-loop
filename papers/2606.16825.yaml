@@ -1,0 +1,19 @@
+id: "2606.16825"
+tier: radar
+title: "Tying the Loop -- Tied Expert Layers in Mixture-of-Experts Language Models"
+date: "2026-06-15"
+venue: arXiv
+authors: [Martin Jaggi]
+links:
+  paper: https://arxiv.org/abs/2606.16825
+  code: https://github.com/epfml/looped-moe
+category: architecture/placement
+focus: core
+facets:
+  placement: partial
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Expert Tying shares MoE expert weights across groups of consecutive layers while keeping routing and attention per layer; on OLMoE, Qwen3 and DeepSeek-style MoEs it reduces memory footprint by almost 2x, and tying in groups of four cuts total parameters by up to 52% with negligible quality loss.
+  zh: Expert Tying 让连续若干层共享 MoE 专家权重，同时保留逐层独立的路由和注意力；在 OLMoE、Qwen3 和 DeepSeek 式 MoE 上，它把内存占用降低近 2x，按每四层一组共享时总参数最多减少 52%，质量损失可忽略。
+added: "2026-11-24"

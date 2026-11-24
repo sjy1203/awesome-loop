@@ -1,0 +1,18 @@
+id: "2410.11279"
+tier: radar
+title: "Advancing the Understanding of Fixed Point Iterations in Deep Neural Networks: A Detailed Analytical Study"
+date: "2024-10-15"
+venue: arXiv
+authors: [Yekun Ke, Xiaoyu Li, Yingyu Liang, Zhenmei Shi, Zhao Song]
+links:
+  paper: https://arxiv.org/abs/2410.11279
+category: theory
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: "For a looped network repeatedly applying one layer g(Wx+b), gives a sufficient condition for multiple fixed points depending on the input region, extends it to robust fixed points, and shows such networks may have 2^d robust fixed points (d: feature dimension) under polynomial or exponential activations."
+  zh: 针对重复应用同一层 g(Wx+b) 的循环神经网络，给出随输入区域不同而存在多个不动点的充分条件，并推广到鲁棒不动点；在多项式或指数激活下，这类网络可能有 2^d 个鲁棒不动点（d 为特征维度）。
+added: "2026-11-24"

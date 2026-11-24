@@ -1,0 +1,18 @@
+id: "2607.28751"
+tier: radar
+title: "ReLoop-UME: Recurrent Depth with Learnable Retrieval Registers for Universal Multimodal Embedding"
+date: "2026-07-30"
+venue: arXiv
+authors: [Shijie Wang, Xiangzhao Hao, Yueti Li, Guangyu Cao, Xinyu Tang, Haiyun Guo]
+links:
+  paper: https://arxiv.org/abs/2607.28751
+category: applications
+focus: related
+facets:
+  placement: prelude-core-coda
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: ReLoop-UME, a multimodal embedding model, runs early layers once, loops a shared retrieval-forming block, then the final mapping layers, with registers carrying evidence across loops; on MMEB-V2 and MRMR it improves retrieval across backbones and runs 44.9x faster than UME-R1 and 1.5x faster than PLUME.
+  zh: ReLoop-UME 让多模态 embedding 模型的前几层只运行一次，循环复用参数共享的检索特征形成块，最后一轮后再接最终映射层，并用可学习的检索寄存器跨循环累积和交换证据；在 MMEB-V2 和 MRMR 上，它在不同主干上都提升了检索效果，速度比 UME-R1 快 44.9x、比 PLUME 快 1.5x。
+added: "2026-11-24"

@@ -1,0 +1,18 @@
+id: "2604.19550"
+tier: radar
+title: "LoopCTR: Unlocking the Loop Scaling Power for Click-Through Rate Prediction"
+date: "2026-04-21"
+venue: arXiv
+authors: [Jiakai Tang, Runfeng Zhang, Weiqiu Wang, Yifei Liu, Chuan Wang, Xu Chen, Yeqiu Yang, Jian Wu, Yuning Jiang, Bo Zheng]
+links:
+  paper: https://arxiv.org/abs/2604.19550
+category: applications
+focus: related
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: LoopCTR, a click-through rate model, loops a shared block between entry and exit blocks with hyper-connected residuals, MoE and supervision at every loop depth; trained with several loops, it beats all baselines even with zero loops at inference, and oracle analysis shows 0.02–0.04 AUC of untapped headroom.
+  zh: LoopCTR 面向点击率预测，在入口块和出口块之间循环复用一个共享的 Loop Block，并配合 Hyper-Connected Residuals、MoE 和每个循环深度上的过程监督；多循环训练后，即使推理时完全不循环也超过所有基线，oracle 分析显示仍有 0.02–0.04 AUC 的未利用空间。
+added: "2026-11-24"

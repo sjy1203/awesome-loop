@@ -1,0 +1,18 @@
+id: "2610.16415"
+tier: radar
+title: "Chain Dimension Scaling: Communication-Efficient Loop-Style Scaling for Industrial Short-Video Ranking"
+date: "2026-10-12"
+venue: arXiv
+authors: [Zhimeng Jiang, Yuening Li, Ruixiao Sun, Yuanzhen Lin, Kun Jin, Chuan He, Liang Liu]
+links:
+  paper: https://arxiv.org/abs/2610.16415
+category: applications
+focus: related
+facets:
+  placement: n/a
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: CDS reuses each feature-interaction block of an industrial short-video ranker over several iterations with an intra-iteration residual; compressed, it cuts trainable parameters by 26.6% and raises training throughput by 6.4% within 0.03% of baseline offline quality, mainly via lower synchronization cost.
+  zh: CDS 在工业短视频排序模型中让每个特征交互块以共享参数迭代多次，并加入迭代内残差；在压缩设置下，可训练参数减少 26.6%，训练吞吐提高 6.4%，离线质量与基线相差在 0.03% 以内，提速主要来自跨设备同步开销的降低。
+added: "2026-11-24"

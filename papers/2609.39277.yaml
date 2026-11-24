@@ -1,0 +1,18 @@
+id: "2609.39277"
+tier: radar
+title: "A Tilted Bowl Is Not a Slippery Slope: Compressing Looped Models"
+date: "2026-09-30"
+venue: arXiv
+authors: [Steven Kolawole, Pearse Jim, Opegbemi M. Busoye, Glory Bagai, Virginia Smith]
+links:
+  paper: https://arxiv.org/abs/2609.39277
+category: systems
+focus: core
+facets:
+  placement: n/a
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: In more than 30 compressed looped models from five families, fixed rounding error only shifts where a settling loop comes to rest; stopping at the halting head, then finishing with 8-bit loops, beats fixed depth by up to 15 points on Sudoku-Extreme and Maze-Hard under a third of the weight traffic.
+  zh: 在五个家族的 30 多个压缩循环模型上，固定的舍入误差只会移动会收敛的循环最终停驻的位置，而不会累积；在 halting head 触发时停止、再用 8-bit 权重跑几次收尾循环，在 Sudoku-Extreme 和 Maze-Hard 上比固定深度最多高 15 分，权重访存量不到三分之一。
+added: "2026-11-24"

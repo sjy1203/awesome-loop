@@ -1,0 +1,19 @@
+id: "2610.26747"
+tier: radar
+title: "recAMPLIFY: Large-Scale Pretraining of Recursive Protein Language Models"
+date: "2026-10-19"
+venue: arXiv
+authors: [Saurav Jha, Qianli Liao, Robert Vernon, Sarath Chandar, Quentin Fournier]
+links:
+  paper: https://arxiv.org/abs/2610.26747
+  code: https://github.com/chandar-lab/AMPLIFY/tree/recamplify
+category: applications
+focus: related
+facets:
+  placement: prelude-core-coda
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: recAMPLIFY pretrains a masked protein LM whose weight-tied Transformer core refines residue states between a prelude and a coda; with 155M unique parameters on the same 2T tokens as AMPLIFY-350M it raises fold accuracy by 22.5%, and Gated Mixture Recurrence cuts expected layer depth by up to 37%.
+  zh: recAMPLIFY 预训练一个掩码蛋白质语言模型，其权重共享的 Transformer 核心在 prelude 与 coda 之间反复细化残基对齐的隐状态；它以 155M 独立参数、在与 AMPLIFY-350M 相同的 2T token 上训练，把 fold 准确率提高 22.5%，Gated Mixture Recurrence 再把期望层深最多降低 37%。
+added: "2026-11-24"

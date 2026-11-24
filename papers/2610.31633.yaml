@@ -1,0 +1,18 @@
+id: "2610.31633"
+tier: radar
+title: "BeNice! Closing Looping's Inference-Memory Gap via KV-Sharing"
+date: "2026-10-22"
+venue: arXiv
+authors: [Hayden Prairie, Jacob M. Ryan, Taylor Berg-Kirkpatrick, Daniel Y. Fu]
+links:
+  paper: https://arxiv.org/abs/2610.31633
+category: systems
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: sampled
+  kv: last-pass
+tldr:
+  en: BeNice! lets looped LMs share the final recurrence's KV cache with earlier recurrences by pairing stochastic-depth pretraining with post-training that broadcasts that cache into the first recurrence; in simulated long-context inference, throughput rises by up to 23.6% and p90 time-to-first-token falls by up to 83.6%.
+  zh: BeNice! 让循环语言模型的前几遍循环共用最后一遍的 KV cache：先用随机深度预训练使残差动态收缩，再用后训练把最后一遍的 KV cache 广播到第一遍；在模拟的长上下文推理中，吞吐量最多提升 23.6%，p90 首 token 延迟最多降低 83.6%。
+added: "2026-11-24"

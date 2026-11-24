@@ -1,0 +1,19 @@
+id: "2505.01855"
+tier: radar
+title: "Intra-Layer Recurrence in Transformers for Language Modeling"
+date: "2025-05-03"
+venue: Canadian AI 2025
+authors: [Anthony Nguyen, Wenjun Lin]
+links:
+  paper: https://arxiv.org/abs/2505.01855
+  code: https://github.com/ant-8/Layer-Recurrent-Transformers
+category: architecture/placement
+focus: core
+facets:
+  placement: partial
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Intra-Layer Recurrence (ILR) repeats individual layers of a LLaMA-style decoder within one forward pass according to a per-layer reuse map; reusing earlier layers helps most, and the [4,2,1,1] map lowers small-model perplexity from 16.57 to 14.62 with NoPE and from 14.38 to 13.63 with ALiBi.
+  zh: Intra-Layer Recurrence（ILR）按逐层复用表在一次前向中重复执行 LLaMA 式解码器的单个层；复用靠前的层收益最大，复用表 [4,2,1,1] 使小模型困惑度在 NoPE 下从 16.57 降至 14.62，在 ALiBi 下从 14.38 降至 13.63。
+added: "2026-11-24"

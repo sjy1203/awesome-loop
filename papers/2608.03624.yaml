@@ -1,0 +1,18 @@
+id: "2608.03624"
+tier: radar
+title: "LoopMTP: A looped transformer guided by latent multi-token prediction"
+date: "2026-08-04"
+venue: arXiv
+authors: [Behzad Shomali, Markus Frey, David Berghaus, Joachim Koehler, Mehdi Ali]
+links:
+  paper: https://arxiv.org/abs/2608.03624
+category: training
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: LoopMTP loops the whole Transformer stack, softly aligning the hidden state of loop t with the embedding of the token t steps ahead and gating information across iterations; it improves average accuracy by up to 8.1% (relative) over the non-looped baseline, with training stable for up to 15 loops.
+  zh: LoopMTP 循环整个 Transformer 堆叠，把第 t 次循环的隐状态软对齐到 t 步之后 token 的 embedding，并用轻量门控在各次迭代间保留有用信息；相对不循环基线，平均准确率最多相对提升 8.1%，训练在最多 15 次循环时仍保持稳定。
+added: "2026-11-24"

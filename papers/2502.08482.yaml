@@ -1,0 +1,19 @@
+id: "2502.08482"
+tier: radar
+title: "Enhancing Auto-regressive Chain-of-Thought through Loop-Aligned Reasoning"
+date: "2025-02-12"
+venue: arXiv
+authors: [Qifan Yu, Zhenyu He, Sijie Li, Xun Zhou, Jun Zhang, Jingjing Xu, Di He]
+links:
+  paper: https://arxiv.org/abs/2502.08482
+  code: https://github.com/qifanyu/RELAY
+category: training
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: RELAY aligns each iteration of a looped Transformer with one chain-of-thought step and supervises every iteration, keeping length generalization while producing explicit reasoning chains; its chains for problems beyond the training length fine-tune an auto-regressive model and improve its performance.
+  zh: RELAY 把循环 Transformer 的每次循环迭代与一步 CoT 推理对齐，并对每次迭代施加中间监督，在保持长度泛化能力的同时输出显式推理链；它为超出训练长度的问题生成的推理链被用来微调自回归模型，提升了后者的表现。
+added: "2026-11-24"

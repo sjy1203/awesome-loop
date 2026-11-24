@@ -1,0 +1,19 @@
+id: "2503.10799"
+tier: radar
+title: "Fixed-Point RNNs: Interpolating from Diagonal to Dense"
+date: "2025-03-13"
+venue: NeurIPS 2025
+authors: [Sajad Movahedi, Felix Sarnthein, Nicola Muca Cirone, Antonio Orvieto]
+links:
+  paper: https://arxiv.org/abs/2503.10799
+  code: https://github.com/dr-faustus/fp-rnn
+category: architecture/placement
+focus: core
+facets:
+  placement: implicit
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: Fixed-Point RNNs compute a dense linear RNN as the fixed point of a parallelizable diagonal linear RNN, iterated to convergence, so iterations trade expressivity for efficiency at fixed parameters; they set state-of-the-art results on state-tracking benchmarks A5 and S5 and match baselines on copying.
+  zh: Fixed-Point RNN 把稠密线性 RNN 表示为可并行的对角线性 RNN 的不动点并迭代至收敛，使迭代次数在参数量不变时权衡表达力与效率；它在状态追踪基准 A5 和 S5 上取得最优结果，在复制等任务上与基线相当。
+added: "2026-11-24"

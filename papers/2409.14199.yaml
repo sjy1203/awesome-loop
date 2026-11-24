@@ -1,0 +1,18 @@
+id: "2409.14199"
+tier: radar
+title: "Loop Neural Networks for Parameter Sharing"
+date: "2024-09-21"
+venue: arXiv
+authors: [Kei-Sing Ng, Qingchen Wang]
+links:
+  paper: https://arxiv.org/abs/2409.14199
+category: architecture/state
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Loop Neural Network loops GPT-2 Transformer layers with a residual update at each iteration; a model with 6 layers looped 6 times (81M parameters) reaches validation loss 3.11 on OpenWebText, comparable to 3.12 for the 12-layer GPT-2 124M.
+  zh: Loop Neural Network 循环复用 GPT-2 的 Transformer 层，每次迭代以残差方式更新隐状态；6 层循环 6 次（81M 参数）的模型在 OpenWebText 上验证损失为 3.11，与 12 层 GPT-2 124M 的 3.12 相当。
+added: "2026-11-24"

@@ -1,0 +1,18 @@
+id: "2610.14252"
+tier: radar
+title: "Adaptive-Depth Is a Finishing Stage"
+date: "2026-10-09"
+venue: NeurIPS 2026 AXIOM Workshop
+authors: [Andrei Piterbarg, Sean McLeish, Dhruv Pai, Benjamin Keigwin]
+links:
+  paper: https://arxiv.org/abs/2610.14252
+category: training
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: curriculum
+  kv: n/a
+tldr:
+  en: Fixed-first training keeps a looped Transformer at one depth and varies depth only in a short final phase; at 200M, depth 2 for the first 67% of the run cuts modeled compute by 45% with mean NLL across inference depths within 0.5% of all-depth training, and at 1B it saves 31% to 37% with final NLL within 0.8%.
+  zh: Fixed-first 训练让循环 Transformer 先保持单一深度，只在最后一小段训练中改变深度；在 200M 规模上，前 67% 训练用深度 2 可把建模计算量减少 45%，各推理深度的平均 NLL 与全程多深度训练相差不超过 0.5%；在 1B 规模上可节省 31% 到 37% 的计算量，最终 NLL 相差不超过 0.8%。
+added: "2026-11-24"

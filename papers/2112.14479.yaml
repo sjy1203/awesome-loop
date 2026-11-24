@@ -1,0 +1,18 @@
+id: "2112.14479"
+tier: radar
+title: "Universal Transformer Hawkes Process with Adaptive Recursive Iteration"
+date: "2021-12-29"
+venue: arXiv
+authors: [Lu-ning Zhang, Jian-wei Liu, Zhi-yan Song, Xin Zuo]
+links:
+  paper: https://arxiv.org/abs/2112.14479
+category: applications
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: UTHP recursively applies one Universal Transformer encoding layer, with a CNN in its feed-forward part and modified ACT halting, to event sequences; it beats previous state-of-the-art point process models overall with fewer parameters, and ablations favor ACT over fixed iteration counts.
+  zh: UTHP 对事件序列编码递归应用同一个 Universal Transformer 编码层，在前馈部分加入 CNN，并使用改进的 ACT 停止机制；它总体上优于以往最先进的点过程模型且参数更少，消融实验显示 ACT 总体优于固定迭代次数。
+added: "2026-11-24"

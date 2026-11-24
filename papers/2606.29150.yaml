@@ -1,0 +1,19 @@
+id: "2606.29150"
+tier: radar
+title: "Flow Reasoning Models: Turning Flows Into Efficient Recurrent Reasoners"
+date: "2026-06-28"
+venue: arXiv
+authors: [Alec Helbling, Andrey Bryutkin, Mauro Martino, Duen Horng Chau, Nima Dehmamy, Hendrik Strobelt]
+links:
+  paper: https://arxiv.org/abs/2606.29150
+  code: https://github.com/helblazer811/Flow-Reasoning-Models
+category: applications
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: sampled
+  kv: n/a
+tldr:
+  en: Flow Reasoning Models feed their own clean-solution prediction back into the same flow denoiser and train it with Fixed-Point Forcing on self-generated states; they solve 99.5%, 100.0% and 99.9% of Sudoku-Extreme, Zebra and Maze-Unique and match the next-best 98.7% on Sudoku-Extreme with 44× fewer inference FLOPs.
+  zh: Flow Reasoning Models 把 flow 模型对完整解的预测反馈回同一个去噪器做循环精炼，并用 Fixed-Point Forcing 在模型自身推理产生的状态上训练；它在 Sudoku-Extreme、Zebra 和 Maze-Unique 上的求解率分别为 99.5%、100.0% 和 99.9%，在 Sudoku-Extreme 上以少 44× 的推理 FLOPs 达到次优方法 98.7% 的峰值求解率。
+added: "2026-11-24"

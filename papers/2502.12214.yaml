@@ -1,0 +1,18 @@
+id: "2502.12214"
+tier: radar
+title: "Zero Token-Driven Deep Thinking in LLMs: Unlocking the Full Potential of Existing Parameters via Cyclic Refinement"
+date: "2025-02-17"
+venue: arXiv
+authors: [Guanghao Li, Wenhao Jiang, Li Shen, Ming Tang, Chun Yuan]
+links:
+  paper: https://arxiv.org/abs/2502.12214
+category: depth
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Zero Token Transformer keeps the first and last layers out of parameter cycling, loops only the middle layers, and adds per-cycle zero tokens with trainable keys whose attention scores guide each cycle and trigger early exit; under a 6-cycle budget it averages 33.52 versus 32.79 for cycling all layers.
+  zh: Zero Token Transformer 让首层和末层不参与参数循环，只循环中间层，并在每次循环中加入带可训练 key 的 zero token，其注意力分数指导每次循环的计算并触发提前退出；在 6 个计算周期的预算下，其平均分为 33.52，循环全部层的基线为 32.79。
+added: "2026-11-24"

@@ -1,0 +1,19 @@
+id: "2605.31215"
+tier: radar
+title: "Fixed-Point Masked Generative Modeling"
+date: "2026-05-29"
+venue: arXiv
+authors: [Andrea Miele, Yiming Qin, Alba Carballo-Castro, Justin Deschenaux, Pascal Frossard]
+links:
+  paper: https://arxiv.org/abs/2605.31215
+  code: https://github.com/andreamiele/fp-mgm
+category: architecture/placement
+focus: core
+facets:
+  placement: implicit
+  depth_train: sampled
+  kv: n/a
+tldr:
+  en: FP-MGMs replace a masked generative denoiser's middle layers with a fixed-point solver over shared attention layers, plus cross-step consistency and warm-starts; on OpenWebText versus MDLM, parameters fall 38.8% and generative perplexity improves from 830.8 to 101.8 at 96 transformer-block forward passes.
+  zh: FP-MGM 把掩码生成模型去噪器的中间层换成在共享注意力层上迭代求不动点的模块，并加入跨步一致性损失和求解器热启动；在 OpenWebText 上与 MDLM 相比，参数减少 38.8%，在 96 次 Transformer 块前向的预算下生成困惑度从 830.8 降到 101.8。
+added: "2026-11-24"

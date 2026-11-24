@@ -1,0 +1,19 @@
+id: "2606.01495"
+tier: radar
+title: "CART: Context-Anchored Recurrent Transformer -- A Parameter-Efficient Architecture with Learned Stability"
+date: "2026-05-31"
+venue: arXiv
+authors: [Chad A. Capps]
+links:
+  paper: https://arxiv.org/abs/2606.01495
+  code: https://github.com/ccapps42/CART
+category: architecture/placement
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: single-global
+tldr:
+  en: CART loops one shared core block R times over K and V computed once by a multi-layer prelude, with a learned LTI gate for stability; prelude depth P dominates loop count R, and at d=1024 it trails a parameter-matched dense baseline by 1-2% at stored-parameter parity and ~10% at effective-parameter parity.
+  zh: CART 让一个共享核心块循环 R 次，核心块只交叉注意由多层 prelude 一次性算出的 K 和 V，并用可学习的 LTI 门保持稳定；prelude 深度 P 比循环次数 R 更关键，在 d=1024 时，它在存储参数对齐下比参数匹配的 dense 基线差 1-2%，在有效参数对齐下差 ~10%。
+added: "2026-11-24"

@@ -1,0 +1,19 @@
+id: "2607.00774"
+tier: radar
+title: "Soft Mixture-of-Recursions: Going Deeper with Recursive Vision Transformers"
+date: "2026-07-01"
+venue: WACV 2027
+authors: [Sang In Lee, Jihun Park]
+links:
+  paper: https://arxiv.org/abs/2607.00774
+  code: https://github.com/sangin-lee/sr-vit
+category: applications
+focus: related
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: SR-ViT recursively reuses shared intermediate ViT blocks and mixes the outputs of all recursion steps with learned token-wise weights (SoftMoR); on ImageNet-1K, raising recursion depth from T=1 to T=3 improves top-1 accuracy from 79.83% to 82.45% with only 1.1M additional parameters.
+  zh: SR-ViT 递归复用共享的中间 ViT 块，并用逐 token 学习的权重融合所有递归步的输出（SoftMoR）；在 ImageNet-1K 上，递归深度从 T=1 增至 T=3，top-1 准确率从 79.83% 提升到 82.45%，只增加 1.1M 参数。
+added: "2026-11-24"

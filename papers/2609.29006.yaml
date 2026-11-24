@@ -1,0 +1,18 @@
+id: "2609.29006"
+tier: radar
+title: "FluidRain: Incompressible Rain Flow as an Attention Bias for Loop-in-Loop Video Deraining"
+date: "2026-09-24"
+venue: arXiv
+authors: [Pu Wang, Yongcong Wang, Wenhao Li, Xiang Chen, Guangwei Gao, Jinshan Pan, Siyuan Yao, Shujun Fu, Zhuoran Zheng]
+links:
+  paper: https://arxiv.org/abs/2609.29006
+category: applications
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: FluidRain reuses one rain-flow-guided block stack across three scales, each output becoming the next scale's state, and one attention operator across three frames (Loop-in-Loop); the 0.80M-parameter video derainer stays competitive with substantially larger restoration models on four benchmarks.
+  zh: FluidRain 在三个尺度上复用同一组由雨流引导的块（每个尺度的输出作为下一尺度的状态），并在三帧之间复用同一个注意力算子（Loop-in-Loop）；这个仅 0.80M 参数的视频去雨模型在四个基准上与大得多的复原模型相当。
+added: "2026-11-24"

@@ -1,0 +1,18 @@
+id: "2610.18162"
+tier: radar
+title: "LoOPSD: On-Policy Self-Distillation with Looped Teachers"
+date: "2026-10-13"
+venue: arXiv
+authors: [Wei Fan, Qingyue Yang, Chao-Hong Tan, Qian Chen, Wen Wang, Xiangang Li, Kejiang Chen, Weiming Zhang, Nenghai Yu]
+links:
+  paper: https://arxiv.org/abs/2610.18162
+category: training
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: LoOPSD makes a teacher by searching for a contiguous layer block of the same LLM to run twice with unchanged weights, then distills its predictions on student-generated prefixes into the standard model over rounds; on GSM8K with a 400-token thinking budget, Qwen3-1.7B rises from 42.30% to 79.61%.
+  zh: LoOPSD 保持权重不变，搜索一段连续的层让它执行两次，以此用同一个 LLM 构造教师，再在多轮中把教师对学生生成前缀的预测蒸馏回按标准顺序执行的学生；在 GSM8K、400-token 思考预算下，Qwen3-1.7B 的准确率从 42.30% 提高到 79.61%。
+added: "2026-11-24"

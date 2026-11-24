@@ -1,0 +1,18 @@
+id: "2610.13106"
+tier: radar
+title: "Scaling RNA Foundation Models through Iterative Refinement"
+date: "2026-10-09"
+venue: arXiv
+authors: [Pengan Chen, Liang Hong, Xinyuan Liu, Han Huang, Ziqian Lin, Jiayang Chen, Yimin Fan, Jiyue Jiang, Yu Li]
+links:
+  paper: https://arxiv.org/abs/2610.13106
+category: applications
+focus: related
+facets:
+  placement: prelude-core-coda
+  depth_train: sampled
+  kv: n/a
+tldr:
+  en: Eco-RNA, an 80M-parameter RNA foundation model, repeats a shared input-conditioned Transformer core between a prelude and coda, trained at sampled depths; four iterations instead of one raise RNAGym aggregate absolute Spearman from 0.242 to 0.286 and beat Evo 2 40B on all three aggregate fitness metrics.
+  zh: Eco-RNA 是 80M 参数的 RNA 基础模型，在 prelude 和 coda 之间重复应用共享、以输入为条件的 Transformer 核心，并在采样深度上训练；把迭代从一次增加到四次，RNAGym 总体绝对 Spearman 相关从 0.242 升到 0.286，并在全部三项总体 fitness 指标上超过 Evo 2 40B。
+added: "2026-11-24"

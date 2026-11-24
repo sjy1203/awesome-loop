@@ -1,0 +1,18 @@
+id: "2610.06949"
+tier: radar
+title: "AdaLoop: Adaptive-Depth Latent Reasoning for Audio Language Models"
+date: "2026-10-03"
+venue: arXiv
+authors: [Lee Seung-woo, Bowen Qi]
+links:
+  paper: https://arxiv.org/abs/2610.06949
+category: applications
+focus: related
+facets:
+  placement: partial
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: AdaLoop replaces the encoder-to-LM connector of audio LMs with a shared Transformer block that iterates over audio features, guided by the question, until a learned halting unit stops it; with fewer than 3% extra parameters it raises average accuracy by 2.9 to 3.8 points on MMSU, MMAU-Pro and MMAR.
+  zh: AdaLoop 把音频语言模型中连接音频编码器与语言模型的 connector 换成一个共享 Transformer 块，在问题引导下对音频表示反复迭代，直到学习的停止单元让它退出；它增加的参数不到 3%，在 MMSU、MMAU-Pro 和 MMAR 上把平均准确率提高 2.9 到 3.8 分。
+added: "2026-11-24"

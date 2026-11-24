@@ -1,0 +1,19 @@
+id: "2603.21676"
+tier: radar
+title: "Thinking Deeper, Not Longer: Memory-Efficient Test-Time Reasoning with Depth-Recurrent Transformers for Compositional Generalization"
+date: "2026-03-23"
+venue: arXiv
+authors: [Hung-Hsuan Chen]
+links:
+  paper: https://arxiv.org/abs/2603.21676
+  code: https://github.com/hhchen1105/Depth-Recurrent-Transformer
+category: training
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: sampled
+  kv: n/a
+tldr:
+  en: A shared-weight Transformer block, kept stable for 20+ thinking steps by final-output-only supervision, LayerScale initialization and an identity-biased gate, extrapolates past its training range and comes within two points of fixed-depth Transformers with 4-6.4× more parameters on two sequence tasks.
+  zh: 一个共享权重的 Transformer 块被反复迭代，靠只监督最终输出、LayerScale 初始化和偏向恒等的门控在 20+ 个思考步内保持稳定；它能外推到训练范围之外，在两个序列任务上与参数多 4-6.4× 的固定深度 Transformer 相差不到两个点。
+added: "2026-11-24"

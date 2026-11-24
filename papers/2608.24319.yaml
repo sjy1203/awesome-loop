@@ -1,0 +1,19 @@
+id: "2608.24319"
+tier: radar
+title: "Can a Dynamic Internal Field Govern a Transformer's Cognition? Certifiability, not Superiority, in Homeostatic Compute Control"
+date: "2026-08-25"
+venue: arXiv
+authors: [Francisco M. Arrabal-Campos, Ignacio Fernandez, Francisco G. Montoya, Alfredo Alcayde]
+links:
+  paper: https://arxiv.org/abs/2608.24319
+  code: https://github.com/fmarrabal/miuracognitive
+category: depth
+focus: core
+facets:
+  placement: partial
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: A homeostatic field (PDEs on the module graph) modulates the halting threshold and block gain of a PonderNet-style looped reasoner in 4.2–5.6M-parameter Transformers on S5 state tracking; wave, diffusion, gated and Navier-Stokes physics tie on accuracy, and its edge is an exact runtime stability check.
+  zh: 一个由模块图上的 PDE 控制的稳态场，在 S5 状态追踪任务上调节 4.2–5.6M 参数 Transformer 中 PonderNet 式循环推理块的停止阈值和块增益；波动、扩散、门控和 Navier-Stokes 物理在准确率上打平，它的优势在于可做精确的运行时稳定性检查。
+added: "2026-11-24"

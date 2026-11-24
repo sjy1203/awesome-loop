@@ -1,0 +1,18 @@
+id: "2610.28339"
+tier: radar
+title: "HistoLoop: Iterative Contextual Inference with a Looped Transformer for Histology-Based Spatial Gene Expression Prediction"
+date: "2026-10-20"
+venue: arXiv
+authors: [Ziang Liu, Jie Liu, Shuai Li, Yigui Feng, Qinglin Wang]
+links:
+  paper: https://arxiv.org/abs/2610.28339
+category: applications
+focus: related
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: HistoLoop predicts spatial gene expression from H&E images by looping a shared spatial Transformer for 4 steps between pre- and post-spatial Transformers, rebuilding context from updated spot states at finer resolutions; on HEST-Bench HVG50 its macro-averaged PCC is 0.480 versus 0.435 for MoLF.
+  zh: HistoLoop 从 H&E 图像预测空间基因表达：在前置和后置空间 Transformer 之间把一个共享空间 Transformer 循环 4 步，并在逐步变细的分辨率上用更新后的 spot 状态重建上下文；在 HEST-Bench HVG50 上其宏平均 PCC 为 0.480，MoLF 为 0.435。
+added: "2026-11-24"

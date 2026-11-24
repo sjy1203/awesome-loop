@@ -1,0 +1,19 @@
+id: "2610.28498"
+tier: radar
+title: "Copied, Mixed or Computed? Testing Latent Intermediate Values with Minimal Pairs"
+date: "2026-10-20"
+venue: arXiv
+authors: [Aur Shalev Merin]
+links:
+  paper: https://arxiv.org/abs/2610.28498
+  code: https://github.com/Aur-Shalev-Merin/present-but-hard-to-read
+category: understanding
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: With prompts that differ in one token, the paper shows that answer-position probes in two looped and two standard LMs may be reading copied inputs, and tests candidate values against copies, generic mixing and use; in looped Ouro-1.4B the tests find a small code of the unwritten intermediate whose use is unresolved.
+  zh: 论文用只差一个 token 的提示对表明，在两个循环和两个标准语言模型中，答案位置上的探针可能读到的是从输入复制来的信息，并给出把候选中间值分别与输入副本、一般性混合和实际使用对照检验的方法；在循环模型 Ouro-1.4B 中，这些检验找到了未写出的中间值的一个小编码，但模型是否使用它仍无定论。
+added: "2026-11-24"

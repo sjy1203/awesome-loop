@@ -1,0 +1,18 @@
+id: "2610.19768"
+tier: radar
+title: "Learning to Compute Is Not Learning to Retain or Reuse in Looped Transformers"
+date: "2026-10-14"
+venue: arXiv
+authors: [Peilong Zhou, Hongtao Zhang, Yulong Huang, Cangyuan Li, Mingyu Chen, Ying Wang]
+links:
+  paper: https://arxiv.org/abs/2610.19768
+category: understanding
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: "Separates computing, retaining and reusing answers in looped Transformers executing Mealy machines in context: models trained to answer at loop 32 keep only 22% of answers at loop 64 (99.8% when one random position is supervised), and freezing position k from loop k drops accuracy to 4–6%."
+  zh: 在上下文执行 Mealy 机的任务上区分循环 Transformer 的计算、保持与复用：训练成在第 32 次循环作答的模型到第 64 次循环只保留 22% 的答案（每例随机监督一个位置时为 99.8%），而从第 k 次循环起冻结位置 k 会使准确率降到 4–6%。
+added: "2026-11-24"

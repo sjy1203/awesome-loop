@@ -1,0 +1,18 @@
+id: "2607.10110"
+tier: radar
+title: "CHASE: Cache-Hole-Adapted Skip Exit for Looped State-Space Language Models"
+date: "2026-07-11"
+venue: arXiv
+authors: [Zhenxuan Yu, Takeshi Kojima, Yutaka Matsuo, Yusuke Iwasawa]
+links:
+  paper: https://arxiv.org/abs/2607.10110
+category: depth
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: per-pass
+tldr:
+  en: Loops a shared Mamba (or hybrid Mamba-Transformer) block and adapts Ouro's exit gate; since skipped steps leave cache holes in the recurrent state, CHASE continues training on cache-hole-consistent passes, keeping perplexity close to full computation while executing roughly half of the recurrent steps.
+  zh: 循环复用一个共享的 Mamba（或 Mamba-Transformer 混合）块，并移植 Ouro 的退出门；由于跳过的步不会写入循环状态而留下缓存空洞，CHASE 在与缓存空洞一致的前向过程上继续训练，使困惑度接近完整计算，同时只执行约一半的循环步。
+added: "2026-11-24"

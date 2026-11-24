@@ -1,0 +1,19 @@
+id: "2604.02051"
+tier: radar
+title: "Ouroboros: Dynamic Weight Generation for Recursive Transformers via Input-Conditioned LoRA Modulation"
+date: "2026-04-02"
+venue: arXiv
+authors: [Jaber Jaber, Osama Jaber]
+links:
+  paper: https://arxiv.org/abs/2604.02051
+  code: https://github.com/RightNow-AI/ouroboros
+category: architecture/placement
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Ouroboros adds a Controller hypernetwork that makes each step of a recursive block input-dependent by modulating frozen SVD-initialized LoRA bases; on Qwen2.5-3B cut to Prelude/Recurrent/Coda (17 of 36 layers) it cuts training loss by 43.4% over the 17-layer baseline, but not held-out loss.
+  zh: Ouroboros 加入一个 Controller 超网络，通过调制冻结的、SVD 初始化的 LoRA 基，让递归块的每一步都依赖输入；在切分为 Prelude/Recurrent/Coda（保留 36 层中的 17 层）的 Qwen2.5-3B 上，训练损失比 17 层基线降低 43.4%，但留出文本上的损失没有改善。
+added: "2026-11-24"

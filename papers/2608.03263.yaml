@@ -1,0 +1,19 @@
+id: "2608.03263"
+tier: radar
+title: "The Ignition Is Real, and It Lives at the Readout: Latent composition, difficulty-clocked ignition, and the interface-constituted commit in a recurrent-depth reasoner"
+date: "2026-08-04"
+venue: arXiv
+authors: [Simon Lam-Muir]
+links:
+  paper: https://arxiv.org/abs/2608.03263
+  code: https://github.com/primecalibre-research/ltg-replication-receipts
+category: understanding
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: "Regrowing a published 30M-parameter recurrent-depth reasoner shows its compositional ignition is real and sits at the readout: arrival time rises with problem depth, the decision margin jumps 5.8-8.0 logits in one iteration at commitment, and intermediates never surface through the tied readout."
+  zh: 从头重新训练一个已发表的 30M 参数循环深度推理模型，发现其组合式“点火”真实存在且发生在读出端：到达时间随问题深度上升，提交答案时决策 margin 在一次迭代内跳升 5.8-8.0 logits，而中间结果始终无法通过与 embedding 绑定的读出层恢复。
+added: "2026-11-24"

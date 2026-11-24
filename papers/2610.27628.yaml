@@ -1,0 +1,18 @@
+id: "2610.27628"
+tier: radar
+title: "PAR: Progress-Aligned Recurrence for Length Generalization in State Tracking"
+date: "2026-10-20"
+venue: arXiv
+authors: [Pan Wang, Yihao Hu, Guangyuan Dong, Yitong Lin, Hang Wang, Zimi Liu, Zhihao Wen, Jianshe Li, Jiang-Ming Yang, Wei Wu, Yongqi Tong]
+links:
+  paper: https://arxiv.org/abs/2610.27628
+category: training
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: PAR trains a looped Qwen2.5-0.5B so iteration k predicts the state after the first k operations, and rescales recurrent states to their first-iteration norms; trained on at most 32 swap-S_5 moves, it reaches 95.5% full-state accuracy at 512 moves, versus 55.7% reported for RLT and 0.8% for explicit chain of thought.
+  zh: PAR 训练循环化的 Qwen2.5-0.5B，使第 k 次迭代预测执行前 k 个操作后的状态，并把循环状态重新缩放到第一次迭代时的范数；只用最多 32 步的 swap-S_5 训练，它在 512 步时达到 95.5% 的完整状态准确率，而 RLT 的报告值为 55.7%，显式思维链为 0.8%。
+added: "2026-11-24"

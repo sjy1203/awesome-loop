@@ -1,0 +1,18 @@
+id: "2606.09357"
+tier: radar
+title: "Rethinking Depth: A study of the Recursive-Transformer for Speech Recognition"
+date: "2026-06-08"
+venue: arXiv
+authors: [Thomas Rolland, Carlos Carvalho, Alberto Abad]
+links:
+  paper: https://arxiv.org/abs/2606.09357
+category: applications
+focus: related
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Studies Recursive-Transformer ASR encoders, including a Latent-Recursive-Transformer that loops a shared middle block between a prelude and a coda; with a restricted number of loops it performs comparably to standard Transformers while reducing the parameter count by 66%.
+  zh: 研究 ASR 编码器中的 Recursive-Transformer，包括在 prelude 与 coda 之间循环共享中间块的 Latent-Recursive-Transformer；在限制循环次数时，它与标准 Transformer 性能相当，同时把参数量减少 66%。
+added: "2026-11-24"

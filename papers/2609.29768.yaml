@@ -1,0 +1,18 @@
+id: "2609.29768"
+tier: radar
+title: "Depth through recurrence: Looped transformers for flow-matching TTS"
+date: "2026-09-24"
+venue: arXiv
+authors: [Jiabao Ai, Peng Han, Yuchen Song, Zhengjun Yue]
+links:
+  paper: https://arxiv.org/abs/2609.29768
+category: applications
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Compares seven weight-reuse layouts with 18 block calls in flow-matching TTS; SEQUENCE, running each of nine blocks twice in a row, stays competitive at 32 steps with 47.1% fewer parameters, while at four steps Suffix's word error rate exceeds Prefix's by 3.44 and 5.97 percentage points on the two datasets.
+  zh: 在 flow-matching TTS 中比较七种每次网络评估执行 18 次块调用的权重复用布局；SEQUENCE 把九个块各连续执行两次，在 32 步采样下以少 47.1% 的参数保持有竞争力的质量，而在四步采样时，Suffix 在两个数据集上的词错误率分别比 Prefix 高 3.44 和 5.97 个百分点。
+added: "2026-11-24"

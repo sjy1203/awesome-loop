@@ -1,0 +1,19 @@
+id: "2610.22796"
+tier: radar
+title: "Causal Latent Workspaces for Looped Transformers"
+date: "2026-10-16"
+venue: arXiv
+authors: [Ilia Zaznov]
+links:
+  paper: https://arxiv.org/abs/2610.22796
+  code: https://github.com/izaznov/causal-latent-workspace-transformer
+category: architecture/state
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: The causal latent workspace Transformer runs one shared block for four rounds; before each round every position writes gated vectors into prefix-specific latent slots and reads a content-addressed summary, giving the best mean held-out perplexity in five of six byte-level settings against five Transformer controls.
+  zh: causal latent workspace Transformer 把一个共享块运行四轮，每轮之前每个位置都把门控向量写入按前缀划分的潜在槽位，并读取按内容寻址的摘要；在六个字节级设置中的五个上，它的平均留出困惑度优于五种 Transformer 对照模型。
+added: "2026-11-24"

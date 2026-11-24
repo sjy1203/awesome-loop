@@ -1,0 +1,18 @@
+id: "2410.03020"
+tier: radar
+title: "On Logical Extrapolation for Mazes with Recurrent and Implicit Networks"
+date: "2024-10-03"
+venue: arXiv
+authors: [Brandon Knutson, Amandin Chyba Rabeendran, Michael Ivanitskiy, Jordan Pettyjohn, Cecilia Diniz-Behn, Samy Wu Fung, Daniel McKenzie]
+links:
+  paper: https://arxiv.org/abs/2410.03020
+category: applications
+focus: related
+facets:
+  placement: n/a
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: Weight-tied RNNs and implicit networks that solve larger mazes by iterating longer lose accuracy when the start may have several neighbors or the maze has cycles; one RNN matches deadend-filling on 98.8% of 143k test mazes, and models can be correct while converging to limit cycles, not fixed points.
+  zh: 靠增加迭代次数解更大迷宫的权重共享 RNN 和隐式网络，在起点可有多个邻居或迷宫含环时准确率下降；其中一个 RNN 在 143k 个测试迷宫中有 98.8% 与 deadend-filling 算法输出一致，且模型在收敛到极限环而非不动点时也能给出正确解。
+added: "2026-11-24"

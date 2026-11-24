@@ -1,0 +1,19 @@
+id: "2512.14693"
+tier: radar
+title: "Universal Reasoning Model"
+date: "2025-12-16"
+venue: arXiv
+authors: [Zitian Gao, Lynx Chen, Yihao Xiao, He Xing, Ran Tao, Haoming Luo, Joey Zhou, Bryan Dai]
+links:
+  paper: https://arxiv.org/abs/2512.14693
+  code: https://github.com/UbiquantAI/URM
+category: applications
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: Analyzing Universal Transformer variants, the paper attributes ARC-AGI gains mainly to the recurrent inductive bias and strong nonlinearity; URM adds short convolution and truncated backpropagation through loops to a looped 4-layer Transformer and reaches 53.8% pass@1 on ARC-AGI 1 and 16.0% on ARC-AGI 2.
+  zh: 论文分析 Universal Transformer 变体，认为 ARC-AGI 上的提升主要来自循环归纳偏置和强非线性组件；URM 在循环的 4 层 Transformer 中加入短卷积和跨循环截断反向传播，在 ARC-AGI 1 和 ARC-AGI 2 上的 pass@1 分别达到 53.8% 和 16.0%。
+added: "2026-11-24"

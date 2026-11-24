@@ -1,0 +1,18 @@
+id: "2610.00541"
+tier: radar
+title: "Random Recursive Models"
+date: "2026-09-30"
+venue: arXiv
+authors: [Jama Hussein Mohamud, Mirco Ravanelli]
+links:
+  paper: https://arxiv.org/abs/2610.00541
+category: applications
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: RRM keeps a pool of L learned layers and, at each of T recursive steps, samples one layer with replacement per example; on reasoning tasks including Sudoku, Maze-Hard and ARC-AGI-1 it matches or exceeds baselines, often with 50-75% fewer parameters, and can run deeper at inference than in training.
+  zh: RRM 维护一个由 L 个学习层组成的层池，在 T 个递归步中每一步为每个样本有放回地随机抽取一层；在 Sudoku、Maze-Hard 和 ARC-AGI-1 等推理任务上，它达到或超过基线，参数常常少 50-75%，推理时还能运行比训练时更深的递归。
+added: "2026-11-24"

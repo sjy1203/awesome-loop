@@ -1,0 +1,19 @@
+id: "2603.10544"
+tier: radar
+title: "SCORE: Replacing Layer Stacking with Contractive Recurrent Depth"
+date: "2026-03-11"
+venue: arXiv
+authors: [Guillaume Godin]
+links:
+  paper: https://arxiv.org/abs/2603.10544
+  code: https://github.com/guillaume-osmo/autosearch-mlx
+category: architecture/state
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: SCORE replaces stacked layers with one shared block applied for a fixed number of steps through the contractive update ht+1 = (1 - dt) * ht + dt * F(ht); on GNNs for ESOL, MLPs and nanoGPT it generally speeds convergence while cutting parameters, and simple Euler steps give the best cost trade-off.
+  zh: SCORE 用一个共享块按固定步数迭代取代逐层堆叠，采用收缩式更新 ht+1 = (1 - dt) * ht + dt * F(ht)；在 ESOL 上的 GNN、MLP 和 nanoGPT 中，它通常加快收敛并减少参数，简单的 Euler 积分在计算成本与性能之间折中最好。
+added: "2026-11-24"

@@ -1,0 +1,19 @@
+id: "2402.00976"
+tier: radar
+title: "Investigating Recurrent Transformers with Dynamic Halt"
+date: "2024-02-01"
+venue: arXiv
+authors: [Jishnu Ray Chowdhury, Cornelia Caragea]
+links:
+  paper: https://arxiv.org/abs/2402.00976
+  code: https://github.com/JRC1995/InvestigatingRecurrentTransformers
+category: depth
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: Compares depth-wise Universal Transformer recurrence with chunk-wise Temporal Latent Bottleneck recurrence and proposes GUT, a gated UT with global mean-based dynamic halting; GUT generally beats UT on ListOps and Logical Inference, while chunk-wise recurrence is more robust in flip-flop LM and length generalization.
+  zh: 比较 Universal Transformer 的深度循环与 Temporal Latent Bottleneck 的分块时间循环，并提出带全局均值动态停止机制的门控 UT（GUT）；GUT 在 ListOps 和 Logical Inference 上总体优于 UT，而分块循环在 flip-flop 语言建模和长度泛化上更稳健。
+added: "2026-11-24"

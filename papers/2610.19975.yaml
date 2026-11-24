@@ -1,0 +1,18 @@
+id: "2610.19975"
+tier: radar
+title: "LatentLoop: Scaling Looped MoE Models with Asymmetric Compute Allocation"
+date: "2026-10-14"
+venue: arXiv
+authors: [Zefeng He, Yunkai Chai, Xiaoyang Chen, Tong Zhu, Zongliang Wu, Yun Luo, Yafu Li, Yu Cheng]
+links:
+  paper: https://arxiv.org/abs/2610.19975
+category: architecture/placement
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: per-pass
+tldr:
+  en: In a looped MoE that visits its middle block twice, LatentLoop runs the first visit on a compressed sequence, shares only MoE weights across visits and widens the model; at 1.3B–7B it lowers validation NLL, with predicted compute savings of 19.0% and 7.9% over vanilla MoE and the looped baseline.
+  zh: 在中间块访问两次的循环 MoE 中，LatentLoop 让第一次访问只处理压缩后的序列，跨访问只共享 MoE 权重，并用省下的计算加宽模型；它在 1.3B–7B 规模上都降低了验证 NLL，预测比 vanilla MoE 和循环基线分别节省 19.0% 和 7.9% 的计算。
+added: "2026-11-24"

@@ -1,0 +1,18 @@
+id: "2608.09888"
+tier: radar
+title: "BDH-CQ: In-Context Learning with Recurrent Latent Reasoning"
+date: "2026-08-10"
+venue: arXiv
+authors: [Björn Engdahl, Adrian Kosowski, Jan Chorowski, Zuzanna Stamirowska, Przemysław Uznański, Junlin Jiang, Rohan Phadke, Remigiusz Kinas, Richard Zhong]
+links:
+  paper: https://arxiv.org/abs/2608.09888
+category: applications
+focus: related
+facets:
+  placement: prelude-core-coda
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: BDH-CQ writes ARC demonstrations into a recurrent memory, then solves the query by iterating one latent update before decoding; a 150M-parameter configuration reaches 29.5% pass@2 on the public ARC-AGI-1 evaluation set at a computed inference cost of $0.0007 per task.
+  zh: BDH-CQ 先把 ARC 示例写入循环记忆，再反复迭代同一个潜空间更新来求解查询并解码输出；150M 参数的配置在公开的 ARC-AGI-1 评测集上达到 29.5% pass@2，推算的推理成本为每个任务 $0.0007。
+added: "2026-11-24"

@@ -1,0 +1,19 @@
+id: "2610.20951"
+tier: radar
+title: "LEV: Thinking Fast and Deep with Looped Decision Models"
+date: "2026-10-14"
+venue: arXiv
+authors: [Dingjie Song, Zhiling Yan, Yuxuan Zhang, Lichao Sun]
+links:
+  paper: https://arxiv.org/abs/2610.20951
+  code: https://github.com/OpenLAIR/lev
+category: depth
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: LEV turns natively looped language models into decision models that score options after each loop step, training all steps jointly; a 2.6B LEV rises from 63.2% at depth one to 76.2% at depth four on JevBench, and a stopper fitted on unlabelled requests saves 15% to 24% of compute for under one point.
+  zh: LEV 把原生循环的语言模型改造成决策模型，在每次循环后都对选项打分，并联合训练所有循环步；2.6B 的 LEV 在 JevBench 上从深度一的 63.2% 提升到深度四的 76.2%，用无标注请求拟合阈值的 stopper 可节省 15% 到 24% 的计算，准确率损失不到一个点。
+added: "2026-11-24"

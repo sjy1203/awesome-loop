@@ -1,0 +1,18 @@
+id: "2610.14030"
+tier: radar
+title: "Rotate the Loop: Blockwise Conformality for Looped Transformers"
+date: "2026-09-30"
+venue: NeurIPS 2026 Transitioning from Pre-Training to Post-Training Workshop
+authors: [Alexey Zemtsov, Albina Klepach, Vadim Lomshakov, Andrei Polubarov, Nikita Lyubaykin, Alexander Derevyagin, Vladislav Kurenkov, Alexander Nikulin]
+links:
+  paper: https://arxiv.org/abs/2610.14030
+category: architecture/state
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: sampled
+  kv: n/a
+tldr:
+  en: Blockwise conformal injections make the map applied to the residual between loop steps rotate coordinate-aligned groups, each at its own rate; on A5 word problems, last-token accuracy at T=32 rises from 0.692 with Parcae's diagonal map to 0.894, and FineWeb perplexity and LAMBADA also improve.
+  zh: Blockwise conformal injection 让循环步之间作用于残差的线性映射在按坐标划分的各组内旋转，每组有各自的速率；在 A5 word problem 上，T=32 时的最后 token 准确率从 Parcae 对角映射的 0.692 提高到 0.894，FineWeb 困惑度和 LAMBADA 也有改善。
+added: "2026-11-24"

@@ -1,0 +1,18 @@
+id: "2606.18022"
+tier: radar
+title: "Recursive Scaling in Masked Diffusion Models"
+date: "2026-06-16"
+venue: arXiv
+authors: [Alba Carballo-Castro, Julianna Piskorz, Paulius Rauba, Mihaela van der Schaar, Pascal Frossard]
+links:
+  paper: https://arxiv.org/abs/2606.18022
+category: scaling
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: curriculum
+  kv: n/a
+tldr:
+  en: R-MDMs apply one shared denoising Transformer L times within each masked-diffusion step; recursion matches substantially larger non-recursive models at matched FLOPs, and entropy-guided rules for loop count and token commits improve the quality–compute frontier on Sudoku, Countdown, RNA and executable math generation.
+  zh: R-MDM 在掩码扩散模型的每个去噪步内把同一个共享去噪 Transformer 重复应用 L 次；在 FLOPs 相同时，递归可追平大得多的非递归模型，而用熵决定循环次数和提交哪些 token 的自适应规则在 Sudoku、Countdown、RNA 和可执行数学程序生成上改善了质量与算力的权衡。
+added: "2026-11-24"

@@ -1,0 +1,18 @@
+id: "2610.27598"
+tier: radar
+title: "Meta Expert: Cross-Layer Expert Sharing for Storage- and Retrieval-Efficient MoE"
+date: "2026-10-20"
+venue: arXiv
+authors: [Ermo Hua, Xiangyu Hong, Baiting Wu, Che Jiang, Haozheng Hou, Yicheng Gu, Hanjing Wang, Qirui Zeng, Ming Zhang, Ning Ding, Qipeng Guo, Youbang Sun, Biqing Qi, Bowen Zhou]
+links:
+  paper: https://arxiv.org/abs/2610.27598
+category: architecture/placement
+focus: core
+facets:
+  placement: partial
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Meta Experts are MoE experts shared by all layers instead of private to one layer; they lower cross-entropy loss and raise downstream accuracy, and with activated experts and expert granularity fixed the model matches Vanilla MoE using only 70-80% of the experts.
+  zh: Meta Expert 是被所有层共享、而非某一层私有的 MoE 专家；它降低了交叉熵损失、提高了下游准确率，在激活专家数和专家粒度不变时，只用 70-80% 的专家就达到 Vanilla MoE 的性能。
+added: "2026-11-24"

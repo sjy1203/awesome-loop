@@ -1,0 +1,19 @@
+id: "2610.21323"
+tier: radar
+title: "AdaLoop: Thinking with the Vision Encoder"
+date: "2026-10-15"
+venue: arXiv
+authors: [Xinran Nicole Han, Yiyang Lu, Katelyn Gan, Todd Zickler]
+links:
+  paper: https://arxiv.org/abs/2610.21323
+  code: https://github.com/xrhan/AdaLoop
+category: applications
+focus: related
+facets:
+  placement: partial
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: AdaLoop loops a span of a VLM's frozen vision encoder, modulating the shared layers at each iteration with question-conditioned AdaLN; with matched data and optimizer updates, it beats standard fine-tuning and question-conditioned single-pass baselines on six VisRO tasks across three VLM families.
+  zh: AdaLoop 循环应用 VLM 冻结视觉编码器中的一段层，并在每次迭代中用以问题为条件的 AdaLN 调制这些共享层；在训练数据和优化器更新次数匹配时，它在三个 VLM 系列的六个 VisRO 任务上优于标准微调和以问题为条件的单次前向基线。
+added: "2026-11-24"

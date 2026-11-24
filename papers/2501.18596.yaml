@@ -1,0 +1,18 @@
+id: "2501.18596"
+tier: radar
+title: "DeltaLLM: Compress LLMs with Low-Rank Deltas between Shared Weights"
+date: "2025-01-30"
+venue: arXiv
+authors: [Liana Mikaelyan, Ayyoob Imani, Mathew Salvaris, Parth Pathak, Mohsen Fayyaz]
+links:
+  paper: https://arxiv.org/abs/2501.18596
+category: training
+focus: related
+facets:
+  placement: partial
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: DeltaLLM compresses pretrained LLMs by sharing weights between layers in subsequent Transformer blocks and adding low-rank delta matrices trained on approximately 30M-40M tokens; DeltaLLAMA and DeltaPHI cut parameters by 12% while retaining 90% of base Llama and Phi performance.
+  zh: DeltaLLM 让相邻 Transformer 块中的层共享权重并加入低秩差值矩阵来压缩预训练 LLM，低秩模块只需约 30M-40M token 训练；DeltaLLAMA 和 DeltaPHI 减少 12% 参数，保留基础 Llama 和 Phi 模型 90% 的性能。
+added: "2026-11-24"

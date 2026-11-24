@@ -1,0 +1,18 @@
+id: "2602.12078"
+tier: radar
+title: "Tiny Recursive Reasoning with Mamba-2 Attention Hybrid"
+date: "2026-02-12"
+venue: ICLR 2026 Latent & Implicit Thinking Workshop
+authors: [Wenlong Wang, Fergal Reid]
+links:
+  paper: https://arxiv.org/abs/2602.12078
+category: applications
+focus: related
+facets:
+  placement: hierarchical
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: Replaces the Transformer blocks inside TRM's recursion with a Mamba-2 + attention hybrid at parameter parity (6.83M vs 6.86M); on ARC-AGI-1 the hybrid raises pass@2 by +2.0% (45.88% vs 43.88%) and leads by +4.75% at pass@100, with pass@1 parity.
+  zh: 在参数量基本一致（6.83M 对 6.86M）的条件下，把 TRM 递归中的 Transformer 块换成 Mamba-2 + attention 混合算子；在 ARC-AGI-1 上，混合模型的 pass@2 提高 +2.0%（45.88% 对 43.88%），pass@100 领先 +4.75%，pass@1 持平。
+added: "2026-11-24"

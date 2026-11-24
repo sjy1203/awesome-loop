@@ -1,0 +1,18 @@
+id: "2609.39967"
+tier: radar
+title: "What Limits Recursive Reasoning Models: Optimization, Architecture and Test-Time Scaling"
+date: "2026-09-30"
+venue: arXiv
+authors: [Yuliana Shakhvalieva, Dmitrii Kharchev, Viacheslav Bezrukov, Inessa Fedorova, Dmitry Bocharov, Ivan Oseledets, Valerii Ternovskii]
+links:
+  paper: https://arxiv.org/abs/2609.39967
+category: applications
+focus: related
+facets:
+  placement: hierarchical
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: Ablations of HRM-, TRM- and URM-style recursive reasoners show that stable training needs an intermediate gradient horizon, large physical batches and controlled state updates, not explicit hierarchy; its 13.6M-parameter model lifts Arithmetic OOD accuracy to 71.2% from 36.2% and reaches 98.41% on Sudoku.
+  zh: 对 HRM、TRM 和 URM 式递归推理模型的受控消融表明，稳定训练依赖中等长度的梯度回传范围、大的物理 batch 和受控的循环状态更新，并不需要显式层级结构；据此得到的 13.6M 参数模型把 Arithmetic OOD 准确率从 36.2% 提高到 71.2%，在 Sudoku 上达到 98.41%。
+added: "2026-11-24"

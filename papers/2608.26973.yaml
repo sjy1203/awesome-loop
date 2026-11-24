@@ -1,0 +1,19 @@
+id: "2608.26973"
+tier: radar
+title: "Squeezing More from Limited Data with Recursive Transformers"
+date: "2026-08-27"
+venue: arXiv
+authors: [Serdar Gülbahar, Lukas Edman, Alexander Fraser]
+links:
+  paper: https://arxiv.org/abs/2608.26973
+  code: https://github.com/serdardoesml/recursive-lm
+category: scaling
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: RecursiveGPT applies one shared Transformer block R times with step-specific norms and factorized embeddings; in BabyLM-scale pretraining the 404.1M RecursiveGPT-Large averages 63.93 at 100M words versus 63.47 for a 1.22B standard Transformer, and a 27.6M model wins all three evaluations at 10M words.
+  zh: RecursiveGPT 把一个共享 Transformer 块重复应用 R 次，配合每步独立的归一化参数和分解嵌入；在 BabyLM 规模的预训练中，404.1M 的 RecursiveGPT-Large 在 100M 词预算下平均分为 63.93，高于 1.22B 标准 Transformer 的 63.47；27.6M 的模型在 10M 词预算下赢下全部三项评测。
+added: "2026-11-24"

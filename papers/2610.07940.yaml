@@ -1,0 +1,18 @@
+id: "2610.07940"
+tier: radar
+title: "Hybrid Latent Attention for Looped Language Models"
+date: "2026-10-06"
+venue: arXiv
+authors: [Yuhan Chen, Siyuan Zhang, Nan Wang, Feiyang Kang, Ruoxi Jia]
+links:
+  paper: https://arxiv.org/abs/2610.07940
+category: systems
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: compressed
+tldr:
+  en: HLA keeps exact KV only for a window of recent tokens and stores older ones as compact latents that each loop's query reads directly; uptrained on frozen Ouro looped models (T=4), it cuts the cache 10.7x per token, speeds decoding up to 7.4x at 16K and retains over 97% of the original accuracy on math, knowledge and reasoning.
+  zh: HLA 只为最近窗口内的 token 保留精确的 key 和 value，较早的 token 存成紧凑的 latent，由每次循环的 query 直接读取；在冻结的 Ouro 循环模型（T=4）上 uptrain 后，每 token 缓存缩小 10.7x，16K 上下文的 decode 吞吐最高提升 7.4x，并在数学、知识和推理基准上保留 97% 以上的原始准确率。
+added: "2026-11-24"

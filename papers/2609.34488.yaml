@@ -1,0 +1,18 @@
+id: "2609.34488"
+tier: radar
+title: "FlexLoop: Depth-Elastic Looped Policies for Adaptive Test-Time Computation in Deep RL"
+date: "2026-09-28"
+venue: arXiv
+authors: [Xun Wang, Ruishuo Chen, Yu Chen, Zhuoran Li, Longbo Huang]
+links:
+  paper: https://arxiv.org/abs/2609.34488
+category: applications
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: FlexLoop post-trains fixed-depth looped RL policies with the RL objective plus adjacent-depth policy distillation so shallower depths become reliable; on 30 long-horizon goal-conditioned environments it keeps full-depth performance, cuts average recurrent depth by up to 43% and gives up to 1.34× speedup in a stress test.
+  zh: FlexLoop 用原有 RL 目标加相邻深度策略蒸馏，对固定深度训练的循环 RL 策略做后训练，使较浅的循环深度也能可靠决策；在 30 个长时程目标条件环境中，它保持全深度性能，平均循环深度最多减少 43%，压力测试中墙钟时间最多加速 1.34×。
+added: "2026-11-24"

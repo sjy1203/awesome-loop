@@ -1,0 +1,19 @@
+id: "2611.29704"
+tier: radar
+title: "Loop-Count Schedules in Looped Transformers: An Empirical Study"
+date: "2026-11-22"
+venue: arXiv
+authors: [Konstantin Kolokolov]
+links:
+  paper: https://arxiv.org/abs/2611.29704
+  code: https://github.com/kvoyager/gatedloop-transformer
+category: training
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: sampled
+  kv: per-pass
+tldr:
+  en: "Training looped Transformers with learned residual gates under three loop-count schedules shows the lower bound decides: R sampled from {1,...,6} collapses the gates to 0.1-0.5, while R from {2,3,4} keeps them at 0.6-0.9 and gives the best model, 2.909 nats versus 2.951 for a parameter-matched plain model."
+  zh: 论文在带可学习残差门控的循环 Transformer 上比较三种循环次数调度，发现采样范围的下界起决定作用：从 {1,...,6} 采样 R 时门控塌缩到 0.1-0.5，从 {2,3,4} 采样时门控保持在 0.6-0.9，并得到最好的模型，验证损失 2.909 nats，参数匹配的普通模型为 2.951。
+added: "2026-11-24"

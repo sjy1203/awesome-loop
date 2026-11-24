@@ -1,0 +1,18 @@
+id: "2605.11262"
+tier: radar
+title: "Latent Chain-of-Thought Improves Structured-Data Transformers"
+date: "2026-05-11"
+venue: arXiv
+authors: [Carson Dudley, Samet Oymak]
+links:
+  paper: https://arxiv.org/abs/2605.11262
+category: applications
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Latent chain-of-thought for structured-data transformers compresses query-position hidden states into feedback tokens, appends them to the input and reruns the same transformer; it beats a same-depth baseline on 7/9 time-series datasets (+12.63% average gain) and 23/27 tabular datasets (+3.25% average gain).
+  zh: 面向结构化数据 Transformer 的潜在思维链把查询位置的隐藏状态压缩成反馈 token，追加到输入后再次运行同一个 Transformer；它在 7/9 个时间序列数据集（平均增益 +12.63%）和 23/27 个表格数据集（平均增益 +3.25%）上优于同深度基线。
+added: "2026-11-24"

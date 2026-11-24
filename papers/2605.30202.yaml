@@ -1,0 +1,18 @@
+id: "2605.30202"
+tier: radar
+title: "A Dual-Path Architecture for Scaling Compute and Capacity in LLMs"
+date: "2026-05-28"
+venue: arXiv
+authors: [Markus Frey, Behzad Shomali, Joachim Koehler, Mehdi Ali]
+links:
+  paper: https://arxiv.org/abs/2605.30202
+category: architecture/placement
+focus: core
+facets:
+  placement: partial
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Each layer pairs a deep sublayer re-applied K times with shared parameters and a wide sublayer with an enlarged FFN applied once, mixed by per-token gates; at two FLOP budgets this beats iso-FLOP loop-only and width-only controls with 17-33% fewer parameters than the width-scaled baseline.
+  zh: 每层并行放置一个以共享参数重复 K 次的深子层和一个只算一次、FFN 加宽的宽子层，并用按 token 的门控组合两者；在两个 FLOP 预算下，它优于同 FLOP 的纯循环和纯加宽对照，参数比加宽基线少 17-33%。
+added: "2026-11-24"

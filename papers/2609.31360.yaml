@@ -1,0 +1,19 @@
+id: "2609.31360"
+tier: radar
+title: "Programs-of-Layers in LLMs through the Lens of Cortical Areas"
+date: "2026-09-25"
+venue: arXiv
+authors: [Justus Westerhoff, Stephan Olbrich, Hatem Oraby, Walter Senn, Matthew Evan Larkum, Felix Alexander Gers]
+links:
+  paper: https://arxiv.org/abs/2609.31360
+  code: https://github.com/DATEXIS/RE-PoLar
+category: understanding
+focus: core
+facets:
+  placement: n/a
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: Reproducing PoLar's skip-or-repeat layer programs for frozen LLMs with MCTS on 6 models, repeating beats skipping and both together beat either, but with a format-fixing prompt the router's top prediction collapses to the standard pass, though its top-5 programs still gain.
+  zh: 复现 PoLar：让冻结的 LLM 按每个输入的程序跳过或重复层块，并在 6 个模型上用 MCTS 搜索；重复优于跳过，两者结合优于任一单独操作，但在已固定答案格式的提示下，路由器的首选预测退化为标准前向，不过其前 5 个程序合起来仍有提升。
+added: "2026-11-24"

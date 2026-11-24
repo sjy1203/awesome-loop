@@ -1,0 +1,19 @@
+id: "1806.07366"
+tier: radar
+title: "Neural Ordinary Differential Equations"
+date: "2018-06-19"
+venue: arXiv
+authors: [Ricky T. Q. Chen, Yulia Rubanova, Jesse Bettencourt, David Duvenaud]
+links:
+  paper: https://arxiv.org/abs/1806.07366
+  code: https://github.com/rtqichen/torchdiffeq
+category: applications
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: Neural ODEs replace discrete hidden layers with one network that parameterizes the hidden state's derivative, integrated by a black-box ODE solver; these continuous-depth models have constant memory cost, adapt their evaluation strategy to each input, and backpropagate scalably through any ODE solver.
+  zh: Neural ODE 不再堆叠离散的隐藏层，而是用一个神经网络参数化隐藏状态的导数，再由黑盒 ODE 求解器计算输出；这种连续深度模型的内存开销恒定，能针对每个输入调整求值策略，并能可扩展地对任意 ODE 求解器做反向传播。
+added: "2026-11-24"

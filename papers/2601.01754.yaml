@@ -1,0 +1,18 @@
+id: "2601.01754"
+tier: radar
+title: "Context-Free Recognition with Transformers"
+date: "2026-01-05"
+venue: arXiv
+authors: [Selim Jerad, Anej Svete, Sophie Hao, Ryan Cotterell, William Merrill]
+links:
+  paper: https://arxiv.org/abs/2601.01754
+category: theory
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: Proves that looped transformers with O(log(N)) looping layers and O(N^6) padding symbols recognize all context-free languages, and unambiguous CFLs need only O(N^3) padding; empirically, looped and padded transformers recognize CFLs better than fixed-depth transformers.
+  zh: 证明带 O(log(N)) 个循环层和 O(N^6) 个 padding 符号的循环 Transformer 能识别所有上下文无关语言（CFL），无歧义 CFL 只需 O(N^3) padding；实验中，循环且加 padding 的 Transformer 识别 CFL 的效果优于固定深度 Transformer。
+added: "2026-11-24"

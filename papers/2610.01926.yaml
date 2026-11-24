@@ -1,0 +1,18 @@
+id: "2610.01926"
+tier: radar
+title: "LAST: Looped Audio Spectrogram Transformer"
+date: "2026-10-01"
+venue: arXiv
+authors: [Haider Al-Tahan, Sean O'Brien, Anastasia Razdaibiedina, N. Apurva Ratan Murty]
+links:
+  paper: https://arxiv.org/abs/2610.01926
+category: applications
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: first-pass
+tldr:
+  en: LAST runs six shared blocks over all audio tokens once, then reuses them to refine only the class token against cached audio keys and values; on AudioSet ten-pass LAST reaches 0.345 mAP, 2.1% relative above a twelve-layer sequential transformer, with 49.4% fewer parameters and 42% fewer MACs.
+  zh: LAST 先用六个共享块处理全部音频 token 一遍，之后复用这些块，只在缓存的音频 key 和 value 上细化 class token；在 AudioSet 上，十遍 LAST 达到 0.345 mAP，比十二层顺序 Transformer 相对高 2.1%，参数少 49.4%，MACs 少 42%。
+added: "2026-11-24"

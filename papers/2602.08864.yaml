@@ -1,0 +1,18 @@
+id: "2602.08864"
+tier: radar
+title: "Understanding Dynamic Compute Allocation in Recurrent Transformers"
+date: "2026-02-09"
+venue: arXiv
+authors: [Ibraheem Muhammad Moosa, Suhas Lohit, Ye Wang, Moitreya Chatterjee, Wenpeng Yin]
+links:
+  paper: https://arxiv.org/abs/2602.08864
+category: depth
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: adaptive
+  kv: per-pass
+tldr:
+  en: ANIRA's decider sets each token's number of recurrent-block iterations from the prelude or by online halting; on tasks of controllable difficulty, allocation tracks complexity without difficulty labels (Spearman up to +0.666), yet accuracy drops sharply at unseen input sizes.
+  zh: ANIRA 的决策器在 prelude 之后提前设定、或在每次迭代后在线停止，以决定每个 token 的循环块迭代次数；在难度可控的任务上，计算分配无需难度标注即与复杂度一致（Spearman 相关最高 +0.666），但在训练未覆盖的输入规模上准确率急剧下降。
+added: "2026-11-24"

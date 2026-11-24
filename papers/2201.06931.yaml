@@ -1,0 +1,19 @@
+id: "2201.06931"
+tier: radar
+title: "Deep Equilibrium Models for Video Snapshot Compressive Imaging"
+date: "2022-01-18"
+venue: arXiv
+authors: [Yaping Zhao, Siming Zheng, Xin Yuan]
+links:
+  paper: https://arxiv.org/abs/2201.06931
+  code: https://github.com/IndigoPurple/DEQSCI
+category: applications
+focus: related
+facets:
+  placement: implicit
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: Applies deep equilibrium models to video snapshot compressive imaging, computing the fixed point of a learned nonexpansive operator for unlimited iterations at constant memory; DEQ versions of an RNN and a Plug-and-Play reconstruction method are effective and stable on several datasets and real data.
+  zh: 将深度均衡模型用于视频快照压缩成像，求解学习到的非扩张算子的不动点，以恒定内存实现无限次迭代；基于 RNN 和 Plug-and-Play 两种重建方法构建的 DEQ 版本在多个数据集和真实数据上有效且稳定。
+added: "2026-11-24"

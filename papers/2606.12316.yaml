@@ -1,0 +1,18 @@
+id: "2606.12316"
+tier: radar
+title: "Slots, Transitions, Loops: Learning Composable World Models for ARC"
+date: "2026-06-10"
+venue: arXiv
+authors: [Gege Gao, Bernhard Schölkopf, Andreas Geiger]
+links:
+  paper: https://arxiv.org/abs/2606.12316
+category: applications
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Loop-OWM encodes ARC grids into color-prototype slots, summarizes demonstrations into task tokens, and applies a shared transition module for 4 recurrent steps; the 10.63M model reaches 68.5 on ARC-1 and 22.5 on ARC-2 (pass@2), above the 18M LoopViT-L at 65.8 and 14.2.
+  zh: Loop-OWM 把 ARC 网格编码为颜色原型 slot，把示例对汇总为任务 token，再用共享的转移模块循环 4 步更新查询状态；10.63M 参数的模型在 ARC-1 和 ARC-2 上 pass@2 分别为 68.5 和 22.5，高于 18M 的 LoopViT-L（65.8 和 14.2）。
+added: "2026-11-24"

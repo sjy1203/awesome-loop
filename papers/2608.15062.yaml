@@ -1,0 +1,18 @@
+id: "2608.15062"
+tier: radar
+title: "Gated Recurrent Transformers: Expressive Depth through Recurrent Modulation"
+date: "2026-08-15"
+venue: arXiv
+authors: [Amr Hegazy, Amr Alanwar, Mostafa Elhoushi]
+links:
+  paper: https://arxiv.org/abs/2608.15062
+category: architecture/state
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: sampled
+  kv: per-pass
+tldr:
+  en: Gated Recurrent Transformer iterates a shared core between prelude and coda blocks, gating each update on the hidden state, prelude output and noise; a 3-layer model matches 12-layer GPT-2 Small at similar FLOPs, and at large scale it cuts parameters by 63% and peak decoding memory by 59% for 10% more latency.
+  zh: Gated Recurrent Transformer 在 prelude 与 coda 块之间迭代一个共享核心，并以隐藏状态、prelude 输出和噪声为条件对每次更新做门控；3 层模型在相近 FLOPs 下与 12 层 GPT-2 Small 精度相当，在大规模下参数减少 63%、峰值解码内存减少 59%，延迟只增加 10%。
+added: "2026-11-24"

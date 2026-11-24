@@ -1,0 +1,19 @@
+id: "2603.29057"
+tier: radar
+title: "LA-Sign: Looped Transformers with Geometry-aware Alignment for Skeleton-based Sign Language Recognition"
+date: "2026-03-30"
+venue: arXiv
+authors: [Muxin Pu, Mei Kuan Lim, Chun Yong Chong, Chen Change Loy]
+links:
+  paper: https://arxiv.org/abs/2603.29057
+  code: https://github.com/mpuu00001/LA-Sign
+category: applications
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: LA-Sign reuses a shared encoder-decoder Transformer block recurrently to refine skeleton-based sign representations, regularized by contrastive alignment of skeletal and textual features in adaptive hyperbolic space; it reaches state-of-the-art results on WLASL and MSASL with fewer unique layers.
+  zh: LA-Sign 循环复用共享的编码器-解码器 Transformer 块来细化基于骨架的手语表示，并用自适应双曲空间中骨架特征与文本特征的对比对齐来约束这一过程；它在 WLASL 和 MSASL 上用更少的独立层取得最先进结果。
+added: "2026-11-24"

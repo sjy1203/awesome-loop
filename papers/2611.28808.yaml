@@ -1,0 +1,18 @@
+id: "2611.28808"
+tier: radar
+title: "When do stored facts become available in looped transformers?"
+date: "2026-11-21"
+venue: arXiv
+authors: [Fabio Valerio Massoli, Arnau Padrés Masdemont, Jordi Ros Giralt, Arash Behboodi]
+links:
+  paper: https://arxiv.org/abs/2611.28808
+category: understanding
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Under final-loop supervision, looped Transformers expose stored synthetic facts progressively, later under heavier memorization loads but earlier than equal-depth untied models; in multi-hop chains, entity patches redirect downstream entities and the answer, while same-entity patches keep it in over 99.5% of tested cases.
+  zh: 仅以最后一次循环监督时，循环 Transformer 会逐步暴露存储的合成事实，记忆负载越重越晚，但比展开深度相同的非共享模型更早；在多跳链中，替换实体成分会改变下游实体和答案，而经不同关系到达同一实体的替换在超过 99.5% 的测试样例中保留原答案。
+added: "2026-11-24"

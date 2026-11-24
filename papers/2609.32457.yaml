@@ -1,0 +1,19 @@
+id: "2609.32457"
+tier: radar
+title: "Write Back the $Δ$: Revisiting the Same Tokens with Fresh Representations"
+date: "2026-09-26"
+venue: arXiv
+authors: [Wencheng Ye, Anning Hu, Xiangdong Zhang, Tianyi Wang, Yikang Li, Hengyu Jin, Bing Li, Junchi Yan]
+links:
+  paper: https://arxiv.org/abs/2609.32457
+  code: https://github.com/gooogleshanghai/reflux
+category: architecture/state
+focus: core
+facets:
+  placement: shifted-parallel
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: ReFlux trains a sparse router over a frozen Transformer that writes depth increments Δ back to earlier layers, in a second traversal of the same token or streamed to the next token; it lowers perplexity on ten corpora and raises accuracy by 2.1-2.3 points, reaching 4.7 on multi-hop reasoning.
+  zh: ReFlux 在冻结的 Transformer 上训练稀疏路由器，把深度增量 Δ 写回较早的层，可用于同一 token 的第二遍遍历，也可流式传给下一个 token；它在十个语料上降低困惑度，准确率提高 2.1-2.3 个点，多跳推理上最高提高 4.7 个点。
+added: "2026-11-24"

@@ -1,0 +1,18 @@
+id: "2510.11001"
+tier: radar
+title: "DND: Boosting Large Language Models with Dynamic Nested Depth"
+date: "2025-10-13"
+venue: ICLR 2026
+authors: [Tieyuan Chen, Xiaodong Chen, Haoxing Chen, Zhenzhong Lan, Weiyao Lin, Jianguo Li]
+links:
+  paper: https://arxiv.org/abs/2510.11001
+category: depth
+focus: core
+facets:
+  placement: n/a
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: DND adds a router at the end of each intermediate layer of a pretrained LLM; tokens it selects pass through the same layer again and the result is fused with the first-pass output; integrated in post-training, it boosts dense Qwen3-1.7B by 1.88% and MoE Qwen3-30B-A3B by 0.87%.
+  zh: DND 在预训练 LLM 每个中间层的末尾加入路由器，被选中的 token 再经同一层处理一遍，结果与第一遍输出融合；在后训练阶段接入后，稠密模型 Qwen3-1.7B 提升 1.88%，MoE 模型 Qwen3-30B-A3B 提升 0.87%。
+added: "2026-11-24"

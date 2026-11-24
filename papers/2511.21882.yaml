@@ -1,0 +1,18 @@
+id: "2511.21882"
+tier: radar
+title: "Closed-Loop Transformers: Autoregressive Modeling as Iterative Latent Equilibrium"
+date: "2025-11-26"
+venue: arXiv
+authors: [Akbar Anbar Jafari, Gholamreza Anbarjafari]
+links:
+  paper: https://arxiv.org/abs/2511.21882
+category: architecture/placement
+focus: core
+facets:
+  placement: implicit
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Equilibrium Transformers add a module to every layer that runs proximal gradient descent on a learned energy to refine the hidden state before each token is emitted; on binary cumulative parity they beat standard Transformers by +3.28% on average at challenging lengths, up to +8.07%.
+  zh: Equilibrium Transformer 在每一层加入一个模块，对学到的能量函数做近端梯度下降，在输出每个 token 前迭代精炼隐藏状态；在二进制累积奇偶任务的困难长度上，它平均比标准 Transformer 高 +3.28%，最高高出 +8.07%。
+added: "2026-11-24"

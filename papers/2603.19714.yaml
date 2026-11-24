@@ -1,0 +1,18 @@
+id: "2603.19714"
+tier: radar
+title: "LoopRPT: Reinforcement Pre-Training for Looped Language Models"
+date: "2026-03-20"
+venue: arXiv
+authors: [Guo Tang, Shixin Jiang, Heng Chang, Zihan Zhang, Nuo Chen, Yuhan Li, Huiming Fan, Jia Li, Ming Liu, Bing Qin]
+links:
+  paper: https://arxiv.org/abs/2603.19714
+category: training
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: LoopRPT brings reinforcement pre-training to looped LMs, rewarding each latent loop step against an EMA teacher via noisy latent rollouts and training the exit policy; on Ouro-2.6B it boosts Hard Peak next-token reasoning accuracy by +3.58 while reducing average steps from 3.51 to 2.28.
+  zh: LoopRPT 为循环语言模型引入强化预训练，借助 EMA teacher 和带噪声的 latent rollout 为每个潜在循环步分配奖励并训练退出策略；在 Ouro-2.6B 上，它把 Hard Peak 下一 token 推理准确率提高 +3.58，同时把平均步数从 3.51 降到 2.28。
+added: "2026-11-24"

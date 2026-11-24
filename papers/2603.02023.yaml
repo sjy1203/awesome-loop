@@ -1,0 +1,18 @@
+id: "2603.02023"
+tier: radar
+title: "PonderLM-3: Adaptive Token-Wise Pondering with Differentiable Masking"
+date: "2026-03-02"
+venue: arXiv
+authors: [He Li, Feichen Song, Boyi Zeng, Shixiang Song, Zhiqin John Xu, Ziwei He, Zhouhan Lin]
+links:
+  paper: https://arxiv.org/abs/2603.02023
+category: depth
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: per-pass
+tldr:
+  en: PonderLM-3 adds a router that sets how many PonderLM-2 pondering steps (the last hidden state fed back through the same model) each token gets; a differentiable attention mask in pretraining matches hard stopping at inference, beating recursive or adaptive baselines in perplexity at equal inference FLOPs.
+  zh: PonderLM-3 加入路由器，决定每个 token 使用多少个 PonderLM-2 式 pondering 步（把最后隐藏状态送回同一个模型再算一次）；预训练时用可微注意力掩码，推理时用与之匹配的硬停止规则，在相同推理 FLOPs 下预训练困惑度低于已有的循环或自适应基线。
+added: "2026-11-24"

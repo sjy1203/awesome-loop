@@ -10,7 +10,7 @@ English · [简体中文](../zh/zai-glm-5-4.md) · [Back to the list](../../READ
 
 > Z.ai turns 28 layers of its pre-trained GLM-5 base into a two-pass loop through continued training at the 750B scale, with per-token gates, a shared-plus-sliding-window KV cache and reused sparse-attention indices.
 
-**Category**: Training and retrofitting · **Status**: draft (numbers not yet re-checked) · **Impact**: HN points 1,082
+**Category**: Training and retrofitting · **Status**: draft (numbers not yet re-checked) · **Impact**: HN points 1,131
 
 [paper](https://z.ai/blog/glm-5.4)
 
@@ -119,7 +119,7 @@ English · [简体中文](../zh/tml-inkling-2-mini.md) · [Back to the list](../
 
 > Open-weight MoE (26.4B total, 3.4B active) that runs the middle 12 of its 24 layers three times with shared weights, released with a variable-loop research twin used to measure how pass count affects capability and CoT monitorability.
 
-**Category**: Architecture: where to loop, what to share · **Status**: draft (numbers not yet re-checked) · **Impact**: HN points 1,476
+**Category**: Architecture: where to loop, what to share · **Status**: draft (numbers not yet re-checked) · **Impact**: HN points 1,480
 
 [paper](https://thinkingmachines.ai/news/inkling-2-mini/) · [project](https://thinkingmachines.ai/model-card/inkling-2-mini/) · [blog](https://huggingface.co/blog/inkling2mini) · [weights](https://huggingface.co/thinkingmachines/Inkling-2-Mini)
 
@@ -511,7 +511,7 @@ English · [简体中文](../zh/2609.01343.md) · [Back to the list](../../READM
 
 > With per-token FLOPs, total parameters and KV cache matched, looping the middle half of an MoE Transformer twice lowers loss at four scales up to 54B non-embedding parameters and saves 6.8-18.0% of training FLOPs on the fitted frontier.
 
-**Category**: Scaling and budget · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 31 · HF upvotes 91
+**Category**: Scaling and budget · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 31 · HF upvotes 92
 
 [paper](https://arxiv.org/abs/2609.01343)
 
@@ -1492,7 +1492,7 @@ English · [简体中文](../zh/2502.05171.md) · [Back to the list](../../READM
 
 > Pretrain a 3.5B prelude-core-coda transformer with a randomly sampled number of core iterations, so test-time compute scales by iterating the core more.
 
-**Category**: Architecture: where to loop, what to share · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 590 · stars 998 · HF upvotes 162 · HN points 150
+**Category**: Architecture: where to loop, what to share · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 590 · stars 1,000 · HF upvotes 162 · HN points 150
 
 [paper](https://arxiv.org/abs/2502.05171) · [code](https://github.com/seal-rg/recurrent-pretraining) · [weights](https://huggingface.co/tomg-group-umd/huginn-0125)
 

@@ -1,0 +1,19 @@
+id: "2607.11116"
+tier: radar
+title: "The Equilibrium Is the Initialization: Lazy Identity Collapse in Physics-Structured Deep Equilibrium Reasoning"
+date: "2026-07-13"
+venue: arXiv
+authors: [Joyjeet Singh]
+links:
+  paper: https://arxiv.org/abs/2607.11116
+  code: https://github.com/joyjeet-singh/lazy-identity-deq
+category: understanding
+focus: related
+facets:
+  placement: implicit
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: "On ProofWriter entailment and graph reachability, a port-Hamiltonian DEQ with a learned initialization returns its start point as the equilibrium: bypassing the solver changes test accuracy by +0.00 percentage points in 18 of 19 training runs, which the paper traces to gradient starvation."
+  zh: 在 ProofWriter 蕴含判断和图可达性任务上，带学习初始化的 port-Hamiltonian DEQ 求得的均衡点就是求解器的起点：19 次训练中有 18 次完全绕过求解器后测试准确率变化 +0.00 个百分点，论文把原因追溯到梯度饥饿。
+added: "2026-11-24"

@@ -1,0 +1,18 @@
+id: "2610.14456"
+tier: radar
+title: "Learning to Extrapolate in Depth with Looped Transformers"
+date: "2026-10-10"
+venue: arXiv
+authors: [Huitao Yang, Jianhao Huang, Zixuan Wang, Baharan Mirzasoleiman]
+links:
+  paper: https://arxiv.org/abs/2610.14456
+category: theory
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: For looped Transformers on all-pairs graph connectivity, proves that training at depth K converges to an update rule with one effective parameter, giving a finite extrapolation window with explicit endpoints; a test depth chosen from the training distribution alone can guarantee recovery on much harder graphs.
+  zh: 针对全点对图连通性任务上的循环 Transformer，证明在深度 K 上训练会收敛到只由一个有效参数控制的更新规则，从而形成端点明确的有限外推窗口；仅依据训练分布选定的测试深度即可保证在难得多的图上恢复连通性。
+added: "2026-11-24"

@@ -1,0 +1,18 @@
+id: "2608.31067"
+tier: radar
+title: "Universal Transformers for Circuit Computations: Perfect Length Generalization in Tiny Transformers"
+date: "2026-08-31"
+venue: arXiv
+authors: [Takuya Ito, Ruchir Puri, Murray Campbell, Parikshit Ram]
+links:
+  paper: https://arxiv.org/abs/2608.31067
+category: theory
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: curriculum
+  kv: n/a
+tldr:
+  en: A provably correct Universal Transformer (280 learnable parameters for Boolean algebra) cuts circuit depth by one per iteration via a depth-tracking positional encoding and halts after d iterations on depth-d inputs; trained on depths 1 and 2, it reaches 100% accuracy on deeper Boolean, modular arithmetic and ListOps problems.
+  zh: 一个可证明正确的 Universal Transformer（Boolean 代数任务只有 280 个可学习参数）借助追踪电路深度的位置编码，每次迭代把电路深度削减一层，对深度为 d 的输入在 d 次迭代后停止；只在深度 1 和深度 2 上训练，它就在更深的 Boolean、模运算和 ListOps 问题上达到 100% 准确率。
+added: "2026-11-24"

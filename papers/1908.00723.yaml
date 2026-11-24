@@ -1,0 +1,19 @@
+id: "1908.00723"
+tier: radar
+title: "Universal Transforming Geometric Network"
+date: "2019-08-02"
+venue: arXiv
+authors: [Jin Li]
+links:
+  paper: https://arxiv.org/abs/1908.00723
+  code: https://github.com/JinLi711/3DProteinPrediction
+category: applications
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: UTGN replaces the LSTMs of the recurrent geometric network with a Universal Transformer encoder whose 6-layer stack recurs up to 10 times with ACT halting; on CASP12 protein structure prediction it improves on RGN by 1.7 Å on free modeling and 0.7 Å on template based modeling.
+  zh: UTGN 用 Universal Transformer 编码器替换循环几何网络中的 LSTM，编码器的 6 层堆叠在 ACT 停机控制下最多循环 10 次；在 CASP12 蛋白质结构预测上，它在自由建模部分比 RGN 提升 1.7 Å，在基于模板的建模部分提升 0.7 Å。
+added: "2026-11-24"

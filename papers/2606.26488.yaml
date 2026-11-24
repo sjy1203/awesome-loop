@@ -1,0 +1,18 @@
+id: "2606.26488"
+tier: radar
+title: "What Survives When You Compress a Recursive Reasoner for the Edge?"
+date: "2026-06-25"
+venue: arXiv
+authors: [Pearse Jim, Steven Kolawole, Opegbemi Matthias Busoye, Glory Bagai, Virginia Smith]
+links:
+  paper: https://arxiv.org/abs/2606.26488
+category: applications
+focus: related
+facets:
+  placement: hierarchical
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: "Compresses recursive reasoning models (TRM, HRM) for edge hardware: pruning, distillation and linear attention drive puzzle-exact accuracy to zero while cell accuracy holds; one recursive cycle matches full-depth accuracy at 6x fewer FLOPs, and calibrated INT4 brings the backbone to 3.3 MB, inside a 4 MB budget."
+  zh: 研究如何为边缘硬件压缩递归推理模型（TRM、HRM）：剪枝、蒸馏和线性注意力让整题精确准确率降到零，而单元格准确率保持不变；只跑一个递归周期即可用少 6x 的 FLOPs 达到全深度准确率，校准后的 INT4 把主干压到 3.3 MB，满足 4 MB 预算。
+added: "2026-11-24"

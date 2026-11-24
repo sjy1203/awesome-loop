@@ -1,0 +1,18 @@
+id: "2607.27251"
+tier: radar
+title: "Recursive transformers for semiconductor thermo-mechanical reliability"
+date: "2026-07-28"
+venue: arXiv
+authors: [Kart-leong Lim]
+links:
+  paper: https://arxiv.org/abs/2607.27251
+category: applications
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Compares three weight-sharing recursive Transformers, including a proposed Depth Recursive model and TRM, as surrogates for semiconductor package stress, warpage and a Laplace PDE; the Depth Recursive models give the strongest or near-strongest retrieval accuracy with among the fewest parameters and lowest FLOPs.
+  zh: 比较三种权重共享递归 Transformer（包括作者提出的 Depth Recursive 模型和 TRM）作为半导体封装应力、翘曲和 Laplace PDE 的代理模型；Depth Recursive 模型的检索准确率最高或接近最高，参数量和 FLOPs 也属最少之列。
+added: "2026-11-24"

@@ -1,0 +1,19 @@
+id: "2506.14202"
+tier: radar
+title: "DiffusionBlocks: Block-wise Neural Network Training via Diffusion Interpretation"
+date: "2025-06-17"
+venue: ICLR 2026
+authors: [Makoto Shing, Masanori Koyama, Takuya Akiba]
+links:
+  paper: https://arxiv.org/abs/2506.14202
+  code: https://github.com/SakanaAI/DiffusionBlocks
+category: training
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: DiffusionBlocks trains each residual block independently as a denoiser for its own noise range; on the recurrent-depth model Huginn it replaces training over an average of 32 recurrent iterations with single-pass denoiser training, keeps iterative inference, and raises LM1B MAUVE from 0.49 to 0.70.
+  zh: DiffusionBlocks 把残差网络的每个块作为各自噪声区间的去噪器独立训练；用于循环深度模型 Huginn 时，它把平均 32 次循环迭代的训练换成单次前向的去噪训练，推理仍多次迭代，LM1B 上的 MAUVE 从 0.49 提高到 0.70。
+added: "2026-11-24"

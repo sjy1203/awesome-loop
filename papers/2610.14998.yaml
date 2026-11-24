@@ -1,0 +1,18 @@
+id: "2610.14998"
+tier: radar
+title: "Recurrent In-Context Learning for Tabular Foundation Models"
+date: "2026-10-10"
+venue: arXiv
+authors: [Tejas Vaidhya, Gaurav Sahu, Irina Rish]
+links:
+  paper: https://arxiv.org/abs/2610.14998
+category: applications
+focus: related
+facets:
+  placement: prelude-core-coda
+  depth_train: sampled
+  kv: n/a
+tldr:
+  en: Tab-Loop replaces the 12 untied in-context-learning blocks of the tabular foundation model TabICLv2 with 4 tied blocks applied k times; at matched pretraining and inference compute it matches the untied baseline with 62% fewer parameters (10.4M vs. 27.6M), and accuracy rises with the number of loops.
+  zh: Tab-Loop 把表格基础模型 TabICLv2 中 12 个不共享权重的上下文学习（ICL）块换成 4 个共享权重、循环 k 次的块；在预训练和推理算力都匹配时，它以少 62% 的参数（10.4M 对 27.6M）追平不共享基线，且准确率随循环次数增加而提升。
+added: "2026-11-24"
