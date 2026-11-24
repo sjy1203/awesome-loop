@@ -2,6 +2,39 @@
  "schema": "schema/model.schema.json",
  "models": [
   {
+   "id": "dory1-0-4b",
+   "name": "Dory1.0-4B",
+   "paper": "2611.03998",
+   "org": [
+    "NVIDIA"
+   ],
+   "hf": [
+    "nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-BF16",
+    "nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-NVFP4",
+    "nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-MXFP8",
+    "nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-GGUF"
+   ],
+   "params": "4B",
+   "tokens": "6T, plus 300B for context extension",
+   "context": "256K",
+   "passes": {
+    "default": "2",
+    "range": "1-4 (dory.num_loops in llama.cpp; n_recurrent_loops in vLLM)"
+   },
+   "kv": "per-pass",
+   "license": "OpenMDW-1.1",
+   "inference": [
+    "vllm",
+    "gguf"
+   ],
+   "notes": {
+    "en": "Looped normalized-GPT with interleaved sliding-window and full-attention layers, released by NVIDIA on October 16, 2026. The layer stack is split into input, recurrent and output groups; the shared recurrent block runs several times and the input is reinjected into every loop. Pre-trained on 6T tokens (NVFP4 for the first ~4.5T, BF16 for the rest), then extended to 256K context over 300B tokens; reasoning is always on in vLLM. The card recommends two loops, one loop to minimize compute and four when accuracy matters more. The default cache keeps a separate KV per loop; setting recurrent_kv_cache_mode to last_loop keeps one cache per recurrent attention layer. vLLM support is in vllm-project/vllm#60149 and llama.cpp support in ggml-org/llama.cpp#30306, so both currently need builds from those pull requests. NVFP4, MXFP8 and GGUF (Q5_K_M) versions are released next to the BF16 checkpoint.",
+    "zh": "NVIDIA 于 2026 年 10 月 16 日发布的循环 normalized-GPT，sliding-window 注意力层与全注意力层交替。层栈分为输入、循环、输出三组，共享的循环块重复运行，每一遍都重新注入输入。预训练 6T token（前约 4.5T 用 NVFP4，其余用 BF16），再用 300B token 把上下文扩到 256K；在 vLLM 中推理模式始终开启。模型卡推荐默认两遍循环，追求最小计算量时用一遍，更看重准确率时用四遍。默认缓存为每遍各存一份 KV；把 recurrent_kv_cache_mode 设为 last_loop 后，每个循环注意力层只保留一份缓存。vLLM 支持在 vllm-project/vllm#60149，llama.cpp 支持在 ggml-org/llama.cpp#30306，目前都需要从这两个 PR 构建。BF16 checkpoint 之外还发布了 NVFP4、MXFP8 和 GGUF（Q5_K_M）版本。"
+   },
+   "ref": "Model card of nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-BF16 (Total Parameters 4B, Context Length up to 256K, OpenMDW License 1.1, Release Date October 16, 2026, architecture figure caption, Training Data Size 6T + 300B, NVFP4 for the first ~4.5T tokens, Choosing the Loop Count, Reducing the KV Cache Memory Overhead, vLLM and llama.cpp sections, quantized versions); config.json (n_recurrent_loops 2, recurrent_kv_cache_mode per_loop); HF API of the four repos (license openmdw-1.1).",
+   "added": "2026-11-24"
+  },
+  {
    "id": "huginn-0125",
    "name": "Huginn-0125",
    "paper": "2502.05171",

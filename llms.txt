@@ -6,13 +6,13 @@
 
 Ranked by likes plus GitHub stars per day since release. Core = looped or recurrent-depth Transformer language models (field `focus` in papers.json); related papers are not ranked.
 
-- [Introducing Inkling 2 Mini](https://thinkingmachines.ai/news/inkling-2-mini/): 1,794 per day; released 2026-11-20; likes 7176, stars 0.
-- [GLM-5.4: Toward Generalized Coding with Our First Loop Transformer](https://z.ai/blog/glm-5.4): 1,131 per day; released 2026-11-23; likes 1131, stars 0.
+- [Introducing Inkling 2 Mini](https://thinkingmachines.ai/news/inkling-2-mini/): 1,798 per day; released 2026-11-20; likes 7192, stars 0.
+- [GLM-5.4: Toward Generalized Coding with Our First Loop Transformer](https://z.ai/blog/glm-5.4): 1,138 per day; released 2026-11-23; likes 1138, stars 0.
+- [Dory1.0-4B: A Looped Normalized-GPT](https://arxiv.org/abs/2611.03998): 20.2 per day; released 2026-11-02; likes 445, stars 0.
 - [Latent Feedback Is a Compute and Data Amplifier](https://arxiv.org/abs/2611.20404): 4.1 per day; released 2026-11-16; likes 7, stars 26.
 - [Loopback Transformer: Towards a Unified View of Residual Looped Transformers](https://arxiv.org/abs/2611.07226): 2.3 per day; released 2026-11-04; likes 28, stars 18.
 - [Late Entry in Looped Language Models](https://arxiv.org/abs/2611.24576): 2.0 per day; released 2026-11-18; likes 9, stars 3.
 - [Library of Layers (LoL): Adaptively Ordering Transformer Layers at Runtime](https://arxiv.org/abs/2611.03526): 1.6 per day; released 2026-11-02; likes 12, stars 23.
-- [Dory1.0-4B: A Looped Normalized-GPT](https://arxiv.org/abs/2611.03998): 0.7 per day; released 2026-11-02; likes 16, stars 0.
 - [Folding Language Models into Themselves](https://arxiv.org/abs/2611.18113): 0.6 per day; released 2026-11-13; likes 0, stars 7.
 - [LoopVQ: Sub 1-bit KV Cache Quantization for Looped Transformers](https://arxiv.org/abs/2611.05304): 0.6 per day; released 2026-11-03; likes 10, stars 3.
 - [LoopFill: Pipelined Multi-Token Speculative Decoding for Looped Transformers](https://arxiv.org/abs/2611.19649): 0.5 per day; released 2026-11-14; likes 5, stars 0.
@@ -30,7 +30,7 @@ Citations per year = total citations (the higher of Semantic Scholar and OpenAle
 - [LoopFormer: Elastic-Depth Looped Transformers for Latent Reasoning via Shortcut Modulation](https://arxiv.org/abs/2602.11451): 96 citations per year (96 since 2026-02-11); stars 66, downloads (30 days) 0.
 - [Parcae: Scaling Laws For Stable Looped Language Models](https://arxiv.org/abs/2604.12946): 92 citations per year (92 since 2026-04-14); stars 195, downloads (30 days) 1861.
 - [Looped Transformers as Programmable Computers](https://arxiv.org/abs/2301.13196): 87 citations per year (333 since 2023-01-30); stars 0, downloads (30 days) 0.
-- [Teaching Pretrained Language Models to Think Deeper with Retrofitted Recurrence](https://arxiv.org/abs/2511.07384): 76 citations per year (79 since 2025-11-10); stars 72, downloads (30 days) 4454.
+- [Teaching Pretrained Language Models to Think Deeper with Retrofitted Recurrence](https://arxiv.org/abs/2511.07384): 76 citations per year (79 since 2025-11-10); stars 73, downloads (30 days) 4454.
 
 ## Deep cards
 
@@ -540,6 +540,7 @@ Citations per year = total citations (the higher of Semantic Scholar and OpenAle
 
 ## Open models
 
+- [Dory1.0-4B](https://huggingface.co/nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-BF16): paper 2611.03998; 4B params; 6T, plus 300B for context extension training tokens; passes 2; KV per-pass; license OpenMDW-1.1.
 - [Huginn-0125](https://huggingface.co/tomg-group-umd/huginn-0125): paper 2502.05171; 3.5B params; 800B training tokens; passes 32; KV per-pass; license apache-2.0.
 - [Inkling 2 Mini](https://huggingface.co/thinkingmachines/Inkling-2-Mini): paper tml-inkling-2-mini; 26.4B params; not stated training tokens; passes 3; KV per-pass; license apache-2.0.
 - [Ouro-1.4B](https://huggingface.co/ByteDance/Ouro-1.4B): paper 2510.25741; 1.4B params; 7.7T training tokens; passes 4; KV per-pass; license apache-2.0.

@@ -10,7 +10,7 @@ English · [简体中文](../zh/zai-glm-5-4.md) · [Back to the list](../../READ
 
 > Z.ai turns 28 layers of its pre-trained GLM-5 base into a two-pass loop through continued training at the 750B scale, with per-token gates, a shared-plus-sliding-window KV cache and reused sparse-attention indices.
 
-**Category**: Training and retrofitting · **Status**: draft (numbers not yet re-checked) · **Impact**: HN points 1,131
+**Category**: Training and retrofitting · **Status**: draft (numbers not yet re-checked) · **Impact**: HN points 1,138
 
 [paper](https://z.ai/blog/glm-5.4)
 
@@ -119,7 +119,7 @@ English · [简体中文](../zh/tml-inkling-2-mini.md) · [Back to the list](../
 
 > Open-weight MoE (26.4B total, 3.4B active) that runs the middle 12 of its 24 layers three times with shared weights, released with a variable-loop research twin used to measure how pass count affects capability and CoT monitorability.
 
-**Category**: Architecture: where to loop, what to share · **Status**: draft (numbers not yet re-checked) · **Impact**: HN points 1,480
+**Category**: Architecture: where to loop, what to share · **Status**: draft (numbers not yet re-checked) · **Impact**: HN points 1,481
 
 [paper](https://thinkingmachines.ai/news/inkling-2-mini/) · [project](https://thinkingmachines.ai/model-card/inkling-2-mini/) · [blog](https://huggingface.co/blog/inkling2mini) · [weights](https://huggingface.co/thinkingmachines/Inkling-2-Mini)
 
@@ -909,7 +909,7 @@ English · [简体中文](../zh/2511.07384.md) · [Back to the list](../../READM
 
 > Turn pretrained 1B models into prelude-core-coda recurrent models by dropping middle layers and looping a block, then keep training while a curriculum raises the mean recurrence.
 
-**Category**: Training and retrofitting · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 79 · stars 72 · HF upvotes 21
+**Category**: Training and retrofitting · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 79 · stars 73 · HF upvotes 21
 
 [paper](https://arxiv.org/abs/2511.07384) · [code](https://github.com/mcleish7/retrofitting-recurrence) · [weights](https://huggingface.co/collections/tomg-group-umd/retrofitting-recurrence)
 

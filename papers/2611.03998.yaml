@@ -6,6 +6,7 @@ venue: arXiv
 authors: [Maxim Fishman, Simeng Sun, Shantanu Acharya, Faisal Ladhak, Brian Chmiel, Santiago Akle Serano, Ron Banner, Boris Ginsburg, Krishna C. Puvvada]
 links:
   paper: https://arxiv.org/abs/2611.03998
+  weights: [https://huggingface.co/nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-BF16]
 category: depth
 focus: core
 facets:

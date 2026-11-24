@@ -33,6 +33,22 @@
    "downloads": 143,
    "likes": 4
   },
+  "nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-BF16": {
+   "downloads": 13467,
+   "likes": 278
+  },
+  "nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-GGUF": {
+   "downloads": 41513,
+   "likes": 108
+  },
+  "nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-MXFP8": {
+   "downloads": 1763,
+   "likes": 10
+  },
+  "nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-NVFP4": {
+   "downloads": 46460,
+   "likes": 33
+  },
   "smcleish/Recurrent-Llama-3.2-train-recurrence-16": {
    "downloads": 79,
    "likes": 0
@@ -103,7 +119,7 @@
   },
   "thinkingmachines/Inkling-2-Mini": {
    "downloads": 69042,
-   "likes": 5612
+   "likes": 5627
   },
   "thinkingmachines/TML-d24-varloop-research": {
    "downloads": 2564,
@@ -5856,10 +5872,10 @@
    "hn_points": 0
   },
   "tml-inkling-2-mini": {
-   "hn_points": 1480
+   "hn_points": 1481
   },
   "zai-glm-5-4": {
-   "hn_points": 1131
+   "hn_points": 1138
   }
  },
  "repos": {
@@ -6308,7 +6324,7 @@
   },
   "mcleish7/retrofitting-recurrence": {
    "pushed_at": "2025-11-11T13:06:45Z",
-   "stars": 72
+   "stars": 73
   },
   "mdgspace/Think-Deep-Speak-Once-ReLIT": {
    "pushed_at": "2026-02-05T20:03:35Z",
