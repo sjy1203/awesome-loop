@@ -10,7 +10,7 @@ English · [简体中文](../zh/tml-inkling-2-mini.md) · [Back to the list](../
 
 > Open-weight MoE (26.4B total, 3.4B active) that runs the middle 12 of its 24 layers three times with shared weights, released with a variable-loop research twin used to measure how pass count affects capability and CoT monitorability.
 
-**Category**: Architecture: where to loop, what to share · **Status**: draft (numbers not yet re-checked) · **Impact**: HN points 1,470
+**Category**: Architecture: where to loop, what to share · **Status**: draft (numbers not yet re-checked) · **Impact**: HN points 1,476
 
 [paper](https://thinkingmachines.ai/news/inkling-2-mini/) · [project](https://thinkingmachines.ai/model-card/inkling-2-mini/) · [blog](https://huggingface.co/blog/inkling2mini) · [weights](https://huggingface.co/thinkingmachines/Inkling-2-Mini)
 

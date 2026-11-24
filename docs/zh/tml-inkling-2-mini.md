@@ -10,7 +10,7 @@
 
 > 开源权重的 MoE（总参数 26.4B、激活 3.4B），24 层中的中间 12 层共享权重跑三遍；同时发布一个可变循环的研究版，用来测遍数对能力和 CoT 可监控性的影响。
 
-**类别**：结构：放哪循环、共享什么 · **状态**：草稿（数字未复核） · **影响力**：HN 得分 1,470
+**类别**：结构：放哪循环、共享什么 · **状态**：草稿（数字未复核） · **影响力**：HN 得分 1,476
 
 [论文](https://thinkingmachines.ai/news/inkling-2-mini/) · [项目页](https://thinkingmachines.ai/model-card/inkling-2-mini/) · [博客](https://huggingface.co/blog/inkling2mini) · [权重](https://huggingface.co/thinkingmachines/Inkling-2-Mini)
 

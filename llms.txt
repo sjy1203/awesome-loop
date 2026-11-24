@@ -2,34 +2,34 @@
 
 > Looped and recurrent-depth language models. Each deep card records the loop layout, what the main comparison holds fixed, the paper's results with table or figure references, and caveats taken from the paper. All numbers are author-reported; nothing is converted or extrapolated. Comparison keys: params = unique parameters, active-params = active parameters, flops = training FLOPs, kv = KV cache per token, tokens = training tokens, depth = executed layers per token, wallclock = wall-clock time.
 
-## Trending: core papers released in the last 30 days (2026-11-23)
+## Trending: core papers released in the last 30 days (2026-11-24)
 
 Ranked by likes plus GitHub stars per day since release. Core = looped or recurrent-depth Transformer language models (field `focus` in papers.json); related papers are not ranked.
 
-- [Introducing Inkling 2 Mini](https://thinkingmachines.ai/news/inkling-2-mini/): 2,300 per day; released 2026-11-20; likes 6899, stars 0.
-- [GLM-5.4: Toward Generalized Coding with Our First Loop Transformer](https://z.ai/blog/glm-5.4): 784 per day; released 2026-11-23; likes 784, stars 0.
-- [Latent Feedback Is a Compute and Data Amplifier](https://arxiv.org/abs/2611.20404): 4.6 per day; released 2026-11-16; likes 7, stars 25.
-- [Late Entry in Looped Language Models](https://arxiv.org/abs/2611.24576): 2.4 per day; released 2026-11-18; likes 9, stars 3.
-- [Loopback Transformer: Towards a Unified View of Residual Looped Transformers](https://arxiv.org/abs/2611.07226): 2.4 per day; released 2026-11-04; likes 28, stars 17.
-- [Library of Layers (LoL): Adaptively Ordering Transformer Layers at Runtime](https://arxiv.org/abs/2611.03526): 1.7 per day; released 2026-11-02; likes 12, stars 23.
-- [Dory1.0-4B: A Looped Normalized-GPT](https://arxiv.org/abs/2611.03998): 0.8 per day; released 2026-11-02; likes 16, stars 0.
-- [LoopVQ: Sub 1-bit KV Cache Quantization for Looped Transformers](https://arxiv.org/abs/2611.05304): 0.7 per day; released 2026-11-03; likes 10, stars 3.
-- [Folding Language Models into Themselves](https://arxiv.org/abs/2611.18113): 0.6 per day; released 2026-11-13; likes 0, stars 6.
-- [LoopFill: Pipelined Multi-Token Speculative Decoding for Looped Transformers](https://arxiv.org/abs/2611.19649): 0.6 per day; released 2026-11-14; likes 5, stars 0.
+- [Introducing Inkling 2 Mini](https://thinkingmachines.ai/news/inkling-2-mini/): 1,770 per day; released 2026-11-20; likes 7079, stars 0.
+- [GLM-5.4: Toward Generalized Coding with Our First Loop Transformer](https://z.ai/blog/glm-5.4): 1,082 per day; released 2026-11-23; likes 1082, stars 0.
+- [Latent Feedback Is a Compute and Data Amplifier](https://arxiv.org/abs/2611.20404): 4.1 per day; released 2026-11-16; likes 7, stars 26.
+- [Loopback Transformer: Towards a Unified View of Residual Looped Transformers](https://arxiv.org/abs/2611.07226): 2.2 per day; released 2026-11-04; likes 28, stars 17.
+- [Late Entry in Looped Language Models](https://arxiv.org/abs/2611.24576): 2.0 per day; released 2026-11-18; likes 9, stars 3.
+- [Library of Layers (LoL): Adaptively Ordering Transformer Layers at Runtime](https://arxiv.org/abs/2611.03526): 1.6 per day; released 2026-11-02; likes 12, stars 23.
+- [Dory1.0-4B: A Looped Normalized-GPT](https://arxiv.org/abs/2611.03998): 0.7 per day; released 2026-11-02; likes 16, stars 0.
+- [LoopVQ: Sub 1-bit KV Cache Quantization for Looped Transformers](https://arxiv.org/abs/2611.05304): 0.6 per day; released 2026-11-03; likes 10, stars 3.
+- [Folding Language Models into Themselves](https://arxiv.org/abs/2611.18113): 0.5 per day; released 2026-11-13; likes 0, stars 6.
+- [LoopFill: Pipelined Multi-Token Speculative Decoding for Looped Transformers](https://arxiv.org/abs/2611.19649): 0.5 per day; released 2026-11-14; likes 5, stars 0.
 
 ## Top 10 must-read: core papers of any year, by citations per year
 
 Citations per year = total citations (the higher of Semantic Scholar and OpenAlex) divided by the years since the first public version, at least one. Stars and 30-day downloads are context only.
 
-- [Scaling up Test-Time Compute with Latent Reasoning: A Recurrent Depth Approach](https://arxiv.org/abs/2502.05171): 330 citations per year (590 since 2025-02-07); stars 998, downloads (30 days) 22435.
-- [Scaling Latent Reasoning via Looped Language Models](https://arxiv.org/abs/2510.25741): 250 citations per year (267 since 2025-10-29); stars 0, downloads (30 days) 59421.
-- [Reasoning with Latent Thoughts: On the Power of Looped Transformers](https://arxiv.org/abs/2502.17416): 193 citations per year (337 since 2025-02-24); stars 0, downloads (30 days) 0.
-- [Deep Equilibrium Models](https://arxiv.org/abs/1909.01377): 153 citations per year (1104 since 2019-09-03); stars 815, downloads (30 days) 0.
-- [Mixture-of-Recursions: Learning Dynamic Recursive Depths for Adaptive Token-Level Computation](https://arxiv.org/abs/2507.10524): 150 citations per year (204 since 2025-07-14); stars 652, downloads (30 days) 0.
-- [Universal Transformers](https://arxiv.org/abs/1807.03819): 147 citations per year (1233 since 2018-07-10); stars 0, downloads (30 days) 0.
-- [LoopFormer: Elastic-Depth Looped Transformers for Latent Reasoning via Shortcut Modulation](https://arxiv.org/abs/2602.11451): 95 citations per year (95 since 2026-02-11); stars 66, downloads (30 days) 0.
-- [Parcae: Scaling Laws For Stable Looped Language Models](https://arxiv.org/abs/2604.12946): 89 citations per year (89 since 2026-04-14); stars 195, downloads (30 days) 1728.
-- [Looped Transformers as Programmable Computers](https://arxiv.org/abs/2301.13196): 87 citations per year (330 since 2023-01-30); stars 0, downloads (30 days) 0.
+- [Scaling up Test-Time Compute with Latent Reasoning: A Recurrent Depth Approach](https://arxiv.org/abs/2502.05171): 329 citations per year (590 since 2025-02-07); stars 998, downloads (30 days) 22435.
+- [Scaling Latent Reasoning via Looped Language Models](https://arxiv.org/abs/2510.25741): 249 citations per year (267 since 2025-10-29); stars 0, downloads (30 days) 59421.
+- [Reasoning with Latent Thoughts: On the Power of Looped Transformers](https://arxiv.org/abs/2502.17416): 194 citations per year (338 since 2025-02-24); stars 0, downloads (30 days) 0.
+- [Deep Equilibrium Models](https://arxiv.org/abs/1909.01377): 153 citations per year (1107 since 2019-09-03); stars 815, downloads (30 days) 0.
+- [Mixture-of-Recursions: Learning Dynamic Recursive Depths for Adaptive Token-Level Computation](https://arxiv.org/abs/2507.10524): 151 citations per year (206 since 2025-07-14); stars 652, downloads (30 days) 0.
+- [Universal Transformers](https://arxiv.org/abs/1807.03819): 148 citations per year (1237 since 2018-07-10); stars 0, downloads (30 days) 0.
+- [LoopFormer: Elastic-Depth Looped Transformers for Latent Reasoning via Shortcut Modulation](https://arxiv.org/abs/2602.11451): 96 citations per year (96 since 2026-02-11); stars 66, downloads (30 days) 0.
+- [Parcae: Scaling Laws For Stable Looped Language Models](https://arxiv.org/abs/2604.12946): 92 citations per year (92 since 2026-04-14); stars 195, downloads (30 days) 1728.
+- [Looped Transformers as Programmable Computers](https://arxiv.org/abs/2301.13196): 87 citations per year (333 since 2023-01-30); stars 0, downloads (30 days) 0.
 - [Teaching Pretrained Language Models to Think Deeper with Retrofitted Recurrence](https://arxiv.org/abs/2511.07384): 76 citations per year (79 since 2025-11-10); stars 72, downloads (30 days) 4351.
 
 ## Deep cards
@@ -178,6 +178,7 @@ Citations per year = total citations (the higher of Semantic Scholar and OpenAle
 - [A Little Depth Goes a Long Way: The Expressive Power of Log-Depth Transformers](https://arxiv.org/abs/2503.03961): Proves that looped transformers repeating middle layers Θ(log n) times recognize regular languages and solve graph connectivity, which fixed-depth transformers cannot under standard conjectures; growing depth is more efficient than growing width or chain-of-thought steps. Category: theory; focus: core; 2025-03-05.
 - [CODI: Compressing Chain-of-Thought into Continuous Space via Self-Distillation](https://arxiv.org/abs/2502.21074): CODI jointly trains explicit-CoT teacher and implicit-CoT student tasks, aligning a designated token's hidden states to compress CoT into continuous space; at GPT-2 scale it matches explicit CoT on GSM8k with 3.1x compression. Category: adjacent; focus: related; 2025-02-28.
 - [Reasoning with Latent Thoughts: On the Power of Looped Transformers](https://arxiv.org/abs/2502.17416): Shows that a k-layer transformer looped L times nearly matches a kL-layer model on synthetic reasoning and is competitive on language-model reasoning tasks, and proves T loops can simulate T steps of CoT. Category: theory; focus: core; 2025-02-24.
+- [Inner Thinking Transformer: Leveraging Dynamic Depth Scaling to Foster Adaptive Internal Thinking](https://arxiv.org/abs/2502.13842): ITT turns every other layer into a looped layer whose learned routers send selected tokens through extra steps of the same layer, accumulated by residual thinking connections; with 162M parameters it reaches 96.5% of a 466M Transformer's performance, saves 43.2% of training data and beats Transformer and Loop variants on 11 benchmarks. Category: depth; focus: core; 2025-02-19.
 - [Training Large Language Models to Reason in a Continuous Latent Space](https://arxiv.org/abs/2412.06769): Coconut feeds the last hidden state back as the next input embedding rather than decoding it into a token; these continuous thoughts can encode alternative next steps, and Coconut outperforms CoT on search-heavy logical reasoning. Category: adjacent; focus: related; 2024-12-09.
 - [Relaxed Recursive Transformers: Effective Parameter Sharing with Layer-wise LoRA](https://arxiv.org/abs/2410.20672): Converts pretrained LLMs into Recursive Transformers that loop one shared block, optionally relaxed with depth-wise LoRA; recursive Gemma 1B beats TinyLlama 1.1B, Pythia 1B and distillation baselines and recovers most of Gemma 2B's performance. Category: training; focus: core; 2024-10-28.
 - [Can Looped Transformers Learn to Implement Multi-step Gradient Descent for In-context Learning?](https://arxiv.org/abs/2410.08292): Proves that for in-context linear regression, the global minimizer of a linear looped Transformer's training loss implements multi-step preconditioned gradient descent, and that gradient flow converges fast despite non-convexity; synthetic experiments agree. Category: theory; focus: core; 2024-10-10.

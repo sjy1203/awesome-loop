@@ -1150,6 +1150,40 @@
    }
   },
   {
+   "id": "2502.13842",
+   "tier": "radar",
+   "title": "Inner Thinking Transformer: Leveraging Dynamic Depth Scaling to Foster Adaptive Internal Thinking",
+   "date": "2025-02-19",
+   "venue": "ACL 2025",
+   "authors": [
+    "Yilong Chen",
+    "Junyuan Shang",
+    "Zhenyu Zhang",
+    "Yanxi Xie",
+    "Jiawei Sheng",
+    "Tingwen Liu",
+    "Shuohuan Wang",
+    "Yu Sun",
+    "Hua Wu",
+    "Haifeng Wang"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2502.13842"
+   },
+   "category": "depth",
+   "focus": "core",
+   "facets": {
+    "placement": "n/a",
+    "depth_train": "adaptive",
+    "kv": "n/a"
+   },
+   "tldr": {
+    "en": "ITT turns every other layer into a looped layer whose learned routers send selected tokens through extra steps of the same layer, accumulated by residual thinking connections; with 162M parameters it reaches 96.5% of a 466M Transformer's performance, saves 43.2% of training data and beats Transformer and Loop variants on 11 benchmarks.",
+    "zh": "ITT 把每隔一层换成循环层，由学到的路由器挑出 token 在同一层上多算几步，再用 Residual Thinking Connection 累加各步结果；162M 的 ITT 达到 466M Transformer 96.5% 的性能，训练数据省 43.2%，在 11 个基准上超过 Transformer 和 Loop 变体。"
+   },
+   "added": "2026-11-24"
+  },
+  {
    "id": "2502.17416",
    "tier": "radar",
    "title": "Reasoning with Latent Thoughts: On the Power of Looped Transformers",
