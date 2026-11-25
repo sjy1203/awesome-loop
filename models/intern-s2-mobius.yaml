@@ -1,0 +1,47 @@
+id: intern-s2-mobius
+name: Intern-S2-Mobius
+paper: "2608.14290"
+org: [InternLM]
+hf: [internlm/Intern-S2-Mobius, internlm/Intern-S2-Mobius-FP8]
+params: "35B"
+tokens: "1TB tokens of continued pre-training (paper wording), then SFT and RL"
+context: "262,144 (max_position_embeddings)"
+passes:
+  default: "10 (40 layers share 4 routed-expert pools; layer i uses pool i mod 4)"
+  range: "fixed (num_blocks 4)"
+kv: per-pass
+license: apache-2.0
+inference: [transformers-remote-code, vllm, custom]
+notes:
+  en: >-
+    Multimodal model (image-text-to-text) converted from Qwen3.5-35B-A3B to the Mobius-v0 architecture, continued
+    pre-trained on 1TB tokens (the paper's wording) and post-trained with SFT and RL. In the released code the 40
+    decoder layers (in each group of four, three Gated DeltaNet linear-attention layers and one full-attention layer)
+    each run once and keep their own attention weights, while their routed experts come from num_blocks = 4 shared
+    meta-MoE blocks: layer i uses block i mod 4, so the router and 2,560 experts of each block (8 active per token) are
+    queried by 10 layers for every token, and each layer adds its own small gated shared expert. The paper calls the
+    shared expert pool Memory and the attention layers Reasoners, and describes Mobius-v0 as one global FFN memory
+    shared by all layers; its from-scratch 7B-A1B model is not released. The card's Dynamic Latent Reasoning (recurrent
+    latent iteration before decoding) has no separate iteration setting in the released code: generating a token is
+    one pass through the 40 layers, plus an optional MTP head that the card recommends for speculative decoding. The
+    cache keeps one slot per layer, KV for the 10 full-attention layers and conv and recurrent states for the 30
+    linear-attention layers. The card documents LMDeploy (PyTorch backend, InternLM's own engine, listed here as custom
+    code), transformers with trust_remote_code and vLLM builds with Intern-S2-Mobius support. Intern-S2-Mobius-FP8 is
+    the official FP8 version. The safetensors total is 35,964,405,616 parameters, including the 27-layer vision
+    encoder.
+  zh: >-
+    多模态模型（image-text-to-text），由 Qwen3.5-35B-A3B 转换为 Mobius-v0 架构，在 1TB tokens（论文原文写法）上继续预训练，再做 SFT 和 RL。官方代码中 40 个 decoder 层（每四层里三层 Gated DeltaNet 线性注意力、一层全注意力）各跑一遍，注意力权重各自独立；路由专家来自 num_blocks = 4 个共享的 meta-MoE 块：第 i 层使用第 i mod 4 个块，因此每个块的 router 和 2,560 个专家（每 token 激活 8 个）在每个 token 上被 10 个层查询，每层另有自己的小型带门控 shared expert。论文把共享专家池称为 Memory、把注意力层称为 Reasoner，并把 Mobius-v0 描述为所有层共享一个全局 FFN memory；论文中从头训练的 7B-A1B 模型没有发布。模型卡提到的 Dynamic Latent Reasoning（解码前对连续隐状态做循环潜在迭代）在官方代码里没有单独的迭代设置：生成一个 token 就是 40 层各跑一遍，另有一个 MTP 头，模型卡推荐用于投机解码。缓存每层一个槽位：10 个全注意力层存 KV，30 个线性注意力层存 conv 和 recurrent 状态。模型卡给出的部署方式有 LMDeploy（PyTorch 后端，InternLM 自家的引擎，这里记为自带代码）、带 trust_remote_code 的 transformers，以及支持 Intern-S2-Mobius 的 vLLM 版本。Intern-S2-Mobius-FP8 是官方 FP8 版本。safetensors 参数总数为 35,964,405,616，包含 27 层视觉编码器。
+ref: >-
+  Model card (35B foundation model on Mobius-v0; globally shared Memory queried by Reasoners; Backward Residual
+  Connection and Dynamic Latent Reasoning; continual pre-training from Qwen3.5-35B followed by SFT and RL; Quick Start
+  with LMDeploy, Transformers and vLLM, MTP speculative decoding recommended); HF API (cardData.license apache-2.0,
+  pipeline image-text-to-text, safetensors.total 35,964,405,616; internlm/Intern-S2-Mobius-FP8 by internlm, apache-2.0;
+  the internlm/intern-s2 collection lists only these two Mobius repos); config.json (text_config: num_hidden_layers 40,
+  num_blocks 4, num_experts 2560, num_experts_per_tok 8, shared_expert_intermediate_size 512, full_attention_interval
+  4, max_position_embeddings 262144, mtp_num_hidden_layers 1; vision_config.depth 27); modeling_interns2_mobius.py
+  (InternS2MobiusTextModel builds num_blocks InternS2MobiusMetaMoeBlock modules, each with config.num_experts experts;
+  InternS2MobiusDecoderLayer uses meta_mlp[layer_idx % num_blocks] plus a per-layer gated shared expert; the forward
+  pass runs each layer once; InternS2MobiusDynamicCache holds one KV or state slot per layer); paper Section 3 (7B-A1B
+  Mobius trained from scratch on 1TB tokens; CPT from Qwen3.5-35B-A3B on 1TB tokens, then SFT and RL) and its
+  expert-activation figure (block-diagonal routing after the architecture conversion).
+added: "2026-11-25"

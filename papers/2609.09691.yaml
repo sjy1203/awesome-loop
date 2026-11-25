@@ -7,6 +7,7 @@ authors: [Tingshuo Fan, Hongtao Mu, Tianyu Zhou, Hansen Liu, Tao Ji]
 links:
   paper: https://arxiv.org/abs/2609.09691
   code: https://github.com/Survivor613/BabyLM-2026
+  weights: [https://huggingface.co/Survivor613/BabyLM2026-Strict-Small-looped_GPT-BERT]
 category: scaling
 focus: core
 facets:

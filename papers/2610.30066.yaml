@@ -6,6 +6,7 @@ venue: arXiv
 authors: [Saiteja Utpala, Chieh-Hsin Lai, Yuki Mitsufuji, Praneeth Vepakomma]
 links:
   paper: https://arxiv.org/abs/2610.30066
+  weights: [https://huggingface.co/saitejautpala/looped_udlm]
 category: training
 focus: core
 facets:

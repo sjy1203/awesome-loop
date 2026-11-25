@@ -1,0 +1,38 @@
+id: looped-udlm
+name: Looped UDLM (OpenWebText)
+paper: "2610.30066"
+hf: [saitejautpala/looped_udlm]
+params: "not stated (12 blocks, width 768)"
+tokens: "about 0.5T for the baseline; looped runs stop at matched training FLOPs"
+context: "1024"
+passes:
+  default: "set per evaluation run: a fixed S or adaptive (cap 12)"
+  range: "S 1-12 in training; any S at test time (card example: 24)"
+kv: n/a
+license: apache-2.0
+inference: [custom]
+notes:
+  en: >-
+    Uniform-state discrete diffusion language models (DUO++ denoisers with 12 blocks, width 768, the GPT-2 tokenizer and
+    1,024-token sequences) trained on OpenWebText and released as three PyTorch Lightning checkpoints that hold the
+    model, EMA (decay 0.9999) and optimizer states: the non-looped baseline (S = 1, 1,000,000 steps), a looped model
+    trained with S drawn uniformly from 1-12 (mean 6.5, 655,420 steps) and one trained with p(S) proportional to
+    1/F(S) (mean 5.72, 688,915 steps). The looped models share the weights of blocks 1-2 and replay them S times in
+    every denoiser call, so a call executes 12 + 2(S-1) blocks; each looped run stops at the step whose training FLOPs
+    match the baseline's 1M steps, and the paper describes the baseline as trained on about 0.5 trillion tokens. The
+    evaluation scripts in the GitHub code take a depth policy for every run: baseline, an integer S (any value,
+    including beyond the training range, such as 24), or adaptive, where a sequence stops at the first traversal whose
+    relative hidden-state change is below 0.1, capped at 12 traversals. The paper's FineWeb-Edu runs are not in this
+    repository. Each denoiser call predicts every position of the sequence, so there is no autoregressive KV cache.
+  zh: >-
+    均匀状态离散扩散语言模型（DUO++ 去噪器，12 个 block，宽度 768，GPT-2 tokenizer，序列长 1,024），在 OpenWebText 上训练，以三个 PyTorch Lightning checkpoint 发布，内含模型、EMA（衰减 0.9999）和优化器状态：不循环的基线（S = 1，1,000,000 步）、S 在 1-12 中均匀采样训练的循环模型（平均 6.5，655,420 步），以及按 p(S) 正比于 1/F(S) 训练的循环模型（平均 5.72，688,915 步）。循环模型共享第 1-2 个 block 的权重，每次去噪器调用重复执行 S 遍，一次调用共执行 12 + 2(S-1) 个 block；每个循环模型都停在训练 FLOPs 与基线 1M 步相等的那一步，论文称基线训练了约 0.5 万亿 token。GitHub 代码里的评测脚本每次都要指定深度策略：baseline、一个整数 S（可取任意值，包括训练范围之外的 24 等），或 adaptive：某条序列在隐状态相对变化首次低于 0.1 时停止，最多 12 遍。论文中的 FineWeb-Edu 模型不在这个仓库里。每次去噪器调用都会预测序列的所有位置，因此没有自回归 KV cache。
+ref: >-
+  Model card (DUO++ uniform diffusion transformer with 12 blocks, width 768, sequence length 1024, GPT-2 tokenizer;
+  blocks 1-2 replayed S times, executed depth 12 + 2(S-1); S drawn from 1-12 in training; looped runs stop at FLOPs
+  matched to 1M baseline steps; Checkpoints table with schedules, mean S and steps; Lightning checkpoints with EMA
+  0.9999; Usage with depth policies baseline, integer S and adaptive, S = 24 example, epsilon 0.1 and S_max 12;
+  OpenWebText training data); HF API (cardData.license apache-2.0; files owt/baseline_step1000000.ckpt,
+  owt/uniform_step655420.ckpt, owt/flop_proportional_step688915.ckpt); paper abstract and Section 1 (non-looped UDLM
+  trained on about 0.5 trillion tokens; OpenWebText and FineWeb-Edu runs) and the experimental setup (blocks 1-2 looped
+  with S_max = 12, justified by the Figure 3a ablation). The card and the paper give no parameter count.
+added: "2026-11-25"

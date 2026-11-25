@@ -9541,7 +9541,10 @@
     "Xinyu Zhou"
    ],
    "links": {
-    "paper": "https://arxiv.org/abs/2608.14290"
+    "paper": "https://arxiv.org/abs/2608.14290",
+    "weights": [
+     "https://huggingface.co/internlm/Intern-S2-Mobius"
+    ]
    },
    "category": "architecture/placement",
    "focus": "core",
@@ -10290,7 +10293,10 @@
    ],
    "links": {
     "paper": "https://arxiv.org/abs/2609.09691",
-    "code": "https://github.com/Survivor613/BabyLM-2026"
+    "code": "https://github.com/Survivor613/BabyLM-2026",
+    "weights": [
+     "https://huggingface.co/Survivor613/BabyLM2026-Strict-Small-looped_GPT-BERT"
+    ]
    },
    "category": "scaling",
    "focus": "core",
@@ -13936,7 +13942,10 @@
     "Praneeth Vepakomma"
    ],
    "links": {
-    "paper": "https://arxiv.org/abs/2610.30066"
+    "paper": "https://arxiv.org/abs/2610.30066",
+    "weights": [
+     "https://huggingface.co/saitejautpala/looped_udlm"
+    ]
    },
    "category": "training",
    "focus": "core",

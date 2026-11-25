@@ -1,0 +1,36 @@
+id: looped-gpt-bert
+name: Looped GPT-BERT 4x12
+paper: "2609.09691"
+hf: [Survivor613/BabyLM2026-Strict-Small-looped_GPT-BERT]
+params: "12,181,780"
+tokens: "10 passes over 7,482,193 words (BabyLM 2026 Strict-Small)"
+context: "512 (configured); pretraining sequence length 128"
+passes:
+  default: "12 (num_loop_iterations)"
+  range: "fixed (trained at 12)"
+kv: n/a
+license: not stated on the model card
+inference: [transformers-remote-code]
+notes:
+  en: >-
+    English base model trained from scratch for the BabyLM 2026 Strict-Small track with GPT-BERT's hybrid objective (25%
+    masked next-token prediction, 75% causal language modelling) on one shared backbone and a tied output head. Four
+    physical Transformer layers (hidden size 384, 6 heads) run 12 times: the recurrent state starts at zero, is added to
+    the static token embeddings at the start of every loop, and the logits come from the state after loop 12, giving 48
+    layer applications. Each physical layer has a Dense Weighted Average (DWA) residual mixer whose accumulator restarts
+    in that layer on every loop (dwa_scope physical_layer). Training used an 8,192-token byte-level BPE tokenizer
+    trained on the corpus, 128-token sequences and 10 epochs (4,220 optimizer steps) over 7,482,193 words, about 74.82M
+    word exposures; checkpoints at the BabyLM word milestones are the revisions chck_1M to chck_70M. The same weights
+    load as AutoModelForCausalLM or AutoModelForMaskedLM with trust_remote_code. The modeling code has no KV cache, so
+    generation feeds the full prefix back at every step. The card gives no license.
+  zh: >-
+    为 BabyLM 2026 Strict-Small 赛道从头训练的英语基座模型，使用 GPT-BERT 的混合目标（25% masked next-token prediction、75% 因果语言建模），共用一个主干和绑定的输出头。四个物理 Transformer 层（hidden size 384，6 个头）循环 12 遍：循环状态从零开始，每一遍开始时加到静态 token 嵌入上，logits 取第 12 遍之后的状态，共 48 次层计算。每个物理层带一个 Dense Weighted Average（DWA）残差混合模块，其累加器在每一遍进入该层时重新初始化（dwa_scope 为 physical_layer）。训练用在该语料上训练的 8,192 词表 byte-level BPE tokenizer、128 token 的序列，在 7,482,193 个词上训练 10 个 epoch（4,220 个优化步），约 74.82M 次词曝光；BabyLM 各词数里程碑的 checkpoint 在 chck_1M 到 chck_70M 这些 revision 中。同一份权重可用 trust_remote_code 加载为 AutoModelForCausalLM 或 AutoModelForMaskedLM。modeling 代码没有实现 KV cache，生成时每一步都把完整前缀重新输入。模型卡没有写 license。
+ref: >-
+  Model card (12,181,780 trainable parameters; 4 physical layers, 12 loop iterations, 48 layer applications; loop update
+  z_{t+1} = F(x + z_t) from z_0 = 0; DWA scope; 25% MNTP and 75% CLM; tokenizer table with 7,482,193 words; 10 epochs,
+  4,220 optimizer steps, 128-token pretraining sequences, about 74.82M word exposures; word-milestone revisions;
+  trust_remote_code usage for causal and masked LM); config.json (num_hidden_layers 4, num_loop_iterations 12,
+  hidden_size 384, num_attention_heads 6, max_position_embeddings 512, dwa_scope physical_layer, vocab_size 8192);
+  modeling_gpt_bert.py (the backbone loops num_loop_iterations times; prepare_inputs_for_generation says GPTBERT does
+  not implement a KV cache and sets use_cache False); HF API (no license field); paper (links this repository).
+added: "2026-11-25"

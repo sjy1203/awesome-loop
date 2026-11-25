@@ -2,34 +2,34 @@
 
 > Looped and recurrent-depth language models. Each deep card records the loop layout, what the main comparison holds fixed, the paper's results with table or figure references, and caveats taken from the paper. All numbers are author-reported; nothing is converted or extrapolated. Comparison keys: params = unique parameters, active-params = active parameters, flops = training FLOPs, kv = KV cache per token, tokens = training tokens, depth = executed layers per token, wallclock = wall-clock time.
 
-## Trending: core papers released in the last 30 days (2026-11-24)
+## Trending: core papers released in the last 30 days (2026-11-25)
 
 Ranked by likes plus GitHub stars per day since release. Core = looped or recurrent-depth Transformer language models (field `focus` in papers.json); related papers are not ranked.
 
-- [Introducing Inkling 2 Mini](https://thinkingmachines.ai/news/inkling-2-mini/): 1,805 per day; released 2026-11-20; likes 7220, stars 0.
-- [GLM-5.4: Toward Generalized Coding with Our First Loop Transformer](https://z.ai/blog/glm-5.4): 1,143 per day; released 2026-11-23; likes 1143, stars 0.
-- [SenseNova-Loop-9B: Deeper Computation with Fewer Parameters](https://huggingface.co/sensenova/SenseNova-Loop-9B): 219 per day; released 2026-11-17; likes 1238, stars 294.
-- [Dory1.0-4B: A Looped Normalized-GPT](https://arxiv.org/abs/2611.03998): 20.2 per day; released 2026-11-02; likes 445, stars 0.
-- [Latent Feedback Is a Compute and Data Amplifier](https://arxiv.org/abs/2611.20404): 4.1 per day; released 2026-11-16; likes 7, stars 26.
-- [Loopback Transformer: Towards a Unified View of Residual Looped Transformers](https://arxiv.org/abs/2611.07226): 2.3 per day; released 2026-11-04; likes 28, stars 18.
-- [Late Entry in Looped Language Models](https://arxiv.org/abs/2611.24576): 2.0 per day; released 2026-11-18; likes 9, stars 3.
-- [Library of Layers (LoL): Adaptively Ordering Transformer Layers at Runtime](https://arxiv.org/abs/2611.03526): 1.6 per day; released 2026-11-02; likes 12, stars 23.
-- [ARLoop: Fully-Open Pre-trained Looped Transformers with Attention Residuals](https://arxiv.org/abs/2611.05234): 1.0 per day; released 2026-11-03; likes 20, stars 0.
-- [Folding Language Models into Themselves](https://arxiv.org/abs/2611.18113): 0.9 per day; released 2026-11-13; likes 3, stars 7.
+- [Introducing Inkling 2 Mini](https://thinkingmachines.ai/news/inkling-2-mini/): 1,477 per day; released 2026-11-20; likes 7387, stars 0.
+- [GLM-5.4: Toward Generalized Coding with Our First Loop Transformer](https://z.ai/blog/glm-5.4): 584 per day; released 2026-11-23; likes 1167, stars 0.
+- [SenseNova-Loop-9B: Deeper Computation with Fewer Parameters](https://huggingface.co/sensenova/SenseNova-Loop-9B): 200 per day; released 2026-11-17; likes 1290, stars 308.
+- [Dory1.0-4B: A Looped Normalized-GPT](https://arxiv.org/abs/2611.03998): 19.7 per day; released 2026-11-02; likes 453, stars 0.
+- [Latent Feedback Is a Compute and Data Amplifier](https://arxiv.org/abs/2611.20404): 3.7 per day; released 2026-11-16; likes 7, stars 26.
+- [Loopback Transformer: Towards a Unified View of Residual Looped Transformers](https://arxiv.org/abs/2611.07226): 2.3 per day; released 2026-11-04; likes 29, stars 19.
+- [Late Entry in Looped Language Models](https://arxiv.org/abs/2611.24576): 1.7 per day; released 2026-11-18; likes 9, stars 3.
+- [Library of Layers (LoL): Adaptively Ordering Transformer Layers at Runtime](https://arxiv.org/abs/2611.03526): 1.5 per day; released 2026-11-02; likes 12, stars 23.
+- [ARLoop: Fully-Open Pre-trained Looped Transformers with Attention Residuals](https://arxiv.org/abs/2611.05234): 0.9 per day; released 2026-11-03; likes 20, stars 0.
+- [Folding Language Models into Themselves](https://arxiv.org/abs/2611.18113): 0.8 per day; released 2026-11-13; likes 3, stars 7.
 
 ## Top 10 must-read: core papers of any year, by citations per year
 
 Citations per year = total citations (the higher of Semantic Scholar and OpenAlex) divided by the years since the first public version, at least one. Stars and 30-day downloads are context only.
 
-- [Scaling up Test-Time Compute with Latent Reasoning: A Recurrent Depth Approach](https://arxiv.org/abs/2502.05171): 329 citations per year (590 since 2025-02-07); stars 1000, downloads (30 days) 22605.
+- [Scaling up Test-Time Compute with Latent Reasoning: A Recurrent Depth Approach](https://arxiv.org/abs/2502.05171): 331 citations per year (594 since 2025-02-07); stars 1000, downloads (30 days) 22605.
 - [Scaling Latent Reasoning via Looped Language Models](https://arxiv.org/abs/2510.25741): 249 citations per year (267 since 2025-10-29); stars 0, downloads (30 days) 60775.
-- [Reasoning with Latent Thoughts: On the Power of Looped Transformers](https://arxiv.org/abs/2502.17416): 194 citations per year (338 since 2025-02-24); stars 0, downloads (30 days) 0.
-- [Deep Equilibrium Models](https://arxiv.org/abs/1909.01377): 153 citations per year (1107 since 2019-09-03); stars 815, downloads (30 days) 0.
-- [Mixture-of-Recursions: Learning Dynamic Recursive Depths for Adaptive Token-Level Computation](https://arxiv.org/abs/2507.10524): 151 citations per year (206 since 2025-07-14); stars 652, downloads (30 days) 0.
-- [Universal Transformers](https://arxiv.org/abs/1807.03819): 148 citations per year (1237 since 2018-07-10); stars 0, downloads (30 days) 0.
-- [LoopFormer: Elastic-Depth Looped Transformers for Latent Reasoning via Shortcut Modulation](https://arxiv.org/abs/2602.11451): 96 citations per year (96 since 2026-02-11); stars 66, downloads (30 days) 151.
-- [Parcae: Scaling Laws For Stable Looped Language Models](https://arxiv.org/abs/2604.12946): 92 citations per year (92 since 2026-04-14); stars 195, downloads (30 days) 1861.
-- [Looped Transformers as Programmable Computers](https://arxiv.org/abs/2301.13196): 87 citations per year (333 since 2023-01-30); stars 0, downloads (30 days) 0.
+- [Reasoning with Latent Thoughts: On the Power of Looped Transformers](https://arxiv.org/abs/2502.17416): 197 citations per year (345 since 2025-02-24); stars 0, downloads (30 days) 0.
+- [Mixture-of-Recursions: Learning Dynamic Recursive Depths for Adaptive Token-Level Computation](https://arxiv.org/abs/2507.10524): 155 citations per year (212 since 2025-07-14); stars 652, downloads (30 days) 0.
+- [Deep Equilibrium Models](https://arxiv.org/abs/1909.01377): 154 citations per year (1112 since 2019-09-03); stars 815, downloads (30 days) 0.
+- [Universal Transformers](https://arxiv.org/abs/1807.03819): 150 citations per year (1257 since 2018-07-10); stars 0, downloads (30 days) 0.
+- [LoopFormer: Elastic-Depth Looped Transformers for Latent Reasoning via Shortcut Modulation](https://arxiv.org/abs/2602.11451): 99 citations per year (99 since 2026-02-11); stars 66, downloads (30 days) 151.
+- [Parcae: Scaling Laws For Stable Looped Language Models](https://arxiv.org/abs/2604.12946): 94 citations per year (94 since 2026-04-14); stars 195, downloads (30 days) 1861.
+- [Looped Transformers as Programmable Computers](https://arxiv.org/abs/2301.13196): 89 citations per year (339 since 2023-01-30); stars 0, downloads (30 days) 0.
 - [Teaching Pretrained Language Models to Think Deeper with Retrofitted Recurrence](https://arxiv.org/abs/2511.07384): 76 citations per year (79 since 2025-11-10); stars 73, downloads (30 days) 4454.
 
 ## Deep cards
@@ -555,9 +555,12 @@ Citations per year = total citations (the higher of Semantic Scholar and OpenAle
 - [HRM-Text-1B](https://huggingface.co/sapientinc/HRM-Text-1B): paper 2605.20613; 1B params; 40B unique, 60B in total training tokens; passes 8 module calls (H_cycles 2, L_cycles 3); KV per-pass; license apache-2.0.
 - [Huginn-0125](https://huggingface.co/tomg-group-umd/huginn-0125): paper 2502.05171; 3.5B params; 800B training tokens; passes 32; KV per-pass; license apache-2.0.
 - [Inkling 2 Mini](https://huggingface.co/thinkingmachines/Inkling-2-Mini): paper tml-inkling-2-mini; 26.4B params; not stated training tokens; passes 3; KV per-pass; license apache-2.0.
+- [Intern-S2-Mobius](https://huggingface.co/internlm/Intern-S2-Mobius): paper 2608.14290; 35B params; 1TB tokens of continued pre-training (paper wording), then SFT and RL training tokens; passes 10 (40 layers share 4 routed-expert pools; layer i uses pool i mod 4); KV per-pass; license apache-2.0.
 - [IQuest-Coder-V1-40B-Loop](https://huggingface.co/IQuestLab/IQuest-Coder-V1-40B-Loop-Instruct): paper 2603.16733; 40B params; 12T+ pre-training and 600B mid-training (LoopCoder PDF) training tokens; passes 2; KV first-pass; license iquestcoder (Modified MIT License).
 - [LatentLoop](https://huggingface.co/yhx12/LatentLoop): paper 2610.19975; 1.3B / 3B / 7B params; 40.0975B / 69.6538B / 139.7123B (reference budgets 40B / 70B / 140B) training tokens; passes 2 (middle layers visited twice, the first visit on a 2x compressed sequence); KV per-pass; license apache-2.0.
 - [LoopCoder-V2](https://huggingface.co/Multilingual-Multimodal-NLP/LoopCoder-V2): paper 2606.18023; 7B params; 18T training tokens; passes 2; KV first-pass; license apache-2.0.
+- [Looped GPT-BERT 4x12](https://huggingface.co/Survivor613/BabyLM2026-Strict-Small-looped_GPT-BERT): paper 2609.09691; 12,181,780 params; 10 passes over 7,482,193 words (BabyLM 2026 Strict-Small) training tokens; passes 12 (num_loop_iterations); KV n/a; license not stated on the model card.
+- [Looped UDLM (OpenWebText)](https://huggingface.co/saitejautpala/looped_udlm): paper 2610.30066; not stated (12 blocks, width 768) params; about 0.5T for the baseline; looped runs stop at matched training FLOPs training tokens; passes set per evaluation run: a fixed S or adaptive (cap 12); KV n/a; license apache-2.0.
 - [LoopFormer](https://huggingface.co/armenjeddi/LoopFormer-3block-8iterations): paper 2602.11451; 278,169,600 / 223,635,456 / 278,169,600 (safetensors) params; ~25B (deduplicated Pile) / ~25B / not stated training tokens; passes 8, 12, 8 (steps); KV n/a; license not stated (no model cards).
 - [Loopie-20B-A2B-preview](https://huggingface.co/zitian-gao/Loopie-20B-A2B-preview): paper 2607.16051; 20B params; 3.5T (pretraining) training tokens; passes 2 (layer_loop_times); KV per-pass; license mit.
 - [Loopie-6B-A0.6B-preview](https://huggingface.co/zitian-gao/Loopie-6B-A0.6B-preview): paper 2607.16051; 6B params; 3T pretraining + 1.26T annealing (paper Section 3) training tokens; passes 2 (layer_loop_times); KV per-pass; license mit.
