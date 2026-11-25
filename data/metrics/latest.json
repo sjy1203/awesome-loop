@@ -2,31 +2,31 @@
  "date": "2026-11-25",
  "models": {
   "Amr-Hegazy/grt-large-isoflop": {
-   "downloads": 20,
+   "downloads": 17,
    "likes": 0
   },
   "Amr-Hegazy/grt-large-isoparam": {
-   "downloads": 23,
+   "downloads": 21,
    "likes": 1
   },
   "Amr-Hegazy/grt-medium-isoflop": {
-   "downloads": 20,
+   "downloads": 18,
    "likes": 0
   },
   "Amr-Hegazy/grt-medium-isoparam": {
-   "downloads": 21,
+   "downloads": 19,
    "likes": 0
   },
   "ByteDance/Ouro-1.4B": {
-   "downloads": 24355,
+   "downloads": 24975,
    "likes": 168
   },
   "ByteDance/Ouro-1.4B-Thinking": {
-   "downloads": 18521,
+   "downloads": 19568,
    "likes": 55
   },
   "ByteDance/Ouro-2.6B": {
-   "downloads": 9550,
+   "downloads": 9792,
    "likes": 99
   },
   "ByteDance/Ouro-2.6B-Thinking": {
@@ -38,7 +38,7 @@
    "likes": 331
   },
   "IQuestLab/IQuest-Coder-V1-40B-Loop-Thinking": {
-   "downloads": 208,
+   "downloads": 205,
    "likes": 18
   },
   "Lernex/Metis-1.6-Logos": {
@@ -178,59 +178,59 @@
    "likes": 13
   },
   "amazon/ALoDLM-8B": {
-   "downloads": 995,
+   "downloads": 972,
    "likes": 67
   },
   "armenjeddi/LoopFormer-2block-12iterations": {
-   "downloads": 31,
+   "downloads": 28,
    "likes": 0
   },
   "armenjeddi/LoopFormer-3block-8iterations": {
-   "downloads": 82,
+   "downloads": 71,
    "likes": 1
   },
   "armenjeddi/LoopFormer-3block-8iterations-FineWeb300K": {
-   "downloads": 38,
+   "downloads": 36,
    "likes": 0
   },
   "btzyd/Accordion-6B-A0.5B-Base-32K": {
-   "downloads": 515,
+   "downloads": 327,
    "likes": 0
   },
   "btzyd/Accordion-6B-A0.5B-Base-8K": {
-   "downloads": 514,
+   "downloads": 321,
    "likes": 0
   },
   "btzyd/Accordion-6B-A0.5B-RL": {
-   "downloads": 513,
+   "downloads": 312,
    "likes": 0
   },
   "btzyd/Accordion-6B-A0.5B-SFT": {
-   "downloads": 507,
+   "downloads": 315,
    "likes": 0
   },
   "danish-foundation-models/DFM-Mimir": {
-   "downloads": 2852,
+   "downloads": 2844,
    "likes": 86
   },
   "danish-foundation-models/DFM-Mimir-GGUF": {
-   "downloads": 599,
+   "downloads": 597,
    "likes": 0
   },
   "danish-foundation-models/DFM-Mimir-v1.5": {
-   "downloads": 2337,
+   "downloads": 2322,
    "likes": 7
   },
   "danish-foundation-models/DFM-Mimir-v1.5-GGUF": {
-   "downloads": 1109,
+   "downloads": 1126,
    "likes": 3
   },
   "internlm/Intern-S2-Mobius": {
-   "downloads": 915,
+   "downloads": 903,
    "likes": 66
   },
   "internlm/Intern-S2-Mobius-FP8": {
-   "downloads": 216,
+   "downloads": 210,
    "likes": 9
   },
   "jacobfa1/attractor-140m": {
@@ -242,7 +242,7 @@
    "likes": 0
   },
   "jacobfa1/attractor-770m": {
-   "downloads": 27,
+   "downloads": 25,
    "likes": 2
   },
   "joelogan/depth-recurrent-convergence": {
@@ -250,51 +250,51 @@
    "likes": 0
   },
   "myboker/Concertina-2.27B": {
-   "downloads": 98,
+   "downloads": 115,
    "likes": 3
   },
   "nics-efc/TaH-plus-1.7B": {
-   "downloads": 121,
+   "downloads": 125,
    "likes": 2
   },
   "nics-efc/TaH2-1.7B-max2": {
-   "downloads": 381,
+   "downloads": 355,
    "likes": 1
   },
   "nics-efc/TaH2-1.7B-max4": {
-   "downloads": 41,
+   "downloads": 36,
    "likes": 0
   },
   "nics-efc/TaH2-1.7B-max8": {
-   "downloads": 109,
+   "downloads": 104,
    "likes": 0
   },
   "nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-BF16": {
-   "downloads": 13467,
+   "downloads": 12474,
    "likes": 283
   },
   "nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-GGUF": {
-   "downloads": 41513,
-   "likes": 109
+   "downloads": 40977,
+   "likes": 108
   },
   "nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-MXFP8": {
-   "downloads": 1763,
+   "downloads": 1661,
    "likes": 11
   },
   "nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-NVFP4": {
-   "downloads": 46460,
+   "downloads": 46359,
    "likes": 34
   },
   "osunlp/ARLoop-0.6B": {
-   "downloads": 2545,
+   "downloads": 2570,
    "likes": 5
   },
   "osunlp/ARLoop-1.2B": {
-   "downloads": 2836,
+   "downloads": 2870,
    "likes": 9
   },
   "osunlp/PreNormLoop-0.6B": {
-   "downloads": 1972,
+   "downloads": 1979,
    "likes": 2
   },
   "saitejautpala/looped_udlm": {
@@ -302,115 +302,115 @@
    "likes": 0
   },
   "sapientinc/HRM-Text-1B": {
-   "downloads": 3179,
+   "downloads": 3149,
    "likes": 838
   },
   "sensenova/SenseNova-Loop-9B": {
-   "downloads": 2696,
-   "likes": 688
+   "downloads": 3268,
+   "likes": 697
   },
   "sensenova/SenseNova-Loop-9B-AWQ": {
-   "downloads": 977,
+   "downloads": 1051,
    "likes": 23
   },
   "sensenova/SenseNova-Loop-9B-GGUF": {
-   "downloads": 105485,
-   "likes": 253
+   "downloads": 117621,
+   "likes": 258
   },
   "sensenova/SenseNova-Loop-9B-Preview": {
-   "downloads": 6250,
+   "downloads": 6343,
    "likes": 320
   },
   "smcleish/Recurrent-Llama-3.2-train-recurrence-16": {
-   "downloads": 79,
+   "downloads": 81,
    "likes": 0
   },
   "smcleish/Recurrent-Llama-3.2-train-recurrence-32": {
-   "downloads": 2080,
+   "downloads": 2532,
    "likes": 1
   },
   "smcleish/Recurrent-Llama-3.2-train-recurrence-4": {
-   "downloads": 596,
+   "downloads": 607,
    "likes": 0
   },
   "smcleish/Recurrent-Llama-3.2-train-recurrence-8": {
-   "downloads": 156,
+   "downloads": 158,
    "likes": 0
   },
   "smcleish/Recurrent-Llama-3.2-untrained": {
-   "downloads": 41,
+   "downloads": 43,
    "likes": 0
   },
   "smcleish/Recurrent-OLMo-2-0425-train-recurrence-16": {
-   "downloads": 116,
+   "downloads": 117,
    "likes": 0
   },
   "smcleish/Recurrent-OLMo-2-0425-train-recurrence-32": {
-   "downloads": 336,
+   "downloads": 361,
    "likes": 3
   },
   "smcleish/Recurrent-OLMo-2-0425-train-recurrence-4": {
-   "downloads": 80,
+   "downloads": 84,
    "likes": 1
   },
   "smcleish/Recurrent-OLMo-2-0425-train-recurrence-8": {
-   "downloads": 93,
+   "downloads": 95,
    "likes": 0
   },
   "smcleish/Recurrent-OLMo-2-0425-untrained": {
-   "downloads": 33,
+   "downloads": 34,
    "likes": 0
   },
   "smcleish/Recurrent-TinyLlama-3T-train-recurrence-16": {
-   "downloads": 58,
+   "downloads": 62,
    "likes": 1
   },
   "smcleish/Recurrent-TinyLlama-3T-train-recurrence-32": {
-   "downloads": 352,
+   "downloads": 361,
    "likes": 2
   },
   "smcleish/Recurrent-TinyLlama-3T-train-recurrence-4": {
-   "downloads": 146,
+   "downloads": 147,
    "likes": 0
   },
   "smcleish/Recurrent-TinyLlama-3T-train-recurrence-4-single-phase": {
-   "downloads": 39,
+   "downloads": 40,
    "likes": 0
   },
   "smcleish/Recurrent-TinyLlama-3T-train-recurrence-4-two-phase": {
-   "downloads": 52,
+   "downloads": 57,
    "likes": 0
   },
   "smcleish/Recurrent-TinyLlama-3T-train-recurrence-8": {
-   "downloads": 136,
+   "downloads": 137,
    "likes": 0
   },
   "smcleish/Recurrent-TinyLlama-3T-untrained": {
-   "downloads": 61,
+   "downloads": 62,
    "likes": 0
   },
   "thinkingmachines/Inkling-2-Mini": {
-   "downloads": 69042,
-   "likes": 5795
+   "downloads": 96527,
+   "likes": 5884
   },
   "thinkingmachines/TML-d24-varloop-research": {
-   "downloads": 2564,
-   "likes": 110
+   "downloads": 3398,
+   "likes": 118
   },
   "tomg-group-umd/huginn-0125": {
-   "downloads": 22356,
+   "downloads": 23226,
    "likes": 321
   },
   "tomg-group-umd/huginn_swa_100_10_avg_0.9_merge": {
-   "downloads": 29,
+   "downloads": 31,
    "likes": 0
   },
   "tomg-group-umd/huginn_swa_75_7_ema_0.9_merge": {
-   "downloads": 40,
+   "downloads": 42,
    "likes": 1
   },
   "tomg-group-umd/step-00006144-recurrence_full_512_0": {
-   "downloads": 35,
+   "downloads": 36,
    "likes": 0
   },
   "tomg-group-umd/step-00010752-recurrence_full_512_0": {
@@ -418,27 +418,27 @@
    "likes": 0
   },
   "tomg-group-umd/step-00011904-recurrence_full_512_0": {
-   "downloads": 16,
+   "downloads": 17,
    "likes": 0
   },
   "tomg-group-umd/step-00017920-recurrence_full_512_0": {
-   "downloads": 19,
+   "downloads": 20,
    "likes": 0
   },
   "tomg-group-umd/step-00023808-recurrence_full_512_0": {
-   "downloads": 18,
+   "downloads": 19,
    "likes": 0
   },
   "tomg-group-umd/step-00029824-recurrence_full_512_0": {
-   "downloads": 18,
+   "downloads": 19,
    "likes": 0
   },
   "tomg-group-umd/step-00035840-recurrence_full_512_0": {
-   "downloads": 18,
+   "downloads": 19,
    "likes": 0
   },
   "tomg-group-umd/step-00041728-recurrence_full_512_0": {
-   "downloads": 29,
+   "downloads": 32,
    "likes": 0
   },
   "yhx12/LatentLoop": {
@@ -446,11 +446,11 @@
    "likes": 1
   },
   "zeng123/PonderLM-2-Pythia-1.4b": {
-   "downloads": 67,
+   "downloads": 63,
    "likes": 3
   },
   "zeng123/PonderLM-2-Pythia-410m": {
-   "downloads": 43,
+   "downloads": 41,
    "likes": 3
   },
   "zeng123/PonderingPythia-1.4B": {
@@ -458,15 +458,15 @@
    "likes": 1
   },
   "zeng123/PonderingPythia-2.8B": {
-   "downloads": 19,
+   "downloads": 16,
    "likes": 1
   },
   "zitian-gao/Loopie-20B-A2B-preview": {
-   "downloads": 965,
+   "downloads": 747,
    "likes": 5
   },
   "zitian-gao/Loopie-6B-A0.6B-preview": {
-   "downloads": 825,
+   "downloads": 602,
    "likes": 6
   }
  },
@@ -722,13 +722,13 @@
    "s2_citations": 52
   },
   "2103.03206": {
-   "citations": 1819,
+   "citations": 1820,
    "citations_source": "semanticscholar",
    "hf_upvotes": 2,
    "hn_points": 1,
    "influential": 149,
    "openalex_citations": 1585,
-   "s2_citations": 1819
+   "s2_citations": 1820
   },
   "2103.12803": {
    "citations": 194,
@@ -4441,7 +4441,7 @@
   "2610.00673": {
    "citations": 6,
    "citations_source": "semanticscholar",
-   "hf_upvotes": 1,
+   "hf_upvotes": 3,
    "hn_points": 0,
    "influential": 2,
    "openalex_citations": 6,
@@ -4488,7 +4488,7 @@
    "citations": 4,
    "citations_source": "semanticscholar",
    "hf_upvotes": 23,
-   "hn_points": 2,
+   "hn_points": 4,
    "influential": 0,
    "openalex_citations": 4,
    "s2_citations": 4
@@ -6115,7 +6115,7 @@
   "2611.25595": {
    "citations": 0,
    "citations_source": "semanticscholar",
-   "hf_upvotes": 1,
+   "hf_upvotes": 5,
    "hn_points": 0,
    "influential": 0,
    "institutions": [
@@ -6176,6 +6176,7 @@
    "citations_source": "semanticscholar",
    "hn_points": 0,
    "influential": 0,
+   "openalex_citations": 0,
    "s2_citations": 1
   },
   "2611.29171": {
@@ -6183,6 +6184,7 @@
    "citations_source": "semanticscholar",
    "hn_points": 0,
    "influential": 0,
+   "openalex_citations": 0,
    "s2_citations": 0
   },
   "2611.29704": {
@@ -6190,6 +6192,7 @@
    "citations_source": "semanticscholar",
    "hn_points": 0,
    "influential": 0,
+   "openalex_citations": 0,
    "s2_citations": 0
   },
   "2611.30205": {
@@ -6197,16 +6200,17 @@
    "citations_source": "semanticscholar",
    "hn_points": 0,
    "influential": 0,
+   "openalex_citations": 0,
    "s2_citations": 0
   },
   "sensenova-loop-9b": {
    "hn_points": 6
   },
   "tml-inkling-2-mini": {
-   "hn_points": 1482
+   "hn_points": 1485
   },
   "zai-glm-5-4": {
-   "hn_points": 1167
+   "hn_points": 1174
   }
  },
  "repos": {
@@ -6313,7 +6317,7 @@
   },
   "OpenLAIR/lev": {
    "pushed_at": "2026-10-19T02:09:26Z",
-   "stars": 27
+   "stars": 28
   },
   "OpenSenseNova/Looped-DiT": {
    "pushed_at": "2026-10-30T04:33:41Z",
@@ -6321,7 +6325,7 @@
   },
   "OpenSenseNova/SenseNova-Loop": {
    "pushed_at": "2026-11-18T10:03:54Z",
-   "stars": 308
+   "stars": 318
   },
   "Prefrontal-AI/CRAM": {
    "pushed_at": "2026-11-13T17:54:06Z",
@@ -6390,7 +6394,7 @@
   },
   "Xalp/LateComer": {
    "pushed_at": "2026-11-19T09:38:49Z",
-   "stars": 3
+   "stars": 4
   },
   "YC-Liang/DRT": {
    "pushed_at": "2023-05-16T00:27:10Z",
@@ -6422,7 +6426,7 @@
   },
   "amazon-science/ALoDLM": {
    "pushed_at": "2026-10-08T19:49:33Z",
-   "stars": 59
+   "stars": 60
   },
   "amirbalef/is_one_layer_enough": {
    "pushed_at": "2026-05-07T14:52:02Z",
@@ -6595,7 +6599,7 @@
   },
   "jonwill8/RLTT": {
    "pushed_at": "2026-05-26T20:06:12Z",
-   "stars": 17
+   "stars": 18
   },
   "joyjeet-singh/lazy-identity-deq": {
    "pushed_at": "2026-07-14T16:46:11Z",
@@ -6683,7 +6687,7 @@
   },
   "mscheong01/LoopVQ": {
    "pushed_at": "2026-11-11T05:42:13Z",
-   "stars": 3
+   "stars": 4
   },
   "myboker/concertina": {
    "pushed_at": "2026-11-16T07:52:24Z",
@@ -6711,7 +6715,7 @@
   },
   "pixeli99/InfiLoop": {
    "pushed_at": "2026-10-21T06:26:48Z",
-   "stars": 15
+   "stars": 16
   },
   "primecalibre-research/ltg-replication-receipts": {
    "pushed_at": "2026-08-18T05:53:33Z",
@@ -6719,7 +6723,7 @@
   },
   "princeton-vl/RAFT": {
    "pushed_at": "2025-08-24T23:34:28Z",
-   "stars": 4131
+   "stars": 4132
   },
   "qifanyu/RELAY": {
    "pushed_at": "2026-03-20T02:58:15Z",
@@ -6768,11 +6772,11 @@
   "sangin-lee/sr-vit": {},
   "sapientinc/HRM": {
    "pushed_at": "2026-03-31T23:08:31Z",
-   "stars": 12671
+   "stars": 12672
   },
   "sapientinc/HRM-Text": {
    "pushed_at": "2026-09-21T21:24:01Z",
-   "stars": 2354
+   "stars": 2357
   },
   "schneiderkamplab/HRM-Text": {
    "pushed_at": "2026-11-17T08:57:46Z",
@@ -6808,7 +6812,7 @@
   },
   "thu-nics/TaH": {
    "pushed_at": "2026-10-09T05:37:29Z",
-   "stars": 118
+   "stars": 119
   },
   "tianyi-lab/PoLar": {
    "pushed_at": "2026-09-28T20:09:18Z",
@@ -6816,7 +6820,7 @@
   },
   "ubc-vision/solv3r": {
    "pushed_at": "2026-11-24T21:06:52Z",
-   "stars": 339
+   "stars": 341
   },
   "uf-hobi-informatics-lab/Med-Flan": {
    "pushed_at": "2026-10-22T14:44:28Z",
@@ -6844,7 +6848,7 @@
   },
   "xrhan/AdaLoop": {
    "pushed_at": "2026-11-04T16:29:09Z",
-   "stars": 9
+   "stars": 11
   },
   "yancyou/Loopback": {
    "pushed_at": "2026-11-13T02:46:05Z",
@@ -6852,7 +6856,7 @@
   },
   "yifanzhang-pro/recurrent-looped-tranformer": {
    "pushed_at": "2026-11-24T20:25:30Z",
-   "stars": 1152
+   "stars": 1153
   },
   "yingfan-bot/lotus": {
    "pushed_at": "2026-07-20T20:04:38Z",

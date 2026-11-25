@@ -23,7 +23,7 @@
   "weight-tied layers",
   "latent recurrence"
  ],
- "generated": "2026-11-23",
+ "generated": "2026-11-25",
  "bins": [
   {
    "period": "2018Q1",
@@ -274,7 +274,7 @@
    "period": "2026Q4",
    "start": "2026-10-01",
    "end": "2026-12-31",
-   "count": 108,
+   "count": 122,
    "partial": true
   }
  ]

@@ -6,13 +6,13 @@
 
 Ranked by likes plus GitHub stars per day since release. Core = looped or recurrent-depth Transformer language models (field `focus` in papers.json); related papers are not ranked.
 
-- [Introducing Inkling 2 Mini](https://thinkingmachines.ai/news/inkling-2-mini/): 1,477 per day; released 2026-11-20; likes 7387, stars 0.
-- [GLM-5.4: Toward Generalized Coding with Our First Loop Transformer](https://z.ai/blog/glm-5.4): 584 per day; released 2026-11-23; likes 1167, stars 0.
-- [SenseNova-Loop-9B: Deeper Computation with Fewer Parameters](https://huggingface.co/sensenova/SenseNova-Loop-9B): 200 per day; released 2026-11-17; likes 1290, stars 308.
-- [Dory1.0-4B: A Looped Normalized-GPT](https://arxiv.org/abs/2611.03998): 19.7 per day; released 2026-11-02; likes 453, stars 0.
+- [Introducing Inkling 2 Mini](https://thinkingmachines.ai/news/inkling-2-mini/): 1,497 per day; released 2026-11-20; likes 7487, stars 0.
+- [GLM-5.4: Toward Generalized Coding with Our First Loop Transformer](https://z.ai/blog/glm-5.4): 587 per day; released 2026-11-23; likes 1174, stars 0.
+- [SenseNova-Loop-9B: Deeper Computation with Fewer Parameters](https://huggingface.co/sensenova/SenseNova-Loop-9B): 203 per day; released 2026-11-17; likes 1304, stars 318.
+- [Dory1.0-4B: A Looped Normalized-GPT](https://arxiv.org/abs/2611.03998): 19.7 per day; released 2026-11-02; likes 452, stars 0.
 - [Latent Feedback Is a Compute and Data Amplifier](https://arxiv.org/abs/2611.20404): 3.7 per day; released 2026-11-16; likes 7, stars 26.
 - [Loopback Transformer: Towards a Unified View of Residual Looped Transformers](https://arxiv.org/abs/2611.07226): 2.3 per day; released 2026-11-04; likes 29, stars 19.
-- [Late Entry in Looped Language Models](https://arxiv.org/abs/2611.24576): 1.7 per day; released 2026-11-18; likes 9, stars 3.
+- [Late Entry in Looped Language Models](https://arxiv.org/abs/2611.24576): 1.9 per day; released 2026-11-18; likes 9, stars 4.
 - [Library of Layers (LoL): Adaptively Ordering Transformer Layers at Runtime](https://arxiv.org/abs/2611.03526): 1.5 per day; released 2026-11-02; likes 12, stars 23.
 - [ARLoop: Fully-Open Pre-trained Looped Transformers with Attention Residuals](https://arxiv.org/abs/2611.05234): 0.9 per day; released 2026-11-03; likes 20, stars 0.
 - [Folding Language Models into Themselves](https://arxiv.org/abs/2611.18113): 0.8 per day; released 2026-11-13; likes 3, stars 7.
@@ -21,16 +21,16 @@ Ranked by likes plus GitHub stars per day since release. Core = looped or recurr
 
 Citations per year = total citations (the higher of Semantic Scholar and OpenAlex) divided by the years since the first public version, at least one. Stars and 30-day downloads are context only.
 
-- [Scaling up Test-Time Compute with Latent Reasoning: A Recurrent Depth Approach](https://arxiv.org/abs/2502.05171): 331 citations per year (594 since 2025-02-07); stars 1000, downloads (30 days) 22605.
-- [Scaling Latent Reasoning via Looped Language Models](https://arxiv.org/abs/2510.25741): 249 citations per year (267 since 2025-10-29); stars 0, downloads (30 days) 60775.
+- [Scaling up Test-Time Compute with Latent Reasoning: A Recurrent Depth Approach](https://arxiv.org/abs/2502.05171): 331 citations per year (594 since 2025-02-07); stars 1000, downloads (30 days) 23488.
+- [Scaling Latent Reasoning via Looped Language Models](https://arxiv.org/abs/2510.25741): 249 citations per year (267 since 2025-10-29); stars 0, downloads (30 days) 62684.
 - [Reasoning with Latent Thoughts: On the Power of Looped Transformers](https://arxiv.org/abs/2502.17416): 197 citations per year (345 since 2025-02-24); stars 0, downloads (30 days) 0.
 - [Mixture-of-Recursions: Learning Dynamic Recursive Depths for Adaptive Token-Level Computation](https://arxiv.org/abs/2507.10524): 155 citations per year (212 since 2025-07-14); stars 652, downloads (30 days) 0.
 - [Deep Equilibrium Models](https://arxiv.org/abs/1909.01377): 154 citations per year (1112 since 2019-09-03); stars 815, downloads (30 days) 0.
 - [Universal Transformers](https://arxiv.org/abs/1807.03819): 150 citations per year (1257 since 2018-07-10); stars 0, downloads (30 days) 0.
-- [LoopFormer: Elastic-Depth Looped Transformers for Latent Reasoning via Shortcut Modulation](https://arxiv.org/abs/2602.11451): 99 citations per year (99 since 2026-02-11); stars 66, downloads (30 days) 151.
+- [LoopFormer: Elastic-Depth Looped Transformers for Latent Reasoning via Shortcut Modulation](https://arxiv.org/abs/2602.11451): 99 citations per year (99 since 2026-02-11); stars 66, downloads (30 days) 135.
 - [Parcae: Scaling Laws For Stable Looped Language Models](https://arxiv.org/abs/2604.12946): 94 citations per year (94 since 2026-04-14); stars 195, downloads (30 days) 1861.
 - [Looped Transformers as Programmable Computers](https://arxiv.org/abs/2301.13196): 89 citations per year (339 since 2023-01-30); stars 0, downloads (30 days) 0.
-- [Teaching Pretrained Language Models to Think Deeper with Retrofitted Recurrence](https://arxiv.org/abs/2511.07384): 76 citations per year (79 since 2025-11-10); stars 73, downloads (30 days) 4454.
+- [Teaching Pretrained Language Models to Think Deeper with Retrofitted Recurrence](https://arxiv.org/abs/2511.07384): 76 citations per year (79 since 2025-11-10); stars 73, downloads (30 days) 4978.
 
 ## Deep cards
 

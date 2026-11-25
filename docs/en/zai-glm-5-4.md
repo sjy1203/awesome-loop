@@ -10,7 +10,7 @@ English · [简体中文](../zh/zai-glm-5-4.md) · [Back to the list](../../READ
 
 > Z.ai turns 28 layers of its pre-trained GLM-5 base into a two-pass loop through continued training at the 750B scale, with per-token gates, a shared-plus-sliding-window KV cache and reused sparse-attention indices.
 
-**Category**: Training and retrofitting · **Status**: draft (numbers not yet re-checked) · **Impact**: HN points 1,167
+**Category**: Training and retrofitting · **Status**: draft (numbers not yet re-checked) · **Impact**: HN points 1,174
 
 [paper](https://z.ai/blog/glm-5.4)
 
