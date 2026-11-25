@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="489.6" height="66" viewBox="0 0 489.6 66" role="img" aria-label="L0-6 (7 layers) -&gt; [L7-20 (14 layers)] x 3 or 7 -&gt; L21-27 (7 layers); injection depth-attention; KV per-pass">
+<title>L0-6 (7 layers) -&gt; [L7-20 (14 layers)] x 3 or 7 -&gt; L21-27 (7 layers); injection depth-attention; KV per-pass</title>
+<style>@media (prefers-color-scheme:dark){text{fill:#9198a1}text.p{fill:#4493f8}}</style>
+<g transform="translate(4,0)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="10">
+<rect x="0" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="12" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="24" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="36" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="48" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="60" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="72" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="93" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<rect x="105" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<rect x="117" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<rect x="129" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<rect x="141" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<rect x="153" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<rect x="165" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<rect x="177" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<rect x="189" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<rect x="201" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<rect x="213" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<rect x="225" y="30" width="9" height="18" rx="2" fill="#0969da"/>
+<path d="M234,27 C234,13 93,13 93,22" fill="none" stroke="#0969da" stroke-width="1.5"/>
+<path d="M89.5,21 L96.5,21 L93,28 Z" fill="#0969da"/>
+<rect x="246" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="258" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="270" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="282" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="294" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="306" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<rect x="318" y="30" width="9" height="18" rx="2" fill="#8c959f"/>
+<text x="40.5" y="61" text-anchor="middle" fill="#57606a">L0-6</text>
+<text x="163.5" y="61" text-anchor="middle" fill="#57606a">L7-20</text>
+<text x="163.5" y="11" text-anchor="middle" class="p" fill="#0969da">×3 or 7</text>
+<text x="286.5" y="61" text-anchor="middle" fill="#57606a">L21-27</text>
+<text x="341" y="37" text-anchor="start" fill="#57606a">inj · depth-attention</text>
+<text x="341" y="49" text-anchor="start" fill="#57606a">KV · per-pass</text>
+</g>
+</svg>

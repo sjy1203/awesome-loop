@@ -140,8 +140,9 @@ Every core paper with a stated loop placement and training depth, grouped by cel
 - 2018-12-05 · [Attending to Mathematical Language with Transformers](https://arxiv.org/abs/1812.02825)
 - 2018-07-10 · [Universal Transformers](https://arxiv.org/abs/1807.03819)
 
-## <a id="prelude-core-coda--fixed"></a>middle core (prelude-core-coda) × fixed (32)
+## <a id="prelude-core-coda--fixed"></a>middle core (prelude-core-coda) × fixed (33)
 
+- 2026-11-23 · [Unlocking the Power of Loops in Pretrained LLMs with Loop Residuals](https://arxiv.org/abs/2611.31094) · **[deep card](2611.31094.md)**
 - 2026-11-23 · [GLM-5.4: Toward Generalized Coding with Our First Loop Transformer](https://z.ai/blog/glm-5.4) · **[deep card](zai-glm-5-4.md)**
 - 2026-11-20 · [Introducing Inkling 2 Mini](https://thinkingmachines.ai/news/inkling-2-mini/) · **[deep card](tml-inkling-2-mini.md)**
 - 2026-11-17 · [SenseNova-Loop-9B: Deeper Computation with Fewer Parameters](https://huggingface.co/sensenova/SenseNova-Loop-9B)

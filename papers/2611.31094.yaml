@@ -1,0 +1,233 @@
+id: "2611.31094"
+tier: deep
+status: draft
+short: LoopRes
+title: Unlocking the Power of Loops in Pretrained LLMs with Loop Residuals
+date: "2026-11-23"
+venue: arXiv
+authors: [Xuanlei Zhao, Hailun Xu, Kai Wang, Yang Luo, Yingxuan Ren, Zirui Zhu, Yuxuan Lou, Kun Xu, Yan Wang, Kanchan Sarkar, Yang You]
+orgs: [National University of Singapore]
+links:
+  paper: https://arxiv.org/abs/2611.31094
+  code: https://github.com/NUS-HPC-AI-Lab/LoopRes
+  weights:
+    - https://huggingface.co/oahzxl/LoopRes-Qwen3-1.7B
+category: architecture/state
+focus: core
+facets:
+  placement: prelude-core-coda
+  sharing: full
+  depth_train: fixed
+  depth_test: fixed
+  injection: depth-attention
+  kv: per-pass
+  gradient: full-bptt
+  origin: retrofit
+  ffn: dense
+  attention: full
+loop:
+  segments:
+    - {role: prelude, layers: 7, label: L0-6}
+    - role: core
+      layers: 14
+      label: L7-20
+      passes: {train: "3 or 7", test: "3 or 7"}
+    - {role: coda, layers: 7, label: L21-27}
+  note:
+    en: >-
+      Shown is Qwen3-1.7B-Base (28 layers). Every backbone is split into a prelude, core and coda of one quarter, one
+      half and one quarter of its layers, and the core is cut into B=2 blocks. Running the core L=3 or L=7 times costs
+      2x or 4x the backbone's compute, measured in layers passed per token; each loop count is a separately trained
+      model. Inside the core, every sub-layer reads a softmax mix of the prelude output, the block outputs of the
+      previous W=1 loop, the finished blocks of the current loop and the current block's partial sum, instead of the
+      residual stream. The prelude and coda keep the standard residual stream.
+    zh: 图示为 Qwen3-1.7B-Base（28 层）。每个底座都按 1/4、1/2、1/4 的层数切成 prelude、core 和 coda，core 再切成 B=2 个 block。core 跑 L=3 或 L=7 遍，按每 token 经过的层数算，算力是底座的 2 倍或 4 倍；每个遍数都是单独训练的模型。core 内每个子层的输入不再是残差流，而是对 prelude 输出、上 W=1 遍的 block 输出、本遍已完成的 block 和当前 block 部分和做 softmax 加权。prelude 和 coda 保留标准残差流。
+budget:
+  baseline:
+    en: >-
+      SFT (the same backbone finetuned without looping) and 8 looped designs reimplemented on the same backbone and
+      finetuned on the same data with the same hyperparameters. Ouro, TaH2-fixed, CloseLoop, InfiLoop and BRT loop all
+      layers (L=2 and 4); Huginn, Hyperloop and WMRE loop the middle half, as LoopRes does (L=3 and 7).
+    zh: SFT（同一底座不循环直接微调），以及在同一底座上复现、用相同数据和超参微调的 8 种循环设计。Ouro、TaH2-fixed、CloseLoop、InfiLoop、BRT 循环全部层（L=2 和 4）；Huginn、Hyperloop、WMRE 和 LoopRes 一样循环中间一半的层（L=3 和 7）。
+  matched: [params, tokens]
+  not_matched: [flops, depth, kv]
+  baseline_tuned: shared
+  headline:
+    en: >-
+      On Qwen3-1.7B-Base at 2x compute, LoopRes raises the average of seven math and code scores from 43.2 (SFT) to
+      55.8, a 29.1% gain, against 49.2 (13.9%) for the strongest baseline, BRT. At 4x compute it reaches 57.8 (33.7%),
+      against 51.8 (19.8%) for Huginn.
+    zh: Qwen3-1.7B-Base 在 2 倍算力下，LoopRes 把七项数学和代码分数的平均从 43.2（SFT）提到 55.8，提升 29.1%，最强基线 BRT 为 49.2（13.9%）。4 倍算力下 LoopRes 为 57.8（33.7%），Huginn 为 51.8（19.8%）。
+  ref: Abstract; Table 1
+results:
+  - setting: Qwen3-1.7B-Base finetuned 12,000 steps on math and code SFT data, 2x compute (L=3 for core loops, L=2 for all-layer loops)
+    metric: "average of seven math and code scores (pass@1) | held-out loss"
+    values:
+      "SFT (1x compute)": "43.2 | 0.312"
+      "Huginn": "49.0 | 0.303"
+      "Ouro": "42.9 | 0.315"
+      "Hyperloop": "48.8 | 0.303"
+      "TaH2-fixed": "45.0 | 0.306"
+      "WMRE": "43.8 | 0.311"
+      "CloseLoop": "45.8 | 0.309"
+      "InfiLoop": "43.5 | 0.312"
+      "BRT": "49.2 | 0.302"
+      "LoopRes": "55.8 | 0.292"
+    ref: Table 1
+  - setting: Same, 4x compute (L=7 for core loops, L=4 for all-layer loops)
+    metric: "average of seven math and code scores (pass@1) | held-out loss"
+    values:
+      "SFT (1x compute)": "43.2 | 0.312"
+      "Huginn": "51.8 | 0.299"
+      "Ouro": "42.3 | 0.321"
+      "Hyperloop": "48.9 | 0.303"
+      "TaH2-fixed": "46.8 | 0.303"
+      "WMRE": "43.4 | 0.312"
+      "CloseLoop": "47.4 | 0.307"
+      "InfiLoop": "43.6 | 0.312"
+      "BRT": "47.9 | 0.305"
+      "LoopRes": "57.8 | 0.291"
+    ref: Table 1
+  - setting: Qwen3-1.7B-Base ablation, each row changes one component of LoopRes
+    metric: "seven-benchmark average at 2x compute | at 4x compute"
+    values:
+      "LoopRes (W=1, loop-aware and content keys)": "55.8 | 57.8"
+      "Huginn + AttnRes (no loop-aware key, no window)": "53.9 | 55.0"
+      "Window W=2": "55.2 | 57.5"
+      "Window W=3": "– | 57.7"
+      "Loop-aware key only": "54.9 | 57.5"
+      "Content key only": "54.9 | 55.8"
+    ref: Table 5
+    note:
+      en: The content-only variant is naive AttnRes with the W=1 window added (Section 3.4).
+      zh: 只用 content key 的变体就是直接用 AttnRes 再加上 W=1 窗口（Section 3.4）。
+  - setting: Qwen3-1.7B-Base, LoopRes trained separately at each loop depth; compute relative to SFT in parentheses
+    metric: average of seven math and code scores
+    values:
+      "SFT": "43.2"
+      "L=2 (1.5x)": "52.1"
+      "L=3 (2x)": "55.8"
+      "L=5 (3x)": "56.8"
+      "L=7 (4x)": "57.8"
+      "L=9 (5x)": "56.7"
+      "L=11 (6x)": "56.8"
+    ref: Table 10
+  - setting: Qwen3-1.7B-Base, 2x compute; core loops the middle of a prelude-core-coda split, all loops the whole model
+    metric: average of seven math and code scores
+    values:
+      "Huginn, core, L=3": "49.0"
+      "Huginn + AttnRes, all layers, L=2": "50.9"
+      "Huginn + AttnRes, core, L=3": "53.9"
+    ref: Appendix C.1; Table 12
+  - setting: Qwen3-1.7B-Base; SFT at 2x data trains 24,000 steps at 1x compute, LoopRes rows are the Table 1 runs on 1x data
+    metric: "average of seven math and code scores | change vs SFT at 1x data"
+    values:
+      "SFT, 1x data": "43.2"
+      "SFT, 2x data": "49.5 | +6.3"
+      "LoopRes, 2x compute": "55.8 | +12.6"
+      "LoopRes, 4x compute": "57.8 | +14.6"
+    ref: Appendix C.2; Table 13
+  - setting: Larger backbones at 2x compute, scored on AIME25, AIME26, OlympiadBench, IMO-AnswerBench and LiveCodeBench v6
+    metric: "five-benchmark average | change vs SFT"
+    values:
+      "Qwen3-4B-Base, SFT": "36.6"
+      "Qwen3-4B-Base, LoopRes": "45.8 | +9.2"
+      "Qwen3-8B-Base, SFT": "42.9"
+      "Qwen3-8B-Base, LoopRes": "51.5 | +8.6"
+      "Qwen3-30B-A3B-Base, SFT": "55.1"
+      "Qwen3-30B-A3B-Base, LoopRes": "60.6 | +5.5"
+    ref: Table 3
+  - setting: Qwen3-1.7B-Base training at 16K sequence length
+    metric: "training step time (ms) | peak activation memory (GiB)"
+    values:
+      "Plain residual, same layers looped": "1886.3 | 8.56"
+      "LoopRes": "1976.6 (+4.8%) | 8.62 (+0.7%)"
+      "LoopRes without loop-aware key": "1968.9 (+4.4%) | 8.62 (+0.7%)"
+      "LoopRes without fused kernel": "2922.3 (+54.9%) | 12.63 (+47.5%)"
+    ref: Table 2
+findings:
+  - en: >-
+      With plain AttnRes in the looped core, the weight on the path through every loop falls from 33.7% with three
+      loops to 0.05% with seven, and the most likely paths never reach the later loops.
+    zh: 在循环 core 里直接用 AttnRes 时，经过每一遍的路径权重从 3 遍时的 33.7% 降到 7 遍时的 0.05%，概率最大的路径都到不了后面几遍。
+    ref: Section 2.3; Figure 2e
+  - en: >-
+      In the learned weights, the first core block mainly updates its own output from the previous loop, and the second
+      block relies most on the first block of the current loop.
+    zh: 学到的权重里，core 的第一个 block 主要在上一遍自己输出的基础上更新，第二个 block 主要依赖本遍的第一个 block。
+    ref: Section 3.5; Figure 6a,b
+  - en: Shapley values attribute most of the source selection to the loop-aware key at both compute budgets, with a smaller share for the content key.
+    zh: 按 Shapley 值，两种算力下 source 的选择主要由 loop-aware key 决定，content key 占的份额较小。
+    ref: Section 3.5; Figure 6c
+  - en: >-
+      The content key steers simple tokens such as "But" and "Wait" toward shallower outputs, and digits and math
+      symbols toward deeper ones.
+    zh: content key 让 “But”“Wait” 这类简单 token 偏向较浅的输出，让数字和数学符号偏向较深的输出。
+    ref: Section 3.5; Figure 6d
+  - en: >-
+      Under AttnRes the content score is almost a fixed preference over sources and barely varies with the token;
+      under LoopRes it varies far more with the token, even as loops deepen.
+    zh: AttnRes 的 content 分数几乎是对各 source 的固定偏好，很少随 token 变化；LoopRes 的 content 分数随 token 变化大得多，遍数加深后也是如此。
+    ref: Section 3.5; Figure 7c,d
+  - en: Scores rise with loop depth and saturate beyond L=5; the authors pick L=3 as the best trade-off between score and compute.
+    zh: 分数随循环遍数上升，L=5 以后趋于饱和；作者认为 L=3 是分数和算力的最佳折中。
+    ref: Section 3.3; Figure 5; Table 10
+  - en: On the five harder benchmarks, LoopRes on Qwen3-4B-Base (45.8) scores above SFT on Qwen3-8B-Base (42.9).
+    zh: 在五项较难的评测上，Qwen3-4B-Base 加 LoopRes（45.8）高于 Qwen3-8B-Base 的 SFT（42.9）。
+    ref: Section 3.3; Table 3
+tldr:
+  en: Finetune a pretrained LLM into a prelude-core-coda loop whose core layers attend over the block outputs of the previous loop, with a trained loop-aware key on each source.
+  zh: 把预训练 LLM 微调成 prelude-core-coda 循环模型，core 内各层对上一遍的 block 输出做注意力式残差，每个 source 带一个可训练的 loop-aware key。
+quickread:
+  problem:
+    en: >-
+      Finetuning pretrained LLMs into loops brings only marginal gains over SFT, which the authors attribute to existing
+      designs compressing the outputs of earlier loops into a narrow pathway. Attention Residuals (AttnRes) let layers
+      read earlier outputs directly, but in a loop the sources are iterates of the same layers that look alike, the
+      AttnRes weights settle early in finetuning, and the growing source set lets layers skip intermediate loops.
+    zh: 把预训练 LLM 微调成循环模型，相对 SFT 只有很小的提升；作者认为原因是现有设计把前几遍的输出压进一条很窄的通路。Attention Residuals（AttnRes）能让各层直接读取前面的输出，但在循环里 source 是同一组层的迭代结果，彼此相似；AttnRes 的权重在微调早期就定型；source 随遍数增多，层可以跳过中间几遍。
+  method:
+    en:
+      - Split the backbone into a prelude, core and coda of one quarter, one half and one quarter of its layers, cut the core into B=2 blocks, and run the core L=3 (2x compute) or L=7 (4x compute) times.
+      - Inside the core, apply Block AttnRes. Each sub-layer reads a softmax-weighted sum of the prelude output, earlier block outputs and the current block's partial sum, with its own zero-initialized query in each loop.
+      - Give each source a trainable loop-aware key, one vector per block per loop initialized from N(0, I), scored by a second query and added to the score of the RMSNorm content key.
+      - Keep only the block outputs of the latest W=1 loops as sources, so each input has at most (W+1)B+1 sources, and fuse the read into one Triton kernel.
+    zh:
+      - 把底座按 1/4、1/2、1/4 的层数切成 prelude、core 和 coda，core 切成 B=2 个 block，循环 L=3（2 倍算力）或 L=7（4 倍算力）遍。
+      - core 内用 Block AttnRes：每个子层的输入是 prelude 输出、之前各 block 输出和当前 block 部分和的 softmax 加权，每一遍用自己的零初始化 query。
+      - 给每个 source 一个可训练的 loop-aware key（每遍每个 block 一个向量，按 N(0, I) 初始化），由第二个 query 打分，加到 RMSNorm content key 的分数上。
+      - source 只保留最近 W=1 遍的 block 输出，每个输入最多 (W+1)B+1 个 source；读取融合成一个 Triton kernel。
+  caveats:
+    en:
+      - Finetuning only. The 1.7B runs use 572K math and code conversations (3.1B tokens) for 12,000 steps on 16,384-token sequences, evaluation covers math and code benchmarks only, and the authors say broader tasks and RL remain untested.
+      - Compute is not matched against SFT; LoopRes passes 2x or 4x the backbone's layers per token, and the looped baselines are compared at the same 2x and 4x. LoopRes adds per-loop query and key vectors, and the paper prints no parameter counts.
+      - The paper reports no KV cache sizes; the official code caches keys and values for every (layer, loop step) pass.
+      - No run applies AttnRes or LoopRes without looping. The closest control for the residual change is Huginn with and without AttnRes on the same looped core (Tables 1 and 5).
+      - All models share one hyperparameter set (learning rate 3e-5, picked from a five-value sweep, Appendix A.4); the baselines are not tuned separately.
+      - Baselines are reimplemented as finetunes of the same backbone with changes, such as Ouro without its exit gate, Huginn with a fixed loop count and Parcae's diagonal injection, InfiLoop with a single running average and BRT with seven blocks of four layers; six of the originals pretrain from scratch (Appendix A.2).
+      - Every token runs all L loops in training and at inference.
+    zh:
+      - 只做了微调。1.7B 实验用 572K 条数学和代码对话（3.1B token），在 16,384 token 的序列上训练 12,000 步；评测只有数学和代码；作者表示更广的任务和 RL 还没测。
+      - 和 SFT 没有对齐算力：LoopRes 每 token 经过的层数是底座的 2 倍或 4 倍，循环基线在同样的 2 倍和 4 倍下比较。LoopRes 增加了每遍的 query 和 key 向量，论文没给参数量。
+      - 论文没有报告 KV cache 大小；官方代码对每个（层, 循环步）都单独缓存 KV。
+      - 没有不循环时加 AttnRes 或 LoopRes 的实验。残差改动最接近的对照，是同一个循环 core 上 Huginn 加不加 AttnRes（Table 1 和 Table 5）。
+      - 所有模型共用一套超参（学习率 3e-5，从五个值里扫出，Appendix A.4），基线没有单独调。
+      - 基线都在同一底座上以微调方式复现，并有改动，例如 Ouro 去掉 exit gate，Huginn 固定遍数并用 Parcae 的对角注入，InfiLoop 只保留一个滑动平均，BRT 用 7 个 4 层的 block；其中 6 个的原版是从头预训练（Appendix A.2）。
+      - 训练和推理时每个 token 都跑满 L 遍。
+  hooks:
+    en:
+      - Can combining LoopRes with reinforcement learning cut the rollout budget, given its lower cost of matching SFT on long outputs?
+      - Can the model decide how many loops each token or sequence needs?
+      - The loop-depth scaling curve has not saturated on larger backbones; how does looping behave at greater scale?
+      - The learned loop dependencies follow clear patterns; could a simpler, fixed connection scheme capture most of the benefit without learned attention weights?
+    zh:
+      - LoopRes 在长输出上追平 SFT 所需的算力更低，和 RL 结合时能否减少 rollout 预算？
+      - 能否让模型自己决定每个 token 或每条序列需要几遍？
+      - 更大底座上循环深度的 scaling 曲线还没饱和，更大规模下循环表现如何？
+      - 学到的跨遍依赖有清晰的规律，更简单的固定连接方式能否不用学习的注意力权重就拿到大部分收益？
+reproducibility:
+  code: available
+  weights: partial
+  configs: partial
+  data: available
+added: "2026-11-25"

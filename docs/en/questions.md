@@ -21,9 +21,9 @@ Models trained with a sampled or variable number of passes stay flat or improve 
 
 ## <a id="loop-placement"></a>Where in the stack should the loop sit?
 
-**consistent** · updated 2026-11-23
+**consistent** · updated 2026-11-25
 
-Every comparison favors looping lower or middle layers over the whole stack or the top layers, and in layouts with a shared global KV the loop should include the layers that produce it. The comparisons come from models of 1.3B parameters or less, or from runs whose sizes are not given.
+Every comparison favors looping lower or middle layers over the whole stack or the top layers, and in layouts with a shared global KV the loop should include the layers that produce it. The comparisons come from models of 1.7B parameters or less (the 1.7B one finetuned from a pretrained model), or from runs whose sizes are not given.
 
 | Paper | Stance | Setting | Finding | Ref |
 |---|---|---|---|---|
@@ -32,6 +32,7 @@ Every comparison favors looping lower or middle layers over the whole stack or t
 | [Looped CED](2611.13378.md) | supports | 150M CED, 6.0B and 29.6B tokens | Looping encoder layers L2-5, which contain the global KV source, reaches 0.8468 BPB against 0.8648 for looping decoder layers L7-10 (no loop 0.8716); after 29.6B tokens the decoder loop captures only 38% of the encoder loop's improvement. | Table 1; Table 2 |
 | [YOCO-U](2604.01220.md) | supports | 1.3B dense, 20B tokens | Looping the self-decoder averages 48.25 against 47.34 for looping the cross-decoder. At about 2x FLOPs, looping the whole 20-layer Transformer twice averages 47.8 against 48.3 for RINS and YOCO-U. | Table 5; Table 3 |
 | [MoR](2507.10524.md) | partly | Fixed-depth recursive models; 730M base with unique parameters fixed at 252M (Nr=3), and 135M base (Nr=2) | Keeping the first and last layers unshared (Middle-Cycle, 1+8+1) beats cycling the whole stack (Cycle, 10 layers) at 252M unique parameters, NLL 2.7552 vs 2.7573 and accuracy 42.32 vs 41.90; at the 135M base with Nr=2, Cycle is slightly ahead (3.0071 vs 3.0330). | Appendix F; Tables 10-11 |
+| [LoopRes](2611.31094.md) | supports | Qwen3-1.7B-Base finetuned on 3.1B tokens of math and code SFT data, 2x compute | For Huginn + AttnRes, looping the middle 14 of 28 layers three times averages 53.9 on seven math and code benchmarks, against 50.9 for looping all layers twice at the same 2x compute. | Appendix C.1; Table 12 |
 
 ## <a id="more-passes-fixed-compute"></a>With training compute held fixed, do more passes help?
 

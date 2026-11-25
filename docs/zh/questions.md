@@ -21,9 +21,9 @@
 
 ## <a id="loop-placement"></a>循环应该放在网络的哪一段？
 
-**一致** · 更新于 2026-11-23
+**一致** · 更新于 2026-11-25
 
-所有对比都支持循环中下部或中间的层，而不是整栈或顶部的层；在共享全局 KV 的布局里，循环应包含产出这份 KV 的层。这些对比来自 1.3B 及以下的模型，或没有给出规模的实验。
+所有对比都支持循环中下部或中间的层，而不是整栈或顶部的层；在共享全局 KV 的布局里，循环应包含产出这份 KV 的层。这些对比来自 1.7B 及以下的模型（1.7B 那个是从预训练模型微调而来），或没有给出规模的实验。
 
 | 论文 | 立场 | 设置 | 发现 | 出处 |
 |---|---|---|---|---|
@@ -32,6 +32,7 @@
 | [Looped CED](2611.13378.md) | 支持 | 150M CED, 6.0B and 29.6B tokens | 循环含全局 KV 源的 encoder 层 L2-5，BPB 为 0.8468；循环 decoder 层 L7-10 为 0.8648（不循环 0.8716）。训练到 29.6B token 后，decoder 循环的收益仍只有 encoder 循环的 38%。 | Table 1; Table 2 |
 | [YOCO-U](2604.01220.md) | 支持 | 1.3B dense, 20B tokens | 循环 self-decoder 平均 48.25，循环 cross-decoder 为 47.34。约 2 倍 FLOPs 下，整个 20 层 Transformer 循环两遍平均 47.8，RINS 和 YOCO-U 都是 48.3。 | Table 5; Table 3 |
 | [MoR](2507.10524.md) | 部分支持 | Fixed-depth recursive models; 730M base with unique parameters fixed at 252M (Nr=3), and 135M base (Nr=2) | 252M 唯一参数下，首尾两层不共享（Middle-Cycle，1+8+1）好于整栈循环（Cycle，10 层），NLL 2.7552 对 2.7573，准确率 42.32 对 41.90；135M 基座、Nr=2 时 Cycle 略好（3.0071 对 3.0330）。 | Appendix F; Tables 10-11 |
+| [LoopRes](2611.31094.md) | 支持 | Qwen3-1.7B-Base finetuned on 3.1B tokens of math and code SFT data, 2x compute | 同为 2 倍算力，Huginn + AttnRes 循环 28 层中间的 14 层 3 遍，七项数学和代码评测平均 53.9；整栈循环 2 遍为 50.9。 | Appendix C.1; Table 12 |
 
 ## <a id="more-passes-fixed-compute"></a>训练算力固定时，遍数越多越好吗？
 

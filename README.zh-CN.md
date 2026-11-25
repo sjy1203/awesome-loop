@@ -6,7 +6,7 @@
 
 <p align="center">循环（looped / recurrent-depth）语言模型的论文、开源模型，以及结论背后的证据。每篇论文按同一套字段记录，方便跨论文比较。</p>
 
-<p align="center"><img alt="论文: 330" src="https://img.shields.io/badge/%E8%AE%BA%E6%96%87-330-4f7cff?style=flat-square&labelColor=0b1020"> <img alt="精读卡: 12" src="https://img.shields.io/badge/%E7%B2%BE%E8%AF%BB%E5%8D%A1-12-4f7cff?style=flat-square&labelColor=0b1020"> <img alt="开源模型: 40" src="https://img.shields.io/badge/%E5%BC%80%E6%BA%90%E6%A8%A1%E5%9E%8B-40-4f7cff?style=flat-square&labelColor=0b1020"> <img alt="更新于: 2026-11-25" src="https://img.shields.io/badge/%E6%9B%B4%E6%96%B0%E4%BA%8E-2026--11--25-4f7cff?style=flat-square&labelColor=0b1020"> <a href="LICENSE"><img alt="License: CC BY 4.0" src="https://img.shields.io/badge/license-CC%20BY%204.0-8b5cf6?style=flat-square&labelColor=0b1020"></a> <a href="https://github.com/sjy1203/awesome-loop/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/sjy1203/awesome-loop/actions/workflows/ci.yml/badge.svg"></a></p>
+<p align="center"><img alt="论文: 331" src="https://img.shields.io/badge/%E8%AE%BA%E6%96%87-331-4f7cff?style=flat-square&labelColor=0b1020"> <img alt="精读卡: 13" src="https://img.shields.io/badge/%E7%B2%BE%E8%AF%BB%E5%8D%A1-13-4f7cff?style=flat-square&labelColor=0b1020"> <img alt="开源模型: 40" src="https://img.shields.io/badge/%E5%BC%80%E6%BA%90%E6%A8%A1%E5%9E%8B-40-4f7cff?style=flat-square&labelColor=0b1020"> <img alt="更新于: 2026-11-25" src="https://img.shields.io/badge/%E6%9B%B4%E6%96%B0%E4%BA%8E-2026--11--25-4f7cff?style=flat-square&labelColor=0b1020"> <a href="LICENSE"><img alt="License: CC BY 4.0" src="https://img.shields.io/badge/license-CC%20BY%204.0-8b5cf6?style=flat-square&labelColor=0b1020"></a> <a href="https://github.com/sjy1203/awesome-loop/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/sjy1203/awesome-loop/actions/workflows/ci.yml/badge.svg"></a></p>
 
 <p align="center"><b>简体中文</b> · <a href="README.md">English</a></p>
 
@@ -73,6 +73,12 @@
 | **[Looped CED](docs/zh/2611.13378.md)**<br><sub>2026-11-09 · University of California, San Diego, Tsinghua University +1</sub> | <img src="assets/glyphs/2611.13378.svg" alt="L0-1 (2 layers) -&gt; [L2-5 (4 layers)] x max(1, Poisson(8)) -&gt; L6-11 (6 layers); injection gated; KV last-pass"> | 循环产出全局 KV 的 CED encoder 层，随机遍数训练，推理只存最后一遍的 KV。 | **N** **D** **KV** ~~F~~ ~~L~~ | [论文](https://arxiv.org/abs/2611.13378) | 引用 0 |
 | **[YOCO-U](docs/zh/2604.01220.md)**<br><sub>2026-04-01 · Microsoft Research, Tsinghua University</sub> | <img src="assets/glyphs/2604.01220.svg" alt="[Universal Self-Decoder, SWA-512 (10 layers)] x 3 -&gt; Cross-Decoder, shared global KV (10 layers); injection none; KV single-global"> | 只循环 YOCO 的 self-decoder（这些层用 SWA），加深只多花计算，cross-decoder 用的全局 KV 仍只算一次。 | **N** **A** **F** ~~D~~ ~~L~~ ~~KV~~ | [论文](https://arxiv.org/abs/2604.01220) | 引用 4 · HF 点赞 18 |
 | **[Huginn](docs/zh/2502.05171.md)**<br><sub>2025-02-07 · ELLIS Institute Tübingen, Max-Planck Institute for Intelligent Systems +3</sub> | <img src="assets/glyphs/2502.05171.svg" alt="P (2 layers) -&gt; [R (4 layers)] x log-normal Poisson, mean 32 -&gt; C (2 layers); injection concat; KV per-pass"> | 用随机采样的核心块迭代次数预训练 3.5B 的 prelude-core-coda Transformer，测试时多迭代核心块即可增加算力。 | **N** **D** ~~F~~ ~~L~~ | [论文](https://arxiv.org/abs/2502.05171) · [代码](https://github.com/seal-rg/recurrent-pretraining) · [权重](https://huggingface.co/tomg-group-umd/huginn-0125) | 引用 594 · star 1,000 · HF 点赞 162 · HN 得分 150 |
+
+### 结构：遍间状态与残差
+
+| 论文 | 结构 | 一句话 | 对齐项 | 链接 | 影响力 |
+|---|---|---|---|---|---|
+| **[LoopRes](docs/zh/2611.31094.md)**<br><sub>2026-11-23 · National University of Singapore</sub> | <img src="assets/glyphs/2611.31094.svg" alt="L0-6 (7 layers) -&gt; [L7-20 (14 layers)] x 3 or 7 -&gt; L21-27 (7 layers); injection depth-attention; KV per-pass"> | 把预训练 LLM 微调成 prelude-core-coda 循环模型，core 内各层对上一遍的 block 输出做注意力式残差，每个 source 带一个可训练的 loop-aware key。 | **N** **D** ~~F~~ ~~L~~ ~~KV~~ | [论文](https://arxiv.org/abs/2611.31094) · [代码](https://github.com/NUS-HPC-AI-Lab/LoopRes) · [权重](https://huggingface.co/oahzxl/LoopRes-Qwen3-1.7B) | - |
 
 ### 深度控制
 
@@ -209,10 +215,11 @@
 
 </details>
 
-<details><summary><b>结构：遍间状态与残差 (44)</b></summary>
+<details><summary><b>结构：遍间状态与残差 (45)</b></summary>
 
 | 日期 | 论文 | 一句话 | 链接 | 影响力 |
 |---|---|---|---|---|
+| 2026-11-23 | **LoopRes**：[Unlocking the Power of Loops in Pretrained LLMs with Loop Residuals](https://arxiv.org/abs/2611.31094) · **[精读卡](docs/zh/2611.31094.md)**<br><sub>Xuanlei Zhao 等</sub> | 把预训练 LLM 微调成 prelude-core-coda 循环模型，core 内各层对上一遍的 block 输出做注意力式残差，每个 source 带一个可训练的 loop-aware key。 | [论文](https://arxiv.org/abs/2611.31094) · [代码](https://github.com/NUS-HPC-AI-Lab/LoopRes) · [权重](https://huggingface.co/oahzxl/LoopRes-Qwen3-1.7B) | - |
 | 2026-11-17 | [SenseNova-Loop-9B: Deeper Computation with Fewer Parameters](https://huggingface.co/sensenova/SenseNova-Loop-9B)<br><sub>SenseNova · Hugging Face model card</sub> | SenseNova-Loop-9B 的模型卡：约 9B 参数的多模态模型（输入文本和图像，输出文本），第 4-27 层共享权重跑两遍，循环块内用双流 mHC 混合残差，32 层存储权重每次前向执行 56 次层计算；在训练与推理遍数一致的循环 scaling 实验中，3 或 4 遍效果最好。 | [论文](https://huggingface.co/sensenova/SenseNova-Loop-9B) · [代码](https://github.com/OpenSenseNova/SenseNova-Loop) · [权重](https://huggingface.co/sensenova/SenseNova-Loop-9B) | star 318 · HN 得分 6 |
 | 2026-11-17 | [InfuseLoop: Cross-Trajectory Latent Injection for Scalable Parallel Looped Transformers](https://arxiv.org/abs/2611.22426)<br><sub>Zhaofeng Sun 等</sub> | 为并行循环 Transformer（PLT）加入跨轨迹隐状态注入，让每个循环通过注意力残差汇聚后续轨迹中因果可用的隐状态；该方法消除了训练损失尖峰，并改善了最多八个循环时验证损失的 scaling。 | [论文](https://arxiv.org/abs/2611.22426) | 引用 0 |
 | 2026-11-12 | [Rectified Looped Transformer](https://arxiv.org/abs/2611.16265)<br><sub>Musheng Li 等</sub> | 把下一遍循环的输入改为当前状态与本遍预测之间的线性插值；在相同深度下，困惑度低于标准循环 Transformer，隐状态范数更稳定，且不增加参数。 | [论文](https://arxiv.org/abs/2611.16265) | 引用 0 |
@@ -508,7 +515,7 @@
 |  | 固定 | 随机采样 | 按课程递增 | 学习或自适应 |
 |---|---|---|---|---|
 | 整栈循环 | [77 篇](docs/zh/design-space.md#whole-stack--fixed) | [7 篇](docs/zh/design-space.md#whole-stack--sampled) | [6 篇](docs/zh/design-space.md#whole-stack--curriculum) | **[Ouro (LoopLM)](docs/zh/2510.25741.md)**, [+31](docs/zh/design-space.md#whole-stack--adaptive) |
-| 中段循环（prelude-core-coda） | **[SMELT](docs/zh/2609.01343.md)**, **[Inkling 2 Mini](docs/zh/tml-inkling-2-mini.md)**, **[GLM-5.4](docs/zh/zai-glm-5-4.md)**, [+29](docs/zh/design-space.md#prelude-core-coda--fixed) | **[Huginn](docs/zh/2502.05171.md)**, **[Parcae](docs/zh/2604.12946.md)**, [+20](docs/zh/design-space.md#prelude-core-coda--sampled) | **[Retrofitted Recurrence](docs/zh/2511.07384.md)**, [+4](docs/zh/design-space.md#prelude-core-coda--curriculum) | **[MoR](docs/zh/2507.10524.md)**, [+7](docs/zh/design-space.md#prelude-core-coda--adaptive) |
+| 中段循环（prelude-core-coda） | **[SMELT](docs/zh/2609.01343.md)**, **[Inkling 2 Mini](docs/zh/tml-inkling-2-mini.md)**, **[LoopRes](docs/zh/2611.31094.md)**, **[GLM-5.4](docs/zh/zai-glm-5-4.md)**, [+29](docs/zh/design-space.md#prelude-core-coda--fixed) | **[Huginn](docs/zh/2502.05171.md)**, **[Parcae](docs/zh/2604.12946.md)**, [+20](docs/zh/design-space.md#prelude-core-coda--sampled) | **[Retrofitted Recurrence](docs/zh/2511.07384.md)**, [+4](docs/zh/design-space.md#prelude-core-coda--curriculum) | **[MoR](docs/zh/2507.10524.md)**, [+7](docs/zh/design-space.md#prelude-core-coda--adaptive) |
 | 产出共享 KV 的前半段（CED encoder / YOCO self-decoder） | **[YOCO-U](docs/zh/2604.01220.md)** | **[Looped CED](docs/zh/2611.13378.md)** |  |  |
 | 读共享 KV 的后半段（CED decoder / YOCO cross-decoder） | [1 篇](docs/zh/design-space.md#decoder--fixed) | [1 篇](docs/zh/design-space.md#decoder--sampled) |  |  |
 | 局部（前段、后段或子模块） | [12 篇](docs/zh/design-space.md#partial--fixed) |  | [2 篇](docs/zh/design-space.md#partial--curriculum) | [5 篇](docs/zh/design-space.md#partial--adaptive) |
@@ -521,7 +528,7 @@
 | 问题 | 状态 | 证据（+ 支持，- 反对，~ 部分支持） |
 |---|---|---|
 | [推理时跑得比训练时更多遍，质量还会继续提升吗？](docs/zh/questions.md#extra-passes-at-test-time) | 有分歧 | Huginn (~), Parcae (~), Looped CED (~), Retrofitted Recurrence (~), Inkling 2 Mini (~), Ouro (LoopLM) (-) |
-| [循环应该放在网络的哪一段？](docs/zh/questions.md#loop-placement) | 一致 | SMELT (+), Inkling 2 Mini (+), Looped CED (+), YOCO-U (+), MoR (~) |
+| [循环应该放在网络的哪一段？](docs/zh/questions.md#loop-placement) | 一致 | SMELT (+), Inkling 2 Mini (+), Looped CED (+), YOCO-U (+), MoR (~), LoopRes (+) |
 | [训练算力固定时，遍数越多越好吗？](docs/zh/questions.md#more-passes-fixed-compute) | 有分歧 | SMELT (-), MoR (-), Ouro (LoopLM) (-), Ouro (LoopLM) (+), Parcae (~), Retrofitted Recurrence (~) |
 | [后续各遍能否共用一份 KV，而不是每遍各存一份？](docs/zh/questions.md#shared-kv-across-passes) | 有分歧 | Looped CED (~), Ouro (LoopLM) (~), PLT (~), YOCO-U (+), MoR (~), Huginn (+) |
 
