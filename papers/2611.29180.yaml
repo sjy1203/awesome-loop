@@ -1,0 +1,19 @@
+id: "2611.29180"
+tier: radar
+title: "loopxDINO: Dense Visual Prediction via Iterative Latent Reasoning"
+date: "2026-11-22"
+venue: arXiv
+authors: [Xiangjing An, Zhibin Jiao, Aiting Chen]
+links:
+  paper: https://arxiv.org/abs/2611.29180
+  code: https://github.com/loopxDINO/loopxDINO
+category: applications
+focus: related
+facets:
+  placement: decoder
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: loopxDINO replaces a stacked segmentation decoder on a frozen DINOv2-Base with one weight-tied cross-attention block that refines learned queries over T iterations and feeds intermediate masks back as attention biases; on Pascal VOC 2012 it reaches 85.66% mIoU at T=2 with 14.85M trainable parameters, against 84.57% for a 54.06M six-layer decoder.
+  zh: loopxDINO 在冻结的 DINOv2-Base 上用一个权重共享的 cross-attention 块替代堆叠的分割解码器，该块对可学习的 query 迭代更新 T 次，并把中间 mask 预测作为注意力偏置送回下一次迭代；在 Pascal VOC 2012 上，T=2 时以 14.85M 可训练参数达到 85.66% mIoU，54.06M 参数的六层解码器为 84.57%。
+added: "2026-11-26"

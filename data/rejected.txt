@@ -134,3 +134,35 @@
 2611.16270  # shares an input reference across layers; each layer keeps its own weights
 2611.27087  # Canonical-state auxiliary supervision for standard Transformers; no layer reuse or loop.
 2611.28285  # Markovian-state design proposal; dual-loop Transformer is only proposed, never trained or evaluated.
+2611.13647  # tied vs untied parameters inside one MLP block; no reuse across depth
+2611.12436  # parameter sharing in probabilistic circuits over image patches; no layer reuse
+2611.08082  # post-training compression with a shared dictionary per layer group; each layer still runs once
+2611.21459  # weight factorization for MLLM compression; no layer reuse
+2611.06732  # ARC study of reasoning models; no loops
+2611.06827  # training data for ARC-AGI-2 solvers; no loops
+2611.25273  # graph-coloring solver; no layer reuse
+2611.31610  # compartmentalized LLM architecture for monitorability; no loops
+2611.21486  # finite-state transducer controllers; sequence recurrence only
+2611.32811  # generative model that predicts computer screens; no layer reuse
+2611.23440  # adaptive Fourier modes or width in neural operators; no loops
+2611.21983  # survey of dynamical-systems behavior in standard transformers; no layer reuse
+2611.32485  # mathematical physics (loop models in statistical mechanics)
+2611.27767  # mathematical physics (conformal loop ensemble)
+2611.26570  # mathematical physics (critical percolation)
+2611.26285  # mathematical physics (Temperley-Lieb algebras)
+2611.26202  # solar physics (coronal loops)
+2611.24213  # statistical mechanics (noisy-loop models)
+2611.30839  # auditor-in-the-loop recommender; agent loop
+2611.23388  # closed-loop quantization design with agents; agent loop
+2611.11710  # closed-loop agentic analog circuit design; agent loop
+2611.25257  # frontier model rewrites a VLM's weights; no layer reuse
+2611.22183  # compiler for divergent parallel programs (loop optimization); not neural layer reuse
+2611.19767  # training-free governance layer outside the model; no loops
+2611.17060  # physical AI environments, closed-loop evaluation; no layer reuse
+2611.32416  # carries hidden state across diffusion denoising steps, which are repeated full-model calls (as 2601.22954); no layer reuse within a pass
+2611.30623  # MoE and mixer ablations of tiny bilingual LMs; the looped block is one control arm (as 2609.15545)
+2611.16321  # early exit with a shared two-layer coda for decision models; no layer reused across depth
+2611.18655  # decision models whose recursive core is incidental; the authors' ablation shows it adds nothing (Section 8.3)
+2611.32143  # probing reader for CODI latent states and KV messages; no loop
+2611.06521  # ReaRec-style recommender that appends the last state as a new token and re-runs the encoder (as 2605.10207); no layer reuse within a pass
+2611.31015  # complete latent reasoning in standard transformers; no layer reuse or looped model (as 2606.10184)

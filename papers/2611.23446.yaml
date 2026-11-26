@@ -1,0 +1,19 @@
+id: "2611.23446"
+tier: radar
+title: "Where Global Context and Weight Sharing Work in Compact Vision Backbones"
+date: "2026-11-17"
+venue: arXiv
+authors: [Michael Schroeder]
+links:
+  paper: https://arxiv.org/abs/2611.23446
+  weights: [https://huggingface.co/meatloafer/efficientnet-b0-stage-attention]
+category: applications
+focus: related
+facets:
+  placement: partial
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: "Besides adding gated attention adapters to EfficientNet-B0, the paper shares weights across repeated MBConv blocks with pass-specific BatchNorm; alternating two shared templates in Stage 6 ([B1, A, B, A]) removes 10.9% of the parameters and reaches 70.92% ImageNet-1k top-1 after one epoch of continued training, against 72.76% for the unshared control."
+  zh: "除了给 EfficientNet-B0 加入门控注意力适配器，本文还让重复的 MBConv 块共享权重、每遍保留各自的 BatchNorm；在 Stage 6 交替使用两个共享模板（[B1, A, B, A]）可减少 10.9% 的参数，再训练一个 epoch 后 ImageNet-1k top-1 为 70.92%，不共享的对照为 72.76%。"
+added: "2026-11-26"

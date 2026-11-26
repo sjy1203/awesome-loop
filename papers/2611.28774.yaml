@@ -1,0 +1,18 @@
+id: "2611.28774"
+tier: radar
+title: "R2WM: Recursive Reasoning Wireless Model for Long-Horizon mmWave Beam Prediction"
+date: "2026-11-21"
+venue: IEEE Transactions on Vehicular Technology
+authors: [Yunxiao Tian, Li Qiao, Ziwei Wan, Andrey Ivanov, Zhen Gao]
+links:
+  paper: https://arxiv.org/abs/2611.28774
+category: applications
+focus: related
+facets:
+  placement: hierarchical
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: R2WM follows TRM's nested schedule, reusing one backbone of two causal-attention blocks to update a latent state and a prediction state over a fixed history of beam indices and AoDs before decoding the next 10 beams at once; on DeepMIMO the 7.016M-parameter model reaches an average normalized beamforming gain of 0.9597, against 0.8629 for the GPT-2-based PaP-LLM.
+  zh: R2WM 沿用 TRM 的嵌套调度，在固定的波束索引和 AoD 历史上反复用同一个由两个因果注意力块组成的骨干更新潜在状态和预测状态，最后一次性解码未来 10 个波束；在 DeepMIMO 上，7.016M 参数的 R2WM 平均归一化波束成形增益为 0.9597，基于 GPT-2 的 PaP-LLM 为 0.8629。
+added: "2026-11-26"

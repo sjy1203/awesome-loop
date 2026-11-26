@@ -1,0 +1,19 @@
+id: "2611.28575"
+tier: radar
+title: "LoopSight: Looped Vision Transformers with Gated Prediction Memory"
+date: "2026-11-21"
+venue: arXiv
+authors: [Zhaozhi Wang, Mingrui Wu, Jiaming Zhao, An-Syu Li, Jun Luo]
+links:
+  paper: https://arxiv.org/abs/2611.28575
+  code: https://github.com/feufhd/LoopSight
+category: applications
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: sampled
+  kv: n/a
+tldr:
+  en: LoopSight loops a weight-shared ViT core on ARC grids and decodes from a gated prediction memory kept separate from the evolving hidden state, training at loop counts sampled from a truncated Gaussian; LoopSight-Small reaches 67.4% pass@2 on ARC-AGI-1, against 60.8% for a reproduced LoopViT-Small.
+  zh: LoopSight 在 ARC 网格上循环执行权重共享的 ViT 核心，从与不断变化的隐藏状态分开的门控预测记忆中解码答案，训练时的循环次数从截断高斯分布中采样；LoopSight-Small 在 ARC-AGI-1 上的 pass@2 为 67.4%，复现的 LoopViT-Small 为 60.8%。
+added: "2026-11-26"

@@ -1,0 +1,18 @@
+id: "2611.28603"
+tier: radar
+title: "Bridging Teacher-Student Capability Gaps with Recurrent Computation"
+date: "2026-11-21"
+venue: arXiv
+authors: [Zeyi Huang, Jiuxiang Gu, Eli Shechtman, Yong Jae Lee, Zongze Wu]
+links:
+  paper: https://arxiv.org/abs/2611.28603
+category: training
+focus: core
+facets:
+  placement: shifted-parallel
+  depth_train: fixed
+  kv: last-pass
+tldr:
+  en: Gives distilled students extra computation at fixed backbone size, either by looping the whole stack with shared weights or by feeding the previous token's final-layer state back into every layer; converting Qwen2.5-0.5B to the cross-token recurrent form during on-policy distillation from a 7B teacher gives 57.5% on GSM8K, against 53.7% for the vanilla student distilled the same way.
+  zh: 在主干参数量不变的前提下给蒸馏学生增加计算，方式是用共享权重循环整个层栈，或把上一个 token 的最后一层状态送回每一层；在向 7B 教师做 on-policy 蒸馏的同一次微调中把 Qwen2.5-0.5B 改成跨 token 循环结构，GSM8K 准确率为 57.5%，同样蒸馏的普通学生为 53.7%。
+added: "2026-11-26"

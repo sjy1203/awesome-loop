@@ -1,0 +1,17 @@
+id: "2611.31154"
+tier: radar
+title: "Attention Latent Feedback"
+date: "2026-11-23"
+venue: arXiv
+authors: [Xuyuan Xiong, Siyu Chen, Mengzhao Chen, Yue Su, Zhuoran Yang, Ping Luo, Xihui Liu]
+links:
+  paper: https://arxiv.org/abs/2611.31154
+category: architecture/state
+focus: core
+facets:
+  placement: shifted-parallel
+  depth_train: fixed
+tldr:
+  en: Attention Latent Feedback lets every sublayer attend over the previous token's outputs at its own depth and above, and adds a projection of the previous top-layer state to the token embedding, training with two parallel passes and decoding in one pass; on MoE-4.0B it raises average accuracy on seventeen downstream tasks from 45.1% to 47.0%.
+  zh: Attention Latent Feedback 让每个子层对前一个 token 在自身深度及更深各子层的输出做注意力，并把前一个 token 顶层状态的投影加到 token embedding 上，训练时展开成两遍并行计算，解码时只需一遍；在 MoE-4.0B 上，它把十七个下游任务的平均准确率从 45.1% 提高到 47.0%。
+added: "2026-11-26"

@@ -1,0 +1,18 @@
+id: "2611.32802"
+tier: radar
+title: "Sample-Efficient In-Context Adaptation via Sleep"
+date: "2026-11-24"
+venue: arXiv
+authors: [Sangyun Lee, Zhang Enyan, Michael Xu, Hao Tang, Zinan Lin, Weijia Xu, Chris Quirk, Jianfeng Gao, Giulia Fanti, Xiaodong Liu]
+links:
+  paper: https://arxiv.org/abs/2611.32802
+category: architecture/state
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: compressed
+tldr:
+  en: After each window of context, a Transformer LM 'sleeps', rerunning its whole network N-1 more times over that window with each pass's output fed into the next and merging the new keys and values into the cache through a learned gate, while decoding between windows stays one pass per token; on held-out code, the N=4 model matches the no-sleep baseline's loss with 2.39× fewer in-context tokens.
+  zh: Transformer 语言模型每处理完一个上下文窗口就“睡眠”一次，把整个网络在该窗口上再运行 N-1 遍，每遍的输出作为下一遍的输入，并用可学习门控把新的 key 和 value 合并进 KV cache，窗口之间的解码仍是每个 token 一次前向；在未见过的代码上，N=4 的模型达到不睡眠基线损失所需的上下文 token 少 2.39×。
+added: "2026-11-26"

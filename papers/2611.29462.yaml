@@ -1,0 +1,18 @@
+id: "2611.29462"
+tier: radar
+title: "MoR4Rec: Mixture-of-Recursion for Sequential Recommendation"
+date: "2026-11-22"
+venue: arXiv
+authors: [Tiwari Ankit Satyaprakash, Adamya Shyam, Vikas Kumar, Bharti Rana, Venkateswara Rao Kagita]
+links:
+  paper: https://arxiv.org/abs/2611.29462
+category: applications
+focus: related
+facets:
+  placement: prelude-core-coda
+  depth_train: adaptive
+  kv: last-pass
+tldr:
+  en: MoR4Rec, a sequential recommender, puts a shared Transformer block between unique input and output layers and lets a learned router choose how many times each item in a user's history passes through it, refreshing cached keys and values only for items still recursing; on MovieLens 1M it reaches 0.2377 Recall@5, against 0.2268 for the strongest baseline, LRURec.
+  zh: MoR4Rec 是一个序列推荐模型，在独立的输入层和输出层之间放一个共享 Transformer 块，由学习的路由器决定用户历史中每个物品经过它的次数，只有仍在递归的物品才刷新缓存的 key 和 value；在 MovieLens 1M 上 Recall@5 达到 0.2377，最强基线 LRURec 为 0.2268。
+added: "2026-11-26"

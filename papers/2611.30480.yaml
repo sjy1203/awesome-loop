@@ -1,0 +1,19 @@
+id: "2611.30480"
+tier: radar
+title: "Test-Time Latent Computation to Improve Visual Perception in Multimodal Large Language Models"
+date: "2026-11-23"
+venue: arXiv
+authors: [Chen Yang, Zheng Fang, Wenqi Fan, Jun Xia]
+links:
+  paper: https://arxiv.org/abs/2611.30480
+  code: https://github.com/wuycM/Lobals
+category: architecture/placement
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: n/a
+  kv: first-pass
+tldr:
+  en: Lobals, a training-free decoding method for multimodal LLMs, feeds the penultimate-layer hidden state back into the contiguous layer window with the strongest attention to visual tokens and runs that window again before the final layer; on Qwen3-VL-8B it raises the average score over six benchmarks from 76.77 to 78.13.
+  zh: Lobals 是面向多模态大语言模型（MLLM）的免训练解码方法，把倒数第二层的隐藏状态送回对视觉 token 注意力最强的连续层窗口，重新运行该窗口后再进入最后一层；在 Qwen3-VL-8B 上，六个基准的平均分从 76.77 提高到 78.13。
+added: "2026-11-26"

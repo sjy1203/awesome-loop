@@ -1,0 +1,19 @@
+id: "2611.27610"
+tier: radar
+title: "Circular Predictive Coding Unlocks Effective Depth"
+date: "2026-11-20"
+venue: arXiv
+authors: [Tommaso Salvatori, Matteo Forasassi]
+links:
+  paper: https://arxiv.org/abs/2611.27610
+  code: https://github.com/rel-int/CircularEP
+category: applications
+focus: related
+facets:
+  placement: implicit
+  depth_train: n/a
+  kv: n/a
+tldr:
+  en: Closes a shallow predictive coding network into a loop, so energy relaxation keeps cycling through the same few layers to a fixed point equivalent to a deep equilibrium model, trained with local equilibrium propagation; with one causal Transformer block as the loop, it reaches 12.96 validation perplexity on TinyStories, against 13.33 for the same model trained with DEQ implicit gradients.
+  zh: 把浅层 predictive coding 网络首尾相接成环，使能量弛豫反复经过同样几层并收敛到与 deep equilibrium model 等价的不动点，并用局部的 equilibrium propagation 训练；以一个因果 Transformer 块为环时，它在 TinyStories 上的验证 perplexity 为 12.96，同一模型用 DEQ 隐式梯度训练为 13.33。
+added: "2026-11-26"

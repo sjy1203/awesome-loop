@@ -1,0 +1,20 @@
+id: "2611.31977"
+tier: radar
+title: "Distill to Loop: Turning Pretrained Diffusion Transformers into Looped Models with Adjustable Depth"
+date: "2026-11-24"
+venue: arXiv
+authors: [Chenru Wang, Shengwei An]
+links:
+  paper: https://arxiv.org/abs/2611.31977
+  code: https://github.com/WinterCCC/Distill-to-Loop
+  weights: [https://huggingface.co/ShimaRinC/Distill-to-Loop]
+category: applications
+focus: related
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: Dooop distills a pretrained diffusion transformer into a looped student whose shared middle blocks start from teacher blocks, training each loop's output as one fixed-point step toward the teacher and treating each loop as a step of an ODE in depth, so the loop count is chosen at inference; on SD3-medium, the 0.756B student with two loops scores 0.661 on GenEval against 0.648 for the 2.03B teacher.
+  zh: Dooop 把预训练的扩散 Transformer 蒸馏成循环学生模型，中间的共享块由教师块初始化，每次循环的输出被训练成朝教师逼近的一步不动点迭代，每次循环也被看作深度方向 ODE 的一步，因此循环次数在推理时选择；在 SD3-medium 上，0.756B 的学生循环两次时 GenEval 为 0.661，2.03B 的教师为 0.648。
+added: "2026-11-26"

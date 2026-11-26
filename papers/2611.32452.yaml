@@ -1,0 +1,17 @@
+id: "2611.32452"
+tier: radar
+title: "The Teacher Is Already Inside: Self-Distilling Looped Language Models Beyond Their Last Loop"
+date: "2026-11-24"
+venue: arXiv
+authors: [Linghua Zhang]
+links:
+  paper: https://arxiv.org/abs/2611.32452
+category: training
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+tldr:
+  en: ELPSD post-trains the looped LM Ouro-1.4B-Thinking, which runs one shared stack four times per token, by distilling its last loop on its own rollouts towards a frozen copy's next-token distribution extrapolated from loop 1 through loop 4; without any reward, the average avg@8 over five math benchmarks rises from 61.15 to 63.69.
+  zh: ELPSD 对循环语言模型 Ouro-1.4B-Thinking（每个 token 把同一层栈运行四次）做后训练，在模型自己的 rollout 上把最后一个 loop 蒸馏到冻结副本从第 1 个 loop 经第 4 个 loop 外推出的 next-token 分布；不用任何奖励，五个数学基准的平均 avg@8 从 61.15 提高到 63.69。
+added: "2026-11-26"

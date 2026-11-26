@@ -6,8 +6,12 @@ English · [简体中文](../zh/design-space.md) · [Back to the list](../../REA
 
 Every core paper with a stated loop placement and training depth, grouped by cell.
 
-## <a id="whole-stack--fixed"></a>whole stack × fixed (77)
+## <a id="whole-stack--fixed"></a>whole stack × fixed (81)
 
+- 2026-11-24 · [Beyond the Last Loop: Reinforcement Learning with a Teacher Extrapolated from the Model Itself](https://arxiv.org/abs/2611.31939)
+- 2026-11-24 · [The Teacher Is Already Inside: Self-Distilling Looped Language Models Beyond Their Last Loop](https://arxiv.org/abs/2611.32452)
+- 2026-11-24 · [Sample-Efficient In-Context Adaptation via Sleep](https://arxiv.org/abs/2611.32802)
+- 2026-11-23 · [A Pipeline-Parallel System for Depth-Recurrent Models](https://arxiv.org/abs/2611.30581)
 - 2026-11-21 · [When do stored facts become available in looped transformers?](https://arxiv.org/abs/2611.28808)
 - 2026-11-20 · [Model Carving: Training Transformers That Optimize Their Own Topology](https://arxiv.org/abs/2611.27962)
 - 2026-11-16 · [Latent Fact Composition under Next-Token Training](https://arxiv.org/abs/2611.21921)
@@ -140,10 +144,11 @@ Every core paper with a stated loop placement and training depth, grouped by cel
 - 2018-12-05 · [Attending to Mathematical Language with Transformers](https://arxiv.org/abs/1812.02825)
 - 2018-07-10 · [Universal Transformers](https://arxiv.org/abs/1807.03819)
 
-## <a id="prelude-core-coda--fixed"></a>middle core (prelude-core-coda) × fixed (33)
+## <a id="prelude-core-coda--fixed"></a>middle core (prelude-core-coda) × fixed (34)
 
 - 2026-11-23 · [Unlocking the Power of Loops in Pretrained LLMs with Loop Residuals](https://arxiv.org/abs/2611.31094) · **[deep card](2611.31094.md)**
 - 2026-11-23 · [GLM-5.4: Toward Generalized Coding with Our First Loop Transformer](https://z.ai/blog/glm-5.4) · **[deep card](zai-glm-5-4.md)**
+- 2026-11-23 · [How to build and train your recurrent-depth model: A fixed-point perspective](https://arxiv.org/abs/2611.31513)
 - 2026-11-20 · [Introducing Inkling 2 Mini](https://thinkingmachines.ai/news/inkling-2-mini/) · **[deep card](tml-inkling-2-mini.md)**
 - 2026-11-17 · [SenseNova-Loop-9B: Deeper Computation with Fewer Parameters](https://huggingface.co/sensenova/SenseNova-Loop-9B)
 - 2026-11-04 · [Loopback Transformer: Towards a Unified View of Residual Looped Transformers](https://arxiv.org/abs/2611.07226)
@@ -275,8 +280,11 @@ Every core paper with a stated loop placement and training depth, grouped by cel
 - 2026-04-15 · [Hierarchical vs. Flat Iteration in Shared-Weight Transformers](https://arxiv.org/abs/2604.14442)
 - 2026-03-09 · [Tiny Autoregressive Recursive Models](https://arxiv.org/abs/2603.08082)
 
-## <a id="shifted-parallel--fixed"></a>shifted / parallel across tokens × fixed (10)
+## <a id="shifted-parallel--fixed"></a>shifted / parallel across tokens × fixed (13)
 
+- 2026-11-23 · [The Temporal Residual: Fast and Effective Retrofitting of Latent Feedback into Pretrained Language Models](https://arxiv.org/abs/2611.29843)
+- 2026-11-23 · [Attention Latent Feedback](https://arxiv.org/abs/2611.31154)
+- 2026-11-21 · [Bridging Teacher-Student Capability Gaps with Recurrent Computation](https://arxiv.org/abs/2611.28603)
 - 2026-11-17 · [InfuseLoop: Cross-Trajectory Latent Injection for Scalable Parallel Looped Transformers](https://arxiv.org/abs/2611.22426)
 - 2026-10-26 · [LoopFold: Parallelizing Recurrent Depth in Looped Transformers](https://arxiv.org/abs/2610.35556)
 - 2026-10-18 · [Dual-Slot: From Serial Loops to Parallel Slots in Language Models](https://arxiv.org/abs/2610.25086)

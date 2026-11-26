@@ -1,0 +1,18 @@
+id: "2611.29813"
+tier: radar
+title: "Hierarchical Reasoning Action Head for Tiny Vision-Language-Action Models"
+date: "2026-11-22"
+venue: arXiv
+authors: [Aditya Makineni, Amitesh Sahoo, Qing Tian]
+links:
+  paper: https://arxiv.org/abs/2611.29813
+category: applications
+focus: related
+facets:
+  placement: hierarchical
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: HR-AH, an action head for a tiny VLA, runs the backbone once and then iterates three attention blocks over a fast low-level action state and a slower vision-grounded planning state, halting at inference once its predicted action chunk changes by less than a threshold; with a 22.5M-parameter head on a 0.5B backbone it reaches a 97.0% average success rate on LIBERO.
+  zh: HR-AH 是用于小型 VLA 的动作头，骨干网络只运行一次，随后在快速更新的低层动作状态和较慢更新、以视觉为依据的高层规划状态上反复迭代三个注意力块，推理时预测的动作块变化小于阈值即停止；它的动作头有 22.5M 参数，配合 0.5B 骨干在 LIBERO 上达到 97.0% 的平均成功率。
+added: "2026-11-26"

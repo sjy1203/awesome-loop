@@ -1,0 +1,18 @@
+id: "2611.32175"
+tier: radar
+title: "LoopFit: Retrofitting Pretrained Diffusion Transformers with Recurrent Refinement"
+date: "2026-11-24"
+venue: arXiv
+authors: [Xiaocheng Lu, Haoxi Li, Dazhao Du, Tao Han, Jian Liu, Hao Chen, Bohai Gu, Siyu Yan, Jingcai Guo, Jie Zhang, Song Guo]
+links:
+  paper: https://arxiv.org/abs/2611.32175
+category: applications
+focus: related
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: LoopFit retrofits the pretrained pixel-space MiniT2I diffusion transformer to repeat its middle blocks within each denoising step, scaling and shifting each patch's attention input by that patch's feature change in the previous pass and up-weighting patches whose errors persist; across 12 visual puzzle settings it solves 89.8% of boards, against 87.8% for SelfCondFM.
+  zh: LoopFit 改造预训练的像素空间扩散 Transformer MiniT2I，使其在每个去噪步内重复执行中段块，用每个 patch 在上一遍的特征变化对其下一遍的注意力输入做缩放和平移，并加大误差持续存在的 patch 的损失权重；在 12 个视觉谜题设置上解出 89.8% 的题目，SelfCondFM 为 87.8%。
+added: "2026-11-26"

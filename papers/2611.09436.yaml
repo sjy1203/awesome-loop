@@ -1,0 +1,18 @@
+id: "2611.09436"
+tier: radar
+title: "The Role Of Recurrent Refinement In Medical Image Segmentation"
+date: "2026-11-06"
+venue: arXiv
+authors: [Joao D.S. Marques, David Calhas, Arlindo L. Oliveira]
+links:
+  paper: https://arxiv.org/abs/2611.09436
+  code: https://github.com/joaodsmarques/recurrencehelpsegmentation
+category: applications
+focus: related
+facets:
+  placement: partial
+  kv: n/a
+tldr:
+  en: Appends a learned refinement block (CRF-as-RNN, modern Hopfield or ConvGRU) to a segmentation backbone and iterates it on its own logits, re-anchored to the backbone's prediction at every step; on ARCADE with 10% Gaussian noise the Hopfield block at T=5 improves Dice by +17 pp over the U-Net, while clean-data Dice gains reach at most 1.4 pp.
+  zh: 在分割骨干网络的输出端接上一个可学习的细化块（CRF-as-RNN、modern Hopfield 或 ConvGRU），让它在自身 logits 上反复迭代，每一步都以骨干网络的预测为锚；在加入 10% 高斯噪声的 ARCADE 上，T=5 的 Hopfield 块比 U-Net 的 Dice 高 +17 pp，干净数据上的 Dice 提升最多 1.4 pp。
+added: "2026-11-26"

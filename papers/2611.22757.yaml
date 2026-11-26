@@ -1,0 +1,18 @@
+id: "2611.22757"
+tier: radar
+title: "LoopPrune: Recurrent Pruning for Looped Diffusion Transformers"
+date: "2026-11-17"
+venue: arXiv
+authors: [Weizhong Huang, Huaijia Kou, Yan Zhang, Fei Chao, Xiawu Zheng, Liujuan Cao]
+links:
+  paper: https://arxiv.org/abs/2611.22757
+category: applications
+focus: related
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: LoopPrune prunes looped diffusion Transformers with one mask shared by every pass of the reused blocks, scoring units across all loop positions, reconstructing weights from inputs pooled over positions and recovering against the dense teacher; at 30% structured pruning, Looped-DiT B/16 keeps 93.14% of the dense model's six-benchmark average accuracy.
+  zh: LoopPrune 为循环扩散 Transformer 做剪枝，被复用的共享块在每一遍都用同一个掩码：综合所有循环位置的重要性选择剪枝单元，用汇总各位置输入的统计量重建权重，再对照稠密教师模型恢复；在 30% 结构化剪枝下，Looped-DiT B/16 保留了稠密模型六项基准平均准确率的 93.14%。
+added: "2026-11-26"

@@ -1,0 +1,17 @@
+id: "2611.29843"
+tier: radar
+title: "The Temporal Residual: Fast and Effective Retrofitting of Latent Feedback into Pretrained Language Models"
+date: "2026-11-23"
+venue: arXiv
+authors: [Ziyang Cai, Xingyu Zhu, Sanjeev Arora]
+links:
+  paper: https://arxiv.org/abs/2611.29843
+category: training
+focus: core
+facets:
+  placement: shifted-parallel
+  depth_train: fixed
+tldr:
+  en: The temporal residual adds a second residual stream that every sublayer reads and writes and whose final state starts the same stream at the next token; retrofitted onto Qwen3.5-4B-Base with 5B tokens of training, it beats a standard model trained on the same data by 13 points on AIME 2025.
+  zh: temporal residual 增加第二条残差流，每个子层都读写这条流，它的末层状态作为下一个 token 上同一条流的初始状态；用 5B token 训练改造 Qwen3.5-4B-Base 后，它在 AIME 2025 上比用同样数据训练的标准模型高 13 个百分点。
+added: "2026-11-26"

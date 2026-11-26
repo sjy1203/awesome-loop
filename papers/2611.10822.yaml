@@ -1,0 +1,18 @@
+id: "2611.10822"
+tier: radar
+title: "Learning When to Think: Adaptive Internal Computation for Reinforcement Learning"
+date: "2026-11-07"
+venue: NeurIPS 2026
+authors: [Rohit Kumar Salla, Simon Stepputtis]
+links:
+  paper: https://arxiv.org/abs/2611.10822
+category: applications
+focus: related
+facets:
+  placement: prelude-core-coda
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: AIC refines an RL policy's latent state with one residual MLP block reused at every depth and trains a halting head jointly with the action through PPO with an expected-depth penalty; capped at eight steps per decision, it averages 3.3 refinement steps across twelve tasks, and its mean reward beats the best fixed-depth policy on seven tasks and trails it on four.
+  zh: AIC 用一个在每个深度复用参数的残差 MLP 块反复细化 RL 策略的潜在表示，并用 PPO 加期望深度惩罚把停止头和动作一起训练；每次决策最多八步时，它在十二个任务上平均执行 3.3 步细化，平均奖励在七个任务上超过最好的固定深度策略，在四个任务上落后。
+added: "2026-11-26"

@@ -1,0 +1,18 @@
+id: "2611.28971"
+tier: radar
+title: "When Wrong Answers Remain Unsettled: Failure Dynamics in Recurrent Reasoners"
+date: "2026-11-21"
+venue: arXiv
+authors: [Jiucheng Zang, Congkai Peng, Yankai Wei]
+links:
+  paper: https://arxiv.org/abs/2611.28971
+category: understanding
+focus: related
+facets:
+  placement: hierarchical
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: When a trained 27M-parameter HRM on Sudoku-Extreme runs its weight-tied recurrence for one more 16-segment budget, 0.95 of solved answers persist but only 0.18 of wrong ones, so at this horizon most failures are still changing rather than trapped; the solved-above-wrong ordering also holds for a second seed, TRM, Maze, GRAM-guided TRM and N-Queens.
+  zh: 让在 Sudoku-Extreme 上训练好的 HRM（27M 参数）把权重共享的循环再多跑一个 16 段的预算，已解出的答案有 0.95 保持不变，错误答案只有 0.18 保持不变，说明在这一时间范围内多数失败仍在变化而不是被困住；已解答案比错误答案更持久这一排序在第二个种子、TRM、Maze、GRAM-guided TRM 和 N-Queens 上同样成立。
+added: "2026-11-26"

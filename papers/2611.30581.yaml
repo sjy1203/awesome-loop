@@ -1,0 +1,17 @@
+id: "2611.30581"
+tier: radar
+title: "A Pipeline-Parallel System for Depth-Recurrent Models"
+date: "2026-11-23"
+venue: arXiv
+authors: [Yunjia Xi, Jiarui Qin, Di Yin, Xing Sun]
+links:
+  paper: https://arxiv.org/abs/2611.30581
+category: systems
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+tldr:
+  en: Loop-PP is a pipeline-parallel training system for looped Transformers whose shared layer stack is split across stages, so each micro-batch revisits the same stages; it schedules each visit separately and keeps one copy of the shared weights, and on full-loop MoE models of 8B to 60B it uses up to 32.8% less peak memory than unrolled and weight-tied pipeline baselines.
+  zh: Loop-PP 是面向循环 Transformer 的流水线并行训练系统，针对共享层栈被切分到多个 stage、每个 micro-batch 要多次经过同一批 stage 的情况，分别调度每次经过并只保留一份共享权重；在 8B 到 60B 的整栈循环 MoE 模型上，峰值显存比展开式和权重绑定的流水线基线最多低 32.8%。
+added: "2026-11-26"

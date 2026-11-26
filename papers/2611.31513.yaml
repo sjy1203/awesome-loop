@@ -1,0 +1,18 @@
+id: "2611.31513"
+tier: radar
+title: "How to build and train your recurrent-depth model: A fixed-point perspective"
+date: "2026-11-23"
+venue: arXiv
+authors: [Thomas Pethick]
+links:
+  paper: https://arxiv.org/abs/2611.31513
+  code: https://github.com/tmpethick/sparrow
+category: theory
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+tldr:
+  en: Shows that additive input injection, which feeds the encoded query into every iteration of a recurrent-depth model, is exactly Halpern iteration, proves that a slowly vanishing step size converges with a truncated-backpropagation window polylogarithmic in depth, and turns the required Lipschitz constraints into the Sparrow optimizer; in a small looped model whose core layer is iterated N times, Sparrow lowers final validation loss relative to Muon by 0.012–0.027 for every N and truncation window.
+  zh: 指出 recurrent-depth 模型中把编码后的 query 注入每次迭代的加性 input injection 恰好是 Halpern 迭代，证明步长缓慢衰减时只需随深度多对数增长的截断反传窗口即可收敛，并把所需的 Lipschitz 约束做成 Sparrow 优化器；在核心层迭代 N 次的小型循环模型上，对每个 N 和截断窗口，Sparrow 的最终验证损失都比 Muon 低 0.012–0.027。
+added: "2026-11-26"

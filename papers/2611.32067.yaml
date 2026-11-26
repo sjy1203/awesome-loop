@@ -1,0 +1,19 @@
+id: "2611.32067"
+tier: radar
+title: "LoopDVR: Looped Transformer for Efficient Dense Visual Recognition"
+date: "2026-11-24"
+venue: arXiv
+authors: [Sirui Liang, Xuanlong Yu, Longfei Liu, Xiaodong Cun, Xi Shen]
+links:
+  paper: https://arxiv.org/abs/2611.32067
+  code: https://github.com/Intellindust-AI-Lab/LoopDVR
+category: applications
+focus: related
+facets:
+  placement: whole-stack
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: LoopDVR converts pretrained EdgeCrafter detection, segmentation and pose models into looped networks that share one Transformer block within each group of similar consecutive layers in the ViT backbone and the query decoder, adding a per-layer Loop Adapter; on COCO val2017, LoopDet-S reaches 50.9 box AP with 7.0M parameters, against 51.7 AP with 9.8M for the reference ECDet-S.
+  zh: LoopDVR 把预训练的 EdgeCrafter 检测、实例分割和姿态估计模型改造成循环网络：在 ViT backbone 和 query decoder 中，表征相近的相邻层分成一组并共享同一个 Transformer 块，每层另加独立的 Loop Adapter；在 COCO val2017 上，LoopDet-S 用 7.0M 参数达到 50.9 box AP，参考模型 ECDet-S 用 9.8M 参数达到 51.7 AP。
+added: "2026-11-26"

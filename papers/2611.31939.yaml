@@ -1,0 +1,17 @@
+id: "2611.31939"
+tier: radar
+title: "Beyond the Last Loop: Reinforcement Learning with a Teacher Extrapolated from the Model Itself"
+date: "2026-11-24"
+venue: arXiv
+authors: [Linghua Zhang]
+links:
+  paper: https://arxiv.org/abs/2611.31939
+category: training
+focus: core
+facets:
+  placement: whole-stack
+  depth_train: fixed
+tldr:
+  en: ELGO adds to GRPO a dense per-token distillation term that pulls the last loop of Ouro-1.4B-Thinking towards a teacher extrapolated from loop 1 through loop 4 of a frozen anchor copy, which is replaced by the current model once the student's KL to the teacher falls below a threshold; the average avg@8 over five math benchmarks rises to 64.20, against 62.32 for GRPO.
+  zh: ELGO 在 GRPO 之上加入逐 token 的稠密蒸馏项，把 Ouro-1.4B-Thinking 的最后一个 loop 拉向从冻结锚点副本的第 1 个 loop 经第 4 个 loop 外推得到的教师，当学生到教师的 KL 低于阈值时锚点换成当前模型；五个数学基准的平均 avg@8 达到 64.20，GRPO 为 62.32。
+added: "2026-11-26"

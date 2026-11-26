@@ -1,0 +1,20 @@
+id: "2611.30844"
+tier: radar
+title: "DyLoMo-DiT: Dynamic Looped Mixture-of-Experts Diffusion Transformers"
+date: "2026-11-23"
+venue: arXiv
+authors: [Lernie Li, Yuanliu Liu, Pengfei Xiong, Wei Zhang]
+links:
+  paper: https://arxiv.org/abs/2611.30844
+  code: https://github.com/OneBoxCream/DyLoMo-DiT
+  weights: [https://huggingface.co/OneCreamBox/DyLoMo-DiT-ImageNet256, https://huggingface.co/OneCreamBox/DyLoMo-DiT-T2I-Preview]
+category: applications
+focus: related
+facets:
+  placement: prelude-core-coda
+  depth_train: adaptive
+  kv: n/a
+tldr:
+  en: DyLoMo-DiT runs the weight-shared middle layers of a sparse-MoE diffusion Transformer three times at low noise and once at high noise, spending the saved parameters on more experts; on ImageNet 256x256, DyLoMo-DiT-XL reaches FID 4.22 against 5.57 for DiT-XL/2 at matched parameters and compute.
+  zh: DyLoMo-DiT 在稀疏 MoE 扩散 Transformer 中让权重共享的中段层在低噪声时执行三遍、高噪声时执行一遍，并把省下的参数用于更多专家；在 ImageNet 256x256 上，参数量和计算量匹配时，DyLoMo-DiT-XL 的 FID 为 4.22，DiT-XL/2 为 5.57。
+added: "2026-11-26"

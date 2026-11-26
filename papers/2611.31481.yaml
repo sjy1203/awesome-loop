@@ -1,0 +1,14 @@
+id: "2611.31481"
+tier: radar
+title: "SwiftLoop: Selective Refinement for Adaptive Implicit Reasoning in Looped Transformers"
+date: "2026-11-23"
+venue: arXiv
+authors: [Tianyi Zhao, Ke Wan, Chen Chen]
+links:
+  paper: https://arxiv.org/abs/2611.31481
+category: depth
+focus: core
+tldr:
+  en: SwiftLoop learns from hindsight labels (K/V reusability or functional impact on the output) which latent positions of a looped Transformer can stop being refined, and freezes them while active positions keep attending to their cached K/V; on CODI-style LOTUS-1B it reaches 58.83% GSM8K accuracy with 1.80 loops per latent instead of six.
+  zh: SwiftLoop 依据事后得到的标签（K/V 可复用性或对输出的功能影响）学习判断循环 Transformer 中哪些 latent 位置可以停止细化，并冻结这些位置，同时让仍在更新的位置继续读取它们缓存的 K/V；在 CODI 式 LOTUS-1B 上，每个 latent 平均只用 1.80 次循环（原为六次），GSM8K 准确率为 58.83%。
+added: "2026-11-26"

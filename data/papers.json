@@ -15485,6 +15485,59 @@
    "added": "2026-11-23"
   },
   {
+   "id": "2611.09436",
+   "tier": "radar",
+   "title": "The Role Of Recurrent Refinement In Medical Image Segmentation",
+   "date": "2026-11-06",
+   "venue": "arXiv",
+   "authors": [
+    "Joao D.S. Marques",
+    "David Calhas",
+    "Arlindo L. Oliveira"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2611.09436",
+    "code": "https://github.com/joaodsmarques/recurrencehelpsegmentation"
+   },
+   "category": "applications",
+   "focus": "related",
+   "facets": {
+    "placement": "partial",
+    "kv": "n/a"
+   },
+   "tldr": {
+    "en": "Appends a learned refinement block (CRF-as-RNN, modern Hopfield or ConvGRU) to a segmentation backbone and iterates it on its own logits, re-anchored to the backbone's prediction at every step; on ARCADE with 10% Gaussian noise the Hopfield block at T=5 improves Dice by +17 pp over the U-Net, while clean-data Dice gains reach at most 1.4 pp.",
+    "zh": "在分割骨干网络的输出端接上一个可学习的细化块（CRF-as-RNN、modern Hopfield 或 ConvGRU），让它在自身 logits 上反复迭代，每一步都以骨干网络的预测为锚；在加入 10% 高斯噪声的 ARCADE 上，T=5 的 Hopfield 块比 U-Net 的 Dice 高 +17 pp，干净数据上的 Dice 提升最多 1.4 pp。"
+   },
+   "added": "2026-11-26"
+  },
+  {
+   "id": "2611.10822",
+   "tier": "radar",
+   "title": "Learning When to Think: Adaptive Internal Computation for Reinforcement Learning",
+   "date": "2026-11-07",
+   "venue": "NeurIPS 2026",
+   "authors": [
+    "Rohit Kumar Salla",
+    "Simon Stepputtis"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2611.10822"
+   },
+   "category": "applications",
+   "focus": "related",
+   "facets": {
+    "placement": "prelude-core-coda",
+    "depth_train": "adaptive",
+    "kv": "n/a"
+   },
+   "tldr": {
+    "en": "AIC refines an RL policy's latent state with one residual MLP block reused at every depth and trains a halting head jointly with the action through PPO with an expected-depth penalty; capped at eight steps per decision, it averages 3.3 refinement steps across twelve tasks, and its mean reward beats the best fixed-depth policy on seven tasks and trails it on four.",
+    "zh": "AIC 用一个在每个深度复用参数的残差 MLP 块反复细化 RL 策略的潜在表示，并用 PPO 加期望深度惩罚把停止头和动作一起训练；每次决策最多八步时，它在十二个任务上平均执行 3.3 步细化，平均奖励在七个任务上超过最好的固定深度策略，在四个任务上落后。"
+   },
+   "added": "2026-11-26"
+  },
+  {
    "id": "2611.11275",
    "tier": "radar",
    "title": "WiFo-R: Wireless Foundation Model with Recurrent Channel Representation",
@@ -16228,6 +16281,64 @@
    "added": "2026-11-23"
   },
   {
+   "id": "2611.22757",
+   "tier": "radar",
+   "title": "LoopPrune: Recurrent Pruning for Looped Diffusion Transformers",
+   "date": "2026-11-17",
+   "venue": "arXiv",
+   "authors": [
+    "Weizhong Huang",
+    "Huaijia Kou",
+    "Yan Zhang",
+    "Fei Chao",
+    "Xiawu Zheng",
+    "Liujuan Cao"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2611.22757"
+   },
+   "category": "applications",
+   "focus": "related",
+   "facets": {
+    "placement": "prelude-core-coda",
+    "depth_train": "fixed",
+    "kv": "n/a"
+   },
+   "tldr": {
+    "en": "LoopPrune prunes looped diffusion Transformers with one mask shared by every pass of the reused blocks, scoring units across all loop positions, reconstructing weights from inputs pooled over positions and recovering against the dense teacher; at 30% structured pruning, Looped-DiT B/16 keeps 93.14% of the dense model's six-benchmark average accuracy.",
+    "zh": "LoopPrune 为循环扩散 Transformer 做剪枝，被复用的共享块在每一遍都用同一个掩码：综合所有循环位置的重要性选择剪枝单元，用汇总各位置输入的统计量重建权重，再对照稠密教师模型恢复；在 30% 结构化剪枝下，Looped-DiT B/16 保留了稠密模型六项基准平均准确率的 93.14%。"
+   },
+   "added": "2026-11-26"
+  },
+  {
+   "id": "2611.23446",
+   "tier": "radar",
+   "title": "Where Global Context and Weight Sharing Work in Compact Vision Backbones",
+   "date": "2026-11-17",
+   "venue": "arXiv",
+   "authors": [
+    "Michael Schroeder"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2611.23446",
+    "weights": [
+     "https://huggingface.co/meatloafer/efficientnet-b0-stage-attention"
+    ]
+   },
+   "category": "applications",
+   "focus": "related",
+   "facets": {
+    "placement": "partial",
+    "depth_train": "fixed",
+    "kv": "n/a"
+   },
+   "tldr": {
+    "en": "Besides adding gated attention adapters to EfficientNet-B0, the paper shares weights across repeated MBConv blocks with pass-specific BatchNorm; alternating two shared templates in Stage 6 ([B1, A, B, A]) removes 10.9% of the parameters and reaches 70.92% ImageNet-1k top-1 after one epoch of continued training, against 72.76% for the unshared control.",
+    "zh": "除了给 EfficientNet-B0 加入门控注意力适配器，本文还让重复的 MBConv 块共享权重、每遍保留各自的 BatchNorm；在 Stage 6 交替使用两个共享模板（[B1, A, B, A]）可减少 10.9% 的参数，再训练一个 epoch 后 ImageNet-1k top-1 为 70.92%，不共享的对照为 72.76%。"
+   },
+   "added": "2026-11-26"
+  },
+  {
    "id": "2611.23677",
    "tier": "radar",
    "title": "Simpler Tiny Recursive Models",
@@ -16460,6 +16571,33 @@
    "added": "2026-11-24"
   },
   {
+   "id": "2611.27610",
+   "tier": "radar",
+   "title": "Circular Predictive Coding Unlocks Effective Depth",
+   "date": "2026-11-20",
+   "venue": "arXiv",
+   "authors": [
+    "Tommaso Salvatori",
+    "Matteo Forasassi"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2611.27610",
+    "code": "https://github.com/rel-int/CircularEP"
+   },
+   "category": "applications",
+   "focus": "related",
+   "facets": {
+    "placement": "implicit",
+    "depth_train": "n/a",
+    "kv": "n/a"
+   },
+   "tldr": {
+    "en": "Closes a shallow predictive coding network into a loop, so energy relaxation keeps cycling through the same few layers to a fixed point equivalent to a deep equilibrium model, trained with local equilibrium propagation; with one causal Transformer block as the loop, it reaches 12.96 validation perplexity on TinyStories, against 13.33 for the same model trained with DEQ implicit gradients.",
+    "zh": "把浅层 predictive coding 网络首尾相接成环，使能量弛豫反复经过同样几层并收敛到与 deep equilibrium model 等价的不动点，并用局部的 equilibrium propagation 训练；以一个因果 Transformer 块为环时，它在 TinyStories 上的验证 perplexity 为 12.96，同一模型用 DEQ 隐式梯度训练为 13.33。"
+   },
+   "added": "2026-11-26"
+  },
+  {
    "id": "2611.27823",
    "tier": "radar",
    "title": "Mixture of Latent Recursions for Low-Rank Adaptation",
@@ -16515,6 +16653,94 @@
    "added": "2026-11-23"
   },
   {
+   "id": "2611.28575",
+   "tier": "radar",
+   "title": "LoopSight: Looped Vision Transformers with Gated Prediction Memory",
+   "date": "2026-11-21",
+   "venue": "arXiv",
+   "authors": [
+    "Zhaozhi Wang",
+    "Mingrui Wu",
+    "Jiaming Zhao",
+    "An-Syu Li",
+    "Jun Luo"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2611.28575",
+    "code": "https://github.com/feufhd/LoopSight"
+   },
+   "category": "applications",
+   "focus": "related",
+   "facets": {
+    "placement": "whole-stack",
+    "depth_train": "sampled",
+    "kv": "n/a"
+   },
+   "tldr": {
+    "en": "LoopSight loops a weight-shared ViT core on ARC grids and decodes from a gated prediction memory kept separate from the evolving hidden state, training at loop counts sampled from a truncated Gaussian; LoopSight-Small reaches 67.4% pass@2 on ARC-AGI-1, against 60.8% for a reproduced LoopViT-Small.",
+    "zh": "LoopSight 在 ARC 网格上循环执行权重共享的 ViT 核心，从与不断变化的隐藏状态分开的门控预测记忆中解码答案，训练时的循环次数从截断高斯分布中采样；LoopSight-Small 在 ARC-AGI-1 上的 pass@2 为 67.4%，复现的 LoopViT-Small 为 60.8%。"
+   },
+   "added": "2026-11-26"
+  },
+  {
+   "id": "2611.28603",
+   "tier": "radar",
+   "title": "Bridging Teacher-Student Capability Gaps with Recurrent Computation",
+   "date": "2026-11-21",
+   "venue": "arXiv",
+   "authors": [
+    "Zeyi Huang",
+    "Jiuxiang Gu",
+    "Eli Shechtman",
+    "Yong Jae Lee",
+    "Zongze Wu"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2611.28603"
+   },
+   "category": "training",
+   "focus": "core",
+   "facets": {
+    "placement": "shifted-parallel",
+    "depth_train": "fixed",
+    "kv": "last-pass"
+   },
+   "tldr": {
+    "en": "Gives distilled students extra computation at fixed backbone size, either by looping the whole stack with shared weights or by feeding the previous token's final-layer state back into every layer; converting Qwen2.5-0.5B to the cross-token recurrent form during on-policy distillation from a 7B teacher gives 57.5% on GSM8K, against 53.7% for the vanilla student distilled the same way.",
+    "zh": "在主干参数量不变的前提下给蒸馏学生增加计算，方式是用共享权重循环整个层栈，或把上一个 token 的最后一层状态送回每一层；在向 7B 教师做 on-policy 蒸馏的同一次微调中把 Qwen2.5-0.5B 改成跨 token 循环结构，GSM8K 准确率为 57.5%，同样蒸馏的普通学生为 53.7%。"
+   },
+   "added": "2026-11-26"
+  },
+  {
+   "id": "2611.28774",
+   "tier": "radar",
+   "title": "R2WM: Recursive Reasoning Wireless Model for Long-Horizon mmWave Beam Prediction",
+   "date": "2026-11-21",
+   "venue": "IEEE Transactions on Vehicular Technology",
+   "authors": [
+    "Yunxiao Tian",
+    "Li Qiao",
+    "Ziwei Wan",
+    "Andrey Ivanov",
+    "Zhen Gao"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2611.28774"
+   },
+   "category": "applications",
+   "focus": "related",
+   "facets": {
+    "placement": "hierarchical",
+    "depth_train": "fixed",
+    "kv": "n/a"
+   },
+   "tldr": {
+    "en": "R2WM follows TRM's nested schedule, reusing one backbone of two causal-attention blocks to update a latent state and a prediction state over a fixed history of beam indices and AoDs before decoding the next 10 beams at once; on DeepMIMO the 7.016M-parameter model reaches an average normalized beamforming gain of 0.9597, against 0.8629 for the GPT-2-based PaP-LLM.",
+    "zh": "R2WM 沿用 TRM 的嵌套调度，在固定的波束索引和 AoD 历史上反复用同一个由两个因果注意力块组成的骨干更新潜在状态和预测状态，最后一次性解码未来 10 个波束；在 DeepMIMO 上，7.016M 参数的 R2WM 平均归一化波束成形增益为 0.9597，基于 GPT-2 的 PaP-LLM 为 0.8629。"
+   },
+   "added": "2026-11-26"
+  },
+  {
    "id": "2611.28808",
    "tier": "radar",
    "title": "When do stored facts become available in looped transformers?",
@@ -16541,6 +16767,33 @@
     "zh": "仅以最后一次循环监督时，循环 Transformer 会逐步暴露存储的合成事实，记忆负载越重越晚，但比展开深度相同的非共享模型更早；在多跳链中，替换实体成分会改变下游实体和答案，而经不同关系到达同一实体的替换在超过 99.5% 的测试样例中保留原答案。"
    },
    "added": "2026-11-24"
+  },
+  {
+   "id": "2611.28971",
+   "tier": "radar",
+   "title": "When Wrong Answers Remain Unsettled: Failure Dynamics in Recurrent Reasoners",
+   "date": "2026-11-21",
+   "venue": "arXiv",
+   "authors": [
+    "Jiucheng Zang",
+    "Congkai Peng",
+    "Yankai Wei"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2611.28971"
+   },
+   "category": "understanding",
+   "focus": "related",
+   "facets": {
+    "placement": "hierarchical",
+    "depth_train": "adaptive",
+    "kv": "n/a"
+   },
+   "tldr": {
+    "en": "When a trained 27M-parameter HRM on Sudoku-Extreme runs its weight-tied recurrence for one more 16-segment budget, 0.95 of solved answers persist but only 0.18 of wrong ones, so at this horizon most failures are still changing rather than trapped; the solved-above-wrong ordering also holds for a second seed, TRM, Maze, GRAM-guided TRM and N-Queens.",
+    "zh": "让在 Sudoku-Extreme 上训练好的 HRM（27M 参数）把权重共享的循环再多跑一个 16 段的预算，已解出的答案有 0.95 保持不变，错误答案只有 0.18 保持不变，说明在这一时间范围内多数失败仍在变化而不是被困住；已解答案比错误答案更持久这一排序在第二个种子、TRM、Maze、GRAM-guided TRM 和 N-Queens 上同样成立。"
+   },
+   "added": "2026-11-26"
   },
   {
    "id": "2611.29171",
@@ -16571,6 +16824,63 @@
    "added": "2026-11-24"
   },
   {
+   "id": "2611.29180",
+   "tier": "radar",
+   "title": "loopxDINO: Dense Visual Prediction via Iterative Latent Reasoning",
+   "date": "2026-11-22",
+   "venue": "arXiv",
+   "authors": [
+    "Xiangjing An",
+    "Zhibin Jiao",
+    "Aiting Chen"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2611.29180",
+    "code": "https://github.com/loopxDINO/loopxDINO"
+   },
+   "category": "applications",
+   "focus": "related",
+   "facets": {
+    "placement": "decoder",
+    "depth_train": "fixed",
+    "kv": "n/a"
+   },
+   "tldr": {
+    "en": "loopxDINO replaces a stacked segmentation decoder on a frozen DINOv2-Base with one weight-tied cross-attention block that refines learned queries over T iterations and feeds intermediate masks back as attention biases; on Pascal VOC 2012 it reaches 85.66% mIoU at T=2 with 14.85M trainable parameters, against 84.57% for a 54.06M six-layer decoder.",
+    "zh": "loopxDINO 在冻结的 DINOv2-Base 上用一个权重共享的 cross-attention 块替代堆叠的分割解码器，该块对可学习的 query 迭代更新 T 次，并把中间 mask 预测作为注意力偏置送回下一次迭代；在 Pascal VOC 2012 上，T=2 时以 14.85M 可训练参数达到 85.66% mIoU，54.06M 参数的六层解码器为 84.57%。"
+   },
+   "added": "2026-11-26"
+  },
+  {
+   "id": "2611.29462",
+   "tier": "radar",
+   "title": "MoR4Rec: Mixture-of-Recursion for Sequential Recommendation",
+   "date": "2026-11-22",
+   "venue": "arXiv",
+   "authors": [
+    "Tiwari Ankit Satyaprakash",
+    "Adamya Shyam",
+    "Vikas Kumar",
+    "Bharti Rana",
+    "Venkateswara Rao Kagita"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2611.29462"
+   },
+   "category": "applications",
+   "focus": "related",
+   "facets": {
+    "placement": "prelude-core-coda",
+    "depth_train": "adaptive",
+    "kv": "last-pass"
+   },
+   "tldr": {
+    "en": "MoR4Rec, a sequential recommender, puts a shared Transformer block between unique input and output layers and lets a learned router choose how many times each item in a user's history passes through it, refreshing cached keys and values only for items still recursing; on MovieLens 1M it reaches 0.2377 Recall@5, against 0.2268 for the strongest baseline, LRURec.",
+    "zh": "MoR4Rec 是一个序列推荐模型，在独立的输入层和输出层之间放一个共享 Transformer 块，由学习的路由器决定用户历史中每个物品经过它的次数，只有仍在递归的物品才刷新缓存的 key 和 value；在 MovieLens 1M 上 Recall@5 达到 0.2377，最强基线 LRURec 为 0.2268。"
+   },
+   "added": "2026-11-26"
+  },
+  {
    "id": "2611.29704",
    "tier": "radar",
    "title": "Loop-Count Schedules in Looped Transformers: An Empirical Study",
@@ -16597,6 +16907,59 @@
    "added": "2026-11-24"
   },
   {
+   "id": "2611.29813",
+   "tier": "radar",
+   "title": "Hierarchical Reasoning Action Head for Tiny Vision-Language-Action Models",
+   "date": "2026-11-22",
+   "venue": "arXiv",
+   "authors": [
+    "Aditya Makineni",
+    "Amitesh Sahoo",
+    "Qing Tian"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2611.29813"
+   },
+   "category": "applications",
+   "focus": "related",
+   "facets": {
+    "placement": "hierarchical",
+    "depth_train": "fixed",
+    "kv": "n/a"
+   },
+   "tldr": {
+    "en": "HR-AH, an action head for a tiny VLA, runs the backbone once and then iterates three attention blocks over a fast low-level action state and a slower vision-grounded planning state, halting at inference once its predicted action chunk changes by less than a threshold; with a 22.5M-parameter head on a 0.5B backbone it reaches a 97.0% average success rate on LIBERO.",
+    "zh": "HR-AH 是用于小型 VLA 的动作头，骨干网络只运行一次，随后在快速更新的低层动作状态和较慢更新、以视觉为依据的高层规划状态上反复迭代三个注意力块，推理时预测的动作块变化小于阈值即停止；它的动作头有 22.5M 参数，配合 0.5B 骨干在 LIBERO 上达到 97.0% 的平均成功率。"
+   },
+   "added": "2026-11-26"
+  },
+  {
+   "id": "2611.29843",
+   "tier": "radar",
+   "title": "The Temporal Residual: Fast and Effective Retrofitting of Latent Feedback into Pretrained Language Models",
+   "date": "2026-11-23",
+   "venue": "arXiv",
+   "authors": [
+    "Ziyang Cai",
+    "Xingyu Zhu",
+    "Sanjeev Arora"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2611.29843"
+   },
+   "category": "training",
+   "focus": "core",
+   "facets": {
+    "placement": "shifted-parallel",
+    "depth_train": "fixed"
+   },
+   "tldr": {
+    "en": "The temporal residual adds a second residual stream that every sublayer reads and writes and whose final state starts the same stream at the next token; retrofitted onto Qwen3.5-4B-Base with 5B tokens of training, it beats a standard model trained on the same data by 13 points on AIME 2025.",
+    "zh": "temporal residual 增加第二条残差流，每个子层都读写这条流，它的末层状态作为下一个 token 上同一条流的初始状态；用 5B token 训练改造 Qwen3.5-4B-Base 后，它在 AIME 2025 上比用同样数据训练的标准模型高 13 个百分点。"
+   },
+   "added": "2026-11-26"
+  },
+  {
    "id": "2611.30205",
    "tier": "radar",
    "title": "PackLoop: Row-Packed Self-Speculative Decoding for Looped Language Models under Concurrency",
@@ -16621,6 +16984,95 @@
     "zh": "PackLoop 针对并发场景下循环语言模型的自推测解码，只在本来就要读取该循环 KV cache 的行（一个请求在一个循环上前进）内做推测；它在 FP32 下与自回归解码逐 token 一致，在 164 个负载点中有 161 个快于逐点挑选的最佳现有调度（中位数 1.25x，最高 1.76x）。"
    },
    "added": "2026-11-24"
+  },
+  {
+   "id": "2611.30480",
+   "tier": "radar",
+   "title": "Test-Time Latent Computation to Improve Visual Perception in Multimodal Large Language Models",
+   "date": "2026-11-23",
+   "venue": "arXiv",
+   "authors": [
+    "Chen Yang",
+    "Zheng Fang",
+    "Wenqi Fan",
+    "Jun Xia"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2611.30480",
+    "code": "https://github.com/wuycM/Lobals"
+   },
+   "category": "architecture/placement",
+   "focus": "core",
+   "facets": {
+    "placement": "prelude-core-coda",
+    "depth_train": "n/a",
+    "kv": "first-pass"
+   },
+   "tldr": {
+    "en": "Lobals, a training-free decoding method for multimodal LLMs, feeds the penultimate-layer hidden state back into the contiguous layer window with the strongest attention to visual tokens and runs that window again before the final layer; on Qwen3-VL-8B it raises the average score over six benchmarks from 76.77 to 78.13.",
+    "zh": "Lobals 是面向多模态大语言模型（MLLM）的免训练解码方法，把倒数第二层的隐藏状态送回对视觉 token 注意力最强的连续层窗口，重新运行该窗口后再进入最后一层；在 Qwen3-VL-8B 上，六个基准的平均分从 76.77 提高到 78.13。"
+   },
+   "added": "2026-11-26"
+  },
+  {
+   "id": "2611.30581",
+   "tier": "radar",
+   "title": "A Pipeline-Parallel System for Depth-Recurrent Models",
+   "date": "2026-11-23",
+   "venue": "arXiv",
+   "authors": [
+    "Yunjia Xi",
+    "Jiarui Qin",
+    "Di Yin",
+    "Xing Sun"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2611.30581"
+   },
+   "category": "systems",
+   "focus": "core",
+   "facets": {
+    "placement": "whole-stack",
+    "depth_train": "fixed"
+   },
+   "tldr": {
+    "en": "Loop-PP is a pipeline-parallel training system for looped Transformers whose shared layer stack is split across stages, so each micro-batch revisits the same stages; it schedules each visit separately and keeps one copy of the shared weights, and on full-loop MoE models of 8B to 60B it uses up to 32.8% less peak memory than unrolled and weight-tied pipeline baselines.",
+    "zh": "Loop-PP 是面向循环 Transformer 的流水线并行训练系统，针对共享层栈被切分到多个 stage、每个 micro-batch 要多次经过同一批 stage 的情况，分别调度每次经过并只保留一份共享权重；在 8B 到 60B 的整栈循环 MoE 模型上，峰值显存比展开式和权重绑定的流水线基线最多低 32.8%。"
+   },
+   "added": "2026-11-26"
+  },
+  {
+   "id": "2611.30844",
+   "tier": "radar",
+   "title": "DyLoMo-DiT: Dynamic Looped Mixture-of-Experts Diffusion Transformers",
+   "date": "2026-11-23",
+   "venue": "arXiv",
+   "authors": [
+    "Lernie Li",
+    "Yuanliu Liu",
+    "Pengfei Xiong",
+    "Wei Zhang"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2611.30844",
+    "code": "https://github.com/OneBoxCream/DyLoMo-DiT",
+    "weights": [
+     "https://huggingface.co/OneCreamBox/DyLoMo-DiT-ImageNet256",
+     "https://huggingface.co/OneCreamBox/DyLoMo-DiT-T2I-Preview"
+    ]
+   },
+   "category": "applications",
+   "focus": "related",
+   "facets": {
+    "placement": "prelude-core-coda",
+    "depth_train": "adaptive",
+    "kv": "n/a"
+   },
+   "tldr": {
+    "en": "DyLoMo-DiT runs the weight-shared middle layers of a sparse-MoE diffusion Transformer three times at low noise and once at high noise, spending the saved parameters on more experts; on ImageNet 256x256, DyLoMo-DiT-XL reaches FID 4.22 against 5.57 for DiT-XL/2 at matched parameters and compute.",
+    "zh": "DyLoMo-DiT 在稀疏 MoE 扩散 Transformer 中让权重共享的中段层在低噪声时执行三遍、高噪声时执行一遍，并把省下的参数用于更多专家；在 ImageNet 256x256 上，参数量和计算量匹配时，DyLoMo-DiT-XL 的 FID 为 4.22，DiT-XL/2 为 5.57。"
+   },
+   "added": "2026-11-26"
   },
   {
    "id": "2611.31094",
@@ -16934,6 +17386,260 @@
     "en": "https://raw.githubusercontent.com/sjy1203/awesome-loop/main/docs/en/2611.31094.md",
     "zh": "https://raw.githubusercontent.com/sjy1203/awesome-loop/main/docs/zh/2611.31094.md"
    }
+  },
+  {
+   "id": "2611.31154",
+   "tier": "radar",
+   "title": "Attention Latent Feedback",
+   "date": "2026-11-23",
+   "venue": "arXiv",
+   "authors": [
+    "Xuyuan Xiong",
+    "Siyu Chen",
+    "Mengzhao Chen",
+    "Yue Su",
+    "Zhuoran Yang",
+    "Ping Luo",
+    "Xihui Liu"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2611.31154"
+   },
+   "category": "architecture/state",
+   "focus": "core",
+   "facets": {
+    "placement": "shifted-parallel",
+    "depth_train": "fixed"
+   },
+   "tldr": {
+    "en": "Attention Latent Feedback lets every sublayer attend over the previous token's outputs at its own depth and above, and adds a projection of the previous top-layer state to the token embedding, training with two parallel passes and decoding in one pass; on MoE-4.0B it raises average accuracy on seventeen downstream tasks from 45.1% to 47.0%.",
+    "zh": "Attention Latent Feedback 让每个子层对前一个 token 在自身深度及更深各子层的输出做注意力，并把前一个 token 顶层状态的投影加到 token embedding 上，训练时展开成两遍并行计算，解码时只需一遍；在 MoE-4.0B 上，它把十七个下游任务的平均准确率从 45.1% 提高到 47.0%。"
+   },
+   "added": "2026-11-26"
+  },
+  {
+   "id": "2611.31481",
+   "tier": "radar",
+   "title": "SwiftLoop: Selective Refinement for Adaptive Implicit Reasoning in Looped Transformers",
+   "date": "2026-11-23",
+   "venue": "arXiv",
+   "authors": [
+    "Tianyi Zhao",
+    "Ke Wan",
+    "Chen Chen"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2611.31481"
+   },
+   "category": "depth",
+   "focus": "core",
+   "tldr": {
+    "en": "SwiftLoop learns from hindsight labels (K/V reusability or functional impact on the output) which latent positions of a looped Transformer can stop being refined, and freezes them while active positions keep attending to their cached K/V; on CODI-style LOTUS-1B it reaches 58.83% GSM8K accuracy with 1.80 loops per latent instead of six.",
+    "zh": "SwiftLoop 依据事后得到的标签（K/V 可复用性或对输出的功能影响）学习判断循环 Transformer 中哪些 latent 位置可以停止细化，并冻结这些位置，同时让仍在更新的位置继续读取它们缓存的 K/V；在 CODI 式 LOTUS-1B 上，每个 latent 平均只用 1.80 次循环（原为六次），GSM8K 准确率为 58.83%。"
+   },
+   "added": "2026-11-26"
+  },
+  {
+   "id": "2611.31513",
+   "tier": "radar",
+   "title": "How to build and train your recurrent-depth model: A fixed-point perspective",
+   "date": "2026-11-23",
+   "venue": "arXiv",
+   "authors": [
+    "Thomas Pethick"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2611.31513",
+    "code": "https://github.com/tmpethick/sparrow"
+   },
+   "category": "theory",
+   "focus": "core",
+   "facets": {
+    "placement": "prelude-core-coda",
+    "depth_train": "fixed"
+   },
+   "tldr": {
+    "en": "Shows that additive input injection, which feeds the encoded query into every iteration of a recurrent-depth model, is exactly Halpern iteration, proves that a slowly vanishing step size converges with a truncated-backpropagation window polylogarithmic in depth, and turns the required Lipschitz constraints into the Sparrow optimizer; in a small looped model whose core layer is iterated N times, Sparrow lowers final validation loss relative to Muon by 0.012–0.027 for every N and truncation window.",
+    "zh": "指出 recurrent-depth 模型中把编码后的 query 注入每次迭代的加性 input injection 恰好是 Halpern 迭代，证明步长缓慢衰减时只需随深度多对数增长的截断反传窗口即可收敛，并把所需的 Lipschitz 约束做成 Sparrow 优化器；在核心层迭代 N 次的小型循环模型上，对每个 N 和截断窗口，Sparrow 的最终验证损失都比 Muon 低 0.012–0.027。"
+   },
+   "added": "2026-11-26"
+  },
+  {
+   "id": "2611.31939",
+   "tier": "radar",
+   "title": "Beyond the Last Loop: Reinforcement Learning with a Teacher Extrapolated from the Model Itself",
+   "date": "2026-11-24",
+   "venue": "arXiv",
+   "authors": [
+    "Linghua Zhang"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2611.31939"
+   },
+   "category": "training",
+   "focus": "core",
+   "facets": {
+    "placement": "whole-stack",
+    "depth_train": "fixed"
+   },
+   "tldr": {
+    "en": "ELGO adds to GRPO a dense per-token distillation term that pulls the last loop of Ouro-1.4B-Thinking towards a teacher extrapolated from loop 1 through loop 4 of a frozen anchor copy, which is replaced by the current model once the student's KL to the teacher falls below a threshold; the average avg@8 over five math benchmarks rises to 64.20, against 62.32 for GRPO.",
+    "zh": "ELGO 在 GRPO 之上加入逐 token 的稠密蒸馏项，把 Ouro-1.4B-Thinking 的最后一个 loop 拉向从冻结锚点副本的第 1 个 loop 经第 4 个 loop 外推得到的教师，当学生到教师的 KL 低于阈值时锚点换成当前模型；五个数学基准的平均 avg@8 达到 64.20，GRPO 为 62.32。"
+   },
+   "added": "2026-11-26"
+  },
+  {
+   "id": "2611.31977",
+   "tier": "radar",
+   "title": "Distill to Loop: Turning Pretrained Diffusion Transformers into Looped Models with Adjustable Depth",
+   "date": "2026-11-24",
+   "venue": "arXiv",
+   "authors": [
+    "Chenru Wang",
+    "Shengwei An"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2611.31977",
+    "code": "https://github.com/WinterCCC/Distill-to-Loop",
+    "weights": [
+     "https://huggingface.co/ShimaRinC/Distill-to-Loop"
+    ]
+   },
+   "category": "applications",
+   "focus": "related",
+   "facets": {
+    "placement": "prelude-core-coda",
+    "depth_train": "fixed",
+    "kv": "n/a"
+   },
+   "tldr": {
+    "en": "Dooop distills a pretrained diffusion transformer into a looped student whose shared middle blocks start from teacher blocks, training each loop's output as one fixed-point step toward the teacher and treating each loop as a step of an ODE in depth, so the loop count is chosen at inference; on SD3-medium, the 0.756B student with two loops scores 0.661 on GenEval against 0.648 for the 2.03B teacher.",
+    "zh": "Dooop 把预训练的扩散 Transformer 蒸馏成循环学生模型，中间的共享块由教师块初始化，每次循环的输出被训练成朝教师逼近的一步不动点迭代，每次循环也被看作深度方向 ODE 的一步，因此循环次数在推理时选择；在 SD3-medium 上，0.756B 的学生循环两次时 GenEval 为 0.661，2.03B 的教师为 0.648。"
+   },
+   "added": "2026-11-26"
+  },
+  {
+   "id": "2611.32067",
+   "tier": "radar",
+   "title": "LoopDVR: Looped Transformer for Efficient Dense Visual Recognition",
+   "date": "2026-11-24",
+   "venue": "arXiv",
+   "authors": [
+    "Sirui Liang",
+    "Xuanlong Yu",
+    "Longfei Liu",
+    "Xiaodong Cun",
+    "Xi Shen"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2611.32067",
+    "code": "https://github.com/Intellindust-AI-Lab/LoopDVR"
+   },
+   "category": "applications",
+   "focus": "related",
+   "facets": {
+    "placement": "whole-stack",
+    "depth_train": "fixed",
+    "kv": "n/a"
+   },
+   "tldr": {
+    "en": "LoopDVR converts pretrained EdgeCrafter detection, segmentation and pose models into looped networks that share one Transformer block within each group of similar consecutive layers in the ViT backbone and the query decoder, adding a per-layer Loop Adapter; on COCO val2017, LoopDet-S reaches 50.9 box AP with 7.0M parameters, against 51.7 AP with 9.8M for the reference ECDet-S.",
+    "zh": "LoopDVR 把预训练的 EdgeCrafter 检测、实例分割和姿态估计模型改造成循环网络：在 ViT backbone 和 query decoder 中，表征相近的相邻层分成一组并共享同一个 Transformer 块，每层另加独立的 Loop Adapter；在 COCO val2017 上，LoopDet-S 用 7.0M 参数达到 50.9 box AP，参考模型 ECDet-S 用 9.8M 参数达到 51.7 AP。"
+   },
+   "added": "2026-11-26"
+  },
+  {
+   "id": "2611.32175",
+   "tier": "radar",
+   "title": "LoopFit: Retrofitting Pretrained Diffusion Transformers with Recurrent Refinement",
+   "date": "2026-11-24",
+   "venue": "arXiv",
+   "authors": [
+    "Xiaocheng Lu",
+    "Haoxi Li",
+    "Dazhao Du",
+    "Tao Han",
+    "Jian Liu",
+    "Hao Chen",
+    "Bohai Gu",
+    "Siyu Yan",
+    "Jingcai Guo",
+    "Jie Zhang",
+    "Song Guo"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2611.32175"
+   },
+   "category": "applications",
+   "focus": "related",
+   "facets": {
+    "placement": "prelude-core-coda",
+    "depth_train": "fixed",
+    "kv": "n/a"
+   },
+   "tldr": {
+    "en": "LoopFit retrofits the pretrained pixel-space MiniT2I diffusion transformer to repeat its middle blocks within each denoising step, scaling and shifting each patch's attention input by that patch's feature change in the previous pass and up-weighting patches whose errors persist; across 12 visual puzzle settings it solves 89.8% of boards, against 87.8% for SelfCondFM.",
+    "zh": "LoopFit 改造预训练的像素空间扩散 Transformer MiniT2I，使其在每个去噪步内重复执行中段块，用每个 patch 在上一遍的特征变化对其下一遍的注意力输入做缩放和平移，并加大误差持续存在的 patch 的损失权重；在 12 个视觉谜题设置上解出 89.8% 的题目，SelfCondFM 为 87.8%。"
+   },
+   "added": "2026-11-26"
+  },
+  {
+   "id": "2611.32452",
+   "tier": "radar",
+   "title": "The Teacher Is Already Inside: Self-Distilling Looped Language Models Beyond Their Last Loop",
+   "date": "2026-11-24",
+   "venue": "arXiv",
+   "authors": [
+    "Linghua Zhang"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2611.32452"
+   },
+   "category": "training",
+   "focus": "core",
+   "facets": {
+    "placement": "whole-stack",
+    "depth_train": "fixed"
+   },
+   "tldr": {
+    "en": "ELPSD post-trains the looped LM Ouro-1.4B-Thinking, which runs one shared stack four times per token, by distilling its last loop on its own rollouts towards a frozen copy's next-token distribution extrapolated from loop 1 through loop 4; without any reward, the average avg@8 over five math benchmarks rises from 61.15 to 63.69.",
+    "zh": "ELPSD 对循环语言模型 Ouro-1.4B-Thinking（每个 token 把同一层栈运行四次）做后训练，在模型自己的 rollout 上把最后一个 loop 蒸馏到冻结副本从第 1 个 loop 经第 4 个 loop 外推出的 next-token 分布；不用任何奖励，五个数学基准的平均 avg@8 从 61.15 提高到 63.69。"
+   },
+   "added": "2026-11-26"
+  },
+  {
+   "id": "2611.32802",
+   "tier": "radar",
+   "title": "Sample-Efficient In-Context Adaptation via Sleep",
+   "date": "2026-11-24",
+   "venue": "arXiv",
+   "authors": [
+    "Sangyun Lee",
+    "Zhang Enyan",
+    "Michael Xu",
+    "Hao Tang",
+    "Zinan Lin",
+    "Weijia Xu",
+    "Chris Quirk",
+    "Jianfeng Gao",
+    "Giulia Fanti",
+    "Xiaodong Liu"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2611.32802"
+   },
+   "category": "architecture/state",
+   "focus": "core",
+   "facets": {
+    "placement": "whole-stack",
+    "depth_train": "fixed",
+    "kv": "compressed"
+   },
+   "tldr": {
+    "en": "After each window of context, a Transformer LM 'sleeps', rerunning its whole network N-1 more times over that window with each pass's output fed into the next and merging the new keys and values into the cache through a learned gate, while decoding between windows stays one pass per token; on held-out code, the N=4 model matches the no-sleep baseline's loss with 2.39× fewer in-context tokens.",
+    "zh": "Transformer 语言模型每处理完一个上下文窗口就“睡眠”一次，把整个网络在该窗口上再运行 N-1 遍，每遍的输出作为下一遍的输入，并用可学习门控把新的 key 和 value 合并进 KV cache，窗口之间的解码仍是每个 token 一次前向；在未见过的代码上，N=4 的模型达到不睡眠基线损失所需的上下文 token 少 2.39×。"
+   },
+   "added": "2026-11-26"
   },
   {
    "id": "sensenova-loop-9b",
