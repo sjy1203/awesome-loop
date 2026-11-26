@@ -1,328 +1,156 @@
 {
- "updated": "2026-11-25",
+ "updated": "2026-11-26",
  "candidates": [
   {
-   "id": "2611.32452",
-   "title": "The Teacher Is Already Inside: Self-Distilling Looped Language Models Beyond Their Last Loop",
-   "date": "2026-11-24",
+   "id": "2611.34923",
+   "title": "Mixture-of-Loops Transformer",
+   "date": "2026-11-25",
    "authors": [
-    "Linghua Zhang"
+    "Lianghui Zhu",
+    "Shijie Wang",
+    "Xinggang Wang",
+    "Jinze Bai",
+    "Bo Wang",
+    "Xiang Bai"
    ],
-   "url": "https://arxiv.org/abs/2611.32452",
+   "url": "https://arxiv.org/abs/2611.34923",
    "terms": [
-    "looped language model",
-    "looped language models",
-    "looped model"
+    "looped transformer",
+    "looped transformers"
    ],
-   "abstract": "Looped language models apply one shared transformer stack several times per token, and every loop is readable through the shared language-model head. Post-training them is hard. Reward-only reinforcement learning needs a verifier and learns from one sparse signal per response; spreading the reward over loops collapses the entropy of every loop; and cross-loop self-distillation, as in LoopOPD, can only teach intermediate loops, because the last loop cannot learn from its own frozen copy: the loss",
+   "abstract": "Looped Transformers boost expressivity by reusing shared layers across loops, yet at the cost of efficiency. Pushing their expressivity-efficiency frontier requires rethinking the core mechanism connecting adjacent loops: What should be passed as a Transformer loops? We introduce Mixture-of-Loops Transformer (MoLT), whose Mixture-of-Loops Attention (MoLA) uses keys and values (KV) as memory for selective reuse across depths and loops. Under loop residual, MoLT-R retains the residual stream and r",
    "cites_seeds": []
   },
   {
-   "id": "2611.32175",
-   "title": "LoopFit: Retrofitting Pretrained Diffusion Transformers with Recurrent Refinement",
-   "date": "2026-11-24",
+   "id": "2611.34492",
+   "title": "FlyingStart: Learned Cross-Token Warm Starts for Fixed-Point Decoding in Recurrent-Depth Language Models",
+   "date": "2026-11-25",
    "authors": [
-    "Xiaocheng Lu",
-    "Haoxi Li",
-    "Dazhao Du",
-    "Tao Han",
-    "Jian Liu",
-    "Hao Chen"
+    "Runguo Li",
+    "Dezhen Lu",
+    "Zixiang Ni"
    ],
-   "url": "https://arxiv.org/abs/2611.32175",
+   "url": "https://arxiv.org/abs/2611.34492",
    "terms": [
-    "recurrent depth"
+    "recurrent-depth"
    ],
-   "abstract": "Scaling inference computation offers a way to improve diffusion transformers (DiTs), but taking more sampling steps leaves the depth of each denoising prediction unchanged. Recurrently reusing Transformer blocks increases computation within each step, allowing further refinement of hidden representations. Retrofitting pretrained models enables this capability without repeating pretraining, but requires blocks learned for fixed-depth computation to refine states produced by their own repeated app",
+   "abstract": "Recurrent-depth language models generate each token by iterating a shared block of layers until its hidden state converges. Inference methods for these models decide when to stop the iteration, yet every token still starts from random noise and pays the full cost of converging. We show that where the iteration starts is a second, independent lever. A token's fixed point is predictable from the state at which the previous token stopped, after a learned change of coordinates, and we introduce Flyi",
    "cites_seeds": []
   },
   {
-   "id": "2611.32067",
-   "title": "LoopDVR: Looped Transformer for Efficient Dense Visual Recognition",
-   "date": "2026-11-24",
+   "id": "2611.34276",
+   "title": "Scaling Looped MoE Language Models under Matched Budgets: Information Flow and Parameter Allocation",
+   "date": "2026-11-25",
    "authors": [
-    "Sirui Liang",
-    "Xuanlong Yu",
-    "Longfei Liu",
-    "Xiaodong Cun",
-    "Xi Shen"
+    "Shipeng Bai",
+    "Jiayu Qin",
+    "Hong Liu",
+    "Xili Wang",
+    "Jianchao Tan",
+    "Jiacheng Li"
    ],
-   "url": "https://arxiv.org/abs/2611.32067",
-   "terms": [
-    "looped transformer"
-   ],
-   "abstract": "We propose LoopDVR, a framework for converting pretrained Transformer-based dense visual recognition models into parameter-efficient looped networks. Rather than reducing the network width or depth directly, LoopDVR reuses Transformer blocks across layers in both the ViT backbone and Transformer decoder, reducing the number of parameters while retaining the original computational structure. However, naively sharing parameters can disrupt the distinct transformations learned at different depths. ",
-   "cites_seeds": []
-  },
-  {
-   "id": "2611.31977",
-   "title": "Distill to Loop: Turning Pretrained Diffusion Transformers into Looped Models with Adjustable Depth",
-   "date": "2026-11-24",
-   "authors": [
-    "Chenru Wang",
-    "Shengwei An"
-   ],
-   "url": "https://arxiv.org/abs/2611.31977",
+   "url": "https://arxiv.org/abs/2611.34276",
    "terms": [
     "looped transformer",
     "looped transformers",
     "looped model",
     "looped models"
    ],
-   "abstract": "Looped transformers reuse one block of shared weights along the depth of the network. Recent looped diffusion transformers are trained from scratch, which repeats the full pretraining cost although strong pretrained non-looped diffusion transformers exist. We propose Distill to Loop (Dooop), which distills a pretrained non-looped diffusion transformer into a looped student whose blocks are initialized from the teacher's. We cast distillation as a fixed-point iteration toward the teacher, in whic",
+   "abstract": "Looped Transformers decouple computational depth from parameter count, and prior studies have demonstrated promising performance gains with increased computation. However, systematic design principles for configuring these models under strict iso-parameter and iso-FLOP constraints remain scarce. We contribute to this direction by improving information flow in looped models and systematically studying loop parameter configurations. Specifically, we refine this information flow via gated inner-loo",
    "cites_seeds": []
   },
   {
-   "id": "2611.31939",
-   "title": "Beyond the Last Loop: Reinforcement Learning with a Teacher Extrapolated from the Model Itself",
-   "date": "2026-11-24",
+   "id": "2611.33983",
+   "title": "Quaternion-Tucker ZigZag Networks: Halving Transformer Backbone Parameters and Enabling Exact 2D Zero-Loss Continual Scaling",
+   "date": "2026-11-25",
    "authors": [
-    "Linghua Zhang"
+    "Shubham Barmase"
    ],
-   "url": "https://arxiv.org/abs/2611.31939",
-   "terms": [
-    "looped language model",
-    "looped language models",
-    "looped model"
-   ],
-   "abstract": "Looped language models apply one shared transformer stack several times per token, and every loop can be read out through the shared language-model head. Post-training them with verifiable rewards is hard: the outcome reward carries one bit per response, spreading it over loops trains intermediate loops on tokens sampled from the last loop, and distillation needs either a teacher that ignores the reward or an external, larger model. We observe that a looped model already contains a teacher stron",
-   "cites_seeds": []
-  },
-  {
-   "id": "2611.31513",
-   "title": "How to build and train your recurrent-depth model: A fixed-point perspective",
-   "date": "2026-11-23",
-   "authors": [
-    "Thomas Pethick"
-   ],
-   "url": "https://arxiv.org/abs/2611.31513",
-   "terms": [
-    "recurrent-depth"
-   ],
-   "abstract": "Recurrent-depth models are trained with truncated backpropagation, yet it remains unclear why this works. We show that input injection, commonly used in recurrent-depth models, is exactly Halpern iteration, and that a slowly vanishing stepsize provably converges with a backpropagation window polylogarithmic in the depth. The guarantees require a Lipschitz operator, which for SwiGLU leads to a weight constraint in both row and spectral norm, while only a row norm constraint for gates. Based on th",
-   "cites_seeds": []
-  },
-  {
-   "id": "2611.31481",
-   "title": "SwiftLoop: Selective Refinement for Adaptive Implicit Reasoning in Looped Transformers",
-   "date": "2026-11-23",
-   "authors": [
-    "Tianyi Zhao",
-    "Ke Wan",
-    "Chen Chen"
-   ],
-   "url": "https://arxiv.org/abs/2611.31481",
-   "terms": [
-    "looped transformer",
-    "looped transformers",
-    "looped model",
-    "looped models",
-    "recurrent depth",
-    "depth recurrence"
-   ],
-   "abstract": "Looped Transformers advance implicit chain-of-thought reasoning through recurrent latent refinement. However, existing looped reasoners typically employ fixed-depth recurrence, updating all latent positions at every iteration and incurring redundancy when further refinement is unnecessary. We introduce \\textsc{SwiftLoop}, an inference-time framework for selective recurrent refinement through position-wise freezing, enabling adaptive computation allocation across both recurrent depth and active w",
-   "cites_seeds": []
-  },
-  {
-   "id": "2611.31154",
-   "title": "Attention Latent Feedback",
-   "date": "2026-11-23",
-   "authors": [],
-   "url": "https://arxiv.org/abs/2611.31154",
-   "terms": [],
-   "abstract": "",
-   "cites_seeds": [
-    "Universal Transformers",
-    "Huginn",
-    "Ouro"
-   ]
-  },
-  {
-   "id": "2611.31094",
-   "title": "Unlocking the Power of Loops in Pretrained LLMs with Loop Residuals",
-   "date": "2026-11-23",
-   "authors": [
-    "Xuanlei Zhao",
-    "Hailun Xu",
-    "Kai Wang",
-    "Yang Luo",
-    "Yingxuan Ren",
-    "Zirui Zhu"
-   ],
-   "url": "https://arxiv.org/abs/2611.31094",
+   "url": "https://arxiv.org/abs/2611.33983",
    "terms": [
     "looped transformer",
     "looped transformers"
    ],
-   "abstract": "Looped Transformers iterate a shared block of layers to increase computation without adding parameters, offering stronger performance and test-time scaling. However, this power has so far required training from scratch and yielded only modest gains for LLMs. Finetuning existing models into loops is far cheaper, yet also brings only marginal gains over SFT. We propose LoopRes, an effective, scalable, and simple approach that turns loops into significant and consistent gains for pretrained LLMs. B",
-   "cites_seeds": [
-    "Universal Transformers",
-    "Huginn",
-    "Ouro"
-   ]
+   "abstract": "Standard Transformers allocate independent dense weight matrices to every feed-forward network (FFN) layer, coupling parameters linearly with depth (O(L)) and discarding prior compute when scaling capacity. Conversely, weight-tied Looped Transformers decouple depth from parameters (O(1)) but enforce time-homogeneous updates. We formulate the L-layer FFN stack as a 3D Tensor Cuboid and introduce QuatTucker-ZigZagGPT, unifying: (1) 4D Quaternion Hamilton GEMMs in bfloat16 (4x FFN compression), (2)",
+   "cites_seeds": []
   },
   {
-   "id": "2611.31015",
-   "title": "Can Latent Reasoning Drive LLM Outputs Without a Trace?",
-   "date": "2026-11-23",
-   "authors": [],
-   "url": "https://arxiv.org/abs/2611.31015",
-   "terms": [],
-   "abstract": "",
-   "cites_seeds": [
-    "Huginn"
-   ]
+   "id": "2611.33952",
+   "title": "DuoMI: Dual Mutual Information Regularization for Expert Reuse in Looped Transformers",
+   "date": "2026-11-25",
+   "authors": [
+    "Xinlai Kang",
+    "Zhenhe Wu",
+    "Haoyu Wang",
+    "Weihua He",
+    "Yaping Jin",
+    "Jie Hu"
+   ],
+   "url": "https://arxiv.org/abs/2611.33952",
+   "terms": [
+    "looped transformer",
+    "looped transformers"
+   ],
+   "abstract": "We introduce Dual Mutual Information Regularization (DuoMI), a method for regulating expert routing across rounds in looped mixture-of-experts (MoE) Transformers. When two rounds of computation share an expert pool, their routers may favor different expert subsets, limiting the reuse of individual expert parameters across rounds. Even when aggregate expert usage is identical across rounds, we would still prefer each token to retain some experts while switching to others. DuoMI addresses both asp",
+   "cites_seeds": []
   },
   {
-   "id": "2611.30844",
-   "title": "DyLoMo-DiT: Dynamic Looped Mixture-of-Experts Diffusion Transformers",
-   "date": "2026-11-23",
-   "authors": [],
-   "url": "https://arxiv.org/abs/2611.30844",
-   "terms": [],
-   "abstract": "",
+   "id": "2611.33896",
+   "title": "Looped Models are Fast Multi-Token Predictors",
+   "date": "2026-11-25",
+   "authors": [
+    "Ayhan Suleymanzade",
+    "Sean McLeish",
+    "Sehoon Kim",
+    "Jinwoo Kim",
+    "Antoine Bosselut"
+   ],
+   "url": "https://arxiv.org/abs/2611.33896",
+   "terms": [
+    "looped language model",
+    "looped language models",
+    "looped model",
+    "looped models"
+   ],
+   "abstract": "Looped language models can adapt computation for predicting a token without a proportional rescaling in unique model parameters by adjusting the number of loops. This property has been used for self-speculative decoding, taking shallow loops as fast drafters and deep loops as verifiers, which is effective since drafting still uses full parameters. In this paper, we show that shallow loops can be also predictive of several future tokens and leverage this to drastically accelerate the inference of",
+   "cites_seeds": []
+  },
+  {
+   "id": "2611.33722",
+   "title": "Practice Makes Fluent: Learning to Use Earlier Predictions in Looped Models",
+   "date": "2026-11-25",
+   "authors": [
+    "Minseok seo",
+    "Hee-Seon Kim",
+    "Changick Kim"
+   ],
+   "url": "https://arxiv.org/abs/2611.33722",
+   "terms": [
+    "looped model",
+    "looped models"
+   ],
+   "abstract": "People become faster at a task through practice, but models that improve with experience do not necessarily learn to use less computation. We train looped models, whose intermediate predictions allow earlier exits, to perform tasks with fewer iterations through practice. This is difficult because shared-weight updates can degrade the final-loop prediction while improving early ones, and the exit gate must track early predictions as their quality changes. We propose FLUENT, which requires no addi",
+   "cites_seeds": []
+  },
+  {
+   "id": "2611.33468",
+   "title": "Learning from Recurrence: Internalizing Depth-Induced Preferences in Looped Language Models",
+   "date": "2026-11-24",
+   "authors": [
+    "Hui Chen",
+    "Joshua Elsdon",
+    "Can Goksen"
+   ],
+   "url": "https://arxiv.org/abs/2611.33468",
+   "terms": [
+    "looped language model",
+    "looped language models",
+    "recurrent depth"
+   ],
+   "abstract": "A looped language model repeatedly applies the same block to its hidden state before predicting each token. The number of passes is its recurrent depth. Increasing this depth gives the model more computation per token with the same parameters. Can the shared block learn from the predictions it makes at greater depth? Following prior work, we retrofit pretrained OLMo-2-1B with a shared recurrent block and continue mid-training over varying recurrent depths. In the four-pass model, additional pass",
    "cites_seeds": [
     "Universal Transformers",
     "MoR"
-   ]
-  },
-  {
-   "id": "2611.30623",
-   "title": "Does the Mixer Matter ? Paired-Seed Ablations of Tiny Bilingual Language Models",
-   "date": "2026-11-23",
-   "authors": [],
-   "url": "https://arxiv.org/abs/2611.30623",
-   "terms": [],
-   "abstract": "",
-   "cites_seeds": [
-    "Universal Transformers"
-   ]
-  },
-  {
-   "id": "2611.30581",
-   "title": "A Pipeline-Parallel System for Depth-Recurrent Models",
-   "date": "2026-11-23",
-   "authors": [
-    "Yunjia Xi",
-    "Jiarui Qin",
-    "Di Yin",
-    "Xing Sun"
-   ],
-   "url": "https://arxiv.org/abs/2611.30581",
-   "terms": [
-    "depth-recurrent"
-   ],
-   "abstract": "Depth-recurrent (Looped) models raise effective depth by applying a shared stack of blocks several times. Scaling them usually requires pipeline parallelism, but commonly used interleaved 1F1B is drawn for an acyclic stage graph in which each micro-batch enters each stage once. Once that stack is split across stages, the same stage is visited several times on one micro-batch and later stages feed earlier ones: native 1F1B has no slot for the extra visit, cannot rank a first iteration against a s",
-   "cites_seeds": [
-    "Universal Transformers",
-    "Huginn",
-    "MoR",
-    "Ouro"
-   ]
-  },
-  {
-   "id": "2611.30480",
-   "title": "Test-Time Latent Computation to Improve Visual Perception in Multimodal Large Language Models",
-   "date": "2026-11-23",
-   "authors": [],
-   "url": "https://arxiv.org/abs/2611.30480",
-   "terms": [],
-   "abstract": "",
-   "cites_seeds": [
-    "Universal Transformers",
-    "Huginn",
-    "Ouro"
-   ]
-  },
-  {
-   "id": "2611.29843",
-   "title": "The Temporal Residual: Fast and Effective Retrofitting of Latent Feedback into Pretrained Language Models",
-   "date": "2026-11-23",
-   "authors": [],
-   "url": "https://arxiv.org/abs/2611.29843",
-   "terms": [],
-   "abstract": "",
-   "cites_seeds": [
-    "Universal Transformers",
-    "Huginn"
-   ]
-  },
-  {
-   "id": "2611.29813",
-   "title": "Hierarchical Reasoning Action Head for Tiny Vision-Language-Action Models",
-   "date": "2026-11-22",
-   "authors": [],
-   "url": "https://arxiv.org/abs/2611.29813",
-   "terms": [],
-   "abstract": "",
-   "cites_seeds": [
-    "Universal Transformers",
-    "Huginn"
-   ]
-  },
-  {
-   "id": "2611.29180",
-   "title": "loopxDINO: Dense Visual Prediction via Iterative Latent Reasoning",
-   "date": "2026-11-22",
-   "authors": [],
-   "url": "https://arxiv.org/abs/2611.29180",
-   "terms": [],
-   "abstract": "",
-   "cites_seeds": [
-    "Universal Transformers"
-   ]
-  },
-  {
-   "id": "2611.28971",
-   "title": "When Wrong Answers Remain Unsettled: Failure Dynamics in Recurrent Reasoners",
-   "date": "2026-11-21",
-   "authors": [],
-   "url": "https://arxiv.org/abs/2611.28971",
-   "terms": [],
-   "abstract": "",
-   "cites_seeds": [
-    "Universal Transformers",
-    "Huginn"
-   ]
-  },
-  {
-   "id": "2611.28774",
-   "title": "R2WM: Recursive Reasoning Wireless Model for Long-Horizon mmWave Beam Prediction",
-   "date": "2026-11-21",
-   "authors": [],
-   "url": "https://arxiv.org/abs/2611.28774",
-   "terms": [],
-   "abstract": "",
-   "cites_seeds": [
-    "Universal Transformers"
-   ]
-  },
-  {
-   "id": "2611.28603",
-   "title": "Bridging Teacher-Student Capability Gaps with Recurrent Computation",
-   "date": "2026-11-21",
-   "authors": [],
-   "url": "https://arxiv.org/abs/2611.28603",
-   "terms": [],
-   "abstract": "",
-   "cites_seeds": [
-    "Universal Transformers",
-    "MoR",
-    "Ouro"
-   ]
-  },
-  {
-   "id": "2611.28575",
-   "title": "LoopSight: Looped Vision Transformers with Gated Prediction Memory",
-   "date": "2026-11-21",
-   "authors": [],
-   "url": "https://arxiv.org/abs/2611.28575",
-   "terms": [],
-   "abstract": "",
-   "cites_seeds": [
-    "Universal Transformers",
-    "Huginn",
-    "Ouro"
    ]
   }
  ]
