@@ -10,7 +10,7 @@ English · [简体中文](../zh/2611.31094.md) · [Back to the list](../../READM
 
 > Finetune a pretrained LLM into a prelude-core-coda loop whose core layers attend over the block outputs of the previous loop, with a trained loop-aware key on each source.
 
-**Category**: Architecture: cross-pass state and residuals · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 0 · stars 71 · HF upvotes 20
+**Category**: Architecture: cross-pass state and residuals · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 1 · stars 88 · HF upvotes 20
 
 [paper](https://arxiv.org/abs/2611.31094) · [code](https://github.com/NUS-HPC-AI-Lab/LoopRes) · [weights](https://huggingface.co/oahzxl/LoopRes-Qwen3-1.7B)
 
@@ -441,7 +441,7 @@ English · [简体中文](../zh/2611.13378.md) · [Back to the list](../../READM
 
 > Loop the CED encoder layers that produce global KV, train with random depth, and keep only the last round's KV.
 
-**Category**: Architecture: where to loop, what to share · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 0
+**Category**: Architecture: where to loop, what to share · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 1
 
 [paper](https://arxiv.org/abs/2611.13378)
 
@@ -556,7 +556,7 @@ English · [简体中文](../zh/2611.07211.md) · [Back to the list](../../READM
 
 > Serve looped Transformers with fewer core loops for ordinary prompt tokens than for the last prompt token and the decoded tokens, run the deep tail as a compact batch in vLLM, and lower prefilling depth when the queue grows.
 
-**Category**: Systems and inference · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 1
+**Category**: Systems and inference · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 2
 
 [paper](https://arxiv.org/abs/2611.07211)
 
@@ -697,7 +697,7 @@ English · [简体中文](../zh/2609.01343.md) · [Back to the list](../../READM
 
 > With per-token FLOPs, total parameters and KV cache matched, looping the middle half of an MoE Transformer twice lowers loss at four scales up to 54B non-embedding parameters and saves 6.8-18.0% of training FLOPs on the fitted frontier.
 
-**Category**: Scaling and budget · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 35 · HF upvotes 91
+**Category**: Scaling and budget · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 38 · HF upvotes 86
 
 [paper](https://arxiv.org/abs/2609.01343)
 
@@ -825,7 +825,7 @@ English · [简体中文](../zh/2604.12946.md) · [Back to the list](../../READM
 
 > Constrain the loop's injection to a stable negative-diagonal form, sample depth per sequence, and fit training and test-time scaling laws for looping at fixed parameter count.
 
-**Category**: Scaling and budget · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 96 · stars 195 · HF upvotes 11
+**Category**: Scaling and budget · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 99 · stars 195 · HF upvotes 11
 
 [paper](https://arxiv.org/abs/2604.12946) · [code](https://github.com/sandyresearch/parcae) · [project](https://sandyresearch.github.io/parcae/) · [weights](https://huggingface.co/SandyResearch/parcae-140m)
 
@@ -1095,7 +1095,7 @@ English · [简体中文](../zh/2511.07384.md) · [Back to the list](../../READM
 
 > Turn pretrained 1B models into prelude-core-coda recurrent models by dropping middle layers and looping a block, then keep training while a curriculum raises the mean recurrence.
 
-**Category**: Training and retrofitting · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 83 · stars 73 · HF upvotes 21
+**Category**: Training and retrofitting · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 86 · stars 73 · HF upvotes 21
 
 [paper](https://arxiv.org/abs/2511.07384) · [code](https://github.com/mcleish7/retrofitting-recurrence) · [weights](https://huggingface.co/collections/tomg-group-umd/retrofitting-recurrence)
 
@@ -1235,7 +1235,7 @@ English · [简体中文](../zh/2510.25741.md) · [Back to the list](../../READM
 
 > Pre-train a weight-tied layer stack that repeats 4 times, with a learned exit gate, on 7.7T tokens; the authors report that the 1.4B and 2.6B models match dense models of up to 12B parameters.
 
-**Category**: Depth control · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 267 · HF upvotes 146 · HN points 84
+**Category**: Depth control · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 269 · HF upvotes 146 · HN points 84
 
 [paper](https://arxiv.org/abs/2510.25741) · [project](https://ouro-llm.github.io) · [weights](https://huggingface.co/ByteDance/Ouro-1.4B)
 
@@ -1397,7 +1397,7 @@ English · [简体中文](../zh/2510.24824.md) · [Back to the list](../../READM
 
 > Run loop l of token i in the same forward pass as loop l+1 of token i-1, let later loops reuse the first loop's KV plus a gated SWA, and a looped model decodes at close to unlooped latency and KV.
 
-**Category**: Systems and inference · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 38 · HF upvotes 18 · HN points 3
+**Category**: Systems and inference · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 40 · HF upvotes 18 · HN points 3
 
 [paper](https://arxiv.org/abs/2510.24824)
 
@@ -1533,7 +1533,7 @@ English · [简体中文](../zh/2507.10524.md) · [Back to the list](../../READM
 
 > Routers give each token its own number of passes through a shared middle block, and each pass caches KV only for its active tokens; at equal training FLOPs MoR beats fixed-depth recursive baselines and often vanilla, with fewer parameters.
 
-**Category**: Depth control · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 217 · stars 652 · HF upvotes 74 · HN points 5
+**Category**: Depth control · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 222 · stars 652 · HF upvotes 74 · HN points 5
 
 [paper](https://arxiv.org/abs/2507.10524) · [code](https://github.com/raymin0223/mixture_of_recursions) · [weights](https://drive.google.com/drive/folders/1pYKJOu2aBGC-jgoWbfP6T_vqEYtUVxa4)
 
@@ -1678,7 +1678,7 @@ English · [简体中文](../zh/2502.05171.md) · [Back to the list](../../READM
 
 > Pretrain a 3.5B prelude-core-coda transformer with a randomly sampled number of core iterations, so test-time compute scales by iterating the core more.
 
-**Category**: Architecture: where to loop, what to share · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 623 · stars 1,000 · HF upvotes 162 · HN points 150
+**Category**: Architecture: where to loop, what to share · **Status**: draft (numbers not yet re-checked) · **Impact**: cites 636 · stars 1,001 · HF upvotes 162 · HN points 150
 
 [paper](https://arxiv.org/abs/2502.05171) · [code](https://github.com/seal-rg/recurrent-pretraining) · [weights](https://huggingface.co/tomg-group-umd/huginn-0125)
 

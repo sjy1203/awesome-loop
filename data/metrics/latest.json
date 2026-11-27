@@ -1,5 +1,5 @@
 {
- "date": "2026-11-26",
+ "date": "2026-11-27",
  "models": {
   "Amr-Hegazy/grt-large-isoflop": {
    "downloads": 17,
@@ -174,16 +174,16 @@
    "likes": 2
   },
   "Thrillcrazyer/TinyLlama_v1.1_LoopUS": {
-   "downloads": 26,
+   "downloads": 24,
    "likes": 1
   },
   "TierFlow/LoopVL": {
-   "downloads": 596,
+   "downloads": 595,
    "likes": 6
   },
   "ai-forever/OrbitLM-1.8B-Thinking": {
    "downloads": 138,
-   "likes": 35
+   "likes": 41
   },
   "amazon/ALoDLM-1.7B": {
    "downloads": 723,
@@ -194,15 +194,15 @@
    "likes": 67
   },
   "armenjeddi/LoopFormer-2block-12iterations": {
-   "downloads": 30,
+   "downloads": 29,
    "likes": 0
   },
   "armenjeddi/LoopFormer-3block-8iterations": {
-   "downloads": 71,
+   "downloads": 69,
    "likes": 1
   },
   "armenjeddi/LoopFormer-3block-8iterations-FineWeb300K": {
-   "downloads": 34,
+   "downloads": 35,
    "likes": 0
   },
   "btzyd/Accordion-6B-A0.5B-Base-32K": {
@@ -222,39 +222,39 @@
    "likes": 0
   },
   "danish-foundation-models/DFM-Mimir": {
-   "downloads": 2844,
+   "downloads": 2817,
    "likes": 86
   },
   "danish-foundation-models/DFM-Mimir-GGUF": {
-   "downloads": 597,
+   "downloads": 585,
    "likes": 0
   },
   "danish-foundation-models/DFM-Mimir-v1.5": {
-   "downloads": 2322,
+   "downloads": 2327,
    "likes": 6
   },
   "danish-foundation-models/DFM-Mimir-v1.5-GGUF": {
-   "downloads": 1126,
+   "downloads": 1049,
    "likes": 3
   },
   "internlm/Intern-S2-Mobius": {
-   "downloads": 903,
+   "downloads": 911,
    "likes": 66
   },
   "internlm/Intern-S2-Mobius-FP8": {
-   "downloads": 210,
+   "downloads": 211,
    "likes": 9
   },
   "jacobfa1/attractor-140m": {
-   "downloads": 36,
+   "downloads": 28,
    "likes": 1
   },
   "jacobfa1/attractor-370m": {
-   "downloads": 21,
+   "downloads": 19,
    "likes": 0
   },
   "jacobfa1/attractor-770m": {
-   "downloads": 25,
+   "downloads": 24,
    "likes": 2
   },
   "joelogan/depth-recurrent-convergence": {
@@ -270,7 +270,7 @@
    "likes": 3
   },
   "nics-efc/TaH-plus-1.7B": {
-   "downloads": 128,
+   "downloads": 129,
    "likes": 2
   },
   "nics-efc/TaH2-1.7B-max2": {
@@ -287,7 +287,7 @@
   },
   "nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-BF16": {
    "downloads": 12474,
-   "likes": 284
+   "likes": 287
   },
   "nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-GGUF": {
    "downloads": 40977,
@@ -303,7 +303,7 @@
   },
   "oahzxl/LoopRes-Qwen3-1.7B": {
    "downloads": 63,
-   "likes": 5
+   "likes": 6
   },
   "osunlp/ARLoop-0.6B": {
    "downloads": 2570,
@@ -322,12 +322,12 @@
    "likes": 0
   },
   "sapientinc/HRM-Text-1B": {
-   "downloads": 3149,
+   "downloads": 3135,
    "likes": 838
   },
   "sensenova/SenseNova-Loop-9B": {
    "downloads": 3268,
-   "likes": 753
+   "likes": 789
   },
   "sensenova/SenseNova-Loop-9B-AWQ": {
    "downloads": 1051,
@@ -335,22 +335,22 @@
   },
   "sensenova/SenseNova-Loop-9B-GGUF": {
    "downloads": 117621,
-   "likes": 290
+   "likes": 323
   },
   "sensenova/SenseNova-Loop-9B-Preview": {
    "downloads": 6343,
-   "likes": 320
+   "likes": 321
   },
   "smcleish/Recurrent-Llama-3.2-train-recurrence-16": {
-   "downloads": 80,
+   "downloads": 78,
    "likes": 0
   },
   "smcleish/Recurrent-Llama-3.2-train-recurrence-32": {
-   "downloads": 2809,
+   "downloads": 2910,
    "likes": 1
   },
   "smcleish/Recurrent-Llama-3.2-train-recurrence-4": {
-   "downloads": 625,
+   "downloads": 631,
    "likes": 0
   },
   "smcleish/Recurrent-Llama-3.2-train-recurrence-8": {
@@ -358,23 +358,23 @@
    "likes": 0
   },
   "smcleish/Recurrent-Llama-3.2-untrained": {
-   "downloads": 47,
+   "downloads": 48,
    "likes": 0
   },
   "smcleish/Recurrent-OLMo-2-0425-train-recurrence-16": {
-   "downloads": 116,
+   "downloads": 108,
    "likes": 0
   },
   "smcleish/Recurrent-OLMo-2-0425-train-recurrence-32": {
-   "downloads": 368,
+   "downloads": 362,
    "likes": 3
   },
   "smcleish/Recurrent-OLMo-2-0425-train-recurrence-4": {
-   "downloads": 88,
+   "downloads": 87,
    "likes": 1
   },
   "smcleish/Recurrent-OLMo-2-0425-train-recurrence-8": {
-   "downloads": 95,
+   "downloads": 92,
    "likes": 0
   },
   "smcleish/Recurrent-OLMo-2-0425-untrained": {
@@ -382,15 +382,15 @@
    "likes": 0
   },
   "smcleish/Recurrent-TinyLlama-3T-train-recurrence-16": {
-   "downloads": 66,
+   "downloads": 65,
    "likes": 1
   },
   "smcleish/Recurrent-TinyLlama-3T-train-recurrence-32": {
-   "downloads": 365,
+   "downloads": 357,
    "likes": 2
   },
   "smcleish/Recurrent-TinyLlama-3T-train-recurrence-4": {
-   "downloads": 147,
+   "downloads": 145,
    "likes": 0
   },
   "smcleish/Recurrent-TinyLlama-3T-train-recurrence-4-single-phase": {
@@ -398,11 +398,11 @@
    "likes": 0
   },
   "smcleish/Recurrent-TinyLlama-3T-train-recurrence-4-two-phase": {
-   "downloads": 57,
+   "downloads": 58,
    "likes": 0
   },
   "smcleish/Recurrent-TinyLlama-3T-train-recurrence-8": {
-   "downloads": 137,
+   "downloads": 134,
    "likes": 0
   },
   "smcleish/Recurrent-TinyLlama-3T-untrained": {
@@ -411,14 +411,14 @@
   },
   "thinkingmachines/Inkling-2-Mini": {
    "downloads": 96527,
-   "likes": 6124
+   "likes": 6365
   },
   "thinkingmachines/TML-d24-varloop-research": {
    "downloads": 3398,
-   "likes": 155
+   "likes": 179
   },
   "tomg-group-umd/huginn-0125": {
-   "downloads": 23609,
+   "downloads": 23688,
    "likes": 321
   },
   "tomg-group-umd/huginn_swa_100_10_avg_0.9_merge": {
@@ -426,39 +426,39 @@
    "likes": 0
   },
   "tomg-group-umd/huginn_swa_75_7_ema_0.9_merge": {
-   "downloads": 42,
+   "downloads": 40,
    "likes": 1
   },
   "tomg-group-umd/step-00006144-recurrence_full_512_0": {
-   "downloads": 35,
+   "downloads": 46,
    "likes": 0
   },
   "tomg-group-umd/step-00010752-recurrence_full_512_0": {
-   "downloads": 26,
+   "downloads": 30,
    "likes": 0
   },
   "tomg-group-umd/step-00011904-recurrence_full_512_0": {
-   "downloads": 16,
+   "downloads": 17,
    "likes": 0
   },
   "tomg-group-umd/step-00017920-recurrence_full_512_0": {
-   "downloads": 19,
+   "downloads": 20,
    "likes": 0
   },
   "tomg-group-umd/step-00023808-recurrence_full_512_0": {
-   "downloads": 18,
+   "downloads": 23,
    "likes": 0
   },
   "tomg-group-umd/step-00029824-recurrence_full_512_0": {
-   "downloads": 18,
+   "downloads": 22,
    "likes": 0
   },
   "tomg-group-umd/step-00035840-recurrence_full_512_0": {
-   "downloads": 18,
+   "downloads": 21,
    "likes": 0
   },
   "tomg-group-umd/step-00041728-recurrence_full_512_0": {
-   "downloads": 31,
+   "downloads": 32,
    "likes": 0
   },
   "yhx12/LatentLoop": {
@@ -466,11 +466,11 @@
    "likes": 1
   },
   "zeng123/PonderLM-2-Pythia-1.4b": {
-   "downloads": 59,
+   "downloads": 56,
    "likes": 3
   },
   "zeng123/PonderLM-2-Pythia-410m": {
-   "downloads": 42,
+   "downloads": 40,
    "likes": 3
   },
   "zeng123/PonderingPythia-1.4B": {
@@ -500,7 +500,7 @@
     "Seoul National University"
    ],
    "openalex_citations": 3425,
-   "s2_citations": 2833
+   "s2_citations": 2834
   },
   "1511.08228": {
    "citations": 415,
@@ -510,17 +510,17 @@
    "institutions": [
     "Google (United States)"
    ],
-   "openalex_citations": 405,
+   "openalex_citations": 408,
    "s2_citations": 415
   },
   "1603.08983": {
-   "citations": 1082,
+   "citations": 1087,
    "citations_source": "openalex",
    "hf_upvotes": 2,
    "hn_points": 2,
-   "influential": 95,
-   "openalex_citations": 1082,
-   "s2_citations": 996
+   "influential": 96,
+   "openalex_citations": 1087,
+   "s2_citations": 1000
   },
   "1708.04116": {
    "citations": 5,
@@ -534,31 +534,31 @@
    "s2_citations": 5
   },
   "1806.07366": {
-   "citations": 8528,
+   "citations": 8546,
    "citations_source": "semanticscholar",
    "hf_upvotes": 1,
    "hn_points": 243,
-   "influential": 1472,
+   "influential": 1473,
    "institutions": [
     "University of Toronto",
     "Vector Institute"
    ],
-   "openalex_citations": 8138,
-   "s2_citations": 8528
+   "openalex_citations": 8208,
+   "s2_citations": 8546
   },
   "1807.03819": {
-   "citations": 1264,
+   "citations": 1273,
    "citations_source": "semanticscholar",
    "hf_upvotes": 2,
    "hn_points": 0,
-   "influential": 116,
+   "influential": 117,
    "institutions": [
     "Google DeepMind (United Kingdom)",
     "University of Amsterdam",
     "Google (United States)"
    ],
-   "openalex_citations": 918,
-   "s2_citations": 1264
+   "openalex_citations": 929,
+   "s2_citations": 1273
   },
   "1807.05353": {
    "citations": 84,
@@ -582,11 +582,11 @@
    "s2_citations": 172
   },
   "1812.02825": {
-   "citations": 29,
+   "citations": 30,
    "citations_source": "openalex",
    "hn_points": 0,
    "influential": 0,
-   "openalex_citations": 29,
+   "openalex_citations": 30,
    "s2_citations": 22
   },
   "1905.06638": {
@@ -609,7 +609,7 @@
    "s2_citations": 9
   },
   "1909.01377": {
-   "citations": 1115,
+   "citations": 1120,
    "citations_source": "semanticscholar",
    "hf_upvotes": 1,
    "hn_points": 0,
@@ -618,25 +618,25 @@
     "Carnegie Mellon University",
     "Intel (United States)"
    ],
-   "openalex_citations": 385,
-   "s2_citations": 1115
+   "openalex_citations": 388,
+   "s2_citations": 1120
   },
   "1909.11942": {
-   "citations": 8757,
+   "citations": 8843,
    "citations_source": "openalex",
    "hf_upvotes": 4,
    "hn_points": 4,
-   "influential": 1047,
+   "influential": 1048,
    "institutions": [
     "Google (United States)",
     "Toyota Technological Institute at Chicago",
     "New York University"
    ],
-   "openalex_citations": 8757,
-   "s2_citations": 7976
+   "openalex_citations": 8843,
+   "s2_citations": 7989
   },
   "1910.10593": {
-   "citations": 214,
+   "citations": 216,
    "citations_source": "semanticscholar",
    "hn_points": 0,
    "influential": 19,
@@ -645,11 +645,11 @@
     "Stanford University",
     "University of Cambridge"
    ],
-   "openalex_citations": 200,
-   "s2_citations": 214
+   "openalex_citations": 201,
+   "s2_citations": 216
   },
   "2002.09402": {
-   "citations": 119,
+   "citations": 122,
    "citations_source": "openalex",
    "hf_upvotes": 0,
    "hn_points": 0,
@@ -658,20 +658,20 @@
     "Meta (United States)",
     "Laboratoire Lorrain de Recherche en Informatique et ses Applications"
    ],
-   "openalex_citations": 119,
+   "openalex_citations": 122,
    "s2_citations": 10
   },
   "2003.12039": {
-   "citations": 4967,
+   "citations": 4987,
    "citations_source": "openalex",
    "hf_upvotes": 1,
    "hn_points": 0,
-   "influential": 746,
+   "influential": 751,
    "institutions": [
     "Princeton University"
    ],
-   "openalex_citations": 4967,
-   "s2_citations": 4584
+   "openalex_citations": 4987,
+   "s2_citations": 4608
   },
   "2006.08591": {
    "citations": 189,
@@ -695,7 +695,7 @@
     "Robert Bosch (Germany)",
     "Intel (United States)"
    ],
-   "openalex_citations": 258,
+   "openalex_citations": 260,
    "s2_citations": 282
   },
   "2012.13563": {
@@ -742,13 +742,13 @@
    "s2_citations": 52
   },
   "2103.03206": {
-   "citations": 1951,
+   "citations": 1966,
    "citations_source": "openalex",
    "hf_upvotes": 2,
    "hn_points": 1,
    "influential": 151,
-   "openalex_citations": 1951,
-   "s2_citations": 1828
+   "openalex_citations": 1966,
+   "s2_citations": 1831
   },
   "2103.12803": {
    "citations": 198,
@@ -776,15 +776,15 @@
    "s2_citations": 144
   },
   "2106.04279": {
-   "citations": 22,
+   "citations": 23,
    "citations_source": "semanticscholar",
    "hn_points": 0,
    "influential": 3,
    "openalex_citations": 21,
-   "s2_citations": 22
+   "s2_citations": 23
   },
   "2106.04537": {
-   "citations": 161,
+   "citations": 162,
    "citations_source": "semanticscholar",
    "hn_points": 1,
    "influential": 14,
@@ -793,8 +793,8 @@
     "New York University",
     "Chalmers University of Technology"
    ],
-   "openalex_citations": 142,
-   "s2_citations": 161
+   "openalex_citations": 146,
+   "s2_citations": 162
   },
   "2106.14342": {
    "citations": 113,
@@ -809,7 +809,7 @@
    "s2_citations": 113
   },
   "2107.05407": {
-   "citations": 254,
+   "citations": 257,
    "citations_source": "openalex",
    "hf_upvotes": 0,
    "hn_points": 0,
@@ -817,8 +817,8 @@
    "institutions": [
     "Google DeepMind (United Kingdom)"
    ],
-   "openalex_citations": 254,
-   "s2_citations": 249
+   "openalex_citations": 257,
+   "s2_citations": 251
   },
   "2108.09119": {
    "citations": 161,
@@ -857,11 +857,11 @@
     "Università della Svizzera italiana",
     "King Abdullah University of Science and Technology"
    ],
-   "openalex_citations": 64,
+   "openalex_citations": 65,
    "s2_citations": 77
   },
   "2111.05297": {
-   "citations": 48,
+   "citations": 49,
    "citations_source": "openalex",
    "hf_upvotes": 1,
    "hn_points": 0,
@@ -872,7 +872,7 @@
     "Carnegie Mellon University",
     "Meta (United States)"
    ],
-   "openalex_citations": 48,
+   "openalex_citations": 49,
    "s2_citations": 47
   },
   "2112.14479": {
@@ -902,12 +902,12 @@
    "s2_citations": 21
   },
   "2202.05826": {
-   "citations": 116,
+   "citations": 118,
    "citations_source": "openalex",
    "hf_upvotes": 0,
    "hn_points": 2,
    "influential": 7,
-   "openalex_citations": 116,
+   "openalex_citations": 118,
    "s2_citations": 40
   },
   "2204.11385": {
@@ -948,14 +948,14 @@
    "s2_citations": 1
   },
   "2206.04301": {
-   "citations": 126,
+   "citations": 129,
    "citations_source": "openalex",
    "hn_points": 0,
    "influential": 12,
    "institutions": [
     "Microsoft (United States)"
    ],
-   "openalex_citations": 126,
+   "openalex_citations": 129,
    "s2_citations": 120
   },
   "2207.02536": {
@@ -1015,7 +1015,7 @@
    "s2_citations": 2
   },
   "2301.13196": {
-   "citations": 375,
+   "citations": 383,
    "citations_source": "openalex",
    "hf_upvotes": 1,
    "hn_points": 4,
@@ -1024,8 +1024,8 @@
     "University of Wisconsin–Madison",
     "Princeton University"
    ],
-   "openalex_citations": 375,
-   "s2_citations": 340
+   "openalex_citations": 383,
+   "s2_citations": 343
   },
   "2303.13072": {
    "citations": 2,
@@ -1093,26 +1093,26 @@
   },
   "2310.10845": {
    "citations": 38,
-   "citations_source": "openalex",
+   "citations_source": "semanticscholar",
    "hn_points": 0,
    "influential": 3,
    "institutions": [
     "École Polytechnique Fédérale de Lausanne"
    ],
    "openalex_citations": 38,
-   "s2_citations": 36
+   "s2_citations": 38
   },
   "2311.12424": {
-   "citations": 214,
+   "citations": 218,
    "citations_source": "semanticscholar",
    "hf_upvotes": 1,
    "hn_points": 0,
-   "influential": 9,
+   "influential": 10,
    "institutions": [
     "University of Wisconsin–Madison"
    ],
-   "openalex_citations": 173,
-   "s2_citations": 214
+   "openalex_citations": 175,
+   "s2_citations": 218
   },
   "2402.00976": {
    "citations": 8,
@@ -1126,15 +1126,15 @@
    "s2_citations": 6
   },
   "2402.01107": {
-   "citations": 40,
-   "citations_source": "semanticscholar",
+   "citations": 41,
+   "citations_source": "openalex",
    "hf_upvotes": 1,
    "hn_points": 0,
    "influential": 1,
    "institutions": [
     "University of Waterloo"
    ],
-   "openalex_citations": 40,
+   "openalex_citations": 41,
    "s2_citations": 40
   },
   "2402.13572": {
@@ -1154,13 +1154,13 @@
    "s2_citations": 10
   },
   "2402.14905": {
-   "citations": 440,
+   "citations": 443,
    "citations_source": "openalex",
    "hf_upvotes": 134,
    "hn_points": 9,
    "influential": 25,
-   "openalex_citations": 440,
-   "s2_citations": 381
+   "openalex_citations": 443,
+   "s2_citations": 389
   },
   "2403.00720": {
    "citations": 8,
@@ -1176,9 +1176,9 @@
    "citations_source": "openalex",
    "hf_upvotes": 2,
    "hn_points": 1,
-   "influential": 7,
+   "influential": 8,
    "openalex_citations": 89,
-   "s2_citations": 83
+   "s2_citations": 85
   },
   "2409.01531": {
    "citations": 1,
@@ -1192,16 +1192,16 @@
    "s2_citations": 1
   },
   "2409.14199": {
-   "citations": 14,
+   "citations": 15,
    "citations_source": "openalex",
    "hf_upvotes": 0,
    "hn_points": 0,
    "influential": 1,
-   "openalex_citations": 14,
+   "openalex_citations": 15,
    "s2_citations": 10
   },
   "2409.15647": {
-   "citations": 132,
+   "citations": 135,
    "citations_source": "openalex",
    "hf_upvotes": 0,
    "hn_points": 0,
@@ -1211,17 +1211,17 @@
     "Massachusetts Institute of Technology",
     "University of California, Berkeley"
    ],
-   "openalex_citations": 132,
-   "s2_citations": 123
+   "openalex_citations": 135,
+   "s2_citations": 125
   },
   "2410.01405": {
-   "citations": 44,
+   "citations": 45,
    "citations_source": "semanticscholar",
    "hf_upvotes": 0,
    "hn_points": 0,
    "influential": 3,
-   "openalex_citations": 40,
-   "s2_citations": 44
+   "openalex_citations": 41,
+   "s2_citations": 45
   },
   "2410.03020": {
    "citations": 12,
@@ -1298,7 +1298,7 @@
    "s2_citations": 10
   },
   "2410.20672": {
-   "citations": 142,
+   "citations": 147,
    "citations_source": "semanticscholar",
    "hf_upvotes": 10,
    "hn_points": 1,
@@ -1308,8 +1308,8 @@
     "Google DeepMind (United Kingdom)",
     "Google (United States)"
    ],
-   "openalex_citations": 131,
-   "s2_citations": 142
+   "openalex_citations": 132,
+   "s2_citations": 147
   },
   "2410.21698": {
    "citations": 13,
@@ -1324,16 +1324,16 @@
    "s2_citations": 12
   },
   "2412.06769": {
-   "citations": 1113,
+   "citations": 1119,
    "citations_source": "openalex",
    "hf_upvotes": 92,
    "hn_points": 284,
-   "influential": 175,
+   "influential": 176,
    "institutions": [
     "University of California San Diego"
    ],
-   "openalex_citations": 1113,
-   "s2_citations": 944
+   "openalex_citations": 1119,
+   "s2_citations": 946
   },
   "2501.10688": {
    "citations": 18,
@@ -1368,19 +1368,19 @@
    "s2_citations": 4
   },
   "2502.05171": {
-   "citations": 623,
+   "citations": 636,
    "citations_source": "openalex",
    "hf_upvotes": 162,
    "hn_points": 150,
-   "influential": 138,
+   "influential": 140,
    "institutions": [
     "Tübingen AI Center",
     "ELLIS Institute Tübingen",
     "University of Maryland, College Park",
     "Lawrence Livermore National Laboratory"
    ],
-   "openalex_citations": 623,
-   "s2_citations": 603
+   "openalex_citations": 636,
+   "s2_citations": 613
   },
   "2502.07503": {
    "citations": 16,
@@ -1408,7 +1408,7 @@
    "s2_citations": 31
   },
   "2502.08482": {
-   "citations": 23,
+   "citations": 24,
    "citations_source": "semanticscholar",
    "hn_points": 0,
    "influential": 2,
@@ -1416,7 +1416,7 @@
     "Peking University"
    ],
    "openalex_citations": 21,
-   "s2_citations": 23
+   "s2_citations": 24
   },
   "2502.11646": {
    "citations": 7,
@@ -1424,7 +1424,7 @@
    "hn_points": 0,
    "influential": 0,
    "openalex_citations": 7,
-   "s2_citations": 3
+   "s2_citations": 4
   },
   "2502.12214": {
    "citations": 7,
@@ -1435,7 +1435,7 @@
    "s2_citations": 6
   },
   "2502.13842": {
-   "citations": 77,
+   "citations": 79,
    "citations_source": "openalex",
    "hf_upvotes": 0,
    "hn_points": 0,
@@ -1447,21 +1447,21 @@
     "Baidu (China)",
     "Beijing Normal University"
    ],
-   "openalex_citations": 77,
+   "openalex_citations": 79,
    "s2_citations": 73
   },
   "2502.17416": {
-   "citations": 356,
+   "citations": 357,
    "citations_source": "openalex",
    "hf_upvotes": 0,
    "hn_points": 0,
-   "influential": 41,
+   "influential": 42,
    "institutions": [
     "Google (United States)",
     "Toyota Technological Institute at Chicago"
    ],
-   "openalex_citations": 356,
-   "s2_citations": 349
+   "openalex_citations": 357,
+   "s2_citations": 351
   },
   "2502.21074": {
    "citations": 382,
@@ -1474,7 +1474,7 @@
     "The Alan Turing Institute"
    ],
    "openalex_citations": 382,
-   "s2_citations": 313
+   "s2_citations": 314
   },
   "2502.21212": {
    "citations": 43,
@@ -1501,7 +1501,7 @@
    "s2_citations": 76
   },
   "2503.10799": {
-   "citations": 14,
+   "citations": 15,
    "citations_source": "openalex",
    "hf_upvotes": 1,
    "hn_points": 0,
@@ -1512,7 +1512,7 @@
     "ELLIS Institute Tübingen",
     "Imperial College London"
    ],
-   "openalex_citations": 14,
+   "openalex_citations": 15,
    "s2_citations": 6
   },
   "2505.01855": {
@@ -1564,7 +1564,7 @@
    "s2_citations": 10
   },
   "2505.20674": {
-   "citations": 57,
+   "citations": 58,
    "citations_source": "semanticscholar",
    "hf_upvotes": 3,
    "hn_points": 0,
@@ -1574,7 +1574,7 @@
     "Shanghai Innovation Institute"
    ],
    "openalex_citations": 57,
-   "s2_citations": 57
+   "s2_citations": 58
   },
   "2506.14202": {
    "citations": 13,
@@ -1615,16 +1615,16 @@
     "University of Oxford"
    ],
    "openalex_citations": 13,
-   "s2_citations": 11
+   "s2_citations": 12
   },
   "2506.21734": {
-   "citations": 299,
+   "citations": 301,
    "citations_source": "openalex",
    "hf_upvotes": 54,
    "hn_points": 352,
    "influential": 57,
-   "openalex_citations": 299,
-   "s2_citations": 221
+   "openalex_citations": 301,
+   "s2_citations": 222
   },
   "2507.02092": {
    "citations": 58,
@@ -1668,7 +1668,7 @@
    "s2_citations": 8
   },
   "2507.10524": {
-   "citations": 217,
+   "citations": 222,
    "citations_source": "semanticscholar",
    "hf_upvotes": 74,
    "hn_points": 5,
@@ -1681,8 +1681,8 @@
     "Google (United States)",
     "Université de Montréal"
    ],
-   "openalex_citations": 212,
-   "s2_citations": 217
+   "openalex_citations": 214,
+   "s2_citations": 222
   },
   "2508.15553": {
    "citations": 14,
@@ -1697,7 +1697,7 @@
    "s2_citations": 12
   },
   "2508.16745": {
-   "citations": 5,
+   "citations": 6,
    "citations_source": "semanticscholar",
    "hf_upvotes": 29,
    "hn_points": 0,
@@ -1706,11 +1706,11 @@
     "London Institute for Mathematical Sciences"
    ],
    "openalex_citations": 5,
-   "s2_citations": 5
+   "s2_citations": 6
   },
   "2509.23184": {
    "citations": 22,
-   "citations_source": "openalex",
+   "citations_source": "semanticscholar",
    "hf_upvotes": 2,
    "hn_points": 0,
    "influential": 4,
@@ -1719,7 +1719,7 @@
     "Shanghai Innovation Institute"
    ],
    "openalex_citations": 22,
-   "s2_citations": 21
+   "s2_citations": 22
   },
   "2509.23314": {
    "citations": 18,
@@ -1742,7 +1742,7 @@
    "s2_citations": 19
   },
   "2510.04871": {
-   "citations": 274,
+   "citations": 283,
    "citations_source": "openalex",
    "hf_upvotes": 519,
    "hn_points": 43,
@@ -1750,7 +1750,7 @@
    "institutions": [
     "Samsung (South Korea)"
    ],
-   "openalex_citations": 274,
+   "openalex_citations": 283,
    "s2_citations": 0
   },
   "2510.07358": {
@@ -1832,7 +1832,7 @@
    "citations_source": "openalex",
    "hf_upvotes": 8,
    "hn_points": 0,
-   "influential": 2,
+   "influential": 3,
    "institutions": [
     "Max Planck Institute for Intelligent Systems",
     "Tübingen AI Center",
@@ -1840,7 +1840,7 @@
     "ELLIS Institute Tübingen"
    ],
    "openalex_citations": 20,
-   "s2_citations": 12
+   "s2_citations": 14
   },
   "2510.17483": {
    "citations": 11,
@@ -1873,20 +1873,20 @@
    "s2_citations": 0
   },
   "2510.24824": {
-   "citations": 38,
+   "citations": 40,
    "citations_source": "semanticscholar",
    "hf_upvotes": 18,
    "hn_points": 3,
    "influential": 7,
-   "openalex_citations": 36,
-   "s2_citations": 38
+   "openalex_citations": 37,
+   "s2_citations": 40
   },
   "2510.25741": {
-   "citations": 267,
-   "citations_source": "openalex",
+   "citations": 269,
+   "citations_source": "semanticscholar",
    "hf_upvotes": 146,
    "hn_points": 84,
-   "influential": 64,
+   "influential": 66,
    "institutions": [
     "University of California, Santa Cruz",
     "Princeton University",
@@ -1897,11 +1897,11 @@
     "University of Pennsylvania",
     "University of Manchester"
    ],
-   "openalex_citations": 267,
-   "s2_citations": 262
+   "openalex_citations": 269,
+   "s2_citations": 269
   },
   "2511.07384": {
-   "citations": 83,
+   "citations": 86,
    "citations_source": "semanticscholar",
    "hf_upvotes": 21,
    "hn_points": 0,
@@ -1916,10 +1916,10 @@
     "Columbia University"
    ],
    "openalex_citations": 72,
-   "s2_citations": 83
+   "s2_citations": 86
   },
   "2511.08577": {
-   "citations": 37,
+   "citations": 38,
    "citations_source": "openalex",
    "hf_upvotes": 110,
    "hn_points": 0,
@@ -1928,7 +1928,7 @@
     "Tsinghua University",
     "Shanghai Jiao Tong University"
    ],
-   "openalex_citations": 37,
+   "openalex_citations": 38,
    "s2_citations": 15
   },
   "2511.16886": {
@@ -1979,7 +1979,7 @@
    "s2_citations": 16
   },
   "2512.19941": {
-   "citations": 26,
+   "citations": 27,
    "citations_source": "semanticscholar",
    "hf_upvotes": 0,
    "hn_points": 0,
@@ -1989,7 +1989,7 @@
     "Osnabrück University"
    ],
    "openalex_citations": 26,
-   "s2_citations": 26
+   "s2_citations": 27
   },
   "2601.00923": {
    "citations": 1,
@@ -2046,12 +2046,12 @@
   },
   "2601.21582": {
    "citations": 16,
-   "citations_source": "openalex",
+   "citations_source": "semanticscholar",
    "hf_upvotes": 1,
    "hn_points": 0,
    "influential": 0,
    "openalex_citations": 16,
-   "s2_citations": 14
+   "s2_citations": 16
   },
   "2602.00927": {
    "citations": 2,
@@ -2098,11 +2098,11 @@
    "s2_citations": 7
   },
   "2602.07845": {
-   "citations": 25,
+   "citations": 26,
    "citations_source": "semanticscholar",
    "hf_upvotes": 70,
    "hn_points": 0,
-   "influential": 2,
+   "influential": 3,
    "institutions": [
     "Stanford University",
     "Technical University of Munich",
@@ -2110,7 +2110,7 @@
     "Allen Institute for Artificial Intelligence"
    ],
    "openalex_citations": 24,
-   "s2_citations": 25
+   "s2_citations": 26
   },
   "2602.08100": {
    "citations": 1,
@@ -2176,7 +2176,7 @@
    "s2_citations": 16
   },
   "2602.11451": {
-   "citations": 100,
+   "citations": 104,
    "citations_source": "semanticscholar",
    "hf_upvotes": 18,
    "hn_points": 0,
@@ -2185,8 +2185,8 @@
     "University of Toronto",
     "Vector Institute"
    ],
-   "openalex_citations": 92,
-   "s2_citations": 100
+   "openalex_citations": 93,
+   "s2_citations": 104
   },
   "2602.11698": {
    "citations": 14,
@@ -2226,7 +2226,7 @@
    "s2_citations": 2
   },
   "2602.16490": {
-   "citations": 14,
+   "citations": 15,
    "citations_source": "semanticscholar",
    "hf_upvotes": 2,
    "hn_points": 0,
@@ -2237,7 +2237,7 @@
     "Google (United States)"
    ],
    "openalex_citations": 10,
-   "s2_citations": 14
+   "s2_citations": 15
   },
   "2602.17993": {
    "citations": 4,
@@ -2273,7 +2273,7 @@
    "s2_citations": 6
   },
   "2603.04971": {
-   "citations": 12,
+   "citations": 13,
    "citations_source": "semanticscholar",
    "hf_upvotes": 4,
    "hn_points": 0,
@@ -2285,7 +2285,7 @@
     "Baidu (China)"
    ],
    "openalex_citations": 10,
-   "s2_citations": 12
+   "s2_citations": 13
   },
   "2603.08082": {
    "citations": 8,
@@ -2389,16 +2389,16 @@
   },
   "2604.01220": {
    "citations": 4,
-   "citations_source": "openalex",
+   "citations_source": "semanticscholar",
    "hf_upvotes": 18,
    "hn_points": 0,
-   "influential": 1,
+   "influential": 2,
    "institutions": [
     "Microsoft (United States)",
     "Tsinghua University"
    ],
    "openalex_citations": 4,
-   "s2_citations": 3
+   "s2_citations": 4
   },
   "2604.01577": {
    "citations": 3,
@@ -2480,19 +2480,19 @@
    "hn_points": 0,
    "influential": 2,
    "openalex_citations": 45,
-   "s2_citations": 40
+   "s2_citations": 41
   },
   "2604.12946": {
-   "citations": 96,
+   "citations": 99,
    "citations_source": "semanticscholar",
    "hf_upvotes": 11,
    "hn_points": 0,
-   "influential": 26,
+   "influential": 27,
    "institutions": [
     "University of California San Diego"
    ],
-   "openalex_citations": 86,
-   "s2_citations": 96
+   "openalex_citations": 89,
+   "s2_citations": 99
   },
   "2604.14442": {
    "citations": 6,
@@ -2512,7 +2512,7 @@
    "hn_points": 0,
    "influential": 0,
    "openalex_citations": 18,
-   "s2_citations": 16
+   "s2_citations": 17
   },
   "2604.18839": {
    "citations": 7,
@@ -2541,7 +2541,7 @@
    "s2_citations": 4
   },
   "2604.21106": {
-   "citations": 48,
+   "citations": 49,
    "citations_source": "semanticscholar",
    "hf_upvotes": 10,
    "hn_points": 0,
@@ -2553,10 +2553,10 @@
     "TUM Klinikum"
    ],
    "openalex_citations": 38,
-   "s2_citations": 48
+   "s2_citations": 49
   },
   "2604.21254": {
-   "citations": 27,
+   "citations": 28,
    "citations_source": "openalex",
    "hf_upvotes": 4,
    "hn_points": 0,
@@ -2564,7 +2564,7 @@
    "institutions": [
     "Massachusetts Institute of Technology"
    ],
-   "openalex_citations": 27,
+   "openalex_citations": 28,
    "s2_citations": 24
   },
   "2604.21999": {
@@ -2617,11 +2617,11 @@
   },
   "2605.06510": {
    "citations": 15,
-   "citations_source": "openalex",
+   "citations_source": "semanticscholar",
    "hn_points": 0,
    "influential": 2,
    "openalex_citations": 15,
-   "s2_citations": 14
+   "s2_citations": 15
   },
   "2605.06609": {
    "citations": 6,
@@ -2657,7 +2657,7 @@
    "s2_citations": 0
   },
   "2605.07721": {
-   "citations": 28,
+   "citations": 29,
    "citations_source": "semanticscholar",
    "hf_upvotes": 30,
    "hn_points": 0,
@@ -2666,10 +2666,10 @@
     "Qualcomm (United States)"
    ],
    "openalex_citations": 25,
-   "s2_citations": 28
+   "s2_citations": 29
   },
   "2605.09165": {
-   "citations": 20,
+   "citations": 22,
    "citations_source": "semanticscholar",
    "hf_upvotes": 0,
    "hn_points": 0,
@@ -2678,7 +2678,7 @@
     "Netflix (United States)"
    ],
    "openalex_citations": 18,
-   "s2_citations": 20
+   "s2_citations": 22
   },
   "2605.09948": {
    "citations": 4,
@@ -2724,7 +2724,7 @@
    "s2_citations": 1
   },
   "2605.12466": {
-   "citations": 22,
+   "citations": 23,
    "citations_source": "semanticscholar",
    "hf_upvotes": 5,
    "hn_points": 2,
@@ -2733,7 +2733,7 @@
     "University of Southern California"
    ],
    "openalex_citations": 22,
-   "s2_citations": 22
+   "s2_citations": 23
   },
   "2605.15309": {
    "citations": 1,
@@ -2791,7 +2791,7 @@
     "Hong Kong Baptist University",
     "Jilin University"
    ],
-   "openalex_citations": 10,
+   "openalex_citations": 11,
    "s2_citations": 12
   },
   "2605.19376": {
@@ -2824,7 +2824,7 @@
   "2605.20613": {
    "citations": 16,
    "citations_source": "openalex",
-   "hf_upvotes": 88,
+   "hf_upvotes": 87,
    "hn_points": 9,
    "influential": 4,
    "institutions": [
@@ -2867,7 +2867,7 @@
     "The University of Texas at Austin"
    ],
    "openalex_citations": 25,
-   "s2_citations": 22
+   "s2_citations": 24
   },
   "2605.25230": {
    "citations": 6,
@@ -2905,14 +2905,14 @@
   "2605.26733": {
    "citations": 33,
    "citations_source": "semanticscholar",
-   "hf_upvotes": 0,
+   "hf_upvotes": 1,
    "hn_points": 0,
    "influential": 0,
-   "openalex_citations": 29,
+   "openalex_citations": 30,
    "s2_citations": 33
   },
   "2605.26797": {
-   "citations": 13,
+   "citations": 14,
    "citations_source": "semanticscholar",
    "hf_upvotes": 1,
    "hn_points": 0,
@@ -2922,7 +2922,7 @@
     "University of Washington"
    ],
    "openalex_citations": 10,
-   "s2_citations": 13
+   "s2_citations": 14
   },
   "2605.30202": {
    "citations": 2,
@@ -2939,11 +2939,11 @@
    "s2_citations": 2
   },
   "2605.30215": {
-   "citations": 19,
+   "citations": 20,
    "citations_source": "semanticscholar",
    "hf_upvotes": 5,
    "hn_points": 0,
-   "influential": 4,
+   "influential": 5,
    "institutions": [
     "University of Modena and Reggio Emilia",
     "ETH Zurich",
@@ -2951,7 +2951,7 @@
     "Vector Institute"
    ],
    "openalex_citations": 19,
-   "s2_citations": 19
+   "s2_citations": 20
   },
   "2605.30523": {
    "citations": 4,
@@ -2995,7 +2995,7 @@
     "University of Hong Kong"
    ],
    "openalex_citations": 5,
-   "s2_citations": 2
+   "s2_citations": 3
   },
   "2606.01495": {
    "citations": 6,
@@ -3007,7 +3007,7 @@
    "s2_citations": 6
   },
   "2606.04438": {
-   "citations": 18,
+   "citations": 21,
    "citations_source": "semanticscholar",
    "hf_upvotes": 2,
    "hn_points": 0,
@@ -3016,7 +3016,7 @@
     "The Hong Kong University of Science and Technology (Guangzhou)"
    ],
    "openalex_citations": 16,
-   "s2_citations": 18
+   "s2_citations": 21
   },
   "2606.04678": {
    "citations": 2,
@@ -3035,13 +3035,13 @@
    "s2_citations": 2
   },
   "2606.06574": {
-   "citations": 15,
+   "citations": 16,
    "citations_source": "semanticscholar",
    "hf_upvotes": 25,
    "hn_points": 0,
    "influential": 3,
    "openalex_citations": 12,
-   "s2_citations": 15
+   "s2_citations": 16
   },
   "2606.09357": {
    "citations": 0,
@@ -3069,16 +3069,16 @@
    "s2_citations": 5
   },
   "2606.16825": {
-   "citations": 5,
+   "citations": 7,
    "citations_source": "semanticscholar",
    "hf_upvotes": 0,
    "hn_points": 0,
-   "influential": 0,
+   "influential": 2,
    "institutions": [
     "École Polytechnique Fédérale de Lausanne"
    ],
    "openalex_citations": 4,
-   "s2_citations": 5
+   "s2_citations": 7
   },
   "2606.18022": {
    "citations": 6,
@@ -3103,7 +3103,7 @@
   },
   "2606.18206": {
    "citations": 47,
-   "citations_source": "openalex",
+   "citations_source": "semanticscholar",
    "hf_upvotes": 0,
    "hn_points": 0,
    "influential": 7,
@@ -3114,12 +3114,12 @@
     "ETH Zurich"
    ],
    "openalex_citations": 47,
-   "s2_citations": 46
+   "s2_citations": 47
   },
   "2606.18208": {
    "citations": 6,
    "citations_source": "semanticscholar",
-   "hf_upvotes": 48,
+   "hf_upvotes": 47,
    "hn_points": 1,
    "influential": 0,
    "openalex_citations": 5,
@@ -3127,7 +3127,7 @@
   },
   "2606.18524": {
    "citations": 13,
-   "citations_source": "openalex",
+   "citations_source": "semanticscholar",
    "hf_upvotes": 1,
    "hn_points": 0,
    "influential": 1,
@@ -3136,7 +3136,7 @@
     "Tsinghua University"
    ],
    "openalex_citations": 13,
-   "s2_citations": 12
+   "s2_citations": 13
   },
   "2606.20737": {
    "citations": 0,
@@ -3299,7 +3299,7 @@
     "University of California, Los Angeles"
    ],
    "openalex_citations": 12,
-   "s2_citations": 9
+   "s2_citations": 10
   },
   "2607.14427": {
    "citations": 5,
@@ -3310,7 +3310,7 @@
    "s2_citations": 5
   },
   "2607.15178": {
-   "citations": 20,
+   "citations": 21,
    "citations_source": "semanticscholar",
    "hf_upvotes": 0,
    "hn_points": 0,
@@ -3319,7 +3319,7 @@
     "Princeton University"
    ],
    "openalex_citations": 18,
-   "s2_citations": 20
+   "s2_citations": 21
   },
   "2607.15456": {
    "citations": 18,
@@ -3337,7 +3337,7 @@
    "hn_points": 2,
    "influential": 1,
    "openalex_citations": 24,
-   "s2_citations": 10
+   "s2_citations": 12
   },
   "2607.16237": {
    "citations": 2,
@@ -3430,12 +3430,12 @@
    "s2_citations": 0
   },
   "2607.22083": {
-   "citations": 20,
+   "citations": 21,
    "citations_source": "openalex",
    "hf_upvotes": 13,
    "hn_points": 0,
    "influential": 0,
-   "openalex_citations": 20,
+   "openalex_citations": 21,
    "s2_citations": 16
   },
   "2607.25915": {
@@ -3535,7 +3535,7 @@
    "s2_citations": 2
   },
   "2608.03624": {
-   "citations": 5,
+   "citations": 6,
    "citations_source": "semanticscholar",
    "hf_upvotes": 1,
    "hn_points": 0,
@@ -3546,7 +3546,7 @@
     "Fraunhofer Institute for Intelligent Analysis and Information Systems"
    ],
    "openalex_citations": 3,
-   "s2_citations": 5
+   "s2_citations": 6
   },
   "2608.05872": {
    "citations": 2,
@@ -3590,7 +3590,7 @@
    "s2_citations": 1
   },
   "2608.08888": {
-   "citations": 15,
+   "citations": 16,
    "citations_source": "semanticscholar",
    "hf_upvotes": 17,
    "hn_points": 1,
@@ -3600,11 +3600,11 @@
     "Princeton University",
     "Microsoft (United States)"
    ],
-   "openalex_citations": 13,
-   "s2_citations": 15
+   "openalex_citations": 14,
+   "s2_citations": 16
   },
   "2608.09444": {
-   "citations": 17,
+   "citations": 19,
    "citations_source": "semanticscholar",
    "hf_upvotes": 6,
    "hn_points": 0,
@@ -3615,7 +3615,7 @@
     "University of Potsdam"
    ],
    "openalex_citations": 14,
-   "s2_citations": 17
+   "s2_citations": 19
   },
   "2608.09888": {
    "citations": 0,
@@ -3692,10 +3692,10 @@
     "Cerebras Systems (United States)"
    ],
    "openalex_citations": 8,
-   "s2_citations": 6
+   "s2_citations": 7
   },
   "2608.17981": {
-   "citations": 13,
+   "citations": 14,
    "citations_source": "semanticscholar",
    "hn_points": 0,
    "influential": 1,
@@ -3703,7 +3703,7 @@
     "The University of Texas at Austin"
    ],
    "openalex_citations": 8,
-   "s2_citations": 13
+   "s2_citations": 14
   },
   "2608.18171": {
    "citations": 3,
@@ -3847,13 +3847,13 @@
    "s2_citations": 0
   },
   "2609.01343": {
-   "citations": 35,
+   "citations": 38,
    "citations_source": "semanticscholar",
-   "hf_upvotes": 91,
+   "hf_upvotes": 86,
    "hn_points": 0,
-   "influential": 2,
+   "influential": 3,
    "openalex_citations": 31,
-   "s2_citations": 35
+   "s2_citations": 38
   },
   "2609.01449": {
    "citations": 4,
@@ -3868,16 +3868,16 @@
    "s2_citations": 4
   },
   "2609.01924": {
-   "citations": 8,
+   "citations": 9,
    "citations_source": "semanticscholar",
    "hf_upvotes": 0,
    "hn_points": 0,
    "influential": 0,
    "openalex_citations": 7,
-   "s2_citations": 8
+   "s2_citations": 9
   },
   "2609.03379": {
-   "citations": 10,
+   "citations": 11,
    "citations_source": "semanticscholar",
    "hf_upvotes": 1,
    "hn_points": 0,
@@ -3888,7 +3888,7 @@
     "Tianjin University"
    ],
    "openalex_citations": 9,
-   "s2_citations": 10
+   "s2_citations": 11
   },
   "2609.09691": {
    "citations": 1,
@@ -3913,7 +3913,7 @@
    "s2_citations": 0
   },
   "2609.11801": {
-   "citations": 17,
+   "citations": 18,
    "citations_source": "semanticscholar",
    "hf_upvotes": 0,
    "hn_points": 9,
@@ -3924,7 +3924,7 @@
     "Carnegie Mellon University"
    ],
    "openalex_citations": 15,
-   "s2_citations": 17
+   "s2_citations": 18
   },
   "2609.12531": {
    "citations": 1,
@@ -3940,7 +3940,7 @@
    "s2_citations": 1
   },
   "2609.15160": {
-   "citations": 5,
+   "citations": 6,
    "citations_source": "openalex",
    "hf_upvotes": 1,
    "hn_points": 0,
@@ -3950,7 +3950,7 @@
     "Institute of Automation",
     "Shanghai Jiao Tong University"
    ],
-   "openalex_citations": 5,
+   "openalex_citations": 6,
    "s2_citations": 3
   },
   "2609.16665": {
@@ -3968,17 +3968,17 @@
    "s2_citations": 2
   },
   "2609.17184": {
-   "citations": 14,
+   "citations": 16,
    "citations_source": "semanticscholar",
    "hf_upvotes": 2,
    "hn_points": 0,
-   "influential": 4,
+   "influential": 5,
    "institutions": [
     "Seoul National University",
     "Korea Advanced Institute of Science and Technology"
    ],
    "openalex_citations": 11,
-   "s2_citations": 14
+   "s2_citations": 16
   },
   "2609.18176": {
    "citations": 4,
@@ -3992,7 +3992,7 @@
    "s2_citations": 4
   },
   "2609.19107": {
-   "citations": 7,
+   "citations": 8,
    "citations_source": "semanticscholar",
    "hf_upvotes": 2,
    "hn_points": 0,
@@ -4001,7 +4001,7 @@
     "New York University"
    ],
    "openalex_citations": 6,
-   "s2_citations": 7
+   "s2_citations": 8
   },
   "2609.19521": {
    "citations": 0,
@@ -4054,16 +4054,16 @@
    "s2_citations": 0
   },
   "2609.23033": {
-   "citations": 12,
+   "citations": 14,
    "citations_source": "semanticscholar",
    "hf_upvotes": 9,
    "hn_points": 0,
-   "influential": 4,
+   "influential": 5,
    "institutions": [
     "Seoul National University"
    ],
    "openalex_citations": 11,
-   "s2_citations": 12
+   "s2_citations": 14
   },
   "2609.24196": {
    "citations": 3,
@@ -4154,7 +4154,7 @@
    "s2_citations": 1
   },
   "2609.29812": {
-   "citations": 14,
+   "citations": 15,
    "citations_source": "semanticscholar",
    "hf_upvotes": 3,
    "hn_points": 0,
@@ -4165,7 +4165,7 @@
     "ELLIS Institute Tübingen"
    ],
    "openalex_citations": 13,
-   "s2_citations": 14
+   "s2_citations": 15
   },
   "2609.30820": {
    "citations": 3,
@@ -4245,7 +4245,7 @@
    "s2_citations": 0
   },
   "2609.34538": {
-   "citations": 7,
+   "citations": 8,
    "citations_source": "semanticscholar",
    "hn_points": 0,
    "influential": 1,
@@ -4257,7 +4257,7 @@
     "Shenzhen University of Advanced Technology"
    ],
    "openalex_citations": 6,
-   "s2_citations": 7
+   "s2_citations": 8
   },
   "2609.35748": {
    "citations": 7,
@@ -4273,20 +4273,20 @@
    "s2_citations": 7
   },
   "2609.35751": {
-   "citations": 2,
+   "citations": 4,
    "citations_source": "semanticscholar",
    "hf_upvotes": 11,
    "hn_points": 0,
-   "influential": 0,
+   "influential": 1,
    "institutions": [
     "Case Western Reserve University",
     "Kyoto University"
    ],
    "openalex_citations": 1,
-   "s2_citations": 2
+   "s2_citations": 4
   },
   "2609.36108": {
-   "citations": 0,
+   "citations": 1,
    "citations_source": "semanticscholar",
    "hn_points": 0,
    "influential": 0,
@@ -4295,7 +4295,7 @@
     "Lamarr Institute for Machine Learning and Artificial Intelligence"
    ],
    "openalex_citations": 0,
-   "s2_citations": 0
+   "s2_citations": 1
   },
   "2609.36585": {
    "citations": 0,
@@ -4426,7 +4426,7 @@
    "s2_citations": 2
   },
   "2609.40305": {
-   "citations": 6,
+   "citations": 7,
    "citations_source": "semanticscholar",
    "hf_upvotes": 6,
    "hn_points": 0,
@@ -4436,16 +4436,16 @@
     "Nanyang Technological University"
    ],
    "openalex_citations": 4,
-   "s2_citations": 6
+   "s2_citations": 7
   },
   "2609.40316": {
-   "citations": 3,
+   "citations": 5,
    "citations_source": "semanticscholar",
    "hf_upvotes": 17,
    "hn_points": 2,
    "influential": 0,
    "openalex_citations": 2,
-   "s2_citations": 3
+   "s2_citations": 5
   },
   "2610.00541": {
    "citations": 0,
@@ -4460,16 +4460,16 @@
    "s2_citations": 0
   },
   "2610.00673": {
-   "citations": 7,
+   "citations": 8,
    "citations_source": "semanticscholar",
    "hf_upvotes": 3,
    "hn_points": 0,
    "influential": 2,
    "openalex_citations": 6,
-   "s2_citations": 7
+   "s2_citations": 8
   },
   "2610.01153": {
-   "citations": 5,
+   "citations": 7,
    "citations_source": "semanticscholar",
    "hf_upvotes": 14,
    "hn_points": 0,
@@ -4479,7 +4479,7 @@
     "University of Surrey"
    ],
    "openalex_citations": 4,
-   "s2_citations": 5
+   "s2_citations": 7
   },
   "2610.01926": {
    "citations": 0,
@@ -4511,11 +4511,11 @@
    "hf_upvotes": 23,
    "hn_points": 5,
    "influential": 2,
-   "openalex_citations": 4,
+   "openalex_citations": 5,
    "s2_citations": 6
   },
   "2610.02383": {
-   "citations": 6,
+   "citations": 7,
    "citations_source": "semanticscholar",
    "hf_upvotes": 1,
    "hn_points": 0,
@@ -4525,7 +4525,7 @@
     "IBM (United States)"
    ],
    "openalex_citations": 5,
-   "s2_citations": 6
+   "s2_citations": 7
   },
   "2610.02741": {
    "citations": 2,
@@ -4606,7 +4606,7 @@
    "s2_citations": 4
   },
   "2610.06833": {
-   "citations": 11,
+   "citations": 13,
    "citations_source": "semanticscholar",
    "hf_upvotes": 25,
    "hn_points": 0,
@@ -4616,7 +4616,7 @@
     "University of Southern California"
    ],
    "openalex_citations": 11,
-   "s2_citations": 11
+   "s2_citations": 13
   },
   "2610.06949": {
    "citations": 0,
@@ -4692,7 +4692,7 @@
    "s2_citations": 1
   },
   "2610.09013": {
-   "citations": 5,
+   "citations": 7,
    "citations_source": "semanticscholar",
    "hn_points": 0,
    "influential": 1,
@@ -4701,7 +4701,7 @@
     "Qualcomm (United States)"
    ],
    "openalex_citations": 4,
-   "s2_citations": 5
+   "s2_citations": 7
   },
   "2610.10368": {
    "citations": 0,
@@ -4742,7 +4742,7 @@
    "s2_citations": 0
   },
   "2610.10623": {
-   "citations": 3,
+   "citations": 4,
    "citations_source": "semanticscholar",
    "hf_upvotes": 1,
    "hn_points": 0,
@@ -4754,7 +4754,7 @@
     "Peking University"
    ],
    "openalex_citations": 0,
-   "s2_citations": 3
+   "s2_citations": 4
   },
   "2610.10625": {
    "citations": 0,
@@ -4822,13 +4822,13 @@
    "s2_citations": 1
   },
   "2610.12582": {
-   "citations": 7,
+   "citations": 8,
    "citations_source": "semanticscholar",
    "hf_upvotes": 12,
    "hn_points": 0,
    "influential": 1,
    "openalex_citations": 6,
-   "s2_citations": 7
+   "s2_citations": 8
   },
   "2610.13041": {
    "citations": 1,
@@ -4972,7 +4972,7 @@
    "s2_citations": 2
   },
   "2610.18162": {
-   "citations": 0,
+   "citations": 1,
    "citations_source": "semanticscholar",
    "hn_points": 0,
    "influential": 0,
@@ -4980,7 +4980,7 @@
     "Alibaba Group (China)"
    ],
    "openalex_citations": 0,
-   "s2_citations": 0
+   "s2_citations": 1
   },
   "2610.18174": {
    "citations": 0,
@@ -5029,11 +5029,11 @@
    "s2_citations": 2
   },
   "2610.19975": {
-   "citations": 1,
+   "citations": 2,
    "citations_source": "semanticscholar",
    "hf_upvotes": 44,
    "hn_points": 0,
-   "influential": 0,
+   "influential": 1,
    "institutions": [
     "Shanghai Artificial Intelligence Laboratory",
     "University of Science and Technology of China",
@@ -5041,12 +5041,12 @@
     "Nanyang Technological University"
    ],
    "openalex_citations": 0,
-   "s2_citations": 1
+   "s2_citations": 2
   },
   "2610.20951": {
    "citations": 2,
    "citations_source": "semanticscholar",
-   "hf_upvotes": 62,
+   "hf_upvotes": 61,
    "hn_points": 0,
    "influential": 1,
    "institutions": [
@@ -5104,7 +5104,7 @@
    "s2_citations": 0
   },
   "2610.23036": {
-   "citations": 13,
+   "citations": 14,
    "citations_source": "semanticscholar",
    "hf_upvotes": 17,
    "hn_points": 0,
@@ -5114,7 +5114,7 @@
     "University of Southern California"
    ],
    "openalex_citations": 11,
-   "s2_citations": 13
+   "s2_citations": 14
   },
   "2610.23225": {
    "citations": 0,
@@ -5280,7 +5280,7 @@
    "s2_citations": 0
   },
   "2610.27598": {
-   "citations": 0,
+   "citations": 2,
    "citations_source": "semanticscholar",
    "hf_upvotes": 28,
    "hn_points": 0,
@@ -5290,12 +5290,12 @@
     "Tsinghua University"
    ],
    "openalex_citations": 0,
-   "s2_citations": 0
+   "s2_citations": 2
   },
   "2610.27628": {
    "citations": 5,
    "citations_source": "semanticscholar",
-   "hf_upvotes": 44,
+   "hf_upvotes": 42,
    "hn_points": 0,
    "influential": 0,
    "institutions": [
@@ -5390,7 +5390,7 @@
    "s2_citations": 0
   },
   "2610.31633": {
-   "citations": 4,
+   "citations": 7,
    "citations_source": "semanticscholar",
    "hn_points": 0,
    "influential": 2,
@@ -5398,7 +5398,7 @@
     "University of California San Diego"
    ],
    "openalex_citations": 3,
-   "s2_citations": 4
+   "s2_citations": 7
   },
   "2610.31943": {
    "citations": 0,
@@ -5412,12 +5412,12 @@
    "s2_citations": 0
   },
   "2610.32246": {
-   "citations": 0,
+   "citations": 1,
    "citations_source": "semanticscholar",
    "hn_points": 0,
    "influential": 0,
    "openalex_citations": 0,
-   "s2_citations": 0
+   "s2_citations": 1
   },
   "2610.32492": {
    "citations": 0,
@@ -5433,12 +5433,12 @@
    "s2_citations": 0
   },
   "2610.33360": {
-   "citations": 1,
+   "citations": 2,
    "citations_source": "semanticscholar",
    "hn_points": 0,
    "influential": 0,
    "openalex_citations": 1,
-   "s2_citations": 1
+   "s2_citations": 2
   },
   "2610.33517": {
    "citations": 0,
@@ -5523,7 +5523,7 @@
    "s2_citations": 0
   },
   "2610.35556": {
-   "citations": 2,
+   "citations": 3,
    "citations_source": "semanticscholar",
    "hn_points": 0,
    "influential": 0,
@@ -5532,12 +5532,12 @@
     "Shanghai Innovation Institute"
    ],
    "openalex_citations": 2,
-   "s2_citations": 2
+   "s2_citations": 3
   },
   "2610.37903": {
    "citations": 0,
    "citations_source": "semanticscholar",
-   "hf_upvotes": 5,
+   "hf_upvotes": 6,
    "hn_points": 0,
    "influential": 0,
    "openalex_citations": 0,
@@ -5576,7 +5576,7 @@
    "s2_citations": 1
   },
   "2610.40325": {
-   "citations": 0,
+   "citations": 1,
    "citations_source": "semanticscholar",
    "hn_points": 0,
    "influential": 0,
@@ -5584,7 +5584,7 @@
     "Massachusetts Institute of Technology"
    ],
    "openalex_citations": 0,
-   "s2_citations": 0
+   "s2_citations": 1
   },
   "2610.41720": {
    "citations": 0,
@@ -5651,7 +5651,7 @@
    "s2_citations": 0
   },
   "2611.02333": {
-   "citations": 0,
+   "citations": 1,
    "citations_source": "semanticscholar",
    "hn_points": 0,
    "influential": 0,
@@ -5659,21 +5659,21 @@
     "Aston University"
    ],
    "openalex_citations": 0,
-   "s2_citations": 0
+   "s2_citations": 1
   },
   "2611.02857": {
-   "citations": 1,
+   "citations": 2,
    "citations_source": "semanticscholar",
    "hf_upvotes": 12,
    "hn_points": 0,
    "influential": 0,
    "openalex_citations": 1,
-   "s2_citations": 1
+   "s2_citations": 2
   },
   "2611.03526": {
    "citations": 0,
    "citations_source": "semanticscholar",
-   "hf_upvotes": 13,
+   "hf_upvotes": 14,
    "hn_points": 0,
    "influential": 0,
    "institutions": [
@@ -5695,7 +5695,7 @@
    "s2_citations": 1
   },
   "2611.04137": {
-   "citations": 0,
+   "citations": 1,
    "citations_source": "semanticscholar",
    "hf_upvotes": 0,
    "hn_points": 0,
@@ -5706,7 +5706,7 @@
     "University of Chicago"
    ],
    "openalex_citations": 0,
-   "s2_citations": 0
+   "s2_citations": 1
   },
   "2611.04663": {
    "citations": 0,
@@ -5741,7 +5741,7 @@
    "s2_citations": 0
   },
   "2611.05304": {
-   "citations": 0,
+   "citations": 1,
    "citations_source": "semanticscholar",
    "hf_upvotes": 11,
    "hn_points": 0,
@@ -5750,7 +5750,7 @@
     "Seoul National University"
    ],
    "openalex_citations": 0,
-   "s2_citations": 0
+   "s2_citations": 1
   },
   "2611.05724": {
    "citations": 0,
@@ -5777,7 +5777,7 @@
    "s2_citations": 0
   },
   "2611.06835": {
-   "citations": 0,
+   "citations": 1,
    "citations_source": "semanticscholar",
    "hn_points": 0,
    "influential": 0,
@@ -5786,10 +5786,10 @@
     "Peking University"
    ],
    "openalex_citations": 0,
-   "s2_citations": 0
+   "s2_citations": 1
   },
   "2611.07211": {
-   "citations": 1,
+   "citations": 2,
    "citations_source": "semanticscholar",
    "hn_points": 0,
    "influential": 0,
@@ -5797,7 +5797,7 @@
     "Duke University"
    ],
    "openalex_citations": 0,
-   "s2_citations": 1
+   "s2_citations": 2
   },
   "2611.07226": {
    "citations": 0,
@@ -5919,12 +5919,12 @@
    "s2_citations": 0
   },
   "2611.13378": {
-   "citations": 0,
+   "citations": 1,
    "citations_source": "semanticscholar",
    "hn_points": 0,
    "influential": 0,
    "openalex_citations": 0,
-   "s2_citations": 0
+   "s2_citations": 1
   },
   "2611.14947": {
    "citations": 0,
@@ -5994,7 +5994,7 @@
    "s2_citations": 0
   },
   "2611.19446": {
-   "citations": 0,
+   "citations": 1,
    "citations_source": "semanticscholar",
    "hn_points": 0,
    "influential": 0,
@@ -6002,7 +6002,7 @@
     "Johannes Kepler University of Linz"
    ],
    "openalex_citations": 0,
-   "s2_citations": 0
+   "s2_citations": 1
   },
   "2611.19649": {
    "citations": 1,
@@ -6025,7 +6025,7 @@
    "s2_citations": 0
   },
   "2611.19896": {
-   "citations": 1,
+   "citations": 2,
    "citations_source": "semanticscholar",
    "hf_upvotes": 0,
    "hn_points": 0,
@@ -6034,7 +6034,7 @@
     "Zhejiang University"
    ],
    "openalex_citations": 0,
-   "s2_citations": 1
+   "s2_citations": 2
   },
   "2611.20404": {
    "citations": 2,
@@ -6081,7 +6081,7 @@
    "s2_citations": 0
   },
   "2611.22426": {
-   "citations": 0,
+   "citations": 1,
    "citations_source": "semanticscholar",
    "hn_points": 0,
    "influential": 0,
@@ -6091,7 +6091,7 @@
     "Nanjing University"
    ],
    "openalex_citations": 0,
-   "s2_citations": 0
+   "s2_citations": 1
   },
   "2611.22728": {
    "citations": 0,
@@ -6144,30 +6144,30 @@
    "s2_citations": 0
   },
   "2611.24301": {
-   "citations": 0,
+   "citations": 1,
    "citations_source": "semanticscholar",
-   "hf_upvotes": 1,
+   "hf_upvotes": 2,
    "hn_points": 0,
    "influential": 0,
    "institutions": [
     "Peking University"
    ],
    "openalex_citations": 0,
-   "s2_citations": 0
+   "s2_citations": 1
   },
   "2611.24576": {
-   "citations": 0,
+   "citations": 1,
    "citations_source": "semanticscholar",
    "hf_upvotes": 9,
    "hn_points": 0,
-   "influential": 0,
+   "influential": 1,
    "institutions": [
     "Nanyang Technological University",
     "Singapore University of Technology and Design",
     "Chinese University of Hong Kong"
    ],
    "openalex_citations": 0,
-   "s2_citations": 0
+   "s2_citations": 1
   },
   "2611.25369": {
    "citations": 0,
@@ -6217,6 +6217,9 @@
    "citations_source": "semanticscholar",
    "hn_points": 0,
    "influential": 0,
+   "institutions": [
+    "The University of Texas at Austin"
+   ],
    "openalex_citations": 0,
    "s2_citations": 0
   },
@@ -6225,6 +6228,9 @@
    "citations_source": "semanticscholar",
    "hn_points": 0,
    "influential": 0,
+   "institutions": [
+    "TU Wien"
+   ],
    "openalex_citations": 0,
    "s2_citations": 0
   },
@@ -6233,15 +6239,22 @@
    "citations_source": "semanticscholar",
    "hn_points": 0,
    "influential": 0,
+   "institutions": [
+    "Imperial College London"
+   ],
    "openalex_citations": 0,
    "s2_citations": 0
   },
   "2611.27962": {
    "citations": 0,
    "citations_source": "semanticscholar",
-   "hf_upvotes": 2,
+   "hf_upvotes": 3,
    "hn_points": 0,
    "influential": 0,
+   "institutions": [
+    "Harvard University",
+    "New York University"
+   ],
    "openalex_citations": 0,
    "s2_citations": 0
   },
@@ -6266,6 +6279,11 @@
    "citations_source": "semanticscholar",
    "hn_points": 0,
    "influential": 0,
+   "institutions": [
+    "Beijing Institute of Technology",
+    "University of Hong Kong",
+    "Skolkovo Institute of Science and Technology"
+   ],
    "openalex_citations": 0,
    "s2_citations": 0
   },
@@ -6368,13 +6386,13 @@
    "s2_citations": 0
   },
   "2611.31094": {
-   "citations": 0,
+   "citations": 1,
    "citations_source": "semanticscholar",
    "hf_upvotes": 20,
    "hn_points": 0,
    "influential": 0,
    "openalex_citations": 0,
-   "s2_citations": 0
+   "s2_citations": 1
   },
   "2611.31154": {
    "citations": 0,
@@ -6516,7 +6534,7 @@
   },
   "Intellindust-AI-Lab/LoopDVR": {
    "pushed_at": "2026-11-25T03:21:37Z",
-   "stars": 12
+   "stars": 15
   },
   "JRC1995/InvestigatingRecurrentTransformers": {
    "pushed_at": "2024-09-03T02:19:01Z",
@@ -6560,16 +6578,16 @@
    "stars": 1
   },
   "NUS-HPC-AI-Lab/LoopRes": {
-   "pushed_at": "2026-11-24T06:15:14Z",
-   "stars": 71
+   "pushed_at": "2026-11-27T02:54:59Z",
+   "stars": 88
   },
   "NUS-HPC-AI-Lab/loop-dropout": {
    "pushed_at": "2026-10-02T14:06:39Z",
-   "stars": 11
+   "stars": 12
   },
   "OneBoxCream/DyLoMo-DiT": {
    "pushed_at": "2026-11-26T04:03:46Z",
-   "stars": 40
+   "stars": 48
   },
   "OoDBag/Latent_recurrent_transformer": {
    "pushed_at": "2026-09-19T06:36:23Z",
@@ -6585,15 +6603,15 @@
   },
   "OpenSenseNova/SenseNova-Loop": {
    "pushed_at": "2026-11-18T10:03:54Z",
-   "stars": 331
+   "stars": 333
   },
   "Prefrontal-AI/CRAM": {
    "pushed_at": "2026-11-13T17:54:06Z",
-   "stars": 51
+   "stars": 52
   },
   "RightNow-AI/Memoir": {
    "pushed_at": "2026-09-18T00:06:28Z",
-   "stars": 15
+   "stars": 16
   },
   "RightNow-AI/ouroboros": {
    "pushed_at": "2026-04-02T13:43:46Z",
@@ -6654,7 +6672,7 @@
   },
   "WinterCCC/Distill-to-Loop": {
    "pushed_at": "2026-11-25T20:06:22Z",
-   "stars": 5
+   "stars": 6
   },
   "Xalp/LateComer": {
    "pushed_at": "2026-11-19T09:38:49Z",
@@ -6831,7 +6849,7 @@
   },
   "ifm-ai/LoRM": {
    "pushed_at": "2026-11-23T04:07:02Z",
-   "stars": 27
+   "stars": 28
   },
   "ifm-ai/xllm-loop": {
    "pushed_at": "2026-10-21T19:34:08Z",
@@ -6968,7 +6986,7 @@
   },
   "nilskiKonjIzDunava/fprm": {
    "pushed_at": "2026-11-08T17:35:54Z",
-   "stars": 35
+   "stars": 36
   },
   "njuyxw/STARS": {
    "pushed_at": "2026-05-14T12:31:23Z",
@@ -7049,11 +7067,11 @@
   "sangin-lee/sr-vit": {},
   "sapientinc/HRM": {
    "pushed_at": "2026-03-31T23:08:31Z",
-   "stars": 12674
+   "stars": 12675
   },
   "sapientinc/HRM-Text": {
    "pushed_at": "2026-09-21T21:24:01Z",
-   "stars": 2360
+   "stars": 2363
   },
   "schneiderkamplab/HRM-Text": {
    "pushed_at": "2026-11-17T08:57:46Z",
@@ -7061,7 +7079,7 @@
   },
   "seal-rg/recurrent-pretraining": {
    "pushed_at": "2025-12-29T10:31:27Z",
-   "stars": 1000
+   "stars": 1001
   },
   "serdardoesml/recursive-lm": {
    "pushed_at": "2026-05-22T20:13:57Z",
@@ -7089,7 +7107,7 @@
   },
   "thu-nics/TaH": {
    "pushed_at": "2026-10-09T05:37:29Z",
-   "stars": 120
+   "stars": 119
   },
   "tianyi-lab/PoLar": {
    "pushed_at": "2026-09-28T20:09:18Z",
@@ -7101,7 +7119,7 @@
   },
   "ubc-vision/solv3r": {
    "pushed_at": "2026-11-24T21:06:52Z",
-   "stars": 343
+   "stars": 344
   },
   "uf-hobi-informatics-lab/Med-Flan": {
    "pushed_at": "2026-10-22T14:44:28Z",
@@ -7129,7 +7147,7 @@
   },
   "xidulu/Full-bandwidth-transformer": {
    "pushed_at": "2026-10-03T15:20:22Z",
-   "stars": 23
+   "stars": 24
   },
   "xrhan/AdaLoop": {
    "pushed_at": "2026-11-04T16:29:09Z",
@@ -7137,7 +7155,7 @@
   },
   "yancyou/Loopback": {
    "pushed_at": "2026-11-13T02:46:05Z",
-   "stars": 19
+   "stars": 20
   },
   "yifanzhang-pro/recurrent-looped-tranformer": {
    "pushed_at": "2026-11-24T20:25:30Z",
