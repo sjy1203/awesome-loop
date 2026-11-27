@@ -17642,6 +17642,335 @@
    "added": "2026-11-26"
   },
   {
+   "id": "2611.33468",
+   "tier": "radar",
+   "title": "Learning from Recurrence: Internalizing Depth-Induced Preferences in Looped Language Models",
+   "date": "2026-11-24",
+   "venue": "arXiv",
+   "authors": [
+    "Hui Chen",
+    "Joshua Elsdon",
+    "Can Goksen"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2611.33468"
+   },
+   "category": "training",
+   "focus": "core",
+   "facets": {
+    "placement": "prelude-core-coda",
+    "depth_train": "curriculum"
+   },
+   "tldr": {
+    "en": "Retrofits OLMo-2-1B with a shared four-block recurrent core between a prelude and a coda, then trains only that core through one pass on the model's own greedy continuations generated at greater depth, without reference answers; the mean-depth-4 model's four-pass GSM8K accuracy rises from 56.18% to 62.70%.",
+    "zh": "在 OLMo-2-1B 的 prelude 和 coda 之间改造出由四个 block 组成的共享循环 core，再只通过一遍循环、用模型自己在更深遍数下贪心生成的续写训练这个 core，不使用参考答案；mean-depth-4 模型在 GSM8K 上的四遍准确率从 56.18% 升到 62.70%。"
+   },
+   "added": "2026-11-28"
+  },
+  {
+   "id": "2611.33722",
+   "tier": "radar",
+   "title": "Practice Makes Fluent: Learning to Use Earlier Predictions in Looped Models",
+   "date": "2026-11-25",
+   "venue": "arXiv",
+   "authors": [
+    "Minseok seo",
+    "Hee-Seon Kim",
+    "Changick Kim"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2611.33722",
+    "project": "https://msseok96-cpu.github.io/FLUENT/"
+   },
+   "category": "depth",
+   "focus": "core",
+   "facets": {
+    "depth_train": "adaptive",
+    "kv": "per-pass"
+   },
+   "tldr": {
+    "en": "FLUENT trains looped models to exit earlier without labels or rewards: it distills the frozen initial model's final-loop prediction into an early loop, anchors the current final loop to that teacher and retrains the exit gate against a depth cost; on the looped LM Ouro-1.4B, mean selected depth falls from 3.05 to 2.48 with mean accuracy 65.4% against 65.3% for the original model, and it also cuts action-head iterations of the recurrent-depth robot policy RD-VLA.",
+    "zh": "FLUENT 无需标签或奖励即可训练循环模型提前退出：把冻结初始模型最后一个 loop 的预测蒸馏到早期 loop，把当前最后一个 loop 锚定到同一教师，并按深度代价重新训练退出门控；在循环语言模型 Ouro-1.4B 上，平均选择深度从 3.05 降到 2.48，平均准确率为 65.4%（原模型 65.3%），它还减少了循环深度机器人策略 RD-VLA 的 action head 迭代次数。"
+   },
+   "added": "2026-11-28"
+  },
+  {
+   "id": "2611.33896",
+   "tier": "radar",
+   "title": "Looped Models are Fast Multi-Token Predictors",
+   "date": "2026-11-25",
+   "venue": "arXiv",
+   "authors": [
+    "Ayhan Suleymanzade",
+    "Sean McLeish",
+    "Sehoon Kim",
+    "Jinwoo Kim",
+    "Antoine Bosselut"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2611.33896",
+    "code": "https://github.com/MisakiTaro0414/floodgates"
+   },
+   "category": "systems",
+   "focus": "core",
+   "facets": {
+    "kv": "per-pass"
+   },
+   "tldr": {
+    "en": "Floodgates trains LoRA adapters, active only while drafting, so that one loop of a looped LM reads the final-loop KV cache of earlier tokens and drafts a block of mask tokens in parallel for lossless full-depth verification; at batch size one it decodes up to 7.5× faster than plain decoding.",
+    "zh": "Floodgates 训练只在起草时启用的 LoRA adapter，让循环 LM 的一遍循环读取先前 token 的末遍 KV cache，并行起草一组 mask token，再由满深度模型无损验证；batch size 为 1 时，解码速度最高可达普通解码的 7.5×。"
+   },
+   "added": "2026-11-28"
+  },
+  {
+   "id": "2611.33948",
+   "tier": "radar",
+   "title": "Where to Approximate: Understanding and Accelerating Looped Multi-View Reconstruction",
+   "date": "2026-11-25",
+   "venue": "arXiv",
+   "authors": [
+    "Siyuan Zhang",
+    "Yuhan Chen",
+    "Yangyang Ning",
+    "Nan Wang",
+    "Jun Yan"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2611.33948"
+   },
+   "category": "applications",
+   "focus": "related",
+   "facets": {
+    "placement": "prelude-core-coda",
+    "depth_train": "sampled",
+    "kv": "n/a"
+   },
+   "tldr": {
+    "en": "Tracks how approximation errors travel through Déjà View, a multi-view 3D reconstruction model that repeats one shared transformer block, finds that later steps absorb them, and uses this to build Déjà Vite, which runs coarse-grid and KV-pooled steps early and spaced attention-output reuse late, adapted by LoRA self-distillation; its balanced setting runs 1.63× faster than the official 16-step Déjà View while average pose AUC@3° falls from 57.20 to 55.34.",
+    "zh": "追踪近似误差在 Déjà View（反复应用同一个共享 transformer block 的多视角 3D 重建模型）中的传播，发现后续步骤会吸收这些误差，并据此构建 Déjà Vite：早期步骤使用粗网格和 KV 池化，后期间隔复用 attention 输出，再用 LoRA 自蒸馏适配；其 balanced 配置比官方 16 步 Déjà View 快 1.63×，平均位姿 AUC@3° 从 57.20 降到 55.34。"
+   },
+   "added": "2026-11-28"
+  },
+  {
+   "id": "2611.33952",
+   "tier": "radar",
+   "title": "DuoMI: Dual Mutual Information Regularization for Expert Reuse in Looped Transformers",
+   "date": "2026-11-25",
+   "venue": "arXiv",
+   "authors": [
+    "Xinlai Kang",
+    "Zhenhe Wu",
+    "Haoyu Wang",
+    "Weihua He",
+    "Yaping Jin",
+    "Jie Hu",
+    "Hanting Chen"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2611.33952"
+   },
+   "category": "training",
+   "focus": "core",
+   "facets": {
+    "placement": "partial",
+    "depth_train": "fixed"
+   },
+   "tldr": {
+    "en": "DuoMI adds two mutual-information penalties to routing in a looped OLMoE in which each pair of adjacent middle layers shares an expert pool, limiting how much aggregate expert usage depends on the round and keeping the average per-token cross-round routing change inside a target band; with no added parameters or inference cost it raises the 15-task average by 1.74 percentage points over the looped baseline.",
+    "zh": "DuoMI 在中间层相邻两层为一对、每对共享一个专家池的循环 OLMoE 上，对路由加两个互信息惩罚，限制整体专家使用对轮次的依赖，并让每个 token 跨轮次路由变化的平均值保持在目标区间内；它不增加参数和推理开销，15 项任务平均分比循环基线高 1.74 个百分点。"
+   },
+   "added": "2026-11-28"
+  },
+  {
+   "id": "2611.33983",
+   "tier": "radar",
+   "title": "Quaternion-Tucker ZigZag Networks: Halving Transformer Backbone Parameters and Enabling Exact 2D Zero-Loss Continual Scaling",
+   "date": "2026-11-25",
+   "venue": "arXiv",
+   "authors": [
+    "Shubham Barmase"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2611.33983",
+    "code": "https://github.com/shu195/QuatTucker-ZigZagGPT",
+    "weights": [
+     "https://huggingface.co/spacetime9/QuatTucker-ZigZagGPT-12-78M",
+     "https://huggingface.co/spacetime9/QuatTucker-ZigZagGPT-12-78M-Chat",
+     "https://huggingface.co/spacetime9/QuatTucker-ZigZagGPT-16-95M",
+     "https://huggingface.co/spacetime9/QuatTucker-ZigZagGPT-16-95M-Chat",
+     "https://huggingface.co/spacetime9/QuatTucker-ZigZagGPT-20-110M"
+    ]
+   },
+   "category": "architecture/placement",
+   "focus": "related",
+   "tldr": {
+    "en": "QuatTucker-ZigZagGPT shares one quaternion SwiGLU FFN basis across the four layers of each block, with a 64×64 Tucker core per layer, and tests a feedback pass from a block's last layer back to its second layer only on small parity tasks; with a 39.0M backbone it beats an 85.0M-backbone StandardGPT-12 at 5/5 controlled checkpoints.",
+    "zh": "QuatTucker-ZigZagGPT 让每个四层 block 共用一组 quaternion SwiGLU FFN 基，每层配一个 64×64 Tucker core，从 block 末层回到第二层的反馈循环只在小规模 parity 任务上测试；39.0M backbone 的模型在 5/5 个对照 checkpoint 上胜过 85.0M backbone 的 StandardGPT-12。"
+   },
+   "added": "2026-11-28"
+  },
+  {
+   "id": "2611.34199",
+   "tier": "radar",
+   "title": "Loop4D: Embodied World Modeling with 4D VAEs and Looped Diffusion Transformers",
+   "date": "2026-11-25",
+   "venue": "arXiv",
+   "authors": [
+    "Gen Li",
+    "Fan Luo",
+    "Mengjun Lin",
+    "Shu Han",
+    "Bohan Li",
+    "Hao Zhao"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2611.34199"
+   },
+   "category": "applications",
+   "focus": "related",
+   "facets": {
+    "placement": "prelude-core-coda",
+    "depth_train": "fixed",
+    "kv": "n/a"
+   },
+   "tldr": {
+    "en": "Loop4D, a 4D world model for robot manipulation, uses a diffusion transformer that keeps separate RGB and pointmap streams with shared weights and reruns its middle layers within each denoising call, adding per-loop supervision, a robot-region non-degradation constraint and a learned per-stream update gate; with two loops the 5B model's gFVD falls from 618.032 to 511.161.",
+    "zh": "Loop4D 是面向机器人操作的 4D 世界模型，其 diffusion transformer 为 RGB 和点图保留两路共享权重的隐状态，在每次去噪调用内重复运行中间层，并加入逐 loop 监督、机器人区域不退化约束和按模态学习的更新门控；使用两个 loop 时，5B 模型的 gFVD 从 618.032 降到 511.161。"
+   },
+   "added": "2026-11-28"
+  },
+  {
+   "id": "2611.34276",
+   "tier": "radar",
+   "title": "Scaling Looped MoE Language Models under Matched Budgets: Information Flow and Parameter Allocation",
+   "date": "2026-11-25",
+   "venue": "arXiv",
+   "authors": [
+    "Shipeng Bai",
+    "Jiayu Qin",
+    "Hong Liu",
+    "Xili Wang",
+    "Jianchao Tan",
+    "Jiacheng Li",
+    "He Zhang",
+    "Yifan Lu",
+    "Jiaqi Zhang",
+    "Kefeng Zhang",
+    "Yuchen Xie",
+    "Xunliang Cai"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2611.34276",
+    "code": "https://github.com/lxi01766/Scaling-Looped-MoE-Language-Models-under-Matched-Budgets-Information-Flow-and-Parameter-Allocation"
+   },
+   "category": "scaling",
+   "focus": "core",
+   "facets": {
+    "placement": "prelude-core-coda",
+    "depth_train": "fixed"
+   },
+   "tldr": {
+    "en": "Runs a shared MoE core twice between a prelude and a coda, with gated fusion of the normalized state and the input and a prelude-to-coda residual, gives the core 25%–35% of the unrolled depth and spends the saved parameters on extra routed experts; after 1T tokens the 51B KDA model beats an iso-parameter, iso-FLOP non-looped baseline by 2.29 percentage points on average over four benchmarks.",
+    "zh": "在 prelude 与 coda 之间让共享的 MoE core 跑两遍，用门控融合结合归一化后的状态与输入，并加一条 prelude 到 coda 的跨阶段残差，core 单遍深度占展开深度的 25%–35%，共享省下的参数改为每层更多路由专家；训练 1T token 后，51B KDA 模型在四个基准上的平均分比参数和 FLOPs 相同的非循环基线高 2.29 个百分点。"
+   },
+   "added": "2026-11-28"
+  },
+  {
+   "id": "2611.34492",
+   "tier": "radar",
+   "title": "FlyingStart: Learned Cross-Token Warm Starts for Fixed-Point Decoding in Recurrent-Depth Language Models",
+   "date": "2026-11-25",
+   "venue": "arXiv",
+   "authors": [
+    "Runguo Li",
+    "Dezhen Lu",
+    "Zixiang Ni"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2611.34492"
+   },
+   "category": "systems",
+   "focus": "core",
+   "facets": {
+    "placement": "prelude-core-coda",
+    "depth_train": "sampled",
+    "kv": "last-pass"
+   },
+   "tldr": {
+    "en": "FlyingStart initializes each token's loop over the shared core block with a linear map of the previous token's exit state and the current prelude output, fitted in closed form on the frozen model, instead of random noise; on Huginn-0125 it matches the strongest training-free baseline's accuracy with 14–19% fewer decoding layers.",
+    "zh": "FlyingStart 不再从随机噪声开始每个 token 在共享 core block 上的循环，而是把上一个 token 的退出状态和当前 prelude 输出经线性映射作为初始状态，该映射在冻结模型上闭式拟合；在 Huginn-0125 上，它以少 14–19% 的解码层数达到最强免训练基线的准确率。"
+   },
+   "added": "2026-11-28"
+  },
+  {
+   "id": "2611.34821",
+   "tier": "radar",
+   "title": "LoopTitan: What Does Parameter Revisit Buy a Mixture-of-Experts?",
+   "date": "2026-11-25",
+   "venue": "arXiv",
+   "authors": [
+    "Zichen Tian",
+    "Yudong Lu",
+    "Xuansheng Wu",
+    "Na Zou",
+    "Xia Hu",
+    "Guanchu Wang",
+    "Qianru Sun"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2611.34821",
+    "code": "https://github.com/datamllab/LoopTitan",
+    "weights": [
+     "https://huggingface.co/NaturalScale/LoopTitan-Looped-1.3B-A0.2B-Muon",
+     "https://huggingface.co/NaturalScale/LoopTitan-Looped-1.3B-A0.2B-AdamW",
+     "https://huggingface.co/NaturalScale/LoopTitan-Base-1.3B-A0.2B"
+    ]
+   },
+   "category": "scaling",
+   "focus": "core",
+   "facets": {
+    "placement": "prelude-core-coda",
+    "depth_train": "fixed",
+    "kv": "per-pass"
+   },
+   "tldr": {
+    "en": "LoopTitan compares a looped MoE that visits its middle layers twice with a non-revisit control that has matched parameters, FLOPs and KV cache and the same computed depth but independent layers; revisit itself changes test loss by +0.7 mBPB under AdamW at 1.3B stored parameters and 5B tokens, within noise, and most of the gain comes from the deeper, narrower network shape.",
+    "zh": "LoopTitan 把一个中间层访问两次的循环 MoE，与参数、FLOPs、KV cache 匹配且计算深度相同、但各层参数独立的非复用对照模型比较；在 1.3B 存储参数、5B token、AdamW 下，参数复用本身使测试损失变化 +0.7 mBPB，在噪声范围内，大部分收益来自更深更窄的网络形状。"
+   },
+   "added": "2026-11-28"
+  },
+  {
+   "id": "2611.34923",
+   "tier": "radar",
+   "title": "Mixture-of-Loops Transformer",
+   "date": "2026-11-25",
+   "venue": "arXiv",
+   "authors": [
+    "Lianghui Zhu",
+    "Shijie Wang",
+    "Xinggang Wang",
+    "Jinze Bai",
+    "Bo Wang",
+    "Xiang Bai"
+   ],
+   "links": {
+    "paper": "https://arxiv.org/abs/2611.34923",
+    "code": "https://github.com/hustvl/MoLT"
+   },
+   "category": "architecture/state",
+   "focus": "core",
+   "facets": {
+    "placement": "encoder",
+    "depth_train": "fixed",
+    "kv": "last-pass"
+   },
+   "tldr": {
+    "en": "MoLT lets each layer of a looped Transformer stack attend to keys and values from earlier layers and the preceding loop; its U-MoLT variant, a looped encoder that restarts from embeddings each loop plus a cross-only decoder, can decode with one encoder-decoder pass per generated token and, at 3B MoE after 400B tokens, raises 10-task average accuracy by 2.1 percentage points over OLMo3.",
+    "zh": "MoLT 让循环 Transformer 栈的每一层都能对前面各层和上一轮循环的 key/value 做注意力；其 U-MoLT 变体由每轮从 embedding 重新开始的循环 encoder 和只做 cross-attention 的 decoder 组成，解码时每生成一个 token 只需一次 encoder-decoder 前向，在 400B token 训练的 3B MoE 上，10 项任务平均准确率比 OLMo3 高 2.1 个百分点。"
+   },
+   "added": "2026-11-28"
+  },
+  {
    "id": "sensenova-loop-9b",
    "tier": "radar",
    "title": "SenseNova-Loop-9B: Deeper Computation with Fewer Parameters",

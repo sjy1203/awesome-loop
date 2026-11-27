@@ -1,0 +1,18 @@
+id: "2611.34492"
+tier: radar
+title: "FlyingStart: Learned Cross-Token Warm Starts for Fixed-Point Decoding in Recurrent-Depth Language Models"
+date: "2026-11-25"
+venue: arXiv
+authors: [Runguo Li, Dezhen Lu, Zixiang Ni]
+links:
+  paper: https://arxiv.org/abs/2611.34492
+category: systems
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: sampled
+  kv: last-pass
+tldr:
+  en: FlyingStart initializes each token's loop over the shared core block with a linear map of the previous token's exit state and the current prelude output, fitted in closed form on the frozen model, instead of random noise; on Huginn-0125 it matches the strongest training-free baseline's accuracy with 14–19% fewer decoding layers.
+  zh: FlyingStart 不再从随机噪声开始每个 token 在共享 core block 上的循环，而是把上一个 token 的退出状态和当前 prelude 输出经线性映射作为初始状态，该映射在冻结模型上闭式拟合；在 Huginn-0125 上，它以少 14–19% 的解码层数达到最强免训练基线的准确率。
+added: "2026-11-28"

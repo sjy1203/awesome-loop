@@ -1,0 +1,18 @@
+id: "2611.34276"
+tier: radar
+title: "Scaling Looped MoE Language Models under Matched Budgets: Information Flow and Parameter Allocation"
+date: "2026-11-25"
+venue: arXiv
+authors: [Shipeng Bai, Jiayu Qin, Hong Liu, Xili Wang, Jianchao Tan, Jiacheng Li, He Zhang, Yifan Lu, Jiaqi Zhang, Kefeng Zhang, Yuchen Xie, Xunliang Cai]
+links:
+  paper: https://arxiv.org/abs/2611.34276
+  code: https://github.com/lxi01766/Scaling-Looped-MoE-Language-Models-under-Matched-Budgets-Information-Flow-and-Parameter-Allocation
+category: scaling
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+tldr:
+  en: Runs a shared MoE core twice between a prelude and a coda, with gated fusion of the normalized state and the input and a prelude-to-coda residual, gives the core 25%–35% of the unrolled depth and spends the saved parameters on extra routed experts; after 1T tokens the 51B KDA model beats an iso-parameter, iso-FLOP non-looped baseline by 2.29 percentage points on average over four benchmarks.
+  zh: 在 prelude 与 coda 之间让共享的 MoE core 跑两遍，用门控融合结合归一化后的状态与输入，并加一条 prelude 到 coda 的跨阶段残差，core 单遍深度占展开深度的 25%–35%，共享省下的参数改为每层更多路由专家；训练 1T token 后，51B KDA 模型在四个基准上的平均分比参数和 FLOPs 相同的非循环基线高 2.29 个百分点。
+added: "2026-11-28"

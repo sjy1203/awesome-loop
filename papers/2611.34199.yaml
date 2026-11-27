@@ -1,0 +1,18 @@
+id: "2611.34199"
+tier: radar
+title: "Loop4D: Embodied World Modeling with 4D VAEs and Looped Diffusion Transformers"
+date: "2026-11-25"
+venue: arXiv
+authors: [Gen Li, Fan Luo, Mengjun Lin, Shu Han, Bohan Li, Hao Zhao]
+links:
+  paper: https://arxiv.org/abs/2611.34199
+category: applications
+focus: related
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: n/a
+tldr:
+  en: "Loop4D, a 4D world model for robot manipulation, uses a diffusion transformer that keeps separate RGB and pointmap streams with shared weights and reruns its middle layers within each denoising call, adding per-loop supervision, a robot-region non-degradation constraint and a learned per-stream update gate; with two loops the 5B model's gFVD falls from 618.032 to 511.161."
+  zh: "Loop4D 是面向机器人操作的 4D 世界模型，其 diffusion transformer 为 RGB 和点图保留两路共享权重的隐状态，在每次去噪调用内重复运行中间层，并加入逐 loop 监督、机器人区域不退化约束和按模态学习的更新门控；使用两个 loop 时，5B 模型的 gFVD 从 618.032 降到 511.161。"
+added: "2026-11-28"

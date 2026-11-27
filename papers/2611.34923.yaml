@@ -1,0 +1,19 @@
+id: "2611.34923"
+tier: radar
+title: "Mixture-of-Loops Transformer"
+date: "2026-11-25"
+venue: arXiv
+authors: [Lianghui Zhu, Shijie Wang, Xinggang Wang, Jinze Bai, Bo Wang, Xiang Bai]
+links:
+  paper: https://arxiv.org/abs/2611.34923
+  code: https://github.com/hustvl/MoLT
+category: architecture/state
+focus: core
+facets:
+  placement: encoder
+  depth_train: fixed
+  kv: last-pass
+tldr:
+  en: MoLT lets each layer of a looped Transformer stack attend to keys and values from earlier layers and the preceding loop; its U-MoLT variant, a looped encoder that restarts from embeddings each loop plus a cross-only decoder, can decode with one encoder-decoder pass per generated token and, at 3B MoE after 400B tokens, raises 10-task average accuracy by 2.1 percentage points over OLMo3.
+  zh: MoLT 让循环 Transformer 栈的每一层都能对前面各层和上一轮循环的 key/value 做注意力；其 U-MoLT 变体由每轮从 embedding 重新开始的循环 encoder 和只做 cross-attention 的 decoder 组成，解码时每生成一个 token 只需一次 encoder-decoder 前向，在 400B token 训练的 3B MoE 上，10 项任务平均准确率比 OLMo3 高 2.1 个百分点。
+added: "2026-11-28"

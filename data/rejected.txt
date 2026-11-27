@@ -166,3 +166,10 @@
 2611.32143  # probing reader for CODI latent states and KV messages; no loop
 2611.06521  # ReaRec-style recommender that appends the last state as a new token and re-runs the encoder (as 2605.10207); no layer reuse within a pass
 2611.31015  # complete latent reasoning in standard transformers; no layer reuse or looped model (as 2606.10184)
+2611.34601  # streaming video captioner that caches 16 tokens per frame; no layer reused across depth (a looping test in Appendix D.2 was dropped)
+2611.31449  # compiler plugin that bounds program loops; not neural layer reuse
+2611.33072  # high-energy physics (holographic fixed point)
+2611.34711  # certifies networks an LM writes from a specification; weight-tied recurrences are only a certification target
+2611.33414  # amortized initialization for adversarial attacks on VLMs; no layer reuse
+2611.31755  # recursive VLM harness (agent loop over model calls)
+2611.34179  # linguistics of mental-state vocabulary; no loops

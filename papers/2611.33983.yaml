@@ -1,0 +1,21 @@
+id: "2611.33983"
+tier: radar
+title: "Quaternion-Tucker ZigZag Networks: Halving Transformer Backbone Parameters and Enabling Exact 2D Zero-Loss Continual Scaling"
+date: "2026-11-25"
+venue: arXiv
+authors: [Shubham Barmase]
+links:
+  paper: https://arxiv.org/abs/2611.33983
+  code: https://github.com/shu195/QuatTucker-ZigZagGPT
+  weights:
+    - https://huggingface.co/spacetime9/QuatTucker-ZigZagGPT-12-78M
+    - https://huggingface.co/spacetime9/QuatTucker-ZigZagGPT-12-78M-Chat
+    - https://huggingface.co/spacetime9/QuatTucker-ZigZagGPT-16-95M
+    - https://huggingface.co/spacetime9/QuatTucker-ZigZagGPT-16-95M-Chat
+    - https://huggingface.co/spacetime9/QuatTucker-ZigZagGPT-20-110M
+category: architecture/placement
+focus: related
+tldr:
+  en: QuatTucker-ZigZagGPT shares one quaternion SwiGLU FFN basis across the four layers of each block, with a 64×64 Tucker core per layer, and tests a feedback pass from a block's last layer back to its second layer only on small parity tasks; with a 39.0M backbone it beats an 85.0M-backbone StandardGPT-12 at 5/5 controlled checkpoints.
+  zh: QuatTucker-ZigZagGPT 让每个四层 block 共用一组 quaternion SwiGLU FFN 基，每层配一个 64×64 Tucker core，从 block 末层回到第二层的反馈循环只在小规模 parity 任务上测试；39.0M backbone 的模型在 5/5 个对照 checkpoint 上胜过 85.0M backbone 的 StandardGPT-12。
+added: "2026-11-28"

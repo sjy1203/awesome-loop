@@ -1,0 +1,20 @@
+id: "2611.34821"
+tier: radar
+title: "LoopTitan: What Does Parameter Revisit Buy a Mixture-of-Experts?"
+date: "2026-11-25"
+venue: arXiv
+authors: [Zichen Tian, Yudong Lu, Xuansheng Wu, Na Zou, Xia Hu, Guanchu Wang, Qianru Sun]
+links:
+  paper: https://arxiv.org/abs/2611.34821
+  code: https://github.com/datamllab/LoopTitan
+  weights: [https://huggingface.co/NaturalScale/LoopTitan-Looped-1.3B-A0.2B-Muon, https://huggingface.co/NaturalScale/LoopTitan-Looped-1.3B-A0.2B-AdamW, https://huggingface.co/NaturalScale/LoopTitan-Base-1.3B-A0.2B]
+category: scaling
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: fixed
+  kv: per-pass
+tldr:
+  en: LoopTitan compares a looped MoE that visits its middle layers twice with a non-revisit control that has matched parameters, FLOPs and KV cache and the same computed depth but independent layers; revisit itself changes test loss by +0.7 mBPB under AdamW at 1.3B stored parameters and 5B tokens, within noise, and most of the gain comes from the deeper, narrower network shape.
+  zh: LoopTitan 把一个中间层访问两次的循环 MoE，与参数、FLOPs、KV cache 匹配且计算深度相同、但各层参数独立的非复用对照模型比较；在 1.3B 存储参数、5B token、AdamW 下，参数复用本身使测试损失变化 +0.7 mBPB，在噪声范围内，大部分收益来自更深更窄的网络形状。
+added: "2026-11-28"

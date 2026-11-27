@@ -1,0 +1,17 @@
+id: "2611.33468"
+tier: radar
+title: "Learning from Recurrence: Internalizing Depth-Induced Preferences in Looped Language Models"
+date: "2026-11-24"
+venue: arXiv
+authors: [Hui Chen, Joshua Elsdon, Can Goksen]
+links:
+  paper: https://arxiv.org/abs/2611.33468
+category: training
+focus: core
+facets:
+  placement: prelude-core-coda
+  depth_train: curriculum
+tldr:
+  en: Retrofits OLMo-2-1B with a shared four-block recurrent core between a prelude and a coda, then trains only that core through one pass on the model's own greedy continuations generated at greater depth, without reference answers; the mean-depth-4 model's four-pass GSM8K accuracy rises from 56.18% to 62.70%.
+  zh: 在 OLMo-2-1B 的 prelude 和 coda 之间改造出由四个 block 组成的共享循环 core，再只通过一遍循环、用模型自己在更深遍数下贪心生成的续写训练这个 core，不使用参考答案；mean-depth-4 模型在 GSM8K 上的四遍准确率从 56.18% 升到 62.70%。
+added: "2026-11-28"

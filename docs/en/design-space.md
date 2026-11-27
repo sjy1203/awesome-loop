@@ -144,8 +144,10 @@ Every core paper with a stated loop placement and training depth, grouped by cel
 - 2018-12-05 · [Attending to Mathematical Language with Transformers](https://arxiv.org/abs/1812.02825)
 - 2018-07-10 · [Universal Transformers](https://arxiv.org/abs/1807.03819)
 
-## <a id="prelude-core-coda--fixed"></a>middle core (prelude-core-coda) × fixed (34)
+## <a id="prelude-core-coda--fixed"></a>middle core (prelude-core-coda) × fixed (36)
 
+- 2026-11-25 · [Scaling Looped MoE Language Models under Matched Budgets: Information Flow and Parameter Allocation](https://arxiv.org/abs/2611.34276)
+- 2026-11-25 · [LoopTitan: What Does Parameter Revisit Buy a Mixture-of-Experts?](https://arxiv.org/abs/2611.34821)
 - 2026-11-23 · [Unlocking the Power of Loops in Pretrained LLMs with Loop Residuals](https://arxiv.org/abs/2611.31094) · **[deep card](2611.31094.md)**
 - 2026-11-23 · [GLM-5.4: Toward Generalized Coding with Our First Loop Transformer](https://z.ai/blog/glm-5.4) · **[deep card](zai-glm-5-4.md)**
 - 2026-11-23 · [How to build and train your recurrent-depth model: A fixed-point perspective](https://arxiv.org/abs/2611.31513)
@@ -181,8 +183,9 @@ Every core paper with a stated loop placement and training depth, grouped by cel
 - 2025-02-17 · [Zero Token-Driven Deep Thinking in LLMs: Unlocking the Full Potential of Existing Parameters via Cyclic Refinement](https://arxiv.org/abs/2502.12214)
 - 2024-02-21 · [AlgoFormer: An Efficient Transformer Framework with Algorithmic Structures](https://arxiv.org/abs/2402.13572)
 
-## <a id="prelude-core-coda--sampled"></a>middle core (prelude-core-coda) × sampled (22)
+## <a id="prelude-core-coda--sampled"></a>middle core (prelude-core-coda) × sampled (23)
 
+- 2026-11-25 · [FlyingStart: Learned Cross-Token Warm Starts for Fixed-Point Decoding in Recurrent-Depth Language Models](https://arxiv.org/abs/2611.34492)
 - 2026-11-19 · [dLoop: Looped Diffusion Language Models via Recurrent Latent Refinement](https://arxiv.org/abs/2611.26275)
 - 2026-11-09 · [Depth as a Candidate Source: Portfolio Allocation for Recurrent Test-Time Scaling in Large Language Models](https://arxiv.org/abs/2611.12293)
 - 2026-11-05 · [Extending Reasoning in Typed Decision Models via Looping](https://arxiv.org/abs/2611.07736)
@@ -206,8 +209,9 @@ Every core paper with a stated loop placement and training depth, grouped by cel
 - 2025-07-02 · [Latent Chain-of-Thought? Decoding the Depth-Recurrent Transformer](https://arxiv.org/abs/2507.02199)
 - 2025-02-07 · [Scaling up Test-Time Compute with Latent Reasoning: A Recurrent Depth Approach](https://arxiv.org/abs/2502.05171) · **[deep card](2502.05171.md)**
 
-## <a id="prelude-core-coda--curriculum"></a>middle core (prelude-core-coda) × scheduled curriculum (5)
+## <a id="prelude-core-coda--curriculum"></a>middle core (prelude-core-coda) × scheduled curriculum (6)
 
+- 2026-11-24 · [Learning from Recurrence: Internalizing Depth-Induced Preferences in Looped Language Models](https://arxiv.org/abs/2611.33468)
 - 2026-11-02 · [Library of Layers (LoL): Adaptively Ordering Transformer Layers at Runtime](https://arxiv.org/abs/2611.03526)
 - 2026-10-30 · [UpLoop: Training Looped Transformers via Upcycling at No Extra Pretraining Compute](https://arxiv.org/abs/2610.41720)
 - 2026-10-09 · [Adaptive-Depth Is a Finishing Stage](https://arxiv.org/abs/2610.14252)
@@ -225,8 +229,9 @@ Every core paper with a stated loop placement and training depth, grouped by cel
 - 2025-07-14 · [Mixture-of-Recursions: Learning Dynamic Recursive Depths for Adaptive Token-Level Computation](https://arxiv.org/abs/2507.10524) · **[deep card](2507.10524.md)**
 - 2023-10-16 · [CoTFormer: A Chain-of-Thought Driven Architecture with Budget-Adaptive Computation Cost at Inference](https://arxiv.org/abs/2310.10845)
 
-## <a id="encoder--fixed"></a>KV-producing half (CED encoder / YOCO self-decoder) × fixed (1)
+## <a id="encoder--fixed"></a>KV-producing half (CED encoder / YOCO self-decoder) × fixed (2)
 
+- 2026-11-25 · [Mixture-of-Loops Transformer](https://arxiv.org/abs/2611.34923)
 - 2026-04-01 · [Universal YOCO for Efficient Depth Scaling](https://arxiv.org/abs/2604.01220) · **[deep card](2604.01220.md)**
 
 ## <a id="encoder--sampled"></a>KV-producing half (CED encoder / YOCO self-decoder) × sampled (1)
@@ -241,8 +246,9 @@ Every core paper with a stated loop placement and training depth, grouped by cel
 
 - 2026-11-04 · [LooM: Loop-Invariant Memory for Causal Encoder-Decoder Language Models](https://arxiv.org/abs/2611.06835)
 
-## <a id="partial--fixed"></a>partial (one early/late block or sub-module) × fixed (12)
+## <a id="partial--fixed"></a>partial (one early/late block or sub-module) × fixed (13)
 
+- 2026-11-25 · [DuoMI: Dual Mutual Information Regularization for Expert Reuse in Looped Transformers](https://arxiv.org/abs/2611.33952)
 - 2026-10-30 · [There Is No Free Loop: When Does Looping a Trained Model Pay for Its Inference Compute?](https://arxiv.org/abs/2610.42030)
 - 2026-10-20 · [Meta Expert: Cross-Layer Expert Sharing for Storage- and Retrieval-Efficient MoE](https://arxiv.org/abs/2610.27598)
 - 2026-09-16 · [MoRE: Mixture of Reused Experts](https://arxiv.org/abs/2609.18176)

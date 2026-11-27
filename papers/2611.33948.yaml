@@ -1,0 +1,18 @@
+id: "2611.33948"
+tier: radar
+title: "Where to Approximate: Understanding and Accelerating Looped Multi-View Reconstruction"
+date: "2026-11-25"
+venue: arXiv
+authors: [Siyuan Zhang, Yuhan Chen, Yangyang Ning, Nan Wang, Jun Yan]
+links:
+  paper: https://arxiv.org/abs/2611.33948
+category: applications
+focus: related
+facets:
+  placement: prelude-core-coda
+  depth_train: sampled
+  kv: n/a
+tldr:
+  en: "Tracks how approximation errors travel through Déjà View, a multi-view 3D reconstruction model that repeats one shared transformer block, finds that later steps absorb them, and uses this to build Déjà Vite, which runs coarse-grid and KV-pooled steps early and spaced attention-output reuse late, adapted by LoRA self-distillation; its balanced setting runs 1.63× faster than the official 16-step Déjà View while average pose AUC@3° falls from 57.20 to 55.34."
+  zh: "追踪近似误差在 Déjà View（反复应用同一个共享 transformer block 的多视角 3D 重建模型）中的传播，发现后续步骤会吸收这些误差，并据此构建 Déjà Vite：早期步骤使用粗网格和 KV 池化，后期间隔复用 attention 输出，再用 LoRA 自蒸馏适配；其 balanced 配置比官方 16 步 Déjà View 快 1.63×，平均位姿 AUC@3° 从 57.20 降到 55.34。"
+added: "2026-11-28"
