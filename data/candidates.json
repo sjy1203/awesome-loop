@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26",
+ "updated": "2026-11-27",
  "candidates": [
   {
    "id": "2611.34923",
@@ -20,6 +20,34 @@
    ],
    "abstract": "Looped Transformers boost expressivity by reusing shared layers across loops, yet at the cost of efficiency. Pushing their expressivity-efficiency frontier requires rethinking the core mechanism connecting adjacent loops: What should be passed as a Transformer loops? We introduce Mixture-of-Loops Transformer (MoLT), whose Mixture-of-Loops Attention (MoLA) uses keys and values (KV) as memory for selective reuse across depths and loops. Under loop residual, MoLT-R retains the residual stream and r",
    "cites_seeds": []
+  },
+  {
+   "id": "2611.34821",
+   "title": "LoopTitan: What Does Parameter Revisit Buy a Mixture-of-Experts?",
+   "date": "2026-11-25",
+   "authors": [],
+   "url": "https://arxiv.org/abs/2611.34821",
+   "terms": [],
+   "abstract": "",
+   "cites_seeds": [
+    "Universal Transformers",
+    "Huginn",
+    "MoR",
+    "Ouro"
+   ]
+  },
+  {
+   "id": "2611.34601",
+   "title": "You Only Look Multiple Times: YoloMT, a Real-Time Streaming Model on a T4",
+   "date": "2026-11-25",
+   "authors": [],
+   "url": "https://arxiv.org/abs/2611.34601",
+   "terms": [],
+   "abstract": "",
+   "cites_seeds": [
+    "Universal Transformers",
+    "Huginn"
+   ]
   },
   {
    "id": "2611.34492",
@@ -60,6 +88,19 @@
    "cites_seeds": []
   },
   {
+   "id": "2611.34199",
+   "title": "Loop4D: Embodied World Modeling with 4D VAEs and Looped Diffusion Transformers",
+   "date": "2026-11-25",
+   "authors": [],
+   "url": "https://arxiv.org/abs/2611.34199",
+   "terms": [],
+   "abstract": "",
+   "cites_seeds": [
+    "Universal Transformers",
+    "Huginn"
+   ]
+  },
+  {
    "id": "2611.33983",
    "title": "Quaternion-Tucker ZigZag Networks: Halving Transformer Backbone Parameters and Enabling Exact 2D Zero-Loss Continual Scaling",
    "date": "2026-11-25",
@@ -93,6 +134,18 @@
    ],
    "abstract": "We introduce Dual Mutual Information Regularization (DuoMI), a method for regulating expert routing across rounds in looped mixture-of-experts (MoE) Transformers. When two rounds of computation share an expert pool, their routers may favor different expert subsets, limiting the reuse of individual expert parameters across rounds. Even when aggregate expert usage is identical across rounds, we would still prefer each token to retain some experts while switching to others. DuoMI addresses both asp",
    "cites_seeds": []
+  },
+  {
+   "id": "2611.33948",
+   "title": "Where to Approximate: Understanding and Accelerating Looped Multi-View Reconstruction",
+   "date": "2026-11-25",
+   "authors": [],
+   "url": "https://arxiv.org/abs/2611.33948",
+   "terms": [],
+   "abstract": "",
+   "cites_seeds": [
+    "Universal Transformers"
+   ]
   },
   {
    "id": "2611.33896",
