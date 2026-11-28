@@ -1,5 +1,5 @@
 {
- "date": "2026-11-27",
+ "date": "2026-11-28",
  "models": {
   "Amr-Hegazy/grt-large-isoflop": {
    "downloads": 16,
@@ -14,27 +14,27 @@
    "likes": 0
   },
   "Amr-Hegazy/grt-medium-isoparam": {
-   "downloads": 19,
+   "downloads": 20,
    "likes": 0
   },
   "ByteDance/Ouro-1.4B": {
-   "downloads": 27669,
+   "downloads": 28354,
    "likes": 168
   },
   "ByteDance/Ouro-1.4B-Thinking": {
-   "downloads": 19700,
+   "downloads": 19724,
    "likes": 57
   },
   "ByteDance/Ouro-2.6B": {
-   "downloads": 10259,
+   "downloads": 10477,
    "likes": 99
   },
   "ByteDance/Ouro-2.6B-Thinking": {
-   "downloads": 8650,
+   "downloads": 8701,
    "likes": 162
   },
   "IQuestLab/IQuest-Coder-V1-40B-Loop-Instruct": {
-   "downloads": 1091,
+   "downloads": 1099,
    "likes": 331
   },
   "IQuestLab/IQuest-Coder-V1-40B-Loop-Thinking": {
@@ -42,11 +42,11 @@
    "likes": 18
   },
   "Lernex/Metis-1.6-Logos": {
-   "downloads": 607,
+   "downloads": 658,
    "likes": 1
   },
   "Lernex/Metis-1.6-Logos-Base": {
-   "downloads": 30,
+   "downloads": 32,
    "likes": 0
   },
   "Lernex/Metis-1.6-Logos-FP8": {
@@ -54,15 +54,15 @@
    "likes": 0
   },
   "Lernex/Metis-1.6-Logos-GGUF": {
-   "downloads": 1813,
+   "downloads": 1816,
    "likes": 1
   },
   "Lernex/Metis-1.6-Logos-MLX-4bit": {
-   "downloads": 73,
+   "downloads": 74,
    "likes": 0
   },
   "Lernex/Metis-1.6-Logos-MLX-8bit": {
-   "downloads": 76,
+   "downloads": 77,
    "likes": 0
   },
   "Lernex/Metis-1.6-Logos-NVFP4": {
@@ -70,11 +70,11 @@
    "likes": 0
   },
   "Lernex/Metis-1.6-Praxis": {
-   "downloads": 723,
+   "downloads": 776,
    "likes": 1
   },
   "Lernex/Metis-1.6-Praxis-Base": {
-   "downloads": 30,
+   "downloads": 31,
    "likes": 0
   },
   "Lernex/Metis-1.6-Praxis-FP8": {
@@ -82,15 +82,15 @@
    "likes": 0
   },
   "Lernex/Metis-1.6-Praxis-GGUF": {
-   "downloads": 789,
+   "downloads": 828,
    "likes": 0
   },
   "Lernex/Metis-1.6-Praxis-MLX-4bit": {
-   "downloads": 70,
+   "downloads": 71,
    "likes": 0
   },
   "Lernex/Metis-1.6-Praxis-MLX-8bit": {
-   "downloads": 62,
+   "downloads": 63,
    "likes": 0
   },
   "Lernex/Metis-1.6-Praxis-NVFP4": {
@@ -98,59 +98,59 @@
    "likes": 0
   },
   "Multilingual-Multimodal-NLP/LoopCoder-V2": {
-   "downloads": 623,
+   "downloads": 648,
    "likes": 53
   },
   "Nanbeige/Nanbeige4.2-3B": {
-   "downloads": 44289,
-   "likes": 874
+   "downloads": 40606,
+   "likes": 876
   },
   "Nanbeige/Nanbeige4.2-3B-Base": {
-   "downloads": 1602,
+   "downloads": 1756,
    "likes": 64
   },
   "Nanbeige/Nanbeige4.2-3B-FP8": {
-   "downloads": 282,
+   "downloads": 271,
    "likes": 12
   },
   "Nanbeige/Nanbeige4.2-3B-GPTQ-Int8": {
-   "downloads": 235,
+   "downloads": 229,
    "likes": 7
   },
   "NaturalScale/LoopTitan-Base-1.3B-A0.2B": {
-   "downloads": 235,
+   "downloads": 309,
    "likes": 0
   },
   "NaturalScale/LoopTitan-Looped-1.3B-A0.2B-AdamW": {
-   "downloads": 249,
+   "downloads": 318,
    "likes": 0
   },
   "NaturalScale/LoopTitan-Looped-1.3B-A0.2B-Muon": {
-   "downloads": 250,
+   "downloads": 330,
    "likes": 0
   },
   "OneCreamBox/DyLoMo-DiT-ImageNet256": {
-   "downloads": 26,
+   "downloads": 49,
    "likes": 14
   },
   "OneCreamBox/DyLoMo-DiT-T2I-Preview": {
-   "downloads": 58,
-   "likes": 19
+   "downloads": 64,
+   "likes": 21
   },
   "SandyResearch/parcae-1.3b": {
-   "downloads": 388,
+   "downloads": 390,
    "likes": 8
   },
   "SandyResearch/parcae-140m": {
-   "downloads": 1175,
+   "downloads": 1148,
    "likes": 3
   },
   "SandyResearch/parcae-370m": {
-   "downloads": 270,
+   "downloads": 264,
    "likes": 3
   },
   "SandyResearch/parcae-770m": {
-   "downloads": 153,
+   "downloads": 143,
    "likes": 4
   },
   "ShimaRinC/Distill-to-Loop": {
@@ -162,47 +162,47 @@
    "likes": 0
   },
   "Survivor613/BabyLM2026-Strict-Small-looped_GPT-BERT": {
-   "downloads": 84,
+   "downloads": 85,
    "likes": 0
   },
   "Thrillcrazyer/Phi4_LoopUS": {
-   "downloads": 44,
+   "downloads": 43,
    "likes": 1
   },
   "Thrillcrazyer/Qwen3-4B_LoopUS": {
-   "downloads": 56,
+   "downloads": 57,
    "likes": 2
   },
   "Thrillcrazyer/Qwen3-8B_LoopUS": {
-   "downloads": 49,
+   "downloads": 46,
    "likes": 1
   },
   "Thrillcrazyer/Qwen3_1.7B_LoopUS": {
-   "downloads": 188,
+   "downloads": 176,
    "likes": 3
   },
   "Thrillcrazyer/Qwen3_1.7B_LoopUS_SFT": {
-   "downloads": 51,
+   "downloads": 52,
    "likes": 2
   },
   "Thrillcrazyer/TinyLlama_v1.1_LoopUS": {
-   "downloads": 24,
+   "downloads": 25,
    "likes": 1
   },
   "TierFlow/LoopVL": {
-   "downloads": 595,
+   "downloads": 590,
    "likes": 6
   },
   "ai-forever/OrbitLM-1.8B-Thinking": {
-   "downloads": 592,
-   "likes": 41
+   "downloads": 740,
+   "likes": 68
   },
   "amazon/ALoDLM-1.7B": {
-   "downloads": 705,
-   "likes": 13
+   "downloads": 693,
+   "likes": 14
   },
   "amazon/ALoDLM-8B": {
-   "downloads": 962,
+   "downloads": 945,
    "likes": 67
   },
   "armenjeddi/LoopFormer-2block-12iterations": {
@@ -210,31 +210,31 @@
    "likes": 0
   },
   "armenjeddi/LoopFormer-3block-8iterations": {
-   "downloads": 69,
+   "downloads": 68,
    "likes": 1
   },
   "armenjeddi/LoopFormer-3block-8iterations-FineWeb300K": {
-   "downloads": 35,
+   "downloads": 36,
    "likes": 0
   },
   "btzyd/Accordion-6B-A0.5B-Base-32K": {
-   "downloads": 96,
+   "downloads": 90,
    "likes": 0
   },
   "btzyd/Accordion-6B-A0.5B-Base-8K": {
-   "downloads": 131,
+   "downloads": 132,
    "likes": 0
   },
   "btzyd/Accordion-6B-A0.5B-RL": {
-   "downloads": 85,
+   "downloads": 78,
    "likes": 0
   },
   "btzyd/Accordion-6B-A0.5B-SFT": {
-   "downloads": 89,
+   "downloads": 81,
    "likes": 0
   },
   "danish-foundation-models/DFM-Mimir": {
-   "downloads": 2817,
+   "downloads": 2823,
    "likes": 86
   },
   "danish-foundation-models/DFM-Mimir-GGUF": {
@@ -242,27 +242,27 @@
    "likes": 0
   },
   "danish-foundation-models/DFM-Mimir-v1.5": {
-   "downloads": 2327,
+   "downloads": 2276,
    "likes": 6
   },
   "danish-foundation-models/DFM-Mimir-v1.5-GGUF": {
-   "downloads": 1049,
+   "downloads": 1042,
    "likes": 3
   },
   "internlm/Intern-S2-Mobius": {
-   "downloads": 911,
+   "downloads": 921,
    "likes": 66
   },
   "internlm/Intern-S2-Mobius-FP8": {
-   "downloads": 211,
+   "downloads": 208,
    "likes": 9
   },
   "jacobfa1/attractor-140m": {
-   "downloads": 28,
+   "downloads": 27,
    "likes": 1
   },
   "jacobfa1/attractor-370m": {
-   "downloads": 19,
+   "downloads": 16,
    "likes": 0
   },
   "jacobfa1/attractor-770m": {
@@ -278,7 +278,7 @@
    "likes": 0
   },
   "myboker/Concertina-2.27B": {
-   "downloads": 132,
+   "downloads": 136,
    "likes": 3
   },
   "nics-efc/TaH-plus-1.7B": {
@@ -286,47 +286,47 @@
    "likes": 2
   },
   "nics-efc/TaH2-1.7B-max2": {
-   "downloads": 290,
+   "downloads": 268,
    "likes": 1
   },
   "nics-efc/TaH2-1.7B-max4": {
-   "downloads": 34,
+   "downloads": 32,
    "likes": 0
   },
   "nics-efc/TaH2-1.7B-max8": {
-   "downloads": 102,
+   "downloads": 101,
    "likes": 0
   },
   "nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-BF16": {
-   "downloads": 12018,
-   "likes": 287
+   "downloads": 11962,
+   "likes": 289
   },
   "nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-GGUF": {
-   "downloads": 38817,
-   "likes": 110
+   "downloads": 38022,
+   "likes": 111
   },
   "nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-MXFP8": {
-   "downloads": 1552,
+   "downloads": 1476,
    "likes": 11
   },
   "nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-NVFP4": {
-   "downloads": 46416,
-   "likes": 35
+   "downloads": 46402,
+   "likes": 36
   },
   "oahzxl/LoopRes-Qwen3-1.7B": {
-   "downloads": 215,
-   "likes": 6
+   "downloads": 302,
+   "likes": 8
   },
   "osunlp/ARLoop-0.6B": {
-   "downloads": 2657,
+   "downloads": 2671,
    "likes": 5
   },
   "osunlp/ARLoop-1.2B": {
-   "downloads": 2918,
+   "downloads": 2868,
    "likes": 9
   },
   "osunlp/PreNormLoop-0.6B": {
-   "downloads": 2034,
+   "downloads": 2040,
    "likes": 2
   },
   "saitejautpala/looped_udlm": {
@@ -334,55 +334,55 @@
    "likes": 0
   },
   "sapientinc/HRM-Text-1B": {
-   "downloads": 3135,
+   "downloads": 3075,
    "likes": 838
   },
   "sensenova/SenseNova-Loop-9B": {
-   "downloads": 4253,
-   "likes": 792
+   "downloads": 4591,
+   "likes": 823
   },
   "sensenova/SenseNova-Loop-9B-AWQ": {
-   "downloads": 1200,
-   "likes": 25
+   "downloads": 1268,
+   "likes": 26
   },
   "sensenova/SenseNova-Loop-9B-GGUF": {
-   "downloads": 134981,
-   "likes": 324
+   "downloads": 142347,
+   "likes": 347
   },
   "sensenova/SenseNova-Loop-9B-Preview": {
-   "downloads": 6520,
-   "likes": 321
+   "downloads": 6555,
+   "likes": 322
   },
   "smcleish/Recurrent-Llama-3.2-train-recurrence-16": {
-   "downloads": 78,
+   "downloads": 81,
    "likes": 0
   },
   "smcleish/Recurrent-Llama-3.2-train-recurrence-32": {
-   "downloads": 2910,
+   "downloads": 2929,
    "likes": 1
   },
   "smcleish/Recurrent-Llama-3.2-train-recurrence-4": {
-   "downloads": 631,
+   "downloads": 645,
    "likes": 0
   },
   "smcleish/Recurrent-Llama-3.2-train-recurrence-8": {
-   "downloads": 161,
+   "downloads": 163,
    "likes": 0
   },
   "smcleish/Recurrent-Llama-3.2-untrained": {
-   "downloads": 48,
+   "downloads": 50,
    "likes": 0
   },
   "smcleish/Recurrent-OLMo-2-0425-train-recurrence-16": {
-   "downloads": 108,
+   "downloads": 109,
    "likes": 0
   },
   "smcleish/Recurrent-OLMo-2-0425-train-recurrence-32": {
-   "downloads": 362,
+   "downloads": 377,
    "likes": 3
   },
   "smcleish/Recurrent-OLMo-2-0425-train-recurrence-4": {
-   "downloads": 87,
+   "downloads": 93,
    "likes": 1
   },
   "smcleish/Recurrent-OLMo-2-0425-train-recurrence-8": {
@@ -390,35 +390,35 @@
    "likes": 0
   },
   "smcleish/Recurrent-OLMo-2-0425-untrained": {
-   "downloads": 35,
+   "downloads": 38,
    "likes": 0
   },
   "smcleish/Recurrent-TinyLlama-3T-train-recurrence-16": {
-   "downloads": 65,
+   "downloads": 70,
    "likes": 1
   },
   "smcleish/Recurrent-TinyLlama-3T-train-recurrence-32": {
-   "downloads": 357,
+   "downloads": 354,
    "likes": 2
   },
   "smcleish/Recurrent-TinyLlama-3T-train-recurrence-4": {
-   "downloads": 145,
+   "downloads": 148,
    "likes": 0
   },
   "smcleish/Recurrent-TinyLlama-3T-train-recurrence-4-single-phase": {
-   "downloads": 42,
+   "downloads": 47,
    "likes": 0
   },
   "smcleish/Recurrent-TinyLlama-3T-train-recurrence-4-two-phase": {
-   "downloads": 58,
+   "downloads": 59,
    "likes": 0
   },
   "smcleish/Recurrent-TinyLlama-3T-train-recurrence-8": {
-   "downloads": 134,
+   "downloads": 136,
    "likes": 0
   },
   "smcleish/Recurrent-TinyLlama-3T-untrained": {
-   "downloads": 66,
+   "downloads": 71,
    "likes": 0
   },
   "spacetime9/QuatTucker-ZigZagGPT-12-78M": {
@@ -442,55 +442,55 @@
    "likes": 0
   },
   "thinkingmachines/Inkling-2-Mini": {
-   "downloads": 155741,
-   "likes": 6395
+   "downloads": 177012,
+   "likes": 6524
   },
   "thinkingmachines/TML-d24-varloop-research": {
-   "downloads": 5076,
-   "likes": 179
+   "downloads": 5594,
+   "likes": 198
   },
   "tomg-group-umd/huginn-0125": {
-   "downloads": 23688,
+   "downloads": 23501,
    "likes": 321
   },
   "tomg-group-umd/huginn_swa_100_10_avg_0.9_merge": {
-   "downloads": 30,
+   "downloads": 31,
    "likes": 0
   },
   "tomg-group-umd/huginn_swa_75_7_ema_0.9_merge": {
-   "downloads": 40,
+   "downloads": 43,
    "likes": 1
   },
   "tomg-group-umd/step-00006144-recurrence_full_512_0": {
-   "downloads": 46,
+   "downloads": 48,
    "likes": 0
   },
   "tomg-group-umd/step-00010752-recurrence_full_512_0": {
-   "downloads": 30,
+   "downloads": 34,
    "likes": 0
   },
   "tomg-group-umd/step-00011904-recurrence_full_512_0": {
-   "downloads": 17,
-   "likes": 0
-  },
-  "tomg-group-umd/step-00017920-recurrence_full_512_0": {
-   "downloads": 20,
-   "likes": 0
-  },
-  "tomg-group-umd/step-00023808-recurrence_full_512_0": {
-   "downloads": 23,
-   "likes": 0
-  },
-  "tomg-group-umd/step-00029824-recurrence_full_512_0": {
-   "downloads": 22,
-   "likes": 0
-  },
-  "tomg-group-umd/step-00035840-recurrence_full_512_0": {
    "downloads": 21,
    "likes": 0
   },
+  "tomg-group-umd/step-00017920-recurrence_full_512_0": {
+   "downloads": 28,
+   "likes": 0
+  },
+  "tomg-group-umd/step-00023808-recurrence_full_512_0": {
+   "downloads": 25,
+   "likes": 0
+  },
+  "tomg-group-umd/step-00029824-recurrence_full_512_0": {
+   "downloads": 23,
+   "likes": 0
+  },
+  "tomg-group-umd/step-00035840-recurrence_full_512_0": {
+   "downloads": 23,
+   "likes": 0
+  },
   "tomg-group-umd/step-00041728-recurrence_full_512_0": {
-   "downloads": 32,
+   "downloads": 35,
    "likes": 0
   },
   "yhx12/LatentLoop": {
@@ -498,11 +498,11 @@
    "likes": 1
   },
   "zeng123/PonderLM-2-Pythia-1.4b": {
-   "downloads": 56,
+   "downloads": 57,
    "likes": 3
   },
   "zeng123/PonderLM-2-Pythia-410m": {
-   "downloads": 40,
+   "downloads": 42,
    "likes": 3
   },
   "zeng123/PonderingPythia-1.4B": {
@@ -514,24 +514,24 @@
    "likes": 1
   },
   "zitian-gao/Loopie-20B-A2B-preview": {
-   "downloads": 770,
+   "downloads": 769,
    "likes": 5
   },
   "zitian-gao/Loopie-6B-A0.6B-preview": {
-   "downloads": 626,
+   "downloads": 638,
    "likes": 6
   }
  },
  "papers": {
   "1511.04491": {
-   "citations": 3425,
+   "citations": 3427,
    "citations_source": "openalex",
    "hn_points": 0,
    "influential": 324,
    "institutions": [
     "Seoul National University"
    ],
-   "openalex_citations": 3425,
+   "openalex_citations": 3427,
    "s2_citations": 2834
   },
   "1511.08228": {
@@ -546,12 +546,12 @@
    "s2_citations": 415
   },
   "1603.08983": {
-   "citations": 1087,
+   "citations": 1090,
    "citations_source": "openalex",
    "hf_upvotes": 2,
    "hn_points": 2,
    "influential": 96,
-   "openalex_citations": 1087,
+   "openalex_citations": 1090,
    "s2_citations": 1002
   },
   "1708.04116": {
@@ -566,7 +566,7 @@
    "s2_citations": 5
   },
   "1806.07366": {
-   "citations": 8547,
+   "citations": 8549,
    "citations_source": "semanticscholar",
    "hf_upvotes": 1,
    "hn_points": 243,
@@ -576,7 +576,7 @@
     "Vector Institute"
    ],
    "openalex_citations": 8208,
-   "s2_citations": 8547
+   "s2_citations": 8549
   },
   "1807.03819": {
    "citations": 1273,
@@ -665,7 +665,7 @@
     "New York University"
    ],
    "openalex_citations": 8843,
-   "s2_citations": 7990
+   "s2_citations": 7991
   },
   "1910.10593": {
    "citations": 216,
@@ -1776,7 +1776,7 @@
   "2510.04871": {
    "citations": 283,
    "citations_source": "openalex",
-   "hf_upvotes": 519,
+   "hf_upvotes": 518,
    "hn_points": 43,
    "influential": 0,
    "institutions": [
@@ -2892,7 +2892,7 @@
   "2605.23872": {
    "citations": 25,
    "citations_source": "openalex",
-   "hf_upvotes": 2,
+   "hf_upvotes": 3,
    "hn_points": 0,
    "influential": 5,
    "institutions": [
@@ -5721,7 +5721,7 @@
   "2611.03998": {
    "citations": 1,
    "citations_source": "semanticscholar",
-   "hf_upvotes": 16,
+   "hf_upvotes": 17,
    "hn_points": 1,
    "influential": 0,
    "openalex_citations": 0,
@@ -6441,7 +6441,7 @@
   "2611.30844": {
    "citations": 0,
    "citations_source": "semanticscholar",
-   "hf_upvotes": 48,
+   "hf_upvotes": 73,
    "hn_points": 0,
    "influential": 0,
    "openalex_citations": 0,
@@ -6624,7 +6624,7 @@
   "2611.34821": {
    "citations": 0,
    "citations_source": "semanticscholar",
-   "hf_upvotes": 9,
+   "hf_upvotes": 10,
    "hn_points": 0,
    "influential": 0,
    "openalex_citations": 0,
@@ -6633,7 +6633,7 @@
   "2611.34923": {
    "citations": 0,
    "citations_source": "semanticscholar",
-   "hf_upvotes": 73,
+   "hf_upvotes": 76,
    "hn_points": 0,
    "influential": 0,
    "openalex_citations": 0,
@@ -6753,15 +6753,15 @@
   },
   "NUS-HPC-AI-Lab/LoopRes": {
    "pushed_at": "2026-11-27T02:54:59Z",
-   "stars": 89
+   "stars": 90
   },
   "NUS-HPC-AI-Lab/loop-dropout": {
    "pushed_at": "2026-10-02T14:06:39Z",
    "stars": 13
   },
   "OneBoxCream/DyLoMo-DiT": {
-   "pushed_at": "2026-11-26T04:03:46Z",
-   "stars": 50
+   "pushed_at": "2026-11-28T02:31:16Z",
+   "stars": 56
   },
   "OoDBag/Latent_recurrent_transformer": {
    "pushed_at": "2026-09-19T06:36:23Z",
@@ -6809,7 +6809,7 @@
   },
   "SamsungSAILMontreal/TinyRecursiveModels": {
    "pushed_at": "2026-04-01T00:50:39Z",
-   "stars": 6542
+   "stars": 6541
   },
   "Shameless0817/Loopy-review": {},
   "Survivor613/BabyLM-2026": {
@@ -6946,7 +6946,7 @@
   },
   "datamllab/LoopTitan": {
    "pushed_at": "2026-11-27T12:14:56Z",
-   "stars": 60
+   "stars": 97
   },
   "digiLab-ai/bigr": {
    "pushed_at": "2026-11-11T10:48:59Z",
@@ -6973,7 +6973,7 @@
    "stars": 1752
   },
   "feufhd/LoopSight": {
-   "pushed_at": "2026-11-24T05:33:49Z",
+   "pushed_at": "2026-11-28T01:56:06Z",
    "stars": 1
   },
   "fmarrabal/miuracognitive": {
@@ -7023,7 +7023,7 @@
   },
   "hustvl/MoLT": {
    "pushed_at": "2026-11-25T20:26:57Z",
-   "stars": 94
+   "stars": 109
   },
   "hym97/LoopMR": {
    "pushed_at": "2026-11-13T02:04:36Z",
@@ -7250,11 +7250,11 @@
   "sangin-lee/sr-vit": {},
   "sapientinc/HRM": {
    "pushed_at": "2026-03-31T23:08:31Z",
-   "stars": 12674
+   "stars": 12673
   },
   "sapientinc/HRM-Text": {
    "pushed_at": "2026-09-21T21:24:01Z",
-   "stars": 2365
+   "stars": 2368
   },
   "schneiderkamplab/HRM-Text": {
    "pushed_at": "2026-11-17T08:57:46Z",
@@ -7306,7 +7306,7 @@
   },
   "ubc-vision/solv3r": {
    "pushed_at": "2026-11-24T21:06:52Z",
-   "stars": 345
+   "stars": 346
   },
   "uf-hobi-informatics-lab/Med-Flan": {
    "pushed_at": "2026-10-22T14:44:28Z",
@@ -7342,7 +7342,7 @@
   },
   "yancyou/Loopback": {
    "pushed_at": "2026-11-13T02:46:05Z",
-   "stars": 20
+   "stars": 21
   },
   "yifanzhang-pro/recurrent-looped-tranformer": {
    "pushed_at": "2026-11-24T20:25:30Z",
