@@ -6,7 +6,7 @@
 
 <p align="center">Looped and recurrent-depth language models: papers, open models, and the evidence behind their claims, recorded the same way for every paper so that results can be compared.</p>
 
-<p align="center"><img alt="papers: 349" src="https://img.shields.io/badge/papers-349-4f7cff?style=flat-square&labelColor=0b1020"> <img alt="deep cards: 13" src="https://img.shields.io/badge/deep%20cards-13-4f7cff?style=flat-square&labelColor=0b1020"> <img alt="open models: 40" src="https://img.shields.io/badge/open%20models-40-4f7cff?style=flat-square&labelColor=0b1020"> <img alt="updated: 2026-11-28" src="https://img.shields.io/badge/updated-2026--11--28-4f7cff?style=flat-square&labelColor=0b1020"> <a href="LICENSE"><img alt="License: CC BY 4.0" src="https://img.shields.io/badge/license-CC%20BY%204.0-8b5cf6?style=flat-square&labelColor=0b1020"></a> <a href="https://github.com/sjy1203/awesome-loop/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/sjy1203/awesome-loop/actions/workflows/ci.yml/badge.svg"></a></p>
+<p align="center"><img alt="papers: 348" src="https://img.shields.io/badge/papers-348-4f7cff?style=flat-square&labelColor=0b1020"> <img alt="deep cards: 13" src="https://img.shields.io/badge/deep%20cards-13-4f7cff?style=flat-square&labelColor=0b1020"> <img alt="open models: 40" src="https://img.shields.io/badge/open%20models-40-4f7cff?style=flat-square&labelColor=0b1020"> <img alt="updated: 2026-11-28" src="https://img.shields.io/badge/updated-2026--11--28-4f7cff?style=flat-square&labelColor=0b1020"> <a href="LICENSE"><img alt="License: CC BY 4.0" src="https://img.shields.io/badge/license-CC%20BY%204.0-8b5cf6?style=flat-square&labelColor=0b1020"></a> <a href="https://github.com/sjy1203/awesome-loop/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/sjy1203/awesome-loop/actions/workflows/ci.yml/badge.svg"></a></p>
 
 <p align="center"><b>English</b> · <a href="README.zh-CN.md">简体中文</a></p>
 
@@ -112,7 +112,7 @@ Held fixed: **N** unique parameters · **A** active parameters · **F** training
 
 ## All papers
 
-Every core paper, deep cards included, grouped by category and newest first; click a category to expand it. Another 183 related papers (loops outside language models, puzzle reasoners such as HRM and TRM, earlier precursors and adjacent work) are listed in [docs/en/related.md](docs/en/related.md). New arXiv candidates are queued in [data/candidates.json](data/candidates.json) and added after a scope check.
+Every core paper, deep cards included, grouped by category and newest first; click a category to expand it. Another 184 related papers (loops outside language models, puzzle reasoners such as HRM and TRM, earlier precursors and adjacent work) are listed in [docs/en/related.md](docs/en/related.md). New arXiv candidates are queued in [data/candidates.json](data/candidates.json) and added after a scope check.
 
 <details><summary><b>Theory and capability (37)</b></summary>
 
@@ -272,11 +272,10 @@ Every core paper, deep cards included, grouped by category and newest first; cli
 
 </details>
 
-<details><summary><b>Depth control (36)</b></summary>
+<details><summary><b>Depth control (35)</b></summary>
 
 | Date | Paper | TL;DR | Links | Impact |
 |---|---|---|---|---|
-| 2026-11-25 | [Practice Makes Fluent: Learning to Use Earlier Predictions in Looped Models](https://arxiv.org/abs/2611.33722)<br><sub>Minseok seo et al.</sub> | FLUENT trains looped models to exit earlier without labels or rewards: it distills the frozen initial model's final-loop prediction into an early loop, anchors the current final loop to that teacher and retrains the exit gate against a depth cost; on the looped LM Ouro-1.4B, mean selected depth falls from 3.05 to 2.48 with mean accuracy 65.4% against 65.3% for the original model, and it also cuts action-head iterations of the recurrent-depth robot policy RD-VLA. | [paper](https://arxiv.org/abs/2611.33722) · [project](https://msseok96-cpu.github.io/FLUENT/) | cites 0 |
 | 2026-11-23 | [SwiftLoop: Selective Refinement for Adaptive Implicit Reasoning in Looped Transformers](https://arxiv.org/abs/2611.31481)<br><sub>Tianyi Zhao et al.</sub> | SwiftLoop learns from hindsight labels (K/V reusability or functional impact on the output) which latent positions of a looped Transformer can stop being refined, and freezes them while active positions keep attending to their cached K/V; on CODI-style LOTUS-1B it reaches 58.83% GSM8K accuracy with 1.80 loops per latent instead of six. | [paper](https://arxiv.org/abs/2611.31481) | cites 0 |
 | 2026-11-20 | [Mixture of Latent Recursions for Low-Rank Adaptation](https://arxiv.org/abs/2611.27823)<br><sub>Weixun Luo et al.</sub> | MoLR recursively refines each token's LoRA down-projected latent with one shared transformation, and a threshold router decides per token whether to recurse again; fine-tuning Llama-3.2-3B on reasoning tasks, it averages 61.21 versus 59.21 for LoRA with negligible parameter overhead. | [paper](https://arxiv.org/abs/2611.27823) | cites 0 |
 | 2026-11-09 | [Depth as a Candidate Source: Portfolio Allocation for Recurrent Test-Time Scaling in Large Language Models](https://arxiv.org/abs/2611.12293)<br><sub>Chaoyuan Hao et al.</sub> | Shows deeper recurrence in a frozen Huginn can lose correct answers found at shallower depths, and proposes Depth Portfolio Allocation, which spreads a test-time budget across depths and expands oracle coverage at matched candidate counts. | [paper](https://arxiv.org/abs/2611.12293) · [code](https://anonymous.4open.science/r/LLM-latent-B7BC/) | cites 0 · HF upvotes 0 |

@@ -6,7 +6,7 @@
 
 <p align="center">循环（looped / recurrent-depth）语言模型的论文、开源模型，以及结论背后的证据。每篇论文按同一套字段记录，方便跨论文比较。</p>
 
-<p align="center"><img alt="论文: 349" src="https://img.shields.io/badge/%E8%AE%BA%E6%96%87-349-4f7cff?style=flat-square&labelColor=0b1020"> <img alt="精读卡: 13" src="https://img.shields.io/badge/%E7%B2%BE%E8%AF%BB%E5%8D%A1-13-4f7cff?style=flat-square&labelColor=0b1020"> <img alt="开源模型: 40" src="https://img.shields.io/badge/%E5%BC%80%E6%BA%90%E6%A8%A1%E5%9E%8B-40-4f7cff?style=flat-square&labelColor=0b1020"> <img alt="更新于: 2026-11-28" src="https://img.shields.io/badge/%E6%9B%B4%E6%96%B0%E4%BA%8E-2026--11--28-4f7cff?style=flat-square&labelColor=0b1020"> <a href="LICENSE"><img alt="License: CC BY 4.0" src="https://img.shields.io/badge/license-CC%20BY%204.0-8b5cf6?style=flat-square&labelColor=0b1020"></a> <a href="https://github.com/sjy1203/awesome-loop/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/sjy1203/awesome-loop/actions/workflows/ci.yml/badge.svg"></a></p>
+<p align="center"><img alt="论文: 348" src="https://img.shields.io/badge/%E8%AE%BA%E6%96%87-348-4f7cff?style=flat-square&labelColor=0b1020"> <img alt="精读卡: 13" src="https://img.shields.io/badge/%E7%B2%BE%E8%AF%BB%E5%8D%A1-13-4f7cff?style=flat-square&labelColor=0b1020"> <img alt="开源模型: 40" src="https://img.shields.io/badge/%E5%BC%80%E6%BA%90%E6%A8%A1%E5%9E%8B-40-4f7cff?style=flat-square&labelColor=0b1020"> <img alt="更新于: 2026-11-28" src="https://img.shields.io/badge/%E6%9B%B4%E6%96%B0%E4%BA%8E-2026--11--28-4f7cff?style=flat-square&labelColor=0b1020"> <a href="LICENSE"><img alt="License: CC BY 4.0" src="https://img.shields.io/badge/license-CC%20BY%204.0-8b5cf6?style=flat-square&labelColor=0b1020"></a> <a href="https://github.com/sjy1203/awesome-loop/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/sjy1203/awesome-loop/actions/workflows/ci.yml/badge.svg"></a></p>
 
 <p align="center"><b>简体中文</b> · <a href="README.md">English</a></p>
 
@@ -112,7 +112,7 @@
 
 ## 全部论文
 
-收录的全部核心论文（含精读卡），按类别分组，组内从新到旧，点击类别名展开。另有 183 篇相关论文（语言模型以外的循环、HRM 和 TRM 这类谜题推理模型、早期的前身工作和相关方向）单独列在 [docs/zh/related.md](docs/zh/related.md)。每天从 arXiv 检索到的候选先放进 [data/candidates.json](data/candidates.json)，确认属于循环模型后再收录。
+收录的全部核心论文（含精读卡），按类别分组，组内从新到旧，点击类别名展开。另有 184 篇相关论文（语言模型以外的循环、HRM 和 TRM 这类谜题推理模型、早期的前身工作和相关方向）单独列在 [docs/zh/related.md](docs/zh/related.md)。每天从 arXiv 检索到的候选先放进 [data/candidates.json](data/candidates.json)，确认属于循环模型后再收录。
 
 <details><summary><b>理论与能力 (37)</b></summary>
 
@@ -272,11 +272,10 @@
 
 </details>
 
-<details><summary><b>深度控制 (36)</b></summary>
+<details><summary><b>深度控制 (35)</b></summary>
 
 | 日期 | 论文 | 一句话 | 链接 | 影响力 |
 |---|---|---|---|---|
-| 2026-11-25 | [Practice Makes Fluent: Learning to Use Earlier Predictions in Looped Models](https://arxiv.org/abs/2611.33722)<br><sub>Minseok seo 等</sub> | FLUENT 无需标签或奖励即可训练循环模型提前退出：把冻结初始模型最后一个 loop 的预测蒸馏到早期 loop，把当前最后一个 loop 锚定到同一教师，并按深度代价重新训练退出门控；在循环语言模型 Ouro-1.4B 上，平均选择深度从 3.05 降到 2.48，平均准确率为 65.4%（原模型 65.3%），它还减少了循环深度机器人策略 RD-VLA 的 action head 迭代次数。 | [论文](https://arxiv.org/abs/2611.33722) · [项目页](https://msseok96-cpu.github.io/FLUENT/) | 引用 0 |
 | 2026-11-23 | [SwiftLoop: Selective Refinement for Adaptive Implicit Reasoning in Looped Transformers](https://arxiv.org/abs/2611.31481)<br><sub>Tianyi Zhao 等</sub> | SwiftLoop 依据事后得到的标签（K/V 可复用性或对输出的功能影响）学习判断循环 Transformer 中哪些 latent 位置可以停止细化，并冻结这些位置，同时让仍在更新的位置继续读取它们缓存的 K/V；在 CODI 式 LOTUS-1B 上，每个 latent 平均只用 1.80 次循环（原为六次），GSM8K 准确率为 58.83%。 | [论文](https://arxiv.org/abs/2611.31481) | 引用 0 |
 | 2026-11-20 | [Mixture of Latent Recursions for Low-Rank Adaptation](https://arxiv.org/abs/2611.27823)<br><sub>Weixun Luo 等</sub> | MoLR 用一个共享变换对每个 token 经 LoRA 降维后的潜在表示做递归细化，并由基于阈值的路由器逐 token 决定是否继续递归；在 Llama-3.2-3B 的推理任务微调中平均得分 61.21，高于 LoRA 的 59.21，参数开销可忽略。 | [论文](https://arxiv.org/abs/2611.27823) | 引用 0 |
 | 2026-11-09 | [Depth as a Candidate Source: Portfolio Allocation for Recurrent Test-Time Scaling in Large Language Models](https://arxiv.org/abs/2611.12293)<br><sub>Chaoyuan Hao 等</sub> | 发现在冻结的 Huginn 上加深循环可能丢掉较浅深度已找到的正确解，并提出 Depth Portfolio Allocation，把测试时预算分配到多个深度上，在候选数相同时扩大 oracle 覆盖率。 | [论文](https://arxiv.org/abs/2611.12293) · [代码](https://anonymous.4open.science/r/LLM-latent-B7BC/) | 引用 0 · HF 点赞 0 |

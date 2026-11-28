@@ -7,12 +7,12 @@ authors: [Minseok seo, Hee-Seon Kim, Changick Kim]
 links:
   paper: https://arxiv.org/abs/2611.33722
   project: https://msseok96-cpu.github.io/FLUENT/
-category: depth
-focus: core
+category: applications
+focus: related
 facets:
   depth_train: adaptive
   kv: per-pass
 tldr:
-  en: "FLUENT trains looped models to exit earlier without labels or rewards: it distills the frozen initial model's final-loop prediction into an early loop, anchors the current final loop to that teacher and retrains the exit gate against a depth cost; on the looped LM Ouro-1.4B, mean selected depth falls from 3.05 to 2.48 with mean accuracy 65.4% against 65.3% for the original model, and it also cuts action-head iterations of the recurrent-depth robot policy RD-VLA."
-  zh: "FLUENT 无需标签或奖励即可训练循环模型提前退出：把冻结初始模型最后一个 loop 的预测蒸馏到早期 loop，把当前最后一个 loop 锚定到同一教师，并按深度代价重新训练退出门控；在循环语言模型 Ouro-1.4B 上，平均选择深度从 3.05 降到 2.48，平均准确率为 65.4%（原模型 65.3%），它还减少了循环深度机器人策略 RD-VLA 的 action head 迭代次数。"
+  en: "FLUENT trains looped models to exit earlier without labels or rewards: it distills the frozen initial model's final-loop prediction into early loops, anchors the current final loop to that teacher and retrains the exit gate against a depth cost; tested on Crafter, LIBERO, a real robot and the looped LM Ouro-1.4B, it raises real-robot success from 62.3% to 74.6% while mean time over successful episodes falls from 69 s to 31 s."
+  zh: "FLUENT 无需标签或奖励即可训练循环模型提前退出：把冻结初始模型最后一个 loop 的预测蒸馏到早期 loop，把当前最后一个 loop 锚定到同一教师，并按深度代价重新训练退出门控；实验覆盖 Crafter、LIBERO、真机和循环语言模型 Ouro-1.4B，真机上成功率从 62.3% 升到 74.6%，成功回合的平均用时从 69 s 降到 31 s。"
 added: "2026-11-28"
